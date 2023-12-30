@@ -1,4 +1,5 @@
-import "@styles/global.css";
+import "@styles/tailwind.css";
+import "@styles/font.css";
 
 export default function RootLayout({
   children,

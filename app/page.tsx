@@ -1,3 +1,3 @@
 export default function Home() {
-  return <main className="text-customRed header-text">localmood</main>;
+  return <main className="text-main-color-red header-text">localmood</main>;
 }

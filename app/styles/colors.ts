@@ -1,3 +1,5 @@
+import { redirect } from "react-router-dom";
+
 export const customColors = {
-  customRed: "red",
+  "main-color-red": "#FF0000",
 };
