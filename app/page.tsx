@@ -1,3 +1,3 @@
 export default function Home() {
-  return <main className="text-main-color-red Body3-Semibold">localmood</main>;
+  return <main className="text-black body3-semibold">localmood</main>;
 }

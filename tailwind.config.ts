@@ -19,63 +19,63 @@ module.exports = {
   plugins: [
     plugin(({ addUtilities }) => {
       addUtilities({
-        ".Headline0": {
+        ".headline0": {
           fontFamily: "Pretendard, sans-serif",
           fontWeight: "600",
           fontSize: "2.2rem",
           lineHeight: "140%",
           letterSpacing: "-2%",
         },
-        ".Headline1": {
+        ".headline1": {
           fontFamily: "Pretendard, sans-serif",
           fontWeight: "600",
           fontSize: "2rem",
           lineHeight: "140%",
           letterSpacing: "-2%",
         },
-        ".Headline2": {
+        ".headline2": {
           fontFamily: "Pretendard, sans-serif",
           fontWeight: "600",
           fontSize: "1.8rem",
           lineHeight: "140%",
           letterSpacing: "-2%",
         },
-        ".Headline3": {
+        ".headline3": {
           fontFamily: "Pretendard, sans-serif",
           fontWeight: "600",
           fontSize: "1.6rem",
           lineHeight: "100%",
           letterSpacing: "-2%",
         },
-        ".Body1": {
+        ".body1": {
           fontFamily: "Pretendard, sans-serif",
           fontWeight: "500",
           fontSize: "1.6rem",
           lineHeight: "140%",
           letterSpacing: "-2%",
         },
-        ".Body2": {
+        ".body2": {
           fontFamily: "Pretendard, sans-serif",
           fontWeight: "500",
           fontSize: "1.4rem",
           lineHeight: "100%",
           letterSpacing: "-2%",
         },
-        ".Body3-Semibold": {
+        ".body3-semibold": {
           fontFamily: "Pretendard, sans-serif",
           fontWeight: "600",
           fontSize: "1.2rem",
           lineHeight: "100%",
           letterSpacing: "-2%",
         },
-        ".Body3-Medium": {
+        ".body3-medium": {
           fontFamily: "Pretendard, sans-serif",
           fontWeight: "500",
           fontSize: "1.2rem",
           lineHeight: "100%",
           letterSpacing: "-2%",
         },
-        ".Body3-Regular": {
+        ".body3-regular": {
           fontFamily: "Pretendard, sans-serif",
           fontWeight: "400",
           fontSize: "1.2rem",
