@@ -10,6 +10,15 @@
 
 @font-face {
   font-family: "Pretendard";
+  src: url("../common/assets/fonts/pretendard/Pretendard-SemiBold.woff2"),
+    url("../common/assets/fonts/pretendard/Pretendard-SemiBold.woff"),
+    url("../common/assets/fonts/pretendard/Pretendard-SemiBold.otf");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard";
   src: url("../common/assets/fonts/pretendard/Pretendard-Medium.woff2"),
     url("../common/assets/fonts/pretendard/Pretendard-Medium.woff"),
     url("../common/assets/fonts/pretendard/Pretendard-Medium.otf");
