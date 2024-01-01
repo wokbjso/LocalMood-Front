@@ -1,5 +1,4 @@
-import CI from "@common/assets/icons/food/restaurant.svg";
-import Button from "@common/ui/buttons/Button/Button";
+import CI from "@common/assets/icons/like/like-good.svg";
 
 export default function Home() {
   return (

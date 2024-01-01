@@ -1,5 +1,8 @@
 export const customColors = {
-  primary: "#32D59F",
+  primary: {
+    normal: "#32D5BA",
+    selected: "#EAFBF8",
+  },
   secondary: "#EEF4FF",
   line: "#EEEEEE",
   blue: {
