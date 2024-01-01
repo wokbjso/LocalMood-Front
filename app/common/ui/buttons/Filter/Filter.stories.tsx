@@ -18,16 +18,23 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Static: Story = {
   args: {
     label: "연인과의 데이트",
   },
 };
 
-export const Photo: Story = {
+export const StaticPhoto: Story = {
   args: {
     photo:
       "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
     label: "연인과의 데이트",
+  },
+};
+
+export const ShowOptions: Story = {
+  args: {
+    variant: "showOptions",
+    label: "한식",
   },
 };

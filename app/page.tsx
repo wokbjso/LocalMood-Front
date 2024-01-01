@@ -1,9 +1,9 @@
-import CI from "@common/assets/icons/like/like-good.svg";
+import Filter from "@common/ui/buttons/Filter/Filter";
 
 export default function Home() {
   return (
     <main className="text-black body3-semibold">
-      <CI />
+      <Filter label="filter" />
     </main>
   );
 }

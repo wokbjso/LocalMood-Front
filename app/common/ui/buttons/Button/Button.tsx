@@ -5,6 +5,7 @@ interface ButtonProps {
   variant?: "fill" | "line";
   disabled?: boolean;
   children: ReactNode;
+  onClick?: () => void;
   className?: string;
 }
 
@@ -12,6 +13,7 @@ export default function Button({
   variant = "fill",
   disabled = false,
   children,
+  onClick,
   className,
 }: ButtonProps) {
   return (
@@ -22,6 +24,7 @@ export default function Button({
           "h-[4rem] bg-white text-gray-6 body2-semibold border-[1.125px] border-gray-6",
         className
       )}
+      onClick={onClick}
       disabled={disabled}
     >
       {children}
