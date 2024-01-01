@@ -1667,6 +1667,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.23.5":
+  version: 7.23.7
+  resolution: "@babel/runtime@npm:7.23.7"
+  dependencies:
+    regenerator-runtime: ^0.14.0
+  checksum: eba85bd24d250abb5ae19b16cffc15a54d3894d8228ace40fa4c0e2f1938f28b38ad3e3430ebff9a1ef511eeb8c527e36044ac19076d6deafa52cef35d8624b9
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.22.15":
   version: 7.22.15
   resolution: "@babel/template@npm:7.22.15"
@@ -9877,6 +9886,7 @@ __metadata:
     react: ^18
     react-dom: ^18
     storybook: 7.6.6
+    tailwind-merge: ^2.2.0
     tailwindcss: ^3.3.0
     tsconfig-paths-webpack-plugin: ^4.1.0
     typescript: ^5
@@ -13229,6 +13239,15 @@ __metadata:
   version: 2.0.17
   resolution: "synchronous-promise@npm:2.0.17"
   checksum: 7b1342c93741f3f92ebde1edf5d6ce8dde2278de948d84e9bd85e232c16c0d77c90c4940f9975be3effcb20f047cfb0f16fa311c3b4e092c22f3bf2889fb0fb4
+  languageName: node
+  linkType: hard
+
+"tailwind-merge@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "tailwind-merge@npm:2.2.0"
+  dependencies:
+    "@babel/runtime": ^7.23.5
+  checksum: f80d31ec990792fb204e3ad5a184a4b18a8f8929c651c7067693d8ffa74c6ec9666f15f4e50c1d831a47e7dcc75e688887e34fdb734096363ad1868d9ad5778a
   languageName: node
   linkType: hard
 
