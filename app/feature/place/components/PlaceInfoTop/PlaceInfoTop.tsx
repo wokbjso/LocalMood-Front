@@ -12,6 +12,7 @@ interface PlaceInfoProps {
   id: number;
   size?: "large" | "small";
   placeName: string;
+  placeImg: string;
   category: string;
   location: string;
   scrap?: boolean;
@@ -23,6 +24,7 @@ export default function PlaceInfoTop({
   id,
   size = "large",
   placeName,
+  placeImg,
   category,
   location,
   scrap = false,
@@ -36,12 +38,7 @@ export default function PlaceInfoTop({
   return (
     <div className="w-full relative" onClick={onClick}>
       <div className="w-full h-[16rem] relative">
-        <Image
-          src="https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg"
-          alt="공간 사진"
-          fill
-          className="rounded-[8px]"
-        />
+        <Image src={placeImg} alt="공간 사진" fill className="rounded-[8px]" />
       </div>
       <div
         className={twMerge(

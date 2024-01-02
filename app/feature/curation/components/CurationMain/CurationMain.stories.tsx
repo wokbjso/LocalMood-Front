@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import PlaceInfo from "./PlaceInfo";
+import CurationMain from "./CurationMain";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: "Feature/Place/PlaceInfo/PlaceInfo",
-  component: PlaceInfo,
+  title: "Feature/Curation/CurationMain/CurationMain",
+  component: CurationMain,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
@@ -13,7 +13,7 @@ const meta = {
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {},
-} satisfies Meta<typeof PlaceInfo>;
+} satisfies Meta<typeof CurationMain>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -22,28 +22,13 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     id: 0,
-    placeName: "나이스워크투데이",
-    placeImg:
-      "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-    category: "카페",
-    location: "마포구 망원동",
-    tags: [
-      {
-        category: "방문목적",
-        detail: "연인과의 데이트",
-      },
-      {
-        category: "방문목적",
-        detail: "작업/공부",
-      },
-      {
-        category: "인테리어",
-        detail: "통창뷰",
-      },
-      {
-        category: "공간무드",
-        detail: "넓은 공간",
-      },
+    curationPhoto: [
+      "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
     ],
+    userImg:
+      "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
+    userName: "김현민",
+    mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
+    hashTags: ["연인과의 데이트", "크리스마스"],
   },
 };

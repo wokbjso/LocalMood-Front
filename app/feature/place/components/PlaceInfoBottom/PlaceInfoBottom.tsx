@@ -16,7 +16,7 @@ export default function PlaceInfoBottom({
     >
       {variant === "home" &&
         tags.map((tag) => <Chip key={tag.detail}>{tag.detail}</Chip>)}
-      {variant === "search" &&
+      {variant === "home_search" &&
         PLACE_TAG_CATEGORY.slice(0, 2).map((category, i) => {
           return (
             <div

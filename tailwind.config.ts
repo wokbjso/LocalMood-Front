@@ -38,7 +38,7 @@ module.exports = {
           fontWeight: "600",
           fontSize: "1.8rem",
           lineHeight: "140%",
-          letterSpacing: "-2%",
+          letterSpacing: "-0.36px",
         },
         ".headline3": {
           fontFamily: "Pretendard, sans-serif",
@@ -66,7 +66,7 @@ module.exports = {
           fontWeight: "500",
           fontSize: "1.4rem",
           lineHeight: "100%",
-          letterSpacing: "-2%",
+          letterSpacing: "-0.28px",
         },
         ".body3-semibold": {
           fontFamily: "Pretendard, sans-serif",

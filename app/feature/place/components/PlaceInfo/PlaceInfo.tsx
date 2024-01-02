@@ -1,4 +1,3 @@
-import { twMerge } from "tailwind-merge";
 import PlaceInfoTop from "../PlaceInfoTop/PlaceInfoTop";
 import PlaceInfoBottom from "../PlaceInfoBottom/PlaceInfoBottom";
 
@@ -9,8 +8,9 @@ interface PlaceTags {
 
 export interface PlaceInfoProps {
   id: number;
-  variant?: "home" | "search" | "curation" | "scrapped";
+  variant?: "home" | "home_search" | "curation" | "scrapped" | "record_search";
   placeName: string;
+  placeImg: string;
   category: string;
   location: string;
   scrap?: boolean;
@@ -22,6 +22,7 @@ export default function PlaceInfo({
   id,
   variant = "home",
   placeName,
+  placeImg,
   category,
   location,
   scrap = false,
@@ -37,11 +38,12 @@ export default function PlaceInfo({
         id={id}
         size={variant !== "scrapped" ? "large" : "small"}
         placeName={placeName}
+        placeImg={placeImg}
         category={category}
         location={location}
         scrap={scrap}
       />
-      {variant !== "scrapped" && (
+      {variant !== "scrapped" && variant !== "record_search" && (
         <PlaceInfoBottom variant={variant} tags={tags} />
       )}
     </div>
