@@ -10,34 +10,40 @@ import { useState } from "react";
 
 interface PlaceInfoProps {
   id: number;
+  variant?: string;
   size?: "large" | "small";
   placeName: string;
   placeImg: string;
   category: string;
   location: string;
-  scrap?: boolean;
+  scrapped?: boolean;
   onClick?: () => void;
   className?: string;
 }
 
 export default function PlaceInfoTop({
   id,
+  variant,
   size = "large",
   placeName,
   placeImg,
   category,
   location,
-  scrap = false,
+  scrapped = false,
   onClick,
-  className,
 }: PlaceInfoProps) {
-  const [isScrapped, setIsScrapped] = useState(size === "large" ? false : true);
+  const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
   const handleScrap = () => {
     setIsScrapped((prev) => !prev);
   };
   return (
     <div className="w-full relative" onClick={onClick}>
-      <div className="w-full h-[16rem] relative">
+      <div
+        className={twMerge(
+          "w-full h-[16rem] relative",
+          variant === "curation" && "h-[28rem]"
+        )}
+      >
         <Image src={placeImg} alt="공간 사진" fill className="rounded-[8px]" />
       </div>
       <div
@@ -46,7 +52,7 @@ export default function PlaceInfoTop({
           size === "large" && "relative"
         )}
       >
-        {scrap && size === "large" ? (
+        {scrapped && size === "large" ? (
           !isScrapped ? (
             <ScrapLine
               className="absolute cursor-pointer right-[0.4rem]"
@@ -59,7 +65,7 @@ export default function PlaceInfoTop({
             />
           )
         ) : null}
-        {scrap && size === "small" ? (
+        {scrapped && size === "small" ? (
           !isScrapped ? (
             <ScrapLine
               className="absolute cursor-pointer top-[1.2rem] right-[1.2rem]"
