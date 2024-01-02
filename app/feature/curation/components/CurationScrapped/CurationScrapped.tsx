@@ -1,35 +1,29 @@
 "use client";
 
 import UserProfile from "@feature/user/components/UserProfile/UserProfile";
-import ScrapFill from "@common/assets/icons/scrap/scrap-fill.svg";
+import ScrapShadow from "@common/assets/icons/scrap/scrap-shadow.svg";
 import ScrapLine from "@common/assets/icons/scrap/scrap-line.svg";
-import Menu from "@common/assets/icons/menu/menu.svg";
 import { useState } from "react";
 import { CurationProps } from "@feature/curation/type";
 
-export default function CurationMain({
+export default function CurationScrapped({
   id,
   curationPhoto,
-  variant = "home",
   userImg,
   userName,
   mainText,
   hashTags,
   scrapped = false,
   onClick,
-}: CurationProps) {
+}: Omit<CurationProps, "variant">) {
   const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
-  const [isMenuOpened, setIsMenuOpened] = useState(false);
   const handleScrap = () => {
     setIsScrapped((prev) => !prev);
-  };
-  const handleMenu = () => {
-    setIsMenuOpened((prev) => !prev);
   };
   return (
     <div className="w-[33.5rem]" onClick={onClick}>
       <div
-        className="w-full h-[16.5rem] bg-cover relative"
+        className="w-full h-[16.5rem] bg-cover relative opacity-75"
         style={{
           backgroundImage: `url(
             ${curationPhoto && curationPhoto[0]}
@@ -42,11 +36,9 @@ export default function CurationMain({
           userName={userName}
           className="absolute bottom-[1.6rem] left-[1.6rem]"
         />
-      </div>
-      <div className="w-full p-[1.6rem] relative">
-        {variant === "home" ? (
-          isScrapped ? (
-            <ScrapFill
+        <div className="w-full p-[1.6rem] relative">
+          {isScrapped ? (
+            <ScrapShadow
               className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
               onClick={handleScrap}
             />
@@ -55,23 +47,18 @@ export default function CurationMain({
               className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
               onClick={handleScrap}
             />
-          )
-        ) : (
-          <Menu
-            className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-            onClick={handleMenu}
-          />
-        )}
-        <div className="headline2 w-[68%] break-keep mb-[1.2rem]">
-          {mainText}
-        </div>
-        <div className="flex flex-wrap gap-[0.8rem]">
-          {hashTags.map((tag) => (
-            <div key={tag}>
-              <span className="text-primary-normal body2-medium"># </span>
-              <span className="text-gray-6 body2-medium">{tag}</span>
-            </div>
-          ))}
+          )}
+          <div className="headline2 w-[68%] break-keep mb-[1.2rem] text-white">
+            {mainText}
+          </div>
+          <div className="flex flex-wrap gap-[0.8rem]">
+            {hashTags.map((tag) => (
+              <div key={tag}>
+                <span className="text-primary-normal body2-medium"># </span>
+                <span className="text-gray-4 body2-medium">{tag}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

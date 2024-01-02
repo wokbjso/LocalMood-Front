@@ -23,7 +23,12 @@ export default function UserProfile({
       )}
     >
       <div className="w-[1.6rem] h-[1.6rem] relative mr-[0.4rem]">
-        <Image src={userImg} alt="프로필 사진" fill className="rounded-full" />
+        <Image
+          src={userImg}
+          alt="프로필 사진"
+          fill
+          className="rounded-full cursor-pointer"
+        />
       </div>
 
       <span
