@@ -3,10 +3,10 @@
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import Line from "@common/assets/icons/line/line.svg";
-import ScrapLine from "@common/assets/icons/scrap/scrap-line.svg";
 import ScrapFill from "@common/assets/icons/scrap/scrap-fill.svg";
 import ScrapShadow from "@common/assets/icons/scrap/scrap-shadow.svg";
 import { useState } from "react";
+import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 
 interface PlaceInfoProps {
   id: number;

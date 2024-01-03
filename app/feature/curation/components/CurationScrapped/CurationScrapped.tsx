@@ -2,9 +2,9 @@
 
 import UserProfile from "@feature/user/components/UserProfile/UserProfile";
 import ScrapShadow from "@common/assets/icons/scrap/scrap-shadow.svg";
-import ScrapLine from "@common/assets/icons/scrap/scrap-line.svg";
 import { useState } from "react";
 import { CurationProps } from "@feature/curation/type";
+import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 
 export default function CurationScrapped({
   id,

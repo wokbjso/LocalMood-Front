@@ -2,10 +2,10 @@
 
 import UserProfile from "@feature/user/components/UserProfile/UserProfile";
 import ScrapFill from "@common/assets/icons/scrap/scrap-fill.svg";
-import ScrapLine from "@common/assets/icons/scrap/scrap-line.svg";
 import Menu from "@common/assets/icons/menu/menu.svg";
 import { useState } from "react";
 import { CurationProps } from "@feature/curation/type";
+import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 
 export default function CurationMain({
   id,
