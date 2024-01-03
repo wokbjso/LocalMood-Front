@@ -1,4 +1,4 @@
-import { GraphProps } from "./type";
+import { GraphProps } from "../type";
 import Like from "@common/assets/icons/like/like-good.svg";
 import DisLike from "@common/assets/icons/like/like-bad.svg";
 import { twMerge } from "tailwind-merge";
