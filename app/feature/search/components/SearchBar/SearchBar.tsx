@@ -31,7 +31,7 @@ export default function SearchBar({
   return (
     <div
       className={twMerge(
-        "flex justify-between items-center relative w-full h-[3.6rem] pl-[1.2rem] pr-[0.6rem] py-[0.8rem] bg-gray-1",
+        "flex justify-between items-center relative w-full h-[3.6rem] pl-[1.2rem] pr-[0.6rem] py-[0.8rem] bg-background-gray-1",
         className
       )}
     >
@@ -39,7 +39,7 @@ export default function SearchBar({
         <Search onClick={activateSearch} />
         <input
           className={twMerge(
-            "body2-medium text-gray-5 w-full ml-[0.8rem] pl-[0.3rem]"
+            "body2-medium text-text-gray-5 w-full ml-[0.8rem] pl-[0.3rem]"
           )}
           value={text}
           placeholder={placeholder}

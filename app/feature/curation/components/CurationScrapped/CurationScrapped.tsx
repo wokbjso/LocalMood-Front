@@ -23,7 +23,7 @@ export default function CurationScrapped({
   return (
     <div className="w-full" onClick={onClick}>
       <div
-        className="w-full h-[16.5rem] bg-cover relative opacity-75"
+        className="w-full h-[16.5rem] bg-cover relative"
         style={{
           backgroundImage: `url(
             ${curationPhoto && curationPhoto[0]}
@@ -55,7 +55,7 @@ export default function CurationScrapped({
             {hashTags.map((tag) => (
               <div key={tag}>
                 <span className="text-primary-normal body2-medium"># </span>
-                <span className="text-gray-4 body2-medium">{tag}</span>
+                <span className="text-text-gray-4 body2-medium">{tag}</span>
               </div>
             ))}
           </div>

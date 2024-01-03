@@ -3,7 +3,6 @@ export const customColors = {
     normal: "#32D5BA",
     selected: "#EAFBF8",
   },
-  line: "#EEEEEE",
   background: {
     secondary: "#EEF4FF",
     blue: {
@@ -12,6 +11,11 @@ export const customColors = {
     gray: {
       1: "#FAFAFA",
       2: "#F5F5F5",
+    },
+  },
+  line: {
+    gray: {
+      3: "#EEEEEE",
     },
   },
   text: {

@@ -98,8 +98,8 @@ export default function PlaceInfoTop({
           <span
             className={
               size === "large"
-                ? "body2-semibold text-gray-6"
-                : "body3-semibold text-gray-7"
+                ? "body2-semibold text-text-gray-6"
+                : "body3-semibold text-text-gray-7"
             }
           >
             {category}
@@ -108,8 +108,8 @@ export default function PlaceInfoTop({
           <span
             className={
               size === "large"
-                ? "body2-medium text-gray-5"
-                : "body3-medium text-gray-5"
+                ? "body2-medium text-text-gray-5"
+                : "body3-medium text-text-gray-5"
             }
           >
             {location}
