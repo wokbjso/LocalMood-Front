@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import ArrowDown from "@common/assets/icons/arrow/arrow-down.svg";
-import ArrowUp from "@common/assets/icons/arrow/arrow-up.svg";
+import ArrowUp from "@common/assets/icons/arrow/ArrowUp";
 
 interface FilterProps {
   variant?: "static" | "showOptions";
@@ -31,12 +31,12 @@ export default function Filter({
     <button
       className={twMerge(
         !photo
-          ? "flex bg-gray-2 px-[1.4rem] py-[1rem] rounded-[36px]"
+          ? "flex items-center bg-background-gray-2 px-[1.4rem] py-[1rem] rounded-[36px]"
           : "flex items-center border-[0.1rem] py-[0.4rem] pr-[1.2rem] pl-[0.4rem] rounded-[36px]",
         selected &&
           photo &&
           "bg-primary-selected border-[1.5px] border-primary-normal",
-        selected && !photo && "bg-gray-8 ",
+        selected && !photo && "bg-text-gray-8 ",
         className
       )}
       onClick={filterClicked}
@@ -56,7 +56,7 @@ export default function Filter({
         {label}
       </span>
       {variant === "showOptions" && openOptions && (
-        <ArrowUp className="ml-[0.2rem]" />
+        <ArrowUp className="ml-[0.2rem]" color="#FAFAFA" />
       )}
       {variant === "showOptions" && !openOptions && (
         <ArrowDown className="ml-[0.2rem]" />

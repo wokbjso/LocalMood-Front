@@ -17,8 +17,8 @@ export default function Chip({
   return (
     <button
       className={twMerge(
-        "h-[2.8rem] px-[1.2rem] body3-medium bg-secondary rounded-[100px]",
-        variant === "dark" && "text-gray-0 bg-black bg-opacity-30",
+        "h-[2.8rem] px-[1.2rem] body3-medium bg-background-secondary rounded-[100px]",
+        variant === "dark" && "text-[#FCFCFD] bg-black bg-opacity-30",
         className
       )}
       onClick={onClick}
