@@ -14,7 +14,7 @@ export default function Tab({ sections }: TabProps) {
     setTabIndex(i);
   };
   return (
-    <div className="flex w-[30rem]">
+    <div className="flex w-full">
       {sections.map((section, i) => (
         <section
           key={section.text}
