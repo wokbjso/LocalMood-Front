@@ -6,14 +6,14 @@ interface PlaceTags {
   detail: string;
 }
 
-export interface PlaceInfoProps {
+export interface PlaceInfoMainProps {
   id: number;
   variant?: "home" | "home_search" | "curation";
   placeName: string;
   placeImg: string;
   category: string;
   location: string;
-  scrapped?: boolean;
+  scrapped: boolean;
   tags: PlaceTags[];
   onClick: () => void;
 }
@@ -25,16 +25,15 @@ export default function PlaceInfoMain({
   placeImg,
   category,
   location,
-  scrapped = false,
+  scrapped,
   tags,
   onClick,
-}: PlaceInfoProps) {
+}: PlaceInfoMainProps) {
   return (
-    <div className="w-[33.5rem]" onClick={onClick}>
+    <div className="w-full" onClick={onClick}>
       <PlaceInfoTop
         id={id}
         variant={variant}
-        size="large"
         placeName={placeName}
         placeImg={placeImg}
         category={category}

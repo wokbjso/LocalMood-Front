@@ -21,7 +21,7 @@ export default function CurationScrapped({
     setIsScrapped((prev) => !prev);
   };
   return (
-    <div className="w-[33.5rem]" onClick={onClick}>
+    <div className="w-full" onClick={onClick}>
       <div
         className="w-full h-[16.5rem] bg-cover relative opacity-75"
         style={{

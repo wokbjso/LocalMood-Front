@@ -1,6 +1,6 @@
 import { PLACE_TAG_CATEGORY } from "@feature/place/constants/place-tag-category";
 import { twMerge } from "tailwind-merge";
-import { PlaceInfoProps } from "../PlaceInfo/PlaceInfoMain";
+import { PlaceInfoProps } from "../PlaceInfoMain/PlaceInfoMain";
 import Chip from "@common/ui/buttons/Chip/Chip";
 
 export default function PlaceInfoBottom({

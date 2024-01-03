@@ -16,7 +16,7 @@ interface PlaceInfoProps {
   placeImg: string;
   category: string;
   location: string;
-  scrapped?: boolean;
+  scrapped: boolean;
   onClick?: () => void;
   className?: string;
 }
@@ -29,7 +29,7 @@ export default function PlaceInfoTop({
   placeImg,
   category,
   location,
-  scrapped = false,
+  scrapped,
   onClick,
 }: PlaceInfoProps) {
   const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
@@ -37,11 +37,18 @@ export default function PlaceInfoTop({
     setIsScrapped((prev) => !prev);
   };
   return (
-    <div className="w-full relative" onClick={onClick}>
+    <div
+      className={twMerge(
+        "w-full relative",
+        variant === "record_search" && "flex items-center"
+      )}
+      onClick={onClick}
+    >
       <div
         className={twMerge(
           "w-full h-[16rem] relative",
-          variant === "curation" && "h-[28rem]"
+          variant === "curation" && "h-[28rem]",
+          variant === "record_search" && "w-[8rem] h-[8rem] mr-[1.6rem]"
         )}
       >
         <Image src={placeImg} alt="공간 사진" fill className="rounded-[8px]" />
@@ -49,10 +56,11 @@ export default function PlaceInfoTop({
       <div
         className={twMerge(
           "flex-col mt-[1.6rem]",
+          variant === "record_search" && "mt-0",
           size === "large" && "relative"
         )}
       >
-        {scrapped && size === "large" ? (
+        {size === "large" ? (
           !isScrapped ? (
             <ScrapLine
               className="absolute cursor-pointer right-[0.4rem]"
@@ -65,7 +73,7 @@ export default function PlaceInfoTop({
             />
           )
         ) : null}
-        {scrapped && size === "small" ? (
+        {variant === "scrapped" && size === "small" ? (
           !isScrapped ? (
             <ScrapLine
               className="absolute cursor-pointer top-[1.2rem] right-[1.2rem]"

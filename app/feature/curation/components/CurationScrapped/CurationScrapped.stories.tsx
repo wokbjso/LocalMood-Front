@@ -19,7 +19,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Default: Story = {
+export const ScrappedFalse: Story = {
   args: {
     id: 0,
     curationPhoto: [
@@ -33,7 +33,7 @@ export const Default: Story = {
   },
 };
 
-export const Scrapped: Story = {
+export const ScrappedTrue: Story = {
   args: {
     id: 0,
     curationPhoto: [

@@ -27,7 +27,7 @@ export default function CurationMain({
     setIsMenuOpened((prev) => !prev);
   };
   return (
-    <div className="w-[33.5rem]" onClick={onClick}>
+    <div className="w-full" onClick={onClick}>
       <div
         className="w-full h-[16.5rem] bg-cover relative"
         style={{
@@ -62,7 +62,7 @@ export default function CurationMain({
             onClick={handleMenu}
           />
         )}
-        <div className="headline2 w-[68%] break-keep mb-[1.2rem]">
+        <div className="headline2 w-[70%] break-keep mb-[1.2rem]">
           {mainText}
         </div>
         <div className="flex flex-wrap gap-[0.8rem]">
