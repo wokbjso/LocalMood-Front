@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Indicator from "./Indicator";
+import Tab from "./Tab";
+import MyCurationFill from "@common/assets/icons/curation/MyCurationFill";
+import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: "Common/UI/Indicator/Indicator",
-  component: Indicator,
+  title: "Common/UI/Tab/Tab",
+  component: Tab,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
@@ -13,14 +15,36 @@ const meta = {
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {},
-} satisfies Meta<typeof Indicator>;
+} satisfies Meta<typeof Tab>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Default: Story = {
+export const Text: Story = {
   args: {
-    index: 0,
+    sections: [
+      {
+        text: "카페",
+      },
+      {
+        text: "음식점",
+      },
+    ],
+  },
+};
+
+export const Icon: Story = {
+  args: {
+    sections: [
+      {
+        icon: MyCurationFill,
+        text: "카페",
+      },
+      {
+        icon: ScrapLine,
+        text: "음식점",
+      },
+    ],
   },
 };

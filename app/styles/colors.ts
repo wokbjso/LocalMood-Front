@@ -3,25 +3,31 @@ export const customColors = {
     normal: "#32D5BA",
     selected: "#EAFBF8",
   },
-  secondary: "#EEF4FF",
-  line: "#EEEEEE",
-  blue: {
-    1: "#F5F8FF",
-    2: "#EEF4FF",
-    3: "#E0EAFF",
+  background: {
+    secondary: "#EEF4FF",
+    blue: {
+      1: "#F5F8FF",
+    },
+    gray: {
+      1: "#FAFAFA",
+      2: "#F5F5F5",
+    },
   },
-  gray: {
-    0: "#FCFCFD",
-    1: "#F9FAFB",
-    2: "#F2F4F7",
-    3: "#E4E7EC",
-    4: "#D0D5DD",
-    5: "#98A2B3",
-    6: "#667085",
-    7: "#475467",
-    8: "#344054",
-    9: "#1D2939",
+  line: {
+    gray: {
+      3: "#EEEEEE",
+    },
+  },
+  text: {
+    gray: {
+      4: "#E0E0E0",
+      5: "#BDBDBD",
+      6: "#9E9E9E",
+      7: "#757575",
+      8: "#616161",
+      9: "#424242",
+    },
   },
   white: "#FFFFFF",
-  black: "#101828",
+  black: "#212121",
 };

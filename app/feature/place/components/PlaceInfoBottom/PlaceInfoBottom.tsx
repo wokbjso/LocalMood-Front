@@ -1,12 +1,12 @@
 import { PLACE_TAG_CATEGORY } from "@feature/place/constants/place-tag-category";
 import { twMerge } from "tailwind-merge";
-import { PlaceInfoProps } from "../PlaceInfoMain/PlaceInfoMain";
 import Chip from "@common/ui/buttons/Chip/Chip";
+import { PlaceInfoMainProps } from "../PlaceInfoMain/PlaceInfoMain";
 
 export default function PlaceInfoBottom({
   variant,
   tags,
-}: Pick<PlaceInfoProps, "variant" | "tags">) {
+}: Pick<PlaceInfoMainProps, "variant" | "tags">) {
   return (
     <div
       className={twMerge(
@@ -27,7 +27,9 @@ export default function PlaceInfoBottom({
               )}
             >
               <div className="mr-[2rem]">
-                <span className="body2-medium text-gray-6">{category}</span>
+                <span className="body2-medium text-text-gray-6">
+                  {category}
+                </span>
               </div>
               <div className="flex flex-wrap gap-[0.8rem]">
                 {tags
@@ -50,7 +52,9 @@ export default function PlaceInfoBottom({
               )}
             >
               <div className="mr-[2rem]">
-                <span className="body2-medium text-gray-6">{category}</span>
+                <span className="body2-medium text-text-gray-6">
+                  {category}
+                </span>
               </div>
               <div className="flex flex-wrap gap-[0.8rem]">
                 {tags

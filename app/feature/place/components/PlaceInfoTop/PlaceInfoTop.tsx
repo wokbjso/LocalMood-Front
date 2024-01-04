@@ -3,10 +3,10 @@
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import Line from "@common/assets/icons/line/line.svg";
-import ScrapLine from "@common/assets/icons/scrap/scrap-line.svg";
 import ScrapFill from "@common/assets/icons/scrap/scrap-fill.svg";
 import ScrapShadow from "@common/assets/icons/scrap/scrap-shadow.svg";
 import { useState } from "react";
+import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 
 interface PlaceInfoProps {
   id: number;
@@ -98,8 +98,8 @@ export default function PlaceInfoTop({
           <span
             className={
               size === "large"
-                ? "body2-semibold text-gray-6"
-                : "body3-semibold text-gray-7"
+                ? "body2-semibold text-text-gray-6"
+                : "body3-semibold text-text-gray-7"
             }
           >
             {category}
@@ -108,8 +108,8 @@ export default function PlaceInfoTop({
           <span
             className={
               size === "large"
-                ? "body2-medium text-gray-5"
-                : "body3-medium text-gray-5"
+                ? "body2-medium text-text-gray-5"
+                : "body3-medium text-text-gray-5"
             }
           >
             {location}

@@ -2,10 +2,10 @@
 
 import UserProfile from "@feature/user/components/UserProfile/UserProfile";
 import ScrapFill from "@common/assets/icons/scrap/scrap-fill.svg";
-import ScrapLine from "@common/assets/icons/scrap/scrap-line.svg";
 import Menu from "@common/assets/icons/menu/menu.svg";
 import { useState } from "react";
 import { CurationProps } from "@feature/curation/type";
+import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 
 export default function CurationMain({
   id,
@@ -62,14 +62,14 @@ export default function CurationMain({
             onClick={handleMenu}
           />
         )}
-        <div className="headline2 w-[70%] break-keep mb-[1.2rem]">
+        <div className="headline2 w-[70%] break-keep mb-[1.2rem] text-black">
           {mainText}
         </div>
         <div className="flex flex-wrap gap-[0.8rem]">
           {hashTags.map((tag) => (
             <div key={tag}>
               <span className="text-primary-normal body2-medium"># </span>
-              <span className="text-gray-6 body2-medium">{tag}</span>
+              <span className="text-text-gray-6 body2-medium">{tag}</span>
             </div>
           ))}
         </div>
