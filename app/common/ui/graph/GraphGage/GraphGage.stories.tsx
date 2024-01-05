@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import GraphGage from "./GraphGage";
-import Heart from "@common/assets/icons/heart/heart.svg";
+import Heart from "@common/assets/icons/heart/Heart";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {

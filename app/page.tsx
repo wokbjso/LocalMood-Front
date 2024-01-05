@@ -14,8 +14,8 @@ export default function Home() {
   ];
   return (
     <>
-      <header className="bg-background-secondary-light">
-        <div className="flex justify-between px-[2rem] pt-[1.6rem] pb-[1rem] mb-[0.2rem]">
+      <header className="pt-[1.6rem] pb-[2rem] mb-[5rem]">
+        <div className="flex justify-between px-[2rem] pb-[1rem] mb-[0.2rem]">
           <HeaderText />
           <SearchIcon />
         </div>
@@ -39,6 +39,34 @@ export default function Home() {
           <Button>키워드로 공간 찾기</Button>
         </div>
       </header>
+      <div className="pl-[2rem]">
+        <section>
+          <div>
+            <span className="text-primary-normal headline2"># </span>
+            <span className="text-black headline2">연인과의 데이트</span>
+            <span className="text-text-gray-6 body1"> 를 위한 공간</span>
+          </div>
+        </section>
+        <section>
+          <div>
+            <span className="text-primary-normal headline2"># </span>
+            <span className="text-black headline2">친구와의 만남</span>
+            <span className="text-text-gray-6 body1"> 을 위한 공간</span>
+          </div>
+        </section>
+        <section>
+          <div>
+            <span className="headline2 text-black">마포구 인기 큐레이션 </span>
+          </div>
+        </section>
+        <section>
+          <div>
+            <span className="text-primary-normal headline2"># </span>
+            <span className="text-black headline2">왁자지껄 떠들기 좋은</span>
+            <span className="text-text-gray-6 body1"> 공간</span>
+          </div>
+        </section>
+      </div>
     </>
   );
 }
