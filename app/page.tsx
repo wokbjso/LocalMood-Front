@@ -1,7 +1,7 @@
-import Footer from "@common/layout/Footer/Footer";
-import GraphUpDownVote from "@common/ui/graph/GraphUpDownVote/GraphUpDownVote";
-import Indicator from "@common/ui/indicator/Indicator";
-
 export default function Home() {
-  return <div></div>;
+  return (
+    <>
+      <header className="px-[2rem] pt-[1.6rem] pb-[1rem]"></header>
+    </>
+  );
 }

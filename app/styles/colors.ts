@@ -4,9 +4,9 @@ export const customColors = {
     selected: "#EAFBF8",
   },
   background: {
-    secondary: "#EEF4FF",
-    blue: {
-      1: "#F5F8FF",
+    secondary: {
+      normal: "#EEF4FF",
+      light: "#F5F8FF",
     },
     gray: {
       1: "#FAFAFA",
