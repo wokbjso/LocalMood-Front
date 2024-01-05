@@ -7,4 +7,7 @@ module.exports = {
 
     return config;
   },
+  images: {
+    domains: ["media.istockphoto.com", "cdn.pixabay.com"],
+  },
 };
