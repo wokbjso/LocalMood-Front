@@ -13,16 +13,16 @@ export default function Home({ color = "#9E9E9E", className }: IconProps) {
       <path
         d="M0.857178 12.7143L12 1.57144L23.1429 12.7143"
         stroke={color}
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M4.28564 9.28574V20.4286H19.7142V9.28574"
         stroke={color}
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

@@ -1,9 +1,7 @@
-import Filter from "@common/ui/buttons/Filter/Filter";
+import Footer from "@common/layout/Footer/Footer";
+import GraphUpDownVote from "@common/ui/graph/GraphUpDownVote/GraphUpDownVote";
+import Indicator from "@common/ui/indicator/Indicator";
 
 export default function Home() {
-  return (
-    <main className="text-black body3-semibold">
-      <Filter label="filter" />
-    </main>
-  );
+  return <div></div>;
 }
