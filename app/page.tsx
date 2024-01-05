@@ -8,6 +8,7 @@ import Button from "@common/components/ui/buttons/Button/Button";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
 import Indicator from "@common/components/ui/indicator/Indicator";
+import CurationHomeList from "@feature/curation/components/CurationHomeList/CurationHomeList";
 
 export default function Home() {
   const HEADER_KEYWORD = [
@@ -91,9 +92,9 @@ export default function Home() {
       ],
       userImg:
         "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      userName: "김현민",
-      mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
-      hashTags: ["연인과의 데이트", "크리스마스"],
+      userName: "김지원",
+      mainText: "평일에 좋은 마포구 데이트 코스",
+      hashTags: ["연인과의 데이트", "평일"],
     },
     {
       id: 2,
@@ -102,9 +103,9 @@ export default function Home() {
       ],
       userImg:
         "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      userName: "김현민",
-      mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
-      hashTags: ["연인과의 데이트", "크리스마스"],
+      userName: "김경민",
+      mainText: "주말에 즐기기 좋은 마포구 데이트 코스",
+      hashTags: ["연인과의 데이트", "주말"],
     },
     {
       id: 3,
@@ -113,9 +114,9 @@ export default function Home() {
       ],
       userImg:
         "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      userName: "김현민",
-      mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
-      hashTags: ["연인과의 데이트", "크리스마스"],
+      userName: "최예원",
+      mainText: "친구와 즐기기 좋은 마포구 데이트 코스",
+      hashTags: ["친구와의 데이트", "마포구"],
     },
   ];
   return (
@@ -196,23 +197,7 @@ export default function Home() {
               <RightArrow />
             </div>
           </div>
-          <div className="flex overflow-x-scroll">
-            {curation_dummy.map((curation) => {
-              return (
-                <CurationMain
-                  key={curation.id}
-                  id={0}
-                  curationPhoto={curation.curationPhoto}
-                  userImg={curation.userImg}
-                  userName={curation.userName}
-                  hashTags={curation.hashTags}
-                  mainText={curation.mainText}
-                  className="mb-[2rem]"
-                />
-              );
-            })}
-          </div>
-          <Indicator index={0} className="flex justify-center" />
+          <CurationHomeList curationList={curation_dummy} />
         </section>
         <section className="pl-[2rem]">
           <span className="text-primary-normal headline2"># </span>
