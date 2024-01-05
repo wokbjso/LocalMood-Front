@@ -38,7 +38,7 @@ export default function Footer() {
     router.push(navigateTo);
   };
   return (
-    <footer className="flex justify-between w-full h-[9.1rem] bg-background-gray-1 px-[3.2rem] pt-[0.8rem]">
+    <footer className="flex justify-between w-full h-[9.1rem] bg-background-gray-1 px-[3.2rem] pt-[0.8rem] fixed bottom-0">
       {FOOTER_CATEGORY.map((category, i) => (
         <div
           key={category.text}
