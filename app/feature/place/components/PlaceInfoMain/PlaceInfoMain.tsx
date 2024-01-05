@@ -1,5 +1,6 @@
 import PlaceInfoTop from "../PlaceInfoTop/PlaceInfoTop";
 import PlaceInfoBottom from "../PlaceInfoBottom/PlaceInfoBottom";
+import { twMerge } from "tailwind-merge";
 
 interface PlaceTags {
   category: string;
@@ -15,7 +16,8 @@ export interface PlaceInfoMainProps {
   location: string;
   scrapped: boolean;
   tags: PlaceTags[];
-  onClick: () => void;
+  onClick?: () => void;
+  className?: string;
 }
 
 export default function PlaceInfoMain({
@@ -28,9 +30,10 @@ export default function PlaceInfoMain({
   scrapped,
   tags,
   onClick,
+  className,
 }: PlaceInfoMainProps) {
   return (
-    <div className="w-full" onClick={onClick}>
+    <div>
       <PlaceInfoTop
         id={id}
         variant={variant}
@@ -39,6 +42,8 @@ export default function PlaceInfoMain({
         category={category}
         location={location}
         scrapped={scrapped}
+        onClick={onClick}
+        className={className}
       />
       <PlaceInfoBottom variant={variant} tags={tags} />
     </div>

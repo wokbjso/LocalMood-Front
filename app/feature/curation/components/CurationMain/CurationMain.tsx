@@ -6,6 +6,7 @@ import Menu from "@common/assets/icons/menu/menu.svg";
 import { useState } from "react";
 import { CurationProps } from "@feature/curation/type";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
+import { twMerge } from "tailwind-merge";
 
 export default function CurationMain({
   id,
@@ -17,6 +18,7 @@ export default function CurationMain({
   hashTags,
   scrapped = false,
   onClick,
+  className,
 }: CurationProps) {
   const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
   const [isMenuOpened, setIsMenuOpened] = useState(false);
@@ -27,9 +29,12 @@ export default function CurationMain({
     setIsMenuOpened((prev) => !prev);
   };
   return (
-    <div className="w-full" onClick={onClick}>
+    <div
+      className={twMerge("w-full bg-white rounded-[8px]", className)}
+      onClick={onClick}
+    >
       <div
-        className="w-full h-[16.5rem] bg-cover relative"
+        className="w-full h-[16.5rem] bg-cover relative rounded-t-[8px]"
         style={{
           backgroundImage: `url(
             ${curationPhoto && curationPhoto[0]}

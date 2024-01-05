@@ -8,4 +8,5 @@ export interface CurationProps {
   hashTags: string[];
   scrapped?: boolean;
   onClick?: () => void;
+  className?: string;
 }

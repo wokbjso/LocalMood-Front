@@ -31,6 +31,7 @@ export default function PlaceInfoTop({
   location,
   scrapped,
   onClick,
+  className,
 }: PlaceInfoProps) {
   const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
   const handleScrap = () => {
@@ -40,7 +41,8 @@ export default function PlaceInfoTop({
     <div
       className={twMerge(
         "w-full relative",
-        variant === "record_search" && "flex items-center"
+        variant === "record_search" && "flex items-center",
+        className
       )}
       onClick={onClick}
     >
