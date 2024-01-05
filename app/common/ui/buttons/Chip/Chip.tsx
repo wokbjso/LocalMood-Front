@@ -17,7 +17,7 @@ export default function Chip({
   return (
     <button
       className={twMerge(
-        "h-[2.8rem] px-[1.2rem] body3-medium bg-background-secondary-normal rounded-[100px]",
+        "box-sizing:border-box h-[2.8rem] px-[1.2rem] body3-medium bg-background-secondary-normal rounded-[100px]",
         variant === "dark" && "text-[#FCFCFD] bg-black bg-opacity-30",
         className
       )}
