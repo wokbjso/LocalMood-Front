@@ -121,12 +121,12 @@ export default function Home() {
   ];
   return (
     <>
-      <header className="w-full pt-[1.6rem] pb-[2rem] mb-[5rem]">
-        <div className="flex justify-between px-[2rem] pb-[1rem] mb-[0.2rem]">
+      <header className="w-full pt-[1.6rem] pb-[2rem]">
+        <div className="fixed flex justify-between items-center px-[2rem] w-full">
           <HeaderText />
           <SearchIcon />
         </div>
-        <p className="header-light mb-[2.4rem] px-[2rem]">
+        <p className="header-light mt-[3.8rem] mb-[2.4rem] px-[2rem]">
           나에게 딱 맞는 공간을
           <br />
           <span className="header-main"> 키워드</span>로 찾아보세요
