@@ -19,6 +19,20 @@ module.exports = {
   plugins: [
     plugin(({ addUtilities }) => {
       addUtilities({
+        ".header-light": {
+          fontFamily: "Pretendard, sans-serif",
+          fontWeight: "500",
+          fontSize: "2rem",
+          lineHeight: "140%",
+          letterSpacing: "-2%",
+        },
+        ".header-main": {
+          fontFamily: "Pretendard, sans-serif",
+          fontWeight: "700",
+          fontSize: "2rem",
+          lineHeight: "140%",
+          letterSpacing: "-2%",
+        },
         ".headline0": {
           fontFamily: "Pretendard, sans-serif",
           fontWeight: "600",
@@ -38,7 +52,7 @@ module.exports = {
           fontWeight: "600",
           fontSize: "1.8rem",
           lineHeight: "140%",
-          letterSpacing: "-0.36px",
+          letterSpacing: "-2%",
         },
         ".headline3": {
           fontFamily: "Pretendard, sans-serif",
@@ -66,7 +80,7 @@ module.exports = {
           fontWeight: "500",
           fontSize: "1.4rem",
           lineHeight: "100%",
-          letterSpacing: "-0.28px",
+          letterSpacing: "-2%",
         },
         ".body3-semibold": {
           fontFamily: "Pretendard, sans-serif",
