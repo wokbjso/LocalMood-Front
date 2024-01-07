@@ -2,14 +2,72 @@
 
 import Button from "@common/components/ui/buttons/Button/Button";
 import ArrowBack from "@common/assets/icons/arrow/arrow-back.svg";
+import FilterKeyword from "@common/assets/icons/filter/filter-keyword.svg";
+import FilterCategory from "@common/assets/icons/filter/filter-category.svg";
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Tab from "@common/components/ui/tab/Tab";
 import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
+import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 
 export default function SearchPage() {
-  const DUMMY_PLACE = null;
+  const DUMMY_PLACE = [
+    {
+      id: 0,
+      placeName: "나이스워크투데이",
+      placeImg:
+        "https://media.istockphoto.com/id/1446199740/ko/%EC%82%AC%EC%A7%84/%ED%96%87%EB%B3%95%EC%9D%B4-%EC%9E%98-%EB%93%9C%EB%8A%94-%EC%88%B2%EC%9D%84-%ED%86%B5%EA%B3%BC%ED%95%98%EB%8A%94-%EA%B8%B8.jpg?s=2048x2048&w=is&k=20&c=3z_ODBT78uZDVqy-3B6r8LBa825AuSpL0xfzySe2fj8=",
+      category: "카페",
+      location: "마포구 망원동",
+      scrapped: false,
+      tags: [
+        {
+          category: "방문목적",
+          detail: "연인과의 데이트",
+        },
+        {
+          category: "방문목적",
+          detail: "작업/공부",
+        },
+        {
+          category: "인테리어",
+          detail: "통창뷰",
+        },
+        {
+          category: "공간무드",
+          detail: "넓은 공간",
+        },
+      ],
+    },
+    {
+      id: 1,
+      placeName: "나이스워크투데이",
+      placeImg:
+        "https://media.istockphoto.com/id/1446199740/ko/%EC%82%AC%EC%A7%84/%ED%96%87%EB%B3%95%EC%9D%B4-%EC%9E%98-%EB%93%9C%EB%8A%94-%EC%88%B2%EC%9D%84-%ED%86%B5%EA%B3%BC%ED%95%98%EB%8A%94-%EA%B8%B8.jpg?s=2048x2048&w=is&k=20&c=3z_ODBT78uZDVqy-3B6r8LBa825AuSpL0xfzySe2fj8=",
+      category: "카페",
+      location: "마포구 망원동",
+      scrapped: false,
+      tags: [
+        {
+          category: "방문목적",
+          detail: "연인과의 데이트",
+        },
+        {
+          category: "방문목적",
+          detail: "작업/공부",
+        },
+        {
+          category: "인테리어",
+          detail: "통창뷰",
+        },
+        {
+          category: "공간무드",
+          detail: "넓은 공간",
+        },
+      ],
+    },
+  ];
   const DUMMY_CURATION = [
     {
       id: 0,
@@ -131,7 +189,61 @@ export default function SearchPage() {
                   userName={curation.userName}
                   hashTags={curation.hashTags}
                   mainText={curation.mainText}
-                  className="mt-[2rem]"
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+      {searchText.length > 0 && DUMMY_PLACE && DUMMY_CURATION && (
+        <div className="pt-[5.4rem]">
+          <Tab
+            sections={[{ text: "공간" }, { text: "큐레이션" }]}
+            onChange={handleTabIndex}
+          />
+          {tabIndex === 0 && (
+            <div className="pb-[9.1rem] px-[2rem]">
+              <div className="flex justify-between pt-[1.6rem] pb-[1.2rem]">
+                <div className="flex items-center">
+                  <FilterKeyword />
+                  <span className="body2-semibold text-text-gray-8 ml-[0.8rem]">
+                    키워드 설정
+                  </span>
+                </div>
+                <div className="flex items-center">
+                  <FilterCategory />
+                  <span className="body2-medium text-text-gray-6 ml-[0.8rem]">
+                    리뷰 최신순
+                  </span>
+                </div>
+              </div>
+              {DUMMY_PLACE.map((place, i) => (
+                <PlaceInfoMain
+                  key={place.id}
+                  id={place.id}
+                  placeName={place.placeName}
+                  placeImg={place.placeImg}
+                  category={place.category}
+                  location={place.location}
+                  scrapped={place.scrapped}
+                  tags={place.tags}
+                  className={i > 0 ? "mt-[4rem]" : ""}
+                />
+              ))}
+            </div>
+          )}
+          {tabIndex === 1 && (
+            <div className="pb-[9.1rem] px-[2rem] mt-[2rem]">
+              {DUMMY_CURATION.map((curation, i) => (
+                <CurationMain
+                  key={curation.id}
+                  id={0}
+                  curationPhoto={curation.curationPhoto}
+                  userImg={curation.userImg}
+                  userName={curation.userName}
+                  hashTags={curation.hashTags}
+                  mainText={curation.mainText}
+                  className={i > 0 ? "mt-[1.6rem]" : ""}
                 />
               ))}
             </div>
