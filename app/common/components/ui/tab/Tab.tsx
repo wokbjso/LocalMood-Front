@@ -6,11 +6,13 @@ interface TabProps {
     icon?: React.FC<{ color?: string; className?: string }>;
     text: string;
   }[];
+  onChange?: (index: number) => void;
 }
 
-export default function Tab({ sections }: TabProps) {
+export default function Tab({ sections, onChange }: TabProps) {
   const [tabIndex, setTabIndex] = useState(0);
   const handleTabSection = (i: number) => {
+    onChange && onChange(i);
     setTabIndex(i);
   };
   return (
@@ -34,7 +36,7 @@ export default function Tab({ sections }: TabProps) {
           )}
           <div
             className={twMerge(
-              "headline3 text-text-gray-5",
+              "headline2 text-text-gray-4",
               tabIndex === i && "text-text-gray-8"
             )}
           >
