@@ -34,7 +34,7 @@ export default function Tab({ sections }: TabProps) {
           )}
           <div
             className={twMerge(
-              "headline2 text-text-gray-4",
+              "headline3 text-text-gray-5",
               tabIndex === i && "text-text-gray-8"
             )}
           >
