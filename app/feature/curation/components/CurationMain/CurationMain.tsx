@@ -11,7 +11,7 @@ import { twMerge } from "tailwind-merge";
 export default function CurationMain({
   id,
   curationPhoto,
-  variant = "home",
+  variant,
   userImg,
   userName,
   mainText,
@@ -30,7 +30,10 @@ export default function CurationMain({
   };
   return (
     <div
-      className={twMerge("w-full bg-white rounded-[8px]", className)}
+      className={twMerge(
+        "w-full h-[27.7rem] bg-white rounded-[8px]",
+        className
+      )}
       onClick={onClick}
     >
       <div

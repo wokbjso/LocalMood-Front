@@ -1,6 +1,7 @@
 "use client";
 import CurationHeader from "@feature/curation/components/CurationHeader/CurationHeader";
 import Tab from "@common/components/ui/tab/Tab";
+import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
 
 export default function Curation() {
   const CurationTabSections = [
@@ -12,11 +13,81 @@ export default function Curation() {
     },
   ];
 
+  const curationMainPropsList = [
+    {
+      id: 0,
+      curationPhoto: [
+        "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
+      ],
+      variant: "home",
+      userImg:
+        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
+      userName: "김현민",
+      mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
+      hashTags: ["연인과의 데이트", "크리스마스"],
+      scrapped: false,
+      onClick: () => {},
+    },
+    {
+      id: 1,
+      curationPhoto: [
+        "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
+      ],
+      variant: "home",
+      userImg:
+        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
+      userName: "김현민",
+      mainText: "카페",
+      hashTags: ["연인과의 데이트", "크리스마스"],
+      scrapped: false,
+      onClick: () => {},
+    },
+    {
+      id: 2,
+      curationPhoto: [
+        "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
+      ],
+      variant: "home",
+      userImg:
+        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
+      userName: "김현민",
+      mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
+      hashTags: ["연인과의 데이트", "크리스마스"],
+      scrapped: false,
+      onClick: () => {},
+    },
+    {
+      id: 3,
+      curationPhoto: [
+        "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
+      ],
+      variant: "home",
+      userImg:
+        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
+      userName: "김현민",
+      mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
+      hashTags: ["연인과의 데이트", "크리스마스"],
+      scrapped: false,
+      onClick: () => {},
+    },
+  ]; //API 연결
+
   return (
     <div className="Curation">
       <div>
         <CurationHeader />
         <Tab sections={CurationTabSections} />
+        <div className="pt-[5.2rem] px-[2rem] pb-[18.2rem] bg-background-gray-2">
+          <div className="flex">
+            <div>총 {curationMainPropsList.length}개</div>
+            <div>만들기</div>
+          </div>
+          {curationMainPropsList.map((props, index) => (
+            <div key={index} className="mb-[1.2rem]">
+              <CurationMain {...props} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

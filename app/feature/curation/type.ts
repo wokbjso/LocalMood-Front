@@ -1,7 +1,7 @@
 export interface CurationProps {
   id: number;
   curationPhoto?: string[];
-  variant?: "home" | "my";
+  variant?: string;
   userImg: string;
   userName: string;
   mainText: string;
