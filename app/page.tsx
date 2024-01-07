@@ -1,14 +1,11 @@
-import HeaderText from "@common/assets/icons/header/header.svg";
-import SearchIcon from "@common/assets/icons/search/search.svg";
 import Heart from "@common/assets/icons/heart/Heart";
 import Music from "@common/assets/icons/music/Music";
 import RightArrow from "@common/assets/icons/arrow/arror-right.svg";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
 import Button from "@common/components/ui/buttons/Button/Button";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
-import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
-import Indicator from "@common/components/ui/indicator/Indicator";
 import CurationHomeList from "@feature/curation/components/CurationHomeList/CurationHomeList";
+import HomeHeader from "@common/components/layout/Header/HomeHeader";
 
 export default function Home() {
   const HEADER_KEYWORD = [
@@ -121,10 +118,7 @@ export default function Home() {
   ];
   return (
     <>
-      <header className="fixed flex justify-between items-center px-[2rem] pt-[1.6rem] pb-[1rem] w-full z-10 bg-white">
-        <HeaderText />
-        <SearchIcon />
-      </header>
+      <HomeHeader />
       <p className="header-light  mb-[2.4rem] px-[2rem] pt-[5.4rem]">
         나에게 딱 맞는 공간을
         <br />
