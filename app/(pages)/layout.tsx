@@ -1,5 +1,5 @@
 import Footer from "@common/components/layout/Footer/Footer";
-import "./styles/global.css";
+import "../styles/global.css";
 
 export const metadata = {
   title: "Next.js",
