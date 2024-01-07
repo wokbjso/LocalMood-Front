@@ -5,13 +5,19 @@ import ArrowBack from "@common/assets/icons/arrow/arrow-back.svg";
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Tab from "@common/components/ui/tab/Tab";
 
 export default function SearchPage() {
-  const dummy_search_data = null;
+  const DUMMY_PLACE = null;
+  const DUMMY_CURATION = "wg";
   const router = useRouter();
   const [searchText, setSearchText] = useState("");
+  const [tabIndex, setTabIndex] = useState(0);
   const handleSearchText = (text: string) => {
     setSearchText(text);
+  };
+  const handleTabIndex = (index: number) => {
+    setTabIndex(index);
   };
   const backIconClicked = () => {
     router.back();
@@ -37,11 +43,37 @@ export default function SearchPage() {
           </Button>
         </div>
       )}
-      {searchText.length > 0 && !dummy_search_data && (
+      {searchText.length > 0 && !DUMMY_PLACE && !DUMMY_CURATION && (
         <div className="flex flex-col justify-center items-center pt-[11.4rem]">
           <p className="flex justify-center body1 text-text-gray-8">
             검색 결과가 없습니다.
           </p>
+        </div>
+      )}
+      {searchText.length > 0 && DUMMY_PLACE && !DUMMY_CURATION && (
+        <div className="pt-[5.4rem]">
+          <Tab
+            sections={[{ text: "공간" }, { text: "큐레이션" }]}
+            onChange={handleTabIndex}
+          />
+          {tabIndex === 1 && (
+            <p className="flex justify-center body1 text-text-gray-8 mt-[6rem]">
+              검색 결과가 없습니다.
+            </p>
+          )}
+        </div>
+      )}
+      {searchText.length > 0 && !DUMMY_PLACE && DUMMY_CURATION && (
+        <div className="pt-[5.4rem]">
+          <Tab
+            sections={[{ text: "공간" }, { text: "큐레이션" }]}
+            onChange={handleTabIndex}
+          />
+          {tabIndex === 0 && (
+            <p className="flex justify-center body1 text-text-gray-8 mt-[6rem]">
+              검색 결과가 없습니다.
+            </p>
+          )}
         </div>
       )}
     </div>

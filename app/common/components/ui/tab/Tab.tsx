@@ -6,11 +6,13 @@ interface TabProps {
     icon?: React.FC<{ color?: string; className?: string }>;
     text: string;
   }[];
+  onChange?: (index: number) => void;
 }
 
-export default function Tab({ sections }: TabProps) {
+export default function Tab({ sections, onChange }: TabProps) {
   const [tabIndex, setTabIndex] = useState(0);
   const handleTabSection = (i: number) => {
+    onChange && onChange(i);
     setTabIndex(i);
   };
   return (
