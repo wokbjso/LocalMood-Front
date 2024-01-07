@@ -121,31 +121,29 @@ export default function Home() {
   ];
   return (
     <>
-      <header className="w-full pt-[1.6rem] pb-[2rem]">
-        <div className="fixed flex justify-between items-center px-[2rem] w-full">
-          <HeaderText />
-          <SearchIcon />
-        </div>
-        <p className="header-light mt-[3.8rem] mb-[2.4rem] px-[2rem]">
-          나에게 딱 맞는 공간을
-          <br />
-          <span className="header-main"> 키워드</span>로 찾아보세요
-        </p>
-        <div className="flex w-full overflow-x-scroll mb-[2rem]">
-          {HEADER_KEYWORD.map((keyword) => (
-            <Chip
-              key={keyword.text}
-              className="whitespace-nowrap px-[1.12rem] flex items-center h-[3.2rem] mr-[1rem]"
-            >
-              {<keyword.icon />}
-              <span className="pl-[0.4rem]">{keyword.text}</span>
-            </Chip>
-          ))}
-        </div>
-        <div className="flex justify-center">
-          <Button>키워드로 공간 찾기</Button>
-        </div>
+      <header className="fixed flex justify-between items-center px-[2rem] pt-[1.6rem] pb-[1rem] w-full z-10 bg-white">
+        <HeaderText />
+        <SearchIcon />
       </header>
+      <p className="header-light  mb-[2.4rem] px-[2rem] pt-[5.4rem]">
+        나에게 딱 맞는 공간을
+        <br />
+        <span className="header-main"> 키워드</span>로 찾아보세요
+      </p>
+      <div className="flex w-full overflow-x-scroll mb-[2rem]">
+        {HEADER_KEYWORD.map((keyword) => (
+          <Chip
+            key={keyword.text}
+            className="whitespace-nowrap px-[1.12rem] flex items-center h-[3.2rem] mr-[1rem]"
+          >
+            {<keyword.icon />}
+            <span className="pl-[0.4rem]">{keyword.text}</span>
+          </Chip>
+        ))}
+      </div>
+      <div className="flex justify-center mb-[2rem]">
+        <Button>키워드로 공간 찾기</Button>
+      </div>
       <div className="pb-[9.1rem]">
         <section className="mb-[3.8rem] pl-[2rem]">
           <span className="text-primary-normal headline2"># </span>
