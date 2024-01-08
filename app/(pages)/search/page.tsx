@@ -116,13 +116,16 @@ export default function SearchPage() {
     },
   ];
   const router = useRouter();
-  const { searchText, tabIndex, handlers } = useSearchBar();
+  const { searchText, tabIndex, searchByKeyword, handlers } = useSearchBar();
   const backIconClicked = () => {
     router.back();
   };
   return (
     <div>
-      <SearchKeyword />
+      <SearchKeyword
+        isOpen={searchByKeyword}
+        setIsOpen={handlers.handleSearchByKeyword}
+      />
       <header className="fixed w-full flex items-center px-[2rem] pt-[1.6rem] pb-[0.6rem] z-10 bg-white">
         <div onClick={backIconClicked}>
           <ArrowBack />
@@ -137,7 +140,10 @@ export default function SearchPage() {
           <p className="flex justify-center text-center break-keep headline2 text-text-gray-9 w-[42%] mb-[1.6rem]">
             나에게 딱 맞는 공간을 찾고 싶다면?
           </p>
-          <Button className="w-[12.5rem] h-[2.6rem] py-[0.6rem] mr-[1.2rem] body2-semibold">
+          <Button
+            className="w-[12.5rem] h-[2.6rem] py-[0.6rem] mr-[1.2rem] body2-semibold"
+            onClick={() => handlers.handleSearchByKeyword(true)}
+          >
             키워드로 공간 찾기
           </Button>
         </div>
