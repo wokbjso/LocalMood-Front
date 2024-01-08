@@ -202,7 +202,7 @@ export default function SearchPage() {
             onChange={handleTabIndex}
           />
           {tabIndex === 0 && (
-            <div className="pb-[9.1rem] px-[2rem]">
+            <div className="pb-[10.7rem] px-[2rem]">
               <div className="flex justify-between pt-[1.6rem] pb-[1.2rem]">
                 <div className="flex items-center">
                   <FilterKeyword />
