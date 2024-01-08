@@ -29,7 +29,7 @@ export default function SearchKeyword({
   };
   return (
     isOpen && (
-      <div className="w-full h-[94%] z-20 fixed bottom-0 bg-white">
+      <div className="w-full h-[94%] z-20 fixed bottom-0 bg-white rounded-t-[14px]">
         <div className="flex justify-center items-center mb-[4.3rem] w-full h-[2.1rem] rounded-t-[10px]">
           <div className="w-[3.6rem] h-[0.5rem] bg-text-gray-4 rounded-[2.5px]" />
           <CloseIcon
