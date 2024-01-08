@@ -136,7 +136,9 @@ export default function SearchPage() {
   };
   return (
     <div>
-      <div className="w-full h-full bg-black opacity-[0.4] z-20 absolute" />
+      {modalOpen && (
+        <div className="w-full h-full bg-black opacity-[0.4] z-20 absolute" />
+      )}
       <SearchKeyword
         isOpen={modalOpen}
         tabIndex={searchKeywordTabIndex}

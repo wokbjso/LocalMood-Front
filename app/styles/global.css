@@ -1,2 +1,8 @@
 @import "./tailwind.css";
 @import "./font.css";
+
+@keyframes slide-modal {
+  from {
+    height: 0;
+  }
+}
