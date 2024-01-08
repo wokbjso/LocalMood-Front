@@ -6,10 +6,10 @@ import FilterKeyword from "@common/assets/icons/filter/filter-keyword.svg";
 import FilterCategory from "@common/assets/icons/filter/filter-category.svg";
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import Tab from "@common/components/ui/tab/Tab";
 import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
+import useSearch from "@feature/search/useSearch";
 
 export default function SearchPage() {
   const DUMMY_PLACE = [
@@ -115,14 +115,7 @@ export default function SearchPage() {
     },
   ];
   const router = useRouter();
-  const [searchText, setSearchText] = useState("");
-  const [tabIndex, setTabIndex] = useState(0);
-  const handleSearchText = (text: string) => {
-    setSearchText(text);
-  };
-  const handleTabIndex = (index: number) => {
-    setTabIndex(index);
-  };
+  const { searchText, tabIndex, handlers } = useSearch();
   const backIconClicked = () => {
     router.back();
   };
@@ -134,7 +127,7 @@ export default function SearchPage() {
         </div>
         <SearchBar
           placeholder="공간, 큐레이션을 검색해보세요"
-          onChange={handleSearchText}
+          onChange={handlers.handleSearchText}
         />
       </header>
       {searchText.length === 0 && (
@@ -158,7 +151,7 @@ export default function SearchPage() {
         <div className="pt-[5.4rem]">
           <Tab
             sections={[{ text: "공간" }, { text: "큐레이션" }]}
-            onChange={handleTabIndex}
+            onChange={handlers.handleTabIndex}
           />
           {tabIndex === 1 && (
             <p className="flex justify-center body1 text-text-gray-8 mt-[6rem]">
@@ -171,7 +164,7 @@ export default function SearchPage() {
         <div className="pt-[5.4rem]">
           <Tab
             sections={[{ text: "공간" }, { text: "큐레이션" }]}
-            onChange={handleTabIndex}
+            onChange={handlers.handleTabIndex}
           />
           {tabIndex === 0 && (
             <p className="flex justify-center body1 text-text-gray-8 mt-[6rem]">
@@ -199,7 +192,7 @@ export default function SearchPage() {
         <div className="pt-[5.4rem]">
           <Tab
             sections={[{ text: "공간" }, { text: "큐레이션" }]}
-            onChange={handleTabIndex}
+            onChange={handlers.handleTabIndex}
           />
           {tabIndex === 0 && (
             <div className="pb-[10.7rem] px-[2rem]">
