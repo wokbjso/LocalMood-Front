@@ -9,7 +9,8 @@ import { useRouter } from "next/navigation";
 import Tab from "@common/components/ui/tab/Tab";
 import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
-import useSearch from "@feature/search/useSearch";
+import useSearchBar from "@feature/search/components/SearchBar/useSearchBar";
+import SearchKeyword from "@feature/search/components/SearchKeyword/SearchKeyword";
 
 export default function SearchPage() {
   const DUMMY_PLACE = [
@@ -115,12 +116,13 @@ export default function SearchPage() {
     },
   ];
   const router = useRouter();
-  const { searchText, tabIndex, handlers } = useSearch();
+  const { searchText, tabIndex, handlers } = useSearchBar();
   const backIconClicked = () => {
     router.back();
   };
   return (
     <div>
+      <SearchKeyword />
       <header className="fixed w-full flex items-center px-[2rem] pt-[1.6rem] pb-[0.6rem] z-10 bg-white">
         <div onClick={backIconClicked}>
           <ArrowBack />
