@@ -233,7 +233,7 @@ export default function SearchPage() {
             </div>
           )}
           {tabIndex === 1 && (
-            <div className="pb-[9.1rem] px-[2rem] mt-[2rem]">
+            <div className="pb-[10.7rem] px-[2rem] mt-[2rem]">
               {DUMMY_CURATION.map((curation, i) => (
                 <CurationMain
                   key={curation.id}

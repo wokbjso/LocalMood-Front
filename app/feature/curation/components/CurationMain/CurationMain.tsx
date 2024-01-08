@@ -30,7 +30,10 @@ export default function CurationMain({
   };
   return (
     <div
-      className={twMerge("w-full bg-white rounded-[8px]", className)}
+      className={twMerge(
+        "w-full bg-white rounded-[8px] border-[0.1rem] border-line-gray-3",
+        className
+      )}
       onClick={onClick}
     >
       <div
