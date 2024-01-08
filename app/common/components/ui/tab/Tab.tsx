@@ -7,16 +7,17 @@ interface TabProps {
     text: string;
   }[];
   onChange?: (index: number) => void;
+  className?: string;
 }
 
-export default function Tab({ sections, onChange }: TabProps) {
+export default function Tab({ sections, onChange, className }: TabProps) {
   const [tabIndex, setTabIndex] = useState(0);
   const handleTabSection = (i: number) => {
     onChange && onChange(i);
     setTabIndex(i);
   };
   return (
-    <div className="flex w-full">
+    <div className={twMerge("flex w-full", className)}>
       {sections.map((section, i) => (
         <section
           key={section.text}
