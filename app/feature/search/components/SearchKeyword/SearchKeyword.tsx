@@ -59,7 +59,11 @@ export default function SearchKeyword() {
               <div className="flex flex-wrap gap-[0.6rem]">
                 {Object.keys(RESTARANT_KEYWORDS).indexOf(category) === i &&
                   RESTARANT_KEYWORDS[category].map((keyword) => (
-                    <Filter key={keyword} label={keyword} />
+                    <Filter
+                      key={keyword}
+                      label={keyword}
+                      variant={category === "음식" ? "showOptions" : undefined}
+                    />
                   ))}
               </div>
             </section>
