@@ -3,7 +3,7 @@
 import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
-interface ButtonProps {
+export interface ButtonProps {
   variant?: "fill" | "line";
   disabled?: boolean;
   children: ReactNode;

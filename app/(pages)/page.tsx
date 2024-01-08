@@ -6,6 +6,7 @@ import Button from "@common/components/ui/buttons/Button/Button";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import CurationHomeList from "@feature/curation/components/CurationHomeList/CurationHomeList";
 import HomeHeader from "@common/components/layout/Header/HomeHeader";
+import SearchByKeywordButton from "@feature/search/components/SearchByKeywordButton/SearchByKeywordButton";
 
 export default function Home() {
   const HEADER_KEYWORD = [
@@ -136,7 +137,7 @@ export default function Home() {
         ))}
       </div>
       <div className="flex justify-center mb-[2rem]">
-        <Button>키워드로 공간 찾기</Button>
+        <SearchByKeywordButton />
       </div>
       <div className="pb-[9.1rem]">
         <section className="mb-[3.8rem] pl-[2rem]">

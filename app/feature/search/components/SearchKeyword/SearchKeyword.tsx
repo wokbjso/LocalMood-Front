@@ -1,9 +1,7 @@
-"use client";
-
 import CloseIcon from "@common/assets/icons/close/CloseIcon";
 import Divider from "@common/components/ui/divider/Divider";
 import Tab from "@common/components/ui/tab/Tab";
-import useSearchKeyword from "./useSearchKeyword";
+
 import {
   CAFE_CATEGORY,
   CAFE_KEYWORDS,
@@ -14,15 +12,21 @@ import Filter from "@common/components/ui/buttons/Filter/Filter";
 import Button from "@common/components/ui/buttons/Button/Button";
 
 interface SearchKeywordProps {
-  isOpen: boolean;
-  setIsOpen: (state: boolean) => void;
+  isOpen?: boolean;
+  tabIndex?: number;
+  handleModalOpen: (open: boolean) => void;
+  handleTabIndex: (index: number) => void;
 }
 
 export default function SearchKeyword({
-  isOpen,
-  setIsOpen,
+  isOpen = false,
+  tabIndex = 0,
+  handleModalOpen,
+  handleTabIndex,
 }: SearchKeywordProps) {
-  const { tabIndex, handlers } = useSearchKeyword();
+  const closeClicked = () => {
+    handleModalOpen(false);
+  };
   return (
     isOpen && (
       <div className="w-full h-[94%] z-20 fixed bottom-0 bg-white">
@@ -30,12 +34,12 @@ export default function SearchKeyword({
           <div className="w-[3.6rem] h-[0.5rem] bg-text-gray-4 rounded-[2.5px]" />
           <CloseIcon
             className="absolute right-[2.4rem] top-[4rem]"
-            onClick={() => setIsOpen(false)}
+            onClick={closeClicked}
           />
         </div>
         <Tab
           sections={[{ text: "음식점" }, { text: "카페" }]}
-          onChange={handlers.handleTabIndex}
+          onChange={handleTabIndex}
           className="pl-[2rem] w-[35%]"
         />
         <Divider className="h-[0.1rem] bg-line-gray-3" />
