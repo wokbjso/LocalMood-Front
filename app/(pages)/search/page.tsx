@@ -146,7 +146,7 @@ export default function SearchPage() {
         handleModalOpen={searchKeywordHandlers.handleModalOpen}
         handleTabIndex={searchKeywordHandlers.handleTabIndex}
       />
-      <header className="fixed w-full flex items-center px-[2rem] pt-[1.6rem] pb-[0.6rem] z-10 bg-white">
+      <header className="fixed w-full flex items-center px-[2rem] pt-[1.6rem] pb-[0.6rem] bg-white">
         <ArrowBack onClick={goBackClicked} />
         <SearchBar
           placeholder="공간, 큐레이션을 검색해보세요"

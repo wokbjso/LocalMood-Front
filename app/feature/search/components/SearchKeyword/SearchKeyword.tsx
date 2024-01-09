@@ -10,6 +10,7 @@ import {
 } from "@feature/search/constants/search-keywords";
 import Filter from "@common/components/ui/buttons/Filter/Filter";
 import Button from "@common/components/ui/buttons/Button/Button";
+import Link from "next/link";
 
 interface SearchKeywordProps {
   isOpen?: boolean;
@@ -38,10 +39,17 @@ export default function SearchKeyword({
       >
         <div className="flex justify-center items-center mb-[4.3rem] w-full h-[2.1rem] rounded-t-[10px]">
           <div className="w-[3.6rem] h-[0.5rem] bg-text-gray-4 rounded-[2.5px]" />
-          <CloseIcon
-            className="absolute right-[2.4rem] top-[4rem]"
-            onClick={closeClicked}
-          />
+          <Link
+            href={{
+              pathname: "/search",
+              query: { keyword_search: false },
+            }}
+          >
+            <CloseIcon
+              className="absolute right-[2.4rem] top-[4rem]"
+              onClick={closeClicked}
+            />
+          </Link>
         </div>
         <Tab
           sections={[{ text: "음식점" }, { text: "카페" }]}

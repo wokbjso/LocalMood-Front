@@ -7,6 +7,9 @@ import GraphUpDownVote from "@common/components/ui/graph/GraphUpDownVote/GraphUp
 import Button from "@common/components/ui/buttons/Button/Button";
 import Slider from "@common/components/layout/Slider/Slider";
 import PlaceDetailInfo from "@feature/place/components/PlaceDetailInfo/PlaceDetailInfo";
+import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
+import DetailTopBar from "@common/components/ui/topBar/DetailTopBar/DetailTopBar";
+import { usePathname } from "next/navigation";
 
 export default function PlaceDetail() {
   const DETAIL_DUMMY = {
@@ -167,6 +170,7 @@ export default function PlaceDetail() {
       <div className="w-full h-[30rem] mb-[1.5rem] relative">
         <Image src={DETAIL_DUMMY.placeImg} alt="공간 상세 사진" fill />
       </div>
+      <DetailTopBar className="absolute top-[4.7rem]" />
       <PlaceDetailInfo
         id={DETAIL_DUMMY.id}
         placeName={DETAIL_DUMMY.placeName}
@@ -254,7 +258,9 @@ export default function PlaceDetail() {
             ))}
           </div>
         </div>
-        <Button variant="line">기록 전체 보기</Button>
+        <LinkLayout routeUrl={`/place/detail/more/${DETAIL_DUMMY.id}`}>
+          <Button variant="line">기록 전체 보기</Button>
+        </LinkLayout>
       </div>
       <Divider className="bg-line-gray-3 h-[0.4rem] mb-[4.8rem]" />
       <div className="pl-[2rem]">

@@ -1,3 +1,5 @@
+"use client";
+
 import CurationScrapped from "@feature/curation/components/CurationScrapped/CurationScrapped";
 import { CurationProps } from "@feature/curation/type";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
