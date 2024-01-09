@@ -13,7 +13,7 @@ export default function Footer() {
     {
       icon: Home,
       text: "홈",
-      navigateTo: "",
+      navigateTo: "/",
     },
     {
       icon: Record,
@@ -23,7 +23,7 @@ export default function Footer() {
     {
       icon: Curation,
       text: "큐레이션",
-      navigateTo: "",
+      navigateTo: "/curation",
     },
     {
       icon: UserProfile,
