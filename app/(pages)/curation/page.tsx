@@ -2,6 +2,7 @@
 import CurationHeader from "@feature/curation/components/CurationHeader/CurationHeader";
 import Tab from "@common/components/ui/tab/Tab";
 import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
+import CurationButton from "@feature/curation/components/CurationButton/CurationButton";
 
 export default function Curation() {
   const CurationTabSections = [
@@ -77,10 +78,14 @@ export default function Curation() {
       <div>
         <CurationHeader />
         <Tab sections={CurationTabSections} />
-        <div className="pt-[5.2rem] px-[2rem] pb-[18.2rem] bg-background-gray-2">
-          <div className="flex">
-            <div>총 {curationMainPropsList.length}개</div>
-            <div>만들기</div>
+        <div className="px-[2rem] pb-[18.2rem] bg-background-gray-2 items-center">
+          <div className="flex items-center justify-between items-center pb-[0.6rem] pt-[2rem]">
+            <div className="flex body1 text-text-gray-8 items-center">
+              총{" "}
+              <p className="text-black">&nbsp;{curationMainPropsList.length}</p>{" "}
+              개
+            </div>
+            <CurationButton />
           </div>
           {curationMainPropsList.map((props, index) => (
             <div key={index} className="mb-[1.2rem]">
