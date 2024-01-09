@@ -20,7 +20,7 @@ export default function Curation() {
       curationPhoto: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
-      variant: "home",
+      variant: "my",
       userImg:
         "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
       userName: "김현민",
@@ -34,7 +34,7 @@ export default function Curation() {
       curationPhoto: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
-      variant: "home",
+      variant: "my",
       userImg:
         "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
       userName: "김현민",
@@ -48,7 +48,7 @@ export default function Curation() {
       curationPhoto: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
-      variant: "home",
+      variant: "my",
       userImg:
         "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
       userName: "김현민",
@@ -62,7 +62,7 @@ export default function Curation() {
       curationPhoto: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
-      variant: "home",
+      variant: "my",
       userImg:
         "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
       userName: "김현민",
