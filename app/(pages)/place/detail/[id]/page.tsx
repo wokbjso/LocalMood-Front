@@ -1,6 +1,3 @@
-import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
-import ScrapFill from "@common/assets/icons/scrap/scrap-fill.svg";
-import Line from "@common/assets/icons/line/line.svg";
 import Heart from "@common/assets/icons/heart/Heart";
 import Image from "next/image";
 import Divider from "@common/components/ui/divider/Divider";
@@ -9,6 +6,7 @@ import Chip from "@common/components/ui/buttons/Chip/Chip";
 import GraphUpDownVote from "@common/components/ui/graph/GraphUpDownVote/GraphUpDownVote";
 import Button from "@common/components/ui/buttons/Button/Button";
 import Slider from "@common/components/layout/Slider/Slider";
+import PlaceDetailInfo from "@feature/place/components/PlaceDetailInfo/PlaceDetailInfo";
 
 export default function PlaceDetail() {
   const DETAIL_DUMMY = {
@@ -169,23 +167,13 @@ export default function PlaceDetail() {
       <div className="w-full h-[30rem] mb-[1.5rem] relative">
         <Image src={DETAIL_DUMMY.placeImg} alt="공간 상세 사진" fill />
       </div>
-      <div className="flex-col px-[2rem] relative">
-        {!DETAIL_DUMMY.scrapped ? (
-          <ScrapLine className="absolute cursor-pointer right-[2rem] top-[0.5rem]" />
-        ) : (
-          <ScrapFill className="absolute cursor-pointer right-[2rem] top-[0.5rem]" />
-        )}
-        <div className="headline2 mb-[0.8rem]">{DETAIL_DUMMY.placeName}</div>
-        <div className="flex">
-          <span className="body2-semibold text-text-gray-6">
-            {DETAIL_DUMMY.category}
-          </span>
-          <Line className="mx-[0.8rem]" />
-          <span className="body2-medium text-text-gray-5">
-            {DETAIL_DUMMY.location}
-          </span>
-        </div>
-      </div>
+      <PlaceDetailInfo
+        id={DETAIL_DUMMY.id}
+        placeName={DETAIL_DUMMY.placeName}
+        category={DETAIL_DUMMY.category}
+        location={DETAIL_DUMMY.location}
+        scrapped={DETAIL_DUMMY.scrapped}
+      />
       <Divider className="h-[0.4rem] mt-[2rem] mb-[3.6rem] bg-line-gray-3" />
       <div className="px-[2rem]">
         <p className="headline2 mb-[0.8rem] text-black">
