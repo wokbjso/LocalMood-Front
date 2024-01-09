@@ -2,7 +2,6 @@ import Heart from "@common/assets/icons/heart/Heart";
 import Music from "@common/assets/icons/music/Music";
 import RightArrow from "@common/assets/icons/arrow/arror-right.svg";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
-import Button from "@common/components/ui/buttons/Button/Button";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import CurationHomeList from "@feature/curation/components/CurationHomeList/CurationHomeList";
 import HomeHeader from "@common/components/layout/Header/HomeHeader";
@@ -15,7 +14,7 @@ export default function Home() {
     { icon: Music, text: "따뜻한 조명" },
     { icon: Music, text: "와인 한잔" },
   ];
-  const couple_data_dummy = [
+  const PLACE_DUMMY = [
     {
       id: 0,
       placeName: "나이스워크투데이",
@@ -71,7 +70,7 @@ export default function Home() {
       ],
     },
   ];
-  const curation_dummy = [
+  const CURATION_DUMMY = [
     {
       id: 0,
       curationPhoto: [
@@ -145,7 +144,7 @@ export default function Home() {
           <span className="text-black headline2">연인과의 데이트</span>
           <span className="text-text-gray-6 body1"> 를 위한 공간</span>
           <div className="flex overflow-x-scroll py-[1.6rem]">
-            {couple_data_dummy.map((data) => (
+            {PLACE_DUMMY.map((data) => (
               <PlaceInfoMain
                 key={data.id}
                 id={data.id}
@@ -165,7 +164,7 @@ export default function Home() {
           <span className="text-black headline2">친구와의 만남</span>
           <span className="text-text-gray-6 body1"> 을 위한 공간</span>
           <div className="flex overflow-x-scroll py-[1.6rem]">
-            {couple_data_dummy.map((data) => (
+            {PLACE_DUMMY.map((data) => (
               <PlaceInfoMain
                 key={data.id}
                 id={data.id}
@@ -190,14 +189,14 @@ export default function Home() {
               <RightArrow />
             </div>
           </div>
-          <CurationHomeList curationList={curation_dummy} />
+          <CurationHomeList curationList={CURATION_DUMMY} />
         </section>
         <section className="pl-[2rem]">
           <span className="text-primary-normal headline2"># </span>
           <span className="text-black headline2">왁자지껄 떠들기 좋은</span>
           <span className="text-text-gray-6 body1"> 공간</span>
           <div className="flex overflow-x-scroll py-[1.6rem]">
-            {couple_data_dummy.map((data) => (
+            {PLACE_DUMMY.map((data) => (
               <PlaceInfoMain
                 key={data.id}
                 id={data.id}

@@ -7,26 +7,28 @@ export default function GraphUpDownVote({
   evaluation,
   percentage,
   like,
+  className,
 }: GraphProps) {
   return (
     <div
       className={twMerge(
-        "flex items-center w-full h-[3.2rem] bg-background-gray-2 rounded-[100px]",
-        like ? "pr-[1.2rem]" : "pl-[1.2rem]"
+        "inline-block bg-white pl-[0.4rem] py-[0.2rem] rounded-[36px] border-[0.1rem] border-line-gray-3",
+        like ? "pr-[1.2rem]" : "pl-[1.2rem]",
+        className
       )}
     >
-      {like && (
-        <div className="flex justify-center items-center w-[3.2rem] h-[3.2rem] mr-[0.8rem] bg-black rounded-full">
-          <Like />
-        </div>
-      )}
-      <span className="body2-medium text-black mr-[0.6rem]">{evaluation}</span>
-      <span className="body2-semibold text-text-gray-5">{percentage}</span>
-      {!like && (
-        <div className="flex justify-center items-center w-[3.2rem] h-[3.2rem] ml-[0.8rem] bg-primary-normal rounded-full">
-          <DisLike />
-        </div>
-      )}
+      <div className="flex items-center">
+        {like && <Like />}
+        <span className="body2-medium text-black mr-[0.6rem]">
+          {evaluation}
+        </span>
+        <span className="body2-semibold text-text-gray-5">{percentage}</span>
+        {!like && (
+          <div className="flex justify-center items-center w-[3.2rem] h-[3.2rem] ml-[0.8rem] bg-primary-normal rounded-full">
+            <DisLike />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

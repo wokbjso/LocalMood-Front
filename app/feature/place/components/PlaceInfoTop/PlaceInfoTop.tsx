@@ -19,6 +19,7 @@ interface PlaceInfoProps {
   scrapped: boolean;
   onClick?: () => void;
   className?: string;
+  imgClassName?: string;
 }
 
 export default function PlaceInfoTop({
