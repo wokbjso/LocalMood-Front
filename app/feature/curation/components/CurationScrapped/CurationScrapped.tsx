@@ -23,7 +23,7 @@ export default function CurationScrapped({
   return (
     <div className="w-full" onClick={onClick}>
       <div
-        className="w-full h-[16.5rem] bg-cover relative"
+        className="w-full h-[16.5rem] bg-cover relative rounded-lg"
         style={{
           backgroundImage: `url(
             ${curationPhoto && curationPhoto[0]}
