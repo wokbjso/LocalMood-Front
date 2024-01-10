@@ -42,7 +42,32 @@ export default function PlaceInfoBottom({
           );
         })}
       {variant === "curation" &&
-        PLACE_TAG_CATEGORY.map((category, i) => {
+        PLACE_TAG_CATEGORY.slice(0, 3).map((category, i) => {
+          return (
+            <div
+              key={category}
+              className={twMerge(
+                "flex items-center",
+                i !== PLACE_TAG_CATEGORY.length - 1 && "mb-[0.9rem]"
+              )}
+            >
+              <div className="mr-[2rem]">
+                <span className="body2-medium text-text-gray-6">
+                  {category}
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-[0.8rem]">
+                {tags
+                  ?.filter((f) => f.category === category)
+                  .map((tag) => (
+                    <Chip key={tag.detail}>{tag.detail}</Chip>
+                  ))}
+              </div>
+            </div>
+          );
+        })}
+      {variant === "scrapped" &&
+        PLACE_TAG_CATEGORY.slice(0, 4).map((category, i) => {
           return (
             <div
               key={category}
