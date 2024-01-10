@@ -103,6 +103,13 @@ module.exports = {
           lineHeight: "100%",
           letterSpacing: "-2%",
         },
+        ".modal-text": {
+          fontFamily: "Pretendard",
+          fontWeight: "500",
+          fontSize: "1.6rem",
+          lineHeight: "100%",
+          letterSpacing: "-2%",
+        },
       });
     }),
   ],
