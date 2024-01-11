@@ -8,6 +8,7 @@ import CurationMain from "@feature/curation/components/CurationMain/CurationMain
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import useSearchBar from "@feature/search/components/SearchBar/useSearchBar";
+import SearchStart from "@common/assets/images/search_start.svg";
 // import SearchByKeywordButton from "@feature/search/components/SearchByKeywordButton/SearchByKeywordButton";
 import SearchKeyword from "@feature/search/components/SearchKeyword/SearchKeyword";
 import useSearchKeyword from "@feature/search/components/SearchKeyword/useSearchKeyword";
@@ -153,8 +154,11 @@ export default function SearchPage() {
           onChange={searchBarHandlers.handleSearchText}
         />
       </header>
+      <div className="flex justify-center pt-[8.2rem] mb-[0.8rem]">
+        <SearchStart />
+      </div>
       {searchText.length === 0 && (
-        <div className="flex flex-col justify-center items-center pt-[24.6rem]">
+        <div className="flex flex-col justify-center items-center">
           <p className="flex justify-center text-center break-keep headline2 text-text-gray-9 w-[42%] mb-[1.6rem]">
             나에게 딱 맞는 공간을 찾고 싶다면?
           </p>
