@@ -7,13 +7,16 @@ import HomeHeader from "@common/components/layout/Header/HomeHeader";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import Button from "@common/components/ui/buttons/Button/Button";
 import Slider from "@common/components/layout/Slider/Slider";
+import LampIcon from "@common/assets/icons/lamp/LampIcon";
 
 export default function Home() {
   const HEADER_KEYWORD = [
-    { icon: Heart, text: "연인과의 데이트" },
-    { icon: Music, text: "잔잔한 음악" },
-    { icon: Music, text: "따뜻한 조명" },
-    { icon: Music, text: "와인 한잔" },
+    { icon: Heart, color: "#F670C7", text: "연인과의 데이트" },
+    { icon: Music, color: "#8F73FD", text: "잔잔한 음악" },
+    { icon: LampIcon, text: "따뜻한 조명" },
+    { icon: Heart, color: "#F670C7", text: "연인과의 데이트" },
+    { icon: Music, color: "#8F73FD", text: "잔잔한 음악" },
+    { icon: LampIcon, text: "따뜻한 조명" },
   ];
   const PLACE_DUMMY = [
     {
@@ -135,7 +138,7 @@ export default function Home() {
             key={keyword.text}
             className="whitespace-nowrap px-[1.12rem] flex items-center h-[3.2rem] mr-[1rem]"
           >
-            {<keyword.icon />}
+            {<keyword.icon color={keyword.color} />}
             <span className="pl-[0.4rem]">{keyword.text}</span>
           </Chip>
         ))}
@@ -145,7 +148,7 @@ export default function Home() {
           <Button> 키워드로 검색하기</Button>
         </LinkLayout>
       </div>
-      <div className="pb-[9.1rem] pt-[4rem]">
+      <div className="pb-[19.3rem] pt-[4rem]">
         <section className="mb-[4rem] pl-[2rem]">
           <span className="text-primary-normal headline2"># </span>
           <span className="text-black headline2">연인과의 데이트</span>
