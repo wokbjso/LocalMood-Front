@@ -9,11 +9,12 @@ import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import useSearchBar from "@feature/search/components/SearchBar/useSearchBar";
 import SearchStart from "@common/assets/images/search_start.svg";
-// import SearchByKeywordButton from "@feature/search/components/SearchByKeywordButton/SearchByKeywordButton";
 import SearchKeyword from "@feature/search/components/SearchKeyword/SearchKeyword";
 import useSearchKeyword from "@feature/search/components/SearchKeyword/useSearchKeyword";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
+import Button from "@common/components/ui/buttons/Button/Button";
 
 export default function SearchPage() {
   const DUMMY_PLACE = [
@@ -162,10 +163,14 @@ export default function SearchPage() {
           <p className="flex justify-center text-center break-keep headline2 text-text-gray-9 w-[42%] mb-[1.6rem]">
             나에게 딱 맞는 공간을 찾고 싶다면?
           </p>
-          {/* <SearchByKeywordButton
-            className="w-[12.5rem] h-[2.6rem] py-[0.6rem] mr-[1.2rem] body2-semibold"
-            onClick={searchByKeywordClicked}
-          /> */}
+          <LinkLayout routeUrl="/search" query={{ keyword_search: true }}>
+            <Button
+              className="w-[12.5rem] h-[2.6rem] mr-[1.2rem] body2-semibold rounded-[8px]"
+              onClick={searchByKeywordClicked}
+            >
+              키워드로 공간 찾기
+            </Button>
+          </LinkLayout>
         </div>
       )}
       <div>

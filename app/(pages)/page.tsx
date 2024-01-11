@@ -145,7 +145,7 @@ export default function Home() {
       </div>
       <div className="flex justify-center pb-[2rem] bg-[#F5F8FF]">
         <LinkLayout routeUrl="/search" query={{ keyword_search: true }}>
-          <Button> 키워드로 검색하기</Button>
+          <Button> 키워드로 공간 찾기</Button>
         </LinkLayout>
       </div>
       <div className="pb-[19.3rem] pt-[4rem]">
