@@ -264,16 +264,8 @@ export default function PlaceDetail() {
       </div>
       <Divider className="bg-line-gray-3 h-[0.4rem] mb-[4.8rem]" />
       <div className="pl-[2rem]">
-        <Slider
-          title="나이스워크투데이와 비슷한 장소"
-          placeData={SIMILAR_PLACE_DUMMY}
-          className="mb-[6rem]"
-        />
-        <Slider
-          title="나이스워크투데이가 담긴 큐레이션"
-          curationData={CURATION_DUMMY}
-          className="mb-[6rem]"
-        />
+        <Slider placeData={SIMILAR_PLACE_DUMMY} className="mb-[6rem]" />
+        <Slider curationData={CURATION_DUMMY} className="mb-[6rem]" />
       </div>
     </div>
   );

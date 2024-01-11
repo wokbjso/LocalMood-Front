@@ -2,10 +2,11 @@ import Heart from "@common/assets/icons/heart/Heart";
 import Music from "@common/assets/icons/music/Music";
 import RightArrow from "@common/assets/icons/arrow/arror-right.svg";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
-import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import CurationHomeList from "@feature/curation/components/CurationHomeList/CurationHomeList";
 import HomeHeader from "@common/components/layout/Header/HomeHeader";
-import SearchByKeywordButton from "@feature/search/components/SearchByKeywordButton/SearchByKeywordButton";
+import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
+import Button from "@common/components/ui/buttons/Button/Button";
+import Slider from "@common/components/layout/Slider/Slider";
 
 export default function Home() {
   const HEADER_KEYWORD = [
@@ -37,13 +38,17 @@ export default function Home() {
           detail: "통창뷰",
         },
         {
+          category: "인테리어",
+          detail: "통창뷰",
+        },
+        {
           category: "공간무드",
           detail: "넓은 공간",
         },
       ],
     },
     {
-      id: 0,
+      id: 1,
       placeName: "나이스워크투데이",
       placeImg:
         "https://media.istockphoto.com/id/1446199740/ko/%EC%82%AC%EC%A7%84/%ED%96%87%EB%B3%95%EC%9D%B4-%EC%9E%98-%EB%93%9C%EB%8A%94-%EC%88%B2%EC%9D%84-%ED%86%B5%EA%B3%BC%ED%95%98%EB%8A%94-%EA%B8%B8.jpg?s=2048x2048&w=is&k=20&c=3z_ODBT78uZDVqy-3B6r8LBa825AuSpL0xfzySe2fj8=",
@@ -119,12 +124,12 @@ export default function Home() {
   return (
     <>
       <HomeHeader />
-      <p className="header-light  mb-[2.4rem] px-[2rem] pt-[5.4rem]">
+      <p className="header-light  pb-[2.4rem] px-[2rem] pt-[5.4rem] bg-[#F5F8FF]">
         나에게 딱 맞는 공간을
         <br />
         <span className="header-main"> 키워드</span>로 찾아보세요
       </p>
-      <div className="flex w-full overflow-x-scroll mb-[2rem]">
+      <div className="flex w-full overflow-x-scroll pb-[2rem] bg-[#F5F8FF]">
         {HEADER_KEYWORD.map((keyword) => (
           <Chip
             key={keyword.text}
@@ -135,49 +140,23 @@ export default function Home() {
           </Chip>
         ))}
       </div>
-      <div className="flex justify-center mb-[2rem]">
-        <SearchByKeywordButton />
+      <div className="flex justify-center pb-[2rem] bg-[#F5F8FF]">
+        <LinkLayout routeUrl="/search" query={{ keyword_search: true }}>
+          <Button> 키워드로 검색하기</Button>
+        </LinkLayout>
       </div>
-      <div className="pb-[9.1rem]">
-        <section className="mb-[3.8rem] pl-[2rem]">
+      <div className="pb-[9.1rem] pt-[4rem]">
+        <section className="mb-[4rem] pl-[2rem]">
           <span className="text-primary-normal headline2"># </span>
           <span className="text-black headline2">연인과의 데이트</span>
           <span className="text-text-gray-6 body1"> 를 위한 공간</span>
-          <div className="flex overflow-x-scroll py-[1.6rem]">
-            {PLACE_DUMMY.map((data) => (
-              <PlaceInfoMain
-                key={data.id}
-                id={data.id}
-                placeName={data.placeName}
-                placeImg={data.placeImg}
-                category={data.category}
-                location={data.location}
-                scrapped={data.scrapped}
-                tags={data.tags}
-                className="w-[33.5rem] mr-[1.2rem]"
-              />
-            ))}
-          </div>
+          <Slider placeData={PLACE_DUMMY} backgroundClassName="py-[1.6rem]" />
         </section>
-        <section className="mb-[4.6rem] pl-[2rem]">
+        <section className="mb-[4rem] pl-[2rem]">
           <span className="text-primary-normal headline2"># </span>
           <span className="text-black headline2">친구와의 만남</span>
           <span className="text-text-gray-6 body1"> 을 위한 공간</span>
-          <div className="flex overflow-x-scroll py-[1.6rem]">
-            {PLACE_DUMMY.map((data) => (
-              <PlaceInfoMain
-                key={data.id}
-                id={data.id}
-                placeName={data.placeName}
-                placeImg={data.placeImg}
-                category={data.category}
-                location={data.location}
-                scrapped={data.scrapped}
-                tags={data.tags}
-                className="w-[33.5rem] mr-[1.2rem]"
-              />
-            ))}
-          </div>
+          <Slider placeData={PLACE_DUMMY} backgroundClassName="py-[1.6rem]" />
         </section>
         <section className="mb-[5.6rem] pt-[2.8rem] pb-[2rem] px-[2rem] bg-background-gray-2">
           <div className="flex justify-between mb-[1.6rem]">
@@ -191,25 +170,17 @@ export default function Home() {
           </div>
           <CurationHomeList curationList={CURATION_DUMMY} />
         </section>
-        <section className="pl-[2rem]">
+        <section className="mb-[4rem] pl-[2rem]">
           <span className="text-primary-normal headline2"># </span>
           <span className="text-black headline2">왁자지껄 떠들기 좋은</span>
           <span className="text-text-gray-6 body1"> 공간</span>
-          <div className="flex overflow-x-scroll py-[1.6rem]">
-            {PLACE_DUMMY.map((data) => (
-              <PlaceInfoMain
-                key={data.id}
-                id={data.id}
-                placeName={data.placeName}
-                placeImg={data.placeImg}
-                category={data.category}
-                location={data.location}
-                scrapped={data.scrapped}
-                tags={data.tags}
-                className="w-[33.5rem] mr-[1.2rem]"
-              />
-            ))}
-          </div>
+          <Slider placeData={PLACE_DUMMY} backgroundClassName="py-[1.6rem]" />
+        </section>
+        <section className="mb-[4rem] pl-[2rem]">
+          <span className="text-primary-normal headline2"># </span>
+          <span className="text-black headline2">대화에 집중할 수 있는</span>
+          <span className="text-text-gray-6 body1"> 공간</span>
+          <Slider placeData={PLACE_DUMMY} backgroundClassName="py-[1.6rem]" />
         </section>
       </div>
     </>

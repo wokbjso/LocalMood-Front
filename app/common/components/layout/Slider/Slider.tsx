@@ -8,50 +8,51 @@ import { PlaceInfoProps } from "@feature/place/type";
 import { twMerge } from "tailwind-merge";
 
 interface SliderProps {
-  title: string;
   placeData?: PlaceInfoProps[];
   curationData?: CurationProps[];
-  className?: string;
+  backgroundClassName?: string;
+  individualDataClassName?: string;
 }
 
 export default function Slider({
-  title,
   placeData,
   curationData,
-  className,
+  backgroundClassName,
+  individualDataClassName,
 }: SliderProps) {
   return (
-    <div className={twMerge("w-full", className)}>
-      <div className="text-black headline2 mb-[1.6rem]">{title}</div>
+    <div className={twMerge("w-full", backgroundClassName)}>
       <div className="flex overflow-x-scroll">
         {placeData &&
-          placeData.map((data) => (
-            <PlaceInfoRecord
-              key={data.id}
-              id={data.id}
-              placeName={data.placeName}
-              placeImg={data.placeImg}
-              category={data.category}
-              location={data.location}
-              scrapped={data.scrapped}
-              className="mr-[0.8rem]"
-            />
-          ))}
-        {placeData &&
-          "tags" in placeData &&
-          placeData.map((data) => (
-            <PlaceInfoMain
-              key={data.id}
-              id={data.id}
-              placeName={data.placeName}
-              placeImg={data.placeImg}
-              category={data.category}
-              location={data.location}
-              scrapped={data.scrapped}
-              tags={data.tags}
-              className="w-[33.5rem] mr-[1.2rem]"
-            />
-          ))}
+          placeData.map((data) => {
+            return "tags" in data ? (
+              <PlaceInfoMain
+                key={data.id}
+                id={data.id}
+                placeName={data.placeName}
+                placeImg={data.placeImg}
+                category={data.category}
+                location={data.location}
+                scrapped={data.scrapped}
+                tags={data.tags}
+                className={twMerge(
+                  "w-[33.5rem] mr-[1.2rem]",
+                  individualDataClassName
+                )}
+              />
+            ) : (
+              <PlaceInfoRecord
+                key={data.id}
+                id={data.id}
+                placeName={data.placeName}
+                placeImg={data.placeImg}
+                category={data.category}
+                location={data.location}
+                scrapped={data.scrapped}
+                className={twMerge("mr-[0.8rem]", individualDataClassName)}
+              />
+            );
+          })}
         {curationData &&
           curationData?.map((data) => (
             <CurationScrapped
@@ -62,7 +63,10 @@ export default function Slider({
               userName={data.userName}
               hashTags={data.hashTags}
               mainText={data.mainText}
-              className="w-[33.5rem] mr-[0.8rem]"
+              className={twMerge(
+                "w-[33.5rem] mr-[0.8rem]",
+                individualDataClassName
+              )}
             />
           ))}
       </div>

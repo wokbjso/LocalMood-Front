@@ -1,12 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import Home from "@common/assets/icons/home/Home";
 import Record from "@common/assets/icons/record/Record";
 import Curation from "@common/assets/icons/curation/Curation";
 import UserProfile from "@common/assets/icons/user/UserProfile";
-import { useRouter } from "next/navigation";
 import useFooter from "./useFooter";
 import Link from "next/link";
 

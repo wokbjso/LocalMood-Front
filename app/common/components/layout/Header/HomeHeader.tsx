@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function HomeHeader() {
   const { scrollHeight } = useGetScrollHeight();
   return (
-    <header className="fixed flex justify-between items-center px-[2rem] pt-[1.6rem] pb-[1rem] w-full z-10 bg-white">
+    <header className="fixed flex justify-between items-center px-[2rem] pt-[1.6rem] pb-[1rem] w-full z-10 bg-[#F5F8FF]">
       <div className="py-[0.7rem]">
         <HeaderText />
       </div>
