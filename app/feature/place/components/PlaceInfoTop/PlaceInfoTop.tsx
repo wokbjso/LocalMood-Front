@@ -54,7 +54,13 @@ export default function PlaceInfoTop({
           variant === "record_search" && "w-[8rem] h-[8rem] mr-[1.6rem]"
         )}
       >
-        <Image src={placeImg} alt="공간 사진" fill className="rounded-[8px]" />
+        <Image
+          src={placeImg}
+          alt="공간 사진"
+          fill
+          sizes="100vw"
+          className="rounded-[8px]"
+        />
       </div>
       <div
         className={twMerge(
