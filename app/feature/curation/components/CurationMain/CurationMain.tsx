@@ -7,6 +7,7 @@ import { useState } from "react";
 import { CurationProps } from "@feature/curation/type";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { twMerge } from "tailwind-merge";
+import { useRouter } from "next/navigation";
 
 export default function CurationMain({
   id,
@@ -29,13 +30,21 @@ export default function CurationMain({
   const handleMenu = () => {
     setIsMenuOpened((prev) => !prev);
   };
+  const router = useRouter();
+
+  const handleCardClick = () => {
+    const detailPagePath = `curation/detail/${id}`;
+
+    router.push(detailPagePath); //동적 라우팅
+  };
+
   return (
     <div
       className={twMerge(
         "w-full h-[27.7rem] bg-white rounded-[8px]",
         className
       )}
-      onClick={onClick}
+      onClick={handleCardClick}
     >
       <div
         className="w-full h-[16.5rem] bg-cover relative rounded-t-[8px]"

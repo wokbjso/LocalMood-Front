@@ -1,10 +1,9 @@
 "use client";
-
 import ArrowRight from "@common/assets/icons/arrow/arror-right.svg";
 import { useRouter } from "next/navigation";
 import CurationDetailTopBar from "@feature/curation/components/CurationDetail/CurationDetailTopBar";
 
-export default function CurationDetail() {
+export default function CurationDetail(props: any) {
   const router = useRouter();
 
   const navigateToHome = () => {
