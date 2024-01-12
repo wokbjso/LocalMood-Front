@@ -5,7 +5,7 @@ interface TabProps {
   sections: {
     icon?: React.FC<{ color?: string; className?: string }>;
     text: string;
-    length: number;
+    length?: number;
   }[];
   onChange?: (index: number) => void;
   className?: string;
@@ -42,7 +42,7 @@ export default function Tab({ sections, onChange, className }: TabProps) {
               tabIndex === i && "text-text-gray-8"
             )}
           >
-            {section.text} {section.length}
+            {section.text} {section.length && section.length}
           </span>
         </section>
       ))}
