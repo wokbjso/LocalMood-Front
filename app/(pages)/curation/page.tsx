@@ -142,7 +142,7 @@ export default function Curation() {
         <Tab sections={CurationTabSections} onChange={handleTabChange} />
         <div className="px-[2rem] pb-[18.2rem] bg-background-gray-2 items-center">
           {tabIndex === 0 && (
-            <div className="flex items-center justify-between items-center pb-[0.6rem] pt-[2rem]">
+            <div className="flex items-center justify-between pb-[0.6rem] pt-[2rem]">
               <div className="flex body1 text-text-gray-8 items-center">
                 총{" "}
                 <p className="text-black">
