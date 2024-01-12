@@ -7,12 +7,18 @@ import UnlockIcon from "@common/assets/icons/lock/unlock.svg";
 import ArrowRight from "@common/assets/icons/arrow/arror-right.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function CurationDetail() {
   const router = useRouter();
 
   const navigateToHome = () => {
     router.push("/");
+  };
+  const [isPublic, setIsPublic] = useState(true);
+
+  const togglePrivacy = () => {
+    setIsPublic((prevState) => !prevState);
   };
 
   return (
@@ -28,9 +34,12 @@ export default function CurationDetail() {
           <div className="max-w-[23.2rem] headline0 text-black text-center pt-[1.2rem] pb-[0.8rem]">
             크리스마스에 즐기기 좋은 마포구 데이트 코스
           </div>
-          <div className="flex items-center gap-[0.4rem] body3-medium text-text-gray-8">
-            <LockIcon />
-            공개
+          <div
+            className="flex items-center gap-[0.4rem] body3-medium text-text-gray-8"
+            onClick={togglePrivacy}
+          >
+            {isPublic ? <LockIcon /> : <UnlockIcon />}
+            {isPublic ? "비공개" : "공개"}
           </div>
         </div>
       </div>
