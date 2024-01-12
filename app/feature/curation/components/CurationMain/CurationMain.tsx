@@ -32,10 +32,8 @@ export default function CurationMain({
   };
   const router = useRouter();
 
-  const handleCardClick = () => {
-    const detailPagePath = `curation/detail/${id}`;
-
-    router.push(detailPagePath); //동적 라우팅
+  const handleCardClick = (id: number, variant: string | undefined) => {
+    router.push(`curation/detail/${id}_${variant}`);
   };
 
   return (
@@ -44,7 +42,7 @@ export default function CurationMain({
         "w-full h-[27.7rem] bg-white rounded-[8px]",
         className
       )}
-      onClick={handleCardClick}
+      onClick={() => handleCardClick(id, variant)}
     >
       <div
         className="w-full h-[16.5rem] bg-cover relative rounded-t-[8px]"

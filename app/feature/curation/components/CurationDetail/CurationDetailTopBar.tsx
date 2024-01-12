@@ -1,9 +1,11 @@
+"use client";
 import CurationTopAppBar from "@feature/curation/components/CurationTopAppBar/curationTopAppBar";
 import NonCuration from "@common/assets/icons/illustration/CurationNoSeat.png";
 import LockIcon from "@common/assets/icons/lock/lock.svg";
 import UnlockIcon from "@common/assets/icons/lock/unlock.svg";
 import Image from "next/image";
 import { useState } from "react";
+import { CurationProps } from "@feature/curation/type";
 
 export default function CurationDetailTopBar() {
   const [isPublic, setIsPublic] = useState(true);
