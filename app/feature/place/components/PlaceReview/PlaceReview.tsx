@@ -75,13 +75,19 @@ export default function PlaceReview({
           {evaluation?.likes.map((li) => (
             <GraphUpDownVote
               key={li}
+              variant="unite"
               evaluation={li}
               like
               className="mb-[0.6rem]"
             />
           ))}
           {evaluation?.dislikes.map((li) => (
-            <GraphUpDownVote key={li} evaluation={li} like={false} />
+            <GraphUpDownVote
+              key={li}
+              variant="unite"
+              evaluation={li}
+              like={false}
+            />
           ))}
         </div>
       </div>

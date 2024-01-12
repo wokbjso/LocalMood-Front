@@ -234,7 +234,7 @@ export default function PlaceDetail() {
       <div className="pt-[3.6rem] px-[2rem] pb-[3rem]">
         <div className="text-black headline2 mb-[1.2rem]">키워드 평가</div>
         <div className="mb-[2rem]">
-          <div>
+          <div className="mb-[0.4rem]">
             {DETAIL_DUMMY.evaluation.likes.map((li, i) => (
               <GraphUpDownVote
                 key={li.comment}
@@ -257,7 +257,11 @@ export default function PlaceDetail() {
             ))}
           </div>
         </div>
-        <LinkLayout routeUrl={`/place/detail/more/${DETAIL_DUMMY.id}`}>
+        <LinkLayout
+          routeUrl={`/place/${
+            DETAIL_DUMMY.category === "카페" ? "cafe" : "restaurant"
+          }/${DETAIL_DUMMY.id}/more`}
+        >
           <Button variant="line">기록 전체 보기</Button>
         </LinkLayout>
       </div>

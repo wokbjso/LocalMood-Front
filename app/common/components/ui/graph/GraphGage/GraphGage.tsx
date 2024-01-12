@@ -30,7 +30,7 @@ export default function GraphGage({
         <div
           className="h-full bg-primary-normal rounded-[10px]"
           style={{
-            width: Number(percentage.slice(0, -1)) + "%",
+            width: Number(percentage?.slice(0, -1)) + "%",
           }}
         />
       </div>
