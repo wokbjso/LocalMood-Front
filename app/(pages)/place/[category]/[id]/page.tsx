@@ -9,7 +9,6 @@ import Slider from "@common/components/layout/Slider/Slider";
 import PlaceDetailInfo from "@feature/place/components/PlaceDetailInfo/PlaceDetailInfo";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import DetailTopBar from "@common/components/ui/topBar/DetailTopBar/DetailTopBar";
-import { usePathname } from "next/navigation";
 
 export default function PlaceDetail() {
   const DETAIL_DUMMY = {
@@ -166,7 +165,7 @@ export default function PlaceDetail() {
     },
   ];
   return (
-    <div className="pb-[27rem]">
+    <div className="pb-[12rem]">
       <div className="w-full h-[30rem] mb-[1.5rem] relative">
         <Image src={DETAIL_DUMMY.placeImg} alt="공간 상세 사진" fill />
       </div>
@@ -264,8 +263,11 @@ export default function PlaceDetail() {
       </div>
       <Divider className="bg-line-gray-3 h-[0.4rem] mb-[4.8rem]" />
       <div className="pl-[2rem]">
-        <Slider placeData={SIMILAR_PLACE_DUMMY} className="mb-[6rem]" />
-        <Slider curationData={CURATION_DUMMY} className="mb-[6rem]" />
+        <Slider
+          placeData={SIMILAR_PLACE_DUMMY}
+          backgroundClassName="mb-[6rem]"
+        />
+        <Slider curationData={CURATION_DUMMY} backgroundClassName="mb-[6rem]" />
       </div>
     </div>
   );

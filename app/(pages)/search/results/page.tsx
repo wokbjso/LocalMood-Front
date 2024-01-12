@@ -40,11 +40,11 @@ export default function SearchResult() {
       ],
     },
     {
-      id: 1,
-      placeName: "나이스워크투데이",
+      id: 0,
+      placeName: "금복식당",
       placeImg:
         "https://media.istockphoto.com/id/1446199740/ko/%EC%82%AC%EC%A7%84/%ED%96%87%EB%B3%95%EC%9D%B4-%EC%9E%98-%EB%93%9C%EB%8A%94-%EC%88%B2%EC%9D%84-%ED%86%B5%EA%B3%BC%ED%95%98%EB%8A%94-%EA%B8%B8.jpg?s=2048x2048&w=is&k=20&c=3z_ODBT78uZDVqy-3B6r8LBa825AuSpL0xfzySe2fj8=",
-      category: "카페",
+      category: "음식점",
       location: "마포구 망원동",
       scrapped: false,
       tags: [
@@ -174,7 +174,7 @@ export default function SearchResult() {
               {DUMMY_CURATION.map((curation) => (
                 <CurationMain
                   key={curation.id}
-                  id={0}
+                  id={curation.id}
                   curationPhoto={curation.curationPhoto}
                   userImg={curation.userImg}
                   userName={curation.userName}
@@ -198,10 +198,10 @@ export default function SearchResult() {
           />
           {searchBarTabIndex === 0 && (
             <div className="h-full px-[2rem] pt-[2rem] pb-[14.5rem] overflow-y-scroll">
-              {DUMMY_PLACE.map((place, i) => (
-                <div key={place.id} className="mb-[4rem]">
+              {DUMMY_PLACE.map((place) => (
+                <div key={place.id + place.category} className="mb-[4rem]">
                   <PlaceInfoMain
-                    id={0}
+                    id={place.id}
                     placeImg={place.placeImg}
                     placeName={place.placeName}
                     category={place.category}
@@ -234,10 +234,10 @@ export default function SearchResult() {
           />
           {searchBarTabIndex === 0 && (
             <div className="h-full px-[2rem] pt-[2rem] pb-[14.5rem] overflow-y-scroll">
-              {DUMMY_PLACE.map((place, i) => (
-                <div key={place.id} className="mb-[4rem]">
+              {DUMMY_PLACE.map((place) => (
+                <div key={place.id + place.category} className="mb-[4rem]">
                   <PlaceInfoMain
-                    id={0}
+                    id={place.id}
                     placeImg={place.placeImg}
                     placeName={place.placeName}
                     category={place.category}
@@ -254,7 +254,7 @@ export default function SearchResult() {
               {DUMMY_CURATION.map((curation) => (
                 <CurationMain
                   key={curation.id}
-                  id={0}
+                  id={curation.id}
                   curationPhoto={curation.curationPhoto}
                   userImg={curation.userImg}
                   userName={curation.userName}

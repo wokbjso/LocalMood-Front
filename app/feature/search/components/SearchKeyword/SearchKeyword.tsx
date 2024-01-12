@@ -14,10 +14,11 @@ import Filter from "@common/components/ui/buttons/Filter/Filter";
 import Button from "@common/components/ui/buttons/Button/Button";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import useSearchKeyword from "./useSearchKeyword";
 
 export default function SearchKeyword() {
   const searchParams = useSearchParams();
-  let tabIndex = 0;
+  const { tabIndex, handlers } = useSearchKeyword();
   return (
     searchParams.get("keyword_search") === "true" && (
       <>
@@ -42,6 +43,7 @@ export default function SearchKeyword() {
           </div>
           <Tab
             sections={[{ text: "음식점" }, { text: "카페" }]}
+            onChange={handlers.handleTabIndex}
             className="pl-[2rem] w-[35%]"
           />
           <Divider className="h-[0.1rem] bg-line-gray-3" />

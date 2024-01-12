@@ -21,6 +21,11 @@ export default function SearchBar({
   const router = useRouter();
   const [searchText, setSearchText] = useState("");
   const queries = `?search_query=${searchText}`;
+  const keyword_search_queries = `?keyword_search=${
+    searchParams.get("keyword_search")
+      ? searchParams.get("keyword_search")
+      : false
+  }`;
   const handleSearchTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newText = e.target.value;
     setSearchText(newText);
@@ -29,9 +34,13 @@ export default function SearchBar({
     setSearchText("");
   };
   useEffect(() => {
-    router.push(
-      variant === "place_related" ? "/search/results" + queries : "/record"
-    );
+    if (searchText.length === 0) {
+      router.push("/search" + keyword_search_queries);
+    } else {
+      router.push(
+        variant === "place_related" ? "/search/results" + queries : "/record"
+      );
+    }
   }, [searchText]);
   return (
     <div
