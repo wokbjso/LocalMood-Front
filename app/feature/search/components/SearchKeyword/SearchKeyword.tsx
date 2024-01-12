@@ -17,7 +17,6 @@ import { useSearchParams } from "next/navigation";
 
 export default function SearchKeyword() {
   const searchParams = useSearchParams();
-  const closeClicked = () => {};
   let tabIndex = 0;
   return (
     searchParams.get("keyword_search") === "true" && (
@@ -38,10 +37,7 @@ export default function SearchKeyword() {
                 query: { keyword_search: false },
               }}
             >
-              <CloseIcon
-                className="absolute right-[2.4rem] top-[4rem]"
-                onClick={closeClicked}
-              />
+              <CloseIcon className="absolute right-[2.4rem] top-[4rem]" />
             </Link>
           </div>
           <Tab

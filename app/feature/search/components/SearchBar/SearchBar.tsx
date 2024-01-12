@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 import Search from "@common/assets/icons/search/search.svg";
 import Delete from "@common/assets/icons/close/close-gray.svg";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface SearchBarProps {
   variant?: "place_related" | "record";
@@ -17,10 +17,10 @@ export default function SearchBar({
   placeholder,
   className,
 }: SearchBarProps) {
+  const searchParams = useSearchParams();
   const router = useRouter();
   const [searchText, setSearchText] = useState("");
   const queries = `?search_query=${searchText}`;
-  const keyword_search_queries = "?keyword_search=false";
   const handleSearchTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newText = e.target.value;
     setSearchText(newText);
@@ -29,13 +29,9 @@ export default function SearchBar({
     setSearchText("");
   };
   useEffect(() => {
-    if (searchText.length === 0) {
-      router.push("/search" + keyword_search_queries);
-    } else {
-      router.push(
-        variant === "place_related" ? "/search/results" + queries : "/record"
-      );
-    }
+    router.push(
+      variant === "place_related" ? "/search/results" + queries : "/record"
+    );
   }, [searchText]);
   return (
     <div
