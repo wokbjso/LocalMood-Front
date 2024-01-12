@@ -3,32 +3,40 @@
 import { twMerge } from "tailwind-merge";
 import Search from "@common/assets/icons/search/search.svg";
 import Delete from "@common/assets/icons/close/close-gray.svg";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 interface SearchBarProps {
+  variant?: "place_related" | "record";
   placeholder: string;
-  activateSearch?: () => void;
-  onChange?: (text: string) => void;
   className?: string;
 }
 
 export default function SearchBar({
+  variant = "place_related",
   placeholder,
-  onChange,
   className,
 }: SearchBarProps) {
+  const router = useRouter();
   const [searchText, setSearchText] = useState("");
+  const queries = `?search_query=${searchText}`;
+  const keyword_search_queries = "?keyword_search=false";
   const handleSearchTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newText = e.target.value;
     setSearchText(newText);
-    onChange && onChange(newText);
   };
   const handleTextDelete = () => {
     setSearchText("");
-    onChange && onChange("");
   };
+  useEffect(() => {
+    if (searchText.length === 0) {
+      router.push("/search" + keyword_search_queries);
+    } else {
+      router.push(
+        variant === "place_related" ? "/search/results" + queries : "/record"
+      );
+    }
+  }, [searchText]);
   return (
     <div
       className={twMerge(
@@ -37,16 +45,9 @@ export default function SearchBar({
       )}
     >
       <div className="flex items-center">
-        <Link
-          href={{
-            pathname: "/search/results",
-            query: {
-              search_query: searchText,
-            },
-          }}
-        >
+        <div>
           <Search />
-        </Link>
+        </div>
         <input
           className={twMerge(
             "body2-medium text-text-gray-5 w-full ml-[0.8rem] pl-[0.3rem]"

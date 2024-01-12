@@ -4,10 +4,14 @@ import useSearchBar from "@feature/search/components/SearchBar/useSearchBar";
 import NoResult from "@common/assets/images/search_no_result.svg";
 import Tab from "@common/components/ui/tab/Tab";
 import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
-import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
+import PlaceInfoMain, {
+  PlaceInfoMainProps,
+} from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
+import { CurationProps } from "@feature/curation/type";
 
 export default function SearchResult() {
-  const DUMMY_PLACE = [
+  // 데이터 client-side fetching(useEffect)
+  const DUMMY_PLACE: PlaceInfoMainProps[] | [] = [
     {
       id: 0,
       placeName: "신촌 캐치카페",
@@ -90,7 +94,7 @@ export default function SearchResult() {
       ],
     },
   ];
-  const DUMMY_CURATION = [
+  const DUMMY_CURATION: CurationProps[] | [] = [
     {
       id: 0,
       curationPhoto: [
@@ -152,7 +156,7 @@ export default function SearchResult() {
         <div className="h-[100vh] pt-[5.4rem] overflow-y-hidden">
           <Tab
             sections={[
-              { text: "공간", length: DUMMY_PLACE.length },
+              { text: "공간", length: 0 },
               { text: "큐레이션", length: DUMMY_CURATION.length },
             ]}
             onChange={searchBarHandlers.handleTabIndex}
@@ -166,7 +170,7 @@ export default function SearchResult() {
             </div>
           )}
           {searchBarTabIndex === 1 && (
-            <div className="h-full px-[2rem] pt-[2rem] pb-[13.5rem] overflow-y-scroll">
+            <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
               {DUMMY_CURATION.map((curation) => (
                 <CurationMain
                   key={curation.id}
@@ -176,6 +180,7 @@ export default function SearchResult() {
                   userName={curation.userName}
                   hashTags={curation.hashTags}
                   mainText={curation.mainText}
+                  className="mb-[4rem]"
                 />
               ))}
             </div>
@@ -187,17 +192,14 @@ export default function SearchResult() {
           <Tab
             sections={[
               { text: "공간", length: DUMMY_PLACE.length },
-              { text: "큐레이션", length: DUMMY_CURATION.length },
+              { text: "큐레이션", length: 0 },
             ]}
             onChange={searchBarHandlers.handleTabIndex}
           />
           {searchBarTabIndex === 0 && (
-            <div className="h-full px-[2rem] pt-[2rem] pb-[15.5rem] overflow-y-scroll">
+            <div className="h-full px-[2rem] pt-[2rem] pb-[14.5rem] overflow-y-scroll">
               {DUMMY_PLACE.map((place, i) => (
-                <div
-                  key={place.id}
-                  className={i !== DUMMY_PLACE.length - 1 ? "mb-[4rem]" : ""}
-                >
+                <div key={place.id} className="mb-[4rem]">
                   <PlaceInfoMain
                     id={0}
                     placeImg={place.placeImg}
@@ -231,12 +233,9 @@ export default function SearchResult() {
             onChange={searchBarHandlers.handleTabIndex}
           />
           {searchBarTabIndex === 0 && (
-            <div className="h-full px-[2rem] pt-[2rem] pb-[15.5rem] overflow-y-scroll">
+            <div className="h-full px-[2rem] pt-[2rem] pb-[14.5rem] overflow-y-scroll">
               {DUMMY_PLACE.map((place, i) => (
-                <div
-                  key={place.id}
-                  className={i !== DUMMY_PLACE.length - 1 ? "mb-[4rem]" : ""}
-                >
+                <div key={place.id} className="mb-[4rem]">
                   <PlaceInfoMain
                     id={0}
                     placeImg={place.placeImg}
@@ -251,7 +250,7 @@ export default function SearchResult() {
             </div>
           )}
           {searchBarTabIndex === 1 && (
-            <div className="h-full px-[2rem] pt-[2rem] pb-[13.5rem] overflow-y-scroll">
+            <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
               {DUMMY_CURATION.map((curation) => (
                 <CurationMain
                   key={curation.id}
@@ -261,6 +260,7 @@ export default function SearchResult() {
                   userName={curation.userName}
                   hashTags={curation.hashTags}
                   mainText={curation.mainText}
+                  className="mb-[4rem]"
                 />
               ))}
             </div>
