@@ -263,11 +263,20 @@ export default function PlaceDetail() {
       </div>
       <Divider className="bg-line-gray-3 h-[0.4rem] mb-[4.8rem]" />
       <div className="pl-[2rem]">
+        <span className="text-black headline2">
+          {DETAIL_DUMMY.placeName}와 비슷한 장소
+        </span>
         <Slider
           placeData={SIMILAR_PLACE_DUMMY}
-          backgroundClassName="mb-[6rem]"
+          backgroundClassName="mb-[6rem] mt-[1.6rem]"
         />
-        <Slider curationData={CURATION_DUMMY} backgroundClassName="mb-[6rem]" />
+        <span className="text-black headline2">
+          {DETAIL_DUMMY.placeName}가 담긴 큐레이션
+        </span>
+        <Slider
+          curationData={CURATION_DUMMY}
+          backgroundClassName="mb-[6rem] mt-[1.6rem]"
+        />
       </div>
     </div>
   );
