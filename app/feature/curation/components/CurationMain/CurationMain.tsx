@@ -19,6 +19,7 @@ export default function CurationMain({
   scrapped = false,
   onClick,
   className,
+  places,
 }: CurationProps) {
   const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
   const [isMenuOpened, setIsMenuOpened] = useState(false);

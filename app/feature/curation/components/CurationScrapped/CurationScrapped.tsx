@@ -9,13 +9,15 @@ import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 export default function CurationScrapped({
   id,
   curationPhoto,
+  variant,
   userImg,
   userName,
   mainText,
   hashTags,
   scrapped = false,
   onClick,
-}: Omit<CurationProps, "variant">) {
+  places,
+}: CurationProps) {
   const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
   const handleScrap = () => {
     setIsScrapped((prev) => !prev);

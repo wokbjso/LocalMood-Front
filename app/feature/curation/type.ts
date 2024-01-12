@@ -9,4 +9,5 @@ export interface CurationProps {
   scrapped?: boolean;
   onClick?: () => void;
   className?: string;
+  places: number;
 }
