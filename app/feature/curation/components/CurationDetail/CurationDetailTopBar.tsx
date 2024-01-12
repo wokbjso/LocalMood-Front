@@ -19,15 +19,13 @@ export default function CurationDetailTopBar({
   hashTags,
 }: CurationDetailTopBarProps) {
   const [isPublic, setIsPublic] = useState(true);
-  console.log(places);
-
   const togglePrivacy = () => {
     setIsPublic((prevState) => !prevState);
   };
   return (
     <div>
       <div className="h-[18.8rem] bg-background-secondary-normal">
-        <CurationTopAppBar />
+        <CurationTopAppBar variant={variant} />
       </div>
       <div className="w-full inline-flex flex-col -mt-[18.8rem] pt-[16.1rem] items-center pb-[2.4rem]">
         <div className="w-[21.5rem] flex flex-col items-center">

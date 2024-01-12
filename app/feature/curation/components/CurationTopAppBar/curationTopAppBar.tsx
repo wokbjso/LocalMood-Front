@@ -1,8 +1,13 @@
 import BackIcon from "@common/assets/icons/arrow/arrow-left.svg";
 import ShareIcon from "@common/assets/icons/share/share.svg";
 import MenuIcon from "@common/assets/icons/menu/menu.svg";
+import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 
-export default function CurationTopAppBar() {
+interface CurationTopAppBarProps {
+  variant: string | undefined;
+}
+
+export default function CurationTopAppBar({ variant }: CurationTopAppBarProps) {
   return (
     <div className="pt-[5.3rem]">
       <div className="w-full h-[5.4rem] px-[2rem] py-[1.8rem]">
@@ -11,8 +16,17 @@ export default function CurationTopAppBar() {
             <BackIcon />
           </div>
           <div className="flex gap-[0.8rem]">
-            <ShareIcon />
-            <MenuIcon />
+            {variant === "others" ? (
+              <>
+                <ScrapLine />
+                <ShareIcon />
+              </>
+            ) : (
+              <>
+                <ShareIcon />
+                <MenuIcon />
+              </>
+            )}
           </div>
         </div>
       </div>
