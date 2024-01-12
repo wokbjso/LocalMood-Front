@@ -12,7 +12,7 @@ export const curationMainPropsList = [
     hashTags: ["연인과의 데이트", "크리스마스"],
     scrapped: false,
     onClick: () => {},
-    places: 0,
+    places: 12,
   },
   {
     id: 1,
@@ -27,7 +27,7 @@ export const curationMainPropsList = [
     hashTags: ["연인과의 데이트", "크리스마스"],
     scrapped: false,
     onClick: () => {},
-    places: 12,
+    places: 0,
   },
   {
     id: 2,

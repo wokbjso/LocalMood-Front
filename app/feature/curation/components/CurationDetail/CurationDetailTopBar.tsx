@@ -7,8 +7,19 @@ import Image from "next/image";
 import { useState } from "react";
 import { CurationProps } from "@feature/curation/type";
 
-export default function CurationDetailTopBar() {
+interface CurationDetailTopBarProps {
+  variant: string | undefined;
+  places: number | undefined;
+  hashTags: string[] | undefined;
+}
+
+export default function CurationDetailTopBar({
+  variant,
+  places,
+  hashTags,
+}: CurationDetailTopBarProps) {
   const [isPublic, setIsPublic] = useState(true);
+  console.log(places);
 
   const togglePrivacy = () => {
     setIsPublic((prevState) => !prevState);

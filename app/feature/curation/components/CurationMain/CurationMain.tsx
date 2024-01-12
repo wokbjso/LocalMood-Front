@@ -34,7 +34,7 @@ export default function CurationMain({
 
   const handleCardClick = (id: number, variant: string | undefined) => {
     router.push(`curation/detail/${id}_${variant}`);
-  };
+  }; //query로 변경
 
   return (
     <div
