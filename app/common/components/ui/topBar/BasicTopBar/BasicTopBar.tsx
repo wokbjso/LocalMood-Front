@@ -17,7 +17,7 @@ export default function BasicTopBar({
   return (
     <div
       className={twMerge(
-        "w-full pt-[1.8rem] pb-[1.2rem] px-[2rem] flex justify-between",
+        "w-full pt-[1.8rem] pb-[1.2rem] px-[2rem] flex justify-between items-center",
         className
       )}
     >

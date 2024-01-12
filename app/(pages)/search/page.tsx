@@ -1,18 +1,10 @@
 "use client";
 
-import FilterKeyword from "@common/assets/icons/filter/filter-keyword.svg";
-import FilterCategory from "@common/assets/icons/filter/filter-category.svg";
-import ArrowBack from "@common/assets/icons/arrow/ArrowBack";
-import Tab from "@common/components/ui/tab/Tab";
-import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
-import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
-import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import useSearchBar from "@feature/search/components/SearchBar/useSearchBar";
 import SearchStart from "@common/assets/images/search_start.svg";
 import SearchKeyword from "@feature/search/components/SearchKeyword/SearchKeyword";
 import useSearchKeyword from "@feature/search/components/SearchKeyword/useSearchKeyword";
 import { useRouter, useSearchParams } from "next/navigation";
-import Link from "next/link";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import Button from "@common/components/ui/buttons/Button/Button";
 
@@ -134,9 +126,6 @@ export default function SearchPage() {
   const searchByKeywordClicked = () => {
     searchKeywordHandlers.handleModalOpen(true);
   };
-  const goBackClicked = () => {
-    router.back();
-  };
   return (
     <div>
       {modalOpen && (
@@ -148,13 +137,6 @@ export default function SearchPage() {
         handleModalOpen={searchKeywordHandlers.handleModalOpen}
         handleTabIndex={searchKeywordHandlers.handleTabIndex}
       />
-      <header className="fixed w-full flex items-center px-[2rem] pt-[1.6rem] pb-[0.6rem] bg-white">
-        <ArrowBack onClick={goBackClicked} />
-        <SearchBar
-          placeholder="공간, 큐레이션을 검색해보세요"
-          onChange={searchBarHandlers.handleSearchText}
-        />
-      </header>
       <div className="flex justify-center pt-[8.2rem] mb-[0.8rem]">
         <SearchStart />
       </div>
@@ -173,112 +155,6 @@ export default function SearchPage() {
           </LinkLayout>
         </div>
       )}
-      <div>
-        {searchText.length > 0 && !DUMMY_PLACE && !DUMMY_CURATION && (
-          <div className="flex flex-col justify-center items-center pt-[11.4rem]">
-            <p className="flex justify-center body1 text-text-gray-8">
-              검색 결과가 없습니다.
-            </p>
-          </div>
-        )}
-        {searchText.length > 0 && DUMMY_PLACE && !DUMMY_CURATION && (
-          <div className="pt-[5.4rem]">
-            <Tab
-              sections={[{ text: "공간" }, { text: "큐레이션" }]}
-              onChange={searchBarHandlers.handleTabIndex}
-            />
-            {searchBarTabIndex === 1 && (
-              <p className="flex justify-center body1 text-text-gray-8 mt-[6rem]">
-                검색 결과가 없습니다.
-              </p>
-            )}
-          </div>
-        )}
-        {searchText.length > 0 && !DUMMY_PLACE && DUMMY_CURATION && (
-          <div className="pt-[5.4rem]">
-            <Tab
-              sections={[{ text: "공간" }, { text: "큐레이션" }]}
-              onChange={searchBarHandlers.handleTabIndex}
-            />
-            {searchBarTabIndex === 0 && (
-              <p className="flex justify-center body1 text-text-gray-8 mt-[6rem]">
-                검색 결과가 없습니다.
-              </p>
-            )}
-            {searchBarTabIndex === 1 && (
-              <div className="pb-[9.1rem] px-[2rem]">
-                {DUMMY_CURATION.map((curation) => (
-                  <CurationMain
-                    key={curation.id}
-                    id={0}
-                    curationPhoto={curation.curationPhoto}
-                    userImg={curation.userImg}
-                    userName={curation.userName}
-                    hashTags={curation.hashTags}
-                    mainText={curation.mainText}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-        {searchText.length > 0 && DUMMY_PLACE && DUMMY_CURATION && (
-          <div className="pt-[5.4rem]">
-            <Tab
-              sections={[{ text: "공간" }, { text: "큐레이션" }]}
-              onChange={searchBarHandlers.handleTabIndex}
-            />
-            {searchBarTabIndex === 0 && (
-              <div className="pb-[10.7rem] px-[2rem]">
-                <div className="flex justify-between pt-[1.6rem] pb-[1.2rem]">
-                  <div className="flex items-center">
-                    <FilterKeyword />
-                    <span className="body2-semibold text-text-gray-8 ml-[0.8rem]">
-                      키워드 설정
-                    </span>
-                  </div>
-                  <div className="flex items-center">
-                    <FilterCategory />
-                    <span className="body2-medium text-text-gray-6 ml-[0.8rem]">
-                      리뷰 최신순
-                    </span>
-                  </div>
-                </div>
-                {DUMMY_PLACE.map((place, i) => (
-                  <Link key={place.id} href={`/place/detail/${place.id}`}>
-                    <PlaceInfoMain
-                      id={place.id}
-                      placeName={place.placeName}
-                      placeImg={place.placeImg}
-                      category={place.category}
-                      location={place.location}
-                      scrapped={place.scrapped}
-                      tags={place.tags}
-                      className={i > 0 ? "mt-[4rem]" : ""}
-                    />
-                  </Link>
-                ))}
-              </div>
-            )}
-            {searchBarTabIndex === 1 && (
-              <div className="pb-[10.7rem] px-[2rem] mt-[2rem]">
-                {DUMMY_CURATION.map((curation, i) => (
-                  <CurationMain
-                    key={curation.id}
-                    id={0}
-                    curationPhoto={curation.curationPhoto}
-                    userImg={curation.userImg}
-                    userName={curation.userName}
-                    hashTags={curation.hashTags}
-                    mainText={curation.mainText}
-                    className={i > 0 ? "mt-[1.6rem]" : ""}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-      </div>
     </div>
   );
 }

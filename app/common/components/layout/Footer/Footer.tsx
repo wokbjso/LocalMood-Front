@@ -33,7 +33,7 @@ export default function Footer() {
   ];
   const { footerState, handlers } = useFooter();
   return (
-    <footer className="flex justify-between w-full h-[9.1rem] bg-background-gray-1 px-[3.2rem] pt-[0.8rem] fixed bottom-0">
+    <footer className="flex justify-between w-full bg-background-gray-1 px-[3.2rem] pt-[0.8rem] pb-[1.2rem] fixed bottom-0">
       {FOOTER_CATEGORY.map((category, i) => (
         <Link
           key={category.text}
@@ -45,11 +45,11 @@ export default function Footer() {
             className="px-[1.2rem] flex flex-col items-center cursor-pointer"
             onClick={() => handlers.handleFooterState(i)}
           >
-            <category.icon color={footerState === i ? "#32D58A" : undefined} />
+            <category.icon color={footerState === i ? "#32D58A" : "#BDBDBD"} />
             <span
               className={twMerge(
                 "mt-[0.6rem]",
-                footerState === i && "text-primary-normal"
+                footerState === i ? "text-primary-normal" : "text-text-gray-5"
               )}
             >
               {category.text}

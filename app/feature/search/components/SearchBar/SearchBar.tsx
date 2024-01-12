@@ -4,6 +4,8 @@ import { twMerge } from "tailwind-merge";
 import Search from "@common/assets/icons/search/search.svg";
 import Delete from "@common/assets/icons/close/close-gray.svg";
 import { ChangeEvent, useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface SearchBarProps {
   placeholder: string;
@@ -14,18 +16,17 @@ interface SearchBarProps {
 
 export default function SearchBar({
   placeholder,
-  activateSearch,
   onChange,
   className,
 }: SearchBarProps) {
-  const [text, setText] = useState("");
+  const [searchText, setSearchText] = useState("");
   const handleSearchTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newText = e.target.value;
-    setText(newText);
+    setSearchText(newText);
     onChange && onChange(newText);
   };
   const handleTextDelete = () => {
-    setText("");
+    setSearchText("");
     onChange && onChange("");
   };
   return (
@@ -36,12 +37,21 @@ export default function SearchBar({
       )}
     >
       <div className="flex items-center">
-        <Search onClick={activateSearch} />
+        <Link
+          href={{
+            pathname: "/search/results",
+            query: {
+              search_query: searchText,
+            },
+          }}
+        >
+          <Search />
+        </Link>
         <input
           className={twMerge(
             "body2-medium text-text-gray-5 w-full ml-[0.8rem] pl-[0.3rem]"
           )}
-          value={text}
+          value={searchText}
           placeholder={placeholder}
           onChange={handleSearchTextChange}
         />

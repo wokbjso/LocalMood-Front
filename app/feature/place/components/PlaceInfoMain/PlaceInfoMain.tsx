@@ -2,7 +2,7 @@ import PlaceInfoTop from "../PlaceInfoTop/PlaceInfoTop";
 import PlaceInfoBottom from "../PlaceInfoBottom/PlaceInfoBottom";
 import { PlaceInfoProps } from "@feature/place/type";
 
-interface PlaceInfoMainProps extends PlaceInfoProps {
+export interface PlaceInfoMainProps extends PlaceInfoProps {
   variant?: "home" | "home_search" | "curation";
 }
 
