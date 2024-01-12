@@ -17,7 +17,7 @@ export default function CurationDetail() {
           <div className="w-[5.6rem] h-[5.6rem]">
             <Image src={NonCuration} alt="NonCuration" />
           </div>
-          <div className="headline0 text-black text-center pt-[1.2rem] pb-[0.8rem]">
+          <div className="max-w-[23.2rem] headline0 text-black text-center pt-[1.2rem] pb-[0.8rem]">
             크리스마스에 즐기기 좋은 마포구 데이트 코스
           </div>
           <div className="flex items-center gap-[0.4rem] body3-medium text-text-gray-8">

@@ -70,7 +70,7 @@ export default function CurationMain({
             onClick={handleMenu}
           />
         )}
-        <div className="headline2 w-[70%] break-keep mb-[1.2rem] text-black">
+        <div className="max-w-[24.4rem] headline2 w-[70%] break-keep mb-[1.2rem] text-black">
           {mainText}
         </div>
         <div className="flex flex-wrap gap-[0.8rem]">
