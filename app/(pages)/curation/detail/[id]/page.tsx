@@ -1,5 +1,4 @@
 "use client";
-import ArrowRight from "@common/assets/icons/arrow/arror-right.svg";
 import { usePathname } from "next/navigation";
 import CurationDetailTopBar from "@feature/curation/components/CurationDetail/CurationDetailTopBar";
 import {
@@ -28,7 +27,7 @@ export default function CurationDetail(props: any) {
   } = selectedItem || {};
 
   return (
-    <div className="relative w-full">
+    <div className="w-full">
       <CurationDetailTopBar
         mainText={mainText}
         variant={variantType}
