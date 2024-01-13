@@ -1,8 +1,11 @@
+"use client";
+
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import Logo from "@common/assets/images/localmood_logo.svg";
 import FormInput from "@common/components/ui/input/FormInput/FormInput";
 import Button from "@common/components/ui/buttons/Button/Button";
 import ArrowRight from "@common/assets/icons/arrow/arror-right.svg";
+import Link from "next/link";
 
 export default function Login() {
   return (
@@ -18,7 +21,9 @@ export default function Login() {
           label="비밀번호 (8자 이상)"
           className="mb-[2rem]"
         />
-        <Button disabled>로그인하기</Button>
+        <Button disabled className="w-full">
+          로그인하기
+        </Button>
       </form>
       <div className="flex justify-center items-center mt-[2rem] mb-[16.1rem]">
         <span className="mr-[0.4rem] text-text-gray-8 body2-semibold">
@@ -26,7 +31,15 @@ export default function Login() {
         </span>
         <ArrowRight />
       </div>
-      <Button variant="line">회원가입 하기</Button>
+      <Link
+        href={{
+          pathname: "/register",
+        }}
+      >
+        <Button variant="line" className="w-full">
+          회원가입 하기
+        </Button>
+      </Link>
       <div className="flex justify-center mt-[2rem]">
         <span className="text-text-gray-6 body2-semibold pb-[0.4rem] border border-b-text-gray-6">
           로그인없이 둘러보기

@@ -1,7 +1,8 @@
+"use client";
+
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import FormInput from "@common/components/ui/input/FormInput/FormInput";
 import Button from "@common/components/ui/buttons/Button/Button";
-import ArrowRight from "@common/assets/icons/arrow/arror-right.svg";
 
 export default function Register() {
   return (
@@ -19,7 +20,9 @@ export default function Register() {
           className="mb-[3.2rem]"
         />
         <FormInput label="닉네임" className="mb-[16.1rem]" />
-        <Button disabled>가입하기</Button>
+        <Button disabled className="w-full">
+          가입하기
+        </Button>
       </form>
     </div>
   );
