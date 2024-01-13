@@ -20,7 +20,7 @@ export default function FormInput({
       <span className="text-text-gray-6 body2-semibold">{label}</span>
       <input
         type={type}
-        className="py-[1rem] pl-[0.4rem] border-b-[0.1rem] border-text-gray-6 mt-[1.8rem]"
+        className="py-[1rem] pl-[0.4rem] border-b-[0.1rem] border-text-gray-6 mt-[0.9rem]"
       />
     </div>
   );
