@@ -8,13 +8,17 @@ import { useState } from "react";
 import { CurationProps } from "@feature/curation/type";
 
 interface CurationDetailTopBarProps {
+  mainText: string | undefined;
   variant: string | undefined;
+  userImg: string | undefined;
   places: number | undefined;
   hashTags: string[] | undefined;
 }
 
 export default function CurationDetailTopBar({
+  mainText,
   variant,
+  userImg,
   places,
   hashTags,
 }: CurationDetailTopBarProps) {
@@ -22,6 +26,7 @@ export default function CurationDetailTopBar({
   const togglePrivacy = () => {
     setIsPublic((prevState) => !prevState);
   };
+  console.log(userImg);
   return (
     <div>
       <div className="h-[18.8rem] bg-background-secondary-normal">
@@ -29,11 +34,9 @@ export default function CurationDetailTopBar({
       </div>
       <div className="w-full inline-flex flex-col -mt-[18.8rem] pt-[16.1rem] items-center pb-[2.4rem]">
         <div className="w-[21.5rem] flex flex-col items-center">
-          <div className="w-[5.6rem] h-[5.6rem]">
-            <Image src={NonCuration} alt="NonCuration" />
-          </div>
+          <div className="w-[5.6rem] h-[5.6rem]"></div>
           <div className="max-w-[23.2rem] headline0 text-black text-center pt-[1.2rem] pb-[0.8rem]">
-            크리스마스에 즐기기 좋은 마포구 데이트 코스
+            {mainText}
           </div>
           <div
             className="flex items-center gap-[0.4rem] body3-medium text-text-gray-8"

@@ -18,7 +18,13 @@ export default function CurationDetail(props: any) {
   const selectedItem = selectedList.find(
     (item) => item.id === parseInt(id, 10)
   );
-  const { variant: variantType, places, hashTags } = selectedItem || {};
+  const {
+    mainText,
+    variant: variantType,
+    userImg,
+    places,
+    hashTags,
+  } = selectedItem || {};
 
   const navigateToHome = () => {
     router.push("/");
@@ -27,7 +33,9 @@ export default function CurationDetail(props: any) {
   return (
     <div className="relative w-full">
       <CurationDetailTopBar
+        mainText={mainText}
         variant={variantType}
+        userImg={userImg}
         places={places}
         hashTags={hashTags}
       />
