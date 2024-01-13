@@ -2,7 +2,7 @@ import HeaderText from "@common/assets/icons/header/header.svg";
 import SearchIcon from "@common/assets/icons/search/search.svg";
 import Heart from "@common/assets/icons/heart/Heart";
 import Music from "@common/assets/icons/music/Music";
-import RightArrow from "@common/assets/icons/arrow/arror-right.svg";
+import RightArrow from "@common/assets/icons/arrow/arrow-right.svg";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
 import Button from "@common/components/ui/buttons/Button/Button";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";

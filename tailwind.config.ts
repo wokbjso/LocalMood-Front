@@ -69,6 +69,13 @@ module.exports = {
           lineHeight: "100%",
           letterSpacing: "-0.4px",
         },
+        ".headline2-semibold": {
+          fontFamily: "Pretendard, sans-serif",
+          fontWeight: "600",
+          fontSize: "1.8rem",
+          lineHeight: "100%",
+          letterSpacing: "-0.36px",
+        },
         ".body1": {
           fontFamily: "Pretendard, sans-serif",
           fontWeight: "500",

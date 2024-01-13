@@ -1,4 +1,4 @@
-import ArrowRight from "@common/assets/icons/arrow/arror-right.svg";
+import ArrowRight from "@common/assets/icons/arrow/arrow-right.svg";
 import { useRouter } from "next/navigation";
 
 export default function CurationNoPlaces() {
