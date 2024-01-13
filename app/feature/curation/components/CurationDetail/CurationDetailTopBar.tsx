@@ -3,6 +3,7 @@ import CurationTopAppBar from "@feature/curation/components/CurationTopAppBar/cu
 import NonCuration from "@common/assets/icons/illustration/CurationNoSeat.png";
 import LockIcon from "@common/assets/icons/lock/lock.svg";
 import UnlockIcon from "@common/assets/icons/lock/unlock.svg";
+import ProfileIcon from "@common/assets/icons/profile/greenProfile.png";
 import Image from "next/image";
 import { useState } from "react";
 import { CurationProps } from "@feature/curation/type";
@@ -12,6 +13,7 @@ interface CurationDetailTopBarProps {
   mainText: string | undefined;
   variant: string | undefined;
   userImg: string | undefined;
+  userName: string | undefined;
   places: number | undefined;
   hashTags: string[] | undefined;
 }
@@ -20,6 +22,7 @@ export default function CurationDetailTopBar({
   mainText,
   variant,
   userImg,
+  userName,
   places,
   hashTags,
 }: CurationDetailTopBarProps) {
@@ -53,13 +56,28 @@ export default function CurationDetailTopBar({
             <div className="max-w-[23.2rem] headline0 text-black text-center pt-[1.2rem] pb-[0.8rem]">
               {mainText}
             </div>
-            <div
-              className="flex items-center gap-[0.4rem] body3-medium text-text-gray-8"
-              onClick={togglePrivacy}
-            >
-              {isPublic ? <LockIcon /> : <UnlockIcon />}
-              {isPublic ? "비공개" : "공개"}
-            </div>
+            {variant === "my" ? (
+              <div
+                className="flex items-center gap-[0.4rem] body3-medium text-text-gray-8"
+                onClick={togglePrivacy}
+              >
+                {isPublic ? <LockIcon /> : <UnlockIcon />}
+                {isPublic ? "비공개" : "공개"}
+              </div>
+            ) : (
+              <div className="flex items-center gap-[1.2rem]">
+                <div className="flex items-center gap-[0.4rem]">
+                  <div className="w-[1.6rem] h-[1.6rem]">
+                    <Image src={ProfileIcon} alt="NonCuration" />
+                  </div>
+                  <div className="body3-medium text-text-gray-6">
+                    {userName}
+                  </div>
+                </div>
+                <div className="w-[0.1rem] h-[1.2rem] bg-text-gray-4"></div>
+                <div className="body3-regular text-text-gray-6">2023.02.13</div>
+              </div>
+            )}
           </div>
         </div>
       </div>

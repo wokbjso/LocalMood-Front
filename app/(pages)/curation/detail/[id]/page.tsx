@@ -22,16 +22,18 @@ export default function CurationDetail(props: any) {
     mainText,
     variant: variantType,
     userImg,
+    userName,
     places,
     hashTags,
   } = selectedItem || {};
 
   return (
-    <div className="w-full">
+    <div className="relative w-full">
       <CurationDetailTopBar
         mainText={mainText}
         variant={variantType}
         userImg={userImg}
+        userName={userName}
         places={places}
         hashTags={hashTags}
       />
