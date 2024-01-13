@@ -2,7 +2,7 @@ import LocationFillIcon from "@common/assets/icons/location/location-fill.svg";
 import Filter from "@common/components/ui/buttons/Filter/Filter";
 import { customColors } from "@styles/colors";
 
-export default function CurationDetailCard() {
+export default function CurationDetailInfoTop() {
   const curationDetailCardList = {
     id: 0,
     placeName: "나이스워크투데이",
