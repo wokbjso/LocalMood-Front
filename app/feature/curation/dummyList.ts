@@ -86,7 +86,7 @@ export const curationScrappedPropsList = [
     userImg:
       "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
     userName: "김현민",
-    mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
+    mainText: "화이트데이에 즐기기 좋은 마포구 데이트 코스",
     hashTags: ["연인과의 데이트", "크리스마스"],
     scrapped: true,
     onClick: () => {},
