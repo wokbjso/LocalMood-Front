@@ -34,7 +34,9 @@ export default function CurationDetailTopBar({
       </div>
       <div className="w-full inline-flex flex-col -mt-[18.8rem] pt-[16.1rem] items-center pb-[2.4rem]">
         <div className="w-[21.5rem] flex flex-col items-center">
-          <div className="w-[5.6rem] h-[5.6rem]"></div>
+          <div className="w-[5.6rem] h-[5.6rem]">
+            <Image src={NonCuration} alt="NonCuration" />
+          </div>
           <div className="max-w-[23.2rem] headline0 text-black text-center pt-[1.2rem] pb-[0.8rem]">
             {mainText}
           </div>

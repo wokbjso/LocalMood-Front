@@ -11,3 +11,18 @@ export interface CurationProps {
   className?: string;
   places: number;
 }
+
+export interface CurationDetailCardProps {
+  id: number;
+  placeName: string;
+  placePhoto?: string[];
+  placeType: string;
+  placeLocation: string;
+  placeFor: string[];
+  placeInterior: string[];
+  placeMenu: string[];
+  placeMood: string[];
+  hashTags: string[];
+  scrapped?: boolean;
+  onClick?: () => void;
+}

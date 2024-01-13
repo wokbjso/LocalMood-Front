@@ -59,7 +59,7 @@ export const curationMainPropsList = [
     onClick: () => {},
     places: 12,
   },
-]; //API 연결
+];
 
 export const curationScrappedPropsList = [
   {
@@ -122,4 +122,37 @@ export const curationScrappedPropsList = [
     onClick: () => {},
     places: 12,
   },
-]; //API 연결
+];
+
+export const curationDetailCardList = [
+  {
+    id: 0,
+    placeName: "나이스워크투데이",
+    placePhoto: [
+      "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
+    ],
+    placeType: "카페",
+    placeLocation: "마포구 상수동 올림픽로 23",
+    placeFor: ["연인과의 데이트", "작업/공부/책"],
+    placeInterior: ["통창뷰", "넓은 공간"],
+    placeMood: ["대화에 집중할 수 있는"],
+    hashTags: ["연인과의 데이트", "크리스마스"],
+    scrapped: true,
+    onClick: () => {},
+  },
+  {
+    id: 1,
+    placeName: "나이스워크투데이",
+    placePhoto: [
+      "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
+    ],
+    placeType: "한식",
+    placeLocation: "마포구 상수동 올림픽로 23",
+    placeFor: ["연인과의 데이트", "작업/공부/책"],
+    placeMenu: ["된장찌개", "삼겹살"],
+    placeMood: ["대화에 집중할 수 있는"],
+    hashTags: ["연인과의 데이트", "크리스마스"],
+    scrapped: true,
+    onClick: () => {},
+  },
+];

@@ -7,6 +7,7 @@ import {
   curationScrappedPropsList,
 } from "@feature/curation/dummyList";
 import CurationNoPlaces from "@feature/curation/components/CurationDetail/CurationNoPlaces";
+import CurationDetailCard from "@feature/curation/components/CurationDetail/CurationDetailCard";
 
 export default function CurationDetail(props: any) {
   const pathname = usePathname();
@@ -35,8 +36,10 @@ export default function CurationDetail(props: any) {
         places={places}
         hashTags={hashTags}
       />
-      {/*저장된 장소(places)가 0개일 때*/}
+      {/*저장된 장소(places)가 없을 때*/}
       {places === 0 && <CurationNoPlaces />}
+      {/*저장된 장소(places)가 있을 때*/}
+      {places !== 0 && <CurationDetailCard />}
     </div>
   );
 }
