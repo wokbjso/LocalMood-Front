@@ -7,12 +7,14 @@ interface LinkLayoutProps {
   children: ReactNode;
   routeUrl: string;
   query?: Record<string, any>;
+  className?: string;
 }
 
 export default function LinkLayout({
   children,
   routeUrl,
   query,
+  className,
 }: LinkLayoutProps) {
   return (
     <Link
@@ -20,6 +22,7 @@ export default function LinkLayout({
         pathname: routeUrl,
         query: query,
       }}
+      className={className}
     >
       {children}
     </Link>
