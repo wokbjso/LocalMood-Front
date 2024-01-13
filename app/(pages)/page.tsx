@@ -8,6 +8,7 @@ import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import Button from "@common/components/ui/buttons/Button/Button";
 import Slider from "@common/components/layout/Slider/Slider";
 import LampIcon from "@common/assets/icons/lamp/LampIcon";
+import Footer from "@common/components/layout/Footer/Footer";
 
 export default function Home() {
   const HEADER_KEYWORD = [
@@ -186,6 +187,7 @@ export default function Home() {
           <Slider placeData={PLACE_DUMMY} backgroundClassName="py-[1.6rem]" />
         </section>
       </div>
+      <Footer />
     </>
   );
 }
