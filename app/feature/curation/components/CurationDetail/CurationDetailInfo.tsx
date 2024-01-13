@@ -4,9 +4,13 @@ import CurationDetailInfoTop from "./CurationDetailInfoTop";
 
 export default function CurationDetailInfo() {
   return (
-    <div>
+    <div className="pb-[6.1rem]">
       <CurationDetailInfoTop />
-      <CuratoinDetailInfoCard />
+      {curationDetailCardList.map((props, index) => (
+        <div key={index}>
+          <CuratoinDetailInfoCard {...props} />
+        </div>
+      ))}
     </div>
   );
 }

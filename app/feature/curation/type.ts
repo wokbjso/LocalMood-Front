@@ -15,12 +15,12 @@ export interface CurationProps {
 export interface CurationDetailCardProps {
   id: number;
   placeName: string;
-  placePhoto?: string[];
+  placePhoto?: string[] | undefined;
   placeType: string;
   placeLocation: string;
   placeFor: string[];
-  placeInterior: string[];
-  placeMenu: string[];
+  placeInterior?: string[] | undefined;
+  placeMenu?: string[] | undefined;
   placeMood: string[];
   hashTags: string[];
   scrapped?: boolean;
