@@ -8,6 +8,7 @@ import { CurationProps } from "@feature/curation/type";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { twMerge } from "tailwind-merge";
 import { useRouter } from "next/navigation";
+import CurationMenu from "./CurationMenu";
 
 export default function CurationMain({
   id,
@@ -27,8 +28,14 @@ export default function CurationMain({
   const handleScrap = () => {
     setIsScrapped((prev) => !prev);
   };
-  const handleMenu = () => {
-    setIsMenuOpened((prev) => !prev);
+  const handleCurationMenuClick = (
+    e: React.MouseEvent<SVGSVGElement, MouseEvent>
+  ) => {
+    e.stopPropagation();
+    setIsMenuOpened(true);
+  };
+  const handleCloseMenuModal = () => {
+    setIsMenuOpened(false);
   };
   const router = useRouter();
 
@@ -44,52 +51,59 @@ export default function CurationMain({
       )}
       onClick={() => handleCardClick(id, variant)}
     >
-      <div
-        className="w-full h-[16.5rem] bg-cover relative rounded-t-[8px]"
-        style={{
-          backgroundImage: `url(
+      <div>
+        <div
+          className="w-full h-[16.5rem] bg-cover relative rounded-t-[8px]"
+          style={{
+            backgroundImage: `url(
             ${curationPhoto && curationPhoto[0]}
           )`,
-        }}
-      >
-        <UserProfile
-          size="small"
-          userImg={userImg}
-          userName={userName}
-          className="absolute bottom-[1.6rem] left-[1.6rem]"
-        />
-      </div>
-      <div className="w-full p-[1.6rem] relative">
-        {variant === "home" ? (
-          isScrapped ? (
-            <ScrapFill
-              className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-              onClick={handleScrap}
-            />
-          ) : (
-            <ScrapLine
-              className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-              onClick={handleScrap}
-            />
-          )
-        ) : (
-          <Menu
-            className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-            onClick={handleMenu}
+          }}
+        >
+          <UserProfile
+            size="small"
+            userImg={userImg}
+            userName={userName}
+            className="absolute bottom-[1.6rem] left-[1.6rem]"
           />
-        )}
-        <div className="max-w-[24.4rem] headline2 w-[70%] break-keep mb-[1.2rem] text-black">
-          {mainText}
         </div>
-        <div className="flex flex-wrap gap-[0.8rem]">
-          {hashTags.map((tag) => (
-            <div key={tag}>
-              <span className="text-primary-normal body2-medium"># </span>
-              <span className="text-text-gray-6 body2-medium">{tag}</span>
-            </div>
-          ))}
+        <div className="w-full p-[1.6rem] relative">
+          {variant === "home" ? (
+            isScrapped ? (
+              <ScrapFill
+                className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
+                onClick={handleScrap}
+              />
+            ) : (
+              <ScrapLine
+                className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
+                onClick={handleScrap}
+              />
+            )
+          ) : (
+            <Menu
+              className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
+              onClick={handleCurationMenuClick}
+            />
+          )}
+          <div className="max-w-[24.4rem] headline2 w-[70%] break-keep mb-[1.2rem] text-black">
+            {mainText}
+          </div>
+          <div className="flex flex-wrap gap-[0.8rem]">
+            {hashTags.map((tag) => (
+              <div key={tag}>
+                <span className="text-primary-normal body2-medium"># </span>
+                <span className="text-text-gray-6 body2-medium">{tag}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+      {isMenuOpened && (
+        <div className="fixed top-[62.1rem] bottom-0 left-0 right-0 bg-white z-50">
+          <CurationMenu />
+        </div>
+      )}
     </div>
   );
 }
