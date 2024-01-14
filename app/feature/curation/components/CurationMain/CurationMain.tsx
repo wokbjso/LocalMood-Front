@@ -100,7 +100,7 @@ export default function CurationMain({
         </div>
       </div>
       {isMenuOpened && (
-        <div className="fixed top-[62.1rem] bottom-0 left-0 right-0 bg-white z-50">
+        <div className="fixed top-[62.1rem] bottom-0 left-0 right-0 z-50">
           <CurationMenu />
         </div>
       )}
