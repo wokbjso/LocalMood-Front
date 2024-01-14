@@ -1,6 +1,7 @@
 import GrabModal from "@common/components/ui/modal/GrabModal";
 import CloseIcon from "@common/assets/icons/close/close.svg";
 import TextField from "@common/components/ui/textField/TextField";
+import ButtonLock from "@common/components/ui/buttons/Button/ButtonLock";
 
 export default function CurationMake() {
   return (
@@ -11,6 +12,9 @@ export default function CurationMake() {
           <CloseIcon />
         </div>
         <TextField />
+        <div className="w-full pt-[1.6rem] grid justify-items-end">
+          <ButtonLock />
+        </div>
       </div>
     </div>
   );
