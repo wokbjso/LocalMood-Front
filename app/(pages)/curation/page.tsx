@@ -9,6 +9,7 @@ import {
   curationMainPropsList,
   curationScrappedPropsList,
 } from "@feature/curation/dummyList";
+import CurationMake from "@feature/curation/components/modal/CurationMake";
 
 export default function Curation() {
   const CurationTabSections = [
@@ -20,14 +21,23 @@ export default function Curation() {
     },
   ];
   const [tabIndex, setTabIndex] = React.useState(0);
+  const [isCurationMakeOpen, setIsCurationMakeOpen] = useState(false);
 
   const handleTabChange = (index: number) => {
     setTabIndex(index);
   };
+  const handleCurationButtonClick = () => {
+    setIsCurationMakeOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsCurationMakeOpen(false);
+  };
 
   return (
     <div className="Curation">
-      <div>
+      <div
+        className={isCurationMakeOpen ? "bg-black opacity-50 z-50" : "bg-white"}
+      >
         <CurationHeader />
         <Tab sections={CurationTabSections} onChange={handleTabChange} />
         <div className="px-[2rem] pb-[18.2rem] bg-background-gray-2 items-center">
@@ -40,7 +50,9 @@ export default function Curation() {
                 </p>{" "}
                 개
               </div>
-              <CurationButton />
+              <div onClick={handleCurationButtonClick}>
+                <CurationButton />
+              </div>
             </div>
           )}
           {tabIndex === 0 &&
@@ -59,6 +71,11 @@ export default function Curation() {
           </div>
         </div>
       </div>
+      {isCurationMakeOpen && (
+        <div className="fixed top-[4.6rem] bottom-0 left-0 right-0 bg-white">
+          <CurationMake />
+        </div>
+      )}
     </div>
   );
 }
