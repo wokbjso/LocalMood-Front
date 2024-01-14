@@ -74,7 +74,7 @@ export default function Curation() {
       </div>
       {isCurationMakeOpen && (
         <div className="fixed top-[4.6rem] bottom-0 left-0 right-0 z-50">
-          <CurationMake />
+          <CurationMake onClose={handleCloseModal} />
         </div>
       )}
     </div>

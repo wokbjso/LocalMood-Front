@@ -4,14 +4,18 @@ import TextField from "@common/components/ui/textField/TextField";
 import ButtonLock from "@common/components/ui/buttons/Button/ButtonLock";
 import CurationMakeKeyword from "./CurationMakeKeyword";
 
-export default function CurationMake() {
+interface CurationMakeProps {
+  onClose: () => void;
+}
+
+export default function CurationMake({ onClose }: CurationMakeProps) {
   return (
     <div>
       <GrabModal />
       <div className="bg-white">
         <div className="h-[81.2rem] p-[2rem] flex flex-col items-center">
           <div className="w-full grid justify-items-end">
-            <CloseIcon />
+            <CloseIcon onClick={onClose} />
           </div>
           <div className="w-full">
             <TextField />
