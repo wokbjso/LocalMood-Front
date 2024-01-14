@@ -24,9 +24,8 @@ export default function CuratoinDetailInfoCard({
         {placePhoto?.map((url, index) => (
           <div
             key={index}
-            className="w-[28rem] h-[28rem] bg-cover relative rounded-lg overflow-hidden"
+            className="w-[28rem] h-[28rem] bg-cover relative rounded-lg"
             style={{
-              flex: "1",
               width: "280px",
               height: "280px",
               borderRadius: "8px",

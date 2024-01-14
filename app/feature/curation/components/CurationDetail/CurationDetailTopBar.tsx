@@ -34,7 +34,11 @@ export default function CurationDetailTopBar({
   return (
     <div>
       <div className="h-[18.8rem] bg-background-secondary-normal">
-        <CurationTopAppBar variant={variant} />
+        <CurationTopAppBar
+          variant={variant}
+          mainText={mainText}
+          hashTags={hashTags}
+        />
       </div>
       <div className="w-full -mt-[18.8rem] pt-[11.5rem]">
         <div className="w-full flex justify-center pb-[1.6rem] gap-[0.8rem]">
