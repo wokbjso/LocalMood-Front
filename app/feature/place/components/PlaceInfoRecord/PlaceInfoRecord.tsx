@@ -2,7 +2,7 @@ import { twMerge } from "tailwind-merge";
 import PlaceInfoTop from "../PlaceInfoTop/PlaceInfoTop";
 import { PlaceInfoProps } from "@feature/place/type";
 
-interface PlaceInfoRecordProps extends Omit<PlaceInfoProps, "tags"> {
+export interface PlaceInfoRecordProps extends Omit<PlaceInfoProps, "tags"> {
   variant?: "scrapped" | "record_search";
 }
 
