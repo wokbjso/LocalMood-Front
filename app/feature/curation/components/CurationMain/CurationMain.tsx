@@ -6,12 +6,14 @@ import { useState } from "react";
 import { CurationProps } from "@feature/curation/type";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { twMerge } from "tailwind-merge";
+import { useRouter } from "next/navigation";
+import CurationMenu from "./CurationMenu";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 
 export default function CurationMain({
   id,
   curationPhoto,
-  variant = "home",
+  variant,
   userImg,
   userName,
   mainText,
@@ -19,24 +21,37 @@ export default function CurationMain({
   scrapped = false,
   onClick,
   className,
+  places,
 }: CurationProps) {
   const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const handleScrap = () => {
     setIsScrapped((prev) => !prev);
   };
-  const handleMenu = () => {
-    setIsMenuOpened((prev) => !prev);
+  const handleCurationMenuClick = (
+    e: React.MouseEvent<SVGSVGElement, MouseEvent>
+  ) => {
+    e.stopPropagation();
+    setIsMenuOpened(true);
   };
+  const handleCloseMenuModal = () => {
+    setIsMenuOpened(false);
+  };
+  const router = useRouter();
+
+  const handleCardClick = (id: number, variant: string | undefined) => {
+    router.push(`curation/detail/${id}_${variant}`);
+  }; //query로 변경
+
   return (
-    <div>
-      <div
-        className={twMerge(
-          "w-full bg-white rounded-[8px] border-[0.1rem] border-line-gray-3",
-          className
-        )}
-        onClick={onClick}
-      >
+    <div
+      className={twMerge(
+        "w-full h-[27.7rem] bg-white rounded-[8px]",
+        className
+      )}
+      onClick={() => handleCardClick(id, variant)}
+    >
+      <div>
         <div
           className="w-full h-[16.5rem] bg-cover relative rounded-t-[8px]"
           style={{
@@ -68,10 +83,10 @@ export default function CurationMain({
           ) : (
             <Menu
               className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-              onClick={handleMenu}
+              onClick={handleCurationMenuClick}
             />
           )}
-          <div className="headline2 w-[70%] break-keep mb-[1.2rem] text-black">
+          <div className="max-w-[24.4rem] headline2 w-[70%] break-keep mb-[1.2rem] text-black">
             {mainText}
           </div>
           <div className="flex flex-wrap gap-[0.8rem]">
@@ -84,6 +99,11 @@ export default function CurationMain({
           </div>
         </div>
       </div>
+      {isMenuOpened && (
+        <div className="fixed top-[62.1rem] bottom-0 left-0 right-0 z-50">
+          <CurationMenu />
+        </div>
+      )}
     </div>
   );
 }

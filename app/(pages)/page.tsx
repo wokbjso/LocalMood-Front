@@ -1,6 +1,6 @@
 import Heart from "@common/assets/icons/heart/Heart";
 import Music from "@common/assets/icons/music/Music";
-import RightArrow from "@common/assets/icons/arrow/arror-right.svg";
+import RightArrow from "@common/assets/icons/arrow/arrow-right.svg";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
 import CurationHomeList from "@feature/curation/components/CurationHomeList/CurationHomeList";
 import HomeHeader from "@common/components/layout/Header/HomeHeader";
