@@ -10,6 +10,7 @@ import {
   curationScrappedPropsList,
 } from "@feature/curation/dummyList";
 import CurationMake from "@feature/curation/components/modal/CurationMake";
+import GrabModal from "@common/components/ui/modal/GrabModal";
 
 export default function Curation() {
   const CurationTabSections = [
@@ -72,7 +73,7 @@ export default function Curation() {
         </div>
       </div>
       {isCurationMakeOpen && (
-        <div className="fixed top-[4.6rem] bottom-0 left-0 right-0 bg-white">
+        <div className="fixed top-[4.6rem] bottom-0 left-0 right-0 z-50">
           <CurationMake />
         </div>
       )}

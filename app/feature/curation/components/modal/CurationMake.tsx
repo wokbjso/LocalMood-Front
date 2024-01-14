@@ -8,18 +8,20 @@ export default function CurationMake() {
   return (
     <div>
       <GrabModal />
-      <div className="h-[81.2rem] p-[2rem] flex flex-col items-center">
-        <div className="w-full grid justify-items-end">
-          <CloseIcon />
-        </div>
-        <div className="w-full">
-          <TextField />
-        </div>
-        <div className="w-full pt-[1.6rem] grid justify-items-end">
-          <ButtonLock />
-        </div>
-        <div className="w-full pt-[3.2rem]">
-          <CurationMakeKeyword />
+      <div className="bg-white">
+        <div className="h-[81.2rem] p-[2rem] flex flex-col items-center">
+          <div className="w-full grid justify-items-end">
+            <CloseIcon />
+          </div>
+          <div className="w-full">
+            <TextField />
+          </div>
+          <div className="w-full pt-[1.6rem] grid justify-items-end">
+            <ButtonLock />
+          </div>
+          <div className="w-full pt-[3.2rem]">
+            <CurationMakeKeyword />
+          </div>
         </div>
       </div>
     </div>
