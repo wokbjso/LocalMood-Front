@@ -8,6 +8,7 @@ import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { twMerge } from "tailwind-merge";
 import { useRouter } from "next/navigation";
 import CurationMenu from "./CurationMenu";
+import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 
 export default function CurationMain({
   id,

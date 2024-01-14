@@ -1,8 +1,8 @@
 import Image from "next/image";
 import ArrowIcon from "@common/assets/icons/arrow/arrow-right.svg";
-import ScrapIcon from "@common/assets/icons/scrap/scrap-fill.svg";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
 import { CurationDetailCardProps } from "@feature/curation/type";
+import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 
 export default function CuratoinDetailInfoCard({
   id,
@@ -54,7 +54,7 @@ export default function CuratoinDetailInfoCard({
                 </div>
               </div>
             </div>
-            <ScrapIcon />
+            <ScrapFill />
           </div>
           <div className="w-full flex items-start p-[1.6rem] gap-[1.7rem] border-[1px] border-solid border-line-gray-3 rounded-t-lg">
             <div className="flex flex-col items-start pt-[0.5rem] gap-[2.4rem] text-text-gray-6 body2-medium">

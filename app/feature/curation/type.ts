@@ -9,7 +9,7 @@ export interface CurationProps {
   scrapped?: boolean;
   onClick?: () => void;
   className?: string;
-  places: number;
+  places?: number;
 }
 
 export interface CurationDetailCardProps {
