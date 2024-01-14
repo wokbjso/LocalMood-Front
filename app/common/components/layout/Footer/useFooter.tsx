@@ -1,7 +1,11 @@
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export default function useFooter() {
-  const [footerState, setFooterState] = useState<number>(0);
+  const pathname = usePathname();
+  const [footerState, setFooterState] = useState<number>(
+    pathname === "/" ? 0 : pathname === "/mypage" ? 3 : -1
+  );
 
   const handleFooterState = (index: number) => {
     setFooterState(index);
