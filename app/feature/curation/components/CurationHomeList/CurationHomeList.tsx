@@ -15,7 +15,7 @@ export default function CurationHomeList({
   const { indicatorIndex, handlers } = UseCurationHomeList();
   return (
     <>
-      <div className="flex overflow-x-scroll">
+      <div>
         {curationList.map((curation, i) => {
           return (
             indicatorIndex === i && (
@@ -27,7 +27,7 @@ export default function CurationHomeList({
                 userName={curation.userName}
                 hashTags={curation.hashTags}
                 mainText={curation.mainText}
-                className="mb-[2rem]"
+                className="mb-[2rem] w-full"
               />
             )
           );

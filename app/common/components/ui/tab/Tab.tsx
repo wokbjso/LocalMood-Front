@@ -5,16 +5,20 @@ interface TabProps {
   sections: {
     icon?: React.FC<{ color?: string; className?: string }>;
     text: string;
+    length?: number;
   }[];
+  onChange?: (index: number) => void;
+  className?: string;
 }
 
-export default function Tab({ sections }: TabProps) {
+export default function Tab({ sections, onChange, className }: TabProps) {
   const [tabIndex, setTabIndex] = useState(0);
   const handleTabSection = (i: number) => {
+    onChange && onChange(i);
     setTabIndex(i);
   };
   return (
-    <div className="flex w-full">
+    <div className={twMerge("flex w-full", className)}>
       {sections.map((section, i) => (
         <section
           key={section.text}
@@ -32,14 +36,14 @@ export default function Tab({ sections }: TabProps) {
               />
             </div>
           )}
-          <div
+          <span
             className={twMerge(
               "headline2 text-text-gray-4",
               tabIndex === i && "text-text-gray-8"
             )}
           >
-            {section.text}
-          </div>
+            {section.text} {section.length && section.length}
+          </span>
         </section>
       ))}
     </div>

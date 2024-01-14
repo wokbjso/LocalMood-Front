@@ -1,5 +1,4 @@
-import Footer from "@common/components/layout/Footer/Footer";
-import "./styles/global.css";
+import "../styles/global.css";
 
 export const metadata = {
   title: "Next.js",
@@ -13,10 +12,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        {children}
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

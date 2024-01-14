@@ -3,31 +3,45 @@
 import { twMerge } from "tailwind-merge";
 import Search from "@common/assets/icons/search/search.svg";
 import Delete from "@common/assets/icons/close/close-gray.svg";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface SearchBarProps {
+  variant?: "place_related" | "record";
   placeholder: string;
-  activateSearch?: () => void;
-  onChange?: (text: string) => void;
   className?: string;
 }
 
 export default function SearchBar({
+  variant = "place_related",
   placeholder,
-  activateSearch,
-  onChange,
   className,
 }: SearchBarProps) {
-  const [text, setText] = useState("");
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const [searchText, setSearchText] = useState("");
+  const queries = `?search_query=${searchText}`;
+  const keyword_search_queries = `?keyword_search=${
+    searchParams.get("keyword_search")
+      ? searchParams.get("keyword_search")
+      : false
+  }`;
   const handleSearchTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newText = e.target.value;
-    setText(newText);
-    onChange && onChange(newText);
+    setSearchText(newText);
   };
   const handleTextDelete = () => {
-    setText("");
-    onChange && onChange("");
+    setSearchText("");
   };
+  useEffect(() => {
+    if (searchText.length === 0) {
+      router.push("/search" + keyword_search_queries);
+    } else {
+      router.push(
+        variant === "place_related" ? "/search/results" + queries : "/record"
+      );
+    }
+  }, [searchText]);
   return (
     <div
       className={twMerge(
@@ -36,12 +50,14 @@ export default function SearchBar({
       )}
     >
       <div className="flex items-center">
-        <Search onClick={activateSearch} />
+        <div>
+          <Search />
+        </div>
         <input
           className={twMerge(
             "body2-medium text-text-gray-5 w-full ml-[0.8rem] pl-[0.3rem]"
           )}
-          value={text}
+          value={searchText}
           placeholder={placeholder}
           onChange={handleSearchTextChange}
         />
