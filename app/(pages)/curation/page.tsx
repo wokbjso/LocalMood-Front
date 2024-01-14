@@ -29,9 +29,11 @@ export default function Curation() {
   };
   const handleCurationButtonClick = () => {
     setIsCurationMakeOpen(true);
+    document.body.style.overflow = "hidden";
   };
   const handleCloseModal = () => {
     setIsCurationMakeOpen(false);
+    document.body.style.overflow = "unset";
   };
 
   return (

@@ -23,7 +23,7 @@ export default function CurationMake({ onClose }: CurationMakeProps) {
           <div className="w-full pt-[1.6rem] grid justify-items-end">
             <ButtonLock />
           </div>
-          <div className="w-full pt-[3.2rem]">
+          <div className="w-full pt-[3.2rem] overflow-auto">
             <CurationMakeKeyword />
           </div>
         </div>
