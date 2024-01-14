@@ -16,6 +16,7 @@ export default function TextField() {
           placeholder="새 큐레이션"
           value={inputValue}
           onChange={handleInputChange}
+          maxLength={49}
         />
         <div className="body2-medium text-text-gray-6 pl-[1rem]">
           {inputValue.length}/50
