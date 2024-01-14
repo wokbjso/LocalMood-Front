@@ -6,3 +6,35 @@
     height: 0;
   }
 }
+
+.header-slider1 {
+  animation: 15s linear infinite normal none running infiniteSlider1;
+}
+
+.header-slider2 {
+  animation: 15s linear infinite infiniteSlider2;
+}
+
+@keyframes infiniteSlider1 {
+  0% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(-100%);
+  }
+  50.1% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes infiniteSlider2 {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
+}

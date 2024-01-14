@@ -15,9 +15,6 @@ export default function Home() {
     { icon: Heart, color: "#F670C7", text: "연인과의 데이트" },
     { icon: Music, color: "#8F73FD", text: "잔잔한 음악" },
     { icon: LampIcon, text: "따뜻한 조명" },
-    { icon: Heart, color: "#F670C7", text: "연인과의 데이트" },
-    { icon: Music, color: "#8F73FD", text: "잔잔한 음악" },
-    { icon: LampIcon, text: "따뜻한 조명" },
   ];
   const PLACE_DUMMY = [
     {
@@ -133,16 +130,29 @@ export default function Home() {
         <br />
         <span className="header-main"> 키워드</span>로 찾아보세요
       </p>
-      <div className="flex w-full overflow-x-scroll pb-[2rem] bg-[#F5F8FF]">
-        {HEADER_KEYWORD.map((keyword) => (
-          <Chip
-            key={keyword.text}
-            className="whitespace-nowrap px-[1.12rem] flex items-center h-[3.2rem] mr-[1rem]"
-          >
-            {<keyword.icon color={keyword.color} />}
-            <span className="pl-[0.4rem]">{keyword.text}</span>
-          </Chip>
-        ))}
+      <div className="overflow-hidden">
+        <ul className="flex no-wrap">
+          <div className="header-slider1 flex w-full pb-[2rem] bg-[#F5F8FF]">
+            {HEADER_KEYWORD.map((keyword) => (
+              <li key={keyword.text}>
+                <Chip className="whitespace-nowrap px-[1.12rem] flex items-center h-[3.2rem] mr-[1rem]">
+                  {<keyword.icon color={keyword.color} />}
+                  <span className="pl-[0.4rem]">{keyword.text}</span>
+                </Chip>
+              </li>
+            ))}
+          </div>
+          <div className="header-slider2 flex w-full pb-[2rem] bg-[#F5F8FF]">
+            {HEADER_KEYWORD.map((keyword) => (
+              <li key={keyword.text}>
+                <Chip className="whitespace-nowrap px-[1.12rem] flex items-center h-[3.2rem] mr-[1rem]">
+                  {<keyword.icon color={keyword.color} />}
+                  <span className="pl-[0.4rem]">{keyword.text}</span>
+                </Chip>
+              </li>
+            ))}
+          </div>
+        </ul>
       </div>
       <div className="flex justify-center pb-[2rem] bg-[#F5F8FF]">
         <LinkLayout

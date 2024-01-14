@@ -20,6 +20,7 @@ export default function HomeHeader() {
               pathname: "/search",
               query: { keyword_search: true },
             }}
+            scroll={false}
           >
             <Button className="w-[12.5rem] h-full py-[0.6rem] mr-[1.2rem] body2-semibold">
               키워드로 공간 찾기
