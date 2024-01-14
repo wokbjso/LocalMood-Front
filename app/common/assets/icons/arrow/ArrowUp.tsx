@@ -13,9 +13,9 @@ export default function ArrowUp({ color = "#9E9E9E", className }: IconProps) {
       <path
         d="M1 5L5 1L9 5"
         stroke={color}
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
