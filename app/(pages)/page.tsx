@@ -139,8 +139,8 @@ export default function Home() {
       <div className="overflow-hidden">
         <ul className="flex no-wrap">
           <div className="header-slider1 flex pb-[2rem] bg-[#F5F8FF]">
-            {HEADER_KEYWORD.map((keyword) => (
-              <li key={keyword.text}>
+            {HEADER_KEYWORD.map((keyword, i) => (
+              <li key={keyword.text + i}>
                 <Chip className="whitespace-nowrap px-[1.12rem] flex items-center h-[3.2rem] mr-[1rem]">
                   {<keyword.icon color={keyword.color} />}
                   <span className="pl-[0.4rem]">{keyword.text}</span>
@@ -149,8 +149,8 @@ export default function Home() {
             ))}
           </div>
           <div className="header-slider2 flex pb-[2rem] bg-[#F5F8FF]">
-            {HEADER_KEYWORD.map((keyword) => (
-              <li key={keyword.text}>
+            {HEADER_KEYWORD.map((keyword, i) => (
+              <li key={keyword.text + i}>
                 <Chip className="whitespace-nowrap px-[1.12rem] flex items-center h-[3.2rem] mr-[1rem]">
                   {<keyword.icon color={keyword.color} />}
                   <span className="pl-[0.4rem]">{keyword.text}</span>
