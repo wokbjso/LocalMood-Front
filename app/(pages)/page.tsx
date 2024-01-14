@@ -9,12 +9,18 @@ import Button from "@common/components/ui/buttons/Button/Button";
 import Slider from "@common/components/layout/Slider/Slider";
 import LampIcon from "@common/assets/icons/lamp/LampIcon";
 import Footer from "@common/components/layout/Footer/Footer";
+import WineIcon from "@common/assets/icons/wine/Wine";
 
 export default function Home() {
   const HEADER_KEYWORD = [
     { icon: Heart, color: "#F670C7", text: "연인과의 데이트" },
     { icon: Music, color: "#8F73FD", text: "잔잔한 음악" },
     { icon: LampIcon, text: "따뜻한 조명" },
+    { icon: WineIcon, text: "와인 한잔" },
+    { icon: Heart, color: "#F670C7", text: "연인과의 데이트" },
+    { icon: Music, color: "#8F73FD", text: "잔잔한 음악" },
+    { icon: LampIcon, text: "따뜻한 조명" },
+    { icon: WineIcon, text: "와인 한잔" },
   ];
   const PLACE_DUMMY = [
     {
@@ -132,7 +138,7 @@ export default function Home() {
       </p>
       <div className="overflow-hidden">
         <ul className="flex no-wrap">
-          <div className="header-slider1 flex w-full pb-[2rem] bg-[#F5F8FF]">
+          <div className="header-slider1 flex pb-[2rem] bg-[#F5F8FF]">
             {HEADER_KEYWORD.map((keyword) => (
               <li key={keyword.text}>
                 <Chip className="whitespace-nowrap px-[1.12rem] flex items-center h-[3.2rem] mr-[1rem]">
@@ -142,7 +148,7 @@ export default function Home() {
               </li>
             ))}
           </div>
-          <div className="header-slider2 flex w-full pb-[2rem] bg-[#F5F8FF]">
+          <div className="header-slider2 flex pb-[2rem] bg-[#F5F8FF]">
             {HEADER_KEYWORD.map((keyword) => (
               <li key={keyword.text}>
                 <Chip className="whitespace-nowrap px-[1.12rem] flex items-center h-[3.2rem] mr-[1rem]">
@@ -163,7 +169,7 @@ export default function Home() {
           <Button>키워드로 공간 찾기</Button>
         </LinkLayout>
       </div>
-      <div className="pb-[19.3rem] pt-[4rem]">
+      <div className="pb-[12.3rem] pt-[4rem]">
         <section className="mb-[4rem] pl-[2rem]">
           <span className="text-primary-normal headline2"># </span>
           <span className="text-black headline2">연인과의 데이트</span>
