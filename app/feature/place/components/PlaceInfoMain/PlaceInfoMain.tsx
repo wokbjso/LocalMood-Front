@@ -1,23 +1,9 @@
 import PlaceInfoTop from "../PlaceInfoTop/PlaceInfoTop";
 import PlaceInfoBottom from "../PlaceInfoBottom/PlaceInfoBottom";
-import { twMerge } from "tailwind-merge";
+import { PlaceInfoProps } from "@feature/place/type";
 
-interface PlaceTags {
-  category: string;
-  detail: string;
-}
-
-export interface PlaceInfoMainProps {
-  id: number;
+export interface PlaceInfoMainProps extends PlaceInfoProps {
   variant?: "home" | "home_search" | "curation";
-  placeName: string;
-  placeImg: string;
-  category: string;
-  location: string;
-  scrapped: boolean;
-  tags: PlaceTags[];
-  onClick?: () => void;
-  className?: string;
 }
 
 export default function PlaceInfoMain({

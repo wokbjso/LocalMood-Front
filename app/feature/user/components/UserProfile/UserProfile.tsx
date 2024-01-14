@@ -27,6 +27,7 @@ export default function UserProfile({
           src={userImg}
           alt="프로필 사진"
           fill
+          sizes="10vw"
           className="rounded-full cursor-pointer"
         />
       </div>

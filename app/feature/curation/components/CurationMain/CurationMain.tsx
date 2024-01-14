@@ -1,7 +1,6 @@
 "use client";
 
 import UserProfile from "@feature/user/components/UserProfile/UserProfile";
-import ScrapFill from "@common/assets/icons/scrap/scrap-fill.svg";
 import Menu from "@common/assets/icons/menu/menu.svg";
 import { useState } from "react";
 import { CurationProps } from "@feature/curation/type";
