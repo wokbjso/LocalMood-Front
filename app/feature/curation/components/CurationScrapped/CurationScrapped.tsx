@@ -6,27 +6,39 @@ import { useState } from "react";
 import { CurationProps } from "@feature/curation/type";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { twMerge } from "tailwind-merge";
+import { useRouter } from "next/navigation";
 
 export default function CurationScrapped({
   id,
   curationPhoto,
+  variant,
   userImg,
   userName,
   mainText,
   hashTags,
   scrapped = false,
   onClick,
+  places,
   className,
-}: Omit<CurationProps, "variant">) {
+}: CurationProps) {
   const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
+  const router = useRouter();
   const handleScrap = () => {
     setIsScrapped((prev) => !prev);
   };
+
+  const handleCardClick = (id: number, variant: string | undefined) => {
+    router.push(`curation/detail/${id}_${variant}`);
+  }; //query로 변경
+
   return (
     <div>
-      <div className={twMerge("w-full", className)} onClick={onClick}>
+      <div
+        className={twMerge("w-full", className)}
+        onClick={() => handleCardClick(id, variant)}
+      >
         <div
-          className="w-full h-[16.5rem] bg-cover relative rounded-[8px]"
+          className="w-full h-[16.5rem] bg-cover relative rounded-[8px] rounded-lg"
           style={{
             backgroundImage: `url(
             ${curationPhoto && curationPhoto[0]}
