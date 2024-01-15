@@ -12,7 +12,7 @@ import {
 import CurationMake from "@feature/curation/components/modal/CurationMake";
 import GrabModal from "@common/components/ui/modal/GrabModal";
 
-export default function Curation() {
+export default function CurationPage() {
   const CurationTabSections = [
     {
       text: "내 큐레이션",
