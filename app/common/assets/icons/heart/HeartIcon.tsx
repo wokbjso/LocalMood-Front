@@ -4,7 +4,7 @@ interface HeartIconProps extends IconProps {
   color2?: string;
 }
 
-export default function Heart({
+export default function HeartIcon({
   color = "#616161",
   className,
 }: HeartIconProps) {

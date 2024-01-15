@@ -1,6 +1,6 @@
 import { IconProps } from "../icon-type";
 
-export default function Music({ color = "#8F73FD", className }: IconProps) {
+export default function MusicIcon({ color = "#8F73FD", className }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

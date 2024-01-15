@@ -1,4 +1,4 @@
-import Heart from "@common/assets/icons/heart/Heart";
+import Heart from "@common/assets/icons/heart/HeartIcon";
 import Image from "next/image";
 import Divider from "@common/components/ui/divider/Divider";
 import UserDouble from "@common/assets/icons/user/UserDouble";

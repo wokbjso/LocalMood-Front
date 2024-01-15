@@ -5,7 +5,7 @@ import { curationDetailCardList } from "@feature/curation/dummyList";
 export default function CurationDetailInfoTop() {
   return (
     <div className="w-full items-start p-[2rem]">
-      <div className="h-[7.2rem] inline-flex flex-col">
+      <div className="w-full h-[7.2rem] inline-flex flex-col">
         <div className="flex items-center gap-[0.4rem]  pb-[1.2rem]">
           <div className="w-[2rem] h-[2rem]">
             <LocationFillIcon />
@@ -14,12 +14,13 @@ export default function CurationDetailInfoTop() {
             {curationDetailCardList.length}개의 공간
           </div>
         </div>
-        <div className="flex gap-[0.8rem]">
+        <div className="flex gap-[0.8rem] overflow-x-scroll w-full">
           {curationDetailCardList.map((item, index) => (
             <Filter
               key={index}
               photo={item.placePhoto}
               label={item.placeName}
+              className="whitespace-nowrap"
             />
           ))}
         </div>
