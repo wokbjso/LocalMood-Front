@@ -43,7 +43,7 @@ export default function CurationDetailTopBar({
       <div className="w-full -mt-[18.8rem] pt-[11.5rem]">
         <div className="w-full flex justify-center pb-[1.6rem] gap-[0.8rem]">
           {hashTags?.map((tag, index) => (
-            <Chip key={index} variant="keyword">
+            <Chip key={index} className="bg-white">
               <div className="flex">
                 <p className="text-primary-normal">#&nbsp;</p>
                 <p>{tag}</p>
