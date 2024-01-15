@@ -1,4 +1,4 @@
-import SearchBar from "@feature/search/components/SearchBar/SearchBar";
+import PlaceSearchBar from "@feature/record/components/PlaceSearch/PlaceSearchBar";
 
 export default function Record() {
   return (
@@ -11,9 +11,9 @@ export default function Record() {
           </div>
         </div>
       </div>
-      <div>
+      <div className="w-full flex flex-col items-start pl-[2rem] pr-[1.9rem] pt-[6rem] gap-[1.6rem] text-black headline2-semibold">
         공간 검색하기
-        <SearchBar variant="record" placeholder="공간검색" />
+        <PlaceSearchBar size="long" />
       </div>
     </div>
   );
