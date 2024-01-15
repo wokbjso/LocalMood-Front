@@ -5,6 +5,7 @@ import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Filter from "@common/components/ui/buttons/Filter/Filter";
+import { curationDetailCardList } from "@feature/curation/dummyList";
 
 interface CurationTopAppBarProps {
   variant: string | undefined;
@@ -98,28 +99,15 @@ export default function CurationTopAppBar({
           )}
         </div>
         {scroll && (
-          <div className="flex flex-start pl-[2rem] py-[0.4rem] gap-[0.8rem] bg-white">
-            <Filter
-              key={0}
-              photo={[
-                "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-              ]}
-              label={"나이스워크투데이"}
-            />
-            <Filter
-              key={1}
-              photo={[
-                "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-              ]}
-              label={"금복식당"}
-            />
-            <Filter
-              key={2}
-              photo={[
-                "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-              ]}
-              label={"이리카페"}
-            />
+          <div className="w-full overflow-x-scroll flex flex-start pl-[2rem] py-[0.4rem] gap-[0.8rem] bg-white">
+            {curationDetailCardList.map((item, index) => (
+              <Filter
+                key={index}
+                photo={item.placePhoto}
+                label={item.placeName}
+                className="whitespace-nowrap"
+              />
+            ))}
           </div>
         )}
       </div>

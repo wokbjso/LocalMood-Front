@@ -1,5 +1,3 @@
-import Heart from "@common/assets/icons/heart/Heart";
-import Music from "@common/assets/icons/music/Music";
 import RightArrow from "@common/assets/icons/arrow/arrow-right.svg";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
 import CurationHomeList from "@feature/curation/components/CurationHomeList/CurationHomeList";
@@ -10,17 +8,21 @@ import Slider from "@common/components/layout/Slider/Slider";
 import LampIcon from "@common/assets/icons/lamp/LampIcon";
 import Footer from "@common/components/layout/Footer/Footer";
 import WineIcon from "@common/assets/icons/wine/Wine";
+import ElectricCordIcon from "@common/assets/icons/electric-cord/ElectricCordIcon";
+import PetIcon from "@common/assets/icons/pet/PetIcon";
+import WindowIcon from "@common/assets/icons/window/WindowIcon";
+import HeartIcon from "@common/assets/icons/heart/HeartIcon";
+import MusicIcon from "@common/assets/icons/music/MusicIcon";
 
 export default function Home() {
   const HEADER_KEYWORD = [
-    { icon: Heart, color: "#F670C7", text: "연인과의 데이트" },
-    { icon: Music, color: "#8F73FD", text: "잔잔한 음악" },
+    { icon: HeartIcon, color: "#F670C7", text: "연인과의 데이트" },
+    { icon: MusicIcon, color: "#8F73FD", text: "잔잔한 음악" },
     { icon: LampIcon, text: "따뜻한 조명" },
-    { icon: WineIcon, text: "와인 한잔" },
-    { icon: Heart, color: "#F670C7", text: "연인과의 데이트" },
-    { icon: Music, color: "#8F73FD", text: "잔잔한 음악" },
-    { icon: LampIcon, text: "따뜻한 조명" },
-    { icon: WineIcon, text: "와인 한잔" },
+    { icon: WineIcon, text: "와인" },
+    { icon: ElectricCordIcon, text: "콘센트 있음" },
+    { icon: PetIcon, text: "애견동반 가능" },
+    { icon: WindowIcon, text: "통창뷰" },
   ];
   const PLACE_DUMMY = [
     {
@@ -139,8 +141,8 @@ export default function Home() {
       <div className="overflow-hidden">
         <ul className="flex no-wrap">
           <div className="header-slider1 flex pb-[2rem] bg-[#F5F8FF]">
-            {HEADER_KEYWORD.map((keyword) => (
-              <li key={keyword.text}>
+            {HEADER_KEYWORD.map((keyword, i) => (
+              <li key={keyword.text + i}>
                 <Chip className="whitespace-nowrap px-[1.12rem] flex items-center h-[3.2rem] mr-[1rem]">
                   {<keyword.icon color={keyword.color} />}
                   <span className="pl-[0.4rem]">{keyword.text}</span>
@@ -149,8 +151,8 @@ export default function Home() {
             ))}
           </div>
           <div className="header-slider2 flex pb-[2rem] bg-[#F5F8FF]">
-            {HEADER_KEYWORD.map((keyword) => (
-              <li key={keyword.text}>
+            {HEADER_KEYWORD.map((keyword, i) => (
+              <li key={keyword.text + i}>
                 <Chip className="whitespace-nowrap px-[1.12rem] flex items-center h-[3.2rem] mr-[1rem]">
                   {<keyword.icon color={keyword.color} />}
                   <span className="pl-[0.4rem]">{keyword.text}</span>

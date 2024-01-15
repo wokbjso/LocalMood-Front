@@ -4,7 +4,13 @@ import { useState } from "react";
 export default function useFooter() {
   const pathname = usePathname();
   const [footerState, setFooterState] = useState<number>(
-    pathname === "/" ? 0 : pathname === "/mypage" ? 3 : -1
+    pathname === "/"
+      ? 0
+      : pathname === "/curation"
+      ? 2
+      : pathname === "/mypage"
+      ? 3
+      : -1
   );
 
   const handleFooterState = (index: number) => {

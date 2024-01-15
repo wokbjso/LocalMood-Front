@@ -38,7 +38,7 @@ export default function CurationScrapped({
         onClick={() => handleCardClick(id, variant)}
       >
         <div
-          className="w-full h-[16.5rem] bg-cover relative rounded-[8px] rounded-lg"
+          className="w-full h-[16.5rem] bg-cover relative rounded-[8px]"
           style={{
             backgroundImage: `url(
             ${curationPhoto && curationPhoto[0]}

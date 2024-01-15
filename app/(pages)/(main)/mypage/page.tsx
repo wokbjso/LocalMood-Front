@@ -1,12 +1,11 @@
 import Chip from "@common/components/ui/buttons/Chip/Chip";
 import MyPageTopBar from "@common/components/ui/topBar/MyPageTopBar/MyPageTopBar";
-import ArrowRight from "@common/assets/icons/arrow/arror-right.svg";
 import Image from "next/image";
+import ArrowRight from "@common/assets/icons/arrow/arrow-right.svg";
 import PlaceInfoRecord, {
   PlaceInfoRecordProps,
 } from "@feature/place/components/PlaceInfoRecord/PlaceInfoRecord";
 import { twMerge } from "tailwind-merge";
-import { PlaceInfoMainProps } from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 
 export default function MyPage() {
   interface DUMMY_USER_PROPS {
