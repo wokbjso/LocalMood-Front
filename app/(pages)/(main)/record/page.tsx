@@ -86,7 +86,7 @@ export default function Record() {
       </div>
       <div className="flex items-start overflow-x-auto px-[2rem] pt-[1.6rem] gap-[0.8rem]">
         {RECORD_DUMMY.map((props, index) => (
-          <div key={index} className="">
+          <div key={index}>
             <PlaceInfoRecord {...props} />
           </div>
         ))}
