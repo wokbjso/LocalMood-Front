@@ -3,12 +3,10 @@
 import Search from "@common/assets/icons/search/search.svg";
 import Delete from "@common/assets/icons/close/close-gray.svg";
 import { ChangeEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 
-interface RecordSearchBarProps {
-  size?: "long" | "short";
-}
-
-export default function PlaceSearchBar(size: RecordSearchBarProps) {
+export default function PlaceSearchBar() {
+  const router = useRouter();
   const [searchText, setSearchText] = useState("");
   const handleSearchTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newText = e.target.value;
@@ -16,6 +14,12 @@ export default function PlaceSearchBar(size: RecordSearchBarProps) {
   };
   const handleTextDelete = () => {
     setSearchText("");
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      router.push("/record/search");
+    }
   };
 
   return (
@@ -29,6 +33,7 @@ export default function PlaceSearchBar(size: RecordSearchBarProps) {
           value={searchText}
           placeholder="공간 이름을 검색해보세요"
           onChange={handleSearchTextChange}
+          onKeyDown={handleKeyDown}
         />
       </div>
       <div>

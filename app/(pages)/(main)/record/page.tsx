@@ -16,7 +16,7 @@ export default function Record() {
       </div>
       <div className="w-full flex flex-col items-start pl-[2rem] pr-[1.9rem] pt-[6rem] gap-[1.6rem] text-black headline2-semibold">
         공간 검색하기
-        <PlaceSearchBar size="long" />
+        <PlaceSearchBar />
       </div>
       <div className="w-full flex justify-between items-center pl-[2rem] pr-[1.5rem] pt-[4.4rem] text-black headline2-semibold">
         스크랩한 공간
