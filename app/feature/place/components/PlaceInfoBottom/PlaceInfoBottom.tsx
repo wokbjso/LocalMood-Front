@@ -15,82 +15,85 @@ export default function PlaceInfoBottom({
       )}
     >
       {variant === "home" &&
-        tags?.map((tag, i) => <Chip key={tag.detail + i}>{tag.detail}</Chip>)}
+        tags?.interior.map((tag, i) => <Chip key={tag + i}>{tag}</Chip>)}
       {variant === "home_search" &&
-        PLACE_TAG_CATEGORY.slice(0, 2).map((category, i) => {
-          return (
-            <div
-              key={category}
-              className={twMerge(
-                "flex items-center",
-                i !== PLACE_TAG_CATEGORY.length - 1 && "mb-[0.9rem]"
-              )}
-            >
-              <div className="mr-[2rem]">
-                <span className="body2-medium text-text-gray-6">
-                  {category}
-                </span>
+        Object.keys(PLACE_TAG_CATEGORY)
+          .slice(0, 2)
+          .map((category, i) => {
+            return (
+              <div
+                key={category}
+                className={twMerge(
+                  "flex items-center",
+                  i !== 1 && "mb-[0.9rem]"
+                )}
+              >
+                <div className="mr-[2rem]">
+                  <span className="body2-medium text-text-gray-6">
+                    {PLACE_TAG_CATEGORY[category]}
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-[0.8rem]">
+                  {tags &&
+                    tags[category].map((tag, i) => (
+                      <Chip key={tag + i}>{tag}</Chip>
+                    ))}
+                </div>
               </div>
-              <div className="flex flex-wrap gap-[0.8rem]">
-                {tags
-                  ?.filter((f) => f.category === category)
-                  .map((tag, i) => (
-                    <Chip key={tag.category + i}>{tag.detail}</Chip>
-                  ))}
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
       {variant === "curation" &&
-        PLACE_TAG_CATEGORY.slice(0, 3).map((category, i) => {
-          return (
-            <div
-              key={category}
-              className={twMerge(
-                "flex items-center",
-                i !== PLACE_TAG_CATEGORY.length - 1 && "mb-[0.9rem]"
-              )}
-            >
-              <div className="mr-[2rem]">
-                <span className="body2-medium text-text-gray-6">
-                  {category}
-                </span>
+        Object.keys(PLACE_TAG_CATEGORY)
+          .slice(0, 3)
+          .map((category, i) => {
+            return (
+              <div
+                key={category}
+                className={twMerge(
+                  "flex items-center",
+                  i !== 2 && "mb-[0.9rem]"
+                )}
+              >
+                <div className="mr-[2rem]">
+                  <span className="body2-medium text-text-gray-6">
+                    {PLACE_TAG_CATEGORY[category]}
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-[0.8rem]">
+                  {tags &&
+                    tags[category].map((tag, i) => (
+                      <Chip key={tag + i}>{tag}</Chip>
+                    ))}
+                </div>
               </div>
-              <div className="flex flex-wrap gap-[0.8rem]">
-                {tags
-                  ?.filter((f) => f.category === category)
-                  .map((tag, i) => (
-                    <Chip key={tag.detail + i}>{tag.detail}</Chip>
-                  ))}
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
       {variant === "scrapped" &&
-        PLACE_TAG_CATEGORY.slice(0, 4).map((category, i) => {
-          return (
-            <div
-              key={category}
-              className={twMerge(
-                "flex items-center",
-                i !== PLACE_TAG_CATEGORY.length - 1 && "mb-[0.9rem]"
-              )}
-            >
-              <div className="mr-[2rem]">
-                <span className="body2-medium text-text-gray-6">
-                  {category}
-                </span>
+        Object.keys(PLACE_TAG_CATEGORY)
+          .slice(0, 4)
+          .map((category, i) => {
+            return (
+              <div
+                key={category}
+                className={twMerge(
+                  "flex items-center",
+                  i !== 3 && "mb-[0.9rem]"
+                )}
+              >
+                <div className="mr-[2rem]">
+                  <span className="body2-medium text-text-gray-6">
+                    {PLACE_TAG_CATEGORY[category]}
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-[0.8rem]">
+                  {tags &&
+                    tags[category].map((tag, i) => (
+                      <Chip key={tag + i}>{tag}</Chip>
+                    ))}
+                </div>
               </div>
-              <div className="flex flex-wrap gap-[0.8rem]">
-                {tags
-                  ?.filter((f) => f.category === category)
-                  .map((tag, i) => (
-                    <Chip key={tag.detail + i}>{tag.detail}</Chip>
-                  ))}
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
     </div>
   );
 }

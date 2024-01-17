@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import CurationHeader from "@feature/curation/components/CurationHeader/CurationHeader";
 import Tab from "@common/components/ui/tab/Tab";
 import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
@@ -49,7 +49,7 @@ export default function CurationPage() {
         <div className="pt-[2rem]">
           {tabIndex === 1 &&
             curationScrappedPropsList.map((props, index) => (
-              <div key={index} className="mb-[1.6rem]">
+              <div key={props.userName + props.id} className="mb-[1.6rem]">
                 <CurationScrapped {...props} />
               </div>
             ))}

@@ -20,24 +20,10 @@ export default function SearchResult() {
       category: "카페",
       location: "마포구 신촌",
       scrapped: false,
-      tags: [
-        {
-          category: "방문목적",
-          detail: "연인과의 데이트",
-        },
-        {
-          category: "방문목적",
-          detail: "작업/공부",
-        },
-        {
-          category: "인테리어",
-          detail: "통창뷰",
-        },
-        {
-          category: "공간무드",
-          detail: "넓은 공간",
-        },
-      ],
+      tags: {
+        purpose: ["연인과의 데이트", "작업/공부/책"],
+        interior: ["통창뷰", "넓은 공간"],
+      },
     },
     {
       id: 0,
@@ -47,24 +33,10 @@ export default function SearchResult() {
       category: "음식점",
       location: "마포구 망원동",
       scrapped: false,
-      tags: [
-        {
-          category: "방문목적",
-          detail: "연인과의 데이트",
-        },
-        {
-          category: "방문목적",
-          detail: "작업/공부",
-        },
-        {
-          category: "인테리어",
-          detail: "통창뷰",
-        },
-        {
-          category: "공간무드",
-          detail: "넓은 공간",
-        },
-      ],
+      tags: {
+        purpose: ["연인과의 데이트", "작업/공부/책"],
+        interior: ["통창뷰", "넓은 공간"],
+      },
     },
     {
       id: 2,
@@ -74,24 +46,10 @@ export default function SearchResult() {
       category: "카페",
       location: "마포구 망원동",
       scrapped: false,
-      tags: [
-        {
-          category: "방문목적",
-          detail: "연인과의 데이트",
-        },
-        {
-          category: "방문목적",
-          detail: "작업/공부",
-        },
-        {
-          category: "인테리어",
-          detail: "통창뷰",
-        },
-        {
-          category: "공간무드",
-          detail: "넓은 공간",
-        },
-      ],
+      tags: {
+        purpose: ["연인과의 데이트", "작업/공부/책"],
+        interior: ["통창뷰", "넓은 공간"],
+      },
     },
   ];
   const DUMMY_CURATION: CurationProps[] | [] = [
@@ -237,6 +195,7 @@ export default function SearchResult() {
               {DUMMY_PLACE.map((place) => (
                 <div key={place.id + place.category} className="mb-[4rem]">
                   <PlaceInfoMain
+                    variant="home_search"
                     id={place.id}
                     placeImg={place.placeImg}
                     placeName={place.placeName}

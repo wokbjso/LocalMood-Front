@@ -1,9 +1,11 @@
-export const PLACE_TAG_CATEGORY = [
-  "방문 목적",
-  "인테리어",
-  "공간 무드",
-  "배경 음악",
-];
+export const PLACE_TAG_CATEGORY: {
+  [key: string]: string;
+} = {
+  purpose: "방문목적",
+  interior: "인테리어",
+  mood: "공간무드",
+  music: "배경음악",
+};
 
 export const PLACE_PURPOSE = [
   "연인과의 데이트",

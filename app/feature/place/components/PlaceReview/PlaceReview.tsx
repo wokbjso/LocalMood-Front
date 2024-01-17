@@ -48,17 +48,16 @@ export default function PlaceReview({
             </div>
           </div>
           <div>
-            {PLACE_TAG_CATEGORY.map((category, i) => (
+            {Object.keys(PLACE_TAG_CATEGORY).map((category, i) => (
               <div key={category} className="flex items-center mb-[0.6rem]">
                 <span className="mr-[2rem] text-text-gray-7 body2-medium">
-                  {category}
+                  {PLACE_TAG_CATEGORY[category]}
                 </span>
-                {Object.keys(tags).indexOf(category) === i &&
-                  tags[category].map((li) => (
-                    <Chip key={li} className="mr-[0.4rem]">
-                      {li}
-                    </Chip>
-                  ))}
+                {tags[category].map((li) => (
+                  <Chip key={li} className="mr-[0.4rem]">
+                    {li}
+                  </Chip>
+                ))}
               </div>
             ))}
           </div>

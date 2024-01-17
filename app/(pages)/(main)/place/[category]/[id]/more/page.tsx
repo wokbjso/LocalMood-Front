@@ -27,10 +27,10 @@ export default function PlaceDetailMore() {
             user_name: "카페탐방",
             review_date: "23.04.01",
             tags: {
-              "방문 목적": ["연인과의 데이트"],
-              인테리어: ["따뜻한 조명", "앤틱한"],
-              "공간 무드": ["대화에 집중할 수 있는"],
-              "배경 음악": ["잔잔한 음악"],
+              purpose: ["연인과의 데이트"],
+              interior: ["따뜻한 조명", "앤틱한"],
+              mood: ["대화에 집중할 수 있는"],
+              music: ["잔잔한 음악"],
             },
             review_photos: [
               "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
@@ -48,10 +48,10 @@ export default function PlaceDetailMore() {
             user_name: "카페탐방",
             review_date: "23.04.01",
             tags: {
-              "방문 목적": ["연인과의 데이트"],
-              인테리어: ["따뜻한 조명", "앤틱한"],
-              "공간 무드": ["대화에 집중할 수 있는"],
-              "배경 음악": ["잔잔한 음악"],
+              purpose: ["연인과의 데이트"],
+              interior: ["따뜻한 조명", "앤틱한"],
+              mood: ["대화에 집중할 수 있는"],
+              music: ["잔잔한 음악"],
             },
             review_photos: [
               "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
