@@ -25,7 +25,7 @@ export default function PlaceSearchBar(size: RecordSearchBarProps) {
           <Search />
         </div>
         <input
-          className="body2-medium text-text-gray-6 w-full bg-background-gray-1 outline-none"
+          className="body2-medium placeholder:text-text-gray-6 w-full bg-background-gray-1 outline-none"
           value={searchText}
           placeholder="공간 이름을 검색해보세요"
           onChange={handleSearchTextChange}
