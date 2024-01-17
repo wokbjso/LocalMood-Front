@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 export default function ShowMoreButton() {
   const router = useRouter();
   const handleMoreClick = () => {
-    router.push("/record/select");
+    router.push("/record/search/select");
   };
 
   return (

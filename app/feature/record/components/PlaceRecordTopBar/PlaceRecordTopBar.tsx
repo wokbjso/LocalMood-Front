@@ -26,10 +26,10 @@ export default function PlaceRecordTopBar({
       <div onClick={handleBackClick}>
         <ArrowIcon />
       </div>
-      <div className="flex justify-between items-center self-stretch">
+      <div className="flex justify-between items-start self-stretch">
         <div className="headline1-semibold text-black">{text}</div>
         {showIndicator && (
-          <div className="flex justify-center items-center">
+          <div className="flex h-[2.8rem] pl-[1.1rem] justify-end items-center">
             <Indicator
               index={1}
               handleIndicator={(index) => handleIndicator(index)}

@@ -1,18 +1,14 @@
-import PlaceInfoRecord from "@feature/place/components/PlaceInfoRecord/PlaceInfoRecord";
+import RecordKeyword from "@feature/record/components/Keyword/RecordKeyword";
 import PlaceRecordTopBar from "@feature/record/components/PlaceRecordTopBar/PlaceRecordTopBar";
-import { RECORD_DUMMYLIST } from "@feature/record/dummyList";
 
-export default function SelectPlace() {
+export default function RecordSelect() {
   return (
     <div>
-      <PlaceRecordTopBar showIndicator={false} text="스크랩한 공간" />
-      <div className="inline-flex flex-col items-start w-full pt-[0.8rem] px-[2rem] gap-[0.8rem]">
-        {RECORD_DUMMYLIST.map((props, index) => (
-          <div key={index} className="">
-            <PlaceInfoRecord {...props} />
-          </div>
-        ))}
-      </div>
+      <PlaceRecordTopBar
+        showIndicator={true}
+        text="나이스워크투데이를 나타내는 키워드를 골라주세요"
+      />
+      <RecordKeyword category={"cafe"} />
     </div>
   );
 }
