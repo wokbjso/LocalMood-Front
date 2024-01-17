@@ -7,6 +7,7 @@ import { CurationProps } from "@feature/curation/type";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { twMerge } from "tailwind-merge";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function CurationScrapped({
   id,
@@ -32,11 +33,12 @@ export default function CurationScrapped({
   }; //query로 변경
 
   return (
-    <div>
-      <div
-        className={twMerge("w-full", className)}
-        onClick={() => handleCardClick(id, variant)}
-      >
+    <Link
+      href={{
+        pathname: `curation/detail/${userName}/${id}`,
+      }}
+    >
+      <div className={twMerge("w-full", className)}>
         <div
           className="w-full h-[16.5rem] bg-cover relative rounded-[8px]"
           style={{
@@ -77,6 +79,6 @@ export default function CurationScrapped({
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
