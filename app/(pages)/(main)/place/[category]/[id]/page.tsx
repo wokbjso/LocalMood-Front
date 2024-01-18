@@ -9,6 +9,8 @@ import Slider from "@common/components/layout/Slider/Slider";
 import PlaceDetailInfo from "@feature/place/components/PlaceDetailInfo/PlaceDetailInfo";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import DetailTopBar from "@common/components/ui/topBar/DetailTopBar/DetailTopBar";
+import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
+import CurationScrapped from "@feature/curation/components/CurationScrapped/CurationScrapped";
 
 export default function PlaceDetail() {
   const DETAIL_DUMMY = {
@@ -212,21 +214,47 @@ export default function PlaceDetail() {
         </LinkLayout>
       </div>
       <Divider className="bg-line-gray-3 h-[0.4rem] mb-[4.8rem]" />
-      <div className="pl-[2rem]">
+      <div className="pl-[2rem] w-full">
         <span className="text-black headline2">
           {DETAIL_DUMMY.placeName}와 비슷한 장소
         </span>
-        <Slider
-          placeData={SIMILAR_PLACE_DUMMY}
-          backgroundClassName="mb-[6rem] mt-[1.6rem]"
-        />
+        <Slider className="mt-[1.6rem] mb-[6rem]">
+          {SIMILAR_PLACE_DUMMY.map((data) => (
+            <PlaceInfoMain
+              key={data.id}
+              id={data.id}
+              size="small"
+              placeName={data.placeName}
+              placeImg={data.placeImg}
+              category={data.category}
+              location={data.location}
+              scrapped={data.scrapped}
+              className="w-[16.3rem] mr-[0.8rem]"
+            />
+          ))}
+        </Slider>
         <span className="text-black headline2">
           {DETAIL_DUMMY.placeName}가 담긴 큐레이션
         </span>
-        <Slider
+        <Slider className="mt-[1.6rem] mb-[6rem]">
+          {CURATION_DUMMY &&
+            CURATION_DUMMY?.map((data) => (
+              <CurationScrapped
+                key={data.id}
+                id={0}
+                curationPhoto={data.curationPhoto}
+                userImg={data.userImg}
+                userName={data.userName}
+                hashTags={data.hashTags}
+                mainText={data.mainText}
+                className="w-[33.5rem] mr-[0.8rem]"
+              />
+            ))}
+        </Slider>
+        {/* <Slider
           curationData={CURATION_DUMMY}
           backgroundClassName="mb-[6rem] mt-[1.6rem]"
-        />
+        /> */}
       </div>
     </div>
   );

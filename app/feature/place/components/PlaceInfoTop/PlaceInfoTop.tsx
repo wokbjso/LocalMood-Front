@@ -3,26 +3,15 @@
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import Line from "@common/assets/icons/line/line.svg";
-import ScrapShadow from "@common/assets/icons/scrap/scrap-shadow.svg";
 import { useState } from "react";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import Link from "next/link";
-
-interface PlaceInfoProps {
-  id: number;
-  placeName: string;
-  placeImg: string;
-  category: string;
-  location: string;
-  scrapped: boolean;
-  onClick?: () => void;
-  className?: string;
-  imgClassName?: string;
-}
+import { PlaceInfoProps } from "@feature/place/type";
 
 export default function PlaceInfoTop({
   id,
+  size,
   placeName,
   placeImg,
   category,
@@ -30,6 +19,7 @@ export default function PlaceInfoTop({
   scrapped,
   onClick,
   className,
+  imgClassName,
 }: PlaceInfoProps) {
   //id로 scrap 유무를 default useState 값으로 설정
   const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
@@ -38,32 +28,36 @@ export default function PlaceInfoTop({
   };
   return (
     <div className={twMerge("w-full relative", className)} onClick={onClick}>
-      <div className={twMerge("w-full h-[16rem] relative")}>
-        <Link
-          href={{
-            pathname: `/place/${
-              category === "카페" ? "cafe" : "restaurant"
-            }/${id}`,
-          }}
-        >
+      <Link
+        href={{
+          pathname: `/place/${
+            category === "카페" ? "cafe" : "restaurant"
+          }/${id}`,
+        }}
+      >
+        <div className={twMerge("w-full h-[16rem] relative")}>
           <Image
             src={placeImg}
             alt="공간 사진"
             fill
             sizes="100vw"
-            className="rounded-[8px]"
+            className={twMerge("rounded-[8px]", imgClassName)}
           />
-        </Link>
-      </div>
-      <div className="flex-col relative">
+        </div>
+      </Link>
+      <div
+        className={twMerge("flex-col", size === "normal" ? "relative" : null)}
+      >
         {!isScrapped ? (
           <ScrapLine
-            className="absolute cursor-pointer right-[0.4rem] top-[1.6rem]"
+            color={size === "small" ? "white" : undefined}
+            className="absolute cursor-pointer right-[0.8rem] top-[1.6rem]"
             onClick={handleScrap}
           />
         ) : (
           <ScrapFill
-            className="absolute cursor-pointer right-[0.4rem] top-[1.6rem]"
+            color={size === "small" ? "white" : undefined}
+            className="absolute cursor-pointer right-[0.8rem] top-[1.6rem]"
             onClick={handleScrap}
           />
         )}
@@ -74,14 +68,29 @@ export default function PlaceInfoTop({
             }/${id}`,
           }}
         >
-          <div className={"headline2 w-[90%] pt-[1.6rem]"}>
+          <div
+            className={twMerge(
+              "w-[90%] pt-[1.6rem]",
+              size === "normal" ? "headline2" : "headline3"
+            )}
+          >
             <span>{placeName}</span>
             <div className="flex mt-[0.8rem]">
-              <span className={"body2-semibold text-text-gray-6"}>
+              <span
+                className={twMerge(
+                  "text-text-gray-6",
+                  size === "normal" ? "body2-semibold" : "body3-semibold"
+                )}
+              >
                 {category}
               </span>
               <Line className="mx-[0.8rem]" />
-              <span className={"body2-medium text-text-gray-5"}>
+              <span
+                className={twMerge(
+                  "text-text-gray-5",
+                  size === "normal" ? "body2-medium" : "body3-medium"
+                )}
+              >
                 {location}
               </span>
             </div>

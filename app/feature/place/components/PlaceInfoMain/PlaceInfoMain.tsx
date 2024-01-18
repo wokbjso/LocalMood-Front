@@ -4,6 +4,7 @@ import { PlaceInfoProps } from "@feature/place/type";
 
 export default function PlaceInfoMain({
   id,
+  size = "normal",
   placeName,
   placeImg,
   category,
@@ -15,9 +16,10 @@ export default function PlaceInfoMain({
   className,
 }: PlaceInfoProps) {
   return (
-    <>
+    <div>
       <PlaceInfoTop
         id={id}
+        size={size}
         placeName={placeName}
         placeImg={placeImg}
         category={category}
@@ -29,6 +31,6 @@ export default function PlaceInfoMain({
       {tags && (
         <PlaceInfoBottom tags={tags} tagsCategoryNum={tagsCategoryNum} />
       )}
-    </>
+    </div>
   );
 }

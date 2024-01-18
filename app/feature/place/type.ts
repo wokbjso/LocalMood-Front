@@ -1,5 +1,6 @@
 export interface PlaceInfoProps {
   id: number;
+  size?: "normal" | "small";
   placeName: string;
   placeImg: string;
   category: string;
@@ -9,4 +10,5 @@ export interface PlaceInfoProps {
   tagsCategoryNum?: number;
   onClick?: () => void;
   className?: string;
+  imgClassName?: string;
 }

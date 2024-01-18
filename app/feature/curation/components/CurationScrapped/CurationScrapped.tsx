@@ -33,11 +33,7 @@ export default function CurationScrapped({
   }; //query로 변경
 
   return (
-    <Link
-      href={{
-        pathname: `curation/detail/${userName}/${id}`,
-      }}
-    >
+    <div>
       <div className={twMerge("w-full", className)}>
         <div
           className="w-full h-[16.5rem] bg-cover relative rounded-[8px]"
@@ -61,24 +57,35 @@ export default function CurationScrapped({
               />
             ) : (
               <ScrapLine
+                color="white"
                 className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
                 onClick={handleScrap}
               />
             )}
-            <div className="headline2 w-[68%] break-keep mb-[1.2rem] text-white">
-              {mainText}
-            </div>
-            <div className="flex flex-wrap gap-[0.8rem]">
-              {hashTags.map((tag) => (
-                <div key={tag}>
-                  <span className="text-primary-normal body2-medium"># </span>
-                  <span className="text-text-gray-4 body2-medium">{tag}</span>
+            <Link
+              href={{
+                pathname: `/curation/detail/${userName}/${id}`,
+              }}
+            >
+              <div className="headline2 w-[70%] break-keep mb-[1.2rem] text-white">
+                <span>{mainText}</span>
+                <div className="flex flex-wrap gap-[0.8rem]">
+                  {hashTags.map((tag) => (
+                    <div key={tag}>
+                      <span className="text-primary-normal body2-medium">
+                        #{" "}
+                      </span>
+                      <span className="text-text-gray-4 body2-medium">
+                        {tag}
+                      </span>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            </Link>
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
