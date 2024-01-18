@@ -3,6 +3,7 @@ import { usePathname } from "next/navigation";
 import RecordKeyword from "@feature/record/components/Keyword/RecordKeyword";
 import PlaceRecordTopBar from "@feature/record/components/PlaceRecordTopBar/PlaceRecordTopBar";
 import RecordEvaluation from "@feature/record/components/Evaluation/RecordEvaluation";
+import PhotoUpload from "@feature/record/components/PhotoUpload/PhotoUpload";
 
 export default function RecordSelect() {
   const pathname = usePathname();
@@ -31,11 +32,23 @@ export default function RecordSelect() {
       </div>
     );
   };
+  const renderPhotoSelect = () => {
+    return (
+      <div>
+        <PlaceRecordTopBar
+          showIndicator={true}
+          text="방문한 사진을 업로드해주세요!"
+        />
+        <PhotoUpload />
+      </div>
+    );
+  };
 
   return (
     <div>
       <div>{type === "keyword" && renderKeywordSelect()}</div>
       <div>{type === "evaluate" && renderEvaluateSelect()}</div>
+      <div>{type === "photo" && renderPhotoSelect()}</div>
     </div>
   );
 }
