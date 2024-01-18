@@ -1,0 +1,93 @@
+"use client";
+import Filter from "@common/components/ui/buttons/Filter/Filter";
+import { useState } from "react";
+import {
+  CAFE_CATEGORY_EVALUATIONS,
+  CAFE_EVALUATIONS,
+  RESTAURANT_CATEGORY_EVALUATIONS,
+  RESTAURANT_EVALUATIONS,
+} from "@feature/record/constants/evaluate-keywords";
+
+export default function RecordEvaluation({
+  category,
+}: {
+  category: string;
+}): JSX.Element {
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const hasFiltersSelected = selectedFilters.length > 0;
+
+  const handleFilterClick = (label: string) => {
+    // filter가 이미 선택되었는지 확인
+    if (selectedFilters.includes(label)) {
+      // Filter is already selected, remove it
+      setSelectedFilters((prevFilters) =>
+        prevFilters.filter((filter) => filter !== label)
+      );
+    } else {
+      // Filter is not selected, add it
+      setSelectedFilters((prevFilters) => [...prevFilters, label]);
+    }
+  };
+  return (
+    <div>
+      <div>
+        <div className="flex flex-col items-start h-full pt-[3.2rem] pb-[22rem] pl-[2.05rem] pr-[1.95rem] overflow-y-scroll">
+          {category === "cafe" &&
+            CAFE_CATEGORY_EVALUATIONS.map((category, i) => (
+              <section
+                key={category}
+                className={
+                  i !== CAFE_CATEGORY_EVALUATIONS.length - 1
+                    ? "mb-[4rem]"
+                    : "mb-[2.7rem]"
+                }
+              >
+                <div className="text-black headline3 mb-[1.2rem]">
+                  {category}
+                </div>
+                <div className="flex flex-wrap gap-[0.6rem]">
+                  {Object.keys(CAFE_EVALUATIONS).indexOf(category) === i &&
+                    CAFE_EVALUATIONS[category].map((keyword) => (
+                      <Filter
+                        key={keyword}
+                        label={keyword}
+                        onClick={() => handleFilterClick(keyword)}
+                      />
+                    ))}
+                </div>
+              </section>
+            ))}
+          {category === "restaurant" &&
+            RESTAURANT_CATEGORY_EVALUATIONS.map((category, i) => (
+              <section
+                key={category}
+                className={
+                  i !== RESTAURANT_CATEGORY_EVALUATIONS.length - 1
+                    ? "mb-[4rem]"
+                    : "mb-[2.7rem]"
+                }
+              >
+                <div className="text-black headline3 mb-[1.2rem]">
+                  {category}
+                </div>
+                <div className="flex flex-wrap gap-[0.6rem]">
+                  {Object.keys(RESTAURANT_EVALUATIONS).indexOf(category) ===
+                    i &&
+                    RESTAURANT_EVALUATIONS[category].map((keyword) => (
+                      <Filter
+                        key={keyword}
+                        label={keyword}
+                        variant={
+                          category === "음식" ? "showOptions" : undefined
+                        }
+                        onClick={() => handleFilterClick(keyword)}
+                      />
+                    ))}
+                </div>
+              </section>
+            ))}
+        </div>
+      </div>
+    </div>
+  );
+}
