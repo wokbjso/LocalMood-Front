@@ -23,7 +23,7 @@ export default function Filter({
   const [selected, setSelected] = useState(false);
   const [openOptions, setOpenOptions] = useState(false);
   const filterClicked = () => {
-    onClick && onClick;
+    onClick && onClick();
     setSelected((prev) => !prev);
     if (variant === "showOptions") setOpenOptions((prev) => !prev);
   };
