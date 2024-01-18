@@ -7,6 +7,7 @@ import {
   RESTAURANT_CATEGORY_EVALUATIONS,
   RESTAURANT_EVALUATIONS,
 } from "@feature/record/constants/evaluate-keywords";
+import BottomAppBar from "../BottomAppBar/BottomAppBar";
 
 export default function RecordEvaluation({
   category,
@@ -31,7 +32,7 @@ export default function RecordEvaluation({
   return (
     <div>
       <div>
-        <div className="flex flex-col items-start h-full pt-[3.2rem] pb-[22rem] pl-[2.05rem] pr-[1.95rem] overflow-y-scroll">
+        <div className="flex flex-col items-start pt-[3.2rem] pb-[22rem] px-[2rem] overflow-y-scroll">
           {category === "cafe" &&
             CAFE_CATEGORY_EVALUATIONS.map((category, i) => (
               <section
@@ -39,10 +40,10 @@ export default function RecordEvaluation({
                 className={
                   i !== CAFE_CATEGORY_EVALUATIONS.length - 1
                     ? "mb-[4rem]"
-                    : "mb-[2.7rem]"
+                    : "mb-[1.2rem]"
                 }
               >
-                <div className="text-black headline3 mb-[1.2rem]">
+                <div className="text-black headline3-semibold mb-[1.2rem]">
                   {category}
                 </div>
                 <div className="flex flex-wrap gap-[0.6rem]">
@@ -67,7 +68,7 @@ export default function RecordEvaluation({
                     : "mb-[2.7rem]"
                 }
               >
-                <div className="text-black headline3 mb-[1.2rem]">
+                <div className="text-black headline3-semibold mb-[1.2rem]">
                   {category}
                 </div>
                 <div className="flex flex-wrap gap-[0.6rem]">
@@ -87,6 +88,9 @@ export default function RecordEvaluation({
               </section>
             ))}
         </div>
+      </div>
+      <div className="fixed bottom-0 left-0 right-0 z-10">
+        <BottomAppBar hasFiltersSelected={hasFiltersSelected} />
       </div>
     </div>
   );
