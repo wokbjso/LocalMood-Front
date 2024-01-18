@@ -1,11 +1,11 @@
 import BackIcon from "@common/assets/icons/arrow/arrow-left.svg";
 import ShareIcon from "@common/assets/icons/share/share.svg";
-import MenuIcon from "@common/assets/icons/menu/menu.svg";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Filter from "@common/components/ui/buttons/Filter/Filter";
 import { curationDetailCardList } from "@feature/curation/dummyList";
+import MenuIcon from "@common/assets/icons/menu/MenuIcon";
 
 interface CurationTopAppBarProps {
   variant: string | undefined;

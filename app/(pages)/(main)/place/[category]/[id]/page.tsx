@@ -251,10 +251,6 @@ export default function PlaceDetail() {
               />
             ))}
         </Slider>
-        {/* <Slider
-          curationData={CURATION_DUMMY}
-          backgroundClassName="mb-[6rem] mt-[1.6rem]"
-        /> */}
       </div>
     </div>
   );

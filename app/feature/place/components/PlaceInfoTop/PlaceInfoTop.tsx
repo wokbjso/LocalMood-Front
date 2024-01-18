@@ -23,18 +23,17 @@ export default function PlaceInfoTop({
 }: PlaceInfoProps) {
   //id로 scrap 유무를 default useState 값으로 설정
   const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
-  const handleScrap = () => {
+  const handleScrap = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+    e.preventDefault();
     setIsScrapped((prev) => !prev);
   };
   return (
-    <div className={twMerge("w-full relative", className)} onClick={onClick}>
-      <Link
-        href={{
-          pathname: `/place/${
-            category === "카페" ? "cafe" : "restaurant"
-          }/${id}`,
-        }}
-      >
+    <Link
+      href={{
+        pathname: `/place/${category === "카페" ? "cafe" : "restaurant"}/${id}`,
+      }}
+    >
+      <div className={twMerge("w-full relative", className)} onClick={onClick}>
         <div className={twMerge("w-full h-[16rem] relative")}>
           <Image
             src={placeImg}
@@ -44,30 +43,24 @@ export default function PlaceInfoTop({
             className={twMerge("rounded-[8px]", imgClassName)}
           />
         </div>
-      </Link>
-      <div
-        className={twMerge("flex-col", size === "normal" ? "relative" : null)}
-      >
-        {!isScrapped ? (
-          <ScrapLine
-            color={size === "small" ? "white" : undefined}
-            className="absolute cursor-pointer right-[0.8rem] top-[1.6rem]"
-            onClick={handleScrap}
-          />
-        ) : (
-          <ScrapFill
-            color={size === "small" ? "white" : undefined}
-            className="absolute cursor-pointer right-[0.8rem] top-[1.6rem]"
-            onClick={handleScrap}
-          />
-        )}
-        <Link
-          href={{
-            pathname: `/place/${
-              category === "카페" ? "cafe" : "restaurant"
-            }/${id}`,
-          }}
+        <div
+          className={twMerge("flex-col", size === "normal" ? "relative" : null)}
         >
+          {!isScrapped ? (
+            <ScrapLine
+              color={size === "small" ? "white" : undefined}
+              className="absolute cursor-pointer right-[0.8rem] top-[1.6rem]"
+              onClick={handleScrap}
+            />
+          ) : (
+            <span>
+              <ScrapFill
+                color={size === "small" ? "white" : undefined}
+                className="absolute cursor-pointer right-[0.8rem] top-[1.6rem]"
+                onClick={handleScrap}
+              />
+            </span>
+          )}
           <div
             className={twMerge(
               "w-[90%] pt-[1.6rem]",
@@ -95,8 +88,8 @@ export default function PlaceInfoTop({
               </span>
             </div>
           </div>
-        </Link>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import UserProfile from "@feature/user/components/UserProfile/UserProfile";
-import Menu from "@common/assets/icons/menu/menu.svg";
 import { useState } from "react";
 import { CurationProps } from "@feature/curation/type";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
@@ -10,6 +9,8 @@ import { useRouter } from "next/navigation";
 import CurationMenu from "./CurationMenu";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import Link from "next/link";
+import Menu from "@common/assets/icons/menu/MenuIcon";
+import MenuIcon from "@common/assets/icons/menu/MenuIcon";
 
 export default function CurationMain({
   id,
@@ -32,7 +33,7 @@ export default function CurationMain({
   const handleCurationMenuClick = (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
-    e.stopPropagation();
+    e.preventDefault();
     setIsMenuOpened(true);
   };
   const handleCloseMenuModal = () => {
@@ -84,7 +85,7 @@ export default function CurationMain({
                     />
                   )
                 ) : (
-                  <Menu
+                  <MenuIcon
                     className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
                     onClick={handleCurationMenuClick}
                   />
@@ -109,7 +110,6 @@ export default function CurationMain({
           </div>
         </div>
       </Link>
-
       {isMenuOpened && (
         <>
           <div className="h-[100vh] w-full bg-black absolute bottom-0 left-0 z-10 opacity-[0.4]" />
