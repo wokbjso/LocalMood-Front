@@ -14,6 +14,7 @@ import WindowIcon from "@common/assets/icons/window/WindowIcon";
 import HeartIcon from "@common/assets/icons/heart/HeartIcon";
 import MusicIcon from "@common/assets/icons/music/MusicIcon";
 import PlaceHomeSlider from "@feature/place/components/PlaceHomeSlider/PlaceHomeSlider";
+import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 
 export default function Home() {
   const HEADER_KEYWORD = [
@@ -143,10 +144,40 @@ export default function Home() {
       </div>
       <div className="pb-[12.3rem] pt-[4rem]">
         <PlaceHomeSlider mainText="연인과의 데이트" subText="를 위한 공간">
-          <Slider placeData={PLACE_DUMMY} backgroundClassName="py-[1.6rem]" />
+          <Slider className="mt-[1.6rem]">
+            {PLACE_DUMMY.map((data) => (
+              <PlaceInfoMain
+                key={data.id}
+                id={data.id}
+                placeName={data.placeName}
+                placeImg={data.placeImg}
+                category={data.category}
+                location={data.location}
+                scrapped={data.scrapped}
+                tags={data.tags}
+                tagsCategoryNum={0}
+                className="w-[33.5rem] mr-[1.2rem]"
+              />
+            ))}
+          </Slider>
         </PlaceHomeSlider>
         <PlaceHomeSlider mainText="친구와의 만남" subText="을 위한 공간">
-          <Slider placeData={PLACE_DUMMY} backgroundClassName="py-[1.6rem]" />
+          <Slider className="mt-[1.6rem]">
+            {PLACE_DUMMY.map((data) => (
+              <PlaceInfoMain
+                key={data.id}
+                id={data.id}
+                placeName={data.placeName}
+                placeImg={data.placeImg}
+                category={data.category}
+                location={data.location}
+                scrapped={data.scrapped}
+                tags={data.tags}
+                tagsCategoryNum={0}
+                className="w-[33.5rem] mr-[1.2rem]"
+              />
+            ))}
+          </Slider>
         </PlaceHomeSlider>
         <section className="mb-[5.6rem] pt-[2.8rem] pb-[2rem] px-[2rem] bg-background-gray-2">
           <div className="flex justify-between mb-[1.6rem]">
@@ -161,10 +192,40 @@ export default function Home() {
           <CurationHomeList curationList={CURATION_DUMMY} />
         </section>
         <PlaceHomeSlider mainText="왁자지껄 떠들기 좋은" subText="공간">
-          <Slider placeData={PLACE_DUMMY} backgroundClassName="py-[1.6rem]" />
+          <Slider className="mt-[1.6rem]">
+            {PLACE_DUMMY.map((data) => (
+              <PlaceInfoMain
+                key={data.id}
+                id={data.id}
+                placeName={data.placeName}
+                placeImg={data.placeImg}
+                category={data.category}
+                location={data.location}
+                scrapped={data.scrapped}
+                tags={data.tags}
+                tagsCategoryNum={0}
+                className="w-[33.5rem] mr-[1.2rem]"
+              />
+            ))}
+          </Slider>
         </PlaceHomeSlider>
         <PlaceHomeSlider mainText="대화에 집중할 수 있는" subText="공간">
-          <Slider placeData={PLACE_DUMMY} backgroundClassName="py-[1.6rem]" />
+          <Slider className="mt-[1.6rem]">
+            {PLACE_DUMMY.map((data) => (
+              <PlaceInfoMain
+                key={data.id}
+                id={data.id}
+                placeName={data.placeName}
+                placeImg={data.placeImg}
+                category={data.category}
+                location={data.location}
+                scrapped={data.scrapped}
+                tags={data.tags}
+                tagsCategoryNum={0}
+                className="w-[33.5rem] mr-[1.2rem]"
+              />
+            ))}
+          </Slider>
         </PlaceHomeSlider>
       </div>
       <Footer />

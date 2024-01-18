@@ -4,19 +4,14 @@ import Chip from "@common/components/ui/buttons/Chip/Chip";
 import { PlaceInfoProps } from "@feature/place/type";
 
 export default function PlaceInfoBottom({
-  variant,
   tags,
-}: Pick<PlaceInfoProps, "variant" | "tags">) {
+  tagsCategoryNum,
+}: Pick<PlaceInfoProps, "tags" | "tagsCategoryNum">) {
   return (
-    <div
-      className={twMerge(
-        "w-full mt-[1.6rem]",
-        variant === "home" && "flex flex-wrap gap-[0.8rem]"
-      )}
-    >
-      {variant === "home" &&
+    <div className="w-full mt-[1.6rem] flex flex-wrap gap-[0.8rem]">
+      {tagsCategoryNum === 0 &&
         tags?.interior.map((tag, i) => <Chip key={tag + i}>{tag}</Chip>)}
-      {variant === "home_search" &&
+      {/* {variant === "home_search" &&
         Object.keys(PLACE_TAG_CATEGORY)
           .slice(0, 2)
           .map((category, i) => {
@@ -93,7 +88,7 @@ export default function PlaceInfoBottom({
                 </div>
               </div>
             );
-          })}
+          })} */}
     </div>
   );
 }

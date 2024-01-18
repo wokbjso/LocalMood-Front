@@ -2,27 +2,22 @@ import PlaceInfoTop from "../PlaceInfoTop/PlaceInfoTop";
 import PlaceInfoBottom from "../PlaceInfoBottom/PlaceInfoBottom";
 import { PlaceInfoProps } from "@feature/place/type";
 
-export interface PlaceInfoMainProps extends PlaceInfoProps {
-  variant?: "home" | "home_search" | "curation";
-}
-
 export default function PlaceInfoMain({
   id,
-  variant = "home",
   placeName,
   placeImg,
   category,
   location,
   scrapped,
   tags,
+  tagsCategoryNum,
   onClick,
   className,
-}: PlaceInfoMainProps) {
+}: PlaceInfoProps) {
   return (
     <div>
       <PlaceInfoTop
         id={id}
-        variant={variant}
         placeName={placeName}
         placeImg={placeImg}
         category={category}
@@ -31,7 +26,9 @@ export default function PlaceInfoMain({
         onClick={onClick}
         className={className}
       />
-      <PlaceInfoBottom variant={variant} tags={tags} />
+      {tags && (
+        <PlaceInfoBottom tags={tags} tagsCategoryNum={tagsCategoryNum} />
+      )}
     </div>
   );
 }

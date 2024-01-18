@@ -5,25 +5,20 @@ import { CurationProps } from "@feature/curation/type";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import PlaceInfoRecord from "@feature/place/components/PlaceInfoRecord/PlaceInfoRecord";
 import { PlaceInfoProps } from "@feature/place/type";
+import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface SliderProps {
-  placeData?: PlaceInfoProps[];
-  curationData?: CurationProps[];
-  backgroundClassName?: string;
-  individualDataClassName?: string;
+  className?: string;
+  children?: ReactNode;
 }
 
-export default function Slider({
-  placeData,
-  curationData,
-  backgroundClassName,
-  individualDataClassName,
-}: SliderProps) {
+export default function Slider({ className, children }: SliderProps) {
   return (
-    <div className={twMerge("w-full", backgroundClassName)}>
+    <div className={twMerge("w-full", className)}>
       <div className="flex overflow-x-scroll">
-        {placeData &&
+        {children}
+        {/* {placeData &&
           placeData.map((data) => {
             return "tags" in data ? (
               <PlaceInfoMain
@@ -68,7 +63,7 @@ export default function Slider({
                 individualDataClassName
               )}
             />
-          ))}
+          ))} */}
       </div>
     </div>
   );
