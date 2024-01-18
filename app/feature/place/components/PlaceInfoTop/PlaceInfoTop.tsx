@@ -31,6 +31,7 @@ export default function PlaceInfoTop({
   onClick,
   className,
 }: PlaceInfoProps) {
+  //id로 scrap 유무를 default useState 값으로 설정
   const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
   const handleScrap = () => {
     setIsScrapped((prev) => !prev);

@@ -15,7 +15,7 @@ export default function PlaceInfoMain({
   className,
 }: PlaceInfoProps) {
   return (
-    <div>
+    <>
       <PlaceInfoTop
         id={id}
         placeName={placeName}
@@ -29,6 +29,6 @@ export default function PlaceInfoMain({
       {tags && (
         <PlaceInfoBottom tags={tags} tagsCategoryNum={tagsCategoryNum} />
       )}
-    </div>
+    </>
   );
 }

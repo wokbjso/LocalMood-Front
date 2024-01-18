@@ -4,14 +4,13 @@ import useSearchBar from "@feature/search/components/SearchBar/useSearchBar";
 import NoResult from "@common/assets/images/search_no_result.svg";
 import Tab from "@common/components/ui/tab/Tab";
 import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
-import PlaceInfoMain, {
-  PlaceInfoMainProps,
-} from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
+import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import { CurationProps } from "@feature/curation/type";
+import { PlaceInfoProps } from "@feature/place/type";
 
 export default function SearchResult() {
   // 데이터 client-side fetching(useEffect)
-  const DUMMY_PLACE: PlaceInfoMainProps[] | [] = [
+  const DUMMY_PLACE: PlaceInfoProps[] | [] = [
     {
       id: 0,
       placeName: "신촌 캐치카페",
@@ -195,7 +194,6 @@ export default function SearchResult() {
               {DUMMY_PLACE.map((place) => (
                 <div key={place.id + place.category} className="mb-[4rem]">
                   <PlaceInfoMain
-                    variant="home_search"
                     id={place.id}
                     placeImg={place.placeImg}
                     placeName={place.placeName}
@@ -203,6 +201,7 @@ export default function SearchResult() {
                     location={place.location}
                     scrapped={place.scrapped}
                     tags={place.tags}
+                    tagsCategoryNum={2}
                   />
                 </div>
               ))}
