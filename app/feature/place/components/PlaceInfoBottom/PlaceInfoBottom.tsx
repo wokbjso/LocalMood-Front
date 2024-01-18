@@ -10,7 +10,14 @@ export default function PlaceInfoBottom({
   return (
     <div className="w-full mt-[1.6rem] flex flex-wrap ">
       {tagsCategoryNum === 0
-        ? tags?.interior.map((tag, i) => <Chip key={tag + i}>{tag}</Chip>)
+        ? tags?.interior.map((tag, i) => (
+            <Chip
+              key={tag + i}
+              className={i !== tags?.interior.length - 1 ? "mr-[0.8rem]" : ""}
+            >
+              {tag}
+            </Chip>
+          ))
         : Object.keys(PLACE_TAG_CATEGORY)
             .slice(0, tagsCategoryNum)
             .map((category, i) => {

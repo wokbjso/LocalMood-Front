@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 import CurationMenu from "./CurationMenu";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import Link from "next/link";
-import Menu from "@common/assets/icons/menu/MenuIcon";
 import MenuIcon from "@common/assets/icons/menu/MenuIcon";
 
 export default function CurationMain({
