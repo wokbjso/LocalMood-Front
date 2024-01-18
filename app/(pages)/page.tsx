@@ -13,6 +13,7 @@ import PetIcon from "@common/assets/icons/pet/PetIcon";
 import WindowIcon from "@common/assets/icons/window/WindowIcon";
 import HeartIcon from "@common/assets/icons/heart/HeartIcon";
 import MusicIcon from "@common/assets/icons/music/MusicIcon";
+import PlaceHomeSlider from "@feature/place/components/PlaceHomeSlider/PlaceHomeSlider";
 
 export default function Home() {
   const HEADER_KEYWORD = [
@@ -99,14 +100,14 @@ export default function Home() {
   return (
     <>
       <HomeHeader />
-      <p className="header-light  pb-[2.4rem] px-[2rem] pt-[5.4rem] bg-[#F5F8FF]">
+      <p className="header-light pb-[2.4rem] px-[2rem] pt-[5.4rem] bg-background-secondary-light">
         나에게 딱 맞는 공간을
         <br />
         <span className="header-main"> 키워드</span>로 찾아보세요
       </p>
       <div className="overflow-hidden">
         <ul className="flex no-wrap">
-          <div className="header-slider1 flex pb-[2rem] bg-[#F5F8FF]">
+          <div className="header-slider1 flex pb-[2rem] bg-background-secondary-light">
             {HEADER_KEYWORD.map((keyword, i) => (
               <li key={keyword.text + i}>
                 <Chip className="whitespace-nowrap px-[1.12rem] flex items-center h-[3.2rem] mr-[1rem]">
@@ -116,7 +117,7 @@ export default function Home() {
               </li>
             ))}
           </div>
-          <div className="header-slider2 flex pb-[2rem] bg-[#F5F8FF]">
+          <div className="header-slider2 flex pb-[2rem] bg-background-secondary-light">
             {HEADER_KEYWORD.map((keyword, i) => (
               <li key={keyword.text + i}>
                 <Chip className="whitespace-nowrap px-[1.12rem] flex items-center h-[3.2rem] mr-[1rem]">
@@ -128,7 +129,8 @@ export default function Home() {
           </div>
         </ul>
       </div>
-      <div className="flex justify-center pb-[2rem] bg-[#F5F8FF]">
+      <div className="flex justify-center pb-[2rem] bg-background-secondary-light">
+        {/* search 하는 페이지로 이동 시 키워드 선택 모달 바로 뜨도록 쿼리로 상태 전달 */}
         <LinkLayout
           routeUrl="/search"
           query={{ keyword_search: true }}
@@ -138,18 +140,12 @@ export default function Home() {
         </LinkLayout>
       </div>
       <div className="pb-[12.3rem] pt-[4rem]">
-        <section className="mb-[4rem] pl-[2rem]">
-          <span className="text-primary-normal headline2"># </span>
-          <span className="text-black headline2">연인과의 데이트</span>
-          <span className="text-text-gray-6 body1"> 를 위한 공간</span>
+        <PlaceHomeSlider mainText="연인과의 데이트" subText="를 위한 공간">
           <Slider placeData={PLACE_DUMMY} backgroundClassName="py-[1.6rem]" />
-        </section>
-        <section className="mb-[4rem] pl-[2rem]">
-          <span className="text-primary-normal headline2"># </span>
-          <span className="text-black headline2">친구와의 만남</span>
-          <span className="text-text-gray-6 body1"> 을 위한 공간</span>
+        </PlaceHomeSlider>
+        <PlaceHomeSlider mainText="친구와의 만남" subText="을 위한 공간">
           <Slider placeData={PLACE_DUMMY} backgroundClassName="py-[1.6rem]" />
-        </section>
+        </PlaceHomeSlider>
         <section className="mb-[5.6rem] pt-[2.8rem] pb-[2rem] px-[2rem] bg-background-gray-2">
           <div className="flex justify-between mb-[1.6rem]">
             <span className="headline2 text-black">마포구 인기 큐레이션</span>
@@ -162,18 +158,12 @@ export default function Home() {
           </div>
           <CurationHomeList curationList={CURATION_DUMMY} />
         </section>
-        <section className="mb-[4rem] pl-[2rem]">
-          <span className="text-primary-normal headline2"># </span>
-          <span className="text-black headline2">왁자지껄 떠들기 좋은</span>
-          <span className="text-text-gray-6 body1"> 공간</span>
+        <PlaceHomeSlider mainText="왁자지껄 떠들기 좋은" subText="공간">
           <Slider placeData={PLACE_DUMMY} backgroundClassName="py-[1.6rem]" />
-        </section>
-        <section className="mb-[4rem] pl-[2rem]">
-          <span className="text-primary-normal headline2"># </span>
-          <span className="text-black headline2">대화에 집중할 수 있는</span>
-          <span className="text-text-gray-6 body1"> 공간</span>
+        </PlaceHomeSlider>
+        <PlaceHomeSlider mainText="대화에 집중할 수 있는" subText="공간">
           <Slider placeData={PLACE_DUMMY} backgroundClassName="py-[1.6rem]" />
-        </section>
+        </PlaceHomeSlider>
       </div>
       <Footer />
     </>
