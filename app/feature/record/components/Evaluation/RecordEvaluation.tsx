@@ -43,8 +43,11 @@ export default function RecordEvaluation({
                     : "mb-[1.2rem]"
                 }
               >
-                <div className="text-black headline3-semibold mb-[1.2rem]">
-                  {category}
+                <div className="flex items-start gap-[0.6rem]">
+                  <div className="text-black headline3-semibold mb-[1.2rem]">
+                    {category}
+                  </div>
+                  <div className="headline3-semibold text-text-gray-6">0/3</div>
                 </div>
                 <div className="flex flex-wrap gap-[0.6rem]">
                   {Object.keys(CAFE_EVALUATIONS).indexOf(category) === i &&
@@ -58,35 +61,42 @@ export default function RecordEvaluation({
                 </div>
               </section>
             ))}
-          {category === "restaurant" &&
-            RESTAURANT_CATEGORY_EVALUATIONS.map((category, i) => (
-              <section
-                key={category}
-                className={
-                  i !== RESTAURANT_CATEGORY_EVALUATIONS.length - 1
-                    ? "mb-[4rem]"
-                    : "mb-[2.7rem]"
-                }
-              >
-                <div className="text-black headline3-semibold mb-[1.2rem]">
-                  {category}
-                </div>
-                <div className="flex flex-wrap gap-[0.6rem]">
-                  {Object.keys(RESTAURANT_EVALUATIONS).indexOf(category) ===
-                    i &&
-                    RESTAURANT_EVALUATIONS[category].map((keyword) => (
-                      <Filter
-                        key={keyword}
-                        label={keyword}
-                        variant={
-                          category === "음식" ? "showOptions" : undefined
-                        }
-                        onClick={() => handleFilterClick(keyword)}
-                      />
-                    ))}
-                </div>
-              </section>
-            ))}
+          <div className="pt-[1.4rem]">
+            {category === "restaurant" &&
+              RESTAURANT_CATEGORY_EVALUATIONS.map((category, i) => (
+                <section
+                  key={category}
+                  className={
+                    i !== RESTAURANT_CATEGORY_EVALUATIONS.length - 1
+                      ? "mb-[4rem]"
+                      : "mb-[2.7rem]"
+                  }
+                >
+                  <div className="flex items-start gap-[0.6rem]">
+                    <div className="text-black headline3-semibold mb-[1.2rem]">
+                      {category}
+                    </div>
+                    <div className="headline3-semibold text-text-gray-6">
+                      0/3
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-[0.6rem]">
+                    {Object.keys(RESTAURANT_EVALUATIONS).indexOf(category) ===
+                      i &&
+                      RESTAURANT_EVALUATIONS[category].map((keyword) => (
+                        <Filter
+                          key={keyword}
+                          label={keyword}
+                          variant={
+                            category === "음식" ? "showOptions" : undefined
+                          }
+                          onClick={() => handleFilterClick(keyword)}
+                        />
+                      ))}
+                  </div>
+                </section>
+              ))}
+          </div>
         </div>
       </div>
       <div className="fixed bottom-0 left-0 right-0 z-10">

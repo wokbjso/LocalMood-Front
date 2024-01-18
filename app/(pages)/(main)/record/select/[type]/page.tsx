@@ -27,7 +27,7 @@ export default function RecordSelect() {
           showIndicator={true}
           text="특별히 좋았던 점과 아쉬운 점이 있었나요?"
         />
-        <RecordEvaluation category={"cafe"} />
+        <RecordEvaluation category={"restaurant"} />
       </div>
     );
   };
