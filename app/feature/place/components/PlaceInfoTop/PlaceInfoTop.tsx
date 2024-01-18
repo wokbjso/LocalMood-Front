@@ -40,25 +40,27 @@ export default function PlaceInfoTop({
     setIsScrapped((prev) => !prev);
   };
   return (
-    <Link
-      href={{
-        pathname: `/place/${category === "카페" ? "cafe" : "restaurant"}/${id}`,
-      }}
+    <div
+      className={twMerge(
+        "w-full relative",
+        variant === "record_search" && "flex items-center",
+        className
+      )}
+      onClick={onClick}
     >
       <div
         className={twMerge(
-          "w-full relative",
-          variant === "record_search" && "flex items-center",
-          className
+          "w-full h-[16rem] relative",
+          variant === "curation" && "h-[28rem]",
+          variant === "record_search" && "w-[8rem] h-[8rem] mr-[1.6rem]"
         )}
-        onClick={onClick}
       >
-        <div
-          className={twMerge(
-            "w-full h-[16rem] relative",
-            variant === "curation" && "h-[28rem]",
-            variant === "record_search" && "w-[8rem] h-[8rem] mr-[1.6rem]"
-          )}
+        <Link
+          href={{
+            pathname: `/place/${
+              category === "카페" ? "cafe" : "restaurant"
+            }/${id}`,
+          }}
         >
           <Image
             src={placeImg}
@@ -67,71 +69,78 @@ export default function PlaceInfoTop({
             sizes="100vw"
             className="rounded-[8px]"
           />
-        </div>
-        <div
-          className={twMerge(
-            "flex-col mt-[1.6rem]",
-            variant === "record_search" && "mt-0",
-            size === "large" && "relative"
-          )}
-        >
-          {size === "large" ? (
-            !isScrapped ? (
-              <ScrapLine
-                className="absolute cursor-pointer right-[0.4rem]"
-                onClick={handleScrap}
-              />
-            ) : (
-              <ScrapFill
-                className="absolute cursor-pointer right-[0.4rem]"
-                onClick={handleScrap}
-              />
-            )
-          ) : null}
-          {variant === "scrapped" && size === "small" ? (
-            !isScrapped ? (
-              <ScrapLine
-                className="absolute cursor-pointer top-[1.2rem] right-[1.2rem]"
-                onClick={handleScrap}
-              />
-            ) : (
-              <ScrapShadow
-                className="absolute cursor-pointer top-[1.2rem] right-[1.2rem]"
-                onClick={handleScrap}
-              />
-            )
-          ) : null}
-          <div
-            className={twMerge(
-              size === "large" ? "headline2" : "headline3",
-              "mb-[0.8rem]"
-            )}
-          >
-            {placeName}
-          </div>
-          <div className="flex">
-            <span
-              className={
-                size === "large"
-                  ? "body2-semibold text-text-gray-6"
-                  : "body3-semibold text-text-gray-7"
-              }
-            >
-              {category}
-            </span>
-            <Line className="mx-[0.8rem]" />
-            <span
-              className={
-                size === "large"
-                  ? "body2-medium text-text-gray-5"
-                  : "body3-medium text-text-gray-5"
-              }
-            >
-              {location}
-            </span>
-          </div>
-        </div>
+        </Link>
       </div>
-    </Link>
+      <div
+        className={twMerge(
+          "flex-col",
+          variant === "record_search" && "mt-0",
+          size === "large" && "relative"
+        )}
+      >
+        {size === "large" ? (
+          !isScrapped ? (
+            <ScrapLine
+              className="absolute cursor-pointer right-[0.4rem] top-[1.6rem]"
+              onClick={handleScrap}
+            />
+          ) : (
+            <ScrapFill
+              className="absolute cursor-pointer right-[0.4rem] top-[1.6rem]"
+              onClick={handleScrap}
+            />
+          )
+        ) : null}
+        {variant === "scrapped" && size === "small" ? (
+          !isScrapped ? (
+            <ScrapLine
+              className="absolute cursor-pointer top-[1.2rem] right-[1.2rem]"
+              onClick={handleScrap}
+            />
+          ) : (
+            <ScrapShadow
+              className="absolute cursor-pointer top-[1.2rem] right-[1.2rem]"
+              onClick={handleScrap}
+            />
+          )
+        ) : null}
+        <Link
+          href={{
+            pathname: `/place/${
+              category === "카페" ? "cafe" : "restaurant"
+            }/${id}`,
+          }}
+        >
+          <div
+            className={
+              size === "large" ? "headline2 w-[90%] pt-[1.6rem]" : "headline3"
+            }
+          >
+            <span>{placeName}</span>
+            <div className="flex mt-[0.8rem]">
+              <span
+                className={
+                  size === "large"
+                    ? "body2-semibold text-text-gray-6"
+                    : "body3-semibold text-text-gray-7"
+                }
+              >
+                {category}
+              </span>
+              <Line className="mx-[0.8rem]" />
+              <span
+                className={
+                  size === "large"
+                    ? "body2-medium text-text-gray-5"
+                    : "body3-medium text-text-gray-5"
+                }
+              >
+                {location}
+              </span>
+            </div>
+          </div>
+        </Link>
+      </div>
+    </div>
   );
 }
