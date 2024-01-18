@@ -2,14 +2,14 @@ import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface ChipProps {
-  variant?: "secondary" | "dark";
+  variant?: "light" | "dark";
   className?: string;
   onClick?: () => void;
   children: ReactNode;
 }
 
 export default function Chip({
-  variant = "secondary",
+  variant = "light",
   className,
   onClick,
   children,

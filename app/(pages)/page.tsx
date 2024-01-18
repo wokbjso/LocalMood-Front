@@ -17,13 +17,13 @@ import PlaceHomeSlider from "@feature/place/components/PlaceHomeSlider/PlaceHome
 
 export default function Home() {
   const HEADER_KEYWORD = [
-    { icon: HeartIcon, color: "#F670C7", text: "연인과의 데이트" },
-    { icon: MusicIcon, color: "#8F73FD", text: "잔잔한 음악" },
-    { icon: LampIcon, text: "따뜻한 조명" },
-    { icon: WineIcon, text: "와인" },
-    { icon: ElectricCordIcon, text: "콘센트 있음" },
-    { icon: PetIcon, text: "애견동반 가능" },
-    { icon: WindowIcon, text: "통창뷰" },
+    { icon: HeartIcon, color: "#F670C7", label: "연인과의 데이트" },
+    { icon: MusicIcon, color: "#8F73FD", label: "잔잔한 음악" },
+    { icon: LampIcon, label: "따뜻한 조명" },
+    { icon: WineIcon, label: "와인" },
+    { icon: ElectricCordIcon, label: "콘센트 있음" },
+    { icon: PetIcon, label: "애견동반 가능" },
+    { icon: WindowIcon, label: "통창뷰" },
   ];
   const PLACE_DUMMY = [
     {
@@ -109,20 +109,20 @@ export default function Home() {
         <ul className="flex no-wrap">
           <div className="header-slider1 flex pb-[2rem] bg-background-secondary-light">
             {HEADER_KEYWORD.map((keyword, i) => (
-              <li key={keyword.text + i}>
+              <li key={keyword.label + i}>
                 <Chip className="whitespace-nowrap px-[1.12rem] flex items-center h-[3.2rem] mr-[1rem]">
                   {<keyword.icon color={keyword.color} />}
-                  <span className="pl-[0.4rem]">{keyword.text}</span>
+                  <span className="pl-[0.4rem]">{keyword.label}</span>
                 </Chip>
               </li>
             ))}
           </div>
           <div className="header-slider2 flex pb-[2rem] bg-background-secondary-light">
             {HEADER_KEYWORD.map((keyword, i) => (
-              <li key={keyword.text + i}>
+              <li key={keyword.label + i}>
                 <Chip className="whitespace-nowrap px-[1.12rem] flex items-center h-[3.2rem] mr-[1rem]">
                   {<keyword.icon color={keyword.color} />}
-                  <span className="pl-[0.4rem]">{keyword.text}</span>
+                  <span className="pl-[0.4rem]">{keyword.label}</span>
                 </Chip>
               </li>
             ))}
