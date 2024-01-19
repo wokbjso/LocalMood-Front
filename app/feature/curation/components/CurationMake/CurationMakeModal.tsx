@@ -9,7 +9,7 @@ interface CurationMakeProps {
   handleOpen: (state: boolean) => void;
 }
 
-export default function CurationMake({
+export default function CurationMakeModal({
   isOpen,
   handleOpen,
 }: CurationMakeProps) {

@@ -3,9 +3,9 @@ import React from "react";
 import Tab from "@common/components/ui/tab/Tab";
 import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
 import CurationScrapped from "@feature/curation/components/CurationScrapped/CurationScrapped";
-import CurationMake from "@feature/curation/components/modal/CurationMake";
 import UseCuration from "@feature/curation/useCuration";
 import CurationMakeButton from "@feature/curation/components/CurationButton/CurationMakeButton";
+import CurationMakeModal from "@feature/curation/components/CurationMake/CurationMakeModal";
 
 export default function CurationPage() {
   const { tabIndex, isCurationMakeOpen, handlers } = UseCuration();
@@ -101,21 +101,21 @@ export default function CurationPage() {
           </div>
         )}
         {tabIndex === 0 &&
-          MY_CURATION_DUMMY.map((props, index) => (
-            <div key={index} className="mb-[1.2rem]">
+          MY_CURATION_DUMMY.map((props) => (
+            <div key={props.userName + props.id} className="mb-[1.2rem]">
               <CurationMain {...props} />
             </div>
           ))}
         <div className="pt-[2rem]">
           {tabIndex === 1 &&
-            MY_CURATION_DUMMY.map((props, index) => (
+            MY_CURATION_DUMMY.map((props) => (
               <div key={props.userName + props.id} className="mb-[1.6rem]">
                 <CurationScrapped {...props} />
               </div>
             ))}
         </div>
       </div>
-      <CurationMake
+      <CurationMakeModal
         isOpen={isCurationMakeOpen}
         handleOpen={handlers.handleCurationMakeOpen}
       />
