@@ -4,7 +4,7 @@ import Chip from "@common/components/ui/buttons/Chip/Chip";
 import { CurationDetailCardProps } from "@feature/curation/type";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 
-export default function CuratoinDetailInfoCard({
+export default function CurationDetailInfoCard({
   id,
   placeName,
   placePhoto,

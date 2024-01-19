@@ -1,4 +1,4 @@
-import MenuIcon from "@common/assets/icons/menu/menu.svg";
+import MenuIcon from "@common/assets/icons/menu/MenuIcon";
 
 export default function MyPageTopBar() {
   return (

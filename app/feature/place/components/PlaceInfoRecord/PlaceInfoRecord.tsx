@@ -28,7 +28,6 @@ export default function PlaceInfoRecord({
       >
         <PlaceInfoTop
           id={id}
-          variant={variant}
           size="small"
           placeName={placeName}
           placeImg={placeImg}

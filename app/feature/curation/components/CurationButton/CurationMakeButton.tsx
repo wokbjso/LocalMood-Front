@@ -1,7 +1,7 @@
 "use client";
 import AddIcon from "@common/assets/icons/add/add-line.svg";
 
-export default function CurationButton() {
+export default function CurationMakeButton() {
   //내 큐레이션_만들기 버튼
   return (
     <div>

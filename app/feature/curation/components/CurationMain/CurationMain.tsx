@@ -13,8 +13,8 @@ import MenuIcon from "@common/assets/icons/menu/MenuIcon";
 
 export default function CurationMain({
   id,
+  variant = "others",
   curationPhoto,
-  variant,
   userImg,
   userName,
   mainText,
@@ -63,15 +63,17 @@ export default function CurationMain({
           )`,
                 }}
               >
-                <UserProfile
-                  size="small"
-                  userImg={userImg}
-                  userName={userName}
-                  className="absolute bottom-[1.6rem] left-[1.6rem]"
-                />
+                {variant === "others" && (
+                  <UserProfile
+                    size="small"
+                    userImg={userImg}
+                    userName={userName}
+                    className="absolute bottom-[1.6rem] left-[1.6rem]"
+                  />
+                )}
               </div>
               <div className="w-full p-[1.6rem] relative">
-                {variant === "home" ? (
+                {variant === "others" ? (
                   isScrapped ? (
                     <ScrapFill
                       className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
