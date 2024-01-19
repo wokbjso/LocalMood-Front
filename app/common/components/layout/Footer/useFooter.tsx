@@ -6,7 +6,7 @@ export default function useFooter() {
   const [footerState, setFooterState] = useState<number>(
     pathname === "/"
       ? 0
-      : pathname === "/curation"
+      : pathname.startsWith("/curation")
       ? 2
       : pathname === "/mypage"
       ? 3

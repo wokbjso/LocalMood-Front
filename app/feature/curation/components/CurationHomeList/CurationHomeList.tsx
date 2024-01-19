@@ -16,17 +16,13 @@ export default function CurationHomeList({
   return (
     <>
       <div>
+        {/* indicator 인덱스에 맞게 알맞은 큐레이션 띄워줌 */}
         {curationList.map((curation, i) => {
           return (
             indicatorIndex === i && (
               <CurationMain
                 key={curation.id}
-                id={0}
-                curationPhoto={curation.curationPhoto}
-                userImg={curation.userImg}
-                userName={curation.userName}
-                hashTags={curation.hashTags}
-                mainText={curation.mainText}
+                {...curation}
                 className="mb-[2rem] w-full"
               />
             )

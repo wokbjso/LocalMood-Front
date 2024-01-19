@@ -65,6 +65,7 @@ export default function Home() {
       userName: "김현민",
       mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
       hashTags: ["연인과의 데이트", "크리스마스"],
+      places: 4,
     },
     {
       id: 1,
@@ -87,6 +88,7 @@ export default function Home() {
       userName: "김경민",
       mainText: "주말에 즐기기 좋은 마포구 데이트 코스",
       hashTags: ["연인과의 데이트", "주말"],
+      places: 6,
     },
     {
       id: 3,
@@ -98,6 +100,7 @@ export default function Home() {
       userName: "최예원",
       mainText: "친구와 즐기기 좋은 마포구 데이트 코스",
       hashTags: ["친구와의 데이트", "마포구"],
+      places: 10,
     },
   ];
   return (
@@ -148,13 +151,7 @@ export default function Home() {
             {PLACE_DUMMY.map((data) => (
               <PlaceInfoMain
                 key={data.id}
-                id={data.id}
-                placeName={data.placeName}
-                placeImg={data.placeImg}
-                category={data.category}
-                location={data.location}
-                scrapped={data.scrapped}
-                tags={data.tags}
+                {...data}
                 tagsCategoryNum={0}
                 className="w-[33.5rem] mr-[1.2rem]"
               />
@@ -166,13 +163,7 @@ export default function Home() {
             {PLACE_DUMMY.map((data) => (
               <PlaceInfoMain
                 key={data.id}
-                id={data.id}
-                placeName={data.placeName}
-                placeImg={data.placeImg}
-                category={data.category}
-                location={data.location}
-                scrapped={data.scrapped}
-                tags={data.tags}
+                {...data}
                 tagsCategoryNum={0}
                 className="w-[33.5rem] mr-[1.2rem]"
               />
@@ -196,13 +187,7 @@ export default function Home() {
             {PLACE_DUMMY.map((data) => (
               <PlaceInfoMain
                 key={data.id}
-                id={data.id}
-                placeName={data.placeName}
-                placeImg={data.placeImg}
-                category={data.category}
-                location={data.location}
-                scrapped={data.scrapped}
-                tags={data.tags}
+                {...data}
                 tagsCategoryNum={0}
                 className="w-[33.5rem] mr-[1.2rem]"
               />
@@ -214,13 +199,7 @@ export default function Home() {
             {PLACE_DUMMY.map((data) => (
               <PlaceInfoMain
                 key={data.id}
-                id={data.id}
-                placeName={data.placeName}
-                placeImg={data.placeImg}
-                category={data.category}
-                location={data.location}
-                scrapped={data.scrapped}
-                tags={data.tags}
+                {...data}
                 tagsCategoryNum={0}
                 className="w-[33.5rem] mr-[1.2rem]"
               />

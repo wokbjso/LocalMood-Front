@@ -5,11 +5,12 @@ import { useState } from "react";
 import { CurationProps } from "@feature/curation/type";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { twMerge } from "tailwind-merge";
-import { useRouter } from "next/navigation";
 import CurationMenu from "./CurationMenu";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import Link from "next/link";
 import MenuIcon from "@common/assets/icons/menu/MenuIcon";
+import Chip from "@common/components/ui/buttons/Chip/Chip";
+import LocationLine from "@common/assets/icons/location/LocationLine";
 
 export default function CurationMain({
   id,
@@ -28,6 +29,7 @@ export default function CurationMain({
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const handleScrap = () => {
     setIsScrapped((prev) => !prev);
+    //api 문서에 맞게 해당 큐레이션 scrap 상태 바꾸는 api 호출
   };
   const handleCurationMenuClick = (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
@@ -38,7 +40,6 @@ export default function CurationMain({
   const handleCloseMenuModal = () => {
     setIsMenuOpened(false);
   };
-  const router = useRouter();
 
   return (
     <>
@@ -71,6 +72,12 @@ export default function CurationMain({
                     className="absolute bottom-[1.6rem] left-[1.6rem]"
                   />
                 )}
+                <Chip className="body3-semibold rounded-[4px] bg-[#212121CC] flex items-center pr-[0.4rem] pl-[0.2rem] h-[2rem] absolute right-[1.6rem] bottom-[1.6rem]">
+                  <LocationLine />
+                  <span className="body3-semibold text-white ml-[0.2rem]">
+                    {places}
+                  </span>
+                </Chip>
               </div>
               <div className="w-full p-[1.6rem] relative">
                 {variant === "others" ? (
