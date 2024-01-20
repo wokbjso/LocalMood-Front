@@ -6,7 +6,7 @@ export default function BottomAppBar({
   type,
   category,
 }: {
-  hasFiltersSelected: boolean;
+  hasFiltersSelected?: boolean;
   type?: string;
   category?: string;
 }) {
@@ -16,14 +16,11 @@ export default function BottomAppBar({
   const handleButtonClick = () => {
     if (type === "keyword" || hasFiltersSelected) {
       router.push(`/record/select/evaluate?&category=${category}`);
+    } else if (type === "evaluate") {
+      router.push("/record/select/photo");
+    } else if (isComplete) {
+      router.push("/record");
     } else {
-      if (isComplete) {
-        router.push("/record");
-      } else {
-        if (type === "evaluate" || hasFiltersSelected) {
-          router.push("/record/select/photo");
-        }
-      }
     }
   };
 

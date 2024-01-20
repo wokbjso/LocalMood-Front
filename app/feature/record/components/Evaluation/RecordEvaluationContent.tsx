@@ -11,8 +11,10 @@ import BottomAppBar from "../BottomAppBar/BottomAppBar";
 
 export default function RecordEvaluationContent({
   category,
+  type,
 }: {
   category: string;
+  type: string;
 }): JSX.Element {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const hasFiltersSelected = selectedFilters.length > 0;
@@ -102,6 +104,7 @@ export default function RecordEvaluationContent({
       <div className="fixed bottom-0 left-0 right-0 z-10">
         <BottomAppBar
           hasFiltersSelected={hasFiltersSelected}
+          type={type}
           category={category}
         />
       </div>

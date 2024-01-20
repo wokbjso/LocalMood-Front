@@ -19,7 +19,7 @@ export default function SelectEvaluation({
         indicatorIndex={1}
         text="특별히 좋았던 점과 아쉬운 점이 있었나요?"
       />
-      <RecordEvaluationContent category={category} />
+      <RecordEvaluationContent category={category} type={type} />
     </div>
   );
 }
