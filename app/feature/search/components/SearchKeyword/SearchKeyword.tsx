@@ -18,8 +18,9 @@ import useSearchKeyword from "./useSearchKeyword";
 
 export default function SearchKeyword() {
   const searchParams = useSearchParams();
-  const { cafeKeyword, restaurantKeyword, tabIndex, handlers } =
+  const { cafeKeyword, restaurantKeyword, tabIndex, showResultAble, handlers } =
     useSearchKeyword();
+  console.log(restaurantKeyword);
   return (
     searchParams.get("keyword_search") === "true" && (
       <>
@@ -109,7 +110,7 @@ export default function SearchKeyword() {
                 </section>
               ))}
             <div className="flex justify-center">
-              <Button disabled>결과보기</Button>
+              <Button disabled={!showResultAble}>결과보기</Button>
             </div>
           </div>
         </div>

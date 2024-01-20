@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function useSearchKeyword() {
   const [cafeKeyword, setCafeKeyword] = useState<{ [key: string]: string }>({
@@ -26,6 +26,7 @@ export default function useSearchKeyword() {
     service: "",
   });
   const [tabIndex, setTabIndex] = useState<number>(0);
+  const [showResultAble, setShowResultAble] = useState<boolean>(false);
 
   const handleKeywordData = (category: string, keyword: string) => {
     if (tabIndex === 0) {
@@ -43,10 +44,27 @@ export default function useSearchKeyword() {
     setTabIndex(index);
   };
 
+  useEffect(() => {
+    if (tabIndex === 0)
+      setShowResultAble(
+        Object.keys(restaurantKeyword)
+          .filter((keyword) => keyword !== "type")
+          .some((keyword) => restaurantKeyword[keyword] !== "")
+      );
+    else if (tabIndex === 1)
+      setShowResultAble(
+        Object.keys(cafeKeyword)
+          .filter((keyword) => keyword !== "type")
+          .some((keyword) => cafeKeyword[keyword] !== "")
+      );
+    else return;
+  }, [tabIndex, cafeKeyword, restaurantKeyword]);
+  console.log(showResultAble);
   return {
     cafeKeyword,
     restaurantKeyword,
     tabIndex,
+    showResultAble,
     handlers: {
       changeTabIndex: handleTabIndex,
       changeKeywordData: handleKeywordData,
