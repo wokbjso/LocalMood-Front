@@ -49,40 +49,21 @@ export default function SearchKeyword() {
           <Divider className="h-[0.1rem] bg-line-gray-3" />
           <div className="h-full pt-[3.2rem] pb-[22rem] px-[2rem] overflow-y-scroll">
             {tabIndex === 0 &&
-              CAFE_CATEGORY.map((category, i) => (
+              Object.keys(RESTAURANT_CATEGORY).map((category, i) => (
                 <section
                   key={category}
                   className={
-                    i !== CAFE_CATEGORY.length - 1 ? "mb-[4rem]" : "mb-[2.7rem]"
-                  }
-                >
-                  <div className="text-black headline3 mb-[1.2rem]">
-                    {category}
-                  </div>
-                  <div className="flex flex-wrap gap-[0.6rem]">
-                    {Object.keys(CAFE_KEYWORDS).indexOf(category) === i &&
-                      CAFE_KEYWORDS[category].map((keyword) => (
-                        <Filter key={keyword} label={keyword} />
-                      ))}
-                  </div>
-                </section>
-              ))}
-            {tabIndex === 1 &&
-              RESTAURANT_CATEGORY.map((category, i) => (
-                <section
-                  key={category}
-                  className={
-                    i !== RESTAURANT_CATEGORY.length - 1
+                    i !== Object.keys(RESTAURANT_CATEGORY).length - 1
                       ? "mb-[4rem]"
                       : "mb-[2.7rem]"
                   }
                 >
                   <div className="text-black headline3 mb-[1.2rem]">
-                    {category}
+                    {RESTAURANT_CATEGORY[category]}
                   </div>
                   <div className="flex flex-wrap gap-[0.6rem]">
-                    {Object.keys(RESTARANT_KEYWORDS).indexOf(category) === i &&
-                      RESTARANT_KEYWORDS[category].map((keyword) => (
+                    {RESTARANT_KEYWORDS[RESTAURANT_CATEGORY[category]].map(
+                      (keyword) => (
                         <Filter
                           key={keyword}
                           label={keyword}
@@ -90,12 +71,33 @@ export default function SearchKeyword() {
                             category === "음식" ? "showOptions" : undefined
                           }
                         />
-                      ))}
+                      )
+                    )}
+                  </div>
+                </section>
+              ))}
+            {tabIndex === 1 &&
+              Object.keys(CAFE_CATEGORY).map((category, i) => (
+                <section
+                  key={category}
+                  className={
+                    i !== Object.keys(CAFE_CATEGORY).length - 1
+                      ? "mb-[4rem]"
+                      : "mb-[2.7rem]"
+                  }
+                >
+                  <div className="text-black headline3 mb-[1.2rem]">
+                    {CAFE_CATEGORY[category]}
+                  </div>
+                  <div className="flex flex-wrap gap-[0.6rem]">
+                    {CAFE_KEYWORDS[CAFE_CATEGORY[category]].map((keyword) => (
+                      <Filter key={keyword} label={keyword} />
+                    ))}
                   </div>
                 </section>
               ))}
             <div className="flex justify-center">
-              <Button>결과보기</Button>
+              <Button disabled>결과보기</Button>
             </div>
           </div>
         </div>
