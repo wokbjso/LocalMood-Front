@@ -1,22 +1,20 @@
-"use client";
+import Link from "next/link";
 import ArrowIcon from "@common/assets/icons/arrow/arrow-right.svg";
-import { useRouter } from "next/navigation";
 
 export default function ShowMoreButton() {
-  const router = useRouter();
-  const handleMoreClick = () => {
-    router.push("/record/search/select");
-  };
-
   return (
-    <div
-      className="flex items-center gap-[1.2rem] text-text-gray-6 body2-semibold"
-      onClick={handleMoreClick}
+    <Link
+      href={{
+        pathname: "/record/search",
+        query: { key: "select" },
+      }}
     >
-      <div> 더보기 </div>
-      <div>
-        <ArrowIcon />
+      <div className="flex items-center gap-[1.2rem] text-text-gray-6 body2-semibold">
+        <div>더보기</div>
+        <div>
+          <ArrowIcon />
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
