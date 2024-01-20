@@ -7,9 +7,11 @@ import CurationMain from "@feature/curation/components/CurationMain/CurationMain
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import { CurationProps } from "@feature/curation/type";
 import { PlaceInfoProps } from "@feature/place/type";
+import { useSearchParams } from "next/navigation";
 
 export default function SearchResult() {
-  // 데이터 client-side fetching(useEffect)
+  const searchParams = useSearchParams();
+  // searchParams.get('searcth_query') 활용한 get api 로 대체(client side - tanstack query)
   const DUMMY_PLACE: PlaceInfoProps[] | [] = [
     {
       id: 0,
@@ -62,6 +64,7 @@ export default function SearchResult() {
       userName: "김현민",
       mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
       hashTags: ["연인과의 데이트", "크리스마스"],
+      places: 12,
     },
     {
       id: 1,
@@ -73,6 +76,7 @@ export default function SearchResult() {
       userName: "김지원",
       mainText: "평일에 좋은 마포구 데이트 코스",
       hashTags: ["연인과의 데이트", "평일"],
+      places: 10,
     },
     {
       id: 2,
@@ -84,6 +88,7 @@ export default function SearchResult() {
       userName: "김경민",
       mainText: "주말에 즐기기 좋은 마포구 데이트 코스",
       hashTags: ["연인과의 데이트", "주말"],
+      places: 2,
     },
     {
       id: 3,
@@ -95,6 +100,7 @@ export default function SearchResult() {
       userName: "최예원",
       mainText: "친구와 즐기기 좋은 마포구 데이트 코스",
       hashTags: ["친구와의 데이트", "마포구"],
+      places: 3,
     },
   ];
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
@@ -135,8 +141,9 @@ export default function SearchResult() {
                   curationPhoto={curation.curationPhoto}
                   userImg={curation.userImg}
                   userName={curation.userName}
-                  hashTags={curation.hashTags}
                   mainText={curation.mainText}
+                  hashTags={curation.hashTags}
+                  places={curation.places}
                   className="mb-[4rem]"
                 />
               ))}
@@ -216,8 +223,9 @@ export default function SearchResult() {
                   curationPhoto={curation.curationPhoto}
                   userImg={curation.userImg}
                   userName={curation.userName}
-                  hashTags={curation.hashTags}
                   mainText={curation.mainText}
+                  hashTags={curation.hashTags}
+                  places={curation.places}
                   className="mb-[4rem]"
                 />
               ))}

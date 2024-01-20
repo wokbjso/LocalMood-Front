@@ -26,7 +26,7 @@ export default function Home() {
     { icon: PetIcon, label: "애견동반 가능" },
     { icon: WindowIcon, label: "통창뷰" },
   ];
-  //장소 get api 데이터로 대체
+  //장소 get api 데이터로 대체(server side - fetch)
   const PLACE_DUMMY = [
     {
       id: 0,
@@ -53,7 +53,7 @@ export default function Home() {
       },
     },
   ];
-  //큐레이션 get api로 대체
+  //큐레이션 get api로 대체(server side - fetch)
   const CURATION_DUMMY = [
     {
       id: 0,

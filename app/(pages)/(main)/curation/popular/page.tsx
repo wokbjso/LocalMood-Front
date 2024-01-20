@@ -2,6 +2,7 @@ import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
 
 export default function CurationPopular() {
+  //popular curation get api 로 가져오는 데이터로 대체
   const POPULAR_CURATION = [
     {
       id: 0,

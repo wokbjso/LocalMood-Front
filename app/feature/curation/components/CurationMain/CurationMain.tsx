@@ -29,7 +29,7 @@ export default function CurationMain({
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const handleScrap = () => {
     setIsScrapped((prev) => !prev);
-    //api 문서에 맞게 해당 큐레이션 scrap 상태 바꾸는 api 호출
+    //api 문서에 맞게 해당 큐레이션 scrap 상태 바꾸는 api 호출(client side - tanstack query)
   };
   const handleCurationMenuClick = (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
@@ -79,7 +79,7 @@ export default function CurationMain({
                   </span>
                 </Chip>
               </div>
-              <div className="w-full p-[1.6rem] relative">
+              <div className="w-full p-[1.6rem] relative border-b-[0.1rem] border-x-[0.1rem] border-line-gray-3 rounded-b-[8px]">
                 {variant === "others" ? (
                   isScrapped ? (
                     <ScrapFill

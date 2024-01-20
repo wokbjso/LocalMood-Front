@@ -21,12 +21,12 @@ export default function PlaceInfoTop({
   className,
   imgClassName,
 }: PlaceInfoProps) {
-  //id로 scrap 유무를 default useState 값으로 설정
+  //scrap 유무를 default useState 값으로 설정
   const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
   const handleScrap = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     e.preventDefault();
     setIsScrapped((prev) => !prev);
-    //api 문서에 맞게 해당 장소 scrap 상태 변경 api 호출
+    //api 문서에 맞게 해당 장소 scrap 상태 변경 api 호출(client side - tanstack query)
   };
   return (
     <Link
