@@ -1,10 +1,10 @@
 "use client";
 import { usePathname, useSearchParams } from "next/navigation";
 import PlaceRecordTopBar from "@feature/record/components/PlaceRecordTopBar/PlaceRecordTopBar";
-import RecordEvaluation from "@feature/record/components/Evaluation/RecordEvaluation";
 import RecordComplete from "@feature/record/components/RecordComplete/RecordComplete";
 import PhotoUpload from "@feature/record/components/PhotoUpload/PhotoUpload";
 import SelectKeyword from "@feature/record/components/Keyword/SelectKeyword";
+import SelectEvaluation from "@feature/record/components/Evaluation/SelectEvaluation";
 
 export default function RecordSelect() {
   const pathname = usePathname();
@@ -13,22 +13,12 @@ export default function RecordSelect() {
   const name = searchParams.get("name") || "";
   const type = pathname.split("/").pop();
 
-  const renderEvaluateSelect = () => {
-    return (
-      <div>
-        <PlaceRecordTopBar
-          showIndicator={true}
-          text="특별히 좋았던 점과 아쉬운 점이 있었나요?"
-        />
-        <RecordEvaluation category={"restaurant"} />
-      </div>
-    );
-  };
   const renderPhotoSelect = () => {
     return (
       <div>
         <PlaceRecordTopBar
           showIndicator={true}
+          indicatorIndex={2}
           text="방문한 사진을 업로드해주세요!"
         />
         <PhotoUpload />
@@ -47,10 +37,14 @@ export default function RecordSelect() {
     <div>
       <div>
         {type === "keyword" && (
-          <SelectKeyword category={category} name={name} />
+          <SelectKeyword type={type} category={category} name={name} />
         )}
       </div>
-      <div>{type === "evaluate" && renderEvaluateSelect()}</div>
+      <div>
+        {type === "evaluate" && (
+          <SelectEvaluation type={type} category={category} name={name} />
+        )}
+      </div>
       <div>{type === "photo" && renderPhotoSelect()}</div>
       <div>{type === "complete" && renderComplete()}</div>
     </div>

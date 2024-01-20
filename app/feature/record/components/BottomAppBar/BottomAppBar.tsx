@@ -3,16 +3,27 @@ import { useRouter, usePathname } from "next/navigation";
 
 export default function BottomAppBar({
   hasFiltersSelected,
+  type,
+  category,
 }: {
   hasFiltersSelected: boolean;
+  type?: string;
+  category?: string;
 }) {
   const pathname = usePathname();
   const router = useRouter();
   const isComplete = pathname.endsWith("/complete");
   const handleButtonClick = () => {
-    if (isComplete) {
-      router.push("/record");
+    if (type === "keyword" || hasFiltersSelected) {
+      router.push(`/record/select/evaluate?&category=${category}`);
     } else {
+      if (isComplete) {
+        router.push("/record");
+      } else {
+        if (type === "evaluate" || hasFiltersSelected) {
+          router.push("/record/select/photo");
+        }
+      }
     }
   };
 

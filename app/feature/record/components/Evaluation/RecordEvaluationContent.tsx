@@ -9,7 +9,7 @@ import {
 } from "@feature/record/constants/evaluate-keywords";
 import BottomAppBar from "../BottomAppBar/BottomAppBar";
 
-export default function RecordEvaluation({
+export default function RecordEvaluationContent({
   category,
 }: {
   category: string;
@@ -33,7 +33,7 @@ export default function RecordEvaluation({
     <div>
       <div>
         <div className="flex flex-col items-start pt-[3.2rem] pb-[22rem] px-[2rem] overflow-y-scroll">
-          {category === "cafe" &&
+          {category === "카페" &&
             CAFE_CATEGORY_EVALUATIONS.map((category, i) => (
               <section
                 key={category}
@@ -62,7 +62,7 @@ export default function RecordEvaluation({
               </section>
             ))}
           <div className="pt-[1.4rem]">
-            {category === "restaurant" &&
+            {(category === "양식" || category === "한식") &&
               RESTAURANT_CATEGORY_EVALUATIONS.map((category, i) => (
                 <section
                   key={category}
@@ -100,7 +100,10 @@ export default function RecordEvaluation({
         </div>
       </div>
       <div className="fixed bottom-0 left-0 right-0 z-10">
-        <BottomAppBar hasFiltersSelected={hasFiltersSelected} />
+        <BottomAppBar
+          hasFiltersSelected={hasFiltersSelected}
+          category={category}
+        />
       </div>
     </div>
   );

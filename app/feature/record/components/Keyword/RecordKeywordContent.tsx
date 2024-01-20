@@ -12,8 +12,10 @@ import {
 } from "@feature/record/constants/select-keywords";
 
 export default function RecordKeywordContent({
+  type,
   category,
 }: {
+  type: string;
   category: string;
 }): JSX.Element {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
@@ -82,7 +84,11 @@ export default function RecordKeywordContent({
           ))}
       </div>
       <div className="fixed bottom-0 left-0 right-0 z-10">
-        <BottomAppBar hasFiltersSelected={hasFiltersSelected} />
+        <BottomAppBar
+          hasFiltersSelected={hasFiltersSelected}
+          type={type}
+          category={category}
+        />
       </div>
     </div>
   );
