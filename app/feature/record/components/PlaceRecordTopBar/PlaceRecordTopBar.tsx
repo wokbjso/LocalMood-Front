@@ -5,21 +5,20 @@ import { useRouter } from "next/navigation";
 
 interface RecordTopBarProps {
   showIndicator: boolean;
+  indicatorIndex: number;
   text: string;
 }
 
 export default function PlaceRecordTopBar({
   showIndicator,
+  indicatorIndex,
   text,
 }: RecordTopBarProps) {
   const router = useRouter();
   const handleBackClick = () => {
     router.back(); // 이전 페이지로 이동
   };
-
-  const handleIndicator = (index: number) => {
-    console.log(`Selected indicator index: ${index}`);
-  };
+  const handleIndicator = (index: number) => {};
 
   return (
     <div className="flex flex-col items-start w-full px-[2rem] py-[1.2rem] gap-[1.2rem]">
@@ -31,7 +30,7 @@ export default function PlaceRecordTopBar({
         {showIndicator && (
           <div className="flex h-[2.8rem] pl-[1.1rem] justify-end items-center">
             <Indicator
-              index={1}
+              index={indicatorIndex}
               handleIndicator={(index) => handleIndicator(index)}
             />
           </div>
