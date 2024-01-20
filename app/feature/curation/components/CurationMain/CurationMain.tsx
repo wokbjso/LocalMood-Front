@@ -45,7 +45,7 @@ export default function CurationMain({
     <>
       <Link
         href={{
-          pathname: `/curation/detail/${userName}/${id}`,
+          pathname: `/curation/detail/${id}`,
         }}
       >
         <div>

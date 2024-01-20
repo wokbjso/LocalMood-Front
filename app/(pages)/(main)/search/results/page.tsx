@@ -11,7 +11,8 @@ import { useSearchParams } from "next/navigation";
 
 export default function SearchResult() {
   const searchParams = useSearchParams();
-  // searchParams.get('searcth_query') 활용한 get api 로 대체(client side - tanstack query)
+  // searchParams.get('search_query') 활용한 get api 로 대체(client side - tanstack query)
+  // keyword로 검색 시 category 가 빈 string이 아닌 category들을 쿼리파라미터로 api post 요청
   const DUMMY_PLACE: PlaceInfoProps[] | [] = [
     {
       id: 0,

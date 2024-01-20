@@ -57,7 +57,7 @@ export default function CurationScrapped({
             )}
             <Link
               href={{
-                pathname: `/curation/detail/${userName}/${id}`,
+                pathname: `/curation/detail/${id}`,
               }}
             >
               <div className="headline2 w-[70%] break-keep mb-[1.2rem] text-white">
