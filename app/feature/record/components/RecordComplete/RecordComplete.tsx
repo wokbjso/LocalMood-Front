@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import CompleteIcon from "@common/assets/images/record_complete.svg";
 import ArrowIcon from "@common/assets/icons/arrow/arrow-right.svg";
 import BottomAppBar from "../BottomAppBar/BottomAppBar";
-
 import SaveModal from "../Modal/SaveModal";
 
 export default function RecordComplete() {
@@ -11,9 +10,11 @@ export default function RecordComplete() {
 
   const handleAddCurationButtonClick = () => {
     setIsAddCuration(true);
+    document.body.style.overflow = "hidden";
   };
   const handleCloseModal = () => {
     setIsAddCuration(false);
+    document.body.style.overflow = "unset";
   };
 
   return (
@@ -43,7 +44,7 @@ export default function RecordComplete() {
         </div>
       </div>
       {isAddCuration && (
-        <div className="fixed bottom-0 left-0 right-0 z-100">
+        <div className="fixed bottom-0 left-0 right-0 z-10">
           <SaveModal onClose={handleCloseModal} />
         </div>
       )}

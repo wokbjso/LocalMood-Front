@@ -11,7 +11,7 @@ export default function SaveModal({ onClose }: RecordCurationProps) {
     <div>
       <GrabModal />
       <div className="bg-white">
-        <div className="w-full h-[41.6rem] px-[2rem] flex-col items-center shrink-0">
+        <div className="w-full h-[41.6rem] px-[2rem] flex-col items-center shrink-0  pb-[39.5rem] overflow-auto">
           <div className="w-full pt-[2rem] inline-flex items-start justify-between">
             <div className="flex pt-[2.4rem] pr-[18rem] headline2-semibold">
               저장할 큐레이션
