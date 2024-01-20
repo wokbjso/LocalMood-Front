@@ -2,8 +2,11 @@ import GrabModal from "@common/components/ui/modal/GrabModal";
 import CloseIcon from "@common/assets/icons/close/close.svg";
 import AddIcon from "@common/assets/icons/add/add-icon.svg";
 import PlaceIcon from "@common/assets/icons/location/location-line.svg";
+interface RecordCurationProps {
+  onClose: () => void;
+}
 
-export default function SaveModal() {
+export default function SaveModal({ onClose }: RecordCurationProps) {
   return (
     <div>
       <GrabModal />
@@ -13,7 +16,7 @@ export default function SaveModal() {
             <div className="flex pt-[2.4rem] pr-[18rem] headline2-semibold">
               저장할 큐레이션
             </div>
-            <CloseIcon />
+            <CloseIcon onClick={onClose} />
           </div>
           <div className="pt-[2rem] inline-flex flex-col items-start gap-[1.2rem]">
             <div className="flex items-center gap-[1.2rem] body1-medium text-text-gray-8">
