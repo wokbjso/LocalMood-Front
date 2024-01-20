@@ -2,11 +2,16 @@ import GrabModal from "@common/components/ui/modal/GrabModal";
 import CloseIcon from "@common/assets/icons/close/close.svg";
 import AddIcon from "@common/assets/icons/add/add-icon.svg";
 import PlaceIcon from "@common/assets/icons/location/location-line.svg";
+import { useRouter } from "next/navigation";
 interface RecordCurationProps {
   onClose: () => void;
 }
 
 export default function SaveModal({ onClose }: RecordCurationProps) {
+  const router = useRouter();
+  const handleCurationClick = () => {
+    router.push("/record");
+  };
   return (
     <div>
       <GrabModal />
@@ -25,7 +30,10 @@ export default function SaveModal({ onClose }: RecordCurationProps) {
               </div>
               <div>새 큐레이션 만들기</div>
             </div>
-            <div className="flex items-center gap-[1.2rem]">
+            <div
+              className="flex items-center gap-[1.2rem]"
+              onClick={handleCurationClick}
+            >
               <div className="w-[6rem] h-[6rem] bg-background-gray-2 rounded-lg flex"></div>
               <div className="flex flex-col items-start gap-[0.8rem]">
                 <div className="headline2-semibold">크리스마스 데이트 코스</div>
@@ -39,7 +47,10 @@ export default function SaveModal({ onClose }: RecordCurationProps) {
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-[1.2rem]">
+            <div
+              className="flex items-center gap-[1.2rem]"
+              onClick={handleCurationClick}
+            >
               <div className="w-[6rem] h-[6rem] bg-background-gray-2 rounded-lg flex"></div>
               <div className="flex flex-col items-start gap-[0.8rem]">
                 <div className="headline2-semibold">큐레이션2</div>
@@ -53,7 +64,10 @@ export default function SaveModal({ onClose }: RecordCurationProps) {
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-[1.2rem]">
+            <div
+              className="flex items-center gap-[1.2rem]"
+              onClick={handleCurationClick}
+            >
               <div className="w-[6rem] h-[6rem] bg-background-gray-2 rounded-lg flex"></div>
               <div className="flex flex-col items-start gap-[0.8rem]">
                 <div className="headline2-semibold">큐레이션3</div>
