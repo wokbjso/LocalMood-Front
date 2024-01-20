@@ -9,6 +9,7 @@ interface FilterProps {
   variant?: "static" | "showOptions";
   photo?: string[];
   label: string;
+  selected?: boolean;
   onClick?: () => void;
   className?: string;
 }
@@ -17,14 +18,13 @@ export default function Filter({
   variant = "static",
   photo,
   label,
+  selected = false,
   onClick,
   className,
 }: FilterProps) {
-  const [selected, setSelected] = useState(false);
   const [openOptions, setOpenOptions] = useState(false);
   const filterClicked = () => {
     onClick && onClick();
-    setSelected((prev) => !prev);
     if (variant === "showOptions") setOpenOptions((prev) => !prev);
   };
   return (

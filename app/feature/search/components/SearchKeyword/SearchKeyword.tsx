@@ -18,7 +18,8 @@ import useSearchKeyword from "./useSearchKeyword";
 
 export default function SearchKeyword() {
   const searchParams = useSearchParams();
-  const { tabIndex, handlers } = useSearchKeyword();
+  const { cafeKeyword, tabIndex, handlers } = useSearchKeyword();
+  console.log(cafeKeyword);
   return (
     searchParams.get("keyword_search") === "true" && (
       <>
@@ -43,7 +44,7 @@ export default function SearchKeyword() {
           </div>
           <Tab
             sections={[{ text: "음식점" }, { text: "카페" }]}
-            onChange={handlers.handleTabIndex}
+            onChange={handlers.changeTabIndex}
             className="pl-[2rem] w-[35%]"
           />
           <Divider className="h-[0.1rem] bg-line-gray-3" />
@@ -68,7 +69,7 @@ export default function SearchKeyword() {
                           key={keyword}
                           label={keyword}
                           variant={
-                            category === "음식" ? "showOptions" : undefined
+                            category === "food" ? "showOptions" : undefined
                           }
                         />
                       )
@@ -91,7 +92,14 @@ export default function SearchKeyword() {
                   </div>
                   <div className="flex flex-wrap gap-[0.6rem]">
                     {CAFE_KEYWORDS[CAFE_CATEGORY[category]].map((keyword) => (
-                      <Filter key={keyword} label={keyword} />
+                      <Filter
+                        key={keyword}
+                        label={keyword}
+                        selected={cafeKeyword[category] === keyword}
+                        onClick={() =>
+                          handlers.changeKeywordData(category, keyword)
+                        }
+                      />
                     ))}
                   </div>
                 </section>
