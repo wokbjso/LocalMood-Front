@@ -2,12 +2,14 @@
 import {
   CAFE_CATEGORY,
   CAFE_KEYWORDS,
-  RESTARANT_KEYWORDS,
-  RESTAURANT_CATEGORY,
 } from "@feature/search/constants/search-keywords";
 import Filter from "@common/components/ui/buttons/Filter/Filter";
 import BottomAppBar from "../BottomAppBar/BottomAppBar";
 import { useState } from "react";
+import {
+  RESTARANT_KEYWORDS,
+  RESTAURANT_CATEGORY,
+} from "@feature/record/constants/select-keywords";
 
 export default function RecordKeywordContent({
   category,
