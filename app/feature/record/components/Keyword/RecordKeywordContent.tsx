@@ -9,7 +9,7 @@ import Filter from "@common/components/ui/buttons/Filter/Filter";
 import BottomAppBar from "../BottomAppBar/BottomAppBar";
 import { useState } from "react";
 
-export default function RecordKeyword({
+export default function RecordKeywordContent({
   category,
 }: {
   category: string;
@@ -33,7 +33,7 @@ export default function RecordKeyword({
   return (
     <div>
       <div className="flex flex-col items-start h-full pt-[3.2rem] pb-[22rem] pl-[2.05rem] pr-[1.95rem] overflow-y-scroll">
-        {category === "cafe" &&
+        {category === "카페" &&
           CAFE_CATEGORY.map((category, i) => (
             <section
               key={category}
@@ -54,7 +54,7 @@ export default function RecordKeyword({
               </div>
             </section>
           ))}
-        {category === "restaurant" &&
+        {(category === "양식" || category === "한식") &&
           RESTAURANT_CATEGORY.map((category, i) => (
             <section
               key={category}

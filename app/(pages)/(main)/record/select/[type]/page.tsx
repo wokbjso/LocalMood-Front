@@ -1,27 +1,18 @@
 "use client";
-import { usePathname } from "next/navigation";
-import RecordKeyword from "@feature/record/components/Keyword/RecordKeyword";
+import { usePathname, useSearchParams } from "next/navigation";
 import PlaceRecordTopBar from "@feature/record/components/PlaceRecordTopBar/PlaceRecordTopBar";
 import RecordEvaluation from "@feature/record/components/Evaluation/RecordEvaluation";
 import RecordComplete from "@feature/record/components/RecordComplete/RecordComplete";
 import PhotoUpload from "@feature/record/components/PhotoUpload/PhotoUpload";
+import SelectKeyword from "@feature/record/components/Keyword/SelectKeyword";
 
 export default function RecordSelect() {
   const pathname = usePathname();
-
+  const searchParams = useSearchParams();
+  const category = searchParams.get("category") || "";
+  const name = searchParams.get("name") || "";
   const type = pathname.split("/").pop();
 
-  const renderKeywordSelect = () => {
-    return (
-      <div>
-        <PlaceRecordTopBar
-          showIndicator={true}
-          text="나이스워크투데이를 나타내는 키워드를 골라주세요"
-        />
-        <RecordKeyword category={"cafe"} />
-      </div>
-    );
-  };
   const renderEvaluateSelect = () => {
     return (
       <div>
@@ -54,7 +45,11 @@ export default function RecordSelect() {
 
   return (
     <div>
-      <div>{type === "keyword" && renderKeywordSelect()}</div>
+      <div>
+        {type === "keyword" && (
+          <SelectKeyword category={category} name={name} />
+        )}
+      </div>
       <div>{type === "evaluate" && renderEvaluateSelect()}</div>
       <div>{type === "photo" && renderPhotoSelect()}</div>
       <div>{type === "complete" && renderComplete()}</div>
