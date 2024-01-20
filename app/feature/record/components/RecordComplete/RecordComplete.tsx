@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import CompleteIcon from "@common/assets/images/record_complete.svg";
 import ArrowIcon from "@common/assets/icons/arrow/arrow-right.svg";
 import BottomAppBar from "../BottomAppBar/BottomAppBar";
-import { setMaxIdleHTTPParsers } from "http";
+
 import SaveModal from "../Modal/SaveModal";
 
 export default function RecordComplete() {
