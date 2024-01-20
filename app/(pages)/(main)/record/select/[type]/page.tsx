@@ -3,6 +3,7 @@ import { usePathname } from "next/navigation";
 import RecordKeyword from "@feature/record/components/Keyword/RecordKeyword";
 import PlaceRecordTopBar from "@feature/record/components/PlaceRecordTopBar/PlaceRecordTopBar";
 import RecordEvaluation from "@feature/record/components/Evaluation/RecordEvaluation";
+import RecordComplete from "@feature/record/components/RecordComplete/RecordComplete";
 import PhotoUpload from "@feature/record/components/PhotoUpload/PhotoUpload";
 
 export default function RecordSelect() {
@@ -43,12 +44,20 @@ export default function RecordSelect() {
       </div>
     );
   };
+  const renderComplete = () => {
+    return (
+      <div>
+        <RecordComplete />
+      </div>
+    );
+  };
 
   return (
     <div>
       <div>{type === "keyword" && renderKeywordSelect()}</div>
       <div>{type === "evaluate" && renderEvaluateSelect()}</div>
       <div>{type === "photo" && renderPhotoSelect()}</div>
+      <div>{type === "complete" && renderComplete()}</div>
     </div>
   );
 }

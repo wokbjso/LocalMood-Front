@@ -132,6 +132,13 @@ module.exports = {
           lineHeight: "100%",
           letterSpacing: "-2%",
         },
+        ".record-complete": {
+          fontFamily: "Pretendard",
+          fontWeight: "600",
+          fontSize: "2rem",
+          lineHeight: "100%",
+          letterSpacing: "-0.4px",
+        },
       });
     }),
   ],
