@@ -18,8 +18,8 @@ import useSearchKeyword from "./useSearchKeyword";
 
 export default function SearchKeyword() {
   const searchParams = useSearchParams();
-  const { cafeKeyword, tabIndex, handlers } = useSearchKeyword();
-  console.log(cafeKeyword);
+  const { cafeKeyword, restaurantKeyword, tabIndex, handlers } =
+    useSearchKeyword();
   return (
     searchParams.get("keyword_search") === "true" && (
       <>
@@ -68,8 +68,12 @@ export default function SearchKeyword() {
                         <Filter
                           key={keyword}
                           label={keyword}
+                          selected={restaurantKeyword[category] === keyword}
                           variant={
                             category === "food" ? "showOptions" : undefined
+                          }
+                          onClick={() =>
+                            handlers.changeKeywordData(category, keyword)
                           }
                         />
                       )

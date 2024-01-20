@@ -13,14 +13,30 @@ export default function useSearchKeyword() {
     service: "",
     desert: "",
   });
+  const [restaurantKeyword, setRestaurantKeyword] = useState<{
+    [key: string]: string;
+  }>({
+    type: "restaurant",
+    food: "",
+    purpose: "",
+    max_people: "",
+    mood: "",
+    drinks: "",
+    music: "",
+    service: "",
+  });
   const [tabIndex, setTabIndex] = useState<number>(0);
 
   const handleKeywordData = (category: string, keyword: string) => {
-    if (tabIndex === 1) {
+    if (tabIndex === 0) {
+      if (restaurantKeyword[category] === keyword)
+        setRestaurantKeyword({ ...restaurantKeyword, [category]: "" });
+      else setRestaurantKeyword({ ...restaurantKeyword, [category]: keyword });
+    } else if (tabIndex === 1) {
       if (cafeKeyword[category] === keyword)
         setCafeKeyword({ ...cafeKeyword, [category]: "" });
       else setCafeKeyword({ ...cafeKeyword, [category]: keyword });
-    }
+    } else return;
   };
 
   const handleTabIndex = (index: number) => {
@@ -29,6 +45,7 @@ export default function useSearchKeyword() {
 
   return {
     cafeKeyword,
+    restaurantKeyword,
     tabIndex,
     handlers: {
       changeTabIndex: handleTabIndex,
