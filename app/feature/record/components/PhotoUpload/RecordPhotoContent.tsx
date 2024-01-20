@@ -1,7 +1,13 @@
 import AddIcon from "@common/assets/icons/add/add-fill.svg";
 import BottomAppBar from "../BottomAppBar/BottomAppBar";
 
-export default function PhotoUpload() {
+export default function PhotoUpload({
+  type,
+  category,
+}: {
+  type: string;
+  category: string;
+}) {
   return (
     <div>
       <div className="inline-flex flex-col items-start pt-[6rem] pl-[2rem] gap-[1.2rem]">
@@ -14,7 +20,7 @@ export default function PhotoUpload() {
         </div>
       </div>
       <div className="fixed bottom-0 left-0 right-0 z-10">
-        <BottomAppBar />
+        <BottomAppBar type={type} category={category} />
       </div>
     </div>
   );

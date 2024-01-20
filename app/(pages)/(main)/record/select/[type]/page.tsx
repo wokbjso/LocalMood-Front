@@ -12,14 +12,6 @@ export default function RecordSelect() {
   const name = searchParams.get("name") || "";
   const type = pathname.split("/").pop();
 
-  const renderComplete = () => {
-    return (
-      <div>
-        <RecordComplete />
-      </div>
-    );
-  };
-
   return (
     <div>
       <div>
@@ -32,8 +24,12 @@ export default function RecordSelect() {
           <SelectEvaluation type={type} category={category} name={name} />
         )}
       </div>
-      <div>{type === "photo" && <SelectPhoto />}</div>
-      <div>{type === "complete" && renderComplete()}</div>
+      <div>
+        {type === "photo" && (
+          <SelectPhoto type={type} category={category} name={name} />
+        )}
+      </div>
+      <div>{type === "complete" && <RecordComplete />}</div>
     </div>
   );
 }

@@ -18,6 +18,8 @@ export default function BottomAppBar({
       router.push(`/record/select/evaluate?&category=${category}`);
     } else if (type === "evaluate") {
       router.push("/record/select/photo");
+    } else if (type === "photo") {
+      router.push("/record/select/complete");
     } else if (isComplete) {
       router.push("/record");
     } else {
