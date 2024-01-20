@@ -77,6 +77,7 @@ export default function Home() {
       userName: "김지원",
       mainText: "평일에 좋은 마포구 데이트 코스",
       hashTags: ["연인과의 데이트", "평일"],
+      places: 6,
     },
     {
       id: 2,
@@ -174,9 +175,12 @@ export default function Home() {
           <div className="flex justify-between mb-[1.6rem]">
             <span className="headline2 text-black">마포구 인기 큐레이션</span>
             <div className="flex items-center headline2 text-black">
-              <span className="mr-[1rem] text-text-gray-6 body2-semibold">
-                더보기
-              </span>
+              <LinkLayout routeUrl="/curation/popular">
+                <span className="mr-[1rem] text-text-gray-6 body2-semibold">
+                  더보기
+                </span>
+              </LinkLayout>
+
               <RightArrow />
             </div>
           </div>
