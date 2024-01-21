@@ -4,6 +4,7 @@ import ShareIcon from "@common/assets/icons/share/share.svg";
 import Modal from "@common/components/ui/modal/Modal";
 import { useState } from "react";
 import CurationDeleteConfirmModal from "./CurationDeleteConfirmModal";
+import UseOutsideClick from "@common/hooks/useOutsideClick";
 
 interface CurationMenuModalProps {
   id: number;
@@ -16,7 +17,12 @@ export default function CurationMenuModal({
   hasCopyLink = false,
   handleMenuModalState,
 }: CurationMenuModalProps) {
+  const { ref } = UseOutsideClick<HTMLDivElement>(handleMenuModalState);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+
+  const handleCurationEditClick = () => {
+    //편집하기 로직
+  };
 
   const handleCurationDeleteClick = () => {
     setDeleteModalOpen(true);
@@ -35,9 +41,12 @@ export default function CurationMenuModal({
   return (
     <>
       {
-        <Modal>
+        <Modal ref={ref}>
           <div className="pl-[2rem] pt-[1.8rem]">
-            <div className="flex items-center mb-[2rem]">
+            <div
+              className="flex items-center mb-[2rem]"
+              onClick={handleCurationEditClick}
+            >
               <EditIcon />
               <span className="body1 text-black ml-[1.2rem]">편집하기</span>
             </div>

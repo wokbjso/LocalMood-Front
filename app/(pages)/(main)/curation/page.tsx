@@ -31,7 +31,7 @@ export default function CurationPage() {
       hashTags: ["연인과의 데이트", "크리스마스"],
       scrapped: false,
       onClick: () => {},
-      places: 12,
+      places: 9,
     },
     {
       id: 1,
@@ -46,7 +46,7 @@ export default function CurationPage() {
       hashTags: ["연인과의 데이트", "크리스마스"],
       scrapped: false,
       onClick: () => {},
-      places: 0,
+      places: 10,
     },
     {
       id: 2,
@@ -76,7 +76,7 @@ export default function CurationPage() {
       hashTags: ["연인과의 데이트", "크리스마스"],
       scrapped: false,
       onClick: () => {},
-      places: 12,
+      places: 1,
     },
   ];
 
