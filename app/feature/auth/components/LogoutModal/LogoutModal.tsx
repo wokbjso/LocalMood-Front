@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function LogoutModal() {
   return (
-    <Modal className="h-[12.4rem]">
+    <Modal className="pb-[4rem]">
       <Link
         href={{
           pathname: "/",
