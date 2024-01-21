@@ -115,6 +115,7 @@ export default function CurationMain({
       </Link>
       {isMenuOpened && (
         <CurationMenuModal
+          id={id}
           hasCopyLink
           handleMenuModalState={handlers.changeMenuModalState}
         />

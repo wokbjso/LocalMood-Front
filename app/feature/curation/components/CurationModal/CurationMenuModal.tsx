@@ -3,15 +3,16 @@ import DeleteIcon from "@common/assets/icons/delete/delete.svg";
 import ShareIcon from "@common/assets/icons/share/share.svg";
 import Modal from "@common/components/ui/modal/Modal";
 import { useState } from "react";
-import CloseIcon from "@common/assets/icons/close/CloseIcon";
-import Button from "@common/components/ui/buttons/Button/Button";
+import CurationDeleteConfirmModal from "./CurationDeleteConfirmModal";
 
 interface CurationMenuModalProps {
+  id: number;
   hasCopyLink?: boolean;
   handleMenuModalState: (state: boolean) => void;
 }
 
 export default function CurationMenuModal({
+  id,
   hasCopyLink = false,
   handleMenuModalState,
 }: CurationMenuModalProps) {
@@ -19,6 +20,16 @@ export default function CurationMenuModal({
 
   const handleCurationDeleteClick = () => {
     setDeleteModalOpen(true);
+  };
+
+  const handleLinkCopyClick = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      handleMenuModalState(false);
+      alert("클립보드에 링크가 복사되었어요.");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -38,7 +49,12 @@ export default function CurationMenuModal({
               <span className="body1 text-black ml-[1.2rem]">삭제하기</span>
             </div>
             {hasCopyLink && (
-              <div className="flex items-center">
+              <div
+                className="flex items-center"
+                onClick={() =>
+                  handleLinkCopyClick(`'도메인주소'/curation/detail/${id}`)
+                }
+              >
                 <ShareIcon />
                 <span className="body1 text-black ml-[1.2rem]">링크복사</span>
               </div>
@@ -47,21 +63,11 @@ export default function CurationMenuModal({
         </Modal>
       }
       {deleteModalOpen && (
-        <Modal className="px-[2rem]">
-          <CloseIcon className="absolute right-[2.4rem] top-[4rem]" />
-          <p className="text-black headline1 mt-[4.4rem]">
-            정말 삭제하시겠습니까?
-          </p>
-          <div className="flex mt-[4rem] gap-[1rem]">
-            <Button
-              className="bg-text-gray-4 text-background-gray-1"
-              onClick={() => handleMenuModalState(false)}
-            >
-              취소하기
-            </Button>
-            <Button>삭제하기</Button>
-          </div>
-        </Modal>
+        <CurationDeleteConfirmModal
+          id={id}
+          handleMenuModalState={handleMenuModalState}
+          handleDeleteModalState={setDeleteModalOpen}
+        />
       )}
     </>
   );
