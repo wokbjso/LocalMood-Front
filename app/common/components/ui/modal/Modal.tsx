@@ -12,7 +12,7 @@ export default function Modal({ children, className }: ModalProps) {
       <div className="w-full h-[100vh] absolute bottom-0 left-0 bg-black opacity-[0.5] z-10" />
       <div
         className={twMerge(
-          "w-full absolute bottom-0 left-0 bg-white rounded-t-[14px] overflow-y-hidden z-10",
+          "w-full absolute bottom-0 left-0 bg-white rounded-t-[14px] overflow-y-hidden z-10 pb-[4rem]",
           className
         )}
         style={{

@@ -118,14 +118,7 @@ export default function CurationMain({
           </div>
         </div>
       </Link>
-      {isMenuOpened && (
-        <>
-          <div className="h-[100vh] w-full bg-black absolute bottom-0 left-0 z-10 opacity-[0.4]" />
-          <div className="fixed overflow-y-hidden top-[62.1rem] bottom-0 left-0 z-10 right-0">
-            <CurationMenu />
-          </div>
-        </>
-      )}
+      {isMenuOpened && <CurationMenu />}
     </>
   );
 }

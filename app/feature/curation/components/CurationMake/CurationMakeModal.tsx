@@ -1,4 +1,3 @@
-import GrabModal from "@common/components/ui/modal/GrabModal";
 import CloseIcon from "@common/assets/icons/close/close.svg";
 import TextField from "@common/components/ui/textField/TextField";
 import ButtonLock from "@common/components/ui/buttons/Button/ButtonLock";
@@ -21,7 +20,6 @@ export default function CurationMakeModal({
       <>
         <div className="absolute h-[100vh] w-full bg-black opacity-[0.4] z-10 bottom-0 left-0" />
         <div className="fixed top-[4.6rem] bottom-0 left-0 right-0 z-10">
-          <GrabModal />
           <div className="bg-white">
             <div className="h-[81.2rem] p-[2rem] flex flex-col items-center">
               <div
