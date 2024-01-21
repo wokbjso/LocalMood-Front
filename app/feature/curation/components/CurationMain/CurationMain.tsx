@@ -1,16 +1,16 @@
 "use client";
 
 import UserProfile from "@feature/user/components/UserProfile/UserProfile";
-import { useState } from "react";
 import { CurationProps } from "@feature/curation/type";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { twMerge } from "tailwind-merge";
-import CurationMenu from "./CurationMenu";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import Link from "next/link";
 import MenuIcon from "@common/assets/icons/menu/MenuIcon";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
 import LocationLine from "@common/assets/icons/location/LocationLine";
+import CurationMenuModal from "../CurationModal/CurationMenuModal";
+import UseCurationMain from "./useCurationMain";
 
 export default function CurationMain({
   id,
@@ -25,20 +25,15 @@ export default function CurationMain({
   className,
   places,
 }: CurationProps) {
-  const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
-  const [isMenuOpened, setIsMenuOpened] = useState(false);
-  const handleScrap = () => {
-    setIsScrapped((prev) => !prev);
-    //api 문서에 맞게 해당 큐레이션 scrap 상태 바꾸는 api 호출(client side - tanstack query)
+  const { isScrapped, isMenuOpened, handlers } = UseCurationMain(scrapped);
+
+  const handleScrapClick = () => {
+    handlers.changeScrapState(id);
   };
-  const handleCurationMenuClick = (
-    e: React.MouseEvent<SVGSVGElement, MouseEvent>
-  ) => {
+
+  const handleMenuClick = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     e.preventDefault();
-    setIsMenuOpened(true);
-  };
-  const handleCloseMenuModal = () => {
-    setIsMenuOpened(false);
+    handlers.changeMenuModalState(true);
   };
 
   return (
@@ -84,18 +79,18 @@ export default function CurationMain({
                   isScrapped ? (
                     <ScrapFill
                       className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-                      onClick={handleScrap}
+                      onClick={handleScrapClick}
                     />
                   ) : (
                     <ScrapLine
                       className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-                      onClick={handleScrap}
+                      onClick={handleScrapClick}
                     />
                   )
                 ) : (
                   <MenuIcon
                     className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-                    onClick={handleCurationMenuClick}
+                    onClick={handleMenuClick}
                   />
                 )}
                 <div className="max-w-[24.4rem] headline2 w-[70%] break-keep mb-[1.2rem] text-black">
@@ -118,7 +113,12 @@ export default function CurationMain({
           </div>
         </div>
       </Link>
-      {isMenuOpened && <CurationMenu />}
+      {isMenuOpened && (
+        <CurationMenuModal
+          hasCopyLink
+          handleMenuModalState={handlers.changeMenuModalState}
+        />
+      )}
     </>
   );
 }
