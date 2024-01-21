@@ -6,9 +6,12 @@ import { PlaceInfoProps } from "@feature/place/type";
 export default function PlaceInfoBottom({
   tags,
   tagsCategoryNum,
-}: Pick<PlaceInfoProps, "tags" | "tagsCategoryNum">) {
+  bottomClassName,
+}: Pick<PlaceInfoProps, "tags" | "tagsCategoryNum" | "bottomClassName">) {
   return (
-    <div className="w-full mt-[1.6rem] flex flex-wrap ">
+    <div
+      className={twMerge("w-full mt-[1.6rem] flex flex-wrap", bottomClassName)}
+    >
       {tagsCategoryNum === 0
         ? tags?.interior.map((tag, i) => (
             <Chip

@@ -14,6 +14,8 @@ export default function PlaceInfoMain({
   tagsCategoryNum,
   onClick,
   className,
+  imgClassName,
+  bottomClassName,
 }: PlaceInfoProps) {
   return (
     <div>
@@ -27,9 +29,14 @@ export default function PlaceInfoMain({
         scrapped={scrapped}
         onClick={onClick}
         className={className}
+        imgClassName={imgClassName}
       />
       {tags && (
-        <PlaceInfoBottom tags={tags} tagsCategoryNum={tagsCategoryNum} />
+        <PlaceInfoBottom
+          tags={tags}
+          tagsCategoryNum={tagsCategoryNum}
+          bottomClassName={bottomClassName}
+        />
       )}
     </div>
   );

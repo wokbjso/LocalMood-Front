@@ -7,7 +7,7 @@ import ArrowUp from "@common/assets/icons/arrow/ArrowUp";
 
 interface FilterProps {
   variant?: "static" | "showOptions";
-  photo?: string[];
+  photo?: string;
   label: string;
   selected?: boolean;
   onClick?: () => void;

@@ -37,7 +37,7 @@ export default function PlaceInfoTop({
       <div className={twMerge("w-full relative", className)} onClick={onClick}>
         <div className={twMerge("w-full h-[16rem] relative")}>
           <Image
-            src={placeImg}
+            src={placeImg[0]}
             alt="공간 사진"
             fill
             sizes="100vw"
