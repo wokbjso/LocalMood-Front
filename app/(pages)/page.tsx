@@ -1,12 +1,8 @@
-import RightArrow from "@common/assets/icons/arrow/arrow-right.svg";
-import CurationHomeList from "@feature/curation/components/CurationHomeList/CurationHomeList";
 import HomeHeader from "@common/components/layout/Header/HomeHeader";
-import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
-import Slider from "@common/components/layout/Slider/Slider";
 import Footer from "@common/components/layout/Footer/Footer";
 import PlaceHomeSlider from "@feature/place/components/PlaceHomeSlider/PlaceHomeSlider";
-import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import HomeBanner from "./components/HomeBanner";
+import CurationHomePopular from "@feature/curation/components/CurationHomePopular/CurationHomePopular";
 
 export default function Home() {
   //장소 get api 데이터로 대체(server side - fetch)
@@ -32,7 +28,7 @@ export default function Home() {
       ],
       category: "카페",
       location: "마포구 망원동",
-      scrapped: false,
+      scrapped: true,
       tags: {
         interior: ["통창뷰", "넓은 공간"],
       },
@@ -62,6 +58,7 @@ export default function Home() {
       userName: "김지원",
       mainText: "평일에 좋은 마포구 데이트 코스",
       hashTags: ["연인과의 데이트", "평일"],
+      scrapped: true,
       places: 6,
     },
     {
@@ -94,69 +91,31 @@ export default function Home() {
       <HomeHeader />
       <HomeBanner />
       <div className="pb-[12.3rem] pt-[4rem]">
-        <PlaceHomeSlider mainText="연인과의 데이트" subText="를 위한 공간">
-          <Slider className="mt-[1.6rem]">
-            {PLACE_DUMMY.map((data) => (
-              <PlaceInfoMain
-                key={data.id}
-                {...data}
-                tagsCategoryNum={0}
-                className="w-[33.5rem] mr-[1.2rem]"
-              />
-            ))}
-          </Slider>
-        </PlaceHomeSlider>
-        <PlaceHomeSlider mainText="친구와의 만남" subText="을 위한 공간">
-          <Slider className="mt-[1.6rem]">
-            {PLACE_DUMMY.map((data) => (
-              <PlaceInfoMain
-                key={data.id}
-                {...data}
-                tagsCategoryNum={0}
-                className="w-[33.5rem] mr-[1.2rem]"
-              />
-            ))}
-          </Slider>
-        </PlaceHomeSlider>
-        <section className="mb-[5.6rem] pt-[2.8rem] pb-[2rem] px-[2rem] bg-background-gray-2">
-          <div className="flex justify-between mb-[1.6rem]">
-            <span className="headline2 text-black">마포구 인기 큐레이션</span>
-            <div className="flex items-center headline2 text-black">
-              <LinkLayout routeUrl="/curation/popular">
-                <span className="mr-[1rem] text-text-gray-6 body2-semibold">
-                  더보기
-                </span>
-              </LinkLayout>
-
-              <RightArrow />
-            </div>
-          </div>
-          <CurationHomeList curationList={CURATION_DUMMY} />
-        </section>
-        <PlaceHomeSlider mainText="왁자지껄 떠들기 좋은" subText="공간">
-          <Slider className="mt-[1.6rem]">
-            {PLACE_DUMMY.map((data) => (
-              <PlaceInfoMain
-                key={data.id}
-                {...data}
-                tagsCategoryNum={0}
-                className="w-[33.5rem] mr-[1.2rem]"
-              />
-            ))}
-          </Slider>
-        </PlaceHomeSlider>
-        <PlaceHomeSlider mainText="대화에 집중할 수 있는" subText="공간">
-          <Slider className="mt-[1.6rem]">
-            {PLACE_DUMMY.map((data) => (
-              <PlaceInfoMain
-                key={data.id}
-                {...data}
-                tagsCategoryNum={0}
-                className="w-[33.5rem] mr-[1.2rem]"
-              />
-            ))}
-          </Slider>
-        </PlaceHomeSlider>
+        <PlaceHomeSlider
+          mainText="연인과의 데이트"
+          subText="를 위한 공간"
+          placeList={PLACE_DUMMY}
+        ></PlaceHomeSlider>
+        <PlaceHomeSlider
+          mainText="친구와의 만남"
+          subText="을 위한 공간"
+          placeList={PLACE_DUMMY}
+        />
+        <CurationHomePopular
+          mainText="마포구 인기 큐레이션"
+          subText="더보기"
+          curationList={CURATION_DUMMY}
+        />
+        <PlaceHomeSlider
+          mainText="왁자지껄 떠들기 좋은"
+          subText="공간"
+          placeList={PLACE_DUMMY}
+        />
+        <PlaceHomeSlider
+          mainText="대화에 집중할 수 있는"
+          subText="공간"
+          placeList={PLACE_DUMMY}
+        />
       </div>
       <Footer />
     </>

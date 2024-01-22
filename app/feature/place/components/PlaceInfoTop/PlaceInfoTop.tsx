@@ -26,7 +26,7 @@ export default function PlaceInfoTop({
   const handleScrap = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     e.preventDefault();
     setIsScrapped((prev) => !prev);
-    //api 문서에 맞게 해당 장소 scrap 상태 변경 api 호출(client side - tanstack query)
+    //장소 id 활용하여 api 문서에 맞게 해당 장소 scrap 상태 변경 api 호출(client side - tanstack query)
   };
   return (
     <Link
