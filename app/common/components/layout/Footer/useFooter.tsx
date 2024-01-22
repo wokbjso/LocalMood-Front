@@ -1,12 +1,14 @@
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function useFooter() {
   const pathname = usePathname();
+  const searchPattern = /^\/search(\/.*)?$/;
+  const curationPattern = /^\/curation(\/.*)?$/;
   const [footerState, setFooterState] = useState<number>(
-    pathname === "/"
+    pathname === "/" || searchPattern.test(pathname)
       ? 0
-      : pathname.startsWith("/curation")
+      : curationPattern.test(pathname)
       ? 2
       : pathname === "/mypage"
       ? 3
@@ -16,6 +18,8 @@ export default function useFooter() {
   const handleFooterState = (index: number) => {
     setFooterState(index);
   };
+
+  useEffect(() => {}, [pathname]);
 
   return {
     footerState,

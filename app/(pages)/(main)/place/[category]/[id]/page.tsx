@@ -6,18 +6,20 @@ import Chip from "@common/components/ui/buttons/Chip/Chip";
 import GraphUpDownVote from "@common/components/ui/graph/GraphUpDownVote/GraphUpDownVote";
 import Button from "@common/components/ui/buttons/Button/Button";
 import Slider from "@common/components/layout/Slider/Slider";
-import PlaceDetailInfo from "@feature/place/components/PlaceDetailInfo/PlaceDetailInfo";
+import PlaceDetailInfo from "@feature/place/components/PlaceDetail/PlaceDetailInfo";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
-import DetailTopBar from "@common/components/ui/topBar/DetailTopBar/DetailTopBar";
+import DetailTopBar from "@feature/place/components/PlaceDetail/PlaceDetailTopBar";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import CurationScrapped from "@feature/curation/components/CurationScrapped/CurationScrapped";
+import PlaceDetailTopBar from "@feature/place/components/PlaceDetail/PlaceDetailTopBar";
 
 export default function PlaceDetail() {
   const DETAIL_DUMMY = {
     id: 0,
     placeName: "나이스워크투데이",
-    placeImg:
+    placeImg: [
       "https://media.istockphoto.com/id/1446199740/ko/%EC%82%AC%EC%A7%84/%ED%96%87%EB%B3%95%EC%9D%B4-%EC%9E%98-%EB%93%9C%EB%8A%94-%EC%88%B2%EC%9D%84-%ED%86%B5%EA%B3%BC%ED%95%98%EB%8A%94-%EA%B8%B8.jpg?s=2048x2048&w=is&k=20&c=3z_ODBT78uZDVqy-3B6r8LBa825AuSpL0xfzySe2fj8=",
+    ],
     category: "카페",
     location: "마포구 망원동",
     scrapped: false,
@@ -118,9 +120,13 @@ export default function PlaceDetail() {
   return (
     <div className="pb-[12rem]">
       <div className="w-full h-[30rem] mb-[1.5rem] relative">
-        <Image src={DETAIL_DUMMY.placeImg} alt="공간 상세 사진" fill />
+        <Image src={DETAIL_DUMMY.placeImg[0]} alt="공간 상세 사진" fill />
       </div>
-      <DetailTopBar className="absolute top-[4.7rem]" />
+      <PlaceDetailTopBar
+        id={DETAIL_DUMMY.id}
+        scrapped={DETAIL_DUMMY.scrapped}
+        className="absolute top-[4.7rem]"
+      />
       <PlaceDetailInfo
         id={DETAIL_DUMMY.id}
         placeName={DETAIL_DUMMY.placeName}

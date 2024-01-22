@@ -5,8 +5,6 @@ import Line from "@common/assets/icons/line/line.svg";
 import { PlaceInfoProps } from "@feature/place/type";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import { useState } from "react";
-import { usePathname } from "next/navigation";
-import path from "path";
 
 export default function PlaceDetailInfo({
   id,
@@ -18,8 +16,6 @@ export default function PlaceDetailInfo({
   PlaceInfoProps,
   "id" | "placeName" | "category" | "location" | "scrapped"
 >) {
-  const pathname = usePathname();
-  console.log(pathname);
   const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
   const scrapIconClicked = () => {
     setIsScrapped((prev) => !prev);
