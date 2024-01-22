@@ -13,7 +13,7 @@ export default function CurationMakeModal({
   isOpen,
   handleOpen,
 }: CurationMakeProps) {
-  const { handlers } = UseCurationMake();
+  const { curationMakeData, handlers } = UseCurationMake();
   const closeIconClicked = () => {
     handleOpen(false);
   };
@@ -37,7 +37,10 @@ export default function CurationMakeModal({
                 <ButtonLock onClick={handlers.changeCurationOpen} />
               </div>
               <div className="w-full pt-[3.2rem] overflow-auto">
-                <CurationMakeKeyword />
+                <CurationMakeKeyword
+                  curationMakeData={curationMakeData}
+                  onClick={handlers.changeKeyword}
+                />
               </div>
             </div>
           </div>

@@ -4,7 +4,7 @@ import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import Logo from "@common/assets/images/localmood_logo.svg";
 import FormInput from "@common/components/ui/input/FormInput/FormInput";
 import Button from "@common/components/ui/buttons/Button/Button";
-import ArrowRight from "@common/assets/icons/arrow/arror-right.svg";
+import ArrowRight from "@common/assets/icons/arrow/arrow-right.svg";
 import Link from "next/link";
 
 export default function Login() {
