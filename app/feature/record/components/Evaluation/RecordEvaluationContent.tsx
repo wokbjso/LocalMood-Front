@@ -21,6 +21,12 @@ export default function RecordEvaluationContent({
   >([]);
   const hasFiltersSelected = selectedFilters.length > 0;
 
+  const getSelectedFilterCount = (currentCategory: string): number => {
+    return selectedFilters.filter(
+      (filter) => filter.category === currentCategory
+    ).length;
+  };
+
   const handleFilterClick = (category: string, keyword: string) => {
     const filtersForCurrentCategory = selectedFilters.filter(
       (filter) => filter.category === category
@@ -67,7 +73,9 @@ export default function RecordEvaluationContent({
                   <div className="text-black headline3-semibold mb-[1.2rem]">
                     {category}
                   </div>
-                  <div className="headline3-semibold text-text-gray-6">0/3</div>
+                  <div className="headline3-semibold text-text-gray-6">
+                    {getSelectedFilterCount(category)}/3
+                  </div>
                 </div>
                 <div className="flex flex-wrap gap-[0.6rem]">
                   {Object.keys(CAFE_EVALUATIONS).indexOf(category) === i &&
