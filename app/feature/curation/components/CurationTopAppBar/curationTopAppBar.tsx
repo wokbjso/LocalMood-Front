@@ -8,6 +8,7 @@ import MenuIcon from "@common/assets/icons/menu/MenuIcon";
 import useGetScrollHeight from "@common/hooks/useGetScrollHeight";
 import { useState } from "react";
 import CurationMenuModal from "../CurationModal/CurationMenuModal";
+import { copyLink } from "@common/utils/copyLink";
 
 interface CurationTopAppBarProps {
   id: number;
@@ -30,13 +31,7 @@ export default function CurationTopAppBar({
   };
 
   const handleLinkClick = async () => {
-    try {
-      await navigator.clipboard.writeText("현재 pathname");
-      setMenuModalOpen(false);
-      alert("클립보드에 링크가 복사되었어요.");
-    } catch (err) {
-      console.log(err);
-    }
+    copyLink("현재 pathname", setMenuModalOpen);
   };
 
   const handleBackClick = () => {

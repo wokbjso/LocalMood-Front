@@ -5,6 +5,7 @@ import Modal from "@common/components/ui/modal/Modal";
 import { useState } from "react";
 import CurationDeleteConfirmModal from "./CurationDeleteConfirmModal";
 import UseOutsideClick from "@common/hooks/useOutsideClick";
+import { copyLink } from "@common/utils/copyLink";
 
 interface CurationMenuModalProps {
   id: number;
@@ -28,14 +29,8 @@ export default function CurationMenuModal({
     setDeleteModalOpen(true);
   };
 
-  const handleLinkCopyClick = async (text: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      handleMenuModalState(false);
-      alert("클립보드에 링크가 복사되었어요.");
-    } catch (err) {
-      console.log(err);
-    }
+  const handleLinkCopyClick = async () => {
+    copyLink("큐레이션 주소", setDeleteModalOpen);
   };
 
   return (
@@ -58,12 +53,7 @@ export default function CurationMenuModal({
               <span className="body1 text-black ml-[1.2rem]">삭제하기</span>
             </div>
             {hasCopyLink && (
-              <div
-                className="flex items-center"
-                onClick={() =>
-                  handleLinkCopyClick(`'도메인주소'/curation/detail/${id}`)
-                }
-              >
+              <div className="flex items-center" onClick={handleLinkCopyClick}>
                 <ShareIcon />
                 <span className="body1 text-black ml-[1.2rem]">링크복사</span>
               </div>
