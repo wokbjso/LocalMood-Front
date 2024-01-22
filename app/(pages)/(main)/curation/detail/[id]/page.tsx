@@ -88,7 +88,7 @@ export default function CurationDetail() {
   ];
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full pb-[18rem]">
       <div>
         <header className="h-[18.8rem] bg-background-secondary-normal">
           <CurationTopAppBar
