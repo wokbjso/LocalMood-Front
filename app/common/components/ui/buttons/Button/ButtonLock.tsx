@@ -3,11 +3,16 @@ import React, { useState } from "react";
 import LockIcon from "@common/assets/icons/lock/lock.svg";
 import UnlockIcon from "@common/assets/icons/lock/unlock-color.svg";
 
-export default function ButtonLock() {
+interface ButtonLockProps {
+  onClick?: (state: boolean) => void;
+}
+
+export default function ButtonLock({ onClick }: ButtonLockProps) {
   const [isLocked, setIsLocked] = useState(true);
 
   const toggleLock = () => {
     setIsLocked((prevIsLocked) => !prevIsLocked);
+    onClick && onClick(isLocked);
   };
 
   return (

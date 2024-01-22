@@ -2,6 +2,7 @@ import CloseIcon from "@common/assets/icons/close/close.svg";
 import TextField from "@common/components/ui/textField/TextField";
 import ButtonLock from "@common/components/ui/buttons/Button/ButtonLock";
 import CurationMakeKeyword from "./CurationMakeKeyword";
+import UseCurationMake from "./useCurationMake";
 
 interface CurationMakeProps {
   isOpen: boolean;
@@ -12,6 +13,7 @@ export default function CurationMakeModal({
   isOpen,
   handleOpen,
 }: CurationMakeProps) {
+  const { handlers } = UseCurationMake();
   const closeIconClicked = () => {
     handleOpen(false);
   };
@@ -29,10 +31,10 @@ export default function CurationMakeModal({
                 <CloseIcon />
               </div>
               <div className="w-full">
-                <TextField />
+                <TextField onChange={handlers.changeCurationName} />
               </div>
               <div className="w-full pt-[1.6rem] grid justify-items-end">
-                <ButtonLock />
+                <ButtonLock onClick={handlers.changeCurationOpen} />
               </div>
               <div className="w-full pt-[3.2rem] overflow-auto">
                 <CurationMakeKeyword />

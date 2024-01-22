@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import Tab from "@common/components/ui/tab/Tab";
 import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
@@ -29,7 +30,7 @@ export default function CurationPage() {
       userName: "김현민",
       mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
       hashTags: ["연인과의 데이트", "크리스마스"],
-      scrapped: false,
+      scrapped: true,
       onClick: () => {},
       places: 9,
     },
@@ -44,7 +45,7 @@ export default function CurationPage() {
       userName: "김현민",
       mainText: "카페",
       hashTags: ["연인과의 데이트", "크리스마스"],
-      scrapped: false,
+      scrapped: true,
       onClick: () => {},
       places: 10,
     },
@@ -59,7 +60,7 @@ export default function CurationPage() {
       userName: "김현민",
       mainText: "화이트데이에 즐기기 좋은 마포구 데이트 코스",
       hashTags: ["연인과의 데이트", "크리스마스"],
-      scrapped: false,
+      scrapped: true,
       onClick: () => {},
       places: 12,
     },
@@ -74,7 +75,7 @@ export default function CurationPage() {
       userName: "김현민",
       mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
       hashTags: ["연인과의 데이트", "크리스마스"],
-      scrapped: false,
+      scrapped: true,
       onClick: () => {},
       places: 1,
     },

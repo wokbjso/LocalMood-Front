@@ -1,11 +1,16 @@
 "use client";
 import React, { useState } from "react";
 
-export default function TextField() {
+interface TextFieldProps {
+  onChange?: (text: string) => void;
+}
+
+export default function TextField({ onChange }: TextFieldProps) {
   const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
+    onChange && onChange(value);
     setInputValue(value);
   };
   return (
