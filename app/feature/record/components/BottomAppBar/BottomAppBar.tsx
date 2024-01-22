@@ -14,7 +14,7 @@ export default function BottomAppBar({
   const router = useRouter();
   const isComplete = pathname.endsWith("/complete");
   const handleButtonClick = () => {
-    if (type === "keyword" || hasFiltersSelected) {
+    if (type === "keyword") {
       router.push(`/record/select/evaluate?&category=${category}`);
     } else if (type === "evaluate") {
       router.push("/record/select/photo");
