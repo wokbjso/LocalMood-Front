@@ -1,13 +1,13 @@
 "use client";
 
 import useSearchBar from "@feature/search/components/SearchBar/useSearchBar";
-import NoResult from "@common/assets/images/search_no_result.svg";
 import Tab from "@common/components/ui/tab/Tab";
 import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import { CurationProps } from "@feature/curation/type";
 import { PlaceInfoProps } from "@feature/place/type";
 import { useSearchParams } from "next/navigation";
+import SearchNoResult from "@feature/search/components/SearchNoResult/SearchNoResult";
 
 export default function SearchResult() {
   const searchParams = useSearchParams();
@@ -17,8 +17,9 @@ export default function SearchResult() {
     {
       id: 0,
       placeName: "신촌 캐치카페",
-      placeImg:
+      placeImg: [
         "https://media.istockphoto.com/id/1446199740/ko/%EC%82%AC%EC%A7%84/%ED%96%87%EB%B3%95%EC%9D%B4-%EC%9E%98-%EB%93%9C%EB%8A%94-%EC%88%B2%EC%9D%84-%ED%86%B5%EA%B3%BC%ED%95%98%EB%8A%94-%EA%B8%B8.jpg?s=2048x2048&w=is&k=20&c=3z_ODBT78uZDVqy-3B6r8LBa825AuSpL0xfzySe2fj8=",
+      ],
       category: "카페",
       location: "마포구 신촌",
       scrapped: false,
@@ -30,8 +31,9 @@ export default function SearchResult() {
     {
       id: 0,
       placeName: "금복식당",
-      placeImg:
+      placeImg: [
         "https://media.istockphoto.com/id/1446199740/ko/%EC%82%AC%EC%A7%84/%ED%96%87%EB%B3%95%EC%9D%B4-%EC%9E%98-%EB%93%9C%EB%8A%94-%EC%88%B2%EC%9D%84-%ED%86%B5%EA%B3%BC%ED%95%98%EB%8A%94-%EA%B8%B8.jpg?s=2048x2048&w=is&k=20&c=3z_ODBT78uZDVqy-3B6r8LBa825AuSpL0xfzySe2fj8=",
+      ],
       category: "음식점",
       location: "마포구 망원동",
       scrapped: false,
@@ -43,8 +45,9 @@ export default function SearchResult() {
     {
       id: 2,
       placeName: "나이스워크투데이",
-      placeImg:
+      placeImg: [
         "https://media.istockphoto.com/id/1446199740/ko/%EC%82%AC%EC%A7%84/%ED%96%87%EB%B3%95%EC%9D%B4-%EC%9E%98-%EB%93%9C%EB%8A%94-%EC%88%B2%EC%9D%84-%ED%86%B5%EA%B3%BC%ED%95%98%EB%8A%94-%EA%B8%B8.jpg?s=2048x2048&w=is&k=20&c=3z_ODBT78uZDVqy-3B6r8LBa825AuSpL0xfzySe2fj8=",
+      ],
       category: "카페",
       location: "마포구 망원동",
       scrapped: false,
@@ -109,12 +112,7 @@ export default function SearchResult() {
   return (
     <>
       {DUMMY_PLACE.length === 0 && DUMMY_CURATION.length === 0 && (
-        <div className="flex flex-col justify-center items-center pt-[12rem]">
-          <NoResult />
-          <p className="flex justify-center body1 text-text-gray-8 mt-[2.3rem]">
-            검색 결과가 없습니다.
-          </p>
-        </div>
+        <SearchNoResult />
       )}
       {DUMMY_PLACE.length === 0 && DUMMY_CURATION.length > 0 && (
         <div className="h-[100vh] pt-[5.4rem] overflow-y-hidden">
@@ -125,14 +123,7 @@ export default function SearchResult() {
             ]}
             onChange={searchBarHandlers.handleTabIndex}
           />
-          {searchBarTabIndex === 0 && (
-            <div className="flex flex-col justify-center items-center pt-[6.6rem]">
-              <NoResult />
-              <p className="flex justify-center body1 text-text-gray-8 mt-[2.3rem]">
-                검색 결과가 없습니다.
-              </p>
-            </div>
-          )}
+          {searchBarTabIndex === 0 && <SearchNoResult />}
           {searchBarTabIndex === 1 && (
             <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
               {DUMMY_CURATION.map((curation) => (
@@ -173,19 +164,13 @@ export default function SearchResult() {
                     location={place.location}
                     scrapped={place.scrapped}
                     tags={place.tags}
+                    tagsCategoryNum={2}
                   />
                 </div>
               ))}
             </div>
           )}
-          {searchBarTabIndex === 1 && (
-            <div className="flex flex-col justify-center items-center pt-[6.6rem]">
-              <NoResult />
-              <p className="flex justify-center body1 text-text-gray-8 mt-[2.3rem]">
-                검색 결과가 없습니다.
-              </p>
-            </div>
-          )}
+          {searchBarTabIndex === 1 && <SearchNoResult />}
         </div>
       )}
       {DUMMY_PLACE.length > 0 && DUMMY_CURATION.length > 0 && (

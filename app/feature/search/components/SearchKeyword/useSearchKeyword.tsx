@@ -26,7 +26,6 @@ export default function useSearchKeyword() {
     music: "",
     service: "",
   });
-  console.log(restaurantKeyword);
   const [tabIndex, setTabIndex] = useState<number>(0);
   const [showResultAble, setShowResultAble] = useState<boolean>(false);
   const [openKoreanOption, setOpenKoreanOption] = useState(false);

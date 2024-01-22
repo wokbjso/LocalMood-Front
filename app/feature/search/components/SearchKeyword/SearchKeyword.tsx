@@ -3,7 +3,6 @@
 import CloseIcon from "@common/assets/icons/close/CloseIcon";
 import Divider from "@common/components/ui/divider/Divider";
 import Tab from "@common/components/ui/tab/Tab";
-
 import {
   CAFE_CATEGORY,
   CAFE_KEYWORDS,
@@ -17,7 +16,6 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import useSearchKeyword from "./useSearchKeyword";
 import Modal from "@common/components/ui/modal/Modal";
-import { useState } from "react";
 
 export default function SearchKeyword() {
   const searchParams = useSearchParams();
