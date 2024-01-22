@@ -16,21 +16,39 @@ export default function RecordEvaluationContent({
   category: string;
   type: string;
 }): JSX.Element {
-  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const [selectedFilters, setSelectedFilters] = useState<
+    { category: string; keyword: string }[]
+  >([]);
   const hasFiltersSelected = selectedFilters.length > 0;
 
-  const handleFilterClick = (label: string) => {
+  const handleFilterClick = (category: string, keyword: string) => {
+    const filtersForCurrentCategory = selectedFilters.filter(
+      (filter) => filter.category === category
+    );
+
+    // 카테고리당 필터 선택 개수 3개로 제한
+    if (filtersForCurrentCategory.length >= 3) {
+      return;
+    }
     // filter가 이미 선택되었는지 확인
-    if (selectedFilters.includes(label)) {
+    const filterIndex = selectedFilters.findIndex(
+      (filter) => filter.keyword === keyword
+    );
+
+    if (filterIndex !== -1) {
       // Filter is already selected, remove it
       setSelectedFilters((prevFilters) =>
-        prevFilters.filter((filter) => filter !== label)
+        prevFilters.filter((filter, index) => index !== filterIndex)
       );
     } else {
       // Filter is not selected, add it
-      setSelectedFilters((prevFilters) => [...prevFilters, label]);
+      setSelectedFilters((prevFilters) => [
+        ...prevFilters,
+        { category, keyword },
+      ]);
     }
   };
+
   return (
     <div>
       <div>
@@ -53,13 +71,21 @@ export default function RecordEvaluationContent({
                 </div>
                 <div className="flex flex-wrap gap-[0.6rem]">
                   {Object.keys(CAFE_EVALUATIONS).indexOf(category) === i &&
-                    CAFE_EVALUATIONS[category].map((keyword) => (
-                      <Filter
-                        key={keyword}
-                        label={keyword}
-                        onClick={() => handleFilterClick(keyword)}
-                      />
-                    ))}
+                    CAFE_EVALUATIONS[category].map((keyword) => {
+                      const isDisabled =
+                        selectedFilters.filter(
+                          (filter) => filter.category === category
+                        ).length >= 3;
+
+                      return (
+                        <Filter
+                          key={keyword}
+                          label={keyword}
+                          onClick={() => handleFilterClick(category, keyword)}
+                          disabled={isDisabled}
+                        />
+                      );
+                    })}
                 </div>
               </section>
             ))}
@@ -85,16 +111,21 @@ export default function RecordEvaluationContent({
                   <div className="flex flex-wrap gap-[0.6rem]">
                     {Object.keys(RESTAURANT_EVALUATIONS).indexOf(category) ===
                       i &&
-                      RESTAURANT_EVALUATIONS[category].map((keyword) => (
-                        <Filter
-                          key={keyword}
-                          label={keyword}
-                          variant={
-                            category === "음식" ? "showOptions" : undefined
-                          }
-                          onClick={() => handleFilterClick(keyword)}
-                        />
-                      ))}
+                      RESTAURANT_EVALUATIONS[category].map((keyword) => {
+                        const isDisabled =
+                          selectedFilters.filter(
+                            (filter) => filter.category === category
+                          ).length >= 3;
+
+                        return (
+                          <Filter
+                            key={keyword}
+                            label={keyword}
+                            onClick={() => handleFilterClick(category, keyword)}
+                            disabled={isDisabled}
+                          />
+                        );
+                      })}
                   </div>
                 </section>
               ))}
