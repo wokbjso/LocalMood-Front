@@ -5,6 +5,7 @@ import Filter from "@common/components/ui/buttons/Filter/Filter";
 import CurationDetailInfoCard from "./CurationDetailInfoCard";
 import { PlaceInfoProps } from "@feature/place/type";
 import { createRef, useRef, useState } from "react";
+import useGetScrollHeight from "@common/hooks/useGetScrollHeight";
 
 interface CurationDetailCardListProps {
   place_list: PlaceInfoProps[];
@@ -14,6 +15,7 @@ export default function CurationDetailCardList({
   place_list,
 }: CurationDetailCardListProps) {
   const [placeIndex, setPlaceIndex] = useState(0);
+  const { scrollHeight } = useGetScrollHeight();
   const refs = useRef(
     Array.from({ length: place_list.length }, () => createRef<HTMLDivElement>())
   );
@@ -22,15 +24,39 @@ export default function CurationDetailCardList({
     refs.current[index].current?.scrollIntoView({ behavior: "smooth" });
   };
   return (
-    <div className="pb-[6.1rem] p-[2rem] pr-0 w-full">
-      <div className="w-full items-start">
-        <div className="flex items-center gap-[0.4rem] mb-[1.2rem]">
-          <LocationFillIcon />
-          <p className="text-black body2-medium">
-            {place_list.length}개의 공간
-          </p>
+    <>
+      <div className="pb-[6.1rem] p-[2rem] pr-0 w-full">
+        <div className="w-full items-start">
+          <div className="flex items-center gap-[0.4rem] mb-[1.2rem]">
+            <LocationFillIcon />
+            <p className="text-black body2-medium">
+              {place_list.length}개의 공간
+            </p>
+          </div>
+          <div className="flex gap-[0.8rem] mb-[-10.6rem] overflow-x-scroll">
+            {place_list.map((item, index) => (
+              <Filter
+                key={index}
+                photo={item.placeImg[0]}
+                label={item.placeName}
+                selected={placeIndex === index}
+                className="whitespace-nowrap"
+                onClick={() => handlePlaceFilterClick(index)}
+                // onClick 하면 get Data 변경
+              />
+            ))}
+          </div>
         </div>
-        <div className="flex gap-[0.8rem] mb-[-10.6rem] overflow-x-scroll">
+        {place_list.map((props, i) => (
+          <CurationDetailInfoCard
+            key={props.placeName}
+            {...props}
+            ref={refs.current[i]}
+          />
+        ))}
+      </div>
+      {scrollHeight > 370 && (
+        <div className="flex gap-[0.8rem] w-full bg-white pl-[2rem] py-[0.4rem] pb-[0.8rem] overflow-x-scroll fixed top-[5.4rem]">
           {place_list.map((item, index) => (
             <Filter
               key={index}
@@ -43,14 +69,7 @@ export default function CurationDetailCardList({
             />
           ))}
         </div>
-      </div>
-      {place_list.map((props, i) => (
-        <CurationDetailInfoCard
-          key={props.placeName}
-          {...props}
-          ref={refs.current[i]}
-        />
-      ))}
-    </div>
+      )}
+    </>
   );
 }

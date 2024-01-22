@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import Filter from "@common/components/ui/buttons/Filter/Filter";
 import MenuIcon from "@common/assets/icons/menu/MenuIcon";
 import useGetScrollHeight from "@common/hooks/useGetScrollHeight";
+import { PlaceInfoRecordProps } from "@feature/place/components/PlaceInfoRecord/PlaceInfoRecord";
 
 interface CurationTopAppBarProps {
   variant?: string;
@@ -17,83 +18,6 @@ export default function CurationTopAppBar({
   variant,
   mainText,
 }: CurationTopAppBarProps) {
-  const curationDetailCardList = [
-    {
-      id: 0,
-      placeName: "나이스워크투데이",
-      placePhoto: [
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      ],
-      placeType: "카페",
-      placeLocation: "마포구 상수동 올림픽로 23",
-      placeFor: ["연인과의 데이트", "작업/공부/책"],
-      placeInterior: ["통창뷰", "넓은 공간"],
-      placeMood: ["대화에 집중할 수 있는"],
-      hashTags: ["연인과의 데이트", "크리스마스"],
-      scrapped: true,
-      onClick: () => {},
-    },
-    {
-      id: 1,
-      placeName: "공복식당",
-      placePhoto: [
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      ],
-      placeType: "한식",
-      placeLocation: "마포구 상수동 올림픽로 23",
-      placeFor: ["연인과의 데이트", "작업/공부/책"],
-      placeMenu: ["된장찌개", "삼겹살"],
-      placeMood: ["대화에 집중할 수 있는"],
-      hashTags: ["연인과의 데이트", "크리스마스"],
-      scrapped: true,
-      onClick: () => {},
-    },
-    {
-      id: 2,
-      placeName: "이리카페",
-      placePhoto: [
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      ],
-      placeType: "한식",
-      placeLocation: "마포구 상수동 올림픽로 23",
-      placeFor: ["연인과의 데이트", "작업/공부/책"],
-      placeMenu: ["된장찌개", "삼겹살"],
-      placeMood: ["대화에 집중할 수 있는"],
-      hashTags: ["연인과의 데이트", "크리스마스"],
-      scrapped: true,
-      onClick: () => {},
-    },
-    {
-      id: 3,
-      placeName: "이리카페",
-      placePhoto: [
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      ],
-      placeType: "한식",
-      placeLocation: "마포구 상수동 올림픽로 23",
-      placeFor: ["연인과의 데이트", "작업/공부/책"],
-      placeMenu: ["된장찌개", "삼겹살"],
-      placeMood: ["대화에 집중할 수 있는"],
-      hashTags: ["연인과의 데이트", "크리스마스"],
-      scrapped: true,
-      onClick: () => {},
-    },
-    {
-      id: 4,
-      placeName: "맥도날드",
-      placePhoto: [
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      ],
-      placeType: "한식",
-      placeLocation: "마포구 상수동 올림픽로 23",
-      placeFor: ["연인과의 데이트", "작업/공부/책"],
-      placeMenu: ["된장찌개", "삼겹살"],
-      placeMood: ["대화에 집중할 수 있는"],
-      hashTags: ["연인과의 데이트", "크리스마스"],
-      scrapped: true,
-      onClick: () => {},
-    },
-  ];
   const router = useRouter();
 
   const handleBackClick = () => {
@@ -160,18 +84,6 @@ export default function CurationTopAppBar({
             </div>
           )}
         </div>
-        {scrollHeight > 370 && (
-          <div className="w-full overflow-x-scroll flex flex-start pl-[2rem] py-[0.4rem] gap-[0.8rem] bg-white">
-            {curationDetailCardList.map((item, index) => (
-              <Filter
-                key={index}
-                photo={item.placePhoto}
-                label={item.placeName}
-                className="whitespace-nowrap"
-              />
-            ))}
-          </div>
-        )}
       </div>
     </div>
   );
