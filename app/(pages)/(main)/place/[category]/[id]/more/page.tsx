@@ -6,11 +6,11 @@ import Filter from "@common/components/ui/buttons/Filter/Filter";
 import Divider from "@common/components/ui/divider/Divider";
 import GraphGage from "@common/components/ui/graph/GraphGage/GraphGage";
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
+import PlaceDetailMoreReviews from "@feature/place/components/PlaceDetail/PlaceDetailMoreReviews";
 import PlaceReview from "@feature/place/components/PlaceReview/PlaceReview";
 import { PLACE_PURPOSE } from "@feature/place/constants/place-tag-category";
 
 export default function PlaceDetailMore() {
-  const NOW_PURPOSE = "연인과의 데이트";
   const DUMMY_MORE_DETAIL = {
     placeName: "나이스워크투데이",
     purpose: [
@@ -19,50 +19,6 @@ export default function PlaceDetailMore() {
         percentage: "43%",
         icon: Heart,
         color: "#F670C7",
-        reviews: [
-          {
-            id: 0,
-            profile_img:
-              "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
-            user_name: "카페탐방",
-            review_date: "23.04.01",
-            tags: {
-              purpose: ["연인과의 데이트"],
-              interior: ["따뜻한 조명", "앤틱한"],
-              mood: ["대화에 집중할 수 있는"],
-              music: ["잔잔한 음악"],
-            },
-            review_photos: [
-              "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
-              "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
-            ],
-            evaluation: {
-              likes: ["시그니처 음료가 맛있어요"],
-              dislikes: ["화장실이 밖에 있어요"],
-            },
-          },
-          {
-            id: 1,
-            profile_img:
-              "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
-            user_name: "카페탐방",
-            review_date: "23.04.01",
-            tags: {
-              purpose: ["연인과의 데이트"],
-              interior: ["따뜻한 조명", "앤틱한"],
-              mood: ["대화에 집중할 수 있는"],
-              music: ["잔잔한 음악"],
-            },
-            review_photos: [
-              "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
-              "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
-            ],
-            evaluation: {
-              likes: ["시그니처 음료가 맛있어요"],
-              dislikes: ["화장실이 밖에 있어요"],
-            },
-          },
-        ],
       },
       {
         comment: "친구/가족과의 만남",
@@ -83,6 +39,92 @@ export default function PlaceDetailMore() {
         icon: BusinessIcon,
         color: "#0BA5EC",
         color2: "white",
+      },
+    ],
+    reviews: [
+      {
+        id: 0,
+        profile_img:
+          "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
+        user_name: "카페탐방",
+        review_date: "23.04.01",
+        tags: {
+          purpose: ["연인과의 데이트"],
+          interior: ["따뜻한 조명", "앤틱한"],
+          mood: ["대화에 집중할 수 있는"],
+          music: ["잔잔한 음악"],
+        },
+        review_photos: [
+          "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
+          "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
+        ],
+        evaluation: {
+          likes: ["시그니처 음료가 맛있어요"],
+          dislikes: ["화장실이 밖에 있어요"],
+        },
+      },
+      {
+        id: 1,
+        profile_img:
+          "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
+        user_name: "카페탐방",
+        review_date: "23.04.01",
+        tags: {
+          purpose: ["연인과의 데이트"],
+          interior: ["따뜻한 조명", "앤틱한"],
+          mood: ["대화에 집중할 수 있는"],
+          music: ["잔잔한 음악"],
+        },
+        review_photos: [
+          "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
+          "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
+        ],
+        evaluation: {
+          likes: ["시그니처 음료가 맛있어요"],
+          dislikes: ["화장실이 밖에 있어요"],
+        },
+      },
+      {
+        id: 2,
+        profile_img:
+          "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
+        user_name: "토트넘핫스퍼",
+        review_date: "23.04.01",
+        tags: {
+          purpose: ["친구/가족과의 만남"],
+          interior: ["따뜻한 조명", "앤틱한"],
+          mood: ["대화에 집중할 수 있는"],
+          music: ["잔잔한 음악"],
+        },
+        review_photos: [
+          "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
+          "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
+        ],
+        evaluation: {
+          likes: ["시그니처 음료가 맛있어요"],
+          dislikes: ["화장실이 밖에 있어요"],
+        },
+      },
+      {
+        id: 3,
+        profile_img:
+          "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
+        user_name: "토트넘핫스퍼",
+        review_date: "23.04.01",
+        tags: {
+          purpose: ["작업/공부/책"],
+          interior: ["따뜻한 조명", "앤틱한"],
+          mood: ["대화에 집중할 수 있는"],
+          music: ["잔잔한 음악"],
+        },
+        review_photos: [
+          "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
+          "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
+        ],
+        evaluation: {
+          likes: ["시그니처 음료가 맛있어요"],
+          dislikes: ["화장실이 밖에 있어요"],
+        },
       },
     ],
   };
@@ -106,35 +148,7 @@ export default function PlaceDetailMore() {
         </div>
       </section>
       <Divider className="bg-line-gray-3 h-[0.4rem]" />
-      <div className="flex overflow-x-scroll whitespace-nowrap py-[1.6rem] pt-[2.4rem]">
-        {PLACE_PURPOSE.map((purpose) => (
-          <Filter
-            key={purpose}
-            label={purpose}
-            className="mr-[0.8rem]"
-          ></Filter>
-        ))}
-      </div>
-      <Divider className="bg-line-gray-3 h-[0.1rem]" />
-      <section className="px-[2rem] pt-[2.4rem]">
-        {DUMMY_MORE_DETAIL.purpose.map((li) => {
-          return (
-            NOW_PURPOSE === li.comment &&
-            li.reviews?.map((review) => (
-              <PlaceReview
-                key={review.id}
-                id={review.id}
-                profile_img={review.profile_img}
-                user_name={review.user_name}
-                review_date={review.review_date}
-                tags={review.tags}
-                review_photos={review.review_photos}
-                evaluation={review.evaluation}
-              />
-            ))
-          );
-        })}
-      </section>
+      <PlaceDetailMoreReviews reviews={DUMMY_MORE_DETAIL.reviews} />
     </div>
   );
 }
