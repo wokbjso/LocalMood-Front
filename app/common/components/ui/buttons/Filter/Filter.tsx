@@ -56,7 +56,7 @@ export default function Filter({
         {label}
       </span>
       {variant === "showOptions" && openOptions && (
-        <ArrowUp className="ml-[0.2rem]" color="#FAFAFA" />
+        <ArrowUp className="ml-[0.2rem]" color="#9E9E9E" />
       )}
       {variant === "showOptions" && !openOptions && (
         <ArrowDown className="ml-[0.2rem]" />

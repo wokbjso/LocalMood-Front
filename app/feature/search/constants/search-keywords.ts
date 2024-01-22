@@ -20,6 +20,15 @@ export const RESTARANT_KEYWORDS: {
   부가서비스: ["애견동반 가능", "매장 내 주차장"],
 };
 
+export const KOREAN_OPTION = [
+  "족발/보쌈",
+  "찜/탕/찌개",
+  "고기/구이",
+  "치킨",
+  "백반/죽/국수",
+  "분식",
+];
+
 export const CAFE_CATEGORY: { [key: string]: string } = {
   purpose: "방문목적",
   mood: "공간의 무드",

@@ -7,6 +7,7 @@ import Tab from "@common/components/ui/tab/Tab";
 import {
   CAFE_CATEGORY,
   CAFE_KEYWORDS,
+  KOREAN_OPTION,
   RESTARANT_KEYWORDS,
   RESTAURANT_CATEGORY,
 } from "@feature/search/constants/search-keywords";
@@ -16,11 +17,37 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import useSearchKeyword from "./useSearchKeyword";
 import Modal from "@common/components/ui/modal/Modal";
+import { useState } from "react";
 
 export default function SearchKeyword() {
   const searchParams = useSearchParams();
-  const { cafeKeyword, restaurantKeyword, tabIndex, showResultAble, handlers } =
-    useSearchKeyword();
+  const {
+    cafeKeyword,
+    restaurantKeyword,
+    tabIndex,
+    openKoreanOption,
+    koreanOptionIndex,
+    showResultAble,
+    handlers,
+  } = useSearchKeyword();
+  const handleKeywordClick = (category: string, keyword: string) => {
+    if (keyword === "한식") {
+      if (openKoreanOption) {
+        handlers.changeOpenKoreanOption(false);
+      } else {
+        handlers.changeOpenKoreanOption(true);
+      }
+    }
+    if (category === "food" && keyword !== "한식" && openKoreanOption) {
+      handlers.changeOpenKoreanOption(false);
+    }
+    handlers.changeKeywordData(category, keyword);
+  };
+
+  const handleKoreanOptionClick = (index: number) => {
+    handlers.changeKoreanOptionIndex(index);
+  };
+
   return (
     searchParams.get("keyword_search") === "true" && (
       <>
@@ -59,16 +86,31 @@ export default function SearchKeyword() {
                         <Filter
                           key={keyword}
                           label={keyword}
-                          selected={restaurantKeyword[category] === keyword}
+                          selected={
+                            keyword === "한식"
+                              ? KOREAN_OPTION.some(
+                                  (option) =>
+                                    option === restaurantKeyword[category]
+                                )
+                              : restaurantKeyword[category] === keyword
+                          }
                           variant={
-                            category === "food" ? "showOptions" : undefined
+                            keyword === "한식" ? "showOptions" : undefined
                           }
-                          onClick={() =>
-                            handlers.changeKeywordData(category, keyword)
-                          }
+                          onClick={() => handleKeywordClick(category, keyword)}
                         />
                       )
                     )}
+                    {category === "food" &&
+                      openKoreanOption &&
+                      KOREAN_OPTION.map((option, i) => (
+                        <Filter
+                          key={option}
+                          label={option}
+                          selected={koreanOptionIndex === i}
+                          onClick={() => handleKoreanOptionClick(i)}
+                        />
+                      ))}
                   </div>
                 </section>
               ))}

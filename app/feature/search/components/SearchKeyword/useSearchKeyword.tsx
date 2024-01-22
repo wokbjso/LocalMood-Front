@@ -1,5 +1,6 @@
 "use client";
 
+import { KOREAN_OPTION } from "@feature/search/constants/search-keywords";
 import { useEffect, useState } from "react";
 
 export default function useSearchKeyword() {
@@ -25,12 +26,26 @@ export default function useSearchKeyword() {
     music: "",
     service: "",
   });
+  console.log(restaurantKeyword);
   const [tabIndex, setTabIndex] = useState<number>(0);
   const [showResultAble, setShowResultAble] = useState<boolean>(false);
+  const [openKoreanOption, setOpenKoreanOption] = useState(false);
+  const [koreanOptionIndex, setKoreanOptionIndex] = useState(0);
 
   const handleKeywordData = (category: string, keyword: string) => {
     if (tabIndex === 0) {
-      if (restaurantKeyword[category] === keyword)
+      if (keyword === "한식") {
+        if (restaurantKeyword[category] === KOREAN_OPTION[koreanOptionIndex])
+          setRestaurantKeyword({
+            ...restaurantKeyword,
+            [category]: "",
+          });
+        else
+          setRestaurantKeyword({
+            ...restaurantKeyword,
+            [category]: KOREAN_OPTION[koreanOptionIndex],
+          });
+      } else if (restaurantKeyword[category] === keyword)
         setRestaurantKeyword({ ...restaurantKeyword, [category]: "" });
       else setRestaurantKeyword({ ...restaurantKeyword, [category]: keyword });
     } else if (tabIndex === 1) {
@@ -42,6 +57,18 @@ export default function useSearchKeyword() {
 
   const handleTabIndex = (index: number) => {
     setTabIndex(index);
+  };
+
+  const handleOpenKoreanOption = (state: boolean) => {
+    setOpenKoreanOption(state);
+  };
+
+  const handleKoreanOptionIndex = (index: number) => {
+    setRestaurantKeyword({
+      ...restaurantKeyword,
+      food: KOREAN_OPTION[index],
+    });
+    setKoreanOptionIndex(index);
   };
 
   useEffect(() => {
@@ -63,10 +90,14 @@ export default function useSearchKeyword() {
     cafeKeyword,
     restaurantKeyword,
     tabIndex,
+    openKoreanOption,
+    koreanOptionIndex,
     showResultAble,
     handlers: {
       changeTabIndex: handleTabIndex,
       changeKeywordData: handleKeywordData,
+      changeOpenKoreanOption: handleOpenKoreanOption,
+      changeKoreanOptionIndex: handleKoreanOptionIndex,
     },
   };
 }
