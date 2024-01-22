@@ -12,6 +12,7 @@ export default function CurationDetail() {
   //api get 으로 가져오는 data로 대체
 
   const CURATION_INFO = {
+    id: 0,
     variant: "my",
     user_name: "김현민",
     curation_name: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
@@ -91,6 +92,7 @@ export default function CurationDetail() {
       <div>
         <header className="h-[18.8rem] bg-background-secondary-normal">
           <CurationTopAppBar
+            id={CURATION_INFO.id}
             variant={CURATION_INFO.variant}
             mainText={CURATION_INFO.curation_name}
           />
@@ -115,7 +117,7 @@ export default function CurationDetail() {
                 {CURATION_INFO.curation_name}
               </div>
               {CURATION_INFO.variant === "my" ? (
-                <CurationPrivacyToggleButton />
+                <CurationPrivacyToggleButton id={CURATION_INFO.id} />
               ) : (
                 <div className="flex items-center gap-[1.2rem]">
                   <div className="flex items-center gap-[0.4rem]">

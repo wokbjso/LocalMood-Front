@@ -4,9 +4,16 @@ import LockIcon from "@common/assets/icons/lock/lock.svg";
 import UnlockIcon from "@common/assets/icons/lock/unlock.svg";
 import { useState } from "react";
 
-export default function CurationPrivacyToggleButton() {
+interface CurationPrivacyToggleButtonProps {
+  id: number;
+}
+
+export default function CurationPrivacyToggleButton({
+  id,
+}: CurationPrivacyToggleButtonProps) {
   const [isPublic, setIsPublic] = useState(true);
   const togglePrivacy = () => {
+    //id를 이용하여 공개 상태 변경하는 api 호출
     setIsPublic((prevState) => !prevState);
   };
 

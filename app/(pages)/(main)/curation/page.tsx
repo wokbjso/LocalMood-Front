@@ -20,7 +20,7 @@ export default function CurationPage() {
   const MY_CURATION_DUMMY = [
     {
       id: 0,
-      variant: "others" as "my" | "others" | undefined,
+      variant: "my" as "my" | "others" | undefined,
       curationPhoto: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
@@ -35,7 +35,7 @@ export default function CurationPage() {
     },
     {
       id: 1,
-      variant: "others" as "my" | "others" | undefined,
+      variant: "my" as "my" | "others" | undefined,
       curationPhoto: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
@@ -50,7 +50,7 @@ export default function CurationPage() {
     },
     {
       id: 2,
-      variant: "others" as "my" | "others" | undefined,
+      variant: "my" as "my" | "others" | undefined,
       curationPhoto: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
@@ -65,7 +65,7 @@ export default function CurationPage() {
     },
     {
       id: 3,
-      variant: "others" as "my" | "others" | undefined,
+      variant: "my" as "my" | "others" | undefined,
       curationPhoto: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
