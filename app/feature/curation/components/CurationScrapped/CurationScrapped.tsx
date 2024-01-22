@@ -15,14 +15,11 @@ export default function CurationScrapped({
   userName,
   mainText,
   hashTags,
-  scrapped = false,
   onClick,
-  places,
   className,
-}: CurationProps) {
-  const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
+}: Omit<CurationProps, "scrapped" | "places">) {
   const handleScrap = () => {
-    setIsScrapped((prev) => !prev);
+    //id 이용해서 scrap 해제 모달 창 띄우기 && delete api 호출
   };
 
   return (
@@ -43,18 +40,10 @@ export default function CurationScrapped({
             className="absolute bottom-[1.6rem] left-[1.6rem]"
           />
           <div className="w-full p-[1.6rem] relative">
-            {isScrapped ? (
-              <ScrapShadow
-                className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-                onClick={handleScrap}
-              />
-            ) : (
-              <ScrapLine
-                color="white"
-                className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-                onClick={handleScrap}
-              />
-            )}
+            <ScrapShadow
+              className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
+              onClick={handleScrap}
+            />
             <Link
               href={{
                 pathname: `/curation/detail/${id}`,
