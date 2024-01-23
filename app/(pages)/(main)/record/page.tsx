@@ -1,4 +1,4 @@
-import PlaceInfoRecord from "@feature/place/components/PlaceInfoRecord/PlaceInfoRecord";
+import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import ShowMoreButton from "@feature/record/components/PlaceRecordButtons/ShowMoreButton";
 import PlaceSearchBar from "@feature/record/components/PlaceSearch/PlaceSearchBar";
 
@@ -87,7 +87,7 @@ export default function Record() {
       <div className="flex items-start overflow-x-auto px-[2rem] pt-[1.6rem] gap-[0.8rem]">
         {RECORD_DUMMY.map((props, index) => (
           <div key={index}>
-            <PlaceInfoRecord {...props} />
+            <PlaceInfoMain {...props} className="w-[16.3rem]" />
           </div>
         ))}
       </div>

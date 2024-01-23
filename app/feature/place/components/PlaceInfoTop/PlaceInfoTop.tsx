@@ -60,20 +60,19 @@ export default function PlaceInfoTop({
         <div
           className={twMerge("flex-col", size === "normal" ? "relative" : null)}
         >
-          {variant === "vertical" && !isScrapped ? (
+          {variant === "vertical" && !isScrapped && (
             <ScrapLine
               color={size === "small" ? "white" : undefined}
               className="absolute cursor-pointer right-[0.8rem] top-[1.6rem]"
               onClick={handleScrap}
             />
-          ) : (
-            <span>
-              <ScrapFill
-                color={size === "small" ? "white" : undefined}
-                className="absolute cursor-pointer right-[0.8rem] top-[1.6rem]"
-                onClick={handleScrap}
-              />
-            </span>
+          )}
+          {variant === "vertical" && isScrapped && (
+            <ScrapFill
+              color={size === "small" ? "white" : undefined}
+              className="absolute cursor-pointer right-[0.8rem] top-[1.6rem]"
+              onClick={handleScrap}
+            />
           )}
           <div
             className={twMerge(

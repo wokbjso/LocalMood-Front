@@ -1,6 +1,6 @@
 "use client";
 
-import PlaceInfoRecord from "@feature/place/components/PlaceInfoRecord/PlaceInfoRecord";
+import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import PlaceRecordTopBar from "@feature/record/components/PlaceRecordTopBar/PlaceRecordTopBar";
 import { useRouter } from "next/navigation";
 
@@ -84,7 +84,7 @@ export default function RecordScrappedMore() {
       <div className="inline-flex flex-col items-start w-full pt-[0.8rem] px-[2rem] gap-[0.8rem]">
         {RECORD_DUMMYLIST.map((props, index) => (
           <div key={index} className="w-full">
-            <PlaceInfoRecord
+            <PlaceInfoMain
               variant="horizontal"
               {...props}
               onClick={() =>
