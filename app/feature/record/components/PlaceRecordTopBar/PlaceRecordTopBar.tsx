@@ -7,14 +7,14 @@ interface RecordTopBarProps {
   showIndicator: boolean;
   text: string;
   indicatorIndex: number;
-  handleIndicator: (index: number) => void;
+  handleIndicatorIndex: (index: number) => void;
 }
 
 export default function PlaceRecordTopBar({
   showIndicator,
   text,
   indicatorIndex,
-  handleIndicator,
+  handleIndicatorIndex,
 }: RecordTopBarProps) {
   const router = useRouter();
   const handleBackClick = () => {
@@ -32,7 +32,7 @@ export default function PlaceRecordTopBar({
           <div className="flex h-[2.8rem] pl-[1.1rem] justify-end items-center">
             <Indicator
               indicatorIndex={indicatorIndex}
-              handleIndicator={handleIndicator}
+              handleIndicatorIndex={handleIndicatorIndex}
             />
           </div>
         )}

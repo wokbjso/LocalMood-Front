@@ -1,9 +1,10 @@
 "use client";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import RecordComplete from "@feature/record/components/RecordComplete/RecordComplete";
 import SelectKeyword from "@feature/record/components/Keyword/SelectKeyword";
 import SelectEvaluation from "@feature/record/components/Evaluation/SelectEvaluation";
 import UseKeyword from "@feature/record/components/Keyword/useKeyword";
+import SelectPhoto from "@feature/record/components/PhotoUpload/SelectPhoto";
 
 export default function RecordSelect() {
   const searchParams = useSearchParams();
@@ -17,7 +18,7 @@ export default function RecordSelect() {
           placeType={placeType}
           name={name}
           indicatorIndex={indicatorIndex}
-          handleIndicator={handlers.changeIndicatorIndex}
+          handleIndicatorIndex={handlers.changeIndicatorIndex}
           cafeKeywordData={cafeKeywordData}
           handleKeyword={handlers.changeKeyword}
         />
@@ -28,24 +29,24 @@ export default function RecordSelect() {
             <SelectEvaluation
               placeType={placeType}
               indicatorIndex={indicatorIndex}
-              handleIndicator={handlers.changeIndicatorIndex}
+              handleIndicatorIndex={handlers.changeIndicatorIndex}
               cafeKeywordData={cafeKeywordData}
               handleKeyword={handlers.changeKeyword}
             />
           }
         </div>
       )}
-      {/* <div>
-        {type === "evaluate" && (
-          <SelectEvaluation type={type} category={category} name={name} />
-        )}
-      </div>
-      <div>
-        {type === "photo" && (
-          <SelectPhoto type={type} category={category} name={name} />
-        )}
-      </div>
-      <div>{type === "complete" && <RecordComplete />}</div> */}
+      {indicatorIndex === 2 && (
+        <SelectPhoto
+          indicatorIndex={indicatorIndex}
+          handleIndicatorIndex={handlers.changeIndicatorIndex}
+          cafeKeywordData={cafeKeywordData}
+          handleImage={handlers.changeImage}
+        />
+      )}
+      {indicatorIndex === 3 && (
+        <RecordComplete cafeKeywordData={cafeKeywordData} />
+      )}
     </div>
   );
 }

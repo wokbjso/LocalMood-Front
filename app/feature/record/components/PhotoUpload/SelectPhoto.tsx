@@ -2,21 +2,32 @@ import RecordPhotoContent from "@feature/record/components/PhotoUpload/RecordPho
 import PlaceRecordTopBar from "@feature/record/components/PlaceRecordTopBar/PlaceRecordTopBar";
 
 interface SelectPhoto {
-  type: string;
-  category: string;
-  name: string;
+  indicatorIndex: number;
+  handleIndicatorIndex: (index: number) => void;
+  cafeKeywordData: { [key: string]: string | Array<string> };
+  handleImage: (url: File) => void;
 }
 
-export default function SelectPhoto({ type, category, name }: SelectPhoto) {
+export default function SelectPhoto({
+  indicatorIndex,
+  handleIndicatorIndex,
+  cafeKeywordData,
+  handleImage,
+}: SelectPhoto) {
   return (
     <div>
       <div>
         <PlaceRecordTopBar
           showIndicator={true}
-          indicatorIndex={2}
           text="방문한 사진을 업로드해주세요!"
+          indicatorIndex={indicatorIndex}
+          handleIndicatorIndex={handleIndicatorIndex}
         />
-        <RecordPhotoContent type={type} category={category} />
+        <RecordPhotoContent
+          cafeKeywordData={cafeKeywordData}
+          handleImage={handleImage}
+          handleIndicatorIndex={handleIndicatorIndex}
+        />
       </div>
     </div>
   );

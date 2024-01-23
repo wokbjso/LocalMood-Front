@@ -5,16 +5,16 @@ import { useState } from "react";
 interface IndicatorProps {
   indicatorIndex: number;
   className?: string;
-  handleIndicator: (index: number) => void;
+  handleIndicatorIndex: (index: number) => void;
 }
 
 export default function Indicator({
   indicatorIndex,
   className,
-  handleIndicator,
+  handleIndicatorIndex,
 }: IndicatorProps) {
   const indicatorChange = (index: number) => {
-    handleIndicator(index);
+    handleIndicatorIndex(index);
   };
   console.log(indicatorIndex);
   return (

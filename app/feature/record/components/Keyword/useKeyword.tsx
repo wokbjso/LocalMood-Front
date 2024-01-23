@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function UseKeyword(placeType: string) {
   const [indicatorIndex, setIndicatorIndex] = useState(0);
   const [cafeKeywordData, setCafeKeywordData] = useState<{
-    [key: string]: string | string[];
+    [key: string]: string | any[];
   }>({
     purpose: "",
     mood: "",
@@ -11,6 +11,7 @@ export default function UseKeyword(placeType: string) {
     interior: "",
     likes: [],
     dislikes: [],
+    images: [],
   });
   const [restaurantKeywordData, setRestaurantKeywordData] = useState({
     purpose: "",
@@ -55,12 +56,20 @@ export default function UseKeyword(placeType: string) {
     }
   };
 
+  const handleImage = (file: File) => {
+    setCafeKeywordData({
+      ...cafeKeywordData,
+      images: [...cafeKeywordData.images, file],
+    });
+  };
+
   return {
     indicatorIndex,
     cafeKeywordData,
     handlers: {
       changeKeyword: handleKeyword,
       changeIndicatorIndex: handleIndicatorIndex,
+      changeImage: handleImage,
     },
   };
 }

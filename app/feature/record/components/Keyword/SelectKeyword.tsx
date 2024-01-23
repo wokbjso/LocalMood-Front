@@ -9,7 +9,7 @@ interface SelectKeyword {
   };
   handleKeyword: (category: string, keyword: string) => void;
   indicatorIndex: number;
-  handleIndicator: (index: number) => void;
+  handleIndicatorIndex: (index: number) => void;
 }
 
 export default function SelectKeyword({
@@ -18,21 +18,21 @@ export default function SelectKeyword({
   cafeKeywordData,
   handleKeyword,
   indicatorIndex,
-  handleIndicator,
+  handleIndicatorIndex,
 }: SelectKeyword) {
   return (
     <div>
       <PlaceRecordTopBar
         showIndicator={true}
         indicatorIndex={indicatorIndex}
-        handleIndicator={handleIndicator}
+        handleIndicatorIndex={handleIndicatorIndex}
         text={`${name}를 나타내는 키워드를 골라주세요`}
       />
       <RecordKeywordContent
         placeType={placeType}
         cafeKeywordData={cafeKeywordData}
         handleKeyword={handleKeyword}
-        handleIndicator={handleIndicator}
+        handleIndicatorIndex={handleIndicatorIndex}
       />
     </div>
   );

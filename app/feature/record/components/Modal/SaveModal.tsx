@@ -18,7 +18,7 @@ export default function SaveModal({ onClose }: RecordCurationProps) {
   };
   return (
     <div>
-      <div className={showCurationMake ? "bg-black opacity-0" : ""}>
+      {/* <div className={showCurationMake ? "bg-black opacity-0" : ""}>
         <div className="bg-white">
           <div className="w-full h-[41.6rem] px-[2rem] flex-col items-center shrink-0  pb-[39.5rem] overflow-auto">
             <div className="w-full pt-[2rem] inline-flex items-start justify-between">
@@ -93,7 +93,7 @@ export default function SaveModal({ onClose }: RecordCurationProps) {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* {showCurationMake && (
         <CurationMake onClose={() => setShowCurationMake(false)} />
       )} */}

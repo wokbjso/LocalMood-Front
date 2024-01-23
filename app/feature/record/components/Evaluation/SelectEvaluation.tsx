@@ -4,7 +4,7 @@ import RecordEvaluationContent from "@feature/record/components/Evaluation/Recor
 interface SelectEvaluation {
   placeType: string;
   indicatorIndex: number;
-  handleIndicator: (index: number) => void;
+  handleIndicatorIndex: (index: number) => void;
   cafeKeywordData: { [key: string]: string | Array<string> };
   handleKeyword: (category: string, keyword: string) => void;
 }
@@ -12,7 +12,7 @@ interface SelectEvaluation {
 export default function SelectEvaluation({
   placeType,
   indicatorIndex,
-  handleIndicator,
+  handleIndicatorIndex,
   cafeKeywordData,
   handleKeyword,
 }: SelectEvaluation) {
@@ -21,7 +21,7 @@ export default function SelectEvaluation({
       <PlaceRecordTopBar
         showIndicator={true}
         indicatorIndex={indicatorIndex}
-        handleIndicator={handleIndicator}
+        handleIndicatorIndex={handleIndicatorIndex}
         text="특별히 좋았던 점과 아쉬운 점이 있었나요?"
       />
       <RecordEvaluationContent
