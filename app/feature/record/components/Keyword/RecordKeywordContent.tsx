@@ -13,10 +13,12 @@ export default function RecordKeywordContent({
   placeType,
   cafeKeywordData,
   handleKeyword,
+  handleIndicator,
 }: {
   placeType: string;
-  cafeKeywordData: { [key: string]: string };
+  cafeKeywordData: { [key: string]: string | Array<string> };
   handleKeyword: (category: string, keyword: string) => void;
+  handleIndicator: (index: number) => void;
 }) {
   const handleFilterClick = (category: string, keyword: string) => {
     handleKeyword(category, keyword);
@@ -28,6 +30,10 @@ export default function RecordKeywordContent({
         (category) => cafeKeywordData[category] !== ""
       ).length === 0
     );
+  };
+
+  const handleNextClick = () => {
+    handleIndicator(1);
   };
 
   console.log(cafeKeywordData);
@@ -84,7 +90,9 @@ export default function RecordKeywordContent({
           </section>
         ))}
       <div className="fixed bottom-[10.5rem]">
-        <Button>{selectJump() ? "건너뛰기" : "다음"} </Button>
+        <Button onClick={handleNextClick}>
+          {selectJump() ? "건너뛰기" : "다음"}
+        </Button>
       </div>
     </div>
   );

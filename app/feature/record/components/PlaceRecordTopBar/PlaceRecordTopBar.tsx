@@ -1,24 +1,25 @@
-"use client";
 import ArrowIcon from "@common/assets/icons/arrow/arrow-left.svg";
 import Indicator from "@common/components/ui/indicator/Indicator";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 interface RecordTopBarProps {
   showIndicator: boolean;
-  indicatorIndex: number;
   text: string;
+  indicatorIndex: number;
+  handleIndicator: (index: number) => void;
 }
 
 export default function PlaceRecordTopBar({
   showIndicator,
-  indicatorIndex,
   text,
+  indicatorIndex,
+  handleIndicator,
 }: RecordTopBarProps) {
   const router = useRouter();
   const handleBackClick = () => {
     router.back(); // 이전 페이지로 이동
   };
-  const handleIndicator = (index: number) => {};
 
   return (
     <div className="flex flex-col items-start w-full px-[2rem] py-[1.2rem] gap-[1.2rem] fixed bg-white">
@@ -30,8 +31,8 @@ export default function PlaceRecordTopBar({
         {showIndicator && (
           <div className="flex h-[2.8rem] pl-[1.1rem] justify-end items-center">
             <Indicator
-              index={indicatorIndex}
-              handleIndicator={(index) => handleIndicator(index)}
+              indicatorIndex={indicatorIndex}
+              handleIndicator={handleIndicator}
             />
           </div>
         )}

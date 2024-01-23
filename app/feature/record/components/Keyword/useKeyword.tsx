@@ -3,12 +3,14 @@ import { useState } from "react";
 export default function UseKeyword(placeType: string) {
   const [indicatorIndex, setIndicatorIndex] = useState(0);
   const [cafeKeywordData, setCafeKeywordData] = useState<{
-    [key: string]: string;
+    [key: string]: string | Array<string>;
   }>({
     purpose: "",
     mood: "",
     music: "",
     interior: "",
+    likes: [],
+    dislikes: [],
   });
   const [restaurantKeywordData, setRestaurantKeywordData] = useState({
     purpose: "",
@@ -16,13 +18,25 @@ export default function UseKeyword(placeType: string) {
     music: "",
   });
 
+  const handleIndicatorIndex = (index: number) => {
+    setIndicatorIndex(index);
+  };
+
   const handleKeyword = (category: string, keyword: string) => {
     if (placeType === "카페") {
-      if (cafeKeywordData[category] === keyword) {
+      if (Array.isArray(cafeKeywordData[category])) {
+        setCafeKeywordData((prevData) => {
+          return {
+            ...prevData,
+            likes: [...prevData.likes, keyword],
+          };
+        });
+      } else if (cafeKeywordData[category] === keyword) {
         setCafeKeywordData({ ...cafeKeywordData, [category]: "" });
       } else {
         setCafeKeywordData({ ...cafeKeywordData, [category]: keyword });
       }
+    } else {
     }
   };
 
@@ -30,7 +44,8 @@ export default function UseKeyword(placeType: string) {
     indicatorIndex,
     cafeKeywordData,
     handlers: {
-      handleKeyword,
+      changeKeyword: handleKeyword,
+      changeIndicatorIndex: handleIndicatorIndex,
     },
   };
 }

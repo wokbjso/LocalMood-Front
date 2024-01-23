@@ -2,24 +2,33 @@ import PlaceRecordTopBar from "@feature/record/components/PlaceRecordTopBar/Plac
 import RecordEvaluationContent from "@feature/record/components/Evaluation/RecordEvaluationContent";
 
 interface SelectEvaluation {
-  type: string;
-  category: string;
-  name: string;
+  placeType: string;
+  indicatorIndex: number;
+  handleIndicator: (index: number) => void;
+  cafeKeywordData: { [key: string]: string | Array<string> };
+  handleKeyword: (category: string, keyword: string) => void;
 }
 
 export default function SelectEvaluation({
-  type,
-  category,
-  name,
+  placeType,
+  indicatorIndex,
+  handleIndicator,
+  cafeKeywordData,
+  handleKeyword,
 }: SelectEvaluation) {
   return (
     <div>
       <PlaceRecordTopBar
         showIndicator={true}
-        indicatorIndex={1}
+        indicatorIndex={indicatorIndex}
+        handleIndicator={handleIndicator}
         text="특별히 좋았던 점과 아쉬운 점이 있었나요?"
       />
-      <RecordEvaluationContent category={category} type={type} />
+      <RecordEvaluationContent
+        placeType={placeType}
+        cafeKeywordData={cafeKeywordData}
+        handleKeyword={handleKeyword}
+      />
     </div>
   );
 }

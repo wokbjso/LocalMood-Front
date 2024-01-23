@@ -1,4 +1,7 @@
-export const CAFE_CATEGORY_EVALUATIONS = ["👍 좋았던 점", "👍 아쉬웠던 점"];
+export const PLACE_EVALUATIONS: { [key: string]: string } = {
+  likes: "👍 좋았던 점",
+  dislikes: "👍 아쉬웠던 점",
+};
 
 export const CAFE_EVALUATIONS: {
   [key: string]: string[];
@@ -24,11 +27,6 @@ export const CAFE_EVALUATIONS: {
     "주차가 불편해요",
   ],
 };
-
-export const RESTAURANT_CATEGORY_EVALUATIONS = [
-  "👍 좋았던 점",
-  "👍 아쉬웠던 점",
-];
 
 export const RESTAURANT_EVALUATIONS: {
   [key: string]: string[];

@@ -37,7 +37,7 @@ export default function PlaceInfoTop({
           variant === "main"
             ? `/place/${category === "카페" ? "cafe" : "restaurant"}/${id}`
             : `/record/select/${id}`,
-        query: { category, placeName },
+        query: { category, name: placeName },
       }}
     >
       <div
