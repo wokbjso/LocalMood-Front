@@ -3,12 +3,12 @@ import PlaceInfoTop from "../PlaceInfoTop/PlaceInfoTop";
 import { PlaceInfoProps } from "@feature/place/type";
 
 export interface PlaceInfoRecordProps extends Omit<PlaceInfoProps, "tags"> {
-  variant?: "scrapped" | "record_search";
+  variant?: "vertical" | "horizontal";
 }
 
 export default function PlaceInfoRecord({
   id,
-  variant = "scrapped",
+  variant = "vertical",
   placeName,
   placeImg,
   category,
@@ -21,13 +21,14 @@ export default function PlaceInfoRecord({
     <div>
       <div
         className={twMerge(
-          variant === "scrapped" ? "w-[16.3rem]" : "w-full",
+          variant === "vertical" ? "w-[16.3rem]" : "w-full",
           className
         )}
         onClick={onClick}
       >
         <PlaceInfoTop
           id={id}
+          variant={variant}
           size="small"
           placeName={placeName}
           placeImg={placeImg}

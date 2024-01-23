@@ -1,10 +1,8 @@
-import GrabModal from "@common/components/ui/modal/GrabModal";
-import CloseIcon from "@common/assets/icons/close/close.svg";
 import AddIcon from "@common/assets/icons/add/add-icon.svg";
-import PlaceIcon from "@common/assets/icons/location/location-line.svg";
+import CloseIcon from "@common/assets/icons/close/CloseIcon";
+import LocationLine from "@common/assets/icons/location/LocationLine";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import CurationMake from "@feature/curation/components/modal/CurationMake";
 interface RecordCurationProps {
   onClose: () => void;
 }
@@ -21,7 +19,6 @@ export default function SaveModal({ onClose }: RecordCurationProps) {
   return (
     <div>
       <div className={showCurationMake ? "bg-black opacity-0" : ""}>
-        <GrabModal />
         <div className="bg-white">
           <div className="w-full h-[41.6rem] px-[2rem] flex-col items-center shrink-0  pb-[39.5rem] overflow-auto">
             <div className="w-full pt-[2rem] inline-flex items-start justify-between">
@@ -53,7 +50,7 @@ export default function SaveModal({ onClose }: RecordCurationProps) {
                     <div className="body2-medium text-text-gray-6">공개</div>
                     <div className="w-[0.1rem] h-[1.2rem] bg-text-gray-4"></div>
                     <div className="flex items-center gap-[0.2rem] body3-semibold text-text-gray-6">
-                      <PlaceIcon />
+                      <LocationLine />
                       <div>12</div>
                     </div>
                   </div>
@@ -70,7 +67,7 @@ export default function SaveModal({ onClose }: RecordCurationProps) {
                     <div className="body2-medium text-text-gray-6">비공개</div>
                     <div className="w-[0.1rem] h-[1.2rem] bg-text-gray-4"></div>
                     <div className="flex items-center gap-[0.2rem] body3-semibold text-text-gray-6">
-                      <PlaceIcon />
+                      <LocationLine />
                       <div>12</div>
                     </div>
                   </div>
@@ -87,7 +84,7 @@ export default function SaveModal({ onClose }: RecordCurationProps) {
                     <div className="body2-medium text-text-gray-6">공개</div>
                     <div className="w-[0.1rem] h-[1.2rem] bg-text-gray-4"></div>
                     <div className="flex items-center gap-[0.2rem] body3-semibold text-text-gray-6">
-                      <PlaceIcon />
+                      <LocationLine />
                       <div>12</div>
                     </div>
                   </div>
@@ -97,9 +94,9 @@ export default function SaveModal({ onClose }: RecordCurationProps) {
           </div>
         </div>
       </div>
-      {showCurationMake && (
+      {/* {showCurationMake && (
         <CurationMake onClose={() => setShowCurationMake(false)} />
-      )}
+      )} */}
     </div>
   );
 }

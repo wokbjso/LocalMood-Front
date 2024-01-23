@@ -11,6 +11,7 @@ import { PlaceInfoProps } from "@feature/place/type";
 
 export default function PlaceInfoTop({
   id,
+  variant = "vertical",
   size,
   placeName,
   placeImg,
@@ -34,8 +35,20 @@ export default function PlaceInfoTop({
         pathname: `/place/${category === "카페" ? "cafe" : "restaurant"}/${id}`,
       }}
     >
-      <div className={twMerge("w-full relative", className)} onClick={onClick}>
-        <div className={twMerge("w-full h-[16rem] relative")}>
+      <div
+        className={twMerge(
+          "w-full relative",
+          variant === "horizontal" && "flex items-center",
+          className
+        )}
+        onClick={onClick}
+      >
+        <div
+          className={twMerge(
+            "w-full h-[16rem] relative",
+            variant === "horizontal" && "w-[8rem] h-[8rem] mr-[1.6rem]"
+          )}
+        >
           <Image
             src={placeImg[0]}
             alt="공간 사진"
@@ -47,7 +60,7 @@ export default function PlaceInfoTop({
         <div
           className={twMerge("flex-col", size === "normal" ? "relative" : null)}
         >
-          {!isScrapped ? (
+          {variant === "vertical" && !isScrapped ? (
             <ScrapLine
               color={size === "small" ? "white" : undefined}
               className="absolute cursor-pointer right-[0.8rem] top-[1.6rem]"
@@ -64,7 +77,7 @@ export default function PlaceInfoTop({
           )}
           <div
             className={twMerge(
-              "w-[90%] pt-[1.6rem]",
+              variant === "vertical" && "w-[90%] pt-[1.6rem]",
               size === "normal" ? "headline2" : "headline3"
             )}
           >

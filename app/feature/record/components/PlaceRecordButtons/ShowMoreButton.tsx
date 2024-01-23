@@ -5,8 +5,7 @@ export default function ShowMoreButton() {
   return (
     <Link
       href={{
-        pathname: "/record/search",
-        query: { key: "select" },
+        pathname: "/record/scrapped/more",
       }}
     >
       <div className="flex items-center gap-[1.2rem] text-text-gray-6 body2-semibold">
