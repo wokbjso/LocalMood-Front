@@ -38,7 +38,9 @@ export default function RecordEvaluationContent({
                   <div className="text-black headline3-semibold mb-[1.2rem]">
                     {PLACE_EVALUATIONS[category]}
                   </div>
-                  <div className="headline3-semibold text-text-gray-6">0/3</div>
+                  <div className="headline3-semibold text-text-gray-6">
+                    {cafeKeywordData[category].length}/3
+                  </div>
                 </div>
                 <div className="flex flex-wrap gap-[0.6rem]">
                   {CAFE_EVALUATIONS[PLACE_EVALUATIONS[category]].map(

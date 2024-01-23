@@ -35,6 +35,10 @@ export default function UseKeyword(placeType: string) {
             };
           });
         } else {
+          if (cafeKeywordData[category].length === 3) {
+            alert("최대 3개까지 선택 가능해요!");
+            return;
+          }
           setCafeKeywordData((prevData) => {
             return {
               ...prevData,
