@@ -4,22 +4,25 @@ import RecordComplete from "@feature/record/components/RecordComplete/RecordComp
 import SelectKeyword from "@feature/record/components/Keyword/SelectKeyword";
 import SelectEvaluation from "@feature/record/components/Evaluation/SelectEvaluation";
 import SelectPhoto from "@feature/record/components/PhotoUpload/SelectPhoto";
+import { useState } from "react";
+import UseKeyword from "@feature/record/components/Keyword/useKeyword";
 
 export default function RecordSelect() {
-  const pathname = usePathname();
   const searchParams = useSearchParams();
-  const category = searchParams.get("category") || "";
-  const name = searchParams.get("name") || "";
-  const type = pathname.split("/").pop();
-
+  const placeType = searchParams.get("category") || "";
+  const name = searchParams.get("placeName") || "";
+  const { indicatorIndex, cafeKeywordData, handlers } = UseKeyword(placeType);
   return (
     <div>
       <div>
-        {type === "keyword" && (
-          <SelectKeyword type={type} category={category} name={name} />
-        )}
+        <SelectKeyword
+          placeType={placeType}
+          name={name}
+          cafeKeywordData={cafeKeywordData}
+          handleKeyword={handlers.handleKeyword}
+        />
       </div>
-      <div>
+      {/* <div>
         {type === "evaluate" && (
           <SelectEvaluation type={type} category={category} name={name} />
         )}
@@ -29,7 +32,7 @@ export default function RecordSelect() {
           <SelectPhoto type={type} category={category} name={name} />
         )}
       </div>
-      <div>{type === "complete" && <RecordComplete />}</div>
+      <div>{type === "complete" && <RecordComplete />}</div> */}
     </div>
   );
 }

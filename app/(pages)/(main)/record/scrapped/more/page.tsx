@@ -85,7 +85,7 @@ export default function RecordScrappedMore() {
         {RECORD_DUMMYLIST.map((props, index) => (
           <div key={index} className="w-full">
             <PlaceInfoMain
-              variant="horizontal"
+              direction="horizontal"
               {...props}
               onClick={() =>
                 handlePlaceInfoRecordClick(props.category, props.placeName)

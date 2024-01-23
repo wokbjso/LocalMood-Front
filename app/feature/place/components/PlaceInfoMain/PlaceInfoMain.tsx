@@ -4,7 +4,8 @@ import { PlaceInfoProps } from "@feature/place/type";
 
 export default function PlaceInfoMain({
   id,
-  variant = "vertical",
+  variant = "main",
+  direction = "vertical",
   size = "normal",
   placeName,
   placeImg,
@@ -23,6 +24,7 @@ export default function PlaceInfoMain({
       <PlaceInfoTop
         id={id}
         variant={variant}
+        direction={direction}
         size={size}
         placeName={placeName}
         placeImg={placeImg}

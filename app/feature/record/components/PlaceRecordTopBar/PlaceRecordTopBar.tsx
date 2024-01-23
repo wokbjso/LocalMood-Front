@@ -21,7 +21,7 @@ export default function PlaceRecordTopBar({
   const handleIndicator = (index: number) => {};
 
   return (
-    <div className="flex flex-col items-start w-full px-[2rem] py-[1.2rem] gap-[1.2rem]">
+    <div className="flex flex-col items-start w-full px-[2rem] py-[1.2rem] gap-[1.2rem] fixed bg-white">
       <div onClick={handleBackClick}>
         <ArrowIcon />
       </div>

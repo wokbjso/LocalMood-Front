@@ -1,6 +1,8 @@
 "use client";
-import PlaceInfoRecord from "@feature/place/components/PlaceInfoRecord/PlaceInfoRecord";
+import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
+import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import PlaceSearchTopBar from "@feature/record/components/PlaceSearch/PlaceSearchTopBar";
+import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import { useSearchParams, useRouter } from "next/navigation";
 
 export default function RecordSearch() {
@@ -79,23 +81,24 @@ export default function RecordSearch() {
 
   return (
     <>
-      {query === null && (
-        <div>
-          <PlaceSearchTopBar />
-          <div className="inline-flex flex-col items-start gap-[0.8rem] px-[2rem] pt-[1.6rem]">
-            {RECORD_DUMMYLIST.map((props, index) => (
-              <div key={index}>
-                <PlaceInfoRecord
-                  {...props}
-                  onClick={() =>
-                    handlePlaceInfoRecordClick(props.category, props.placeName)
-                  }
-                />
-              </div>
-            ))}
-          </div>
+      <div>
+        <BasicTopBar color="#9E9E9E">
+          <SearchBar variant="record" placeholder="공간 이름을 검색해보세요" />
+        </BasicTopBar>
+        <div className="inline-flex flex-col items-start gap-[0.8rem] px-[2rem] pt-[1.6rem]">
+          {RECORD_DUMMYLIST.map((props, index) => (
+            <div key={index}>
+              <PlaceInfoMain
+                variant="horizontal"
+                {...props}
+                onClick={() =>
+                  handlePlaceInfoRecordClick(props.category, props.placeName)
+                }
+              />
+            </div>
+          ))}
         </div>
-      )}
+      </div>
     </>
   );
 }

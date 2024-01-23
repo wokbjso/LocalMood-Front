@@ -11,7 +11,8 @@ import { PlaceInfoProps } from "@feature/place/type";
 
 export default function PlaceInfoTop({
   id,
-  variant = "vertical",
+  variant,
+  direction,
   size,
   placeName,
   placeImg,
@@ -32,13 +33,17 @@ export default function PlaceInfoTop({
   return (
     <Link
       href={{
-        pathname: `/place/${category === "카페" ? "cafe" : "restaurant"}/${id}`,
+        pathname:
+          variant === "main"
+            ? `/place/${category === "카페" ? "cafe" : "restaurant"}/${id}`
+            : `/record/select/${id}`,
+        query: { category, placeName },
       }}
     >
       <div
         className={twMerge(
           "w-full relative",
-          variant === "horizontal" && "flex items-center",
+          direction === "horizontal" && "flex items-center",
           className
         )}
         onClick={onClick}
@@ -46,7 +51,7 @@ export default function PlaceInfoTop({
         <div
           className={twMerge(
             "w-full h-[16rem] relative",
-            variant === "horizontal" && "w-[8rem] h-[8rem] mr-[1.6rem]"
+            direction === "horizontal" && "w-[8rem] h-[8rem] mr-[1.6rem]"
           )}
         >
           <Image
@@ -60,14 +65,14 @@ export default function PlaceInfoTop({
         <div
           className={twMerge("flex-col", size === "normal" ? "relative" : null)}
         >
-          {variant === "vertical" && !isScrapped && (
+          {direction === "vertical" && !isScrapped && (
             <ScrapLine
               color={size === "small" ? "white" : undefined}
               className="absolute cursor-pointer right-[0.8rem] top-[1.6rem]"
               onClick={handleScrap}
             />
           )}
-          {variant === "vertical" && isScrapped && (
+          {direction === "vertical" && isScrapped && (
             <ScrapFill
               color={size === "small" ? "white" : undefined}
               className="absolute cursor-pointer right-[0.8rem] top-[1.6rem]"
@@ -76,7 +81,7 @@ export default function PlaceInfoTop({
           )}
           <div
             className={twMerge(
-              variant === "vertical" && "w-[90%] pt-[1.6rem]",
+              direction === "vertical" && "w-[90%] pt-[1.6rem]",
               size === "normal" ? "headline2" : "headline3"
             )}
           >

@@ -1,5 +1,5 @@
+import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
-import ShowMoreButton from "@feature/record/components/PlaceRecordButtons/ShowMoreButton";
 import PlaceSearchBar from "@feature/record/components/PlaceSearch/PlaceSearchBar";
 
 export default function Record() {
@@ -81,13 +81,19 @@ export default function Record() {
         <PlaceSearchBar />
       </div>
       <div className="w-full flex justify-between items-center pl-[2rem] pr-[1.5rem] pt-[4.4rem] text-black headline2-semibold">
-        스크랩한 공간
-        <ShowMoreButton />
+        <span>스크랩한 공간</span>
+        <LinkLayout routeUrl="/record/scrapped/more">
+          <span className="text-text-gray-6 body2-semibold">더보기</span>
+        </LinkLayout>
       </div>
       <div className="flex items-start overflow-x-auto px-[2rem] pt-[1.6rem] gap-[0.8rem]">
         {RECORD_DUMMY.map((props, index) => (
           <div key={index}>
-            <PlaceInfoMain {...props} className="w-[16.3rem]" />
+            <PlaceInfoMain
+              variant="record"
+              {...props}
+              className="w-[16.3rem]"
+            />
           </div>
         ))}
       </div>

@@ -1,6 +1,7 @@
 export interface PlaceInfoProps {
   id: number;
-  variant?: "vertical" | "horizontal";
+  variant?: "main" | "record";
+  direction?: "vertical" | "horizontal";
   size?: "normal" | "small";
   placeName: string;
   placeImg: string[];
