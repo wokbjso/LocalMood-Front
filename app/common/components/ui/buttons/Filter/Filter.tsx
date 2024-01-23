@@ -7,8 +7,9 @@ import ArrowUp from "@common/assets/icons/arrow/ArrowUp";
 
 interface FilterProps {
   variant?: "static" | "showOptions";
-  photo?: string[];
+  photo?: string;
   label: string;
+  selected?: boolean;
   onClick?: () => void;
   disabled?: boolean;
   className?: string;
@@ -18,15 +19,14 @@ export default function Filter({
   variant = "static",
   photo,
   label,
+  selected = false,
   onClick,
   disabled = false,
   className,
 }: FilterProps) {
-  const [selected, setSelected] = useState(false);
   const [openOptions, setOpenOptions] = useState(false);
   const filterClicked = () => {
     onClick && onClick();
-    setSelected((prev) => !prev);
     if (variant === "showOptions") setOpenOptions((prev) => !prev);
   };
   return (
@@ -59,7 +59,7 @@ export default function Filter({
         {label}
       </span>
       {variant === "showOptions" && openOptions && (
-        <ArrowUp className="ml-[0.2rem]" color="#FAFAFA" />
+        <ArrowUp className="ml-[0.2rem]" color="#9E9E9E" />
       )}
       {variant === "showOptions" && !openOptions && (
         <ArrowDown className="ml-[0.2rem]" />

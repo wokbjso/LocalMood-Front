@@ -1,5 +1,5 @@
 export interface IconProps {
   color?: string;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
   className?: string;
 }

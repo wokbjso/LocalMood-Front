@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function UseCurationHomeList() {
+export default function UseCurationHomePopular() {
   const [indicatorIndex, setIndicatorIndex] = useState(0);
 
   const handleIndicator = (index: number) => {

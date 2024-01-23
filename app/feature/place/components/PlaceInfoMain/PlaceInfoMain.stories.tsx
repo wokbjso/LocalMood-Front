@@ -28,24 +28,12 @@ export const ScrappedFalse: Story = {
     category: "카페",
     location: "마포구 망원동",
     scrapped: false,
-    tags: [
-      {
-        category: "방문목적",
-        detail: "연인과의 데이트",
-      },
-      {
-        category: "방문목적",
-        detail: "작업/공부",
-      },
-      {
-        category: "인테리어",
-        detail: "통창뷰",
-      },
-      {
-        category: "공간무드",
-        detail: "넓은 공간",
-      },
-    ],
+    tags: {
+      purpose: ["sdg", "wegweg"],
+      interior: ["wegw", "weqge"],
+      mood: ["waegha"],
+      music: ["wrha"],
+    },
   },
 };
 
@@ -58,23 +46,11 @@ export const ScrappedTrue: Story = {
     category: "카페",
     location: "마포구 망원동",
     scrapped: true,
-    tags: [
-      {
-        category: "방문목적",
-        detail: "연인과의 데이트",
-      },
-      {
-        category: "방문목적",
-        detail: "작업/공부",
-      },
-      {
-        category: "인테리어",
-        detail: "통창뷰",
-      },
-      {
-        category: "공간무드",
-        detail: "넓은 공간",
-      },
-    ],
+    tags: {
+      purpose: ["sdg", "wegweg"],
+      interior: ["wegw", "weqge"],
+      mood: ["waegha"],
+      music: ["wrha"],
+    },
   },
 };

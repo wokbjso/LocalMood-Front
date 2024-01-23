@@ -1,17 +1,15 @@
-interface PlaceTags {
-  category: string;
-  detail: string;
-}
-
 export interface PlaceInfoProps {
   id: number;
-  variant?: "home" | "home_search" | "curation" | "scrapped" | "record_search";
+  size?: "normal" | "small";
   placeName: string;
-  placeImg: string;
+  placeImg: string[];
   category: string;
   location: string;
   scrapped: boolean;
-  tags?: PlaceTags[];
+  tags?: { [key: string]: string[] };
+  tagsCategoryNum?: number;
   onClick?: () => void;
   className?: string;
+  imgClassName?: string;
+  bottomClassName?: string;
 }

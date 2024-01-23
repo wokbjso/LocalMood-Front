@@ -1,18 +1,15 @@
 "use client";
-import React, { useState } from "react";
-import CurationHeader from "@feature/curation/components/CurationHeader/CurationHeader";
+
+import React from "react";
 import Tab from "@common/components/ui/tab/Tab";
 import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
-import CurationButton from "@feature/curation/components/CurationButton/CurationButton";
 import CurationScrapped from "@feature/curation/components/CurationScrapped/CurationScrapped";
-import {
-  curationMainPropsList,
-  curationScrappedPropsList,
-} from "@feature/curation/dummyList";
-import CurationMake from "@feature/curation/components/modal/CurationMake";
-import GrabModal from "@common/components/ui/modal/GrabModal";
+import UseCuration from "@feature/curation/useCuration";
+import CurationMakeButton from "@feature/curation/components/CurationButton/CurationMakeButton";
+import CurationMakeModal from "@feature/curation/components/CurationMake/CurationMakeModal";
 
 export default function CurationPage() {
+  const { tabIndex, isCurationMakeOpen, handlers } = UseCuration();
   const CurationTabSections = [
     {
       text: "내 큐레이션",
@@ -21,61 +18,108 @@ export default function CurationPage() {
       text: "스크랩",
     },
   ];
-  const [tabIndex, setTabIndex] = React.useState(0);
-  const [isCurationMakeOpen, setIsCurationMakeOpen] = useState(false);
-
-  const handleTabChange = (index: number) => {
-    setTabIndex(index);
-  };
-  const handleCurationButtonClick = () => {
-    setIsCurationMakeOpen(true);
-    document.body.style.overflow = "hidden";
-  };
-  const handleCloseModal = () => {
-    setIsCurationMakeOpen(false);
-    document.body.style.overflow = "unset";
-  };
+  const MY_CURATION_DUMMY = [
+    {
+      id: 0,
+      variant: "my" as "my" | "others" | undefined,
+      curationPhoto: [
+        "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
+      ],
+      userImg:
+        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
+      userName: "김현민",
+      mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
+      hashTags: ["연인과의 데이트", "크리스마스"],
+      scrapped: true,
+      onClick: () => {},
+      places: 9,
+    },
+    {
+      id: 1,
+      variant: "my" as "my" | "others" | undefined,
+      curationPhoto: [
+        "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
+      ],
+      userImg:
+        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
+      userName: "김현민",
+      mainText: "카페",
+      hashTags: ["연인과의 데이트", "크리스마스"],
+      scrapped: true,
+      onClick: () => {},
+      places: 10,
+    },
+    {
+      id: 2,
+      variant: "my" as "my" | "others" | undefined,
+      curationPhoto: [
+        "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
+      ],
+      userImg:
+        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
+      userName: "김현민",
+      mainText: "화이트데이에 즐기기 좋은 마포구 데이트 코스",
+      hashTags: ["연인과의 데이트", "크리스마스"],
+      scrapped: true,
+      onClick: () => {},
+      places: 12,
+    },
+    {
+      id: 3,
+      variant: "my" as "my" | "others" | undefined,
+      curationPhoto: [
+        "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
+      ],
+      userImg:
+        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
+      userName: "김현민",
+      mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
+      hashTags: ["연인과의 데이트", "크리스마스"],
+      scrapped: true,
+      onClick: () => {},
+      places: 1,
+    },
+  ];
 
   return (
     <div className="Curation h-[100vh] overflow-hidden">
-      <CurationHeader />
-      <Tab sections={CurationTabSections} onChange={handleTabChange} />
+      <header>
+        <div className="w-full h-[7.8rem] pt-[3.8rem] pr-[2rem] pb-[1.2rem] pl-[2rem]">
+          <span className="headline1 text-black">큐레이션</span>
+        </div>
+      </header>
+      <Tab sections={CurationTabSections} onChange={handlers.handleTabIndex} />
       <div className="h-full px-[2rem] pb-[18.2rem] bg-background-gray-2 items-center overflow-y-scroll">
         {tabIndex === 0 && (
           <div className="flex items-center justify-between pb-[0.6rem] pt-[2rem]">
             <div className="flex body1 text-text-gray-8 items-center">
-              총{" "}
-              <p className="text-black">&nbsp;{curationMainPropsList.length}</p>{" "}
+              총 <p className="text-black">&nbsp;{MY_CURATION_DUMMY.length}</p>{" "}
               개
             </div>
-            <div onClick={handleCurationButtonClick}>
-              <CurationButton />
+            <div onClick={() => handlers.handleCurationMakeOpen(true)}>
+              <CurationMakeButton />
             </div>
           </div>
         )}
         {tabIndex === 0 &&
-          curationMainPropsList.map((props, index) => (
-            <div key={index} className="mb-[1.2rem]">
+          MY_CURATION_DUMMY.map((props) => (
+            <div key={props.userName + props.id} className="mb-[1.2rem]">
               <CurationMain {...props} />
             </div>
           ))}
-        <div className="pt-[2rem]">
+        <div className="pt-[2rem] pb-[6rem]">
           {tabIndex === 1 &&
-            curationScrappedPropsList.map((props, index) => (
-              <div key={index} className="mb-[1.6rem]">
+            MY_CURATION_DUMMY.map((props) => (
+              <div key={props.userName + props.id} className="mb-[1.6rem]">
                 <CurationScrapped {...props} />
               </div>
             ))}
         </div>
       </div>
-      {isCurationMakeOpen && (
-        <>
-          <div className="absolute h-[100vh] w-full bg-black opacity-[0.4] z-10 bottom-0 left-0" />
-          <div className="fixed top-[4.6rem] bottom-0 left-0 right-0 z-10">
-            <CurationMake onClose={handleCloseModal} />
-          </div>
-        </>
-      )}
+      <CurationMakeModal
+        isOpen={isCurationMakeOpen}
+        handleOpen={handlers.handleCurationMakeOpen}
+      />
     </div>
   );
 }

@@ -1,89 +1,40 @@
-import RightArrow from "@common/assets/icons/arrow/arrow-right.svg";
-import Chip from "@common/components/ui/buttons/Chip/Chip";
-import CurationHomeList from "@feature/curation/components/CurationHomeList/CurationHomeList";
 import HomeHeader from "@common/components/layout/Header/HomeHeader";
-import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
-import Button from "@common/components/ui/buttons/Button/Button";
-import Slider from "@common/components/layout/Slider/Slider";
-import LampIcon from "@common/assets/icons/lamp/LampIcon";
 import Footer from "@common/components/layout/Footer/Footer";
-import WineIcon from "@common/assets/icons/wine/Wine";
-import ElectricCordIcon from "@common/assets/icons/electric-cord/ElectricCordIcon";
-import PetIcon from "@common/assets/icons/pet/PetIcon";
-import WindowIcon from "@common/assets/icons/window/WindowIcon";
-import HeartIcon from "@common/assets/icons/heart/HeartIcon";
-import MusicIcon from "@common/assets/icons/music/MusicIcon";
+import PlaceHomeSlider from "@feature/place/components/PlaceHomeSlider/PlaceHomeSlider";
+import HomeBanner from "./components/HomeBanner";
+import CurationHomePopular from "@feature/curation/components/CurationHomePopular/CurationHomePopular";
 
 export default function Home() {
-  const HEADER_KEYWORD = [
-    { icon: HeartIcon, color: "#F670C7", text: "연인과의 데이트" },
-    { icon: MusicIcon, color: "#8F73FD", text: "잔잔한 음악" },
-    { icon: LampIcon, text: "따뜻한 조명" },
-    { icon: WineIcon, text: "와인" },
-    { icon: ElectricCordIcon, text: "콘센트 있음" },
-    { icon: PetIcon, text: "애견동반 가능" },
-    { icon: WindowIcon, text: "통창뷰" },
-  ];
+  //장소 get api 데이터로 대체(server side - fetch)
   const PLACE_DUMMY = [
     {
       id: 0,
       placeName: "나이스워크투데이",
-      placeImg:
+      placeImg: [
         "https://media.istockphoto.com/id/1446199740/ko/%EC%82%AC%EC%A7%84/%ED%96%87%EB%B3%95%EC%9D%B4-%EC%9E%98-%EB%93%9C%EB%8A%94-%EC%88%B2%EC%9D%84-%ED%86%B5%EA%B3%BC%ED%95%98%EB%8A%94-%EA%B8%B8.jpg?s=2048x2048&w=is&k=20&c=3z_ODBT78uZDVqy-3B6r8LBa825AuSpL0xfzySe2fj8=",
+      ],
       category: "카페",
       location: "마포구 망원동",
       scrapped: false,
-      tags: [
-        {
-          category: "방문목적",
-          detail: "연인과의 데이트",
-        },
-        {
-          category: "방문목적",
-          detail: "작업/공부",
-        },
-        {
-          category: "인테리어",
-          detail: "통창뷰",
-        },
-        {
-          category: "인테리어",
-          detail: "통창뷰",
-        },
-        {
-          category: "공간무드",
-          detail: "넓은 공간",
-        },
-      ],
+      tags: {
+        interior: ["통창뷰", "넓은 공간"],
+      },
     },
     {
       id: 1,
       placeName: "나이스워크투데이",
-      placeImg:
+      placeImg: [
         "https://media.istockphoto.com/id/1446199740/ko/%EC%82%AC%EC%A7%84/%ED%96%87%EB%B3%95%EC%9D%B4-%EC%9E%98-%EB%93%9C%EB%8A%94-%EC%88%B2%EC%9D%84-%ED%86%B5%EA%B3%BC%ED%95%98%EB%8A%94-%EA%B8%B8.jpg?s=2048x2048&w=is&k=20&c=3z_ODBT78uZDVqy-3B6r8LBa825AuSpL0xfzySe2fj8=",
+      ],
       category: "카페",
       location: "마포구 망원동",
-      scrapped: false,
-      tags: [
-        {
-          category: "방문목적",
-          detail: "연인과의 데이트",
-        },
-        {
-          category: "방문목적",
-          detail: "작업/공부",
-        },
-        {
-          category: "인테리어",
-          detail: "통창뷰",
-        },
-        {
-          category: "공간무드",
-          detail: "넓은 공간",
-        },
-      ],
+      scrapped: true,
+      tags: {
+        interior: ["통창뷰", "넓은 공간"],
+      },
     },
   ];
+  //큐레이션 get api로 대체(server side - fetch)
   const CURATION_DUMMY = [
     {
       id: 0,
@@ -95,6 +46,7 @@ export default function Home() {
       userName: "김현민",
       mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
       hashTags: ["연인과의 데이트", "크리스마스"],
+      places: 4,
     },
     {
       id: 1,
@@ -106,6 +58,8 @@ export default function Home() {
       userName: "김지원",
       mainText: "평일에 좋은 마포구 데이트 코스",
       hashTags: ["연인과의 데이트", "평일"],
+      scrapped: true,
+      places: 6,
     },
     {
       id: 2,
@@ -117,6 +71,7 @@ export default function Home() {
       userName: "김경민",
       mainText: "주말에 즐기기 좋은 마포구 데이트 코스",
       hashTags: ["연인과의 데이트", "주말"],
+      places: 6,
     },
     {
       id: 3,
@@ -128,86 +83,39 @@ export default function Home() {
       userName: "최예원",
       mainText: "친구와 즐기기 좋은 마포구 데이트 코스",
       hashTags: ["친구와의 데이트", "마포구"],
+      places: 10,
     },
   ];
   return (
     <>
       <HomeHeader />
-      <p className="header-light  pb-[2.4rem] px-[2rem] pt-[5.4rem] bg-[#F5F8FF]">
-        나에게 딱 맞는 공간을
-        <br />
-        <span className="header-main"> 키워드</span>로 찾아보세요
-      </p>
-      <div className="overflow-hidden">
-        <ul className="flex no-wrap">
-          <div className="header-slider1 flex pb-[2rem] bg-[#F5F8FF]">
-            {HEADER_KEYWORD.map((keyword, i) => (
-              <li key={keyword.text + i}>
-                <Chip className="whitespace-nowrap px-[1.12rem] flex items-center h-[3.2rem] mr-[1rem]">
-                  {<keyword.icon color={keyword.color} />}
-                  <span className="pl-[0.4rem]">{keyword.text}</span>
-                </Chip>
-              </li>
-            ))}
-          </div>
-          <div className="header-slider2 flex pb-[2rem] bg-[#F5F8FF]">
-            {HEADER_KEYWORD.map((keyword, i) => (
-              <li key={keyword.text + i}>
-                <Chip className="whitespace-nowrap px-[1.12rem] flex items-center h-[3.2rem] mr-[1rem]">
-                  {<keyword.icon color={keyword.color} />}
-                  <span className="pl-[0.4rem]">{keyword.text}</span>
-                </Chip>
-              </li>
-            ))}
-          </div>
-        </ul>
-      </div>
-      <div className="flex justify-center pb-[2rem] bg-[#F5F8FF]">
-        <LinkLayout
-          routeUrl="/search"
-          query={{ keyword_search: true }}
-          className="w-full flex justify-center px-[2rem]"
-        >
-          <Button>키워드로 공간 찾기</Button>
-        </LinkLayout>
-      </div>
+      <HomeBanner />
       <div className="pb-[12.3rem] pt-[4rem]">
-        <section className="mb-[4rem] pl-[2rem]">
-          <span className="text-primary-normal headline2"># </span>
-          <span className="text-black headline2">연인과의 데이트</span>
-          <span className="text-text-gray-6 body1"> 를 위한 공간</span>
-          <Slider placeData={PLACE_DUMMY} backgroundClassName="py-[1.6rem]" />
-        </section>
-        <section className="mb-[4rem] pl-[2rem]">
-          <span className="text-primary-normal headline2"># </span>
-          <span className="text-black headline2">친구와의 만남</span>
-          <span className="text-text-gray-6 body1"> 을 위한 공간</span>
-          <Slider placeData={PLACE_DUMMY} backgroundClassName="py-[1.6rem]" />
-        </section>
-        <section className="mb-[5.6rem] pt-[2.8rem] pb-[2rem] px-[2rem] bg-background-gray-2">
-          <div className="flex justify-between mb-[1.6rem]">
-            <span className="headline2 text-black">마포구 인기 큐레이션</span>
-            <div className="flex items-center headline2 text-black">
-              <span className="mr-[1rem] text-text-gray-6 body2-semibold">
-                더보기
-              </span>
-              <RightArrow />
-            </div>
-          </div>
-          <CurationHomeList curationList={CURATION_DUMMY} />
-        </section>
-        <section className="mb-[4rem] pl-[2rem]">
-          <span className="text-primary-normal headline2"># </span>
-          <span className="text-black headline2">왁자지껄 떠들기 좋은</span>
-          <span className="text-text-gray-6 body1"> 공간</span>
-          <Slider placeData={PLACE_DUMMY} backgroundClassName="py-[1.6rem]" />
-        </section>
-        <section className="mb-[4rem] pl-[2rem]">
-          <span className="text-primary-normal headline2"># </span>
-          <span className="text-black headline2">대화에 집중할 수 있는</span>
-          <span className="text-text-gray-6 body1"> 공간</span>
-          <Slider placeData={PLACE_DUMMY} backgroundClassName="py-[1.6rem]" />
-        </section>
+        <PlaceHomeSlider
+          mainText="연인과의 데이트"
+          subText="를 위한 공간"
+          placeList={PLACE_DUMMY}
+        ></PlaceHomeSlider>
+        <PlaceHomeSlider
+          mainText="친구와의 만남"
+          subText="을 위한 공간"
+          placeList={PLACE_DUMMY}
+        />
+        <CurationHomePopular
+          mainText="마포구 인기 큐레이션"
+          subText="더보기"
+          curationList={CURATION_DUMMY}
+        />
+        <PlaceHomeSlider
+          mainText="왁자지껄 떠들기 좋은"
+          subText="공간"
+          placeList={PLACE_DUMMY}
+        />
+        <PlaceHomeSlider
+          mainText="대화에 집중할 수 있는"
+          subText="공간"
+          placeList={PLACE_DUMMY}
+        />
       </div>
       <Footer />
     </>

@@ -3,30 +3,15 @@
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import Line from "@common/assets/icons/line/line.svg";
-import ScrapShadow from "@common/assets/icons/scrap/scrap-shadow.svg";
 import { useState } from "react";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import Link from "next/link";
-
-interface PlaceInfoProps {
-  id: number;
-  variant?: string;
-  size?: "large" | "small";
-  placeName: string;
-  placeImg: string;
-  category: string;
-  location: string;
-  scrapped: boolean;
-  onClick?: () => void;
-  className?: string;
-  imgClassName?: string;
-}
+import { PlaceInfoProps } from "@feature/place/type";
 
 export default function PlaceInfoTop({
   id,
-  variant,
-  size = "large",
+  size,
   placeName,
   placeImg,
   category,
@@ -34,10 +19,14 @@ export default function PlaceInfoTop({
   scrapped,
   onClick,
   className,
+  imgClassName,
 }: PlaceInfoProps) {
+  //scrap 유무를 default useState 값으로 설정
   const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
-  const handleScrap = () => {
+  const handleScrap = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+    e.preventDefault();
     setIsScrapped((prev) => !prev);
+    //장소 id 활용하여 api 문서에 맞게 해당 장소 scrap 상태 변경 api 호출(client side - tanstack query)
   };
   return (
     <Link
@@ -45,90 +34,60 @@ export default function PlaceInfoTop({
         pathname: `/place/${category === "카페" ? "cafe" : "restaurant"}/${id}`,
       }}
     >
-      <div
-        className={twMerge(
-          "w-full relative",
-          variant === "record_search" && "flex items-center",
-          className
-        )}
-        onClick={onClick}
-      >
-        <div
-          className={twMerge(
-            "w-full h-[16rem] relative",
-            variant === "curation" && "h-[28rem]",
-            variant === "record_search" && "w-[8rem] h-[8rem] mr-[1.6rem]"
-          )}
-        >
+      <div className={twMerge("w-full relative", className)} onClick={onClick}>
+        <div className={twMerge("w-full h-[16rem] relative")}>
           <Image
-            src={placeImg}
+            src={placeImg[0]}
             alt="공간 사진"
             fill
             sizes="100vw"
-            className="rounded-[8px]"
+            className={twMerge("rounded-[8px]", imgClassName)}
           />
         </div>
         <div
-          className={twMerge(
-            "flex-col mt-[1.6rem]",
-            variant === "record_search" && "mt-0",
-            size === "large" && "relative"
-          )}
+          className={twMerge("flex-col", size === "normal" ? "relative" : null)}
         >
-          {size === "large" ? (
-            !isScrapped ? (
-              <ScrapLine
-                className="absolute cursor-pointer right-[0.4rem]"
-                onClick={handleScrap}
-              />
-            ) : (
+          {!isScrapped ? (
+            <ScrapLine
+              color={size === "small" ? "white" : undefined}
+              className="absolute cursor-pointer right-[0.8rem] top-[1.6rem]"
+              onClick={handleScrap}
+            />
+          ) : (
+            <span>
               <ScrapFill
-                className="absolute cursor-pointer right-[0.4rem]"
+                color={size === "small" ? "white" : undefined}
+                className="absolute cursor-pointer right-[0.8rem] top-[1.6rem]"
                 onClick={handleScrap}
               />
-            )
-          ) : null}
-          {variant === "scrapped" && size === "small" ? (
-            !isScrapped ? (
-              <ScrapLine
-                className="absolute cursor-pointer top-[1.2rem] right-[1.2rem]"
-                onClick={handleScrap}
-              />
-            ) : (
-              <ScrapShadow
-                className="absolute cursor-pointer top-[1.2rem] right-[1.2rem]"
-                onClick={handleScrap}
-              />
-            )
-          ) : null}
+            </span>
+          )}
           <div
             className={twMerge(
-              size === "large" ? "headline2" : "headline3",
-              "mb-[0.8rem]"
+              "w-[90%] pt-[1.6rem]",
+              size === "normal" ? "headline2" : "headline3"
             )}
           >
-            {placeName}
-          </div>
-          <div className="flex">
-            <span
-              className={
-                size === "large"
-                  ? "body2-semibold text-text-gray-6"
-                  : "body3-semibold text-text-gray-7"
-              }
-            >
-              {category}
-            </span>
-            <Line className="mx-[0.8rem]" />
-            <span
-              className={
-                size === "large"
-                  ? "body2-medium text-text-gray-5"
-                  : "body3-medium text-text-gray-5"
-              }
-            >
-              {location}
-            </span>
+            <span>{placeName}</span>
+            <div className="flex mt-[0.8rem]">
+              <span
+                className={twMerge(
+                  "text-text-gray-6",
+                  size === "normal" ? "body2-semibold" : "body3-semibold"
+                )}
+              >
+                {category}
+              </span>
+              <Line className="mx-[0.8rem]" />
+              <span
+                className={twMerge(
+                  "text-text-gray-5",
+                  size === "normal" ? "body2-medium" : "body3-medium"
+                )}
+              >
+                {location}
+              </span>
+            </div>
           </div>
         </div>
       </div>

@@ -6,37 +6,28 @@ import { useState } from "react";
 import { CurationProps } from "@feature/curation/type";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { twMerge } from "tailwind-merge";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function CurationScrapped({
   id,
   curationPhoto,
-  variant,
   userImg,
   userName,
   mainText,
   hashTags,
-  scrapped = false,
+  scrapped = true,
   onClick,
-  places,
   className,
-}: CurationProps) {
-  const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
-  const router = useRouter();
+}: Omit<CurationProps, "places">) {
+  const [isScrapped, setIsScrapped] = useState(scrapped);
   const handleScrap = () => {
     setIsScrapped((prev) => !prev);
+    //id 이용해서 scrap 해제 모달 창 띄우기 && delete api 호출
   };
 
-  const handleCardClick = (id: number, variant: string | undefined) => {
-    router.push(`curation/detail/${id}_${variant}`);
-  }; //query로 변경
-
   return (
-    <div>
-      <div
-        className={twMerge("w-full", className)}
-        onClick={() => handleCardClick(id, variant)}
-      >
+    <div onClick={onClick}>
+      <div className={twMerge("w-full", className)}>
         <div
           className="w-full h-[16.5rem] bg-cover relative rounded-[8px]"
           style={{
@@ -59,21 +50,32 @@ export default function CurationScrapped({
               />
             ) : (
               <ScrapLine
+                color="white"
                 className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
                 onClick={handleScrap}
               />
             )}
-            <div className="headline2 w-[68%] break-keep mb-[1.2rem] text-white">
-              {mainText}
-            </div>
-            <div className="flex flex-wrap gap-[0.8rem]">
-              {hashTags.map((tag) => (
-                <div key={tag}>
-                  <span className="text-primary-normal body2-medium"># </span>
-                  <span className="text-text-gray-4 body2-medium">{tag}</span>
+            <Link
+              href={{
+                pathname: `/curation/detail/${id}`,
+              }}
+            >
+              <div className="headline2 w-[70%] break-keep mb-[1.2rem] text-white">
+                <span>{mainText}</span>
+                <div className="flex flex-wrap gap-[0.8rem]">
+                  {hashTags.map((tag) => (
+                    <div key={tag}>
+                      <span className="text-primary-normal body2-medium">
+                        #{" "}
+                      </span>
+                      <span className="text-text-gray-4 body2-medium">
+                        {tag}
+                      </span>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            </Link>
           </div>
         </div>
       </div>
