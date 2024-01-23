@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function UseKeyword(placeType: string) {
   const [indicatorIndex, setIndicatorIndex] = useState(0);
   const [cafeKeywordData, setCafeKeywordData] = useState<{
-    [key: string]: string | Array<string>;
+    [key: string]: string | string[];
   }>({
     purpose: "",
     mood: "",
@@ -25,12 +25,23 @@ export default function UseKeyword(placeType: string) {
   const handleKeyword = (category: string, keyword: string) => {
     if (placeType === "카페") {
       if (Array.isArray(cafeKeywordData[category])) {
-        setCafeKeywordData((prevData) => {
-          return {
-            ...prevData,
-            likes: [...prevData.likes, keyword],
-          };
-        });
+        if (cafeKeywordData[category].includes(keyword)) {
+          setCafeKeywordData((prevData) => {
+            return {
+              ...prevData,
+              [category]: (prevData[category] as string[]).filter(
+                (like) => like !== keyword
+              ),
+            };
+          });
+        } else {
+          setCafeKeywordData((prevData) => {
+            return {
+              ...prevData,
+              [category]: [...prevData[category], keyword],
+            };
+          });
+        }
       } else if (cafeKeywordData[category] === keyword) {
         setCafeKeywordData({ ...cafeKeywordData, [category]: "" });
       } else {

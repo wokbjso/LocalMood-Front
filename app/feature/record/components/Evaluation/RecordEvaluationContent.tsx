@@ -47,6 +47,7 @@ export default function RecordEvaluationContent({
                         <Filter
                           key={keyword}
                           label={keyword}
+                          selected={cafeKeywordData[category].includes(keyword)}
                           onClick={() => handleFilterClick(category, keyword)}
                         />
                       );
