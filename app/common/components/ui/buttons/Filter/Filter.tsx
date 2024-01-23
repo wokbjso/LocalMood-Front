@@ -11,6 +11,7 @@ interface FilterProps {
   label: string;
   selected?: boolean;
   onClick?: () => void;
+  disabled?: boolean;
   className?: string;
 }
 
@@ -20,6 +21,7 @@ export default function Filter({
   label,
   selected = false,
   onClick,
+  disabled = false,
   className,
 }: FilterProps) {
   const [openOptions, setOpenOptions] = useState(false);
@@ -40,6 +42,7 @@ export default function Filter({
         className
       )}
       onClick={filterClicked}
+      disabled={disabled}
     >
       {photo && (
         <div

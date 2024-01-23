@@ -66,7 +66,7 @@ module.exports = {
           fontFamily: "Pretendard, sans-serif",
           fontWeight: "600",
           fontSize: "2rem",
-          lineHeight: "100%",
+          lineHeight: "140%",
           letterSpacing: "-0.4px",
         },
         ".headline2-semibold": {
@@ -89,6 +89,13 @@ module.exports = {
           fontSize: "1.6rem",
           lineHeight: "140%",
           letterSpacing: "-2%",
+        },
+        ".body1-medium": {
+          fontFamily: "Pretendard, sans-serif",
+          fontWeight: "500",
+          fontSize: "1.6rem",
+          lineHeight: "100%",
+          letterSpacing: "-0.32px",
         },
         ".body2-semibold": {
           fontFamily: "Pretendard, sans-serif",
@@ -131,6 +138,13 @@ module.exports = {
           fontSize: "1.6rem",
           lineHeight: "100%",
           letterSpacing: "-2%",
+        },
+        ".record-complete": {
+          fontFamily: "Pretendard",
+          fontWeight: "600",
+          fontSize: "2rem",
+          lineHeight: "100%",
+          letterSpacing: "-0.4px",
         },
       });
     }),

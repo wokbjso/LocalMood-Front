@@ -107,7 +107,7 @@ export default function CurationPage() {
               <CurationMain {...props} />
             </div>
           ))}
-        <div className="pt-[2rem]">
+        <div className="pt-[2rem] pb-[6rem]">
           {tabIndex === 1 &&
             MY_CURATION_DUMMY.map((props) => (
               <div key={props.userName + props.id} className="mb-[1.6rem]">
