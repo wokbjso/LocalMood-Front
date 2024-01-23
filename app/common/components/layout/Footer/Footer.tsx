@@ -18,7 +18,7 @@ export default function Footer() {
     {
       icon: Record,
       text: "공간기록",
-      navigateTo: "",
+      navigateTo: "/record",
     },
     {
       icon: Curation,
