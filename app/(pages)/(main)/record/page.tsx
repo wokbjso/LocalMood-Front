@@ -86,7 +86,7 @@ export default function Record() {
           <span className="text-text-gray-6 body2-semibold">더보기</span>
         </LinkLayout>
       </div>
-      <div className="flex items-start overflow-x-auto px-[2rem] pt-[1.6rem] gap-[0.8rem]">
+      <div className="flex overflow-x-scroll px-[2rem] pt-[1.6rem] gap-[0.8rem] overflow-y-hidden">
         {RECORD_DUMMY.map((props, index) => (
           <div key={index}>
             <PlaceInfoMain
