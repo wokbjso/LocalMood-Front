@@ -4,10 +4,13 @@ import { useEffect, useState } from "react";
 export default function useFooter() {
   const pathname = usePathname();
   const searchPattern = /^\/search(\/.*)?$/;
+  const recordPattern = /^\/record(\/.*)?$/;
   const curationPattern = /^\/curation(\/.*)?$/;
   const [footerState, setFooterState] = useState<number>(
     pathname === "/" || searchPattern.test(pathname)
       ? 0
+      : recordPattern.test(pathname)
+      ? 1
       : curationPattern.test(pathname)
       ? 2
       : pathname === "/mypage"

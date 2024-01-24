@@ -1,20 +1,22 @@
 import { twMerge } from "tailwind-merge";
 import IndicatorShape from "./IndicatorShape";
+import { useState } from "react";
 
 interface IndicatorProps {
-  index: number;
+  indicatorIndex: number;
   className?: string;
-  handleIndicator: (index: number) => void;
+  handleIndicatorIndex: (index: number) => void;
 }
 
 export default function Indicator({
-  index,
+  indicatorIndex,
   className,
-  handleIndicator,
+  handleIndicatorIndex,
 }: IndicatorProps) {
   const indicatorChange = (index: number) => {
-    handleIndicator(index);
+    handleIndicatorIndex(index);
   };
+  console.log(indicatorIndex);
   return (
     <div className={twMerge("flex", className)}>
       {Array(4)
@@ -22,7 +24,7 @@ export default function Indicator({
         .map((_, i) => (
           <IndicatorShape
             key={i}
-            indicate={index === i}
+            indicate={indicatorIndex === i}
             onClick={() => indicatorChange(i)}
           />
         ))}

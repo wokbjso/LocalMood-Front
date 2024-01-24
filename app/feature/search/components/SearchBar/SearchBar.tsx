@@ -7,13 +7,13 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 interface SearchBarProps {
-  variant?: "place_related" | "record";
+  variant?: "home" | "record";
   placeholder: string;
   className?: string;
 }
 
 export default function SearchBar({
-  variant = "place_related",
+  variant = "home",
   placeholder,
   className,
 }: SearchBarProps) {
@@ -35,10 +35,16 @@ export default function SearchBar({
   };
   useEffect(() => {
     if (searchText.length === 0) {
-      router.push("/search" + keyword_search_queries);
+      router.push(
+        variant === "home"
+          ? "/search" + keyword_search_queries
+          : "/record/search"
+      );
     } else {
       router.push(
-        variant === "place_related" ? "/search/results" + queries : "/record"
+        variant === "home"
+          ? "/search/results" + queries
+          : "/record/search" + queries
       );
     }
   }, [searchText]);
@@ -55,7 +61,7 @@ export default function SearchBar({
         </div>
         <input
           className={twMerge(
-            "body2-medium text-text-gray-5 w-full ml-[0.8rem] pl-[0.3rem]"
+            "body2-medium text-text-gray-5 w-full ml-[0.8rem] pl-[0.3rem] outline-none"
           )}
           value={searchText}
           placeholder={placeholder}
