@@ -27,6 +27,7 @@ export default function SelectEvaluation({
       <RecordEvaluationContent
         placeType={placeType}
         cafeKeywordData={cafeKeywordData}
+        handleIndicatorIndex={handleIndicatorIndex}
         handleKeyword={handleKeyword}
       />
     </div>

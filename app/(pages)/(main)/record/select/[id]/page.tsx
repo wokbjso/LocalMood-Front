@@ -45,7 +45,10 @@ export default function RecordSelect() {
         />
       )}
       {indicatorIndex === 3 && (
-        <RecordComplete cafeKeywordData={cafeKeywordData} />
+        <RecordComplete
+          handleIndicatorIndex={handlers.changeIndicatorIndex}
+          cafeKeywordData={cafeKeywordData}
+        />
       )}
     </div>
   );

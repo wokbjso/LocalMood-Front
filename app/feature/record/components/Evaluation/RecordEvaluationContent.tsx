@@ -9,14 +9,19 @@ import {
 export default function RecordEvaluationContent({
   placeType,
   cafeKeywordData,
+  handleIndicatorIndex,
   handleKeyword,
 }: {
   placeType: string;
   cafeKeywordData: { [key: string]: string | Array<string> };
+  handleIndicatorIndex: (index: number) => void;
   handleKeyword: (category: string, keyword: string) => void;
 }) {
   const handleFilterClick = (category: string, keyword: string) => {
     handleKeyword(category, keyword);
+  };
+  const handleNextClick = () => {
+    handleIndicatorIndex(2);
   };
 
   return (
@@ -88,7 +93,7 @@ export default function RecordEvaluationContent({
           ))}
       </div>
       <div className="fixed h-[15.5rem] bottom-0 bg-white">
-        <Button>
+        <Button onClick={handleNextClick}>
           {Object.keys(PLACE_EVALUATIONS).filter(
             (category) => cafeKeywordData[category].length === 0
           ).length === 2

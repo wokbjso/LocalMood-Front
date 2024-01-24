@@ -38,7 +38,6 @@ export default function RecordKeywordContent({
     handleIndicatorIndex(1);
   };
 
-  console.log(cafeKeywordData);
   return (
     <div className="flex flex-col items-start h-full pt-[14.8rem] pb-[18rem] pl-[2.05rem] pr-[1.95rem] overflow-y-scroll">
       {placeType === "카페" &&
