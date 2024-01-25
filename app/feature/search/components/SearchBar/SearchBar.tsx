@@ -19,7 +19,9 @@ export default function SearchBar({
 }: SearchBarProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState<string>(
+    (searchParams.get("search_query") as string) || ""
+  );
   const queries = `?search_query=${searchText}`;
   const keyword_search_queries = `?keyword_search=${
     searchParams.get("keyword_search")

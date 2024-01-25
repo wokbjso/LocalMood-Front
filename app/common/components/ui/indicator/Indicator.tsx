@@ -5,7 +5,7 @@ import { useState } from "react";
 interface IndicatorProps {
   indicatorIndex: number;
   className?: string;
-  handleIndicatorIndex: (index: number) => void;
+  handleIndicatorIndex?: (index: number) => void;
 }
 
 export default function Indicator({
@@ -14,7 +14,7 @@ export default function Indicator({
   handleIndicatorIndex,
 }: IndicatorProps) {
   const indicatorChange = (index: number) => {
-    handleIndicatorIndex(index);
+    handleIndicatorIndex && handleIndicatorIndex(index);
   };
   console.log(indicatorIndex);
   return (

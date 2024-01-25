@@ -1,9 +1,8 @@
 "use client";
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
-import PlaceSearchTopBar from "@feature/record/components/PlaceSearch/PlaceSearchTopBar";
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
-import { useSearchParams, useRouter } from "next/navigation";
+import { Suspense } from "react";
 
 export default function RecordSearch() {
   const RECORD_DUMMYLIST = [
@@ -69,32 +68,21 @@ export default function RecordSearch() {
     },
   ];
 
-  const searchParams = useSearchParams();
-  const query = searchParams.get("key");
-  const router = useRouter();
-
-  const handlePlaceInfoRecordClick = (category: string, placeName: string) => {
-    router.push(
-      `/record/select/keyword?&category=${category}&name=${placeName}`
-    );
-  };
-
   return (
     <>
       <div>
         <BasicTopBar color="#9E9E9E">
-          <SearchBar variant="record" placeholder="공간 이름을 검색해보세요" />
+          <Suspense fallback={null}>
+            <SearchBar
+              variant="record"
+              placeholder="공간 이름을 검색해보세요"
+            />
+          </Suspense>
         </BasicTopBar>
         <div className="inline-flex flex-col items-start gap-[0.8rem] px-[2rem] pt-[1.6rem]">
           {RECORD_DUMMYLIST.map((props, index) => (
             <div key={index}>
-              <PlaceInfoMain
-                variant="horizontal"
-                {...props}
-                onClick={() =>
-                  handlePlaceInfoRecordClick(props.category, props.placeName)
-                }
-              />
+              <PlaceInfoMain direction="horizontal" {...props} />
             </div>
           ))}
         </div>
