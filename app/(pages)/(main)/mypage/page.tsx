@@ -2,19 +2,11 @@ import Chip from "@common/components/ui/buttons/Chip/Chip";
 import MyPageTopBar from "@common/components/ui/topBar/MyPageTopBar/MyPageTopBar";
 import Image from "next/image";
 import ArrowRight from "@common/assets/icons/arrow/arrow-right.svg";
-import PlaceInfoRecord, {
-  PlaceInfoRecordProps,
-} from "@feature/place/components/PlaceInfoRecord/PlaceInfoRecord";
 import { twMerge } from "tailwind-merge";
+import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 
 export default function MyPage() {
-  interface DUMMY_USER_PROPS {
-    profile_img: string;
-    nickName: string;
-    cafeKing: boolean;
-    place_record: PlaceInfoRecordProps[] | [];
-  }
-  const DUMMY_USER: DUMMY_USER_PROPS = {
+  const DUMMY_USER = {
     profile_img:
       "https://cdn.pixabay.com/photo/2023/12/12/15/47/yellow-mongoose-8445457_1280.jpg",
     nickName: "마포묻은 다예",
@@ -124,9 +116,9 @@ export default function MyPage() {
           </div>
         )}
         {DUMMY_USER.place_record.length > 0 && (
-          <div className="h-full grid grid-cols-2 gap-x-[1rem] gap-y-[1.6rem] pb-[6.1rem] overflow-y-scroll">
+          <div className="grid grid-cols-2 gap-x-[1rem] gap-y-[1.6rem] pb-[16.1rem] overflow-y-scroll">
             {DUMMY_USER.place_record.map((record) => (
-              <PlaceInfoRecord
+              <PlaceInfoMain
                 key={record.id}
                 id={record.id}
                 placeName={record.placeName}
