@@ -7,7 +7,7 @@ interface RecordTopBarProps {
   showIndicator: boolean;
   text: string;
   indicatorIndex: number;
-  handleIndicatorIndex: (index: number) => void;
+  handleIndicatorIndex?: (index: number) => void;
 }
 
 export default function PlaceRecordTopBar({
