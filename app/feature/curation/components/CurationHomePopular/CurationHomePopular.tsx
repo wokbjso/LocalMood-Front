@@ -48,9 +48,9 @@ export default function CurationHomePopular({
         })}
       </div>
       <Indicator
-        index={indicatorIndex}
+        indicatorIndex={indicatorIndex}
         className="flex justify-center"
-        handleIndicator={handlers.handleIndicator}
+        handleIndicatorIndex={handlers.handleIndicator}
       />
     </section>
   );
