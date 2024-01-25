@@ -89,7 +89,7 @@ export default function RecordSearch() {
           {RECORD_DUMMYLIST.map((props, index) => (
             <div key={index}>
               <PlaceInfoMain
-                variant="horizontal"
+                direction="horizontal"
                 {...props}
                 onClick={() =>
                   handlePlaceInfoRecordClick(props.category, props.placeName)
