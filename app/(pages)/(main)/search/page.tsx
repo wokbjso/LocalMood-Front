@@ -2,11 +2,15 @@ import SearchImage from "@common/assets/images/search_start.svg";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import Button from "@common/components/ui/buttons/Button/Button";
 import SearchKeyword from "@feature/search/components/SearchKeyword/SearchKeyword";
+import { Suspense } from "react";
 
 export default function SearchPage() {
   return (
     <div>
-      <SearchKeyword />
+      <Suspense fallback={null}>
+        <SearchKeyword />
+      </Suspense>
+
       <div className="flex justify-center pt-[8.2rem] mb-[0.8rem]">
         <SearchImage />
       </div>

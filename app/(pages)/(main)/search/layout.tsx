@@ -10,7 +10,7 @@ export default function SearchLayout({ children }: { children: ReactNode }) {
           <SearchBar placeholder="공간, 큐레이션을 검색해보세요" />
         </Suspense>
       </BasicTopBar>
-      {children}
+      <Suspense fallback={null}>{children}</Suspense>
     </div>
   );
 }
