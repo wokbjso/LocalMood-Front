@@ -10,7 +10,6 @@ export default function SearchPage() {
       <Suspense fallback={null}>
         <SearchKeyword />
       </Suspense>
-
       <div className="flex justify-center pt-[8.2rem] mb-[0.8rem]">
         <SearchImage />
       </div>
