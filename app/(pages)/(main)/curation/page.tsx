@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Tab from "@common/components/ui/tab/Tab";
 import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
 import CurationScrapped from "@feature/curation/components/CurationScrapped/CurationScrapped";
@@ -10,6 +10,8 @@ import CurationMakeModal from "@feature/curation/components/CurationMake/Curatio
 
 export default function CurationPage() {
   const { tabIndex, isCurationMakeOpen, handlers } = UseCuration();
+  const [myCuration, setMyCuration] = useState(null);
+  const [scrappedCuration, setScrappedCuration] = useState(null);
   const CurationTabSections = [
     {
       text: "내 큐레이션",
@@ -22,65 +24,66 @@ export default function CurationPage() {
     {
       id: 0,
       variant: "my" as "my" | "others" | undefined,
-      curationPhoto: [
+      image: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
-      userImg:
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      userName: "김현민",
-      mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
-      hashTags: ["연인과의 데이트", "크리스마스"],
+      author: "김현민",
+      title: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
+      keyword: ["연인과의 데이트", "크리스마스"],
       scrapped: true,
-      onClick: () => {},
-      places: 9,
+      spaceCount: 9,
     },
     {
       id: 1,
       variant: "my" as "my" | "others" | undefined,
-      curationPhoto: [
+      image: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
-      userImg:
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      userName: "김현민",
-      mainText: "카페",
-      hashTags: ["연인과의 데이트", "크리스마스"],
+      author: "김현민",
+      title: "카페",
+      keyword: ["연인과의 데이트", "크리스마스"],
       scrapped: true,
-      onClick: () => {},
-      places: 10,
+      spaceCount: 10,
     },
     {
       id: 2,
       variant: "my" as "my" | "others" | undefined,
-      curationPhoto: [
+      image: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
-      userImg:
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      userName: "김현민",
-      mainText: "화이트데이에 즐기기 좋은 마포구 데이트 코스",
-      hashTags: ["연인과의 데이트", "크리스마스"],
+      author: "김현민",
+      title: "화이트데이에 즐기기 좋은 마포구 데이트 코스",
+      keyword: ["연인과의 데이트", "크리스마스"],
       scrapped: true,
-      onClick: () => {},
-      places: 12,
+      spaceCount: 12,
     },
     {
       id: 3,
       variant: "my" as "my" | "others" | undefined,
-      curationPhoto: [
+      image: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
-      userImg:
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      userName: "김현민",
-      mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
-      hashTags: ["연인과의 데이트", "크리스마스"],
+      author: "김현민",
+      title: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
+      keyword: ["연인과의 데이트", "크리스마스"],
       scrapped: true,
-      onClick: () => {},
-      places: 1,
+      spaceCount: 1,
     },
   ];
-
+  useEffect(() => {
+    fetch("api/curation/my").then((res) =>
+      res.json().then((data) => {
+        setMyCuration(data);
+      })
+    );
+    fetch("api/curation/scrap").then((res) =>
+      res.json().then((data) => {
+        setScrappedCuration(data);
+      })
+    );
+  }, []);
+  console.log(myCuration);
+  console.log(scrappedCuration);
   return (
     <div className="Curation h-[100vh] overflow-hidden">
       <header>
@@ -103,14 +106,14 @@ export default function CurationPage() {
         )}
         {tabIndex === 0 &&
           MY_CURATION_DUMMY.map((props) => (
-            <div key={props.userName + props.id} className="mb-[1.2rem]">
+            <div key={props.author + props.id} className="mb-[1.2rem]">
               <CurationMain {...props} />
             </div>
           ))}
         <div className="pt-[2rem] pb-[6rem]">
           {tabIndex === 1 &&
             MY_CURATION_DUMMY.map((props) => (
-              <div key={props.userName + props.id} className="mb-[1.6rem]">
+              <div key={props.author + props.id} className="mb-[1.6rem]">
                 <CurationScrapped {...props} />
               </div>
             ))}

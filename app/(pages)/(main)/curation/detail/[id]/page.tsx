@@ -7,8 +7,13 @@ import Image from "next/image";
 import ProfileIcon from "@common/assets/icons/profile/greenProfile.png";
 import CurationPrivacyToggleButton from "@feature/curation/components/CurationButton/CurationPrivacyToggleButton";
 import CurationDetailCardList from "@feature/curation/components/CurationDetail/CurationDetailCardList";
+import GetCurationDetail from "@feature/curation/queries/getCurationDetail";
 
-export default function CurationDetail() {
+export default async function CurationDetail({
+  params: { id },
+}: {
+  params: { id: string };
+}) {
   //api get 으로 가져오는 data로 대체
 
   const CURATION_INFO = {
@@ -86,6 +91,7 @@ export default function CurationDetail() {
       },
     },
   ];
+  const curationDetail = await GetCurationDetail(id);
 
   return (
     <div className="relative w-full pb-[18rem]">

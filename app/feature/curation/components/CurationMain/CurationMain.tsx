@@ -15,15 +15,13 @@ import UseCurationMain from "./useCurationMain";
 export default function CurationMain({
   id,
   variant = "others",
-  curationPhoto,
-  userImg,
-  userName,
-  mainText,
-  hashTags,
+  image,
+  author,
+  title,
+  keyword,
+  spaceCount,
   scrapped = false,
-  onClick,
   className,
-  places,
 }: CurationProps) {
   const { isScrapped, isMenuOpened, handlers } = UseCurationMain(scrapped);
 
@@ -57,22 +55,21 @@ export default function CurationMain({
                 className="w-full h-[16.5rem] bg-cover relative rounded-t-[8px]"
                 style={{
                   backgroundImage: `url(
-            ${curationPhoto && curationPhoto[0]}
+            ${image && image[0]}
           )`,
                 }}
               >
                 {variant === "others" && (
                   <UserProfile
                     size="small"
-                    userImg={userImg}
-                    userName={userName}
+                    userName={author}
                     className="absolute bottom-[1.6rem] left-[1.6rem]"
                   />
                 )}
                 <Chip className="body3-semibold rounded-[4px] bg-[#212121CC] flex items-center pr-[0.4rem] pl-[0.2rem] h-[2rem] absolute right-[1.6rem] bottom-[1.6rem]">
                   <LocationLine />
                   <span className="body3-semibold text-white ml-[0.2rem]">
-                    {places}
+                    {spaceCount}
                   </span>
                 </Chip>
               </div>
@@ -96,10 +93,10 @@ export default function CurationMain({
                   />
                 )}
                 <div className="max-w-[24.4rem] headline2 w-[70%] break-keep mb-[1.2rem] text-black">
-                  {mainText}
+                  {title}
                 </div>
                 <div className="flex flex-wrap gap-[0.8rem]">
-                  {hashTags.map((tag) => (
+                  {keyword.map((tag) => (
                     <div key={tag}>
                       <span className="text-primary-normal body2-medium">
                         #{" "}

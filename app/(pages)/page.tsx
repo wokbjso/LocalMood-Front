@@ -3,9 +3,18 @@ import Footer from "@common/components/layout/Footer/Footer";
 import PlaceHomeSlider from "@feature/place/components/PlaceHomeSlider/PlaceHomeSlider";
 import HomeBanner from "./components/HomeBanner";
 import CurationHomePopular from "@feature/curation/components/CurationHomePopular/CurationHomePopular";
+import GetRandomCuration from "@feature/curation/queries/getRandomCuration";
+import GetRandomPlaces from "@feature/place/queries/getRandomPlaces";
 
-export default function Home() {
+export default async function Home() {
+  const PLACE_PURPOSE = [
+    "연인과의 데이트",
+    "친구와의 만남",
+    "왁자지껄 떠들기 좋은",
+    "대화에 집중할 수 있는",
+  ];
   //장소 get api 데이터로 대체(server side - fetch)
+  const randomPlace = await GetRandomPlaces();
   const PLACE_DUMMY = [
     {
       id: 0,
@@ -34,85 +43,33 @@ export default function Home() {
       },
     },
   ];
-  //큐레이션 get api로 대체(server side - fetch)
-  const CURATION_DUMMY = [
-    {
-      id: 0,
-      curationPhoto: [
-        "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
-      ],
-      userImg:
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      userName: "김현민",
-      mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
-      hashTags: ["연인과의 데이트", "크리스마스"],
-      places: 4,
-    },
-    {
-      id: 1,
-      curationPhoto: [
-        "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
-      ],
-      userImg:
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      userName: "김지원",
-      mainText: "평일에 좋은 마포구 데이트 코스",
-      hashTags: ["연인과의 데이트", "평일"],
-      scrapped: true,
-      places: 6,
-    },
-    {
-      id: 2,
-      curationPhoto: [
-        "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
-      ],
-      userImg:
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      userName: "김경민",
-      mainText: "주말에 즐기기 좋은 마포구 데이트 코스",
-      hashTags: ["연인과의 데이트", "주말"],
-      places: 6,
-    },
-    {
-      id: 3,
-      curationPhoto: [
-        "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
-      ],
-      userImg:
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      userName: "최예원",
-      mainText: "친구와 즐기기 좋은 마포구 데이트 코스",
-      hashTags: ["친구와의 데이트", "마포구"],
-      places: 10,
-    },
-  ];
   return (
     <>
       <HomeHeader />
       <HomeBanner />
       <div className="pb-[12.3rem] pt-[4rem]">
         <PlaceHomeSlider
-          mainText="연인과의 데이트"
+          mainText={PLACE_PURPOSE[0]}
           subText="를 위한 공간"
           placeList={PLACE_DUMMY}
         ></PlaceHomeSlider>
         <PlaceHomeSlider
-          mainText="친구와의 만남"
+          mainText={PLACE_PURPOSE[1]}
           subText="을 위한 공간"
           placeList={PLACE_DUMMY}
         />
         <CurationHomePopular
           mainText="마포구 인기 큐레이션"
           subText="더보기"
-          curationList={CURATION_DUMMY}
+          curationList={await GetRandomCuration()}
         />
         <PlaceHomeSlider
-          mainText="왁자지껄 떠들기 좋은"
+          mainText={PLACE_PURPOSE[2]}
           subText="공간"
           placeList={PLACE_DUMMY}
         />
         <PlaceHomeSlider
-          mainText="대화에 집중할 수 있는"
+          mainText={PLACE_PURPOSE[3]}
           subText="공간"
           placeList={PLACE_DUMMY}
         />

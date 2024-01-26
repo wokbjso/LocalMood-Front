@@ -2,15 +2,17 @@ import BookIcon from "@common/assets/icons/book/BookIcon";
 import BusinessIcon from "@common/assets/icons/business/BusinessIcon";
 import ChatIcon from "@common/assets/icons/chat/ChatIcon";
 import Heart from "@common/assets/icons/heart/HeartIcon";
-import Filter from "@common/components/ui/buttons/Filter/Filter";
 import Divider from "@common/components/ui/divider/Divider";
 import GraphGage from "@common/components/ui/graph/GraphGage/GraphGage";
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import PlaceDetailMoreReviews from "@feature/place/components/PlaceDetail/PlaceDetailMoreReviews";
-import PlaceReview from "@feature/place/components/PlaceReview/PlaceReview";
-import { PLACE_PURPOSE } from "@feature/place/constants/place-tag-category";
+import GetPlaceReview from "@feature/place/queries/getPlaceReview";
 
-export default function PlaceDetailMore() {
+export default async function PlaceDetailMore({
+  params: { category, id },
+}: {
+  params: { category: string; id: string };
+}) {
   const DUMMY_MORE_DETAIL = {
     placeName: "나이스워크투데이",
     purpose: [
@@ -128,6 +130,8 @@ export default function PlaceDetailMore() {
       },
     ],
   };
+  const reviewData = await GetPlaceReview(category, id);
+  console.log(reviewData);
   return (
     <div className="pb-[14.2rem]">
       <BasicTopBar color="#9E9E9E" className="" />

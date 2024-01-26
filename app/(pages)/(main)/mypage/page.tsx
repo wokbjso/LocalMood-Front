@@ -4,8 +4,9 @@ import Image from "next/image";
 import ArrowRight from "@common/assets/icons/arrow/arrow-right.svg";
 import { twMerge } from "tailwind-merge";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
+import GetPlaceMyPage from "@feature/place/queries/getPlaceMyPage";
 
-export default function MyPage() {
+export default async function MyPage() {
   const DUMMY_USER = {
     profile_img:
       "https://cdn.pixabay.com/photo/2023/12/12/15/47/yellow-mongoose-8445457_1280.jpg",
@@ -64,6 +65,7 @@ export default function MyPage() {
       },
     ],
   };
+  const myPagePlaceData = await GetPlaceMyPage();
   return (
     <div className="px-[2rem] h-[100vh]">
       <MyPageTopBar />

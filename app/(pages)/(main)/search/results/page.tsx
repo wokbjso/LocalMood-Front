@@ -8,6 +8,7 @@ import { CurationProps } from "@feature/curation/type";
 import { PlaceInfoProps } from "@feature/place/type";
 import { useSearchParams } from "next/navigation";
 import SearchNoResult from "@feature/search/components/SearchNoResult/SearchNoResult";
+import { useEffect, useState } from "react";
 
 export default function SearchResult() {
   const searchParams = useSearchParams();
@@ -60,55 +61,63 @@ export default function SearchResult() {
   const DUMMY_CURATION: CurationProps[] | [] = [
     {
       id: 0,
-      curationPhoto: [
+      image: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
-      userImg:
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      userName: "김현민",
-      mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
-      hashTags: ["연인과의 데이트", "크리스마스"],
-      places: 12,
+      author: "김현민",
+      title: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
+      keyword: ["연인과의 데이트", "크리스마스"],
+      spaceCount: 12,
     },
     {
       id: 1,
-      curationPhoto: [
+      image: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
-      userImg:
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      userName: "김지원",
-      mainText: "평일에 좋은 마포구 데이트 코스",
-      hashTags: ["연인과의 데이트", "평일"],
-      places: 10,
+      author: "김지원",
+      title: "평일에 좋은 마포구 데이트 코스",
+      keyword: ["연인과의 데이트", "평일"],
+      spaceCount: 10,
     },
     {
       id: 2,
-      curationPhoto: [
+      image: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
-      userImg:
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      userName: "김경민",
-      mainText: "주말에 즐기기 좋은 마포구 데이트 코스",
-      hashTags: ["연인과의 데이트", "주말"],
-      places: 2,
+      author: "김경민",
+      title: "주말에 즐기기 좋은 마포구 데이트 코스",
+      keyword: ["연인과의 데이트", "주말"],
+      spaceCount: 2,
     },
     {
       id: 3,
-      curationPhoto: [
+      image: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
-      userImg:
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      userName: "최예원",
-      mainText: "친구와 즐기기 좋은 마포구 데이트 코스",
-      hashTags: ["친구와의 데이트", "마포구"],
-      places: 3,
+      author: "최예원",
+      title: "친구와 즐기기 좋은 마포구 데이트 코스",
+      keyword: ["친구와의 데이트", "마포구"],
+      spaceCount: 3,
     },
   ];
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
     useSearchBar();
+  const [placeData, setPlaceData] = useState(null);
+  const [curationData, setCurationData] = useState(null);
+  useEffect(() => {
+    fetch("api/search/place").then((res) =>
+      res.json().then((data) => {
+        setPlaceData(data);
+      })
+    );
+    fetch("api/search/curation").then((res) =>
+      res.json().then((data) => {
+        setCurationData(data);
+      })
+    );
+  }, []);
+  console.log(placeData);
+  console.log(curationData);
   return (
     <>
       {DUMMY_PLACE.length === 0 && DUMMY_CURATION.length === 0 && (
@@ -130,12 +139,11 @@ export default function SearchResult() {
                 <CurationMain
                   key={curation.id}
                   id={curation.id}
-                  curationPhoto={curation.curationPhoto}
-                  userImg={curation.userImg}
-                  userName={curation.userName}
-                  mainText={curation.mainText}
-                  hashTags={curation.hashTags}
-                  places={curation.places}
+                  image={curation.image}
+                  author={curation.author}
+                  title={curation.title}
+                  keyword={curation.keyword}
+                  spaceCount={curation.spaceCount}
                   className="mb-[4rem]"
                 />
               ))}
@@ -206,12 +214,11 @@ export default function SearchResult() {
                 <CurationMain
                   key={curation.id}
                   id={curation.id}
-                  curationPhoto={curation.curationPhoto}
-                  userImg={curation.userImg}
-                  userName={curation.userName}
-                  mainText={curation.mainText}
-                  hashTags={curation.hashTags}
-                  places={curation.places}
+                  image={curation.image}
+                  author={curation.author}
+                  title={curation.title}
+                  keyword={curation.keyword}
+                  spaceCount={curation.spaceCount}
                   className="mb-[4rem]"
                 />
               ))}
