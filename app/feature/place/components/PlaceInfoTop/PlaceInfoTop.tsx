@@ -25,9 +25,16 @@ export default function PlaceInfoTop({
 }: PlaceInfoProps) {
   //scrap 유무를 default useState 값으로 설정
   const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
-  const handleScrap = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+  const handleScrap = async (
+    e: React.MouseEvent<SVGSVGElement, MouseEvent>
+  ) => {
     e.preventDefault();
     setIsScrapped((prev) => !prev);
+    if (isScrapped) {
+      const res = await fetch(`/api/places/scrapped/delete/${String(id)}`);
+    } else {
+      const res = await fetch(`/api/places/scrapped/add/${String(id)}`);
+    }
     //장소 id 활용하여 api 문서에 맞게 해당 장소 scrap 상태 변경 api 호출(client side - tanstack query)
   };
   return (

@@ -6,11 +6,13 @@ import Button from "@common/components/ui/buttons/Button/Button";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 
 interface RecordCompleteProps {
+  spaceId: string;
   handleIndicatorIndex: (index: number) => void;
   cafeKeywordData: { [key: string]: string | Array<string> };
 }
 
 export default function RecordComplete({
+  spaceId,
   handleIndicatorIndex,
   cafeKeywordData,
 }: RecordCompleteProps) {
@@ -73,7 +75,9 @@ export default function RecordComplete({
           </LinkLayout>
         </div>
       </div>
-      {isAddCuration && <SaveModal handleModalFn={setIsAddCuration} />}
+      {isAddCuration && (
+        <SaveModal spaceId={spaceId} handleModalFn={setIsAddCuration} />
+      )}
     </>
   );
 }

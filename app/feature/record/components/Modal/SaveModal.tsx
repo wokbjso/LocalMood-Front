@@ -6,13 +6,14 @@ import UseOutsideClick from "@common/hooks/useOutsideClick";
 import CurationMakeModal from "@feature/curation/components/CurationMake/CurationMakeModal";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface SaveModalProps {
+  spaceId: string;
   handleModalFn: (state: boolean) => void;
 }
 
-export default function SaveModal({ handleModalFn }: SaveModalProps) {
+export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
   const CURATION_DUMMY = [
     {
       id: 0,
@@ -55,17 +56,27 @@ export default function SaveModal({ handleModalFn }: SaveModalProps) {
     },
   ];
   const [openMakeCuration, setOpenMakeCuration] = useState(false);
+  const [curationMy, setCurationMy] = useState(null);
   const router = useRouter();
   const handleModalCloseClick = () => {
     handleModalFn(false);
   };
-  const handleCurationClick = (id: number) => {
+  const handleCurationClick = async (id: number) => {
+    const res = await fetch(`/api/curation/add/place/${id}/${spaceId}`);
     //id 활용하여 해당 큐레이션에 공간 정보 전달 api 호출(client-side)
     router.push("/record");
   };
   const handleMakeCurationClick = () => {
     setOpenMakeCuration(true);
   };
+  useEffect(() => {
+    fetch("api/curation/my").then((res) =>
+      res.json().then((data) => {
+        setCurationMy(data);
+      })
+    );
+  }, []);
+  console.log(curationMy);
   return (
     <>
       <Modal className="px-[2rem]">

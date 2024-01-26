@@ -7,8 +7,14 @@ import CurationScrapped from "@feature/curation/components/CurationScrapped/Cura
 import PlaceDetailTopBar from "@feature/place/components/PlaceDetail/PlaceDetailTopBar";
 import PlaceDetailKeywordEvaluation from "@feature/place/components/PlaceDetail/PlaceDetailKeywordEvaluation";
 import PlaceDetailKeywordSummary from "@feature/place/components/PlaceDetail/PlaceDetailKeywordSummary";
+import GetPlaceReview from "@feature/place/queries/getPlaceReview";
+import GetPlaceDetail from "@feature/place/queries/getPlaceDetail";
 
-export default function PlaceDetail() {
+export default async function PlaceDetail({
+  params: { category, id },
+}: {
+  params: { category: string; id: string };
+}) {
   const DETAIL_DUMMY = {
     id: 0,
     placeName: "나이스워크투데이",
@@ -69,51 +75,45 @@ export default function PlaceDetail() {
   const CURATION_DUMMY = [
     {
       id: 0,
-      curationPhoto: [
+      image: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
-      userImg:
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      userName: "김현민",
-      mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
-      hashTags: ["연인과의 데이트", "크리스마스"],
+      author: "김현민",
+      title: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
+      keyword: ["연인과의 데이트", "크리스마스"],
     },
     {
       id: 1,
-      curationPhoto: [
+      image: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
-      userImg:
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      userName: "김지원",
-      mainText: "평일에 좋은 마포구 데이트 코스",
-      hashTags: ["연인과의 데이트", "평일"],
+      author: "김지원",
+      title: "평일에 좋은 마포구 데이트 코스",
+      keyword: ["연인과의 데이트", "평일"],
       scrapped: false,
     },
     {
       id: 2,
-      curationPhoto: [
+      image: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
-      userImg:
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      userName: "김경민",
-      mainText: "주말에 즐기기 좋은 마포구 데이트 코스",
-      hashTags: ["연인과의 데이트", "주말"],
+      author: "김경민",
+      title: "주말에 즐기기 좋은 마포구 데이트 코스",
+      keyword: ["연인과의 데이트", "주말"],
     },
     {
       id: 3,
-      curationPhoto: [
+      image: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
-      userImg:
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      userName: "최예원",
-      mainText: "친구와 즐기기 좋은 마포구 데이트 코스",
-      hashTags: ["친구와의 데이트", "마포구"],
+      author: "최예원",
+      title: "친구와 즐기기 좋은 마포구 데이트 코스",
+      keyword: ["친구와의 데이트", "마포구"],
       scrapped: false,
     },
   ];
+  const detailData = await GetPlaceDetail(category, id);
+  console.log(detailData);
   return (
     <div className="pb-[12rem]">
       <div className="w-full h-[30rem] mb-[1.5rem] relative">
@@ -173,12 +173,11 @@ export default function PlaceDetail() {
               <CurationScrapped
                 key={data.id}
                 id={data.id}
-                curationPhoto={data.curationPhoto}
-                userImg={data.userImg}
-                userName={data.userName}
-                hashTags={data.hashTags}
+                image={data.image}
+                author={data.author}
+                keyword={data.keyword}
                 scrapped={data.scrapped}
-                mainText={data.mainText}
+                title={data.title}
                 className="w-[33.5rem] mr-[0.8rem]"
               />
             ))}

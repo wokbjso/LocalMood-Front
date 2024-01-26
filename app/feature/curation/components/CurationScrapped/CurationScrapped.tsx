@@ -10,13 +10,11 @@ import Link from "next/link";
 
 export default function CurationScrapped({
   id,
-  curationPhoto,
-  userImg,
-  userName,
-  mainText,
-  hashTags,
+  image,
+  author,
+  title,
+  keyword,
   scrapped = true,
-  onClick,
   className,
 }: Omit<CurationProps, "places">) {
   const [isScrapped, setIsScrapped] = useState(scrapped);
@@ -26,20 +24,19 @@ export default function CurationScrapped({
   };
 
   return (
-    <div onClick={onClick}>
+    <div>
       <div className={twMerge("w-full", className)}>
         <div
           className="w-full h-[16.5rem] bg-cover relative rounded-[8px]"
           style={{
             backgroundImage: `url(
-            ${curationPhoto && curationPhoto[0]}
+            ${image && image[0]}
           )`,
           }}
         >
           <UserProfile
             size="small"
-            userImg={userImg}
-            userName={userName}
+            userName={author}
             className="absolute bottom-[1.6rem] left-[1.6rem]"
           />
           <div className="w-full p-[1.6rem] relative">
@@ -61,9 +58,9 @@ export default function CurationScrapped({
               }}
             >
               <div className="headline2 w-[70%] break-keep mb-[1.2rem] text-white">
-                <span>{mainText}</span>
+                <span>{title}</span>
                 <div className="flex flex-wrap gap-[0.8rem]">
-                  {hashTags.map((tag) => (
+                  {keyword.map((tag) => (
                     <div key={tag}>
                       <span className="text-primary-normal body2-medium">
                         #{" "}

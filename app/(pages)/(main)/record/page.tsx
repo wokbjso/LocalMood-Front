@@ -1,8 +1,9 @@
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
+import GetPlaceScrapped from "@feature/place/queries/getPlaceScrapped";
 import PlaceSearchBar from "@feature/record/components/PlaceSearch/PlaceSearchBar";
 
-export default function Record() {
+export default async function Record() {
   const RECORD_DUMMY = [
     {
       id: 0,
@@ -65,6 +66,8 @@ export default function Record() {
       scrapped: false,
     },
   ];
+  const scrappedPlace = await GetPlaceScrapped();
+  console.log(scrappedPlace);
 
   return (
     <div>

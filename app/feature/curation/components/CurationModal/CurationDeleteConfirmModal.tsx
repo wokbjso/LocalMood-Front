@@ -21,7 +21,8 @@ export default function CurationDeleteConfirmModal({
     handleDeleteModalState(false);
   };
 
-  const handleDeleteConfirmClick = () => {
+  const handleDeleteConfirmClick = async () => {
+    const res = await fetch(`/api/curation/delete/${String(id)}`);
     //id 활용하여 큐레이션 delete api 호출 후 '삭제되었습니다' toast 띄우기
   };
 
@@ -39,7 +40,7 @@ export default function CurationDeleteConfirmModal({
         >
           취소하기
         </Button>
-        <Button>삭제하기</Button>
+        <Button onClick={handleDeleteConfirmClick}>삭제하기</Button>
       </div>
     </Modal>
   );

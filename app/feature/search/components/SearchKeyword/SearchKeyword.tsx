@@ -45,7 +45,15 @@ export default function SearchKeyword() {
   const handleKoreanOptionClick = (index: number) => {
     handlers.changeKoreanOptionIndex(index);
   };
+  function objectToQueryString(obj: { [key: string]: string }) {
+    const queryString = Object.entries(obj)
+      .slice(1)
+      .filter(([, value]) => value !== "")
+      .map(([key, value]) => `${key}=${value}`)
+      .join("&");
 
+    return queryString;
+  }
   return (
     searchParams.get("keyword_search") === "true" && (
       <>
@@ -140,7 +148,20 @@ export default function SearchKeyword() {
                 </section>
               ))}
             <div className="flex justify-center">
-              <Button disabled={!showResultAble}>결과보기</Button>
+              <Link
+                href={{
+                  pathname: "/search/results",
+                  query: {
+                    keyword:
+                      tabIndex === 0
+                        ? objectToQueryString(restaurantKeyword)
+                        : objectToQueryString(cafeKeyword),
+                    type: tabIndex === 0 ? "restaurant" : "cafe",
+                  },
+                }}
+              >
+                <Button disabled={!showResultAble}>결과보기</Button>
+              </Link>
             </div>
           </div>
         </Modal>

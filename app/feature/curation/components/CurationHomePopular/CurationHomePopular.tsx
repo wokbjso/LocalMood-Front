@@ -2,7 +2,6 @@
 
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import RightArrow from "@common/assets/icons/arrow/arrow-right.svg";
-import { CurationProps } from "@feature/curation/type";
 import CurationMain from "../CurationMain/CurationMain";
 import Indicator from "@common/components/ui/indicator/Indicator";
 import UseCurationHomePopular from "./UseCurationHomeList";
@@ -10,7 +9,13 @@ import UseCurationHomePopular from "./UseCurationHomeList";
 interface CurationHomePopularProps {
   mainText: string;
   subText: string;
-  curationList: CurationProps[];
+  curationList: {
+    author: string;
+    image: string[];
+    title: string;
+    spaceCount: number;
+    keyword: string[];
+  }[];
 }
 
 export default function CurationHomePopular({
@@ -39,8 +44,13 @@ export default function CurationHomePopular({
           return (
             indicatorIndex === i && (
               <CurationMain
-                key={curation.id}
-                {...curation}
+                key={curation.author + i}
+                id={i}
+                image={curation.image}
+                author={curation.author}
+                title={curation.title}
+                keyword={curation.keyword}
+                spaceCount={curation.spaceCount}
                 className="mb-[2rem] w-full"
               />
             )

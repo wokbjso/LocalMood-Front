@@ -6,7 +6,11 @@ import SelectEvaluation from "@feature/record/components/Evaluation/SelectEvalua
 import UseKeyword from "@feature/record/components/Keyword/useKeyword";
 import SelectPhoto from "@feature/record/components/PhotoUpload/SelectPhoto";
 
-export default function RecordSelect() {
+export default function RecordSelect({
+  params: id,
+}: {
+  params: { id: string };
+}) {
   const searchParams = useSearchParams();
   const placeType = searchParams.get("category") || "";
   const name = searchParams.get("name") || "";
@@ -46,6 +50,7 @@ export default function RecordSelect() {
       )}
       {indicatorIndex === 3 && (
         <RecordComplete
+          spaceId={id.id}
           handleIndicatorIndex={handlers.changeIndicatorIndex}
           cafeKeywordData={cafeKeywordData}
         />
