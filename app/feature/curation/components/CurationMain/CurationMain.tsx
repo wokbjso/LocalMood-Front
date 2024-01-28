@@ -13,14 +13,14 @@ import CurationMenuModal from "../CurationModal/CurationMenuModal";
 import UseCurationMain from "./useCurationMain";
 
 export default function CurationMain({
-  id,
-  variant = "others",
   image,
+  scrapped = false,
   author,
+  id,
   title,
   keyword,
   spaceCount,
-  scrapped = false,
+  variant = "others",
   className,
 }: CurationProps) {
   const { isScrapped, isMenuOpened, handlers } = UseCurationMain(scrapped);
@@ -44,12 +44,7 @@ export default function CurationMain({
         }}
       >
         <div>
-          <div
-            className={twMerge(
-              "w-full h-[27.7rem] bg-white rounded-[8px]",
-              className
-            )}
-          >
+          <div className={twMerge("w-full  bg-white rounded-[8px]", className)}>
             <div>
               <div
                 className="w-full h-[16.5rem] bg-cover relative rounded-t-[8px]"
@@ -73,7 +68,7 @@ export default function CurationMain({
                   </span>
                 </Chip>
               </div>
-              <div className="w-full p-[1.6rem] relative border-b-[0.1rem] border-x-[0.1rem] border-line-gray-3 rounded-b-[8px]">
+              <div className="w-full pt-[1.6rem] pl-[1.6rem] pr-[0.8rem] pb-[2rem] relative border-b-[0.1rem] border-x-[0.1rem] border-line-gray-3 rounded-b-[8px]">
                 {variant === "others" ? (
                   isScrapped ? (
                     <ScrapFill

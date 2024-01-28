@@ -1,9 +1,7 @@
-import { NextRequest } from "next/server";
-
 export default async function GET() {
   const token = "token from localStorage";
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_API}/api/curation/member`,
+    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/curation/member`,
     {
       headers: {
         "Content-Type": "application/json",

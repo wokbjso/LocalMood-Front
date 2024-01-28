@@ -7,11 +7,20 @@ import CurationScrapped from "@feature/curation/components/CurationScrapped/Cura
 import UseCuration from "@feature/curation/useCuration";
 import CurationMakeButton from "@feature/curation/components/CurationButton/CurationMakeButton";
 import CurationMakeModal from "@feature/curation/components/CurationMake/CurationMakeModal";
+import MyCurationAPI from "@api/curation/my/route";
+import MyCurationScrappedAPI from "@api/curation/scrapped/route";
+import { CurationProps } from "@feature/curation/type";
 
 export default function CurationPage() {
   const { tabIndex, isCurationMakeOpen, handlers } = UseCuration();
-  const [myCuration, setMyCuration] = useState(null);
-  const [scrappedCuration, setScrappedCuration] = useState(null);
+  const [myCuration, setMyCuration] = useState({
+    curationCount: 0,
+    curation: [],
+  });
+
+  //스크랩 쪽 Api 백엔드에서 수정 필요
+  //const [scrappedCuration, setScrappedCuration] = useState<any[]>([]);
+
   const CurationTabSections = [
     {
       text: "내 큐레이션",
@@ -20,6 +29,8 @@ export default function CurationPage() {
       text: "스크랩",
     },
   ];
+
+  //스크랩쪽 임시 더미 데이터
   const MY_CURATION_DUMMY = [
     {
       id: 0,
@@ -71,19 +82,24 @@ export default function CurationPage() {
     },
   ];
   useEffect(() => {
-    fetch("api/curation/my").then((res) =>
-      res.json().then((data) => {
-        setMyCuration(data);
-      })
-    );
-    fetch("api/curation/scrap").then((res) =>
-      res.json().then((data) => {
-        setScrappedCuration(data);
-      })
-    );
+    const fetchData = async () => {
+      try {
+        const myCurationData = await MyCurationAPI();
+        setMyCuration(myCurationData || { curationCount: 0, curation: [] });
+
+        // Fetch scrapped curation data
+
+        // const scrappedCurationData = await MyCurationScrappedAPI();
+        //setScrappedCuration(scrappedCurationData || []);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
   }, []);
-  console.log(myCuration);
-  console.log(scrappedCuration);
+
+  //console.log(scrappedCuration);
   return (
     <div className="Curation h-[100vh] overflow-hidden">
       <header>
@@ -96,7 +112,7 @@ export default function CurationPage() {
         {tabIndex === 0 && (
           <div className="flex items-center justify-between pb-[0.6rem] pt-[2rem]">
             <div className="flex body1 text-text-gray-8 items-center">
-              총 <p className="text-black">&nbsp;{MY_CURATION_DUMMY.length}</p>{" "}
+              총 <p className="text-black">&nbsp;{myCuration.curationCount}</p>{" "}
               개
             </div>
             <div onClick={() => handlers.handleCurationMakeOpen(true)}>
@@ -105,7 +121,7 @@ export default function CurationPage() {
           </div>
         )}
         {tabIndex === 0 &&
-          MY_CURATION_DUMMY.map((props) => (
+          myCuration.curation.map((props: CurationProps) => (
             <div key={props.author + props.id} className="mb-[1.2rem]">
               <CurationMain {...props} />
             </div>
