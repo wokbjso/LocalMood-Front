@@ -1,10 +1,10 @@
 export const RESTAURANT_CATEGORY: { [key: string]: string } = {
-  food: "음식",
   purpose: "방문목적",
-  max_people: "최대 수용 인원",
   mood: "공간의 무드",
-  drinks: "주류",
   music: "배경음악",
+  food: "음식",
+  max_people: "최대 수용 인원",
+  drinks: "주류",
   service: "부가서비스",
 };
 

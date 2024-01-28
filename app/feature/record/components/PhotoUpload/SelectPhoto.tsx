@@ -2,16 +2,20 @@ import RecordPhotoContent from "@feature/record/components/PhotoUpload/RecordPho
 import PlaceRecordTopBar from "@feature/record/components/PlaceRecordTopBar/PlaceRecordTopBar";
 
 interface SelectPhoto {
+  placeType: string;
   indicatorIndex: number;
   handleIndicatorIndex: (index: number) => void;
   cafeKeywordData: { [key: string]: string | Array<string> };
+  restaurantKeywordData: { [key: string]: string | Array<string> };
   handleImage: (url: File) => void;
 }
 
 export default function SelectPhoto({
+  placeType,
   indicatorIndex,
   handleIndicatorIndex,
   cafeKeywordData,
+  restaurantKeywordData,
   handleImage,
 }: SelectPhoto) {
   return (
@@ -24,7 +28,9 @@ export default function SelectPhoto({
           handleIndicatorIndex={handleIndicatorIndex}
         />
         <RecordPhotoContent
+          placeType={placeType}
           cafeKeywordData={cafeKeywordData}
+          restaurantKeywordData={restaurantKeywordData}
           handleImage={handleImage}
           handleIndicatorIndex={handleIndicatorIndex}
         />
