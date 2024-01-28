@@ -2,8 +2,9 @@ import AddIcon from "@common/assets/icons/add/AddIcon";
 import CloseIcon from "@common/assets/icons/close/CloseIcon";
 import LocationLine from "@common/assets/icons/location/LocationLine";
 import Modal from "@common/components/ui/modal/Modal";
-import UseOutsideClick from "@common/hooks/useOutsideClick";
 import CurationMakeModal from "@feature/curation/components/CurationMake/CurationMakeModal";
+import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
+import GetMyCuration from "@feature/curation/queries/getMyCuration";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -56,7 +57,7 @@ export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
     },
   ];
   const [openMakeCuration, setOpenMakeCuration] = useState(false);
-  const [curationMy, setCurationMy] = useState(null);
+  const [curationMy, setCurationMy] = useState<MyCurationResponse>();
   const router = useRouter();
   const handleModalCloseClick = () => {
     handleModalFn(false);
@@ -69,12 +70,17 @@ export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
   const handleMakeCurationClick = () => {
     setOpenMakeCuration(true);
   };
+  console.log(curationMy);
+  const getCurationList = async () => {
+    try {
+      const myCuration = await GetMyCuration();
+      setCurationMy(myCuration);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
-    fetch("api/curation/my").then((res) =>
-      res.json().then((data) => {
-        setCurationMy(data);
-      })
-    );
+    getCurationList();
   }, []);
   console.log(curationMy);
   return (
@@ -97,7 +103,7 @@ export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
           <div>새 큐레이션 만들기</div>
         </div>
         <div className="flex flex-col items-start gap-[0.8rem] mt-[1.2rem]">
-          {CURATION_DUMMY.map((curation) => (
+          {curationMy?.curation.map((curation) => (
             <section
               key={curation.id}
               className="flex w-full"
@@ -105,7 +111,7 @@ export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
             >
               <div className="relative w-[6rem] h-[6rem]">
                 <Image
-                  src={curation.curationPhoto[0]}
+                  src={curation.image[0]}
                   alt="큐레이션 이미지"
                   fill
                   className="rounded-[8px]"
@@ -113,16 +119,17 @@ export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
               </div>
               <div className="flex flex-col justify-center ml-[1.2rem]">
                 <h1 className="headline2-semibold mb-[0.8rem]">
-                  {curation.mainText}
+                  {curation.title}
                 </h1>
                 <div className="flex items-center gap-[1rem]">
                   <span className="body2-medium text-text-gray-6">
-                    {curation.open ? "공개" : "비공개"}
+                    {/* {curation.open ? "공개" : "비공개"} */}
+                    공개
                   </span>
                   <div className="w-[0.1rem] h-[1.2rem] bg-text-gray-4"></div>
                   <div className="flex items-center gap-[0.2rem] body3-semibold text-text-gray-6">
                     <LocationLine />
-                    <div>{curation.places}</div>
+                    <div>{curation.spaceCount}</div>
                   </div>
                 </div>
               </div>
