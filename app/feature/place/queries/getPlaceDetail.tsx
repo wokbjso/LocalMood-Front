@@ -1,7 +1,7 @@
 import { PlaceDetailResponse } from "./dto/place-detail";
 
 export default async function GetPlaceDetail(
-  id: string
+  id: number
 ): Promise<PlaceDetailResponse> {
   const token = "token from localStorage";
   const res = await fetch(

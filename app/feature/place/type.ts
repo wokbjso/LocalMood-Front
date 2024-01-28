@@ -4,11 +4,13 @@ export interface PlaceInfoProps {
   direction?: "vertical" | "horizontal";
   size?: "normal" | "small";
   name: string;
-  imgUrl: string[];
+  imgUrl: string;
   type: string;
   address: string;
   isScraped: boolean;
   keyword?: string[];
+  purpose?: string[];
+  interior?: string[];
   keywordCategoryNum?: number;
   onClick?: () => void;
   className?: string;

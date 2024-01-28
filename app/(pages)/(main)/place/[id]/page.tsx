@@ -14,47 +14,8 @@ export default async function PlaceDetail({
 }: {
   params: { id: string };
 }) {
-  const CURATION_DUMMY = [
-    {
-      id: 0,
-      image: [
-        "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
-      ],
-      author: "김현민",
-      title: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
-      keyword: ["연인과의 데이트", "크리스마스"],
-    },
-    {
-      id: 1,
-      image: [
-        "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
-      ],
-      author: "김지원",
-      title: "평일에 좋은 마포구 데이트 코스",
-      keyword: ["연인과의 데이트", "평일"],
-      scrapped: false,
-    },
-    {
-      id: 2,
-      image: [
-        "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
-      ],
-      author: "김경민",
-      title: "주말에 즐기기 좋은 마포구 데이트 코스",
-      keyword: ["연인과의 데이트", "주말"],
-    },
-    {
-      id: 3,
-      image: [
-        "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
-      ],
-      author: "최예원",
-      title: "친구와 즐기기 좋은 마포구 데이트 코스",
-      keyword: ["친구와의 데이트", "마포구"],
-      scrapped: false,
-    },
-  ];
-  const detailData = await GetPlaceDetail(id);
+  const detailData = await GetPlaceDetail(Number(id));
+  console.log(detailData);
   return (
     <div className="pb-[12rem]">
       <div className="w-full h-[30rem] mb-[1.5rem] relative">

@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-export default function UseCurationMain(scrapped: boolean) {
-  const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
+export default function UseCurationMain(isScraped: boolean) {
+  const [scrapState, setScrapState] = useState<boolean>(isScraped);
   const [isMenuOpened, setIsMenuOpened] = useState(false);
 
   const handleScrapState = async (id: number) => {
-    setIsScrapped((prev) => !prev);
-    if (isScrapped) {
+    setScrapState((prev) => !prev);
+    if (scrapState) {
       const res = await fetch(`/api/curation/delete/${String(id)}`);
     } else {
       const res = await fetch(`/api/curation/add/${String(id)}`);
@@ -19,7 +19,7 @@ export default function UseCurationMain(scrapped: boolean) {
   };
 
   return {
-    isScrapped,
+    scrapState,
     isMenuOpened,
     handlers: {
       changeScrapState: handleScrapState,

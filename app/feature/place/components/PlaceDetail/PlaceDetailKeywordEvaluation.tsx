@@ -44,11 +44,7 @@ export default function PlaceDetailKeywordEvaluation({
           ))}
         </div>
       </div>
-      <LinkLayout
-        routeUrl={`/place/${
-          type === "카페" ? "cafe" : "restaurant"
-        }/${id}/more`}
-      >
+      <LinkLayout routeUrl={`/place//${id}/more`}>
         <Button variant="line">기록 전체 보기</Button>
       </LinkLayout>
     </div>

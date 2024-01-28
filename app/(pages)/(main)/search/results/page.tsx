@@ -9,59 +9,55 @@ import { PlaceInfoProps } from "@feature/place/type";
 import { useSearchParams } from "next/navigation";
 import SearchNoResult from "@feature/search/components/SearchNoResult/SearchNoResult";
 import { useEffect, useState } from "react";
+import PostSearch from "@feature/search/queries/postSearch";
 
 export default function SearchResult() {
   const searchParams = useSearchParams();
+  console.log(searchParams);
   // searchParams.get('search_query') 활용한 get api 로 대체(client side - tanstack query)
   // keyword로 검색 시 category 가 빈 string이 아닌 category들을 쿼리파라미터로 api post 요청
   const DUMMY_PLACE: PlaceInfoProps[] | [] = [
     {
       id: 0,
-      placeName: "신촌 캐치카페",
-      placeImg: [
+      name: "신촌 캐치카페",
+      imgUrl: [
         "https://media.istockphoto.com/id/1446199740/ko/%EC%82%AC%EC%A7%84/%ED%96%87%EB%B3%95%EC%9D%B4-%EC%9E%98-%EB%93%9C%EB%8A%94-%EC%88%B2%EC%9D%84-%ED%86%B5%EA%B3%BC%ED%95%98%EB%8A%94-%EA%B8%B8.jpg?s=2048x2048&w=is&k=20&c=3z_ODBT78uZDVqy-3B6r8LBa825AuSpL0xfzySe2fj8=",
       ],
-      category: "카페",
-      location: "마포구 신촌",
-      scrapped: false,
-      tags: {
-        purpose: ["연인과의 데이트", "작업/공부/책"],
-        interior: ["통창뷰", "넓은 공간"],
-      },
+      type: "카페",
+      address: "마포구 신촌",
+      isScraped: false,
+      purpose: ["연인과의 데이트", "작업/공부/책"],
+      interior: ["통창뷰", "넓은 공간"],
     },
     {
       id: 0,
-      placeName: "금복식당",
-      placeImg: [
+      name: "금복식당",
+      imgUrl: [
         "https://media.istockphoto.com/id/1446199740/ko/%EC%82%AC%EC%A7%84/%ED%96%87%EB%B3%95%EC%9D%B4-%EC%9E%98-%EB%93%9C%EB%8A%94-%EC%88%B2%EC%9D%84-%ED%86%B5%EA%B3%BC%ED%95%98%EB%8A%94-%EA%B8%B8.jpg?s=2048x2048&w=is&k=20&c=3z_ODBT78uZDVqy-3B6r8LBa825AuSpL0xfzySe2fj8=",
       ],
-      category: "음식점",
-      location: "마포구 망원동",
-      scrapped: false,
-      tags: {
-        purpose: ["연인과의 데이트", "작업/공부/책"],
-        interior: ["통창뷰", "넓은 공간"],
-      },
+      type: "음식점",
+      address: "마포구 망원동",
+      isScraped: false,
+      purpose: ["연인과의 데이트", "작업/공부/책"],
+      interior: ["통창뷰", "넓은 공간"],
     },
     {
       id: 2,
-      placeName: "나이스워크투데이",
-      placeImg: [
+      name: "나이스워크투데이",
+      imgUrl: [
         "https://media.istockphoto.com/id/1446199740/ko/%EC%82%AC%EC%A7%84/%ED%96%87%EB%B3%95%EC%9D%B4-%EC%9E%98-%EB%93%9C%EB%8A%94-%EC%88%B2%EC%9D%84-%ED%86%B5%EA%B3%BC%ED%95%98%EB%8A%94-%EA%B8%B8.jpg?s=2048x2048&w=is&k=20&c=3z_ODBT78uZDVqy-3B6r8LBa825AuSpL0xfzySe2fj8=",
       ],
-      category: "카페",
-      location: "마포구 망원동",
-      scrapped: false,
-      tags: {
-        purpose: ["연인과의 데이트", "작업/공부/책"],
-        interior: ["통창뷰", "넓은 공간"],
-      },
+      type: "카페",
+      address: "마포구 망원동",
+      isScraped: false,
+      purpose: ["연인과의 데이트", "작업/공부/책"],
+      interior: ["통창뷰", "넓은 공간"],
     },
   ];
   const DUMMY_CURATION: CurationProps[] | [] = [
     {
       id: 0,
-      image: [
+      imgUrl: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
       author: "김현민",
@@ -71,7 +67,7 @@ export default function SearchResult() {
     },
     {
       id: 1,
-      image: [
+      imgUrl: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
       author: "김지원",
@@ -81,7 +77,7 @@ export default function SearchResult() {
     },
     {
       id: 2,
-      image: [
+      imgUrl: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
       author: "김경민",
@@ -91,7 +87,7 @@ export default function SearchResult() {
     },
     {
       id: 3,
-      image: [
+      imgUrl: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
       author: "최예원",
@@ -102,22 +98,11 @@ export default function SearchResult() {
   ];
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
     useSearchBar();
-  const [placeData, setPlaceData] = useState(null);
-  const [curationData, setCurationData] = useState(null);
+  //검색 텍스트 처리
+  const [searchData, setSearchData] = useState(null);
   useEffect(() => {
-    fetch("api/search/place").then((res) =>
-      res.json().then((data) => {
-        setPlaceData(data);
-      })
-    );
-    fetch("api/search/curation").then((res) =>
-      res.json().then((data) => {
-        setCurationData(data);
-      })
-    );
+    const res = PostSearch(searchParams.get("search_query") as string);
   }, []);
-  console.log(placeData);
-  console.log(curationData);
   return (
     <>
       {DUMMY_PLACE.length === 0 && DUMMY_CURATION.length === 0 && (
@@ -139,7 +124,7 @@ export default function SearchResult() {
                 <CurationMain
                   key={curation.id}
                   id={curation.id}
-                  image={curation.image}
+                  imgUrl={curation.imgUrl}
                   author={curation.author}
                   title={curation.title}
                   keyword={curation.keyword}
@@ -163,17 +148,8 @@ export default function SearchResult() {
           {searchBarTabIndex === 0 && (
             <div className="h-full px-[2rem] pt-[2rem] pb-[14.5rem] overflow-y-scroll">
               {DUMMY_PLACE.map((place) => (
-                <div key={place.id + place.category} className="mb-[4rem]">
-                  <PlaceInfoMain
-                    id={place.id}
-                    placeImg={place.placeImg}
-                    placeName={place.placeName}
-                    category={place.category}
-                    location={place.location}
-                    scrapped={place.scrapped}
-                    tags={place.tags}
-                    tagsCategoryNum={2}
-                  />
+                <div key={place.id + place.type} className="mb-[4rem]">
+                  <PlaceInfoMain {...place} keywordCategoryNum={0} />
                 </div>
               ))}
             </div>
@@ -193,17 +169,8 @@ export default function SearchResult() {
           {searchBarTabIndex === 0 && (
             <div className="h-full px-[2rem] pt-[2rem] pb-[14.5rem] overflow-y-scroll">
               {DUMMY_PLACE.map((place) => (
-                <div key={place.id + place.category} className="mb-[4rem]">
-                  <PlaceInfoMain
-                    id={place.id}
-                    placeImg={place.placeImg}
-                    placeName={place.placeName}
-                    category={place.category}
-                    location={place.location}
-                    scrapped={place.scrapped}
-                    tags={place.tags}
-                    tagsCategoryNum={2}
-                  />
+                <div key={place.id + place.type} className="mb-[4rem]">
+                  <PlaceInfoMain {...place} keywordCategoryNum={0} />
                 </div>
               ))}
             </div>
@@ -214,7 +181,7 @@ export default function SearchResult() {
                 <CurationMain
                   key={curation.id}
                   id={curation.id}
-                  image={curation.image}
+                  imgUrl={curation.imgUrl}
                   author={curation.author}
                   title={curation.title}
                   keyword={curation.keyword}
