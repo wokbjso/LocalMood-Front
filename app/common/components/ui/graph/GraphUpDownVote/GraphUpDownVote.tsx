@@ -13,7 +13,7 @@ export default function GraphUpDownVote({
   return (
     <div
       className={twMerge(
-        "inline-block bg-white pl-[0.4rem] py-[0.2rem] rounded-[36px] border-[0.1rem] border-line-gray-3",
+        " bg-white pl-[0.4rem] py-[0.2rem] rounded-[36px] border-[0.1rem] border-line-gray-3",
         variant === "diff" ? (like ? "pr-[1.2rem]" : "pl-[1.2rem]") : null,
         variant === "unite" && "pr-[1.2rem]",
         className

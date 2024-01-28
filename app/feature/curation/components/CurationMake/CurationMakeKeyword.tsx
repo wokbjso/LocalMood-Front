@@ -7,32 +7,51 @@ import {
   CURATION_MAKE_CATEGORY,
   CURATION_MAKE_KEYWORD,
 } from "@feature/curation/constants/curation-make";
+import Button from "@common/components/ui/buttons/Button/Button";
 
 interface CurationMakeKeywordProps {
   curationMakeData: {
     curation_name: string;
-    open: boolean;
-    keyword: { [key: string]: string };
+    privacy: boolean;
+    keyword: string[];
   };
-  onClick?: (category: string, keyword: string) => void;
+  onClick?: (keyword: string) => void;
 }
 
 export default function CurationMakeKeyword({
   curationMakeData,
   onClick,
 }: CurationMakeKeywordProps) {
+  console.log(curationMakeData);
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpansion = () => {
     setIsExpanded((prevIsExpanded) => !prevIsExpanded);
   };
 
-  const handleKeywordFilterClick = (category: string, keyword: string) => {
-    onClick && onClick(category, keyword);
+  const handleKeywordFilterClick = (keyword: string) => {
+    onClick && onClick(keyword);
   };
 
+  const checkDoneAble = () => {
+    if (curationMakeData.curation_name === "") return true;
+    return false;
+  };
+
+  const handleDoneClick = async () => {
+    const res = await fetch("/api/curation/make", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...curationMakeData,
+        keyword: curationMakeData.keyword.join(","),
+      }),
+    });
+  };
   return (
-    <div className="pb-[17.1rem]">
+    <div className="pb-[22.1rem] w-full">
       <div className="w-full pb-[1.2rem] border-b border-text-gray-3">
         <div className="flex items-center justify-between flex-start">
           <div className="flex gap-[0.6rem]">
@@ -41,11 +60,7 @@ export default function CurationMakeKeyword({
               <span>대표키워드 설정</span>
             </div>
             <span className="headline3-semibold text-text-gray-6">
-              {
-                Object.keys(curationMakeData.keyword).filter(
-                  (k) => curationMakeData.keyword[k].length > 0
-                ).length
-              }
+              {curationMakeData.keyword.length}
               /2
             </span>
           </div>
@@ -66,12 +81,8 @@ export default function CurationMakeKeyword({
                       <Filter
                         key={keyword}
                         label={keyword}
-                        selected={
-                          curationMakeData.keyword[category] === keyword
-                        }
-                        onClick={() =>
-                          handleKeywordFilterClick(category, keyword)
-                        }
+                        selected={curationMakeData.keyword.includes(keyword)}
+                        onClick={() => handleKeywordFilterClick(keyword)}
                       />
                     )
                   )}
@@ -81,6 +92,11 @@ export default function CurationMakeKeyword({
           ))}
         </div>
       )}
+      <div className="flex justify-center fixed w-full bottom-0 right-0 h-[9.4rem] bg-white">
+        <Button disabled={checkDoneAble()} onClick={handleDoneClick}>
+          완료
+        </Button>
+      </div>
     </div>
   );
 }

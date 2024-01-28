@@ -4,32 +4,32 @@ import Chip from "@common/components/ui/buttons/Chip/Chip";
 import { PlaceInfoProps } from "@feature/place/type";
 
 export default function PlaceInfoBottom({
-  tags,
-  tagsCategoryNum,
+  keyword,
+  keywordCategoryNum,
   bottomClassName,
-}: Pick<PlaceInfoProps, "tags" | "tagsCategoryNum" | "bottomClassName">) {
+}: Pick<PlaceInfoProps, "keyword" | "keywordCategoryNum" | "bottomClassName">) {
   return (
     <div
       className={twMerge("w-full mt-[1.6rem] flex flex-wrap", bottomClassName)}
     >
-      {tagsCategoryNum === 0
-        ? tags?.interior.map((tag, i) => (
+      {keywordCategoryNum === 0
+        ? keyword?.map((tag, i) => (
             <Chip
               key={tag + i}
-              className={i !== tags?.interior.length - 1 ? "mr-[0.8rem]" : ""}
+              className={i !== keyword?.length - 1 ? "mr-[0.8rem]" : ""}
             >
               {tag}
             </Chip>
           ))
         : Object.keys(PLACE_TAG_CATEGORY)
-            .slice(0, tagsCategoryNum)
+            .slice(0, keywordCategoryNum)
             .map((category, i) => {
               return (
                 <div
                   key={category}
                   className={twMerge(
                     "flex items-center",
-                    tagsCategoryNum && i !== tagsCategoryNum - 1
+                    keywordCategoryNum && i !== keywordCategoryNum - 1
                       ? "mb-[0.9rem]"
                       : ""
                   )}
@@ -40,8 +40,8 @@ export default function PlaceInfoBottom({
                     </span>
                   </div>
                   <div className="flex flex-wrap gap-[0.8rem]">
-                    {tags &&
-                      tags[category].map((tag, i) => (
+                    {keyword &&
+                      keyword[category].map((tag, i) => (
                         <Chip key={tag + i}>{tag}</Chip>
                       ))}
                   </div>

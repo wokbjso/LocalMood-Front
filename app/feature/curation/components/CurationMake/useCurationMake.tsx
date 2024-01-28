@@ -3,17 +3,12 @@ import { useState } from "react";
 export default function UseCurationMake() {
   const [curationMakeData, setCurationMakeData] = useState<{
     curation_name: string;
-    open: boolean;
-    keyword: { [key: string]: string };
+    privacy: boolean;
+    keyword: string[];
   }>({
     curation_name: "",
-    open: false,
-    keyword: {
-      purpose: "",
-      mood: "",
-      music: "",
-      interior: "",
-    },
+    privacy: false,
+    keyword: [],
   });
 
   console.log(curationMakeData);
@@ -23,33 +18,31 @@ export default function UseCurationMake() {
   };
 
   const handleCurationOpen = (state: boolean) => {
-    setCurationMakeData({ ...curationMakeData, open: state });
+    setCurationMakeData({ ...curationMakeData, privacy: state });
   };
 
-  const handleKeyword = (category: string, keyword: string) => {
-    if (
-      Object.keys(curationMakeData.keyword).filter(
-        (k) => curationMakeData.keyword[k].length > 0 && k !== category
-      ).length === 2
-    ) {
-      alert("키워드는 2개까지 선택해주세요!");
-      return;
-    }
-    if (curationMakeData.keyword[category] === keyword) {
-      setCurationMakeData({
-        ...curationMakeData,
-        keyword: {
-          ...curationMakeData.keyword,
-          [category]: "",
-        },
+  const handleKeyword = (keyword: string) => {
+    if (curationMakeData.keyword.includes(keyword)) {
+      setCurationMakeData((prevData) => {
+        const updatedKeywords = prevData.keyword.filter(
+          (prevKeyword) => prevKeyword !== keyword
+        );
+        return {
+          ...prevData,
+          keyword: updatedKeywords,
+        };
       });
     } else {
-      setCurationMakeData({
-        ...curationMakeData,
-        keyword: {
-          ...curationMakeData.keyword,
-          [category]: keyword,
-        },
+      if (curationMakeData.keyword.length === 2) {
+        alert("키워드는 2개까지 선택해주세요!");
+        return;
+      }
+      setCurationMakeData((prevData) => {
+        const newKeywords = [...prevData.keyword, keyword];
+        return {
+          ...prevData,
+          keyword: newKeywords,
+        };
       });
     }
   };

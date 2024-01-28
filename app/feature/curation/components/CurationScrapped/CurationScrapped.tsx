@@ -10,16 +10,16 @@ import Link from "next/link";
 
 export default function CurationScrapped({
   id,
-  image,
+  imgUrl,
   author,
   title,
   keyword,
-  scrapped = true,
+  isScraped = true,
   className,
 }: Omit<CurationProps, "places">) {
-  const [isScrapped, setIsScrapped] = useState(scrapped);
+  const [scrapState, setScrapState] = useState(isScraped);
   const handleScrap = () => {
-    setIsScrapped((prev) => !prev);
+    setScrapState((prev) => !prev);
     //id 이용해서 scrap 해제 모달 창 띄우기 && delete api 호출
   };
 
@@ -30,8 +30,8 @@ export default function CurationScrapped({
           className="w-full h-[16.5rem] bg-cover relative rounded-[8px]"
           style={{
             backgroundImage: `url(
-            ${image && image[0]}
-          )`,
+              https://a.cdn-hotels.com/gdcs/production161/d1403/b5f1876a-9e64-4d13-ab7a-a0fd2cbc5224.jpg
+          )`, //image 들어오면 전달받은 이미지로 교체,
           }}
         >
           <UserProfile
@@ -40,7 +40,7 @@ export default function CurationScrapped({
             className="absolute bottom-[1.6rem] left-[1.6rem]"
           />
           <div className="w-full p-[1.6rem] relative">
-            {isScrapped ? (
+            {scrapState ? (
               <ScrapShadow
                 className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
                 onClick={handleScrap}
@@ -60,7 +60,8 @@ export default function CurationScrapped({
               <div className="headline2 w-[70%] break-keep mb-[1.2rem] text-white">
                 <span>{title}</span>
                 <div className="flex flex-wrap gap-[0.8rem]">
-                  {keyword.map((tag) => (
+                  {/* 키워드 배열로 들어오면 수정 필요 */}
+                  {["키워드1", "키워드2"].map((tag) => (
                     <div key={tag}>
                       <span className="text-primary-normal body2-medium">
                         #{" "}

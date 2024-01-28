@@ -1,8 +1,11 @@
-export default async function GetPlaceDetail(category: string, id: string) {
+import { PlaceDetailResponse } from "./dto/place-detail";
+
+export default async function GetPlaceDetail(
+  id: string
+): Promise<PlaceDetailResponse> {
   const token = "token from localStorage";
-  const query = `?type=${category}`;
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_API}/v1/spaces/${id}+query`,
+    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/spaces/${id}`,
     {
       method: "GET",
       headers: {

@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 export interface TopBarProps {
   id?: number;
-  scrapped?: boolean;
+  isScraped?: boolean;
   color?: string;
   children?: ReactNode;
   className?: string;
