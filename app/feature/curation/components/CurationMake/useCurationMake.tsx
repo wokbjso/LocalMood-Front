@@ -16,8 +16,6 @@ export default function UseCurationMake() {
     },
   });
 
-  console.log(curationMakeData);
-
   const handleCurationName = (text: string) => {
     setCurationMakeData({ ...curationMakeData, curation_name: text });
   };

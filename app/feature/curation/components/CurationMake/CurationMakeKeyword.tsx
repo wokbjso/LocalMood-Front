@@ -43,6 +43,21 @@ export default function CurationMakeKeyword({
     return isTitleEntered && selectedFiltersCount >= 2;
   };
 
+  const getConcatenatedKeywords = (keywords: { [key: string]: string }) => {
+    const concatenatedKeywords = Object.values(keywords)
+      .filter((value) => value.length > 0)
+      .join(", ");
+    return concatenatedKeywords;
+  };
+
+  const getSendingCurationData = () => {
+    return {
+      title: curationMakeData.curation_name,
+      keyword: getConcatenatedKeywords(curationMakeData.keyword),
+      privacy: curationMakeData.open,
+    };
+  };
+
   return (
     <div className="pb-[17.1rem]">
       <div className="w-full pb-[1.2rem] border-b border-text-gray-3">
@@ -99,7 +114,8 @@ export default function CurationMakeKeyword({
           variant={"fill"}
           onClick={() => {
             if (isSubmitEnabled(curationMakeData)) {
-              console.log("버튼입력");
+              const dataCurationMake = getSendingCurationData();
+              console.log(dataCurationMake);
             } else {
             }
           }}
