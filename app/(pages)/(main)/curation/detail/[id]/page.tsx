@@ -21,22 +21,20 @@ export default async function CurationDetail({
     <div className="relative w-full pb-[18rem]">
       <div>
         <header className="h-[18.8rem] bg-background-secondary-normal">
-          <CurationTopAppBar
-            id={CURATION_INFO.id}
-            variant={CURATION_INFO.variant}
-            mainText={CURATION_INFO.curation_name}
-          />
+          <CurationTopAppBar id={id} variant={curationDetail.variant} />
         </header>
         <div className="w-full -mt-[18.8rem] pt-[11.5rem]">
           <div className="w-full flex justify-center pb-[1.6rem] gap-[0.8rem]">
-            {CURATION_INFO.hash_tags?.map((tag, index) => (
-              <Chip key={index} className="bg-white">
-                <div className="flex">
-                  <p className="text-primary-normal">#&nbsp;</p>
-                  <p>{tag}</p>
-                </div>
-              </Chip>
-            ))}
+            {curationDetail.keyword
+              ?.split(",")
+              .map((tag: string, index: number) => (
+                <Chip key={index} className="bg-white">
+                  <div className="flex">
+                    <p className="text-primary-normal">#&nbsp;</p>
+                    <p>{tag}</p>
+                  </div>
+                </Chip>
+              ))}
           </div>
           <div className="w-full inline-flex flex-col items-center pb-[2.4rem]">
             <div className="w-[21.5rem] flex flex-col items-center">
@@ -44,10 +42,10 @@ export default async function CurationDetail({
                 <Image src={NonCuration} alt="NonCuration" />
               </div>
               <div className="max-w-[23.2rem] headline0 text-black text-center pt-[1.2rem] pb-[0.8rem]">
-                {CURATION_INFO.curation_name}
+                {curationDetail.title}
               </div>
-              {CURATION_INFO.variant === "my" ? (
-                <CurationPrivacyToggleButton id={CURATION_INFO.id} />
+              {curationDetail.variant === "my" ? (
+                <CurationPrivacyToggleButton id={id} />
               ) : (
                 <div className="flex items-center gap-[1.2rem]">
                   <div className="flex items-center gap-[0.4rem]">
@@ -55,12 +53,12 @@ export default async function CurationDetail({
                       <Image src={ProfileIcon} alt="NonCuration" />
                     </div>
                     <div className="body3-medium text-text-gray-6">
-                      {CURATION_INFO.user_name}
+                      {curationDetail.author}
                     </div>
                   </div>
                   <div className="w-[0.1rem] h-[1.2rem] bg-text-gray-4"></div>
                   <div className="body3-regular text-text-gray-6">
-                    2023.02.13
+                    {curationDetail.createdDate}
                   </div>
                 </div>
               )}
@@ -70,7 +68,7 @@ export default async function CurationDetail({
         <div className="w-full border-2 border-line-gray-3"></div>
       </div>
       {/*저장된 장소(places)가 없을 때*/}
-      {!curationDetailCardList && (
+      {!curationDetail.spaceDetails && (
         <div>
           <div className="w-full inline-flex flex-col items-center pt-[18.8rem] gap-[1.2rem]">
             <div className="headline1-semibold text-black">
@@ -86,8 +84,8 @@ export default async function CurationDetail({
         </div>
       )}
       {/*저장된 장소(places)가 있을 때*/}
-      {curationDetailCardList && (
-        <CurationDetailCardList place_list={curationDetailCardList} />
+      {curationDetail.spaceDetails && (
+        <CurationDetailCardList spaceDetails={curationDetail.spaceDetails} />
       )}
     </div>
   );
