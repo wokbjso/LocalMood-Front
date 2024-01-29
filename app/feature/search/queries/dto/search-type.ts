@@ -1,15 +1,17 @@
-export type TextSearchResponse = {
-  id: number;
-  name: string;
-  type: string;
-  address: string;
-  purpose: string;
-  interior: string;
-  imgUrl: string;
-  isScraped: boolean;
+export type SearchCurationResponse = {
+  CurationCount: number;
+  CurationList: {
+    id: number;
+    author: string;
+    image: string[];
+    title: string;
+    spaceCount: number;
+    keyword: string[];
+    isScraped: boolean;
+  }[];
 }[];
 
-export type KeywordSearchResponse = {
+export type SearchPlaceResponse = {
   id: number;
   name: string;
   type: string;

@@ -9,12 +9,14 @@ import { PlaceInfoProps } from "@feature/place/type";
 import { useSearchParams } from "next/navigation";
 import SearchNoResult from "@feature/search/components/SearchNoResult/SearchNoResult";
 import { useEffect, useState } from "react";
-import PostTextSearch from "@feature/search/queries/postTextSearch";
+import PostKeywordPlaceSearch from "@feature/search/queries/postKeywordPlaceSearch";
+import PostTextPlaceSearch from "@feature/search/queries/postTextPlaceSearch";
 import {
-  KeywordSearchResponse,
-  TextSearchResponse,
+  SearchCurationResponse,
+  SearchPlaceResponse,
 } from "@feature/search/queries/dto/search-type";
-import PostKeywordSearch from "@feature/search/queries/postKeywordSearch";
+import GetTextCurationSearch from "@feature/search/queries/getTextCurationSearch";
+import PostKeywordCurationSearch from "@feature/search/queries/postKeywordCurationSearch";
 
 export default function SearchResult() {
   const searchParams = useSearchParams();
@@ -97,36 +99,74 @@ export default function SearchResult() {
       spaceCount: 3,
     },
   ];
-  const [textSearchData, setTextSearchData] = useState<TextSearchResponse>();
-  const [keywordSearchData, setKeywordSearchData] =
-    useState<KeywordSearchResponse>();
+  const [textSearchPlaceData, setTextSearchPlaceData] =
+    useState<SearchPlaceResponse>();
+  const [keywordSearchPlaceData, setKeywordSearchPlaceData] =
+    useState<SearchPlaceResponse>();
+  const [textSearchCurationData, setTextSearchCurationData] =
+    useState<SearchCurationResponse>();
+  const [keywordSearchCurationData, setKeywordSearchCurationData] =
+    useState<SearchCurationResponse>();
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
     useSearchBar();
-  const getTextSearchData = async () => {
+  const getTextSearchPlaceData = async () => {
     try {
-      const data = await PostTextSearch(
+      const data = await PostTextPlaceSearch(
         searchParams.get("search_query") as string
       );
-      setTextSearchData(data);
+      setTextSearchPlaceData(data);
     } catch (error) {
       console.log(error);
     }
   };
-  console.log(textSearchData);
-  console.log(keywordSearchData);
-  const getKeywordSearchData = async () => {
+  const getTextSearchCurationData = async () => {
     try {
-      const data = await PostKeywordSearch(
+      const data = await GetTextCurationSearch(
+        searchParams.get("search_query") as string
+      );
+      setTextSearchCurationData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getKeywordSearchPlaceData = async () => {
+    try {
+      const data = await PostKeywordPlaceSearch(
         JSON.parse(searchParams.get("keyword") as string)
       );
-      setKeywordSearchData(data);
+      setKeywordSearchPlaceData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getKeywordSearchCurationData = async () => {
+    try {
+      let keyword = [];
+      let count = 0;
+
+      for (const [, value] of Object.entries(
+        JSON.parse(searchParams.get("keyword") as string)
+      )) {
+        if (value !== "ALL") {
+          keyword.push(value as string);
+          count++;
+        }
+        if (count === 2) break;
+      }
+      const data = await PostKeywordCurationSearch(keyword);
+      setKeywordSearchCurationData(data);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
-    if (searchParams.get("search_query")) getTextSearchData();
-    else if (searchParams.get("keyword")) getKeywordSearchData();
+    if (searchParams.get("search_query")) {
+      getTextSearchPlaceData();
+      getTextSearchCurationData();
+    } else if (searchParams.get("keyword")) {
+      getKeywordSearchPlaceData();
+      getKeywordSearchCurationData();
+    }
   }, [searchParams.get("search_query"), searchParams.get("keyword")]);
   return (
     <>
