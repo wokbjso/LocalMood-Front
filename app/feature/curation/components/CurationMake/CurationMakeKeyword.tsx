@@ -87,12 +87,16 @@ export default function CurationMakeKeyword({
           ))}
         </div>
       )}
-      <div>
+
+      <div className="absolute bottom-[4.6rem] left-8 right-8">
         <Button
-          variant={
-            isTitleEntered && selectedFiltersCount >= 2 ? "fill" : "line"
-          }
+          variant={"fill"}
           onClick={() => console.log("완료 버튼 클릭")} //api 연결
+          className={`w-full ${
+            !(isTitleEntered && selectedFiltersCount >= 2)
+              ? "bg-text-gray-4 text-background-gray-1"
+              : ""
+          }`}
         >
           완료
         </Button>
