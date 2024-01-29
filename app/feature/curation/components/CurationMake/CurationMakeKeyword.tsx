@@ -7,6 +7,7 @@ import {
   CURATION_MAKE_CATEGORY,
   CURATION_MAKE_KEYWORD,
 } from "@feature/curation/constants/curation-make";
+import Button from "@common/components/ui/buttons/Button/Button";
 
 interface CurationMakeKeywordProps {
   curationMakeData: {
@@ -30,6 +31,11 @@ export default function CurationMakeKeyword({
   const handleKeywordFilterClick = (category: string, keyword: string) => {
     onClick && onClick(category, keyword);
   };
+
+  const isTitleEntered = curationMakeData.curation_name.trim() !== "";
+  const selectedFiltersCount = Object.keys(curationMakeData.keyword).filter(
+    (k) => curationMakeData.keyword[k].length > 0
+  ).length;
 
   return (
     <div className="pb-[17.1rem]">
@@ -81,6 +87,16 @@ export default function CurationMakeKeyword({
           ))}
         </div>
       )}
+      <div>
+        <Button
+          variant={
+            isTitleEntered && selectedFiltersCount >= 2 ? "fill" : "line"
+          }
+          onClick={() => console.log("완료 버튼 클릭")} //api 연결
+        >
+          완료
+        </Button>
+      </div>
     </div>
   );
 }
