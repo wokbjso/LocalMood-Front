@@ -14,7 +14,6 @@ export default async function Home() {
     "대화에 집중할 수 있는",
   ];
   const randomPlace = await GetRandomPlaces();
-  console.log(randomPlace);
   const PLACE_DUMMY = [
     {
       id: 1,
@@ -48,12 +47,12 @@ export default async function Home() {
         <PlaceHomeSlider
           mainText={PLACE_PURPOSE[0]}
           subText="를 위한 공간"
-          placeList={PLACE_DUMMY}
+          placeList={randomPlace[PLACE_PURPOSE[0]]}
         />
         <PlaceHomeSlider
           mainText={PLACE_PURPOSE[1]}
           subText="을 위한 공간"
-          placeList={PLACE_DUMMY}
+          placeList={randomPlace[PLACE_PURPOSE[1]]}
         />
         <CurationHomePopular
           mainText="마포구 인기 큐레이션"
@@ -63,12 +62,12 @@ export default async function Home() {
         <PlaceHomeSlider
           mainText={PLACE_PURPOSE[2]}
           subText="공간"
-          placeList={PLACE_DUMMY}
+          placeList={randomPlace[PLACE_PURPOSE[2]]}
         />
         <PlaceHomeSlider
           mainText={PLACE_PURPOSE[3]}
           subText="공간"
-          placeList={PLACE_DUMMY}
+          placeList={randomPlace[PLACE_PURPOSE[3]]}
         />
       </div>
       <Footer />
