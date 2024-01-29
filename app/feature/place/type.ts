@@ -11,6 +11,7 @@ export interface PlaceInfoProps {
   keyword?: string[];
   purpose?: string[];
   interior?: string[];
+  bestMenu?: string[];
   keywordCategoryNum?: number;
   onClick?: () => void;
   className?: string;

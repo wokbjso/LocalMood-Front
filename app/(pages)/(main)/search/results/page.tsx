@@ -26,7 +26,7 @@ export default function SearchResult() {
       name: "신촌 캐치카페",
       imgUrl:
         "https://media.istockphoto.com/id/1446199740/ko/%EC%82%AC%EC%A7%84/%ED%96%87%EB%B3%95%EC%9D%B4-%EC%9E%98-%EB%93%9C%EB%8A%94-%EC%88%B2%EC%9D%84-%ED%86%B5%EA%B3%BC%ED%95%98%EB%8A%94-%EA%B8%B8.jpg?s=2048x2048&w=is&k=20&c=3z_ODBT78uZDVqy-3B6r8LBa825AuSpL0xfzySe2fj8=",
-      type: "카페",
+      type: "CAFE",
       address: "마포구 신촌",
       isScraped: false,
       purpose: ["연인과의 데이트", "작업/공부/책"],
@@ -37,18 +37,18 @@ export default function SearchResult() {
       name: "금복식당",
       imgUrl:
         "https://media.istockphoto.com/id/1446199740/ko/%EC%82%AC%EC%A7%84/%ED%96%87%EB%B3%95%EC%9D%B4-%EC%9E%98-%EB%93%9C%EB%8A%94-%EC%88%B2%EC%9D%84-%ED%86%B5%EA%B3%BC%ED%95%98%EB%8A%94-%EA%B8%B8.jpg?s=2048x2048&w=is&k=20&c=3z_ODBT78uZDVqy-3B6r8LBa825AuSpL0xfzySe2fj8=",
-      type: "음식점",
+      type: "RESTAURANT",
       address: "마포구 망원동",
       isScraped: false,
       purpose: ["연인과의 데이트", "작업/공부/책"],
-      interior: ["통창뷰", "넓은 공간"],
+      bestMenu: ["족발", "생선"],
     },
     {
       id: 2,
       name: "나이스워크투데이",
       imgUrl:
         "https://media.istockphoto.com/id/1446199740/ko/%EC%82%AC%EC%A7%84/%ED%96%87%EB%B3%95%EC%9D%B4-%EC%9E%98-%EB%93%9C%EB%8A%94-%EC%88%B2%EC%9D%84-%ED%86%B5%EA%B3%BC%ED%95%98%EB%8A%94-%EA%B8%B8.jpg?s=2048x2048&w=is&k=20&c=3z_ODBT78uZDVqy-3B6r8LBa825AuSpL0xfzySe2fj8=",
-      type: "카페",
+      type: "CAFE",
       address: "마포구 망원동",
       isScraped: false,
       purpose: ["연인과의 데이트", "작업/공부/책"],
@@ -212,7 +212,7 @@ export default function SearchResult() {
             <div className="h-full px-[2rem] pt-[2rem] pb-[14.5rem] overflow-y-scroll">
               {DUMMY_PLACE.map((place) => (
                 <div key={place.id + place.type} className="mb-[4rem]">
-                  <PlaceInfoMain {...place} keywordCategoryNum={0} />
+                  <PlaceInfoMain {...place} keywordCategoryNum={2} />
                 </div>
               ))}
             </div>

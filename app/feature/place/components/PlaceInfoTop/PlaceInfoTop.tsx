@@ -105,7 +105,7 @@ export default function PlaceInfoTop({
                   size === "normal" ? "body2-semibold" : "body3-semibold"
                 )}
               >
-                {type}
+                {type === "RESTAURANT" ? "음식점" : "카페"}
               </span>
               <Line className="mx-[0.8rem]" />
               <span

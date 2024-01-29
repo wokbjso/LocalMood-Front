@@ -8,10 +8,14 @@ import ArrowRight from "@common/assets/icons/arrow/arrow-right.svg";
 import Link from "next/link";
 import UseForm from "@feature/auth/useForm";
 import { LoginFormState } from "@feature/auth/type";
+import { loginAction } from "@feature/auth/utils/loginAction";
 
 export default function Login() {
-  const handleSubmit = (e: LoginFormState) => {
-    //post api
+  const handleSubmit = async (e: LoginFormState) => {
+    const status = await loginAction(e);
+    if (status.status === 200) {
+      location.replace("/");
+    }
   };
   const { loginFormData, errorMessage, showError, handlers } = UseForm({
     type: "login",
@@ -20,7 +24,10 @@ export default function Login() {
   const getErrorMessage = (field: string) => {
     return showError ? errorMessage[field] : "";
   };
-  console.log(loginFormData);
+  const ableRegister =
+    Object.keys(loginFormData).filter(
+      (category) => loginFormData[category].length === 0
+    ).length >= 1;
   return (
     <div className="px-[2rem] pb-[9.6rem]">
       <BasicTopBar color="#9E9E9E" className="px-0" />
@@ -41,7 +48,9 @@ export default function Login() {
           className="mb-[2rem]"
           onChange={handlers.changePassword}
         />
-        <Button className="w-full">로그인하기</Button>
+        <Button disabled={ableRegister} className="w-full">
+          로그인하기
+        </Button>
       </form>
       <div className="flex justify-center items-center mt-[2rem] mb-[16.1rem]">
         <span className="mr-[0.4rem] text-text-gray-8 body2-semibold">

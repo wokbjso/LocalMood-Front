@@ -13,6 +13,9 @@ export default function PlaceInfoMain({
   address,
   isScraped,
   keyword,
+  purpose,
+  interior,
+  bestMenu,
   keywordCategoryNum,
   onClick,
   className,
@@ -35,9 +38,13 @@ export default function PlaceInfoMain({
         className={className}
         imgClassName={imgClassName}
       />
-      {keyword && (
+      {keywordCategoryNum && (
         <PlaceInfoBottom
+          type={type}
           keyword={keyword}
+          purpose={purpose}
+          interior={interior}
+          bestMenu={bestMenu}
           keywordCategoryNum={keywordCategoryNum}
           bottomClassName={bottomClassName}
         />
