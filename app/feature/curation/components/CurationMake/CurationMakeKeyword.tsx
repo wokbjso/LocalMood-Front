@@ -8,6 +8,7 @@ import {
   CURATION_MAKE_KEYWORD,
 } from "@feature/curation/constants/curation-make";
 import Button from "@common/components/ui/buttons/Button/Button";
+import PostCurationMake from "@feature/curation/queries/postCurationMake";
 
 interface CurationMakeKeywordProps {
   curationMakeData: {
@@ -56,6 +57,21 @@ export default function CurationMakeKeyword({
       keyword: getConcatenatedKeywords(curationMakeData.keyword),
       privacy: curationMakeData.open,
     };
+  };
+
+  const handleButtonClick = async () => {
+    if (isSubmitEnabled(curationMakeData)) {
+      const dataCurationMake = getSendingCurationData();
+      console.log(dataCurationMake);
+
+      try {
+        const result = await PostCurationMake(dataCurationMake);
+        console.log("PostCurationMake result:", result);
+      } catch (error) {
+        console.error("Error in PostCurationMake:", error);
+      }
+    } else {
+    }
   };
 
   return (
@@ -112,13 +128,7 @@ export default function CurationMakeKeyword({
       <div className="absolute bottom-[4.6rem] left-8 right-8">
         <Button
           variant={"fill"}
-          onClick={() => {
-            if (isSubmitEnabled(curationMakeData)) {
-              const dataCurationMake = getSendingCurationData();
-              console.log(dataCurationMake);
-            } else {
-            }
-          }}
+          onClick={handleButtonClick}
           className={`w-full ${
             !isSubmitEnabled(curationMakeData)
               ? "bg-text-gray-4 text-background-gray-1"
