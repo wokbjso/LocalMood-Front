@@ -77,7 +77,7 @@ export default function RecordKeywordContent({
             </section>
           ))}
       {placeType === "RESTAURANT" &&
-        Object.keys(RESTAURANT_CATEGORY)
+        Object.keys(CAFE_CATEGORY)
           .slice(0, 3)
           .map((category, i) => (
             <section

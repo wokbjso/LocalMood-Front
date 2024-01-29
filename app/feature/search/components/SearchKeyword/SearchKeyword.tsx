@@ -28,6 +28,7 @@ export default function SearchKeyword() {
     showResultAble,
     handlers,
   } = useSearchKeyword();
+  console.log(restaurantKeyword);
   const handleKeywordClick = (category: string, keyword: string) => {
     if (keyword === "한식") {
       if (openKoreanOption) {
@@ -45,15 +46,17 @@ export default function SearchKeyword() {
   const handleKoreanOptionClick = (index: number) => {
     handlers.changeKoreanOptionIndex(index);
   };
-  function objectToQueryString(obj: { [key: string]: string }) {
-    const queryString = Object.entries(obj)
-      .slice(1)
-      .filter(([, value]) => value !== "")
-      .map(([key, value]) => `${key}=${value}`)
-      .join("&");
 
-    return queryString;
+  function setEmptyKeysToAll(obj: { [key: string]: string }) {
+    const modifiedObj = obj;
+    for (const key in modifiedObj) {
+      if (modifiedObj[key] === "") {
+        modifiedObj[key] = "ALL";
+      }
+    }
+    return modifiedObj;
   }
+
   return (
     searchParams.get("keyword_search") === "true" && (
       <>
@@ -96,7 +99,7 @@ export default function SearchKeyword() {
                             keyword === "한식"
                               ? KOREAN_OPTION.some(
                                   (option) =>
-                                    option === restaurantKeyword[category]
+                                    option === restaurantKeyword["dish"]
                                 )
                               : restaurantKeyword[category] === keyword
                           }
@@ -107,7 +110,7 @@ export default function SearchKeyword() {
                         />
                       )
                     )}
-                    {category === "food" &&
+                    {category === "subType" &&
                       openKoreanOption &&
                       KOREAN_OPTION.map((option, i) => (
                         <Filter
@@ -154,9 +157,8 @@ export default function SearchKeyword() {
                   query: {
                     keyword:
                       tabIndex === 0
-                        ? objectToQueryString(restaurantKeyword)
-                        : objectToQueryString(cafeKeyword),
-                    type: tabIndex === 0 ? "restaurant" : "cafe",
+                        ? JSON.stringify(setEmptyKeysToAll(restaurantKeyword))
+                        : JSON.stringify(setEmptyKeysToAll(cafeKeyword)),
                   },
                 }}
               >

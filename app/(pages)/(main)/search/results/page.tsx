@@ -10,10 +10,11 @@ import { useSearchParams } from "next/navigation";
 import SearchNoResult from "@feature/search/components/SearchNoResult/SearchNoResult";
 import { useEffect, useState } from "react";
 import PostSearch from "@feature/search/queries/postSearch";
+import { SearchResponse } from "@feature/search/queries/dto/search-type";
 
 export default function SearchResult() {
   const searchParams = useSearchParams();
-  console.log(searchParams);
+  console.log(searchParams.get("keyword"));
   // searchParams.get('search_query') 활용한 get api 로 대체(client side - tanstack query)
   // keyword로 검색 시 category 가 빈 string이 아닌 category들을 쿼리파라미터로 api post 요청
   const DUMMY_PLACE: PlaceInfoProps[] | [] = [
@@ -93,13 +94,20 @@ export default function SearchResult() {
       spaceCount: 3,
     },
   ];
+  const [searchData, setSearchData] = useState<SearchResponse>();
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
     useSearchBar();
-  //검색 텍스트 처리
-  const [searchData, setSearchData] = useState(null);
+  const getSearchData = async () => {
+    try {
+      const data = await PostSearch(searchParams.get("search_query") as string);
+      setSearchData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
-    const res = PostSearch(searchParams.get("search_query") as string);
-  }, []);
+    getSearchData();
+  }, [searchParams.get("search_query")]);
   return (
     <>
       {DUMMY_PLACE.length === 0 && DUMMY_CURATION.length === 0 && (
@@ -167,7 +175,7 @@ export default function SearchResult() {
             <div className="h-full px-[2rem] pt-[2rem] pb-[14.5rem] overflow-y-scroll">
               {DUMMY_PLACE.map((place) => (
                 <div key={place.id + place.type} className="mb-[4rem]">
-                  <PlaceInfoMain {...place} keywordCategoryNum={0} />
+                  <PlaceInfoMain {...place} keywordCategoryNum={2} />
                 </div>
               ))}
             </div>

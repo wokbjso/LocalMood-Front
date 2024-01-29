@@ -14,6 +14,7 @@ export default async function Home() {
     "대화에 집중할 수 있는",
   ];
   const randomPlace = await GetRandomPlaces();
+  console.log(randomPlace);
   const PLACE_DUMMY = [
     {
       id: 1,
