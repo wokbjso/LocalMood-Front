@@ -28,7 +28,7 @@ export default function SearchKeyword() {
     showResultAble,
     handlers,
   } = useSearchKeyword();
-  console.log(restaurantKeyword);
+  console.log(cafeKeyword);
   const handleKeywordClick = (category: string, keyword: string) => {
     if (keyword === "한식") {
       if (openKoreanOption) {

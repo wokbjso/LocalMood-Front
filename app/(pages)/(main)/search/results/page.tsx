@@ -9,12 +9,15 @@ import { PlaceInfoProps } from "@feature/place/type";
 import { useSearchParams } from "next/navigation";
 import SearchNoResult from "@feature/search/components/SearchNoResult/SearchNoResult";
 import { useEffect, useState } from "react";
-import PostSearch from "@feature/search/queries/postSearch";
-import { SearchResponse } from "@feature/search/queries/dto/search-type";
+import PostTextSearch from "@feature/search/queries/postTextSearch";
+import {
+  KeywordSearchResponse,
+  TextSearchResponse,
+} from "@feature/search/queries/dto/search-type";
+import PostKeywordSearch from "@feature/search/queries/postKeywordSearch";
 
 export default function SearchResult() {
   const searchParams = useSearchParams();
-  console.log(searchParams.get("keyword"));
   // searchParams.get('search_query') 활용한 get api 로 대체(client side - tanstack query)
   // keyword로 검색 시 category 가 빈 string이 아닌 category들을 쿼리파라미터로 api post 요청
   const DUMMY_PLACE: PlaceInfoProps[] | [] = [
@@ -94,20 +97,37 @@ export default function SearchResult() {
       spaceCount: 3,
     },
   ];
-  const [searchData, setSearchData] = useState<SearchResponse>();
+  const [textSearchData, setTextSearchData] = useState<TextSearchResponse>();
+  const [keywordSearchData, setKeywordSearchData] =
+    useState<KeywordSearchResponse>();
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
     useSearchBar();
-  const getSearchData = async () => {
+  const getTextSearchData = async () => {
     try {
-      const data = await PostSearch(searchParams.get("search_query") as string);
-      setSearchData(data);
+      const data = await PostTextSearch(
+        searchParams.get("search_query") as string
+      );
+      setTextSearchData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  console.log(textSearchData);
+  console.log(keywordSearchData);
+  const getKeywordSearchData = async () => {
+    try {
+      const data = await PostKeywordSearch(
+        JSON.parse(searchParams.get("keyword") as string)
+      );
+      setKeywordSearchData(data);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
-    getSearchData();
-  }, [searchParams.get("search_query")]);
+    if (searchParams.get("search_query")) getTextSearchData();
+    else if (searchParams.get("keyword")) getKeywordSearchData();
+  }, [searchParams.get("search_query"), searchParams.get("keyword")]);
   return (
     <>
       {DUMMY_PLACE.length === 0 && DUMMY_CURATION.length === 0 && (
