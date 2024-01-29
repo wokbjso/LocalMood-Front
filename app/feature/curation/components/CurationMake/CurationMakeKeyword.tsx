@@ -32,10 +32,16 @@ export default function CurationMakeKeyword({
     onClick && onClick(category, keyword);
   };
 
-  const isTitleEntered = curationMakeData.curation_name.trim() !== "";
-  const selectedFiltersCount = Object.keys(curationMakeData.keyword).filter(
-    (k) => curationMakeData.keyword[k].length > 0
-  ).length;
+  const isSubmitEnabled = (
+    curationMakeData: CurationMakeKeywordProps["curationMakeData"]
+  ) => {
+    const isTitleEntered = curationMakeData.curation_name.trim() !== "";
+    const selectedFiltersCount = Object.keys(curationMakeData.keyword).filter(
+      (k) => curationMakeData.keyword[k].length > 0
+    ).length;
+
+    return isTitleEntered && selectedFiltersCount >= 2;
+  };
 
   return (
     <div className="pb-[17.1rem]">
@@ -91,9 +97,14 @@ export default function CurationMakeKeyword({
       <div className="absolute bottom-[4.6rem] left-8 right-8">
         <Button
           variant={"fill"}
-          onClick={() => console.log("완료 버튼 클릭")} //api 연결
+          onClick={() => {
+            if (isSubmitEnabled(curationMakeData)) {
+              console.log("버튼입력");
+            } else {
+            }
+          }}
           className={`w-full ${
-            !(isTitleEntered && selectedFiltersCount >= 2)
+            !isSubmitEnabled(curationMakeData)
               ? "bg-text-gray-4 text-background-gray-1"
               : ""
           }`}
