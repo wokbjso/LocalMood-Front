@@ -98,7 +98,7 @@ export default function PlaceInfoTop({
             )}
           >
             <span>{name}</span>
-            <div className="flex mt-[0.8rem]">
+            <div className="flex items-center mt-[0.8rem]">
               <span
                 className={twMerge(
                   "text-text-gray-6",
