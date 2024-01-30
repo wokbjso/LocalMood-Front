@@ -1,3 +1,5 @@
+"use client";
+
 import Chip from "@common/components/ui/buttons/Chip/Chip";
 import MyPageTopBar from "@common/components/ui/topBar/MyPageTopBar/MyPageTopBar";
 import Image from "next/image";
@@ -5,8 +7,10 @@ import ArrowRight from "@common/assets/icons/arrow/arrow-right.svg";
 import { twMerge } from "tailwind-merge";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import GetPlaceMyPage from "@feature/place/queries/getPlaceMyPage";
+import { WithAuth } from "@feature/auth/components/WithAuth/WithAuth";
+import { useEffect, useState } from "react";
 
-export default async function MyPage() {
+function MyPage() {
   const DUMMY_USER = {
     profile_img:
       "https://cdn.pixabay.com/photo/2023/12/12/15/47/yellow-mongoose-8445457_1280.jpg",
@@ -60,7 +64,13 @@ export default async function MyPage() {
       },
     ],
   };
-  const myPagePlaceData = await GetPlaceMyPage();
+  const [myPageData, setMyPageData] = useState<any>();
+  const myPagePlaceData = async () => {
+    const data = await GetPlaceMyPage();
+    setMyPageData(data);
+  };
+
+  useEffect(() => {}, []);
   return (
     <div className="px-[2rem] h-[100vh] overflow-hidden">
       <MyPageTopBar />
@@ -123,3 +133,5 @@ export default async function MyPage() {
     </div>
   );
 }
+
+export default WithAuth(MyPage, { block: "unauthenticated" });

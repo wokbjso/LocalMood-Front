@@ -3,6 +3,7 @@ import PlaceRecordTopBar from "@feature/record/components/PlaceRecordTopBar/Plac
 
 interface SelectPhoto {
   placeType: string;
+  spaceId: number;
   indicatorIndex: number;
   handleIndicatorIndex: (index: number) => void;
   cafeKeywordData: { [key: string]: string | Array<string> };
@@ -12,6 +13,7 @@ interface SelectPhoto {
 
 export default function SelectPhoto({
   placeType,
+  spaceId,
   indicatorIndex,
   handleIndicatorIndex,
   cafeKeywordData,
@@ -29,6 +31,7 @@ export default function SelectPhoto({
         />
         <RecordPhotoContent
           placeType={placeType}
+          spaceId={spaceId}
           cafeKeywordData={cafeKeywordData}
           restaurantKeywordData={restaurantKeywordData}
           handleImage={handleImage}

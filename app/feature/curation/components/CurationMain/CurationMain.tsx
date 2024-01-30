@@ -17,7 +17,6 @@ export default function CurationMain({
   variant = "others",
   imgUrl,
   author,
-  id,
   title,
   keyword,
   spaceCount,

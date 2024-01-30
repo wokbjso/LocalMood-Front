@@ -7,7 +7,7 @@ import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 
 interface RecordCompleteProps {
   placeType: string;
-  spaceId: string;
+  spaceId: number;
   handleIndicatorIndex: (index: number) => void;
   cafeKeywordData: { [key: string]: string | Array<string> };
   restaurantKeywordData: { [key: string]: string | Array<string> };

@@ -9,7 +9,7 @@ import SelectPhoto from "@feature/record/components/PhotoUpload/SelectPhoto";
 export default function RecordSelect({
   params: id,
 }: {
-  params: { id: string };
+  params: { id: number };
 }) {
   const searchParams = useSearchParams();
   const placeType = searchParams.get("type") || "";
@@ -47,6 +47,7 @@ export default function RecordSelect({
       {indicatorIndex === 2 && (
         <SelectPhoto
           placeType={placeType}
+          spaceId={id.id}
           indicatorIndex={indicatorIndex}
           handleIndicatorIndex={handlers.changeIndicatorIndex}
           cafeKeywordData={cafeKeywordData}

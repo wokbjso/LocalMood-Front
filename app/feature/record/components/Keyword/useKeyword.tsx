@@ -9,9 +9,9 @@ export default function UseKeyword(placeType: string) {
     mood: "",
     music: "",
     interior: "",
-    likes: [],
-    dislikes: [],
-    images: [],
+    positiveEval: [],
+    negativeEval: [],
+    files: [],
   });
   const [restaurantKeywordData, setRestaurantKeywordData] = useState<{
     [key: string]: string | any[];
@@ -19,9 +19,10 @@ export default function UseKeyword(placeType: string) {
     purpose: "",
     mood: "",
     music: "",
-    likes: [],
-    dislikes: [],
-    images: [],
+    interior: "",
+    positiveEval: [],
+    negativeEval: [],
+    files: [],
   });
 
   const handleIndicatorIndex = (index: number) => {
@@ -95,12 +96,12 @@ export default function UseKeyword(placeType: string) {
     if (placeType === "CAFE") {
       setCafeKeywordData({
         ...cafeKeywordData,
-        images: [...cafeKeywordData.images, file],
+        files: [...cafeKeywordData.files, file],
       });
     } else if (placeType === "RESTAURANT") {
       setRestaurantKeywordData({
         ...restaurantKeywordData,
-        images: [...restaurantKeywordData.images, file],
+        files: [...restaurantKeywordData.files, file],
       });
     }
   };

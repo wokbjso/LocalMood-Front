@@ -1,6 +1,6 @@
 export const PLACE_EVALUATIONS: { [key: string]: string } = {
-  likes: "👍 좋았던 점",
-  dislikes: "👍 아쉬웠던 점",
+  positiveEval: "👍 좋았던 점",
+  negativeEval: "👍 아쉬웠던 점",
 };
 
 export const CAFE_EVALUATIONS: {

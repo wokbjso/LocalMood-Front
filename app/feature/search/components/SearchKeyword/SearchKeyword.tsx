@@ -28,7 +28,6 @@ export default function SearchKeyword() {
     showResultAble,
     handlers,
   } = useSearchKeyword();
-  console.log(cafeKeyword);
   const handleKeywordClick = (category: string, keyword: string) => {
     if (keyword === "한식") {
       if (openKoreanOption) {
@@ -97,10 +96,7 @@ export default function SearchKeyword() {
                           label={keyword}
                           selected={
                             keyword === "한식"
-                              ? KOREAN_OPTION.some(
-                                  (option) =>
-                                    option === restaurantKeyword["dish"]
-                                )
+                              ? openKoreanOption
                               : restaurantKeyword[category] === keyword
                           }
                           variant={

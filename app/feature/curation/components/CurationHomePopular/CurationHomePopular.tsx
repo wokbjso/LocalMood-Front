@@ -39,9 +39,7 @@ export default function CurationHomePopular({
         </div>
       </div>
       <div>
-        {/* 계속 연결 오류 떠서 주석 처리해놓은 상태. */}
-        {/* indicator 인덱스에 맞게 알맞은 큐레이션 띄워줌 */}
-        {/*curationList.map((curation, i) => {
+        {curationList.map((curation, i) => {
           return (
             indicatorIndex === i && (
               <CurationMain
@@ -52,7 +50,7 @@ export default function CurationHomePopular({
               />
             )
           );
-        })*/}
+        })}
       </div>
       <Indicator
         indicatorIndex={indicatorIndex}

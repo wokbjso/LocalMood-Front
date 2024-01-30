@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface SaveModalProps {
-  spaceId: string;
+  spaceId: number;
   handleModalFn: (state: boolean) => void;
 }
 

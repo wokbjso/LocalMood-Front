@@ -1,6 +1,6 @@
 "use server";
 
-import { PostLogout } from "../queries/postLogout";
+import PostLogout from "../queries/postLogout";
 
 export const logoutAction = async () => {
   const res = await PostLogout();

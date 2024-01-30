@@ -10,8 +10,10 @@ import CurationMakeModal from "@feature/curation/components/CurationMake/Curatio
 import { CurationProps } from "@feature/curation/type";
 import getMyCuration from "@feature/curation/queries/getMyCuration";
 import getScrappedCuration from "@feature/curation/queries/getScrappedCuration";
+import { getSession } from "@common/utils/getSession";
+import { WithAuth } from "@feature/auth/components/WithAuth/WithAuth";
 
-export default function CurationPage() {
+function CurationPage() {
   const { tabIndex, isCurationMakeOpen, handlers } = UseCuration();
   const [myCuration, setMyCuration] = useState({
     curationCount: 0,
@@ -31,16 +33,21 @@ export default function CurationPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        // Fetch my curation data
-        const myCurationData = await getMyCuration();
-        setMyCuration(myCurationData || { curationCount: 0, curation: [] });
+      const userInfo = await getSession();
+      if (!userInfo?.accessToken) {
+        location.replace("/login");
+      } else {
+        try {
+          // Fetch my curation data
+          const myCurationData = await getMyCuration();
+          setMyCuration(myCurationData || { curationCount: 0, curation: [] });
 
-        // Fetch scrapped curation data
-        const scrappedCurationData = await getScrappedCuration();
-        setScrappedCuration(scrappedCurationData || []);
-      } catch (error) {
-        console.error("Error fetching data:", error);
+          // Fetch scrapped curation data
+          const scrappedCurationData = await getScrappedCuration();
+          setScrappedCuration(scrappedCurationData || []);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
       }
     };
 
@@ -89,3 +96,5 @@ export default function CurationPage() {
     </div>
   );
 }
+
+export default WithAuth(CurationPage, { block: "unauthenticated" });

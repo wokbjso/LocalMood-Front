@@ -14,17 +14,16 @@ export default async function Home() {
     "왁자지껄 떠들기 좋은",
     "대화에 집중할 수 있는",
   ];
-  const randomPlace = await GetRandomPlaces();
-  console.log(randomPlace);
-  const randomCuration = await GetRandomCuration();
-  const userInfo = getSession();
+  // const randomPlace = await GetRandomPlaces();
+  // const randomCuration = await GetRandomCuration();
+  // console.log(randomPlace);
   return (
     <>
       <HomeHeader />
       <HomeBanner />
       {/* randomPlace 데이터 채워지면 교체 */}
       <div className="pb-[12.3rem] pt-[4rem]">
-        <PlaceHomeSlider
+        {/* <PlaceHomeSlider
           mainText={PLACE_PURPOSE[0]}
           subText="를 위한 공간"
           placeList={randomPlace[PLACE_PURPOSE[0]]}
@@ -48,7 +47,7 @@ export default async function Home() {
           mainText={PLACE_PURPOSE[3]}
           subText="공간"
           placeList={randomPlace[PLACE_PURPOSE[3]]}
-        />
+        /> */}
       </div>
       <Footer />
     </>
