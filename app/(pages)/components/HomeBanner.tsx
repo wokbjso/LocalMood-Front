@@ -57,7 +57,7 @@ export default function HomeBanner() {
           query={{ keyword_search: true }}
           className="w-full flex justify-center px-[2rem]"
         >
-          <Button>키워드로 공간 찾기</Button>
+          <Button className="w-full">키워드로 공간 찾기</Button>
         </LinkLayout>
       </div>
     </>
