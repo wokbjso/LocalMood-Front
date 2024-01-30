@@ -9,3 +9,15 @@ export interface CurationProps {
   isScraped?: boolean;
   className?: string;
 }
+
+export interface CurationPlaceProps {
+  name: string;
+  type: string;
+  address: string;
+  imageUrls?: string[] | undefined;
+  purpose: string;
+  mood: string;
+  interior: string;
+  bestMenu: string;
+  scrapped: boolean;
+}

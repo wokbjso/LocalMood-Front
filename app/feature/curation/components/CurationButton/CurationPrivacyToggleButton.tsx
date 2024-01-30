@@ -5,7 +5,7 @@ import UnlockIcon from "@common/assets/icons/lock/unlock.svg";
 import { useState } from "react";
 
 interface CurationPrivacyToggleButtonProps {
-  id: number;
+  id: string;
 }
 
 export default function CurationPrivacyToggleButton({

@@ -14,7 +14,6 @@ export default function Login() {
   const handleSubmit = async (e: LoginFormState) => {
     const status = await loginAction(e);
     if (status.status === 200) {
-      location.replace("/");
     }
   };
   const { loginFormData, errorMessage, showError, handlers } = UseForm({

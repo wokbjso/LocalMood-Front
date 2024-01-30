@@ -8,50 +8,74 @@ import {
   CURATION_MAKE_KEYWORD,
 } from "@feature/curation/constants/curation-make";
 import Button from "@common/components/ui/buttons/Button/Button";
+import PostCurationMake from "@feature/curation/queries/postCurationMake";
 
 interface CurationMakeKeywordProps {
   curationMakeData: {
     curation_name: string;
-    privacy: boolean;
-    keyword: string[];
+    open: boolean;
+    keyword: { [key: string]: string };
   };
-  onClick?: (keyword: string) => void;
+  onClick?: (category: string, keyword: string) => void;
 }
 
 export default function CurationMakeKeyword({
   curationMakeData,
   onClick,
 }: CurationMakeKeywordProps) {
-  console.log(curationMakeData);
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpansion = () => {
     setIsExpanded((prevIsExpanded) => !prevIsExpanded);
   };
 
-  const handleKeywordFilterClick = (keyword: string) => {
-    onClick && onClick(keyword);
+  const handleKeywordFilterClick = (category: string, keyword: string) => {
+    onClick && onClick(category, keyword);
   };
 
-  const checkDoneAble = () => {
-    if (curationMakeData.curation_name === "") return true;
-    return false;
+  const isSubmitEnabled = (
+    curationMakeData: CurationMakeKeywordProps["curationMakeData"]
+  ) => {
+    const isTitleEntered = curationMakeData.curation_name.trim() !== "";
+    const selectedFiltersCount = Object.keys(curationMakeData.keyword).filter(
+      (k) => curationMakeData.keyword[k].length > 0
+    ).length;
+
+    return isTitleEntered && selectedFiltersCount >= 2;
   };
 
-  const handleDoneClick = async () => {
-    const res = await fetch("/api/curation/make", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...curationMakeData,
-        keyword: curationMakeData.keyword.join(","),
-      }),
-    });
+  const getConcatenatedKeywords = (keywords: { [key: string]: string }) => {
+    const concatenatedKeywords = Object.values(keywords)
+      .filter((value) => value.length > 0)
+      .join(", ");
+    return concatenatedKeywords;
   };
+
+  const getSendingCurationData = () => {
+    return {
+      title: curationMakeData.curation_name,
+      keyword: getConcatenatedKeywords(curationMakeData.keyword),
+      privacy: curationMakeData.open,
+    };
+  };
+
+  const handleButtonClick = async () => {
+    if (isSubmitEnabled(curationMakeData)) {
+      const dataCurationMake = getSendingCurationData();
+      console.log(dataCurationMake);
+
+      try {
+        const result = await PostCurationMake(dataCurationMake);
+        console.log("PostCurationMake result:", result);
+      } catch (error) {
+        console.error("Error in PostCurationMake:", error);
+      }
+    } else {
+    }
+  };
+
   return (
-    <div className="pb-[22.1rem] w-full">
+    <div className="pb-[17.1rem]">
       <div className="w-full pb-[1.2rem] border-b border-text-gray-3">
         <div className="flex items-center justify-between flex-start">
           <div className="flex gap-[0.6rem]">
@@ -60,7 +84,11 @@ export default function CurationMakeKeyword({
               <span>대표키워드 설정</span>
             </div>
             <span className="headline3-semibold text-text-gray-6">
-              {curationMakeData.keyword.length}
+              {
+                Object.keys(curationMakeData.keyword).filter(
+                  (k) => curationMakeData.keyword[k].length > 0
+                ).length
+              }
               /2
             </span>
           </div>
@@ -81,8 +109,12 @@ export default function CurationMakeKeyword({
                       <Filter
                         key={keyword}
                         label={keyword}
-                        selected={curationMakeData.keyword.includes(keyword)}
-                        onClick={() => handleKeywordFilterClick(keyword)}
+                        selected={
+                          curationMakeData.keyword[category] === keyword
+                        }
+                        onClick={() =>
+                          handleKeywordFilterClick(category, keyword)
+                        }
                       />
                     )
                   )}
@@ -92,8 +124,17 @@ export default function CurationMakeKeyword({
           ))}
         </div>
       )}
-      <div className="flex justify-center fixed w-full bottom-0 right-0 h-[9.4rem] bg-white">
-        <Button disabled={checkDoneAble()} onClick={handleDoneClick}>
+
+      <div className="absolute bottom-[4.6rem] left-8 right-8">
+        <Button
+          variant={"fill"}
+          onClick={handleButtonClick}
+          className={`w-full ${
+            !isSubmitEnabled(curationMakeData)
+              ? "bg-text-gray-4 text-background-gray-1"
+              : ""
+          }`}
+        >
           완료
         </Button>
       </div>
