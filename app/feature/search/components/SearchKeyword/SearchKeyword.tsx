@@ -74,7 +74,7 @@ export default function SearchKeyword() {
             className="pl-[2rem] w-[35%] mt-[4.3rem]"
           />
           <Divider className="h-[0.1rem] bg-line-gray-3" />
-          <div className="h-full pt-[3.2rem] pb-[17rem] px-[2rem] overflow-y-scroll">
+          <div className="h-full w-full pt-[3.2rem] pb-[17rem] px-[2rem] overflow-y-scroll">
             {tabIndex === 0 &&
               Object.keys(RESTAURANT_CATEGORY).map((category, i) => (
                 <section
@@ -146,7 +146,8 @@ export default function SearchKeyword() {
                   </div>
                 </section>
               ))}
-            <div className="flex justify-center">
+
+            <div className="absolute bottom-[2.3rem] left-8 right-8">
               <Link
                 href={{
                   pathname: "/search/results",
@@ -158,7 +159,9 @@ export default function SearchKeyword() {
                   },
                 }}
               >
-                <Button disabled={!showResultAble}>결과보기</Button>
+                <Button disabled={!showResultAble} className="w-full">
+                  결과보기
+                </Button>
               </Link>
             </div>
           </div>

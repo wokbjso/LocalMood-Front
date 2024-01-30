@@ -125,7 +125,7 @@ export default function CurationMakeKeyword({
         </div>
       )}
 
-      <div className="absolute bottom-[4.6rem] left-8 right-8">
+      <div className="absolute bottom-[2.3rem] left-8 right-8">
         <Button
           variant={"fill"}
           onClick={handleButtonClick}
