@@ -28,7 +28,7 @@ export default function HomeBanner() {
       </p>
       <div className="overflow-hidden">
         <ul className="flex no-wrap">
-          <div className="header-slider1 flex pb-[2rem] bg-background-secondary-light">
+          <div className="header-slider1 flex pb-[2rem] bg-background-secondary-light ">
             {HEADER_KEYWORD.map((keyword, i) => (
               <li key={keyword.label + i}>
                 <Chip className="whitespace-nowrap px-[1.12rem] flex items-center h-[3.2rem] mr-[1rem]">
