@@ -1,7 +1,7 @@
 export default async function GET() {
   const token = "token from localStorage";
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_API}/v1/members/me/scraps/curations`,
+    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/members/me/scraps/curation`,
     {
       headers: {
         "Content-Type": "application/json",

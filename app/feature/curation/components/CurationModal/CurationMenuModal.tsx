@@ -8,7 +8,7 @@ import UseOutsideClick from "@common/hooks/useOutsideClick";
 import { copyLink } from "@common/utils/copyLink";
 
 interface CurationMenuModalProps {
-  id: number;
+  id: string;
   hasCopyLink?: boolean;
   handleMenuModalState: (state: boolean) => void;
 }

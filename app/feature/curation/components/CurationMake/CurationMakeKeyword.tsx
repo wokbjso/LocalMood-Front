@@ -7,6 +7,8 @@ import {
   CURATION_MAKE_CATEGORY,
   CURATION_MAKE_KEYWORD,
 } from "@feature/curation/constants/curation-make";
+import Button from "@common/components/ui/buttons/Button/Button";
+import PostCurationMake from "@feature/curation/queries/postCurationMake";
 
 interface CurationMakeKeywordProps {
   curationMakeData: {
@@ -29,6 +31,47 @@ export default function CurationMakeKeyword({
 
   const handleKeywordFilterClick = (category: string, keyword: string) => {
     onClick && onClick(category, keyword);
+  };
+
+  const isSubmitEnabled = (
+    curationMakeData: CurationMakeKeywordProps["curationMakeData"]
+  ) => {
+    const isTitleEntered = curationMakeData.curation_name.trim() !== "";
+    const selectedFiltersCount = Object.keys(curationMakeData.keyword).filter(
+      (k) => curationMakeData.keyword[k].length > 0
+    ).length;
+
+    return isTitleEntered && selectedFiltersCount >= 2;
+  };
+
+  const getConcatenatedKeywords = (keywords: { [key: string]: string }) => {
+    const concatenatedKeywords = Object.values(keywords)
+      .filter((value) => value.length > 0)
+      .join(", ");
+    return concatenatedKeywords;
+  };
+
+  const getSendingCurationData = () => {
+    return {
+      title: curationMakeData.curation_name,
+      keyword: getConcatenatedKeywords(curationMakeData.keyword),
+      privacy: curationMakeData.open,
+    };
+  };
+
+  const handleButtonClick = async () => {
+    if (isSubmitEnabled(curationMakeData)) {
+      const dataCurationMake = getSendingCurationData();
+      console.log(dataCurationMake);
+
+      try {
+        const result = await PostCurationMake(dataCurationMake);
+        console.log("PostCurationMake result:", result);
+      } catch (error) {
+        console.error("Error in PostCurationMake:", error);
+      }
+    } else {
+    }
   };
 
   return (
@@ -81,6 +124,20 @@ export default function CurationMakeKeyword({
           ))}
         </div>
       )}
+
+      <div className="absolute bottom-[4.6rem] left-8 right-8">
+        <Button
+          variant={"fill"}
+          onClick={handleButtonClick}
+          className={`w-full ${
+            !isSubmitEnabled(curationMakeData)
+              ? "bg-text-gray-4 text-background-gray-1"
+              : ""
+          }`}
+        >
+          완료
+        </Button>
+      </div>
     </div>
   );
 }

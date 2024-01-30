@@ -16,8 +16,6 @@ export default function UseCurationMake() {
     },
   });
 
-  console.log(curationMakeData);
-
   const handleCurationName = (text: string) => {
     setCurationMakeData({ ...curationMakeData, curation_name: text });
   };
@@ -35,6 +33,7 @@ export default function UseCurationMake() {
       alert("키워드는 2개까지 선택해주세요!");
       return;
     }
+
     if (curationMakeData.keyword[category] === keyword) {
       setCurationMakeData({
         ...curationMakeData,

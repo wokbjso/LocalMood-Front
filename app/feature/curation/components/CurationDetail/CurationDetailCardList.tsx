@@ -3,21 +3,23 @@
 import LocationFillIcon from "@common/assets/icons/location/location-fill.svg";
 import Filter from "@common/components/ui/buttons/Filter/Filter";
 import CurationDetailInfoCard from "./CurationDetailInfoCard";
-import { PlaceInfoProps } from "@feature/place/type";
 import { createRef, useRef, useState } from "react";
 import useGetScrollHeight from "@common/hooks/useGetScrollHeight";
+import { CurationPlaceProps } from "@feature/curation/type";
 
 interface CurationDetailCardListProps {
-  place_list: PlaceInfoProps[];
+  spaceDetails: CurationPlaceProps[];
 }
 
 export default function CurationDetailCardList({
-  place_list,
+  spaceDetails,
 }: CurationDetailCardListProps) {
   const [placeIndex, setPlaceIndex] = useState(0);
   const { scrollHeight } = useGetScrollHeight();
   const refs = useRef(
-    Array.from({ length: place_list.length }, () => createRef<HTMLDivElement>())
+    Array.from({ length: spaceDetails.length }, () =>
+      createRef<HTMLDivElement>()
+    )
   );
   const handlePlaceFilterClick = (index: number) => {
     setPlaceIndex(index);
@@ -30,15 +32,15 @@ export default function CurationDetailCardList({
           <div className="flex items-center gap-[0.4rem] mb-[1.2rem]">
             <LocationFillIcon />
             <p className="text-black body2-medium">
-              {place_list.length}개의 공간
+              {spaceDetails.length}개의 공간
             </p>
           </div>
           <div className="flex gap-[0.8rem] mb-[-10.6rem] overflow-x-scroll">
-            {place_list.map((item, index) => (
+            {spaceDetails.map((item, index) => (
               <Filter
                 key={index}
-                photo={item.placeImg[0]}
-                label={item.placeName}
+                photo={item.imageUrls ? item.imageUrls[0] : undefined}
+                label={item.name}
                 selected={placeIndex === index}
                 className="whitespace-nowrap"
                 onClick={() => handlePlaceFilterClick(index)}
@@ -47,9 +49,9 @@ export default function CurationDetailCardList({
             ))}
           </div>
         </div>
-        {place_list.map((props, i) => (
+        {spaceDetails.map((props, i) => (
           <CurationDetailInfoCard
-            key={props.placeName}
+            key={props.name}
             {...props}
             ref={refs.current[i]}
           />
@@ -57,11 +59,11 @@ export default function CurationDetailCardList({
       </div>
       {scrollHeight > 370 && (
         <div className="flex gap-[0.8rem] w-full bg-white pl-[2rem] py-[0.4rem] pb-[0.8rem] overflow-x-scroll fixed top-[5.4rem]">
-          {place_list.map((item, index) => (
+          {spaceDetails.map((item, index) => (
             <Filter
               key={index}
-              photo={item.placeImg[0]}
-              label={item.placeName}
+              photo={item.imageUrls ? item.imageUrls[0] : undefined}
+              label={item.name}
               selected={placeIndex === index}
               className="whitespace-nowrap"
               onClick={() => handlePlaceFilterClick(index)}
