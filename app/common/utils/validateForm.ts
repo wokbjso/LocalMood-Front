@@ -4,7 +4,6 @@ export function validateForm(
   formData: LoginFormState | RegisterFormState
 ): [Record<string, string>] {
   const errorMessage: Record<string, string> = {};
-
   if (!formData.email.trim()) {
     errorMessage.email = "이메일을 입력해주세요.";
   }
@@ -14,7 +13,7 @@ export function validateForm(
   }
 
   if ("nickname" in formData && !formData.nickname?.trim()) {
-    errorMessage.userid = "닉네임을 입력해주세요.";
+    errorMessage.nickname = "닉네임을 입력해주세요.";
   }
 
   return [errorMessage];

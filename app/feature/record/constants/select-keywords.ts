@@ -1,4 +1,8 @@
-export const RESTAURANT_CATEGORY = ["방문목적", "공간의 무드", "배경음악"];
+export const RESTAURANT_CATEGORY = {
+  purpose: "방문목적",
+  mood: "공간의 무드",
+  music: "배경음악",
+};
 export const RESTARANT_KEYWORDS: {
   [key: string]: string[];
 } = {

@@ -7,13 +7,16 @@ export default function PlaceInfoMain({
   variant = "main",
   direction = "vertical",
   size = "normal",
-  placeName,
-  placeImg,
-  category,
-  location,
-  scrapped,
-  tags,
-  tagsCategoryNum,
+  name,
+  imgUrl,
+  type,
+  address,
+  isScraped,
+  keyword,
+  purpose,
+  interior,
+  bestMenu,
+  keywordCategoryNum,
   onClick,
   className,
   imgClassName,
@@ -26,19 +29,23 @@ export default function PlaceInfoMain({
         variant={variant}
         direction={direction}
         size={size}
-        placeName={placeName}
-        placeImg={placeImg}
-        category={category}
-        location={location}
-        scrapped={scrapped}
+        name={name}
+        imgUrl={imgUrl}
+        type={type}
+        address={address}
+        isScraped={isScraped}
         onClick={onClick}
         className={className}
         imgClassName={imgClassName}
       />
-      {tags && (
+      {keywordCategoryNum && (
         <PlaceInfoBottom
-          tags={tags}
-          tagsCategoryNum={tagsCategoryNum}
+          type={type}
+          keyword={keyword}
+          purpose={purpose}
+          interior={interior}
+          bestMenu={bestMenu}
+          keywordCategoryNum={keywordCategoryNum}
           bottomClassName={bottomClassName}
         />
       )}

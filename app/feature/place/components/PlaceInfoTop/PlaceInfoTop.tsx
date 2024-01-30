@@ -14,37 +14,40 @@ export default function PlaceInfoTop({
   variant,
   direction,
   size,
-  placeName,
-  placeImg,
-  category,
-  location,
-  scrapped,
+  name,
+  imgUrl,
+  type,
+  address,
+  isScraped,
   onClick,
   className,
   imgClassName,
 }: PlaceInfoProps) {
   //scrap 유무를 default useState 값으로 설정
-  const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
+  const [scrapState, setScrapState] = useState<boolean>(isScraped);
   const handleScrap = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
     e.preventDefault();
-    setIsScrapped((prev) => !prev);
-    if (isScrapped) {
-      const res = await fetch(`/api/places/scrapped/delete/${String(id)}`);
+    setScrapState((prev) => !prev);
+    if (scrapState) {
+      const res = await fetch(`/api/place/scrapped/delete/${String(id)}`, {
+        method: "DELETE",
+      });
     } else {
-      const res = await fetch(`/api/places/scrapped/add/${String(id)}`);
+      const uid = 1;
+      const res = await fetch(`/api/place/scrapped/add/${uid}`, {
+        method: "POST",
+      });
+      console.log(res);
     }
     //장소 id 활용하여 api 문서에 맞게 해당 장소 scrap 상태 변경 api 호출(client side - tanstack query)
   };
   return (
     <Link
       href={{
-        pathname:
-          variant === "main"
-            ? `/place/${category === "카페" ? "cafe" : "restaurant"}/${id}`
-            : `/record/select/${id}`,
-        query: { category, name: placeName },
+        pathname: variant === "main" ? `/place/${id}` : `/record/select/${id}`,
+        query: variant === "record" ? { type, name } : null,
       }}
     >
       <div
@@ -62,7 +65,9 @@ export default function PlaceInfoTop({
           )}
         >
           <Image
-            src={placeImg[0]}
+            src={
+              "https://a.cdn-hotels.com/gdcs/production161/d1403/b5f1876a-9e64-4d13-ab7a-a0fd2cbc5224.jpg"
+            } // 이미지 들어가면 해당 이미지로 교체
             alt="공간 사진"
             fill
             sizes="100vw"
@@ -72,14 +77,14 @@ export default function PlaceInfoTop({
         <div
           className={twMerge("flex-col", size === "normal" ? "relative" : null)}
         >
-          {direction === "vertical" && !isScrapped && (
+          {direction === "vertical" && !scrapState && (
             <ScrapLine
               color={size === "small" ? "white" : undefined}
               className="absolute cursor-pointer right-[0.8rem] top-[1.6rem]"
               onClick={handleScrap}
             />
           )}
-          {direction === "vertical" && isScrapped && (
+          {direction === "vertical" && scrapState && (
             <ScrapFill
               color={size === "small" ? "white" : undefined}
               className="absolute cursor-pointer right-[0.8rem] top-[1.6rem]"
@@ -92,15 +97,15 @@ export default function PlaceInfoTop({
               size === "normal" ? "headline2" : "headline3"
             )}
           >
-            <span>{placeName}</span>
-            <div className="flex mt-[0.8rem]">
+            <span>{name}</span>
+            <div className="flex items-center mt-[0.8rem]">
               <span
                 className={twMerge(
                   "text-text-gray-6",
                   size === "normal" ? "body2-semibold" : "body3-semibold"
                 )}
               >
-                {category}
+                {type === "RESTAURANT" ? "음식점" : "카페"}
               </span>
               <Line className="mx-[0.8rem]" />
               <span
@@ -109,7 +114,7 @@ export default function PlaceInfoTop({
                   size === "normal" ? "body2-medium" : "body3-medium"
                 )}
               >
-                {location}
+                {address}
               </span>
             </div>
           </div>

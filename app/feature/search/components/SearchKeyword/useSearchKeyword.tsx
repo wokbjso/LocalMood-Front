@@ -5,26 +5,30 @@ import { useEffect, useState } from "react";
 
 export default function useSearchKeyword() {
   const [cafeKeyword, setCafeKeyword] = useState<{ [key: string]: string }>({
-    type: "cafe",
+    type: "CAFE",
+    subType: "",
     purpose: "",
     mood: "",
     music: "",
     interior: "",
-    max_people: "",
-    service: "",
-    desert: "",
+    visitor: "",
+    optServ: "",
+    dish: "",
+    disDesc: "",
   });
   const [restaurantKeyword, setRestaurantKeyword] = useState<{
     [key: string]: string;
   }>({
-    type: "restaurant",
-    food: "",
+    type: "RESTAURANT",
+    subType: "",
     purpose: "",
-    max_people: "",
     mood: "",
-    drinks: "",
     music: "",
-    service: "",
+    interior: "",
+    visitor: "",
+    optServ: "",
+    dish: "",
+    disDesc: "",
   });
   const [tabIndex, setTabIndex] = useState<number>(0);
   const [showResultAble, setShowResultAble] = useState<boolean>(false);
@@ -34,19 +38,34 @@ export default function useSearchKeyword() {
   const handleKeywordData = (category: string, keyword: string) => {
     if (tabIndex === 0) {
       if (keyword === "한식") {
-        if (restaurantKeyword[category] === KOREAN_OPTION[koreanOptionIndex])
+        if (restaurantKeyword[category] === keyword) {
           setRestaurantKeyword({
             ...restaurantKeyword,
             [category]: "",
+            dish: "",
           });
-        else
+        } else {
           setRestaurantKeyword({
             ...restaurantKeyword,
-            [category]: KOREAN_OPTION[koreanOptionIndex],
+            [category]: keyword,
+            dish: KOREAN_OPTION[koreanOptionIndex],
           });
-      } else if (restaurantKeyword[category] === keyword)
-        setRestaurantKeyword({ ...restaurantKeyword, [category]: "" });
-      else setRestaurantKeyword({ ...restaurantKeyword, [category]: keyword });
+        }
+      } else if (restaurantKeyword[category] === keyword) {
+        setOpenKoreanOption(false);
+        setRestaurantKeyword({
+          ...restaurantKeyword,
+          [category]: "",
+          dish: "",
+        });
+      } else {
+        setOpenKoreanOption(false);
+        setRestaurantKeyword({
+          ...restaurantKeyword,
+          [category]: keyword,
+          dish: "",
+        });
+      }
     } else if (tabIndex === 1) {
       if (cafeKeyword[category] === keyword)
         setCafeKeyword({ ...cafeKeyword, [category]: "" });
@@ -65,7 +84,7 @@ export default function useSearchKeyword() {
   const handleKoreanOptionIndex = (index: number) => {
     setRestaurantKeyword({
       ...restaurantKeyword,
-      food: KOREAN_OPTION[index],
+      dish: KOREAN_OPTION[index],
     });
     setKoreanOptionIndex(index);
   };

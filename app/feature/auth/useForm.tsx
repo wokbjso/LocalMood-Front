@@ -50,6 +50,7 @@ export default function UseForm({
     if (!hasAnyError()) {
       type === "login" ? onSubmit(loginFormData) : onSubmit(registerFormData);
     } else {
+      console.log(errorMessage);
       for (const field of FIELD) {
         if (errorMessage[field]) {
           alert(errorMessage[field]);

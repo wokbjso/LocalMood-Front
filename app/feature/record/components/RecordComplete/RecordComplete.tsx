@@ -6,15 +6,19 @@ import Button from "@common/components/ui/buttons/Button/Button";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 
 interface RecordCompleteProps {
+  placeType: string;
   spaceId: string;
   handleIndicatorIndex: (index: number) => void;
   cafeKeywordData: { [key: string]: string | Array<string> };
+  restaurantKeywordData: { [key: string]: string | Array<string> };
 }
 
 export default function RecordComplete({
+  placeType,
   spaceId,
   handleIndicatorIndex,
   cafeKeywordData,
+  restaurantKeywordData,
 }: RecordCompleteProps) {
   const [isAddCuration, setIsAddCuration] = useState(false);
   const handleAddCurationButtonClick = () => {
@@ -24,13 +28,22 @@ export default function RecordComplete({
     setIsAddCuration(false);
   };
 
-  const hasSomeData = Object.keys(cafeKeywordData).some((k) => {
-    if (typeof cafeKeywordData[k] === "string")
-      return cafeKeywordData[k] !== "";
-    else if (Array.isArray(cafeKeywordData[k]))
-      return cafeKeywordData[k].length > 0;
-    return false;
-  });
+  const hasSomeData =
+    placeType === "CAFE"
+      ? Object.keys(cafeKeywordData).some((k) => {
+          if (typeof cafeKeywordData[k] === "string")
+            return cafeKeywordData[k] !== "";
+          else if (Array.isArray(cafeKeywordData[k]))
+            return cafeKeywordData[k].length > 0;
+          return false;
+        })
+      : Object.keys(restaurantKeywordData).some((k) => {
+          if (typeof restaurantKeywordData[k] === "string")
+            return restaurantKeywordData[k] !== "";
+          else if (Array.isArray(restaurantKeywordData[k]))
+            return restaurantKeywordData[k].length > 0;
+          return false;
+        });
 
   return (
     <>

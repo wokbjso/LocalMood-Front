@@ -12,9 +12,11 @@ export default function RecordSelect({
   params: { id: string };
 }) {
   const searchParams = useSearchParams();
-  const placeType = searchParams.get("category") || "";
+  const placeType = searchParams.get("type") || "";
   const name = searchParams.get("name") || "";
-  const { indicatorIndex, cafeKeywordData, handlers } = UseKeyword(placeType);
+  const { indicatorIndex, cafeKeywordData, restaurantKeywordData, handlers } =
+    UseKeyword(placeType);
+  console.log(restaurantKeywordData);
   return (
     <div>
       {indicatorIndex === 0 && (
@@ -24,6 +26,7 @@ export default function RecordSelect({
           indicatorIndex={indicatorIndex}
           handleIndicatorIndex={handlers.changeIndicatorIndex}
           cafeKeywordData={cafeKeywordData}
+          restaurantKeywordData={restaurantKeywordData}
           handleKeyword={handlers.changeKeyword}
         />
       )}
@@ -35,6 +38,7 @@ export default function RecordSelect({
               indicatorIndex={indicatorIndex}
               handleIndicatorIndex={handlers.changeIndicatorIndex}
               cafeKeywordData={cafeKeywordData}
+              restaurantKeywordData={restaurantKeywordData}
               handleKeyword={handlers.changeKeyword}
             />
           }
@@ -42,16 +46,20 @@ export default function RecordSelect({
       )}
       {indicatorIndex === 2 && (
         <SelectPhoto
+          placeType={placeType}
           indicatorIndex={indicatorIndex}
           handleIndicatorIndex={handlers.changeIndicatorIndex}
           cafeKeywordData={cafeKeywordData}
+          restaurantKeywordData={restaurantKeywordData}
           handleImage={handlers.changeImage}
         />
       )}
       {indicatorIndex === 3 && (
         <RecordComplete
+          placeType={placeType}
           spaceId={id.id}
           handleIndicatorIndex={handlers.changeIndicatorIndex}
+          restaurantKeywordData={restaurantKeywordData}
           cafeKeywordData={cafeKeywordData}
         />
       )}

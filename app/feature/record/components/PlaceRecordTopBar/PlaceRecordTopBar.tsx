@@ -1,4 +1,5 @@
 import ArrowIcon from "@common/assets/icons/arrow/arrow-left.svg";
+import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import Indicator from "@common/components/ui/indicator/Indicator";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -16,16 +17,11 @@ export default function PlaceRecordTopBar({
   indicatorIndex,
   handleIndicatorIndex,
 }: RecordTopBarProps) {
-  const router = useRouter();
-  const handleBackClick = () => {
-    router.back(); // 이전 페이지로 이동
-  };
-
   return (
-    <div className="flex flex-col items-start w-full px-[2rem] py-[1.2rem] gap-[1.2rem] fixed bg-white">
-      <div onClick={handleBackClick}>
+    <div className="flex flex-col items-start w-full px-[2rem] py-[1.2rem] gap-[1.2rem] fixed bg-white z-10">
+      <LinkLayout routeUrl="/record">
         <ArrowIcon />
-      </div>
+      </LinkLayout>
       <div className="flex justify-between items-start self-stretch">
         <div className="headline1-semibold text-black">{text}</div>
         {showIndicator && (

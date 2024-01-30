@@ -9,9 +9,9 @@ import PlaceDetailMoreReviews from "@feature/place/components/PlaceDetail/PlaceD
 import GetPlaceReview from "@feature/place/queries/getPlaceReview";
 
 export default async function PlaceDetailMore({
-  params: { category, id },
+  params: { id },
 }: {
-  params: { category: string; id: string };
+  params: { id: string };
 }) {
   const DUMMY_MORE_DETAIL = {
     placeName: "나이스워크투데이",
@@ -130,7 +130,7 @@ export default async function PlaceDetailMore({
       },
     ],
   };
-  const reviewData = await GetPlaceReview(category, id);
+  const reviewData = await GetPlaceReview(id);
   console.log(reviewData);
   return (
     <div className="pb-[14.2rem]">

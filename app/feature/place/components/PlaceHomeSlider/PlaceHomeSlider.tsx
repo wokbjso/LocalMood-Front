@@ -24,7 +24,7 @@ export default function PlaceHomeSlider({
           <PlaceInfoMain
             key={data.id}
             {...data}
-            tagsCategoryNum={0}
+            keywordCategoryNum={0}
             className="w-[33.5rem] mr-[1.2rem]"
           />
         ))}

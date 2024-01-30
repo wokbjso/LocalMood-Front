@@ -13,10 +13,15 @@ export default function UseKeyword(placeType: string) {
     dislikes: [],
     images: [],
   });
-  const [restaurantKeywordData, setRestaurantKeywordData] = useState({
+  const [restaurantKeywordData, setRestaurantKeywordData] = useState<{
+    [key: string]: string | any[];
+  }>({
     purpose: "",
     mood: "",
     music: "",
+    likes: [],
+    dislikes: [],
+    images: [],
   });
 
   const handleIndicatorIndex = (index: number) => {
@@ -24,7 +29,7 @@ export default function UseKeyword(placeType: string) {
   };
 
   const handleKeyword = (category: string, keyword: string) => {
-    if (placeType === "카페") {
+    if (placeType === "CAFE") {
       if (Array.isArray(cafeKeywordData[category])) {
         if (cafeKeywordData[category].includes(keyword)) {
           setCafeKeywordData((prevData) => {
@@ -52,20 +57,58 @@ export default function UseKeyword(placeType: string) {
       } else {
         setCafeKeywordData({ ...cafeKeywordData, [category]: keyword });
       }
-    } else {
+    } else if (placeType === "RESTAURANT") {
+      if (Array.isArray(restaurantKeywordData[category])) {
+        if (restaurantKeywordData[category].includes(keyword)) {
+          setRestaurantKeywordData((prevData) => {
+            return {
+              ...prevData,
+              [category]: (prevData[category] as string[]).filter(
+                (like) => like !== keyword
+              ),
+            };
+          });
+        } else {
+          if (restaurantKeywordData[category].length === 3) {
+            alert("최대 3개까지 선택 가능해요!");
+            return;
+          }
+          setRestaurantKeywordData((prevData) => {
+            return {
+              ...prevData,
+              [category]: [...prevData[category], keyword],
+            };
+          });
+        }
+      } else if (restaurantKeywordData[category] === keyword) {
+        setRestaurantKeywordData({ ...restaurantKeywordData, [category]: "" });
+      } else {
+        setRestaurantKeywordData({
+          ...restaurantKeywordData,
+          [category]: keyword,
+        });
+      }
     }
   };
 
   const handleImage = (file: File) => {
-    setCafeKeywordData({
-      ...cafeKeywordData,
-      images: [...cafeKeywordData.images, file],
-    });
+    if (placeType === "CAFE") {
+      setCafeKeywordData({
+        ...cafeKeywordData,
+        images: [...cafeKeywordData.images, file],
+      });
+    } else if (placeType === "RESTAURANT") {
+      setRestaurantKeywordData({
+        ...restaurantKeywordData,
+        images: [...restaurantKeywordData.images, file],
+      });
+    }
   };
 
   return {
     indicatorIndex,
     cafeKeywordData,
+    restaurantKeywordData,
     handlers: {
       changeKeyword: handleKeyword,
       changeIndicatorIndex: handleIndicatorIndex,

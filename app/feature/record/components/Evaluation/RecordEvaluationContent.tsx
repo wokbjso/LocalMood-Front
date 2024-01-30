@@ -9,11 +9,13 @@ import {
 export default function RecordEvaluationContent({
   placeType,
   cafeKeywordData,
+  restaurantKeywordData,
   handleIndicatorIndex,
   handleKeyword,
 }: {
   placeType: string;
   cafeKeywordData: { [key: string]: string | Array<string> };
+  restaurantKeywordData: { [key: string]: string | Array<string> };
   handleIndicatorIndex: (index: number) => void;
   handleKeyword: (category: string, keyword: string) => void;
 }) {
@@ -22,6 +24,21 @@ export default function RecordEvaluationContent({
   };
   const handleNextClick = () => {
     handleIndicatorIndex(2);
+  };
+  const jump = () => {
+    if (placeType === "CAFE") {
+      return (
+        Object.keys(PLACE_EVALUATIONS).filter(
+          (category) => cafeKeywordData[category].length === 0
+        ).length === 2
+      );
+    } else if (placeType === "RESTAURANT") {
+      return (
+        Object.keys(PLACE_EVALUATIONS).filter(
+          (category) => restaurantKeywordData[category].length === 0
+        ).length === 2
+      );
+    }
   };
 
   return (
@@ -58,47 +75,45 @@ export default function RecordEvaluationContent({
             </div>
           </section>
         ))}
-      <div className="pt-[1.4rem]">
-        {(placeType === "양식" || placeType === "한식") &&
-          Object.keys(PLACE_EVALUATIONS).map((category, i) => (
-            <section
-              key={category}
-              className={
-                i !== Object.keys(PLACE_EVALUATIONS).length - 1
-                  ? "mb-[4rem]"
-                  : "mb-[2.7rem]"
-              }
-            >
-              <div className="flex items-start gap-[0.6rem]">
-                <div className="text-black headline3-semibold mb-[1.2rem]">
-                  {PLACE_EVALUATIONS[category]}
-                </div>
-                <div className="headline3-semibold text-text-gray-6">0/3</div>
+      {placeType === "RESTAURANT" &&
+        Object.keys(PLACE_EVALUATIONS).map((category, i) => (
+          <section
+            key={category}
+            className={
+              i !== Object.keys(PLACE_EVALUATIONS).length - 1
+                ? "mb-[4rem]"
+                : "mb-[1.2rem]"
+            }
+          >
+            <div className="flex items-start gap-[0.6rem]">
+              <div className="text-black headline3-semibold mb-[1.2rem]">
+                {PLACE_EVALUATIONS[category]}
               </div>
-              <div className="flex flex-wrap gap-[0.6rem]">
-                {Object.keys(RESTAURANT_EVALUATIONS).indexOf(category) === i &&
-                  RESTAURANT_EVALUATIONS[PLACE_EVALUATIONS[category]].map(
-                    (keyword) => {
-                      return (
-                        <Filter
-                          key={keyword}
-                          label={keyword}
-                          onClick={() => handleFilterClick(category, keyword)}
-                        />
-                      );
-                    }
-                  )}
+              <div className="headline3-semibold text-text-gray-6">
+                {restaurantKeywordData[category].length}/3
               </div>
-            </section>
-          ))}
-      </div>
-      <div className="fixed h-[15.5rem] bottom-0 bg-white">
+            </div>
+            <div className="flex flex-wrap gap-[0.6rem]">
+              {RESTAURANT_EVALUATIONS[PLACE_EVALUATIONS[category]].map(
+                (keyword) => {
+                  return (
+                    <Filter
+                      key={keyword}
+                      label={keyword}
+                      selected={restaurantKeywordData[category].includes(
+                        keyword
+                      )}
+                      onClick={() => handleFilterClick(category, keyword)}
+                    />
+                  );
+                }
+              )}
+            </div>
+          </section>
+        ))}
+      <div className="flex justify-center w-full fixed h-[15.5rem] left-0 bottom-0 bg-white">
         <Button onClick={handleNextClick}>
-          {Object.keys(PLACE_EVALUATIONS).filter(
-            (category) => cafeKeywordData[category].length === 0
-          ).length === 2
-            ? "건너뛰기"
-            : "다음"}
+          {jump() ? "건너뛰기" : "다음"}
         </Button>
       </div>
     </div>

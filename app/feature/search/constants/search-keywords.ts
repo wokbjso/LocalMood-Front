@@ -1,11 +1,11 @@
 export const RESTAURANT_CATEGORY: { [key: string]: string } = {
-  food: "음식",
+  subType: "음식",
   purpose: "방문목적",
-  max_people: "최대 수용 인원",
+  visitor: "최대 수용 인원",
   mood: "공간의 무드",
-  drinks: "주류",
+  disDesc: "주류",
   music: "배경음악",
-  service: "부가서비스",
+  optServ: "부가서비스",
 };
 
 export const RESTARANT_KEYWORDS: {
@@ -34,9 +34,9 @@ export const CAFE_CATEGORY: { [key: string]: string } = {
   mood: "공간의 무드",
   music: "배경음악",
   interior: "인테리어",
-  max_people: "최대 수용 인원",
-  service: "부가서비스",
-  desert: "디저트메뉴",
+  visitor: "최대 수용 인원",
+  optServ: "부가서비스",
+  disDesc: "디저트메뉴",
 };
 
 export const CAFE_KEYWORDS: {

@@ -11,7 +11,7 @@ interface CurationHomePopularProps {
   subText: string;
   curationList: {
     author: string;
-    image: string[];
+    imgUrl: string[];
     title: string;
     spaceCount: number;
     keyword: string[];
@@ -47,11 +47,7 @@ export default function CurationHomePopular({
               <CurationMain
                 key={curation.author + i}
                 id={i}
-                image={curation.image}
-                author={curation.author}
-                title={curation.title}
-                keyword={curation.keyword}
-                spaceCount={curation.spaceCount}
+                {...curation}
                 className="mb-[2rem] w-full"
               />
             )

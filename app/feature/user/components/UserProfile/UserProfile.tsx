@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
-import DefaultUserIcon from "@common/assets/images/default_user.png";
 
 interface UserProfileProps {
   size?: "big" | "small";
@@ -17,7 +16,7 @@ export default function UserProfile({
     <div className={twMerge("flex items-center", className)}>
       <div className="w-[1.6rem] h-[1.6rem] relative mr-[0.4rem]">
         <Image
-          src={DefaultUserIcon}
+          src={"/default_user.png"}
           alt="프로필 사진"
           fill
           sizes="10vw"

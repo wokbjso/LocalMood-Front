@@ -10,12 +10,12 @@ import { useState } from "react";
 
 export default function PlaceDetailTopBar({
   id,
-  scrapped,
+  isScraped,
   className,
 }: Partial<TopBarProps>) {
-  const [isScrapped, setIsScrapped] = useState(scrapped);
+  const [scrapState, setScrapState] = useState(isScraped);
   const handleScrapClick = () => {
-    setIsScrapped((prev) => !prev);
+    setScrapState((prev) => !prev);
     //id 를 활용한 scrap 상태 변경 api 호출
   };
   const handleCopyLinkClick = () => {
@@ -24,7 +24,7 @@ export default function PlaceDetailTopBar({
   return (
     <BasicTopBar className={className}>
       <div className="flex justify-end">
-        {isScrapped ? (
+        {scrapState ? (
           <ScrapFill color="white" onClick={handleScrapClick} />
         ) : (
           <ScrapLine color="white" onClick={handleScrapClick} />

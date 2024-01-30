@@ -8,21 +8,18 @@ import { useState } from "react";
 
 export default function PlaceDetailInfo({
   id,
-  placeName,
-  category,
-  location,
-  scrapped,
-}: Pick<
-  PlaceInfoProps,
-  "id" | "placeName" | "category" | "location" | "scrapped"
->) {
-  const [isScrapped, setIsScrapped] = useState<boolean>(scrapped);
+  name,
+  type,
+  address,
+  isScraped,
+}: Pick<PlaceInfoProps, "id" | "name" | "type" | "address" | "isScraped">) {
+  const [scrapState, setScrapState] = useState<boolean>(isScraped);
   const scrapIconClicked = () => {
-    setIsScrapped((prev) => !prev);
+    setScrapState((prev) => !prev);
   };
   return (
     <div className="flex-col px-[2rem] relative">
-      {!isScrapped ? (
+      {!scrapState ? (
         <ScrapLine
           className="absolute cursor-pointer right-[2rem] top-[0.5rem]"
           onClick={scrapIconClicked}
@@ -33,11 +30,11 @@ export default function PlaceDetailInfo({
           onClick={scrapIconClicked}
         />
       )}
-      <div className="headline2 mb-[0.8rem]">{placeName}</div>
+      <div className="headline2 mb-[0.8rem]">{name}</div>
       <div className="flex">
-        <span className="body2-semibold text-text-gray-6">{category}</span>
+        <span className="body2-semibold text-text-gray-6">{type}</span>
         <Line className="mx-[0.8rem]" />
-        <span className="body2-medium text-text-gray-5">{location}</span>
+        <span className="body2-medium text-text-gray-5">{address}</span>
       </div>
     </div>
   );

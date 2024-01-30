@@ -7,6 +7,9 @@ interface SelectKeyword {
   cafeKeywordData: {
     [key: string]: string | Array<string>;
   };
+  restaurantKeywordData: {
+    [key: string]: string | Array<string>;
+  };
   handleKeyword: (category: string, keyword: string) => void;
   indicatorIndex: number;
   handleIndicatorIndex: (index: number) => void;
@@ -16,6 +19,7 @@ export default function SelectKeyword({
   placeType,
   name,
   cafeKeywordData,
+  restaurantKeywordData,
   handleKeyword,
   indicatorIndex,
   handleIndicatorIndex,
@@ -31,6 +35,7 @@ export default function SelectKeyword({
       <RecordKeywordContent
         placeType={placeType}
         cafeKeywordData={cafeKeywordData}
+        restaurantKeywordData={restaurantKeywordData}
         handleKeyword={handleKeyword}
         handleIndicatorIndex={handleIndicatorIndex}
       />

@@ -9,59 +9,56 @@ import { PlaceInfoProps } from "@feature/place/type";
 import { useSearchParams } from "next/navigation";
 import SearchNoResult from "@feature/search/components/SearchNoResult/SearchNoResult";
 import { useEffect, useState } from "react";
+import PostKeywordPlaceSearch from "@feature/search/queries/postKeywordPlaceSearch";
+import PostTextPlaceSearch from "@feature/search/queries/postTextPlaceSearch";
+import {
+  SearchCurationResponse,
+  SearchPlaceResponse,
+} from "@feature/search/queries/dto/search-type";
+import GetTextCurationSearch from "@feature/search/queries/getTextCurationSearch";
+import PostKeywordCurationSearch from "@feature/search/queries/postKeywordCurationSearch";
 
 export default function SearchResult() {
   const searchParams = useSearchParams();
-  // searchParams.get('search_query') 활용한 get api 로 대체(client side - tanstack query)
-  // keyword로 검색 시 category 가 빈 string이 아닌 category들을 쿼리파라미터로 api post 요청
   const DUMMY_PLACE: PlaceInfoProps[] | [] = [
     {
       id: 0,
-      placeName: "신촌 캐치카페",
-      placeImg: [
+      name: "신촌 캐치카페",
+      imgUrl:
         "https://media.istockphoto.com/id/1446199740/ko/%EC%82%AC%EC%A7%84/%ED%96%87%EB%B3%95%EC%9D%B4-%EC%9E%98-%EB%93%9C%EB%8A%94-%EC%88%B2%EC%9D%84-%ED%86%B5%EA%B3%BC%ED%95%98%EB%8A%94-%EA%B8%B8.jpg?s=2048x2048&w=is&k=20&c=3z_ODBT78uZDVqy-3B6r8LBa825AuSpL0xfzySe2fj8=",
-      ],
-      category: "카페",
-      location: "마포구 신촌",
-      scrapped: false,
-      tags: {
-        purpose: ["연인과의 데이트", "작업/공부/책"],
-        interior: ["통창뷰", "넓은 공간"],
-      },
+      type: "CAFE",
+      address: "마포구 신촌",
+      isScraped: false,
+      purpose: ["연인과의 데이트", "작업/공부/책"],
+      interior: ["통창뷰", "넓은 공간"],
     },
     {
       id: 0,
-      placeName: "금복식당",
-      placeImg: [
+      name: "금복식당",
+      imgUrl:
         "https://media.istockphoto.com/id/1446199740/ko/%EC%82%AC%EC%A7%84/%ED%96%87%EB%B3%95%EC%9D%B4-%EC%9E%98-%EB%93%9C%EB%8A%94-%EC%88%B2%EC%9D%84-%ED%86%B5%EA%B3%BC%ED%95%98%EB%8A%94-%EA%B8%B8.jpg?s=2048x2048&w=is&k=20&c=3z_ODBT78uZDVqy-3B6r8LBa825AuSpL0xfzySe2fj8=",
-      ],
-      category: "음식점",
-      location: "마포구 망원동",
-      scrapped: false,
-      tags: {
-        purpose: ["연인과의 데이트", "작업/공부/책"],
-        interior: ["통창뷰", "넓은 공간"],
-      },
+      type: "RESTAURANT",
+      address: "마포구 망원동",
+      isScraped: false,
+      purpose: ["연인과의 데이트", "작업/공부/책"],
+      bestMenu: ["족발", "생선"],
     },
     {
       id: 2,
-      placeName: "나이스워크투데이",
-      placeImg: [
+      name: "나이스워크투데이",
+      imgUrl:
         "https://media.istockphoto.com/id/1446199740/ko/%EC%82%AC%EC%A7%84/%ED%96%87%EB%B3%95%EC%9D%B4-%EC%9E%98-%EB%93%9C%EB%8A%94-%EC%88%B2%EC%9D%84-%ED%86%B5%EA%B3%BC%ED%95%98%EB%8A%94-%EA%B8%B8.jpg?s=2048x2048&w=is&k=20&c=3z_ODBT78uZDVqy-3B6r8LBa825AuSpL0xfzySe2fj8=",
-      ],
-      category: "카페",
-      location: "마포구 망원동",
-      scrapped: false,
-      tags: {
-        purpose: ["연인과의 데이트", "작업/공부/책"],
-        interior: ["통창뷰", "넓은 공간"],
-      },
+      type: "CAFE",
+      address: "마포구 망원동",
+      isScraped: false,
+      purpose: ["연인과의 데이트", "작업/공부/책"],
+      interior: ["통창뷰", "넓은 공간"],
     },
   ];
   const DUMMY_CURATION: CurationProps[] | [] = [
     {
       id: 0,
-      image: [
+      imgUrl: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
       author: "김현민",
@@ -71,7 +68,7 @@ export default function SearchResult() {
     },
     {
       id: 1,
-      image: [
+      imgUrl: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
       author: "김지원",
@@ -81,7 +78,7 @@ export default function SearchResult() {
     },
     {
       id: 2,
-      image: [
+      imgUrl: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
       author: "김경민",
@@ -91,7 +88,7 @@ export default function SearchResult() {
     },
     {
       id: 3,
-      image: [
+      imgUrl: [
         "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
       ],
       author: "최예원",
@@ -100,24 +97,75 @@ export default function SearchResult() {
       spaceCount: 3,
     },
   ];
+  const [textSearchPlaceData, setTextSearchPlaceData] =
+    useState<SearchPlaceResponse>();
+  const [keywordSearchPlaceData, setKeywordSearchPlaceData] =
+    useState<SearchPlaceResponse>();
+  const [textSearchCurationData, setTextSearchCurationData] =
+    useState<SearchCurationResponse>();
+  const [keywordSearchCurationData, setKeywordSearchCurationData] =
+    useState<SearchCurationResponse>();
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
     useSearchBar();
-  const [placeData, setPlaceData] = useState(null);
-  const [curationData, setCurationData] = useState(null);
+  const getTextSearchPlaceData = async () => {
+    try {
+      const data = await PostTextPlaceSearch(
+        searchParams.get("search_query") as string
+      );
+      setTextSearchPlaceData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getTextSearchCurationData = async () => {
+    try {
+      const data = await GetTextCurationSearch(
+        searchParams.get("search_query") as string
+      );
+      setTextSearchCurationData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getKeywordSearchPlaceData = async () => {
+    try {
+      const data = await PostKeywordPlaceSearch(
+        JSON.parse(searchParams.get("keyword") as string)
+      );
+      setKeywordSearchPlaceData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getKeywordSearchCurationData = async () => {
+    try {
+      let keyword = [];
+      let count = 0;
+
+      for (const [, value] of Object.entries(
+        JSON.parse(searchParams.get("keyword") as string)
+      )) {
+        if (value !== "ALL") {
+          keyword.push(value as string);
+          count++;
+        }
+        if (count === 2) break;
+      }
+      const data = await PostKeywordCurationSearch(keyword);
+      setKeywordSearchCurationData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
-    fetch("api/search/place").then((res) =>
-      res.json().then((data) => {
-        setPlaceData(data);
-      })
-    );
-    fetch("api/search/curation").then((res) =>
-      res.json().then((data) => {
-        setCurationData(data);
-      })
-    );
-  }, []);
-  console.log(placeData);
-  console.log(curationData);
+    if (searchParams.get("search_query")) {
+      getTextSearchPlaceData();
+      getTextSearchCurationData();
+    } else if (searchParams.get("keyword")) {
+      getKeywordSearchPlaceData();
+      getKeywordSearchCurationData();
+    }
+  }, [searchParams.get("search_query"), searchParams.get("keyword")]);
   return (
     <>
       {DUMMY_PLACE.length === 0 && DUMMY_CURATION.length === 0 && (
@@ -139,7 +187,7 @@ export default function SearchResult() {
                 <CurationMain
                   key={curation.id}
                   id={curation.id}
-                  image={curation.image}
+                  imgUrl={curation.imgUrl}
                   author={curation.author}
                   title={curation.title}
                   keyword={curation.keyword}
@@ -163,17 +211,8 @@ export default function SearchResult() {
           {searchBarTabIndex === 0 && (
             <div className="h-full px-[2rem] pt-[2rem] pb-[14.5rem] overflow-y-scroll">
               {DUMMY_PLACE.map((place) => (
-                <div key={place.id + place.category} className="mb-[4rem]">
-                  <PlaceInfoMain
-                    id={place.id}
-                    placeImg={place.placeImg}
-                    placeName={place.placeName}
-                    category={place.category}
-                    location={place.location}
-                    scrapped={place.scrapped}
-                    tags={place.tags}
-                    tagsCategoryNum={2}
-                  />
+                <div key={place.id + place.type} className="mb-[4rem]">
+                  <PlaceInfoMain {...place} keywordCategoryNum={2} />
                 </div>
               ))}
             </div>
@@ -193,17 +232,8 @@ export default function SearchResult() {
           {searchBarTabIndex === 0 && (
             <div className="h-full px-[2rem] pt-[2rem] pb-[14.5rem] overflow-y-scroll">
               {DUMMY_PLACE.map((place) => (
-                <div key={place.id + place.category} className="mb-[4rem]">
-                  <PlaceInfoMain
-                    id={place.id}
-                    placeImg={place.placeImg}
-                    placeName={place.placeName}
-                    category={place.category}
-                    location={place.location}
-                    scrapped={place.scrapped}
-                    tags={place.tags}
-                    tagsCategoryNum={2}
-                  />
+                <div key={place.id + place.type} className="mb-[4rem]">
+                  <PlaceInfoMain {...place} keywordCategoryNum={2} />
                 </div>
               ))}
             </div>
@@ -214,7 +244,7 @@ export default function SearchResult() {
                 <CurationMain
                   key={curation.id}
                   id={curation.id}
-                  image={curation.image}
+                  imgUrl={curation.imgUrl}
                   author={curation.author}
                   title={curation.title}
                   keyword={curation.keyword}

@@ -6,6 +6,7 @@ interface SelectEvaluation {
   indicatorIndex: number;
   handleIndicatorIndex: (index: number) => void;
   cafeKeywordData: { [key: string]: string | Array<string> };
+  restaurantKeywordData: { [key: string]: string | Array<string> };
   handleKeyword: (category: string, keyword: string) => void;
 }
 
@@ -14,6 +15,7 @@ export default function SelectEvaluation({
   indicatorIndex,
   handleIndicatorIndex,
   cafeKeywordData,
+  restaurantKeywordData,
   handleKeyword,
 }: SelectEvaluation) {
   return (
@@ -27,6 +29,7 @@ export default function SelectEvaluation({
       <RecordEvaluationContent
         placeType={placeType}
         cafeKeywordData={cafeKeywordData}
+        restaurantKeywordData={restaurantKeywordData}
         handleIndicatorIndex={handleIndicatorIndex}
         handleKeyword={handleKeyword}
       />

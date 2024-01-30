@@ -5,13 +5,17 @@ import Chip from "@common/components/ui/buttons/Chip/Chip";
 interface PlaceDetailKeywordSummaryProps {
   mainText: string;
   subText: string;
-  tags: { [key: string]: string[] };
+  purpose: string;
+  mood: string;
+  music: string;
 }
 
 export default function PlaceDetailKeywordSummary({
   mainText,
   subText,
-  tags,
+  purpose,
+  mood,
+  music,
 }: PlaceDetailKeywordSummaryProps) {
   return (
     <>
@@ -26,14 +30,14 @@ export default function PlaceDetailKeywordSummary({
             <HeartIcon color="#F670C7" />
             <div className="mt-[0.8rem]">
               <span className="body1 text-primary-normal"># </span>
-              <span className="body1 text-black">{tags["purpose"][0]}</span>
+              <span className="body1 text-black">{purpose.split(",")[0]}</span>
             </div>
           </div>
           <div className="w-[48%] flex flex-col items-center p-[1.2rem] bg-white rounded-[8px]">
             <UserDouble color="#9B8AFB" />
             <div className="mt-[0.8rem]">
               <span className="body1 text-primary-normal"># </span>
-              <span className="body1 text-black">{tags["purpose"][1]}</span>
+              <span className="body1 text-black">{purpose.split(",")[1]}</span>
             </div>
           </div>
         </div>
@@ -43,7 +47,7 @@ export default function PlaceDetailKeywordSummary({
           </span>
           <Chip className="bg-white">
             <span className="body2-medium text-primary-normal"># </span>
-            <span className="body2-medium">{tags["mood"][0]}</span>
+            <span className="body2-medium">{mood}</span>
           </Chip>
         </div>
         <div>
@@ -52,7 +56,7 @@ export default function PlaceDetailKeywordSummary({
           </span>
           <Chip className="bg-white">
             <span className="body2-medium text-primary-normal"># </span>
-            <span className="body2-medium">{tags["music"][0]}</span>
+            <span className="body2-medium">{music}</span>
           </Chip>
         </div>
       </div>

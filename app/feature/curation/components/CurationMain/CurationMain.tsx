@@ -13,17 +13,18 @@ import CurationMenuModal from "../CurationModal/CurationMenuModal";
 import UseCurationMain from "./useCurationMain";
 
 export default function CurationMain({
-  image,
-  scrapped = false,
+  id,
+  variant = "others",
+  imgUrl,
   author,
   id,
   title,
   keyword,
   spaceCount,
-  variant = "others",
+  isScraped = false,
   className,
 }: CurationProps) {
-  const { isScrapped, isMenuOpened, handlers } = UseCurationMain(scrapped);
+  const { scrapState, isMenuOpened, handlers } = UseCurationMain(isScraped);
 
   const handleScrapClick = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     //scrap 상태와 id 를 가지고 scrap 상태 변하는 api 생성
@@ -50,7 +51,7 @@ export default function CurationMain({
                 className="w-full h-[16.5rem] bg-cover relative rounded-t-[8px]"
                 style={{
                   backgroundImage: `url(
-            ${image && image[0]}
+            ${imgUrl && imgUrl[0]}
           )`,
                 }}
               >
@@ -70,7 +71,7 @@ export default function CurationMain({
               </div>
               <div className="w-full pt-[1.6rem] pl-[1.6rem] pr-[0.8rem] pb-[2rem] relative border-b-[0.1rem] border-x-[0.1rem] border-line-gray-3 rounded-b-[8px]">
                 {variant === "others" ? (
-                  isScrapped ? (
+                  scrapState ? (
                     <ScrapFill
                       className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
                       onClick={handleScrapClick}
