@@ -9,6 +9,7 @@ import {
 } from "@feature/curation/constants/curation-make";
 import Button from "@common/components/ui/buttons/Button/Button";
 import PostCurationMake from "@feature/curation/queries/postCurationMake";
+import revalidateMyCuration from "@feature/curation/utils/revalidateMyCuration";
 
 interface CurationMakeKeywordProps {
   curationMakeData: {
@@ -16,11 +17,13 @@ interface CurationMakeKeywordProps {
     open: boolean;
     keyword: { [key: string]: string };
   };
+  handleOpen: (state: boolean) => void;
   onClick?: (category: string, keyword: string) => void;
 }
 
 export default function CurationMakeKeyword({
   curationMakeData,
+  handleOpen,
   onClick,
 }: CurationMakeKeywordProps) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -60,18 +63,13 @@ export default function CurationMakeKeyword({
   };
 
   const handleButtonClick = async () => {
-    if (isSubmitEnabled(curationMakeData)) {
-      const dataCurationMake = getSendingCurationData();
-      console.log(dataCurationMake);
-
-      try {
-        const result = await PostCurationMake(dataCurationMake);
-        console.log("PostCurationMake result:", result);
-      } catch (error) {
-        console.error("Error in PostCurationMake:", error);
-      }
-    } else {
-    }
+    const dataCurationMake = getSendingCurationData();
+    const res = await PostCurationMake(dataCurationMake);
+    if (res.status === 200) {
+      revalidateMyCuration();
+      handleOpen(false);
+    } else alert("오류가 발생했습니다!");
+    return;
   };
 
   return (
@@ -127,13 +125,9 @@ export default function CurationMakeKeyword({
 
       <div className="absolute bottom-[4.6rem] left-8 right-8">
         <Button
-          variant={"fill"}
           onClick={handleButtonClick}
-          className={`w-full ${
-            !isSubmitEnabled(curationMakeData)
-              ? "bg-text-gray-4 text-background-gray-1"
-              : ""
-          }`}
+          disabled={!isSubmitEnabled(curationMakeData)}
+          className="w-full"
         >
           완료
         </Button>

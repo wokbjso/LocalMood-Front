@@ -4,6 +4,7 @@ export default async function getMyCuration() {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/curation/member`,
     {
+      next: { tags: ["getMyCuration"] },
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
