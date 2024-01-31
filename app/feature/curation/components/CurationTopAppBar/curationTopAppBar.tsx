@@ -49,7 +49,7 @@ export default function CurationTopAppBar({
         >
           <div
             className={`h-[5.4rem] px-[2rem] py-[1.8rem] ${
-              scrollHeight > 370 ? "" : "pt-[5.3rem]"
+              scrollHeight > 370 ? "" : ""
             }`}
           >
             {scrollHeight > 370 ? (
