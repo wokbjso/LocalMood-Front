@@ -8,6 +8,7 @@ import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import Link from "next/link";
 import { PlaceInfoProps } from "@feature/place/type";
+import { getSession } from "@common/utils/getSession";
 
 export default function PlaceInfoTop({
   id,
@@ -29,18 +30,24 @@ export default function PlaceInfoTop({
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
     e.preventDefault();
-    setScrapState((prev) => !prev);
-    if (scrapState) {
-      const res = await fetch(`/api/place/scrapped/delete/${String(id)}`, {
-        method: "DELETE",
-      });
+    const userInfo = await getSession();
+    if (!userInfo) {
+      location.replace("/login");
     } else {
-      const uid = 1;
-      const res = await fetch(`/api/place/scrapped/add/${uid}`, {
-        method: "POST",
-      });
-      console.log(res);
+      setScrapState((prev) => !prev);
+      if (scrapState) {
+        const res = await fetch(`/api/place/scrapped/delete/${String(id)}`, {
+          method: "DELETE",
+        });
+      } else {
+        const uid = 1;
+        const res = await fetch(`/api/place/scrapped/add/${uid}`, {
+          method: "POST",
+        });
+        console.log(res);
+      }
     }
+
     //장소 id 활용하여 api 문서에 맞게 해당 장소 scrap 상태 변경 api 호출(client side - tanstack query)
   };
   return (
@@ -65,9 +72,7 @@ export default function PlaceInfoTop({
           )}
         >
           <Image
-            src={
-              "https://a.cdn-hotels.com/gdcs/production161/d1403/b5f1876a-9e64-4d13-ab7a-a0fd2cbc5224.jpg"
-            } // 이미지 들어가면 해당 이미지로 교체
+            src={imgUrl} // 이미지 들어가면 해당 이미지로 교체
             alt="공간 사진"
             fill
             sizes="100vw"
