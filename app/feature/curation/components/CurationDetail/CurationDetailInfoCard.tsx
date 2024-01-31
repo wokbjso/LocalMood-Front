@@ -41,7 +41,7 @@ const CurationDetailInfoCard = forwardRef(
         </Slider>
         <div className="mb-[-9rem]">
           <div className="w-full pr-[1.9rem]">
-            <div className="pt-[2rem] pb-[1.6rem] flex justify-between ">
+            <div className="pt-[2rem] flex justify-between ">
               <div>
                 <div className="flex items-center gap-[0.4rem] text-black headline2-semibold">
                   {name}

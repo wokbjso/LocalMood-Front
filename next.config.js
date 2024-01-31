@@ -8,6 +8,11 @@ module.exports = {
     return config;
   },
   images: {
-    domains: ["media.istockphoto.com", "cdn.pixabay.com", "a.cdn-hotels.com"],
+    domains: [
+      "media.istockphoto.com",
+      "cdn.pixabay.com",
+      "a.cdn-hotels.com",
+      "github.com",
+    ],
   },
 };
