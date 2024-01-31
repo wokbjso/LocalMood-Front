@@ -22,6 +22,11 @@ const CurationDetailInfoCard = forwardRef(
     }: CurationPlaceProps,
     ref: ForwardedRef<HTMLDivElement>
   ) => {
+    const purposeArray = purpose ? purpose.split(",") : [];
+    const interiorArray = interior ? interior.split(",") : [];
+    const moodArray = mood ? mood.split(",") : [];
+    const bestMenuArray = bestMenu ? bestMenu.split(",") : [];
+
     return (
       <div className="w-full pt-[13rem]" ref={ref}>
         <Slider>
@@ -58,8 +63,12 @@ const CurationDetailInfoCard = forwardRef(
               <ScrapFill />
             </div>
             <PlaceInfoBottom
-              tags={purpose}
-              tagsCategoryNum={3}
+              type={type}
+              purpose={purposeArray}
+              interior={interiorArray}
+              mood={moodArray}
+              bestMenu={bestMenuArray}
+              keywordCategoryNum={3}
               bottomClassName="border-[0.1rem] border-line-gray-3 p-[1.6rem]"
             />
           </div>

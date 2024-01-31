@@ -12,6 +12,7 @@ export interface PlaceInfoProps {
   purpose?: string[];
   interior?: string[];
   bestMenu?: string[];
+  mood?: string[];
   keywordCategoryNum?: number;
   onClick?: () => void;
   className?: string;
