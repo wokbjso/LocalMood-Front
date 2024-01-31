@@ -79,7 +79,7 @@ export default function PlaceInfoTop({
         >
           <div
             className={twMerge(
-              direction === "vertical" && "w-[90%] pt-[1.6rem]",
+              direction === "vertical" && "w-[90%] pt-[1.2rem]",
               size === "normal" ? "headline2" : "headline3"
             )}
           >
