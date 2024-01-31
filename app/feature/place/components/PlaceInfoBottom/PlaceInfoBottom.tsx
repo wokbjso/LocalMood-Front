@@ -48,7 +48,9 @@ export default function PlaceInfoBottom({
           </div>
           <div className="flex flex-wrap gap-[0.8rem]">
             {purpose?.map((tag, i) => (
-              <Chip key={tag + i}>{tag}</Chip>
+              <Chip key={tag + i}>
+                <div className="body2-medium">{tag}</div>
+              </Chip>
             ))}
           </div>
         </div>
@@ -67,8 +69,16 @@ export default function PlaceInfoBottom({
           </div>
           <div className="flex flex-wrap gap-[0.8rem]">
             {type === "CAFE"
-              ? interior?.map((tag, i) => <Chip key={tag + i}>{tag}</Chip>)
-              : bestMenu?.map((tag, i) => <Chip key={tag + i}>{tag}</Chip>)}
+              ? interior?.map((tag, i) => (
+                  <Chip key={tag + i}>
+                    <div className="body2-medium">{tag}</div>
+                  </Chip>
+                ))
+              : bestMenu?.map((tag, i) => (
+                  <Chip key={tag + i}>
+                    <div className="body2-medium">{tag}</div>
+                  </Chip>
+                ))}
           </div>
         </div>
       )}
@@ -84,7 +94,9 @@ export default function PlaceInfoBottom({
           </div>
           <div className="flex flex-wrap gap-[0.8rem]">
             {mood?.map((tag, i) => (
-              <Chip key={tag + i}>{tag}</Chip>
+              <Chip key={tag + i}>
+                <div className="body2-medium">{tag}</div>
+              </Chip>
             ))}
           </div>
         </div>
