@@ -3,7 +3,7 @@ interface SimilarPlaceProps {
   name: string;
   type: string;
   address: string;
-  imgUrl: string[];
+  imgUrl: string;
   isScraped: boolean;
 }
 

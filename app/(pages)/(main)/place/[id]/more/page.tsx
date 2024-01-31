@@ -11,7 +11,7 @@ import GetPlaceReview from "@feature/place/queries/getPlaceReview";
 export default async function PlaceDetailMore({
   params: { id },
 }: {
-  params: { id: string };
+  params: { id: number };
 }) {
   const DUMMY_MORE_DETAIL = {
     placeName: "나이스워크투데이",

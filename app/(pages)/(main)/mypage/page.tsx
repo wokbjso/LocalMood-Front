@@ -8,7 +8,7 @@ import { twMerge } from "tailwind-merge";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import GetPlaceMyPage from "@feature/place/queries/getPlaceMyPage";
 import { WithAuth } from "@feature/auth/components/WithAuth/WithAuth";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import GetMemberInfo from "@feature/user/queries/getMemberInfo";
 
 function MyPage() {
@@ -67,15 +67,19 @@ function MyPage() {
   };
   const [myPageData, setMyPageData] = useState<any>();
   const [userData, setUserData] = useState<any>();
+  console.log(myPageData);
+  console.log(userData);
   const myPagePlaceData = async () => {
     const data = await GetPlaceMyPage();
     setMyPageData(data);
   };
+  console.log(myPageData);
   const getUserInfo = async () => {
     const userInfo = await GetMemberInfo();
     setUserData(userInfo);
   };
   useEffect(() => {
+    myPagePlaceData();
     getUserInfo();
   }, []);
   return (
@@ -98,12 +102,14 @@ function MyPage() {
               : "공간 기록을 남겨 타이틀을 얻어보세요!"}
           </p>
           <div className="flex items-center">
-            {DUMMY_USER.cafeKing && (
+            {/* {DUMMY_USER.cafeKing && (
               <Chip className="bg-primary-normal text-white mr-[0.8rem]">
                 카공왕
               </Chip>
-            )}
-            <span className="text-black headline1">{DUMMY_USER.nickName}</span>
+            )} */}
+            <span className="text-black headline1">
+              {userData && userData.nickname}
+            </span>
           </div>
         </div>
       </section>
@@ -116,8 +122,8 @@ function MyPage() {
         >
           공간 기록 {DUMMY_USER.place_record.length}
         </div>
-        {DUMMY_USER.place_record.length === 0 && (
-          <div className="flex flex-col justify-center items-center h-full">
+        {myPageData && myPageData.reviews.length === 0 && (
+          <div className="h-[60%] flex flex-col items-center justify-center">
             <p className="text-black headline1 mb-[1.2rem]">
               아직 기록을 남긴 공간이 없습니다
             </p>
@@ -129,7 +135,7 @@ function MyPage() {
             </div>
           </div>
         )}
-        {DUMMY_USER.place_record.length > 0 && (
+        {myPageData && myPageData.reviews.length > 0 && (
           <div className="grid grid-cols-2 gap-x-[1rem] gap-y-[1.6rem] pb-[40.1rem] h-full overflow-y-scroll">
             {DUMMY_USER.place_record.map((record) => (
               <PlaceInfoMain key={record.id} {...record} className="w-full" />

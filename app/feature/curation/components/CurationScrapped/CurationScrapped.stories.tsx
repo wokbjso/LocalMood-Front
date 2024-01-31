@@ -22,28 +22,25 @@ type Story = StoryObj<typeof meta>;
 export const ScrappedFalse: Story = {
   args: {
     id: 0,
-    curationPhoto: [
+    imgUrl: [
       "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
     ],
-    userImg:
-      "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-    userName: "김현민",
-    mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
-    hashTags: ["연인과의 데이트", "크리스마스"],
+    author: "김현민",
+    title: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
+    keyword: ["연인과의 데이트", "크리스마스"],
+    isScraped: true,
   },
 };
 
 export const ScrappedTrue: Story = {
   args: {
     id: 0,
-    curationPhoto: [
+    imgUrl: [
       "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
     ],
-    userImg:
-      "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-    userName: "김현민",
-    mainText: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
-    hashTags: ["연인과의 데이트", "크리스마스"],
-    scrapped: true,
+    author: "김현민",
+    title: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
+    keyword: ["연인과의 데이트", "크리스마스"],
+    isScraped: true,
   },
 };

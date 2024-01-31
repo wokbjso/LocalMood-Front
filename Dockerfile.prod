@@ -1,0 +1,21 @@
+FROM node:18 AS builder
+# set working directory
+WORKDIR /app
+# install app dependencies
+COPY package.json ./
+COPY yarn.lock ./
+# Installs all node packages
+RUN npm install yarn --global --force
+RUN yarn install --immutable 
+
+
+# Copies everything over to Docker environment
+COPY . ./
+
+RUN yarn install
+RUN yarn build
+RUN rm -rf .next/cache
+
+#Stage 2
+EXPOSE 3000
+CMD ["yarn", "start"]

@@ -80,11 +80,11 @@ export default function RecordSearch() {
           </Suspense>
         </BasicTopBar>
         <div className="inline-flex flex-col items-start gap-[0.8rem] px-[2rem] pt-[1.6rem]">
-          {RECORD_DUMMYLIST.map((props, index) => (
+          {/* {RECORD_DUMMYLIST.map((props, index) => (
             <div key={index}>
               <PlaceInfoMain direction="horizontal" {...props} />
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
     </>

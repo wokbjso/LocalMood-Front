@@ -11,7 +11,7 @@ import CurationMenuModal from "../CurationModal/CurationMenuModal";
 import { copyLink } from "@common/utils/copyLink";
 
 interface CurationTopAppBarProps {
-  id: string;
+  id: number;
   variant?: string;
   mainText?: string;
 }

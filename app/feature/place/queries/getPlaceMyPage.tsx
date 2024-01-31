@@ -6,7 +6,6 @@ export default async function GetPlaceMyPage() {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/review/member`,
     {
-      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

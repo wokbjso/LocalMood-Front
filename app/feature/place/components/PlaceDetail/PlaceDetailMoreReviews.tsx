@@ -2,7 +2,6 @@
 
 import Filter from "@common/components/ui/buttons/Filter/Filter";
 import Divider from "@common/components/ui/divider/Divider";
-import { PLACE_PURPOSE } from "@feature/place/constants/place-tag-category";
 import PlaceReview from "../PlaceReview/PlaceReview";
 import { useState } from "react";
 
@@ -31,7 +30,7 @@ export default function PlaceDetailMoreReviews({
   return (
     <>
       <div className="flex overflow-x-scroll whitespace-nowrap py-[1.6rem] pt-[2.4rem] pl-[2rem]">
-        {PLACE_PURPOSE.map((purpose, i) => (
+        {/* {PLACE_PURPOSE.map((purpose, i) => (
           <Filter
             key={purpose}
             label={
@@ -44,11 +43,11 @@ export default function PlaceDetailMoreReviews({
             className="mr-[0.8rem]"
             onClick={() => handleReviewFilterClick(i)}
           />
-        ))}
+        ))} */}
       </div>
       <Divider className="bg-line-gray-3 h-[0.1rem]" />
       <section className="px-[2rem] pt-[2.4rem]">
-        {reviews
+        {/* {reviews
           .filter(
             (review) =>
               review.tags.purpose[0] === PLACE_PURPOSE[reviewPurposeIndex]
@@ -66,7 +65,7 @@ export default function PlaceDetailMoreReviews({
                 evaluation={review.evaluation}
               />
             );
-          })}
+          })} */}
       </section>
     </>
   );

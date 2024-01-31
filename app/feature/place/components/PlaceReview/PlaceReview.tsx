@@ -1,7 +1,6 @@
 import UserProfile from "@feature/user/components/UserProfile/UserProfile";
 import Image from "next/image";
 import PlaceInfoBottom from "../PlaceInfoBottom/PlaceInfoBottom";
-import { PLACE_TAG_CATEGORY } from "@feature/place/constants/place-tag-category";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
 import GraphUpDownVote from "@common/components/ui/graph/GraphUpDownVote/GraphUpDownVote";
 
@@ -48,7 +47,7 @@ export default function PlaceReview({
             </div>
           </div>
           <div>
-            {Object.keys(PLACE_TAG_CATEGORY).map((category, i) => (
+            {/* {Object.keys(PLACE_TAG_CATEGORY).map((category, i) => (
               <div key={category} className="flex items-center mb-[0.6rem]">
                 <span className="mr-[2rem] text-text-gray-7 body2-medium">
                   {PLACE_TAG_CATEGORY[category]}
@@ -59,7 +58,7 @@ export default function PlaceReview({
                   </Chip>
                 ))}
               </div>
-            ))}
+            ))} */}
           </div>
           <div className="flex my-[1.6rem]">
             {review_photos?.map((photo, i) => (

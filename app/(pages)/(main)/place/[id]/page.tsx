@@ -12,9 +12,9 @@ import GetPlaceDetail from "@feature/place/queries/getPlaceDetail";
 export default async function PlaceDetail({
   params: { id },
 }: {
-  params: { id: string };
+  params: { id: number };
 }) {
-  const detailData = await GetPlaceDetail(Number(id));
+  const detailData = await GetPlaceDetail(id);
   console.log(detailData);
   return (
     <div className="pb-[12rem]">

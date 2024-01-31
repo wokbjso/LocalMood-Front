@@ -5,9 +5,8 @@ import PlaceSearchBar from "@feature/record/components/PlaceSearch/PlaceSearchBa
 
 export default async function Record() {
   const scrappedPlace = await GetPlaceScrapped();
-
   return (
-    <div>
+    <div className="h-[100vh]">
       <div className="w-full h-[10.6rem] flex px-[2rem] pt-[3.8rem] pb-[1.2rem] justify-between items-center">
         <div className="max-w-[33.5rem] h-[5.3rem] headline1-semibold text-black grow shrink-0 basis-0">
           <div>
@@ -27,11 +26,23 @@ export default async function Record() {
         </LinkLayout>
       </div>
       <div className="flex overflow-x-scroll px-[2rem] pt-[1.6rem] gap-[0.8rem] overflow-y-hidden">
-        {scrappedPlace.slice(0, 4).map((data, index) => (
-          <div key={index}>
-            <PlaceInfoMain variant="record" {...data} className="w-[16.3rem]" />
+        {scrappedPlace.length === 0 && (
+          <div className="flex items-center justify-center w-full h-[35%]">
+            <p className="body1-medium text-text-gray-8">
+              아직 스크랩한 공간이 없습니다.
+            </p>
           </div>
-        ))}
+        )}
+        {scrappedPlace &&
+          scrappedPlace.map((data, index) => (
+            <div key={index}>
+              <PlaceInfoMain
+                variant="record"
+                {...data}
+                className="w-[16.3rem]"
+              />
+            </div>
+          ))}
       </div>
     </div>
   );
