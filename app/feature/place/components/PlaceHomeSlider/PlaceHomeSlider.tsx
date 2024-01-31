@@ -20,14 +20,15 @@ export default function PlaceHomeSlider({
       <span className="text-black headline2">{mainText}</span>
       <span className="text-text-gray-6 body1"> {subText}</span>
       <Slider className="mt-[1.6rem]">
-        {placeList.map((data) => (
-          <PlaceInfoMain
-            key={data.id}
-            {...data}
-            keywordCategoryNum={0}
-            className="w-[33.5rem] mr-[1.2rem]"
-          />
-        ))}
+        {placeList &&
+          placeList.map((data) => (
+            <PlaceInfoMain
+              key={data.id}
+              {...data}
+              keywordCategoryNum={1}
+              className="w-[33.5rem] mr-[1.2rem]"
+            />
+          ))}
       </Slider>
     </section>
   );

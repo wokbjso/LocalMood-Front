@@ -15,7 +15,6 @@ export default async function Home() {
   ];
   const randomPlace = await GetRandomPlaces();
   const randomCuration = await GetRandomCuration();
-  console.log(randomPlace);
   return (
     <>
       <HomeHeader />

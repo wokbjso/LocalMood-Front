@@ -19,6 +19,7 @@ function CurationPage() {
     curationCount: 0;
     curation: [];
   }>();
+  console.log(myCuration);
 
   const [scrappedCuration, setScrappedCuration] = useState<any[]>([]);
 

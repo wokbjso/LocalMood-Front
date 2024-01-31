@@ -12,6 +12,7 @@ import { getSession } from "@common/utils/getSession";
 import PostSpaceScrap from "@feature/place/queries/postSpaceScrap";
 import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
 import DeleteSpaceScrap from "@feature/place/queries/deleteScrapSpace";
+import { useRouter } from "next/navigation";
 
 export default function PlaceInfoTop({
   id,
@@ -27,6 +28,7 @@ export default function PlaceInfoTop({
   className,
   imgClassName,
 }: PlaceInfoProps) {
+  const router = useRouter();
   //scrap 유무를 default useState 값으로 설정
   const [scrapState, setScrapState] = useState<boolean>(isScraped);
   const handleScrap = async (
@@ -40,7 +42,6 @@ export default function PlaceInfoTop({
       if (scrapState) {
         const res = await DeleteSpaceScrap(id);
         if (res.status === 200) {
-          setScrapState((prev) => !prev);
           revalidateScrapSpace();
         } else {
           alert("에러가 발생했습니다!");
@@ -49,16 +50,14 @@ export default function PlaceInfoTop({
       } else {
         const res = await PostSpaceScrap(id);
         if (res.status === 200) {
-          setScrapState((prev) => !prev);
           revalidateScrapSpace();
+          router.push("/record");
         } else {
           alert("에러가 발생했습니다!");
           return;
         }
       }
     }
-
-    //장소 id 활용하여 api 문서에 맞게 해당 장소 scrap 상태 변경 api 호출(client side - tanstack query)
   };
   return (
     <Link

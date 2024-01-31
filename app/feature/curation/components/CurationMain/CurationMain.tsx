@@ -109,7 +109,6 @@ export default function CurationMain({
                       </span>
                     </div>
                   ))}
-                  ss
                 </div>
               </div>
             </div>

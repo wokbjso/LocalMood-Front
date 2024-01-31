@@ -1,6 +1,8 @@
 import CloseIcon from "@common/assets/icons/close/CloseIcon";
 import Button from "@common/components/ui/buttons/Button/Button";
 import Modal from "@common/components/ui/modal/Modal";
+import DeleteCuration from "@feature/curation/queries/deleteCuration";
+import revalidateMyCuration from "@feature/curation/utils/revalidateMyCuration";
 
 interface CurationDeleteConfirmModalProps {
   id: number;
@@ -22,8 +24,12 @@ export default function CurationDeleteConfirmModal({
   };
 
   const handleDeleteConfirmClick = async () => {
-    const res = await fetch(`/api/curation/delete/${String(id)}`);
-    //id 활용하여 큐레이션 delete api 호출 후 '삭제되었습니다' toast 띄우기
+    const res = await DeleteCuration(id);
+    if (res.status === 200) {
+      revalidateMyCuration();
+    } else {
+      alert("에러");
+    }
   };
 
   return (

@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from "react";
 import ArrowDownIcon from "@common/assets/icons/arrow/arrow-down.svg";
 import ArrowUpIcon from "@common/assets/icons/arrow/ArrowUp";
