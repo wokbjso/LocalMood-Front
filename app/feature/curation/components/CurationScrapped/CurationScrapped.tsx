@@ -29,9 +29,9 @@ export default function CurationScrapped({
         <div
           className="w-full h-[16.5rem] bg-cover relative rounded-[8px]"
           style={{
-            backgroundImage: `url(
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(
               https://a.cdn-hotels.com/gdcs/production161/d1403/b5f1876a-9e64-4d13-ab7a-a0fd2cbc5224.jpg
-          )`, //image 들어오면 전달받은 이미지로 교체,
+          )`,
           }}
         >
           <UserProfile
