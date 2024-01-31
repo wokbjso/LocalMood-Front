@@ -9,6 +9,7 @@ import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain
 import GetPlaceMyPage from "@feature/place/queries/getPlaceMyPage";
 import { WithAuth } from "@feature/auth/components/WithAuth/WithAuth";
 import { useEffect, useState } from "react";
+import GetMemberInfo from "@feature/user/queries/getMemberInfo";
 
 function MyPage() {
   const DUMMY_USER = {
@@ -65,12 +66,18 @@ function MyPage() {
     ],
   };
   const [myPageData, setMyPageData] = useState<any>();
+  const [userData, setUserData] = useState<any>();
   const myPagePlaceData = async () => {
     const data = await GetPlaceMyPage();
     setMyPageData(data);
   };
-
-  useEffect(() => {}, []);
+  const getUserInfo = async () => {
+    const userInfo = await GetMemberInfo();
+    setUserData(userInfo);
+  };
+  useEffect(() => {
+    getUserInfo();
+  }, []);
   return (
     <div className="px-[2rem] h-[100vh] overflow-hidden">
       <MyPageTopBar />

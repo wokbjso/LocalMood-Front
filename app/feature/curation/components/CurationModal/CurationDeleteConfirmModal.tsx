@@ -3,7 +3,7 @@ import Button from "@common/components/ui/buttons/Button/Button";
 import Modal from "@common/components/ui/modal/Modal";
 
 interface CurationDeleteConfirmModalProps {
-  id: string;
+  id: number;
   handleMenuModalState: (state: boolean) => void;
   handleDeleteModalState: (state: boolean) => void;
 }

@@ -12,13 +12,7 @@ export default async function PostRegister(registerFormData: {
     }
   );
 
-  if (res.ok) {
-    return new Response("Authorized", {
-      status: 201,
-    });
-  } else {
-    return new Response("Error", {
-      status: 400,
-    });
-  }
+  const data = await res.json();
+
+  return data;
 }

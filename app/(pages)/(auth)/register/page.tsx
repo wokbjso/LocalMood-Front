@@ -13,10 +13,12 @@ export default function Register() {
   const handleSubmit = async (e: LoginFormState | RegisterFormState) => {
     if ("nickname" in e) {
       const res = await PostRegister(registerFormData);
-      if (res.status === 201) {
+      if (res.status === 400) {
+        alert(res.message);
+      } else {
         router.push("/register/success");
       }
-    } else return;
+    }
   };
   const { registerFormData, errorMessage, showError, handlers } = UseForm({
     type: "register",
@@ -46,7 +48,7 @@ export default function Register() {
         />
         <FormInput
           type="password"
-          label="비밀번호 (8자 이상)"
+          label="비밀번호 (8~16자)"
           errorMsg={getErrorMessage("password")}
           onChange={handlers.changePassword}
           className="mb-[3.2rem]"
