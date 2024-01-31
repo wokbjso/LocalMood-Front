@@ -27,11 +27,11 @@ export default async function Record() {
         </LinkLayout>
       </div>
       <div className="flex overflow-x-scroll px-[2rem] pt-[1.6rem] gap-[0.8rem] overflow-y-hidden">
-        {scrappedPlace.slice(0, 4).map((data, index) => (
+        {/*scrappedPlace.slice(0, 4).map((data, index) => (
           <div key={index}>
             <PlaceInfoMain variant="record" {...data} className="w-[16.3rem]" />
           </div>
-        ))}
+         ))*/}
       </div>
     </div>
   );

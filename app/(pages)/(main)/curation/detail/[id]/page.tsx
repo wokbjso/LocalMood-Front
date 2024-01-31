@@ -15,6 +15,15 @@ export default async function CurationDetail({
   params: { id: string };
 }) {
   const curationDetail = await GetCurationDetail(id);
+  const formattedDate = new Date(curationDetail.createdDate).toLocaleDateString(
+    "ko-KR",
+    {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }
+  );
+
   console.log(curationDetail);
 
   return (
@@ -58,7 +67,7 @@ export default async function CurationDetail({
                   </div>
                   <div className="w-[0.1rem] h-[1.2rem] bg-text-gray-4"></div>
                   <div className="body3-regular text-text-gray-6">
-                    {curationDetail.createdDate}
+                    {formattedDate}
                   </div>
                 </div>
               )}
