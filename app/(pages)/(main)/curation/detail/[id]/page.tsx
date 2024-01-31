@@ -37,8 +37,8 @@ export default async function CurationDetail({
             {curationDetail.keyword
               ?.split(",")
               .map((tag: string, index: number) => (
-                <Chip key={index} className="bg-white">
-                  <div className="flex">
+                <Chip key={index} className="bg-white body2-medium">
+                  <div className="flex items-center body2-medium">
                     <p className="text-primary-normal">#&nbsp;</p>
                     <p>{tag}</p>
                   </div>
