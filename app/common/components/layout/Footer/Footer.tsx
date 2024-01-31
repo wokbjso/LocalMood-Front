@@ -45,7 +45,7 @@ export default function Footer() {
             className="px-[1.2rem] flex flex-col items-center cursor-pointer"
             onClick={() => handlers.handleFooterState(i)}
           >
-            <category.icon color={footerState === i ? "#32D58A" : "#BDBDBD"} />
+            <category.icon color={footerState === i ? "#32D5BA" : "#BDBDBD"} />
             <span
               className={twMerge(
                 "mt-[0.6rem]",

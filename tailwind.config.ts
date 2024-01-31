@@ -109,7 +109,7 @@ module.exports = {
           fontWeight: "500",
           fontSize: "1.4rem",
           lineHeight: "100%",
-          letterSpacing: "-2%",
+          letterSpacing: "-0.28px",
         },
         ".body3-semibold": {
           fontFamily: "Pretendard, sans-serif",

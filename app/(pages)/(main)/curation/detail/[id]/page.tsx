@@ -15,6 +15,15 @@ export default async function CurationDetail({
   params: { id: string };
 }) {
   const curationDetail = await GetCurationDetail(id);
+  const formattedDate = new Date(curationDetail.createdDate).toLocaleDateString(
+    "ko-KR",
+    {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }
+  );
+
   console.log(curationDetail);
 
   return (
@@ -28,8 +37,8 @@ export default async function CurationDetail({
             {curationDetail.keyword
               ?.split(",")
               .map((tag: string, index: number) => (
-                <Chip key={index} className="bg-white">
-                  <div className="flex">
+                <Chip key={index} className="bg-white body2-medium">
+                  <div className="flex items-center body2-medium">
                     <p className="text-primary-normal">#&nbsp;</p>
                     <p>{tag}</p>
                   </div>
@@ -58,7 +67,7 @@ export default async function CurationDetail({
                   </div>
                   <div className="w-[0.1rem] h-[1.2rem] bg-text-gray-4"></div>
                   <div className="body3-regular text-text-gray-6">
-                    {curationDetail.createdDate}
+                    {formattedDate}
                   </div>
                 </div>
               )}
