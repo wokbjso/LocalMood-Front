@@ -97,6 +97,7 @@ export default function PhotoUpload({
                   src={img}
                   alt="방문 사진"
                   fill
+                  sizes="50vw"
                   className="rounded-[10px]"
                 />
               </div>

@@ -18,7 +18,12 @@ export default async function PlaceDetail({
   return (
     <div className="pb-[12rem]">
       <div className="w-full h-[30rem] mb-[1.5rem] relative">
-        <Image src={detailData.info.imgUrlList[0]} alt="공간 상세 사진" fill />
+        <Image
+          src={detailData.info.imgUrlList[0]}
+          alt="공간 상세 사진"
+          fill
+          sizes="100vw"
+        />
       </div>
       <PlaceDetailInfo
         id={detailData.info.id}
