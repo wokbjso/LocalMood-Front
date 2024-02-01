@@ -11,9 +11,8 @@ import { CurationProps } from "@feature/curation/type";
 import getMyCuration from "@feature/curation/queries/getMyCuration";
 import getScrappedCuration from "@feature/curation/queries/getScrappedCuration";
 import { getSession } from "@common/utils/getSession";
-import { WithAuth } from "@feature/auth/components/WithAuth/WithAuth";
 
-function CurationPage() {
+export default function CurationPage() {
   const { tabIndex, isCurationMakeOpen, handlers } = UseCuration();
   const [myCuration, setMyCuration] = useState<{
     curationCount: 0;
@@ -31,19 +30,19 @@ function CurationPage() {
     },
   ];
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const userInfo = await getSession();
-      if (!userInfo?.accessToken) {
-        location.replace("/login");
-      } else {
-        const myCurationData = await getMyCuration();
-        setMyCuration(myCurationData);
-        const scrappedCurationData = await getScrappedCuration();
-        setScrappedCuration(scrappedCurationData);
-      }
-    };
+  const fetchData = async () => {
+    const userInfo = await getSession();
+    if (!userInfo?.accessToken) {
+      location.replace("/login");
+    } else {
+      const myCurationData = await getMyCuration();
+      setMyCuration(myCurationData);
+      const scrappedCurationData = await getScrappedCuration();
+      setScrappedCuration(scrappedCurationData);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -89,5 +88,3 @@ function CurationPage() {
     </div>
   );
 }
-
-export default WithAuth(CurationPage, { block: "unauthenticated" });
