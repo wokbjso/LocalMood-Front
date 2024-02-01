@@ -25,7 +25,7 @@ export default function PlaceInfoBottom({
   return (
     <div
       className={twMerge(
-        "w-full mt-[1.6rem] flex flex-wrap gap-[0.8rem]",
+        "w-full mt-[1.6rem] flex flex-wrap flex-col gap-[0.8rem]",
         bottomClassName
       )}
     >
@@ -68,11 +68,16 @@ export default function PlaceInfoBottom({
                     <div className="body2-medium">{tag}</div>
                   </Chip>
                 ))
-              : bestMenu?.map((tag, i) => (
-                  <Chip key={tag + i}>
-                    <div className="body2-medium">{tag}</div>
-                  </Chip>
-                ))}
+              : bestMenu?.slice(0, 2).map(
+                  (
+                    tag,
+                    i // Display only the first two items
+                  ) => (
+                    <Chip key={tag + i}>
+                      <div className="body2-medium">{tag}</div>
+                    </Chip>
+                  )
+                )}
           </div>
         </div>
       )}
