@@ -13,6 +13,7 @@ export default async function PlaceDetailMore({
 }) {
   const reviewData = await GetPlaceReview(id);
   const detailData = await GetPlaceDetail(id);
+  console.log(reviewData);
   return (
     <div className="pb-[14.2rem]">
       <BasicTopBar color="#9E9E9E" className="" />
