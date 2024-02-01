@@ -35,7 +35,6 @@ export default function useSearchKeyword() {
   const [openKoreanOption, setOpenKoreanOption] = useState(false);
   const [koreanOptionIndex, setKoreanOptionIndex] = useState(-1);
 
-  console.log(restaurantKeyword);
   const handleKeywordData = (category: string, keyword: string) => {
     if (tabIndex === 0) {
       if (category === "subType") {

@@ -3,7 +3,6 @@ import { LoginFormState, RegisterFormState } from "@feature/auth/type";
 export function validateForm(
   formData: LoginFormState | RegisterFormState
 ): [Record<string, string>] {
-  console.log(formData);
   const errorMessage: Record<string, string> = {};
   const validateEmail = (email: string): boolean => {
     const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

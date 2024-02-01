@@ -24,7 +24,6 @@ export default function UseForm({
   const [errorMessage] = validateForm(
     type === "login" ? loginFormData : registerFormData
   );
-  console.log(errorMessage);
   const handleEmailChange = (text: string) => {
     if (type === "login") setLoginFormData({ ...loginFormData, email: text });
     else if (type === "register")

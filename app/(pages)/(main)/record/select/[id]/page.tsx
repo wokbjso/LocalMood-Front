@@ -16,7 +16,6 @@ export default function RecordSelect({
   const name = searchParams.get("name") || "";
   const { indicatorIndex, cafeKeywordData, restaurantKeywordData, handlers } =
     UseKeyword(placeType);
-  console.log(restaurantKeywordData);
   return (
     <div>
       {indicatorIndex === 0 && (
