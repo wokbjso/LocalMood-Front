@@ -33,7 +33,7 @@ export default function PlaceReview({
   positiveEval,
   negativeEval,
 }: PlaceReviewProps) {
-  const keyword: any = {
+  const keyword: { [key: string]: string } = {
     purpose,
     interior,
     mood,
