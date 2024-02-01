@@ -12,7 +12,7 @@ import GetCurationDetail from "@feature/curation/queries/getCurationDetail";
 export default async function CurationDetail({
   params: { id },
 }: {
-  params: { id: string };
+  params: { id: number };
 }) {
   const curationDetail = await GetCurationDetail(id);
   const formattedDate = new Date(curationDetail.createdDate).toLocaleDateString(

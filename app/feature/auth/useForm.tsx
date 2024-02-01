@@ -24,7 +24,7 @@ export default function UseForm({
   const [errorMessage] = validateForm(
     type === "login" ? loginFormData : registerFormData
   );
-
+  console.log(errorMessage);
   const handleEmailChange = (text: string) => {
     if (type === "login") setLoginFormData({ ...loginFormData, email: text });
     else if (type === "register")
@@ -50,10 +50,8 @@ export default function UseForm({
     if (!hasAnyError()) {
       type === "login" ? onSubmit(loginFormData) : onSubmit(registerFormData);
     } else {
-      console.log(errorMessage);
       for (const field of FIELD) {
         if (errorMessage[field]) {
-          alert(errorMessage[field]);
           break;
         }
       }

@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from "react";
 import ArrowDownIcon from "@common/assets/icons/arrow/arrow-down.svg";
 import ArrowUpIcon from "@common/assets/icons/arrow/ArrowUp";
@@ -9,6 +8,7 @@ import {
 } from "@feature/curation/constants/curation-make";
 import Button from "@common/components/ui/buttons/Button/Button";
 import PostCurationMake from "@feature/curation/queries/postCurationMake";
+import revalidateMyCuration from "@feature/curation/utils/revalidateMyCuration";
 
 interface CurationMakeKeywordProps {
   curationMakeData: {
@@ -16,11 +16,13 @@ interface CurationMakeKeywordProps {
     open: boolean;
     keyword: { [key: string]: string };
   };
+  handleOpen: (state: boolean) => void;
   onClick?: (category: string, keyword: string) => void;
 }
 
 export default function CurationMakeKeyword({
   curationMakeData,
+  handleOpen,
   onClick,
 }: CurationMakeKeywordProps) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -60,22 +62,18 @@ export default function CurationMakeKeyword({
   };
 
   const handleButtonClick = async () => {
-    if (isSubmitEnabled(curationMakeData)) {
-      const dataCurationMake = getSendingCurationData();
-      console.log(dataCurationMake);
-
-      try {
-        const result = await PostCurationMake(dataCurationMake);
-        console.log("PostCurationMake result:", result);
-      } catch (error) {
-        console.error("Error in PostCurationMake:", error);
-      }
-    } else {
-    }
+    const dataCurationMake = getSendingCurationData();
+    const res = await PostCurationMake(dataCurationMake);
+    if (res.status === 200) {
+      revalidateMyCuration();
+      handleOpen(false);
+      location.replace("/curation");
+    } else alert("오류가 발생했습니다!");
+    return;
   };
 
   return (
-    <div className="pb-[17.1rem]">
+    <div className="pb-[21.1rem]">
       <div className="w-full pb-[1.2rem] border-b border-text-gray-3">
         <div className="flex items-center justify-between flex-start">
           <div className="flex gap-[0.6rem]">
@@ -127,16 +125,11 @@ export default function CurationMakeKeyword({
           ))}
         </div>
       )}
-
-      <div className="absolute bottom-[2.3rem] left-8 right-8">
+      <div className="absolute w-full px-[2rem] bottom-0 left-0 bg-white h-[7.4rem]">
         <Button
-          variant={"fill"}
           onClick={handleButtonClick}
-          className={`w-full ${
-            !isSubmitEnabled(curationMakeData)
-              ? "bg-text-gray-4 text-background-gray-1"
-              : ""
-          }`}
+          disabled={!isSubmitEnabled(curationMakeData)}
+          className="w-full"
         >
           완료
         </Button>

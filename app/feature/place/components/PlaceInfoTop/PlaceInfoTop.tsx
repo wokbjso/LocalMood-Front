@@ -9,6 +9,10 @@ import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import Link from "next/link";
 import { PlaceInfoProps } from "@feature/place/type";
 import { getSession } from "@common/utils/getSession";
+import PostSpaceScrap from "@feature/place/queries/postSpaceScrap";
+import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
+import DeleteSpaceScrap from "@feature/place/queries/deleteScrapSpace";
+import { useRouter } from "next/navigation";
 
 export default function PlaceInfoTop({
   id,
@@ -24,6 +28,7 @@ export default function PlaceInfoTop({
   className,
   imgClassName,
 }: PlaceInfoProps) {
+  const router = useRouter();
   //scrap 유무를 default useState 값으로 설정
   const [scrapState, setScrapState] = useState<boolean>(isScraped);
   const handleScrap = async (
@@ -34,21 +39,25 @@ export default function PlaceInfoTop({
     if (!userInfo) {
       location.replace("/login");
     } else {
-      setScrapState((prev) => !prev);
       if (scrapState) {
-        const res = await fetch(`/api/place/scrapped/delete/${String(id)}`, {
-          method: "DELETE",
-        });
+        const res = await DeleteSpaceScrap(id);
+        if (res.status === 200) {
+          revalidateScrapSpace();
+        } else {
+          alert("에러가 발생했습니다!");
+          return;
+        }
       } else {
-        const uid = 1;
-        const res = await fetch(`/api/place/scrapped/add/${uid}`, {
-          method: "POST",
-        });
-        console.log(res);
+        const res = await PostSpaceScrap(id);
+        if (res.status === 200) {
+          revalidateScrapSpace();
+          router.push("/record");
+        } else {
+          alert("에러가 발생했습니다!");
+          return;
+        }
       }
     }
-
-    //장소 id 활용하여 api 문서에 맞게 해당 장소 scrap 상태 변경 api 호출(client side - tanstack query)
   };
   return (
     <Link
@@ -84,7 +93,7 @@ export default function PlaceInfoTop({
         >
           <div
             className={twMerge(
-              direction === "vertical" && "w-[90%] pt-[1.2rem]",
+              direction === "vertical" && "w-[85%] pt-[1.6rem]",
               size === "normal" ? "headline2" : "headline3"
             )}
           >
@@ -92,7 +101,7 @@ export default function PlaceInfoTop({
             <div className="flex items-center mt-[0.8rem]">
               <span
                 className={twMerge(
-                  "text-text-gray-6",
+                  "text-text-gray-6 whitespace-nowrap",
                   size === "normal" ? "body2-semibold" : "body3-semibold"
                 )}
               >

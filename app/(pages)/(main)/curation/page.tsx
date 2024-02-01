@@ -15,10 +15,10 @@ import { WithAuth } from "@feature/auth/components/WithAuth/WithAuth";
 
 function CurationPage() {
   const { tabIndex, isCurationMakeOpen, handlers } = UseCuration();
-  const [myCuration, setMyCuration] = useState({
-    curationCount: 0,
-    curation: [],
-  });
+  const [myCuration, setMyCuration] = useState<{
+    curationCount: 0;
+    curation: [];
+  }>();
 
   const [scrappedCuration, setScrappedCuration] = useState<any[]>([]);
 
@@ -37,17 +37,10 @@ function CurationPage() {
       if (!userInfo?.accessToken) {
         location.replace("/login");
       } else {
-        try {
-          // Fetch my curation data
-          const myCurationData = await getMyCuration();
-          setMyCuration(myCurationData || { curationCount: 0, curation: [] });
-
-          // Fetch scrapped curation data
-          const scrappedCurationData = await getScrappedCuration();
-          setScrappedCuration(scrappedCurationData || []);
-        } catch (error) {
-          console.error("Error fetching data:", error);
-        }
+        const myCurationData = await getMyCuration();
+        setMyCuration(myCurationData);
+        const scrappedCurationData = await getScrappedCuration();
+        setScrappedCuration(scrappedCurationData);
       }
     };
 
@@ -66,7 +59,7 @@ function CurationPage() {
         {tabIndex === 0 && (
           <div className="flex items-center justify-between pb-[0.6rem] pt-[2rem]">
             <div className="flex body1 text-text-gray-8 items-center">
-              총 <p className="text-black">&nbsp;{myCuration.curationCount}</p>{" "}
+              총 <p className="text-black">&nbsp;{myCuration?.curationCount}</p>{" "}
               개
             </div>
             <div onClick={() => handlers.handleCurationMakeOpen(true)}>
@@ -75,9 +68,9 @@ function CurationPage() {
           </div>
         )}
         {tabIndex === 0 &&
-          myCuration.curation.map((props: CurationProps) => (
+          myCuration?.curation.map((props: CurationProps) => (
             <div key={props.author + props.id} className="mb-[1.2rem]">
-              <CurationMain {...props} />
+              <CurationMain variant="my" {...props} />
             </div>
           ))}
         <div className="pt-[2rem] pb-[6rem]">

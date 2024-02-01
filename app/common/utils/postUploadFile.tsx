@@ -11,7 +11,7 @@ export default async function PostUploadFile(files: any): Promise<any> {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(files),
+      body: JSON.stringify({ file: files }),
     }
   );
 

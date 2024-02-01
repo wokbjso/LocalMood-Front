@@ -11,6 +11,7 @@ import Chip from "@common/components/ui/buttons/Chip/Chip";
 import LocationLine from "@common/assets/icons/location/LocationLine";
 import CurationMenuModal from "../CurationModal/CurationMenuModal";
 import UseCurationMain from "./useCurationMain";
+import { getSession } from "@common/utils/getSession";
 
 export default function CurationMain({
   id,
@@ -25,10 +26,16 @@ export default function CurationMain({
 }: CurationProps) {
   const { scrapState, isMenuOpened, handlers } = UseCurationMain(isScraped);
 
-  const handleScrapClick = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
-    //scrap 상태와 id 를 가지고 scrap 상태 변하는 api 생성
+  const handleScrapClick = async (
+    e: React.MouseEvent<SVGSVGElement, MouseEvent>
+  ) => {
     e.preventDefault();
-    handlers.changeScrapState(id);
+    const userInfo = await getSession();
+    if (!userInfo) {
+      location.replace("/login");
+    } else {
+      handlers.changeScrapState(id);
+    }
   };
 
   const handleMenuClick = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {

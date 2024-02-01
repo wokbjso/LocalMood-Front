@@ -7,6 +7,10 @@ import { CurationProps } from "@feature/curation/type";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
+import { getSession } from "@common/utils/getSession";
+import DeleteCurationScrap from "@feature/curation/queries/deleteCurationScrap";
+import revalidateCurationScrap from "@feature/curation/utils/revalidateCurationScrap";
+import PostCurationScrap from "@feature/curation/queries/postCurationScrap";
 
 export default function CurationScrapped({
   id,
@@ -18,9 +22,32 @@ export default function CurationScrapped({
   className,
 }: Omit<CurationProps, "places">) {
   const [scrapState, setScrapState] = useState(isScraped);
-  const handleScrap = () => {
-    setScrapState((prev) => !prev);
-    //id 이용해서 scrap 해제 모달 창 띄우기 && delete api 호출
+  const handleScrap = async (
+    e: React.MouseEvent<SVGSVGElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    const userInfo = await getSession();
+    if (!userInfo) {
+      location.replace("/login");
+    } else {
+      if (scrapState) {
+        const res = await DeleteCurationScrap(id);
+        if (res.status === 200) {
+          revalidateCurationScrap();
+        } else {
+          alert("에러가 발생했습니다!");
+          return;
+        }
+      } else {
+        const res = await PostCurationScrap(id);
+        if (res.status === 200) {
+          revalidateCurationScrap();
+        } else {
+          alert("에러가 발생했습니다!");
+          return;
+        }
+      }
+    }
   };
 
   return (

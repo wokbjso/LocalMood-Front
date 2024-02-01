@@ -62,15 +62,11 @@ const CurationDetailInfoCard = forwardRef(
               </div>
               <ScrapFill />
             </div>
-            <PlaceInfoBottom
-              type={type}
-              purpose={purposeArray}
-              interior={interiorArray}
-              mood={moodArray}
-              bestMenu={bestMenuArray}
-              keywordCategoryNum={3}
-              bottomClassName="border-[0.1rem] border-line-gray-3 p-[1.6rem] rounded-lg"
-            />
+            {/* <PlaceInfoBottom
+              tags={purpose}
+              tagsCategoryNum={3}
+              bottomClassName="border-[0.1rem] border-line-gray-3 p-[1.6rem]"
+            /> */}
           </div>
         </div>
       </div>

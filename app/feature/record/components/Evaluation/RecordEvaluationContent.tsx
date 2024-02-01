@@ -43,7 +43,7 @@ export default function RecordEvaluationContent({
 
   return (
     <div className="flex flex-col items-start pt-[14.8rem] pb-[18rem] px-[2rem] overflow-y-scroll">
-      {placeType === "카페" &&
+      {placeType === "CAFE" &&
         Object.keys(PLACE_EVALUATIONS).map((category, i) => (
           <section
             key={category}

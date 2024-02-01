@@ -18,7 +18,7 @@ export const RESTAURANT_TAG_CATEGORY: {
 
 export const PLACE_PURPOSE = [
   "연인과의 데이트",
-  "친구/가족과의 만남",
+  "친구와의 만남",
   "작업/공부/책",
   "비즈니스",
 ];

@@ -15,6 +15,8 @@ export default function Login() {
     const status = await loginAction(e);
     if (status.status === 200) {
       location.replace("/");
+    } else {
+      alert("로그인 정보가 올바르지 않습니다.");
     }
   };
   const { loginFormData, errorMessage, showError, handlers } = UseForm({

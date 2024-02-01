@@ -1,25 +1,16 @@
 import { getSession } from "@common/utils/getSession";
 
-interface CurationDataProps {
-  title: string;
-  keyword: string;
-  privacy: boolean;
-}
-
-export default async function PostCurationMake(
-  dataCurationMake: CurationDataProps
-) {
+export default async function PostCurationScrap(curationId: number) {
   const userInfo = await getSession();
   const token = userInfo?.accessToken;
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/curation`,
+    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/scraps/curations/${curationId}`,
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(dataCurationMake),
     }
   );
 

@@ -29,19 +29,18 @@ export default function PlaceInfoBottom({
   console.log(interior);
   return (
     <div
-      className={twMerge("w-full mt-[1.6rem] flex flex-wrap", bottomClassName)}
+      className={twMerge(
+        "w-full mt-[1.6rem] flex flex-wrap gap-[0.8rem]",
+        bottomClassName
+      )}
     >
-      {keywordCategoryNum &&
-        keywordCategoryNum === 0 &&
+      {keywordCategoryNum === 1 &&
         keyword?.map((tag, i) => (
-          <Chip
-            key={tag + i}
-            className={i !== keyword?.length - 1 ? "mr-[0.8rem]" : ""}
-          >
+          <Chip key={tag + i}>
             <span className="body2-medium text-black">{tag}</span>
           </Chip>
         ))}
-      {keywordCategoryNum && keywordCategoryNum >= 1 && (
+      {keywordCategoryNum && keywordCategoryNum >= 2 && (
         <div className="flex items-center mb-[0.9rem]">
           <div className="mr-[2rem]">
             <span className="body2-medium text-text-gray-6">방문목적</span>
@@ -55,7 +54,7 @@ export default function PlaceInfoBottom({
           </div>
         </div>
       )}
-      {keywordCategoryNum && keywordCategoryNum >= 2 && (
+      {keywordCategoryNum && keywordCategoryNum >= 3 && (
         <div
           className={twMerge(
             "flex items-center",
