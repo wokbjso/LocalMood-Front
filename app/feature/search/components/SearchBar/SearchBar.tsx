@@ -19,6 +19,7 @@ export default function SearchBar({
 }: SearchBarProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const inputRef = useRef<HTMLInputElement>(null);
   const [searchText, setSearchText] = useState<string>(
     (searchParams.get("search_query") as string) || ""
   );
@@ -35,6 +36,14 @@ export default function SearchBar({
   const handleTextDelete = () => {
     setSearchText("");
   };
+
+  useEffect(() => {
+    // 화면에 표시되면서 input 요소에 focus
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   useEffect(() => {
     if (searchText.length < 2) {
       router.push(
@@ -62,6 +71,7 @@ export default function SearchBar({
           <Search />
         </div>
         <input
+          ref={inputRef}
           className={twMerge(
             "body2-medium text-text-gray-5 w-full ml-[0.8rem] pl-[0.3rem] outline-none bg-transparent"
           )}

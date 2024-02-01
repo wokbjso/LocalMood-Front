@@ -19,7 +19,6 @@ export default function PlaceDetailKeywordSummary({
   interior,
   music,
 }: PlaceDetailKeywordSummaryProps) {
-  console.log(interior);
   return (
     <>
       <div className="px-[2rem]">
