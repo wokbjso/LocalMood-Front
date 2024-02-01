@@ -150,7 +150,7 @@ export default function SearchKeyword() {
                 </section>
               ))}
 
-            <div className="absolute bottom-[2.3rem] left-8 right-8">
+            <div className="absolute left-8 right-8 bottom-0 h-[7.5rem] bg-white">
               <Link
                 href={{
                   pathname: "/search/results",

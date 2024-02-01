@@ -4,6 +4,7 @@ import PlaceInfoBottom from "../PlaceInfoBottom/PlaceInfoBottom";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
 import GraphUpDownVote from "@common/components/ui/graph/GraphUpDownVote/GraphUpDownVote";
 import { CAFE_TAG_CATEGORY } from "@feature/place/constants/place-tag-category";
+import { twMerge } from "tailwind-merge";
 
 interface PlaceReviewProps {
   image: string;
@@ -23,9 +24,6 @@ interface PlaceReviewProps {
 
 export default function PlaceReview({
   image,
-  name,
-  type,
-  address,
   author,
   createdAt,
   purpose,
@@ -34,8 +32,13 @@ export default function PlaceReview({
   music,
   positiveEval,
   negativeEval,
-  scrapped,
 }: PlaceReviewProps) {
+  const keyword: { [key: string]: string } = {
+    purpose,
+    interior,
+    mood,
+    music,
+  };
   return (
     <div className="mb-[5.2rem]">
       <div className="flex items-start">
@@ -57,20 +60,24 @@ export default function PlaceReview({
           </div>
           <div>
             {Object.keys(CAFE_TAG_CATEGORY).map((category, i) => (
-              <div key={category} className="flex items-center mb-[0.6rem]">
+              <div
+                key={category}
+                className={twMerge(
+                  "flex items-center",
+                  keyword[category] && "mb-[0.6rem]"
+                )}
+              >
                 <span className="mr-[2rem] text-text-gray-7 body2-medium">
-                  {CAFE_TAG_CATEGORY[category]}
+                  {keyword[category] && CAFE_TAG_CATEGORY[category]}
                 </span>
-                {i === 0 && <Chip>{purpose}</Chip>}
-                {i === 1 &&
-                  interior &&
-                  interior.split(",").map((li) => <Chip key={li}>{li}</Chip>)}
-                {i === 2 &&
-                  mood &&
-                  mood?.split(",").map((li) => <Chip key={li}>{li}</Chip>)}
-                {i === 3 &&
-                  music &&
-                  music?.split(",").map((li) => <Chip key={li}>{li}</Chip>)}
+                {category === "purpose" ? (
+                  <Chip>{purpose}</Chip>
+                ) : (
+                  keyword[category] &&
+                  keyword[category]
+                    .split(",")
+                    .map((k: string, i: number) => <Chip key={k + i}>{k}</Chip>)
+                )}
               </div>
             ))}
           </div>
@@ -80,7 +87,7 @@ export default function PlaceReview({
                 key={photo + i}
                 className="w-[15rem] h-[15rem] mr-[0.5rem] relative"
               >
-                <Image alt="리뷰 사진" src={photo} fill sizes="10vw" />
+                <Image alt="리뷰 사진" src={photo} fill sizes="" />
               </div>
             ))}
           </div>
