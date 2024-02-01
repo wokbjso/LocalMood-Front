@@ -1,6 +1,7 @@
 import AddFillIcon from "@common/assets/icons/add/AddFillIcon";
 import Button from "@common/components/ui/buttons/Button/Button";
 import PostUploadFile from "@common/utils/postUploadFile";
+import PostModifyImage from "@feature/record/queries/postModifyImage";
 import PostUploadRecord from "@feature/record/queries/postUploadRecord";
 import Image from "next/image";
 import { ChangeEvent, useRef, useState } from "react";
@@ -50,29 +51,18 @@ export default function PhotoUpload({
     }
   };
 
-  const modifyData = (data: any) => {
-    return {
-      request: {
-        ...data,
-        positiveEval:
-          data.positiveEval.length > 0 ? data.positiveEval.join(",") : "",
-        negativeEval:
-          data.negativeEval.length > 0 ? data.negativeEval.join(",") : "",
-      },
-      image: data.files,
-    };
-  };
-
   const handleRecordUploadClick = async () => {
-    const res = await PostUploadRecord(
-      spaceId,
-      placeType === "CAFE" ? cafeKeywordData : restaurantKeywordData
-    );
-    if (res.status === 200) {
-      handleIndicatorIndex(3);
-    } else {
-      alert("오류가 발생했습니다!");
-    }
+    const res = await PostModifyImage(image);
+    console.log(res);
+    // const res = await PostUploadRecord(
+    //   spaceId,
+    //   placeType === "CAFE" ? cafeKeywordData : restaurantKeywordData
+    // );
+    // if (res.status === 200) {
+    //   handleIndicatorIndex(3);
+    // } else {
+    //   alert("오류가 발생했습니다!");
+    // }
   };
   return (
     <>
