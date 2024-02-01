@@ -22,7 +22,6 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default: Story = {
   args: {
-    icon: <Heart />,
     evaluation: "시그니처 음료가 맛있어요",
     percentage: "67%",
   },
