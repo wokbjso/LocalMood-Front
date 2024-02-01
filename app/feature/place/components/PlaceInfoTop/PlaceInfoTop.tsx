@@ -43,6 +43,7 @@ export default function PlaceInfoTop({
         const res = await DeleteSpaceScrap(id);
         if (res.status === 200) {
           revalidateScrapSpace();
+          location.reload();
         } else {
           alert("에러가 발생했습니다!");
           return;

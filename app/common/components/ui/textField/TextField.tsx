@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface TextFieldProps {
   onChange?: (text: string) => void;
@@ -15,7 +16,12 @@ export default function TextField({ onChange }: TextFieldProps) {
   };
   return (
     <div className="pt-[4.2rem]">
-      <div className="w-full pb-[1.2rem] flex justify-between items-center border-b border-text-gray-6">
+      <div
+        className={twMerge(
+          "w-full pb-[1.2rem] flex justify-between items-center border-b border-text-gray-6",
+          inputValue.length > 0 && "border-primary-normal"
+        )}
+      >
         <input
           className="w-[33.5rem] h-[2rem] headline1-semibold placeholder:headline1-semibold placeholder:text-text-gray-4 outline-none"
           placeholder="새 큐레이션"
