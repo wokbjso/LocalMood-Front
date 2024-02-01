@@ -16,7 +16,7 @@ export default async function Home() {
   const randomPlace = await GetRandomPlaces();
   const randomCuration = await GetRandomCuration();
   return (
-    <>
+    <div className="h-[100vh] overflow-auto">
       <HomeHeader />
       <HomeBanner />
       {/* randomPlace 데이터 채워지면 교체 */}
@@ -48,6 +48,6 @@ export default async function Home() {
         />
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
