@@ -12,7 +12,7 @@ interface CurationHomePopularProps {
   curationList: {
     id: number;
     author: string;
-    imgUrl: string[];
+    image: string[];
     title: string;
     spaceCount: number;
     keyword: string[];
@@ -26,6 +26,7 @@ export default function CurationHomePopular({
   curationList,
 }: CurationHomePopularProps) {
   const { indicatorIndex, handlers } = UseCurationHomePopular();
+
   // 가로 슬라이드시 indicator 늘어나는 로직 구현 필요
   return (
     <section className="mb-[5.6rem] pt-[2.8rem] pb-[2rem] px-[2rem] bg-background-gray-2">

@@ -12,11 +12,12 @@ import LocationLine from "@common/assets/icons/location/LocationLine";
 import CurationMenuModal from "../CurationModal/CurationMenuModal";
 import UseCurationMain from "./useCurationMain";
 import { getSession } from "@common/utils/getSession";
+import NoResult from "@common/assets/images/curationHomeNoImg.png";
 
 export default function CurationMain({
   id,
   variant = "others",
-  imgUrl,
+  image,
   author,
   title,
   keyword,
@@ -56,9 +57,9 @@ export default function CurationMain({
               <div
                 className="w-full h-[16.5rem] bg-cover relative rounded-t-[8px]"
                 style={{
-                  backgroundImage: `url(
-            ${imgUrl && imgUrl[0]}
-          )`,
+                  backgroundImage: `url(${
+                    (image && image[0]) || NoResult.src
+                  })`, // Use NoResult image when image is not provided
                 }}
               >
                 {variant === "others" && (
