@@ -16,7 +16,6 @@ export default function Indicator({
   const indicatorChange = (index: number) => {
     handleIndicatorIndex && handleIndicatorIndex(index);
   };
-  console.log(indicatorIndex);
   return (
     <div className={twMerge("flex", className)}>
       {Array(4)

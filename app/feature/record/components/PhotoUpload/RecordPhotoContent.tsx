@@ -24,7 +24,6 @@ export default function PhotoUpload({
 }: PhotoUploadProps) {
   const fileInput = useRef<HTMLInputElement>(null);
   const [image, setImage] = useState<any>([]);
-  console.log(restaurantKeywordData);
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       handleImage(e.target.files[0]);

@@ -24,8 +24,6 @@ export default async function CurationDetail({
     }
   );
 
-  console.log(curationDetail);
-
   return (
     <div className="relative w-full pb-[18rem]">
       <div>

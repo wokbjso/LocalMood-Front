@@ -26,7 +26,6 @@ export default function PlaceInfoBottom({
   | "keywordCategoryNum"
   | "bottomClassName"
 >) {
-  console.log(interior);
   return (
     <div
       className={twMerge(

@@ -24,10 +24,8 @@ export default function SearchResult() {
   const searchParams = useSearchParams();
   const [textSearchPlaceData, setTextSearchPlaceData] =
     useState<SearchPlaceResponse>();
-  console.log(textSearchPlaceData);
   const [keywordSearchPlaceData, setKeywordSearchPlaceData] =
     useState<SearchPlaceResponse>();
-  console.log(keywordSearchPlaceData);
   const [textSearchCurationData, setTextSearchCurationData] =
     useState<SearchCurationResponse>();
   const [keywordSearchCurationData, setKeywordSearchCurationData] =
@@ -35,54 +33,38 @@ export default function SearchResult() {
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
     useSearchBar();
   const getTextSearchPlaceData = async () => {
-    try {
-      const data = await PostTextPlaceSearch(
-        searchParams.get("search_query") as string
-      );
-      setTextSearchPlaceData(data);
-    } catch (error) {
-      console.log(error);
-    }
+    const data = await PostTextPlaceSearch(
+      searchParams.get("search_query") as string
+    );
+    setTextSearchPlaceData(data);
   };
   const getTextSearchCurationData = async () => {
-    try {
-      const data = await GetTextCurationSearch(
-        searchParams.get("search_query") as string
-      );
-      setTextSearchCurationData(data);
-    } catch (error) {
-      console.log(error);
-    }
+    const data = await GetTextCurationSearch(
+      searchParams.get("search_query") as string
+    );
+    setTextSearchCurationData(data);
   };
   const getKeywordSearchPlaceData = async () => {
-    try {
-      const data = await PostKeywordPlaceSearch(
-        JSON.parse(searchParams.get("keyword") as string)
-      );
-      setKeywordSearchPlaceData(data);
-    } catch (error) {
-      console.log(error);
-    }
+    const data = await PostKeywordPlaceSearch(
+      JSON.parse(searchParams.get("keyword") as string)
+    );
+    setKeywordSearchPlaceData(data);
   };
   const getKeywordSearchCurationData = async () => {
-    try {
-      let keyword = [];
-      let count = 0;
+    let keyword = [];
+    let count = 0;
 
-      for (const [, value] of Object.entries(
-        JSON.parse(searchParams.get("keyword") as string)
-      )) {
-        if (value !== "ALL") {
-          keyword.push(value as string);
-          count++;
-        }
-        if (count === 2) break;
+    for (const [, value] of Object.entries(
+      JSON.parse(searchParams.get("keyword") as string)
+    )) {
+      if (value !== "ALL") {
+        keyword.push(value as string);
+        count++;
       }
-      const data = await PostKeywordCurationSearch(keyword);
-      setKeywordSearchCurationData(data);
-    } catch (error) {
-      console.log(error);
+      if (count === 2) break;
     }
+    const data = await PostKeywordCurationSearch(keyword);
+    setKeywordSearchCurationData(data);
   };
   useEffect(() => {
     if (searchParams.get("search_query")) {

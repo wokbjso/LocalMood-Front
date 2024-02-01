@@ -70,19 +70,13 @@ export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
   const handleMakeCurationClick = () => {
     setOpenMakeCuration(true);
   };
-  console.log(curationMy);
   const getCurationList = async () => {
-    try {
-      const myCuration = await GetMyCuration();
-      setCurationMy(myCuration);
-    } catch (error) {
-      console.log(error);
-    }
+    const myCuration = await GetMyCuration();
+    setCurationMy(myCuration);
   };
   useEffect(() => {
     getCurationList();
   }, []);
-  console.log(curationMy);
   return (
     <>
       <Modal className="px-[2rem]">
