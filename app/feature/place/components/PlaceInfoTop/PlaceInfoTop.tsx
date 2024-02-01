@@ -82,23 +82,9 @@ export default function PlaceInfoTop({
         <div
           className={twMerge("flex-col", size === "normal" ? "relative" : null)}
         >
-          {direction === "vertical" && !scrapState && (
-            <ScrapLine
-              color={size === "small" ? "white" : undefined}
-              className="absolute cursor-pointer right-[0.8rem] top-[1.6rem]"
-              onClick={handleScrap}
-            />
-          )}
-          {direction === "vertical" && scrapState && (
-            <ScrapFill
-              color={size === "small" ? "white" : undefined}
-              className="absolute cursor-pointer right-[0.8rem] top-[1.6rem]"
-              onClick={handleScrap}
-            />
-          )}
           <div
             className={twMerge(
-              direction === "vertical" && "w-[90%] pt-[1.6rem]",
+              direction === "vertical" && "w-[90%] pt-[1.2rem]",
               size === "normal" ? "headline2" : "headline3"
             )}
           >
