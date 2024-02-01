@@ -15,7 +15,7 @@ export default async function PlaceDetail({
   params: { id: number };
 }) {
   const detailData = await GetPlaceDetail(id);
-  console.log(detailData);
+
   return (
     <div className="pb-[12rem]">
       <div className="w-full h-[30rem] mb-[1.5rem] relative">
@@ -32,6 +32,10 @@ export default async function PlaceDetail({
         type={detailData.info.type}
         address={detailData.info.address}
         isScraped={detailData.info.isScraped}
+        visitorNum={detailData.info.visitorNum}
+        optionalService={detailData.info.optionalService}
+        dish={detailData.info.dish}
+        dishDesc={detailData.info.dishDesc}
       />
       <Divider className="h-[0.4rem] mt-[2rem] mb-[3.6rem] bg-line-gray-3" />
       <PlaceDetailKeywordSummary

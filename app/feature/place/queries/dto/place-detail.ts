@@ -21,6 +21,8 @@ export interface PlaceDetailResponse {
   similarSpaceList: SimilarPlaceProps[];
   relatedCurationList: RelatedCurationProps[];
   info: {
+    optionalService: string | undefined;
+    visitorNum: string | undefined;
     id: number;
     name: string;
     imgUrlList: string[];
