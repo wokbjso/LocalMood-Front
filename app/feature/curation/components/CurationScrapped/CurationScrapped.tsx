@@ -34,6 +34,7 @@ export default function CurationScrapped({
         const res = await DeleteCurationScrap(id);
         if (res.status === 200) {
           revalidateCurationScrap();
+          location.reload();
         } else {
           alert("에러가 발생했습니다!");
           return;

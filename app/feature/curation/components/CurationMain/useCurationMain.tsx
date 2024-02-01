@@ -1,18 +1,20 @@
 import DeleteCurationScrap from "@feature/curation/queries/deleteCurationScrap";
 import PostCurationScrap from "@feature/curation/queries/postCurationScrap";
 import revalidateCurationScrap from "@feature/curation/utils/revalidateCurationScrap";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function UseCurationMain(isScraped: boolean) {
   const [scrapState, setScrapState] = useState<boolean>(isScraped);
   const [isMenuOpened, setIsMenuOpened] = useState(false);
-
+  const router = useRouter();
   const handleScrapState = async (id: number) => {
     setScrapState((prev) => !prev);
     if (scrapState) {
       const res = await DeleteCurationScrap(id);
       if (res.status === 200) {
         revalidateCurationScrap();
+        location.reload();
       } else {
         alert("에러가 발생했습니다!");
         return;
@@ -20,7 +22,9 @@ export default function UseCurationMain(isScraped: boolean) {
     } else {
       const res = await PostCurationScrap(id);
       if (res.status === 200) {
+        alert("큐레이션이 스크랩되었습니다.");
         revalidateCurationScrap();
+        router.push("/curation");
       } else {
         alert("에러가 발생했습니다!");
         return;

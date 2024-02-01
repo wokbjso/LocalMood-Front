@@ -12,7 +12,8 @@ import { getSession } from "@common/utils/getSession";
 import PostSpaceScrap from "@feature/place/queries/postSpaceScrap";
 import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
 import DeleteSpaceScrap from "@feature/place/queries/deleteScrapSpace";
-import { useRouter } from "next/navigation";
+import SaveModal from "@feature/record/components/Modal/SaveModal";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export default function PlaceInfoTop({
   id,
@@ -28,8 +29,7 @@ export default function PlaceInfoTop({
   className,
   imgClassName,
 }: PlaceInfoProps) {
-  const router = useRouter();
-  //scrap 유무를 default useState 값으로 설정
+  const [openSaveModal, setOpenSaveModal] = useState(false);
   const [scrapState, setScrapState] = useState<boolean>(isScraped);
   const handleScrap = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
@@ -51,8 +51,8 @@ export default function PlaceInfoTop({
       } else {
         const res = await PostSpaceScrap(id);
         if (res.status === 200) {
-          revalidateScrapSpace();
-          router.push("/record");
+          setScrapState(true);
+          setOpenSaveModal(true);
         } else {
           alert("에러가 발생했습니다!");
           return;
@@ -61,80 +61,89 @@ export default function PlaceInfoTop({
     }
   };
   return (
-    <Link
-      href={{
-        pathname: variant === "main" ? `/place/${id}` : `/record/select/${id}`,
-        query: variant === "record" ? { type, name } : null,
-      }}
-    >
-      <div
-        className={twMerge(
-          "w-full relative",
-          direction === "horizontal" && "flex items-center",
-          className
-        )}
-        onClick={onClick}
+    <>
+      <Link
+        href={{
+          pathname:
+            variant === "main" ? `/place/${id}` : `/record/select/${id}`,
+          query: variant === "record" ? { type, name } : null,
+        }}
       >
         <div
           className={twMerge(
-            "w-full h-[16rem] relative",
-            direction === "horizontal" && "w-[8rem] h-[8rem] mr-[1.6rem]"
+            "w-full relative",
+            direction === "horizontal" && "flex items-center",
+            className
           )}
-        >
-          <Image
-            src={imgUrl} // 이미지 들어가면 해당 이미지로 교체
-            alt="공간 사진"
-            fill
-            sizes="100vw"
-            className={twMerge("rounded-[8px]", imgClassName)}
-          />
-        </div>
-        <div
-          className={twMerge("flex-col", size === "normal" ? "relative" : null)}
+          onClick={onClick}
         >
           <div
             className={twMerge(
-              direction === "vertical" && "w-[85%] pt-[1.6rem]",
-              size === "normal" ? "headline2" : "headline3"
+              "w-full h-[16rem] relative bg-contain",
+              direction === "horizontal" && "w-[8rem] h-[8rem] mr-[1.6rem]"
             )}
           >
-            {!(variant === "record" && direction === "horizontal") ? (
-              scrapState ? (
-                <ScrapFill
-                  className="absolute right-[0.6rem]"
-                  onClick={handleScrap}
-                />
-              ) : (
-                <ScrapLine
-                  className="absolute right-[0.6rem]"
-                  onClick={handleScrap}
-                />
-              )
-            ) : null}
+            <Image
+              src={imgUrl} // 이미지 들어가면 해당 이미지로 교체
+              alt="공간 사진"
+              fill
+              sizes="100vw"
+              className={twMerge("rounded-[8px]", imgClassName)}
+            />
+          </div>
+          <div
+            className={twMerge(
+              "flex-col",
+              size === "normal" ? "relative" : null
+            )}
+          >
+            <div
+              className={twMerge(
+                direction === "vertical" && "w-[85%] pt-[1.6rem]",
+                size === "normal" ? "headline2" : "headline3"
+              )}
+            >
+              {!(variant === "record" && direction === "horizontal") ? (
+                scrapState ? (
+                  <ScrapFill
+                    className="absolute right-[0.6rem]"
+                    onClick={handleScrap}
+                  />
+                ) : (
+                  <ScrapLine
+                    className="absolute right-[0.6rem]"
+                    onClick={handleScrap}
+                  />
+                )
+              ) : null}
 
-            <span>{name}</span>
-            <div className="flex items-center mt-[0.8rem]">
-              <span
-                className={twMerge(
-                  "text-text-gray-6 whitespace-nowrap",
-                  size === "normal" ? "body2-semibold" : "body3-semibold"
-                )}
-              >
-                {type === "RESTAURANT" ? "음식점" : "카페"}
-              </span>
-              <Line className="mx-[0.8rem]" />
-              <span
-                className={twMerge(
-                  "text-text-gray-5",
-                  size === "normal" ? "body2-medium" : "body3-medium"
-                )}
-              >
-                {address.split(" ").slice(0, 3).join(" ")}
-              </span>
+              <span>{name}</span>
+              <div className="flex items-center mt-[0.8rem]">
+                <span
+                  className={twMerge(
+                    "text-text-gray-6 whitespace-nowrap",
+                    size === "normal" ? "body2-semibold" : "body3-semibold"
+                  )}
+                >
+                  {type === "RESTAURANT" ? "음식점" : "카페"}
+                </span>
+                <Line className="mx-[0.8rem]" />
+                <span
+                  className={twMerge(
+                    "text-text-gray-5",
+                    size === "normal" ? "body2-medium" : "body3-medium"
+                  )}
+                >
+                  {address.split(" ").slice(0, 3).join(" ")}
+                </span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+      {openSaveModal && (
+        <SaveModal spaceId={id} handleModalFn={setOpenSaveModal} />
+      )}
+    </>
   );
 }

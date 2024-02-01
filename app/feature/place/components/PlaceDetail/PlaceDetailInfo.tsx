@@ -11,6 +11,7 @@ import DeleteSpaceScrap from "@feature/place/queries/deleteScrapSpace";
 import { getSession } from "@common/utils/getSession";
 import PostSpaceScrap from "@feature/place/queries/postSpaceScrap";
 import PlaceDetailTopBar from "./PlaceDetailTopBar";
+import SaveModal from "@feature/record/components/Modal/SaveModal";
 
 export default function PlaceDetailInfo({
   id,
@@ -34,12 +35,12 @@ export default function PlaceDetailInfo({
   | "dishDesc"
   | "optionalService"
 >) {
+  const [openSaveModal, setOpenSaveModal] = useState(false);
   const [scrapState, setScrapState] = useState<boolean>(isScraped);
   const [openMore, setOpenMore] = useState(false);
   const moreButtonClicked = () => {
     setOpenMore((prev) => !prev);
   };
-  const formattedDish = dish?.split(",").join("・");
   const formattedDishDesc = dishDesc?.split(",").join("・");
 
   const handleScrapClick = async (
@@ -59,9 +60,10 @@ export default function PlaceDetailInfo({
           return;
         }
       } else {
-        const res = await PostSpaceScrap(id as number);
+        const res = await PostSpaceScrap(id);
         if (res.status === 200) {
-          setScrapState((prev) => !prev);
+          setScrapState(true);
+          setOpenSaveModal(true);
         } else {
           alert("에러가 발생했습니다!");
           return;
@@ -75,6 +77,7 @@ export default function PlaceDetailInfo({
         id={id}
         isScraped={scrapState}
         handleScrapState={setScrapState}
+        handleOpenSaveModal={setOpenSaveModal}
         className="absolute top-[4.7rem]"
       />
       <div className="flex-col px-[2rem] relative">
@@ -119,6 +122,9 @@ export default function PlaceDetailInfo({
           </div>
         </div>
       </div>
+      {openSaveModal && (
+        <SaveModal spaceId={id} handleModalFn={setOpenSaveModal} />
+      )}
     </>
   );
 }

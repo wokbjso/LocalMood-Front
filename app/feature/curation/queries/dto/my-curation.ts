@@ -3,6 +3,7 @@ export interface MyCurationResponse {
   curation: {
     image: string[];
     author: string;
+    privacy: boolean;
     id: number;
     isScrapped: boolean;
     keyword: string[];
