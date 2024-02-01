@@ -1,27 +1,11 @@
 "use client";
 
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
-import { getSession } from "@common/utils/getSession";
-import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
-import { PlaceScrappedResponse } from "@feature/place/queries/dto/place-scrapped";
-import GetPlaceScrapped from "@feature/place/queries/getPlaceScrapped";
+import PlaceScrapList from "@feature/place/components/PlaceScrapList/PlaceScrapList";
 import PlaceSearchBar from "@feature/record/components/PlaceSearch/PlaceSearchBar";
-import { useEffect, useState } from "react";
+import { Suspense } from "react";
 
 export default function Record() {
-  const [scrappedPlace, setScrappedPlace] = useState<PlaceScrappedResponse>();
-  const getScrappedPlace = async () => {
-    const userInfo = await getSession();
-    if (!userInfo) {
-      location.replace("/login");
-    } else {
-      const data = await GetPlaceScrapped();
-      setScrappedPlace(data);
-    }
-  };
-  useEffect(() => {
-    getScrappedPlace();
-  }, []);
   return (
     <div className="h-[100vh]">
       <div className="w-full h-[10.6rem] flex px-[2rem] pt-[3.8rem] pb-[1.2rem] justify-between items-center">
@@ -42,25 +26,9 @@ export default function Record() {
           <span className="text-text-gray-6 body2-semibold">더보기</span>
         </LinkLayout>
       </div>
-      <div className="flex overflow-x-scroll px-[2rem] pt-[1.6rem] gap-[0.8rem] overflow-y-hidden h-[40%]">
-        {scrappedPlace?.length === 0 && (
-          <div className="flex items-center justify-center w-full">
-            <p className="body1-medium text-text-gray-8">
-              아직 스크랩한 공간이 없습니다.
-            </p>
-          </div>
-        )}
-        {scrappedPlace &&
-          scrappedPlace.map((data, index) => (
-            <div key={index}>
-              <PlaceInfoMain
-                variant="record"
-                {...data}
-                className="w-[16.3rem]"
-              />
-            </div>
-          ))}
-      </div>
+      <Suspense fallback={<div>loading</div>}>
+        <PlaceScrapList />
+      </Suspense>
     </div>
   );
 }

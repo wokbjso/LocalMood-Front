@@ -108,6 +108,7 @@ export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
                   src={curation.image[0]}
                   alt="큐레이션 이미지"
                   fill
+                  sizes="100vw"
                   className="rounded-[8px]"
                 />
               </div>

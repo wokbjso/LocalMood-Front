@@ -44,6 +44,7 @@ export default function PlaceReview({
             src={image}
             alt="프로필 사진"
             fill
+            sizes="10vw"
             className="rounded-full cursor-pointer"
           />
         </div>
@@ -79,7 +80,7 @@ export default function PlaceReview({
                 key={photo + i}
                 className="w-[15rem] h-[15rem] mr-[0.5rem] relative"
               >
-                <Image alt="리뷰 사진" src={photo} fill />
+                <Image alt="리뷰 사진" src={photo} fill sizes="10vw" />
               </div>
             ))}
           </div>

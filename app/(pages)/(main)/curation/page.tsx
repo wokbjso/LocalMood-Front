@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Tab from "@common/components/ui/tab/Tab";
 import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
 import CurationScrapped from "@feature/curation/components/CurationScrapped/CurationScrapped";
@@ -66,19 +66,33 @@ export default function CurationPage() {
             </div>
           </div>
         )}
-        {tabIndex === 0 &&
-          myCuration?.curation.map((props: CurationProps) => (
-            <div key={props.author + props.id} className="mb-[1.2rem]">
-              <CurationMain variant="my" {...props} />
-            </div>
-          ))}
-        <div className="pt-[2rem] pb-[6rem]">
-          {tabIndex === 1 &&
-            scrappedCuration.map((props) => (
-              <div key={props.author + props.id} className="mb-[1.6rem]">
-                <CurationScrapped {...props} />
+        {tabIndex === 0 ? (
+          myCuration && myCuration?.curation.length > 0 ? (
+            myCuration?.curation.map((props: CurationProps) => (
+              <div key={props.author + props.id} className="mb-[1.2rem]">
+                <CurationMain variant="my" {...props} />
               </div>
-            ))}
+            ))
+          ) : (
+            <p className="flex justify-center items-center body1-medium text-text-gray-8 h-[57vh]">
+              아직 생성한 큐레이션이 없습니다.
+            </p>
+          )
+        ) : null}
+        <div className="pt-[2rem] pb-[6rem]">
+          {tabIndex === 1 ? (
+            scrappedCuration?.length > 0 ? (
+              scrappedCuration?.map((props) => (
+                <div key={props.author + props.id} className="mb-[1.6rem]">
+                  <CurationScrapped {...props} />
+                </div>
+              ))
+            ) : (
+              <p className="flex justify-center items-center body1-medium text-text-gray-8 h-[65vh]">
+                아직 스크랩한 큐레이션이 없습니다.
+              </p>
+            )
+          ) : null}
         </div>
       </div>
       <CurationMakeModal

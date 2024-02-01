@@ -67,7 +67,7 @@ export default function CurationMakeKeyword({
     if (res.status === 200) {
       revalidateMyCuration();
       handleOpen(false);
-      location.replace("/curation");
+      location.reload();
     } else alert("오류가 발생했습니다!");
     return;
   };

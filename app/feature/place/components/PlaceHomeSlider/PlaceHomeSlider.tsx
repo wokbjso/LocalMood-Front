@@ -1,7 +1,8 @@
 import Slider from "@common/components/layout/Slider/Slider";
 import { PlaceInfoProps } from "@feature/place/type";
 import { twMerge } from "tailwind-merge";
-import PlaceInfoMain from "../PlaceInfoMain/PlaceInfoMain";
+import dynamic from "next/dynamic";
+const PlaceInfoMain = dynamic(() => import("../PlaceInfoMain/PlaceInfoMain"));
 
 interface PlaceHomeSliderProps {
   mainText: string;

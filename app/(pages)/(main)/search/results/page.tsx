@@ -4,8 +4,6 @@ import useSearchBar from "@feature/search/components/SearchBar/useSearchBar";
 import Tab from "@common/components/ui/tab/Tab";
 import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
-import { CurationProps } from "@feature/curation/type";
-import { PlaceInfoProps } from "@feature/place/type";
 import { useSearchParams } from "next/navigation";
 import SearchNoResult from "@feature/search/components/SearchNoResult/SearchNoResult";
 import { useEffect, useState } from "react";

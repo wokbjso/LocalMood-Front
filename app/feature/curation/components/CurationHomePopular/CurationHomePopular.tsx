@@ -10,11 +10,13 @@ interface CurationHomePopularProps {
   mainText: string;
   subText: string;
   curationList: {
+    id: number;
     author: string;
     imgUrl: string[];
     title: string;
     spaceCount: number;
     keyword: string[];
+    isScrapped: boolean;
   }[];
 }
 
@@ -44,7 +46,6 @@ export default function CurationHomePopular({
             indicatorIndex === i && (
               <CurationMain
                 key={curation.author + i}
-                id={i}
                 {...curation}
                 className="mb-[2rem] w-full"
               />

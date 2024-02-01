@@ -1,10 +1,6 @@
 import { twMerge } from "tailwind-merge";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
 import { PlaceInfoProps } from "@feature/place/type";
-import {
-  CAFE_TAG_CATEGORY,
-  RESTAURANT_TAG_CATEGORY,
-} from "@feature/place/constants/place-tag-category";
 
 export default function PlaceInfoBottom({
   type,
@@ -34,7 +30,7 @@ export default function PlaceInfoBottom({
       )}
     >
       {keywordCategoryNum === 1 &&
-        keyword?.map((tag, i) => (
+        keyword?.slice(0, 2).map((tag, i) => (
           <Chip key={tag + i}>
             <span className="body2-medium text-black">{tag}</span>
           </Chip>
