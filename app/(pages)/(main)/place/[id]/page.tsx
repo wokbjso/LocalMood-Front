@@ -4,7 +4,6 @@ import Slider from "@common/components/layout/Slider/Slider";
 import PlaceDetailInfo from "@feature/place/components/PlaceDetail/PlaceDetailInfo";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import CurationScrapped from "@feature/curation/components/CurationScrapped/CurationScrapped";
-import PlaceDetailTopBar from "@feature/place/components/PlaceDetail/PlaceDetailTopBar";
 import PlaceDetailKeywordEvaluation from "@feature/place/components/PlaceDetail/PlaceDetailKeywordEvaluation";
 import PlaceDetailKeywordSummary from "@feature/place/components/PlaceDetail/PlaceDetailKeywordSummary";
 import GetPlaceDetail from "@feature/place/queries/getPlaceDetail";

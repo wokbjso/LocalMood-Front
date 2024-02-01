@@ -19,6 +19,7 @@ interface SaveModalProps {
 }
 
 export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
+  const router = useRouter();
   const [openMakeCuration, setOpenMakeCuration] = useState(false);
   const [curationMy, setCurationMy] = useState<MyCurationResponse>();
   const handleModalCloseClick = () => {
@@ -31,6 +32,7 @@ export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
       revalidateMyCuration();
       revalidateScrapSpace();
       handleModalFn(false);
+      router.push("/curation");
     } else {
       alert("오류가 발생했습니다!");
     }

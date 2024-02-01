@@ -29,12 +29,7 @@ export default function PlaceInfoTop({
   className,
   imgClassName,
 }: PlaceInfoProps) {
-  const params = useSearchParams();
-  const router = useRouter();
-  const pathname = usePathname();
-  const [openSaveModal, setOpenSaveModal] = useState(
-    params.get("scrap_id") ? true : false
-  );
+  const [openSaveModal, setOpenSaveModal] = useState(false);
   const [scrapState, setScrapState] = useState<boolean>(isScraped);
   const handleScrap = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
@@ -84,7 +79,7 @@ export default function PlaceInfoTop({
         >
           <div
             className={twMerge(
-              "w-full h-[16rem] relative",
+              "w-full h-[16rem] relative bg-contain",
               direction === "horizontal" && "w-[8rem] h-[8rem] mr-[1.6rem]"
             )}
           >

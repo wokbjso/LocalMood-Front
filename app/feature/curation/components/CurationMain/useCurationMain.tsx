@@ -22,6 +22,7 @@ export default function UseCurationMain(isScraped: boolean) {
     } else {
       const res = await PostCurationScrap(id);
       if (res.status === 200) {
+        alert("큐레이션이 스크랩되었습니다.");
         revalidateCurationScrap();
         router.push("/curation");
       } else {

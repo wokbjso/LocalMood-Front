@@ -15,6 +15,7 @@ export default function PlaceDetailTopBar({
   id,
   isScraped,
   handleScrapState,
+  handleOpenSaveModal,
   className,
 }: Partial<TopBarProps>) {
   const pathname = usePathname();
@@ -38,6 +39,7 @@ export default function PlaceDetailTopBar({
         const res = await PostSpaceScrap(id as number);
         if (res.status === 200) {
           handleScrapState && handleScrapState(true);
+          handleOpenSaveModal && handleOpenSaveModal(true);
         } else {
           alert("에러가 발생했습니다!");
           return;
@@ -46,7 +48,7 @@ export default function PlaceDetailTopBar({
     }
   };
   const handleCopyLinkClick = () => {
-    copyLink(process.env.PUBLIC_NEXT_SERVER_API + pathname);
+    copyLink(pathname);
   };
   return (
     <BasicTopBar className={className}>
