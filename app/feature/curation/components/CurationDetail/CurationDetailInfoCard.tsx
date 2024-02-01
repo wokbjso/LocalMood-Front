@@ -69,7 +69,7 @@ const CurationDetailInfoCard = forwardRef(
               mood={moodArray}
               bestMenu={bestMenuArray}
               keywordCategoryNum={3}
-              bottomClassName="border-[0.1rem] border-line-gray-3 p-[1.6rem]"
+              bottomClassName="border-[0.1rem] border-line-gray-3 p-[1.6rem] flex-col"
             />
           </div>
         </div>
