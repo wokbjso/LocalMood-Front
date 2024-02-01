@@ -18,4 +18,8 @@ export interface PlaceInfoProps {
   className?: string;
   imgClassName?: string;
   bottomClassName?: string;
+  visitorNum?: string;
+  dish?: string;
+  dishDesc?: string;
+  optionalService?: string;
 }
