@@ -29,7 +29,7 @@ export interface PlaceDetailResponse {
     subType: string;
     dish: string;
     dishDesc: string;
-    purpose: string;
+    purpose: string[];
     mood: string;
     music: string;
     positiveEval: string;

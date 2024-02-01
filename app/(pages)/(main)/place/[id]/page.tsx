@@ -15,7 +15,6 @@ export default async function PlaceDetail({
   params: { id: number };
 }) {
   const detailData = await GetPlaceDetail(id);
-  console.log(detailData);
   return (
     <div className="pb-[12rem]">
       <div className="w-full h-[30rem] mb-[1.5rem] relative">
@@ -45,8 +44,16 @@ export default async function PlaceDetail({
         id={detailData.info.id}
         mainText="키워드 평가"
         type={detailData.info.type}
-        positiveEval={detailData.info.positiveEval.split("/")}
-        negativeEval={detailData.info.negativeEval.split("/")}
+        positiveEval={
+          detailData.info.positiveEval
+            ? detailData.info.positiveEval.split("/")
+            : null
+        }
+        negativeEval={
+          detailData.info.negativeEval
+            ? detailData.info.negativeEval.split("/")
+            : null
+        }
       />
       <Divider className="bg-line-gray-3 h-[0.4rem] mb-[4.8rem]" />
       <section className="pl-[2rem] w-full">
@@ -54,7 +61,7 @@ export default async function PlaceDetail({
           {detailData.info.name}와 비슷한 장소
         </span>
         <Slider className="mt-[1.6rem] mb-[6rem]">
-          {detailData.similarSpaceList.map((data) => (
+          {detailData.similarSpaceList.slice(0, 6).map((data) => (
             <PlaceInfoMain
               key={data.id}
               size="small"

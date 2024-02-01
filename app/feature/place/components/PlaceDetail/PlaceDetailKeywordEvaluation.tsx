@@ -6,8 +6,8 @@ interface PlaceDetailKeywordEvaluationProps {
   id: number;
   mainText: string;
   type: string;
-  positiveEval: string[];
-  negativeEval: string[];
+  positiveEval: string[] | null;
+  negativeEval: string[] | null;
 }
 
 export default function PlaceDetailKeywordEvaluation({
@@ -22,26 +22,28 @@ export default function PlaceDetailKeywordEvaluation({
       <div className="text-black headline2 mb-[1.2rem]">{mainText}</div>
       <div className="mb-[2rem]">
         <div className="flex flex-col items-start mb-[0.4rem]">
-          {positiveEval.map((li, i) => (
-            <GraphUpDownVote
-              key={li[i]}
-              evaluation={li.split(",")[0]}
-              percentage={li.split(",")[1] + "%"}
-              like={true}
-              className={i === 0 ? "mb-[0.4rem]" : ""}
-            />
-          ))}
+          {positiveEval &&
+            positiveEval.map((li, i) => (
+              <GraphUpDownVote
+                key={li[i]}
+                evaluation={li.split(",")[0]}
+                percentage={li.split(",")[1] + "%"}
+                like={true}
+                className={i === 0 ? "mb-[0.4rem]" : ""}
+              />
+            ))}
         </div>
         <div className="flex flex-col items-end">
-          {negativeEval.map((li, i) => (
-            <GraphUpDownVote
-              key={li[i]}
-              evaluation={li.split(",")[0]}
-              percentage={li.split(",")[1] + "%"}
-              like={false}
-              className={i === 0 ? "mb-[0.4rem]" : ""}
-            />
-          ))}
+          {negativeEval &&
+            negativeEval.map((li, i) => (
+              <GraphUpDownVote
+                key={li[i]}
+                evaluation={li.split(",")[0]}
+                percentage={li.split(",")[1] + "%"}
+                like={false}
+                className={i === 0 ? "mb-[0.4rem]" : ""}
+              />
+            ))}
         </div>
       </div>
       <LinkLayout routeUrl={`/place//${id}/more`}>

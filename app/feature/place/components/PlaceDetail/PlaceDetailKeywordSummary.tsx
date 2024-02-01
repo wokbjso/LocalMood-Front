@@ -5,7 +5,7 @@ import Chip from "@common/components/ui/buttons/Chip/Chip";
 interface PlaceDetailKeywordSummaryProps {
   mainText: string;
   subText: string;
-  purpose: string;
+  purpose: string[];
   mood: string;
   music: string;
 }
@@ -30,14 +30,14 @@ export default function PlaceDetailKeywordSummary({
             <HeartIcon color="#F670C7" />
             <div className="mt-[0.8rem]">
               <span className="body1 text-primary-normal"># </span>
-              <span className="body1 text-black">{purpose.split(",")[0]}</span>
+              <span className="body1 text-black">{purpose[0]}</span>
             </div>
           </div>
           <div className="w-[48%] flex flex-col items-center p-[1.2rem] bg-white rounded-[8px]">
             <UserDouble color="#9B8AFB" />
             <div className="mt-[0.8rem]">
               <span className="body1 text-primary-normal"># </span>
-              <span className="body1 text-black">{purpose.split(",")[1]}</span>
+              <span className="body1 text-black">{purpose[1]}</span>
             </div>
           </div>
         </div>

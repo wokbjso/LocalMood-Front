@@ -1,3 +1,6 @@
+import DeleteCurationScrap from "@feature/curation/queries/deleteCurationScrap";
+import PostCurationScrap from "@feature/curation/queries/postCurationScrap";
+import revalidateCurationScrap from "@feature/curation/utils/revalidateCurationScrap";
 import { useState } from "react";
 
 export default function UseCurationMain(isScraped: boolean) {
@@ -7,9 +10,21 @@ export default function UseCurationMain(isScraped: boolean) {
   const handleScrapState = async (id: number) => {
     setScrapState((prev) => !prev);
     if (scrapState) {
-      const res = await fetch(`/api/curation/delete/${String(id)}`);
+      const res = await DeleteCurationScrap(id);
+      if (res.status === 200) {
+        revalidateCurationScrap();
+      } else {
+        alert("에러가 발생했습니다!");
+        return;
+      }
     } else {
-      const res = await fetch(`/api/curation/add/${String(id)}`);
+      const res = await PostCurationScrap(id);
+      if (res.status === 200) {
+        revalidateCurationScrap();
+      } else {
+        alert("에러가 발생했습니다!");
+        return;
+      }
     }
     //api 문서에 맞게 id이용하여 해당 큐레이션 scrap 상태 바꾸는 api 호출(client side - tanstack query)
   };

@@ -29,7 +29,6 @@ export default function CurationMain({
   const handleScrapClick = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
-    //scrap 상태와 id 를 가지고 scrap 상태 변하는 api 생성
     e.preventDefault();
     const userInfo = await getSession();
     if (!userInfo) {
