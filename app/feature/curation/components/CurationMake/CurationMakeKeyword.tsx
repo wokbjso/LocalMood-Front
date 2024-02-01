@@ -67,12 +67,13 @@ export default function CurationMakeKeyword({
     if (res.status === 200) {
       revalidateMyCuration();
       handleOpen(false);
+      location.replace("/curation");
     } else alert("오류가 발생했습니다!");
     return;
   };
 
   return (
-    <div className="pb-[17.1rem]">
+    <div className="pb-[21.1rem]">
       <div className="w-full pb-[1.2rem] border-b border-text-gray-3">
         <div className="flex items-center justify-between flex-start">
           <div className="flex gap-[0.6rem]">
@@ -121,8 +122,7 @@ export default function CurationMakeKeyword({
           ))}
         </div>
       )}
-
-      <div className="absolute bottom-[4.6rem] left-8 right-8">
+      <div className="absolute w-full px-[2rem] bottom-0 left-0 bg-white h-[9.4rem]">
         <Button
           onClick={handleButtonClick}
           disabled={!isSubmitEnabled(curationMakeData)}

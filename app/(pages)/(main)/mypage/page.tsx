@@ -9,6 +9,7 @@ import GetPlaceMyPage from "@feature/place/queries/getPlaceMyPage";
 import { WithAuth } from "@feature/auth/components/WithAuth/WithAuth";
 import { useEffect, useState } from "react";
 import GetMemberInfo from "@feature/user/queries/getMemberInfo";
+import Link from "next/link";
 
 function MyPage() {
   const [myPageData, setMyPageData] = useState<{
@@ -27,7 +28,6 @@ function MyPage() {
     const userInfo = await GetMemberInfo();
     setUserData(userInfo);
   };
-  console.log(userData);
   useEffect(() => {
     myPagePlaceData();
     getUserInfo();
@@ -79,7 +79,13 @@ function MyPage() {
               <span className="text-text-gray-6 body2-semibold mr-[0.4rem]">
                 공간 기록하러 가기
               </span>
-              <ArrowRight />
+              <Link
+                href={{
+                  pathname: "/record",
+                }}
+              >
+                <ArrowRight />
+              </Link>
             </div>
           </div>
         )}
