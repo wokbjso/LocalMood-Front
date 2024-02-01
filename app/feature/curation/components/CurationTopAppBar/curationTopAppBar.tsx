@@ -31,7 +31,7 @@ export default function CurationTopAppBar({
   };
 
   const handleLinkClick = async () => {
-    copyLink("현재 pathname", setMenuModalOpen);
+    copyLink(process.env.NEXT_PUBLIC_SERVER_API + pathname, setMenuModalOpen);
   };
 
   const handleBackClick = () => {

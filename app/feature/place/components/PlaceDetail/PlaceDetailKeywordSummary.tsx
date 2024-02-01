@@ -7,6 +7,7 @@ interface PlaceDetailKeywordSummaryProps {
   subText: string;
   purpose: string[];
   mood: string;
+  interior?: string[];
   music: string;
 }
 
@@ -15,8 +16,10 @@ export default function PlaceDetailKeywordSummary({
   subText,
   purpose,
   mood,
+  interior,
   music,
 }: PlaceDetailKeywordSummaryProps) {
+  console.log(interior);
   return (
     <>
       <div className="px-[2rem]">
@@ -41,6 +44,19 @@ export default function PlaceDetailKeywordSummary({
             </div>
           </div>
         </div>
+        {interior && interior[0].length > 0 && (
+          <div className="mb-[0.8rem]">
+            <span className="body2-medium text-text-gray-6 mr-[1.8rem]">
+              인테리어
+            </span>
+            {interior.slice(0, 2).map((li, i) => (
+              <Chip className="bg-white mr-[0.8rem]" key={li + i}>
+                <span className="body2-medium text-primary-normal"># </span>
+                <span className="body2-medium">{li}</span>
+              </Chip>
+            ))}
+          </div>
+        )}
         <div className="mb-[0.8rem]">
           <span className="body2-medium text-text-gray-6 mr-[1.8rem]">
             공간 무드

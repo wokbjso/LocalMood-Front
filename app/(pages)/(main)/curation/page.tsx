@@ -45,7 +45,6 @@ export default function CurationPage() {
   useEffect(() => {
     fetchData();
   }, []);
-
   return (
     <div className="Curation h-[100vh] overflow-hidden">
       <header>
