@@ -13,7 +13,7 @@ export default function SearchLayout({ children }: { children: ReactNode }) {
           />
         </Suspense>
       </BasicTopBar>
-      <Suspense fallback={null}>{children}</Suspense>
+      {children}
     </div>
   );
 }
