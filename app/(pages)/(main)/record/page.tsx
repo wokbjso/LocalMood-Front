@@ -42,7 +42,7 @@ export default function Record() {
           <span className="text-text-gray-6 body2-semibold">더보기</span>
         </LinkLayout>
       </div>
-      <div className="flex overflow-x-scroll px-[2rem] pt-[1.6rem] gap-[0.8rem] overflow-y-hidden h-[35%]">
+      <div className="flex overflow-x-scroll px-[2rem] pt-[1.6rem] gap-[0.8rem] overflow-y-hidden h-[40%]">
         {scrappedPlace?.length === 0 && (
           <div className="flex items-center justify-center w-full">
             <p className="body1-medium text-text-gray-8">
