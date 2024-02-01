@@ -129,7 +129,7 @@ export default function PlaceInfoTop({
                   size === "normal" ? "body2-medium" : "body3-medium"
                 )}
               >
-                {address}
+                {address.split(" ").slice(0, 3).join(" ")}
               </span>
             </div>
           </div>

@@ -43,6 +43,7 @@ export default async function PlaceDetail({
         subText="이 공간을 가장 잘 설명하는 키워드에요"
         purpose={detailData.info.purpose}
         mood={detailData.info.mood}
+        interior={detailData.info.interior && detailData.info.interior}
         music={detailData.info.music}
       />
       <PlaceDetailKeywordEvaluation

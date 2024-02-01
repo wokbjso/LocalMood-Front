@@ -32,6 +32,7 @@ export interface PlaceDetailResponse {
     dish: string;
     dishDesc: string;
     purpose: string[];
+    interior?: string[];
     mood: string;
     music: string;
     positiveEval: any[] | null;

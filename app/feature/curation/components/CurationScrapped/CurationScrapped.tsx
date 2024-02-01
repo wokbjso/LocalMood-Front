@@ -56,8 +56,8 @@ export default function CurationScrapped({
         <div
           className="w-full h-[16.5rem] bg-cover relative rounded-[8px]"
           style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(
-              https://a.cdn-hotels.com/gdcs/production161/d1403/b5f1876a-9e64-4d13-ab7a-a0fd2cbc5224.jpg
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),url(
+             ${imgUrl}
           )`,
           }}
         >
@@ -87,8 +87,7 @@ export default function CurationScrapped({
               <div className="headline2 w-[70%] break-keep mb-[1.2rem] text-white">
                 <span>{title}</span>
                 <div className="flex flex-wrap gap-[0.8rem]">
-                  {/* 키워드 배열로 들어오면 수정 필요 */}
-                  {["키워드1", "키워드2"].map((tag) => (
+                  {keyword.map((tag) => (
                     <div key={tag}>
                       <span className="text-primary-normal body2-medium">
                         #{" "}

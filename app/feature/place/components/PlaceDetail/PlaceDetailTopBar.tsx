@@ -6,10 +6,10 @@ import LinkIcon from "@common/assets/icons/link/LinkIcon";
 import { TopBarProps } from "../../../../common/components/ui/topBar/type";
 import BasicTopBar from "../../../../common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import { copyLink } from "@common/utils/copyLink";
-import { useState } from "react";
 import { getSession } from "@common/utils/getSession";
 import DeleteSpaceScrap from "@feature/place/queries/deleteScrapSpace";
 import PostSpaceScrap from "@feature/place/queries/postSpaceScrap";
+import { usePathname } from "next/navigation";
 
 export default function PlaceDetailTopBar({
   id,
@@ -17,6 +17,7 @@ export default function PlaceDetailTopBar({
   handleScrapState,
   className,
 }: Partial<TopBarProps>) {
+  const pathname = usePathname();
   const handleScrapClick = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
@@ -45,7 +46,7 @@ export default function PlaceDetailTopBar({
     }
   };
   const handleCopyLinkClick = () => {
-    copyLink("현재 pathname");
+    copyLink(process.env.PUBLIC_NEXT_SERVER_API + pathname);
   };
   return (
     <BasicTopBar className={className}>

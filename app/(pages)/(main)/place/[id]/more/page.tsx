@@ -24,7 +24,7 @@ export default async function PlaceDetailMore({
         <div className="pt-[1.2rem] pb-[4rem]">
           {PLACE_PURPOSE.map((li: string, i: number) => (
             <GraphGage
-              key={li}
+              key={li + i}
               evaluation={li}
               percentage={"25%"}
               className={i === 0 ? "mt-[3.2rem] mb-[2.4rem]" : "mb-[2.4rem]"}
