@@ -90,8 +90,11 @@ export default function CurationMakeKeyword({
               /2
             </span>
           </div>
-          <div onClick={toggleExpansion}>
-            {isExpanded ? <ArrowUpIcon /> : <ArrowDownIcon />}
+          <div
+            className="flex w-[3rem] h-[1.6rem] items-center justify-end pr-[0.1rem]"
+            onClick={toggleExpansion}
+          >
+            <div>{isExpanded ? <ArrowUpIcon /> : <ArrowDownIcon />}</div>
           </div>
         </div>
       </div>
@@ -122,7 +125,7 @@ export default function CurationMakeKeyword({
           ))}
         </div>
       )}
-      <div className="absolute w-full px-[2rem] bottom-0 left-0 bg-white h-[9.4rem]">
+      <div className="absolute w-full px-[2rem] bottom-0 left-0 bg-white h-[7.4rem]">
         <Button
           onClick={handleButtonClick}
           disabled={!isSubmitEnabled(curationMakeData)}

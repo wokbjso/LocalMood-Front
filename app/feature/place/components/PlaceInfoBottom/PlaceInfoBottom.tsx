@@ -11,6 +11,7 @@ export default function PlaceInfoBottom({
   keyword,
   purpose,
   interior,
+  mood,
   bestMenu,
   keywordCategoryNum,
   bottomClassName,
@@ -20,10 +21,12 @@ export default function PlaceInfoBottom({
   | "keyword"
   | "purpose"
   | "interior"
+  | "mood"
   | "bestMenu"
   | "keywordCategoryNum"
   | "bottomClassName"
 >) {
+  console.log(interior);
   return (
     <div
       className={twMerge(
@@ -44,7 +47,9 @@ export default function PlaceInfoBottom({
           </div>
           <div className="flex flex-wrap gap-[0.8rem]">
             {purpose?.map((tag, i) => (
-              <Chip key={tag + i}>{tag}</Chip>
+              <Chip key={tag + i}>
+                <div className="body2-medium">{tag}</div>
+              </Chip>
             ))}
           </div>
         </div>
@@ -63,8 +68,35 @@ export default function PlaceInfoBottom({
           </div>
           <div className="flex flex-wrap gap-[0.8rem]">
             {type === "CAFE"
-              ? interior?.map((tag, i) => <Chip key={tag + i}>{tag}</Chip>)
-              : bestMenu?.map((tag, i) => <Chip key={tag + i}>{tag}</Chip>)}
+              ? interior?.map((tag, i) => (
+                  <Chip key={tag + i}>
+                    <div className="body2-medium">{tag}</div>
+                  </Chip>
+                ))
+              : bestMenu?.map((tag, i) => (
+                  <Chip key={tag + i}>
+                    <div className="body2-medium">{tag}</div>
+                  </Chip>
+                ))}
+          </div>
+        </div>
+      )}
+      {keywordCategoryNum && keywordCategoryNum >= 3 && (
+        <div
+          className={twMerge(
+            "flex items-center",
+            keywordCategoryNum > 3 && "mb-[0.9rem]"
+          )}
+        >
+          <div className="mr-[2rem]">
+            <span className="body2-medium text-text-gray-6">공간무드</span>
+          </div>
+          <div className="flex flex-wrap gap-[0.8rem]">
+            {mood?.map((tag, i) => (
+              <Chip key={tag + i}>
+                <div className="body2-medium">{tag}</div>
+              </Chip>
+            ))}
           </div>
         </div>
       )}
