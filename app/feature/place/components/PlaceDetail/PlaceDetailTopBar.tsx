@@ -9,15 +9,14 @@ import { copyLink } from "@common/utils/copyLink";
 import { useState } from "react";
 import { getSession } from "@common/utils/getSession";
 import DeleteSpaceScrap from "@feature/place/queries/deleteScrapSpace";
-import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
 import PostSpaceScrap from "@feature/place/queries/postSpaceScrap";
 
 export default function PlaceDetailTopBar({
   id,
   isScraped,
+  handleScrapState,
   className,
 }: Partial<TopBarProps>) {
-  const [scrapState, setScrapState] = useState(isScraped);
   const handleScrapClick = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
@@ -26,10 +25,10 @@ export default function PlaceDetailTopBar({
     if (!userInfo) {
       location.replace("/login");
     } else {
-      if (scrapState) {
+      if (isScraped) {
         const res = await DeleteSpaceScrap(id as number);
         if (res.status === 200) {
-          revalidateScrapSpace();
+          handleScrapState && handleScrapState(false);
         } else {
           alert("에러가 발생했습니다!");
           return;
@@ -37,7 +36,7 @@ export default function PlaceDetailTopBar({
       } else {
         const res = await PostSpaceScrap(id as number);
         if (res.status === 200) {
-          revalidateScrapSpace();
+          handleScrapState && handleScrapState(true);
         } else {
           alert("에러가 발생했습니다!");
           return;
@@ -51,7 +50,7 @@ export default function PlaceDetailTopBar({
   return (
     <BasicTopBar className={className}>
       <div className="flex justify-end">
-        {scrapState ? (
+        {isScraped ? (
           <ScrapFill color="white" onClick={handleScrapClick} />
         ) : (
           <ScrapLine color="white" onClick={handleScrapClick} />

@@ -20,11 +20,6 @@ export default async function PlaceDetail({
       <div className="w-full h-[30rem] mb-[1.5rem] relative">
         <Image src={detailData.info.imgUrlList[0]} alt="공간 상세 사진" fill />
       </div>
-      <PlaceDetailTopBar
-        id={detailData.info.id}
-        isScraped={detailData.info.isScraped}
-        className="absolute top-[4.7rem]"
-      />
       <PlaceDetailInfo
         id={detailData.info.id}
         name={detailData.info.name}
