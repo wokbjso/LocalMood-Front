@@ -16,7 +16,7 @@ import { getSession } from "@common/utils/getSession";
 export default function CurationMain({
   id,
   variant = "others",
-  imgUrl,
+  image,
   author,
   title,
   keyword,
@@ -57,7 +57,7 @@ export default function CurationMain({
                 className="w-full h-[16.5rem] bg-cover relative rounded-t-[8px]"
                 style={{
                   backgroundImage: `url(
-            ${imgUrl && imgUrl[0]}
+            ${image && image[0]}
           )`,
                 }}
               >

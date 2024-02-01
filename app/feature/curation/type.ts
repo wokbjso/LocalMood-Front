@@ -1,6 +1,7 @@
 export interface CurationProps {
   id: number;
   variant?: "others" | "my";
+  image?: string[] | undefined;
   imgUrl?: string[];
   author: string;
   title: string;
