@@ -64,6 +64,7 @@ export default function CurationMakeKeyword({
   const handleButtonClick = async () => {
     const dataCurationMake = getSendingCurationData();
     const res = await PostCurationMake(dataCurationMake);
+    console.log(res);
     if (res.status === 200) {
       revalidateMyCuration();
       handleOpen(false);

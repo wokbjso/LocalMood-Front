@@ -12,11 +12,13 @@ import { getSession } from "@common/utils/getSession";
 import PostSpaceScrap from "@feature/place/queries/postSpaceScrap";
 import PlaceDetailTopBar from "./PlaceDetailTopBar";
 import SaveModal from "@feature/record/components/Modal/SaveModal";
+import { PLACE_SUB_TYPE } from "@feature/place/constants/place-tag-category";
 
 export default function PlaceDetailInfo({
   id,
   name,
   type,
+  subType,
   address,
   isScraped,
   visitorNum,
@@ -28,6 +30,7 @@ export default function PlaceDetailInfo({
   | "id"
   | "name"
   | "type"
+  | "subType"
   | "address"
   | "isScraped"
   | "visitorNum"
@@ -95,7 +98,7 @@ export default function PlaceDetailInfo({
         <div className="headline2 mb-[0.8rem]">{name}</div>
         <div className="flex">
           <span className="body2-semibold text-text-gray-6">
-            {dish !== null ? "한식" : type === "CAFE" ? "카페" : "양식"}
+            {type === "CAFE" ? "카페" : subType && PLACE_SUB_TYPE[subType]}
           </span>
           <Line className="mx-[0.8rem]" />
           <span className="body2-medium text-text-gray-5">{address}</span>

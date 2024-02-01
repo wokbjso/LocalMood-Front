@@ -6,6 +6,7 @@ export interface PlaceInfoProps {
   name: string;
   imgUrl: string;
   type: string;
+  subType?: string;
   address: string;
   isScraped: boolean;
   keyword?: string[];

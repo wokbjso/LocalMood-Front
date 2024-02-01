@@ -32,4 +32,7 @@ export default async function PostCurationMake(
       status: 400,
     });
   }
+
+  const a = await res.json();
+  return a;
 }

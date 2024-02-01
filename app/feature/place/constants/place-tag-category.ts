@@ -22,3 +22,11 @@ export const PLACE_PURPOSE = [
   "작업/공부/책",
   "비즈니스",
 ];
+
+export const PLACE_SUB_TYPE: { [key: string]: string } = {
+  KOREAN: "한식",
+  CHINESE: "중식",
+  JAPANESE: "일식",
+  WESTERN: "양식",
+  ASIAN: "아시아식",
+};
