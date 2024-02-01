@@ -41,6 +41,7 @@ export default function PlaceDetailInfo({
   };
   const formattedDish = dish?.split(",").join("・");
   const formattedDishDesc = dishDesc?.split(",").join("・");
+  console.log(type);
   const handleScrapClick = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
@@ -99,7 +100,7 @@ export default function PlaceDetailInfo({
             <div className="flex items-center  justify-between">
               <div className="inline-flex items-center gap-[0.6rem]">
                 <span>{visitorNum}</span>
-                <Line className="mx-[0.8rem]" />
+                {optionalService && <Line className="mx-[0.8rem]" />}
                 <span>{optionalService}</span>
               </div>
               <div onClick={moreButtonClicked}>
@@ -108,7 +109,8 @@ export default function PlaceDetailInfo({
             </div>
             {openMore ? (
               <div className="pt-[1.2rem]">
-                <span>{formattedDish}</span>
+                {type === "CAFE" ? "🍰" : "🍷"}
+                &nbsp; &nbsp;
                 <span>{formattedDishDesc}</span>
               </div>
             ) : null}
