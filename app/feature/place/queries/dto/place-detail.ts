@@ -32,8 +32,8 @@ export interface PlaceDetailResponse {
     purpose: string[];
     mood: string;
     music: string;
-    positiveEval: string;
-    negativeEval: string;
+    positiveEval: any[] | null;
+    negativeEval: any[] | null;
     isScraped: boolean;
   };
 }

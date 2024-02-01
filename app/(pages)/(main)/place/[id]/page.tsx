@@ -15,6 +15,7 @@ export default async function PlaceDetail({
   params: { id: number };
 }) {
   const detailData = await GetPlaceDetail(id);
+  console.log(detailData);
   return (
     <div className="pb-[12rem]">
       <div className="w-full h-[30rem] mb-[1.5rem] relative">
@@ -45,14 +46,10 @@ export default async function PlaceDetail({
         mainText="키워드 평가"
         type={detailData.info.type}
         positiveEval={
-          detailData.info.positiveEval
-            ? detailData.info.positiveEval.split("/")
-            : null
+          detailData.info.positiveEval ? detailData.info.positiveEval : null
         }
         negativeEval={
-          detailData.info.negativeEval
-            ? detailData.info.negativeEval.split("/")
-            : null
+          detailData.info.negativeEval ? detailData.info.negativeEval : null
         }
       />
       <Divider className="bg-line-gray-3 h-[0.4rem] mb-[4.8rem]" />
