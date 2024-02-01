@@ -1,4 +1,5 @@
 import Footer from "@common/components/layout/Footer/Footer";
+import { Suspense } from "react";
 
 export default function MainLayout({
   children,
@@ -7,7 +8,7 @@ export default function MainLayout({
 }) {
   return (
     <div>
-      {children}
+      <Suspense fallback={null}>{children}</Suspense>
       <Footer />
     </div>
   );

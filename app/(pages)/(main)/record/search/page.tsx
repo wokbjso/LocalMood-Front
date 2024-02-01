@@ -11,7 +11,6 @@ export default function RecordSearch() {
   const searchParams = useSearchParams();
   const [textSearchPlaceData, setTextSearchPlaceData] =
     useState<SearchPlaceResponse>();
-  console.log(textSearchPlaceData);
   const getTextSearchPlaceData = async () => {
     const data = await PostTextPlaceSearch(
       searchParams.get("search_query") as string
