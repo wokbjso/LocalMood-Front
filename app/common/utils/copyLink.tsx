@@ -4,5 +4,5 @@ export const copyLink = async (
 ) => {
   await navigator.clipboard.writeText(text);
   handleModalFn && handleModalFn(false);
-  alert("클립보드에 링크가 복사되었어요.");
+  alert("링크가 복사되었어요.");
 };
