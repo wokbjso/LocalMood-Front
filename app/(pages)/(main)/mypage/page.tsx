@@ -6,12 +6,12 @@ import ArrowRight from "@common/assets/icons/arrow/arrow-right.svg";
 import { twMerge } from "tailwind-merge";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import GetPlaceMyPage from "@feature/place/queries/getPlaceMyPage";
-import { WithAuth } from "@feature/auth/components/WithAuth/WithAuth";
 import { useEffect, useState } from "react";
 import GetMemberInfo from "@feature/user/queries/getMemberInfo";
 import Link from "next/link";
+import { getSession } from "@common/utils/getSession";
 
-function MyPage() {
+export default function MyPage() {
   const [myPageData, setMyPageData] = useState<{
     reviewCount: number;
     reviews: any[];
@@ -20,17 +20,21 @@ function MyPage() {
     nickname: string;
     profileImgUrl: string;
   }>();
-  const myPagePlaceData = async () => {
-    const data = await GetPlaceMyPage();
-    setMyPageData(data);
+
+  const getMyPageData = async () => {
+    const userInfo = await getSession();
+    if (!userInfo) {
+      location.replace("/login");
+    } else {
+      const placeData = await GetPlaceMyPage();
+      setMyPageData(placeData);
+      const memberData = await GetMemberInfo();
+      setUserData(memberData);
+    }
   };
-  const getUserInfo = async () => {
-    const userInfo = await GetMemberInfo();
-    setUserData(userInfo);
-  };
+
   useEffect(() => {
-    myPagePlaceData();
-    getUserInfo();
+    getMyPageData();
   }, []);
   return (
     <div className="px-[2rem] h-[100vh] overflow-hidden">
@@ -100,5 +104,3 @@ function MyPage() {
     </div>
   );
 }
-
-export default WithAuth(MyPage, { block: "unauthenticated" });
