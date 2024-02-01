@@ -7,7 +7,10 @@ export default function SearchLayout({ children }: { children: ReactNode }) {
     <div>
       <BasicTopBar color="#9E9E9E" className="fixed pt-[1.2rem]">
         <Suspense fallback={null}>
-          <SearchBar placeholder="공간, 큐레이션을 검색해보세요" />
+          <SearchBar
+            placeholder="공간, 큐레이션을 검색해보세요"
+            className="rounded-[1000px]"
+          />
         </Suspense>
       </BasicTopBar>
       <Suspense fallback={null}>{children}</Suspense>

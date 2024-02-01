@@ -21,6 +21,7 @@ export const RESTARANT_KEYWORDS: {
 };
 
 export const KOREAN_OPTION = [
+  "한식 전체",
   "족발/보쌈",
   "찜/탕/찌개",
   "고기/구이",

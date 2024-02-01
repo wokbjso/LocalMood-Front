@@ -55,7 +55,6 @@ export default function SearchKeyword() {
     }
     return modifiedObj;
   }
-
   return (
     searchParams.get("keyword_search") === "true" && (
       <>
@@ -112,7 +111,11 @@ export default function SearchKeyword() {
                         <Filter
                           key={option}
                           label={option}
-                          selected={koreanOptionIndex === i}
+                          selected={
+                            (koreanOptionIndex == -1 &&
+                              option === "한식 전체") ||
+                            koreanOptionIndex === i
+                          }
                           onClick={() => handleKoreanOptionClick(i)}
                         />
                       ))}
