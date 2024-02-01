@@ -97,6 +97,17 @@ export default function PlaceInfoTop({
               size === "normal" ? "headline2" : "headline3"
             )}
           >
+            {scrapState ? (
+              <ScrapFill
+                className="absolute right-[0.6rem]"
+                onClick={handleScrap}
+              />
+            ) : (
+              <ScrapLine
+                className="absolute right-[0.6rem]"
+                onClick={handleScrap}
+              />
+            )}
             <span>{name}</span>
             <div className="flex items-center mt-[0.8rem]">
               <span
