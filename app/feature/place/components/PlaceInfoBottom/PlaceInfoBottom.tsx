@@ -36,7 +36,7 @@ export default function PlaceInfoBottom({
           </Chip>
         ))}
       {keywordCategoryNum && keywordCategoryNum >= 2 && (
-        <div className="flex items-center mb-[0.9rem]">
+        <div className="flex items-center">
           <div className="mr-[2rem]">
             <span className="body2-medium text-text-gray-6">방문목적</span>
           </div>
@@ -51,10 +51,7 @@ export default function PlaceInfoBottom({
       )}
       {keywordCategoryNum && keywordCategoryNum >= 3 && (
         <div
-          className={twMerge(
-            "flex items-center",
-            keywordCategoryNum > 2 && "mb-[0.9rem]"
-          )}
+          className={twMerge("flex items-center", keywordCategoryNum > 2 && "")}
         >
           <div className="mr-[2rem]">
             <span className="body2-medium text-text-gray-6">
