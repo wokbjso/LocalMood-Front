@@ -41,7 +41,7 @@ export default function PlaceDetailInfo({
   };
   const formattedDish = dish?.split(",").join("・");
   const formattedDishDesc = dishDesc?.split(",").join("・");
-  console.log(type);
+
   const handleScrapClick = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
@@ -91,7 +91,9 @@ export default function PlaceDetailInfo({
         )}
         <div className="headline2 mb-[0.8rem]">{name}</div>
         <div className="flex">
-          <span className="body2-semibold text-text-gray-6">{type}</span>
+          <span className="body2-semibold text-text-gray-6">
+            {dish !== null ? "한식" : type === "CAFE" ? "카페" : "양식"}
+          </span>
           <Line className="mx-[0.8rem]" />
           <span className="body2-medium text-text-gray-5">{address}</span>
         </div>
