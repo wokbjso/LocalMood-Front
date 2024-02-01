@@ -11,7 +11,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "next": "^14.0.4",
+    "next": "^13.4.8",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.2.1"
