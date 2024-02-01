@@ -57,13 +57,13 @@ export default function SearchBar({
         className
       )}
     >
-      <div className="flex items-center">
+      <div className="flex items-center w-full mr-[0.8rem]">
         <div>
           <Search />
         </div>
         <input
           className={twMerge(
-            "body2-medium text-text-gray-5 w-full ml-[0.8rem] pl-[0.3rem] outline-none"
+            "body2-medium text-text-gray-5 w-full ml-[0.8rem] pl-[0.3rem] outline-none bg-transparent"
           )}
           value={searchText}
           placeholder={placeholder}
