@@ -7,6 +7,9 @@ module.exports = {
 
     return config;
   },
+    experimental: {
+    serverActions: true,
+  },
   images: {
     domains: [
       "media.istockphoto.com",
