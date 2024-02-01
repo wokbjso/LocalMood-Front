@@ -29,7 +29,7 @@ export default function PlaceInfoBottom({
   return (
     <div
       className={twMerge(
-        "w-full mt-[1.6rem] flex flex-wrap gap-[0.8rem]",
+        "w-full mt-[1.6rem] flex flex-wrap flex-col gap-[0.8rem]",
         bottomClassName
       )}
     >
