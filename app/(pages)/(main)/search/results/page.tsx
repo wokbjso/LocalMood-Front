@@ -101,10 +101,12 @@ export default function SearchResult() {
   ];
   const [textSearchPlaceData, setTextSearchPlaceData] =
     useState<SearchPlaceResponse>();
+  console.log(textSearchPlaceData);
   const [keywordSearchPlaceData, setKeywordSearchPlaceData] =
     useState<SearchPlaceResponse>();
   const [textSearchCurationData, setTextSearchCurationData] =
     useState<SearchCurationResponse>();
+  console.log(textSearchCurationData);
   const [keywordSearchCurationData, setKeywordSearchCurationData] =
     useState<SearchCurationResponse>();
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
@@ -170,111 +172,120 @@ export default function SearchResult() {
   }, [searchParams.get("search_query"), searchParams.get("keyword")]);
   return (
     <>
-      {DUMMY_PLACE.length === 0 && DUMMY_CURATION.length === 0 && (
-        <SearchNoResult />
-      )}
-      {DUMMY_PLACE.length === 0 && DUMMY_CURATION.length > 0 && (
-        <div className="h-[100vh] pt-[5.4rem] overflow-y-hidden">
-          <Tab
-            sections={[
-              { text: "공간", length: 0 },
-              { text: "큐레이션", length: DUMMY_CURATION.length },
-            ]}
-            onChange={searchBarHandlers.handleTabIndex}
-          />
-          {searchBarTabIndex === 0 && <SearchNoResult />}
-          {searchBarTabIndex === 1 && (
-            <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
-              {DUMMY_CURATION.map((curation) => (
-                <CurationMain
-                  key={curation.id}
-                  id={curation.id}
-                  imgUrl={curation.imgUrl}
-                  author={curation.author}
-                  title={curation.title}
-                  keyword={curation.keyword}
-                  spaceCount={curation.spaceCount}
-                  className="mb-[4rem]"
-                />
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-      {DUMMY_PLACE.length > 0 && DUMMY_CURATION.length === 0 && (
-        <div className="h-[100vh] pt-[5.4rem] overflow-y-hidden">
-          <Tab
-            sections={[
-              { text: "공간", length: DUMMY_PLACE.length },
-              { text: "큐레이션", length: 0 },
-            ]}
-            onChange={searchBarHandlers.handleTabIndex}
-          />
-          {searchBarTabIndex === 0 && (
-            <div className="h-full px-[2rem] pt-[2rem] pb-[14.5rem] overflow-y-scroll">
-              {DUMMY_PLACE.map((place) => (
-                <div key={place.id + place.type} className="mb-[4rem]">
-                  <PlaceInfoMain {...place} keywordCategoryNum={2} />
-                </div>
-              ))}
-            </div>
-          )}
-          {searchBarTabIndex === 1 && <SearchNoResult />}
-        </div>
-      )}
-      {DUMMY_PLACE.length > 0 && DUMMY_CURATION.length > 0 && (
-        <div className="h-[100vh] pt-[5.4rem] overflow-y-hidden">
-          <Tab
-            sections={[
-              { text: "공간", length: DUMMY_PLACE.length },
-              { text: "큐레이션", length: DUMMY_CURATION.length },
-            ]}
-            onChange={searchBarHandlers.handleTabIndex}
-          />
-          {searchBarTabIndex === 0 && (
-            <>
-              <div className="flex justify-between px-[2rem] pt-[1.6rem] pb-[1.2rem]">
-                <div className="flex items-center">
-                  <FilterIcon />
-                  <span className="ml-[0.8rem] body2-semibold text-text-gray-8">
-                    키워드 설정
-                  </span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <FilterIcon />
-                  <span className="ml-[0.8rem] body2-semibold text-text-gray-8">
-                    리뷰 최신순
-                  </span>
-                </div>
+      {textSearchPlaceData?.spaceCount === 0 &&
+        textSearchCurationData?.CurationCount === 0 && <SearchNoResult />}
+      {textSearchPlaceData?.spaceCount === 0 &&
+        textSearchCurationData &&
+        textSearchCurationData.CurationCount > 0 && (
+          <div className="h-[100vh] pt-[5.4rem] overflow-y-hidden">
+            <Tab
+              sections={[
+                { text: "공간", length: 0 },
+                {
+                  text: "큐레이션",
+                  length: textSearchCurationData.CurationCount,
+                },
+              ]}
+              onChange={searchBarHandlers.handleTabIndex}
+            />
+            {searchBarTabIndex === 0 && <SearchNoResult />}
+            {searchBarTabIndex === 1 && (
+              <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
+                {textSearchCurationData?.CurationList.map((curation) => (
+                  <CurationMain
+                    key={curation.id}
+                    id={curation.id}
+                    imgUrl={curation.imgUrl}
+                    author={curation.author}
+                    title={curation.title}
+                    keyword={curation.keyword}
+                    spaceCount={curation.spaceCount}
+                    className="mb-[4rem]"
+                  />
+                ))}
               </div>
-              <Divider className="h-[0.1rem] bg-line-gray-3" />
-              <div className="h-full px-[2rem] pt-[1.2rem] pb-[14.5rem] overflow-y-scroll">
-                {DUMMY_PLACE.map((place) => (
+            )}
+          </div>
+        )}
+      {textSearchPlaceData &&
+        textSearchPlaceData?.spaceCount > 0 &&
+        textSearchCurationData?.CurationCount === 0 && (
+          <div className="h-[100vh] pt-[5.4rem] overflow-y-hidden">
+            <Tab
+              sections={[
+                { text: "공간", length: textSearchPlaceData.spaceCount },
+                { text: "큐레이션", length: 0 },
+              ]}
+              onChange={searchBarHandlers.handleTabIndex}
+            />
+            {searchBarTabIndex === 0 && (
+              <div className="h-full px-[2rem] pt-[2rem] pb-[14.5rem] overflow-y-scroll">
+                {textSearchPlaceData.spaceList.map((place) => (
                   <div key={place.id + place.type} className="mb-[4rem]">
                     <PlaceInfoMain {...place} keywordCategoryNum={2} />
                   </div>
                 ))}
               </div>
-            </>
-          )}
-          {searchBarTabIndex === 1 && (
-            <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
-              {DUMMY_CURATION.map((curation) => (
-                <CurationMain
-                  key={curation.id}
-                  id={curation.id}
-                  imgUrl={curation.imgUrl}
-                  author={curation.author}
-                  title={curation.title}
-                  keyword={curation.keyword}
-                  spaceCount={curation.spaceCount}
-                  className="mb-[4rem]"
-                />
-              ))}
-            </div>
-          )}
-        </div>
-      )}
+            )}
+            {searchBarTabIndex === 1 && <SearchNoResult />}
+          </div>
+        )}
+      {textSearchPlaceData &&
+        textSearchPlaceData?.spaceCount > 0 &&
+        textSearchCurationData &&
+        textSearchCurationData?.CurationCount > 0 && (
+          <div className="h-[100vh] pt-[5.4rem] overflow-y-hidden">
+            <Tab
+              sections={[
+                { text: "공간", length: DUMMY_PLACE.length },
+                { text: "큐레이션", length: DUMMY_CURATION.length },
+              ]}
+              onChange={searchBarHandlers.handleTabIndex}
+            />
+            {searchBarTabIndex === 0 && (
+              <>
+                <div className="flex justify-between px-[2rem] pt-[1.6rem] pb-[1.2rem]">
+                  <div className="flex items-center">
+                    <FilterIcon />
+                    <span className="ml-[0.8rem] body2-semibold text-text-gray-8">
+                      키워드 설정
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <FilterIcon />
+                    <span className="ml-[0.8rem] body2-semibold text-text-gray-8">
+                      리뷰 최신순
+                    </span>
+                  </div>
+                </div>
+                <Divider className="h-[0.1rem] bg-line-gray-3" />
+                <div className="h-full px-[2rem] pt-[1.2rem] pb-[14.5rem] overflow-y-scroll">
+                  {textSearchPlaceData.spaceList.map((place) => (
+                    <div key={place.id + place.type} className="mb-[4rem]">
+                      <PlaceInfoMain {...place} keywordCategoryNum={2} />
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+            {searchBarTabIndex === 1 && (
+              <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
+                {textSearchCurationData.CurationList.map((curation) => (
+                  <CurationMain
+                    key={curation.id}
+                    id={curation.id}
+                    imgUrl={curation.imgUrl}
+                    author={curation.author}
+                    title={curation.title}
+                    keyword={curation.keyword}
+                    spaceCount={curation.spaceCount}
+                    className="mb-[4rem]"
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        )}
     </>
   );
 }

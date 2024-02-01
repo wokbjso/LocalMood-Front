@@ -36,13 +36,13 @@ export default function SearchBar({
     setSearchText("");
   };
   useEffect(() => {
-    if (searchText.length === 0) {
+    if (searchText.length < 2) {
       router.push(
         variant === "home"
           ? "/search" + keyword_search_queries
           : "/record/search"
       );
-    } else {
+    } else if (searchText.length >= 2) {
       router.push(
         variant === "home"
           ? "/search/results" + queries
