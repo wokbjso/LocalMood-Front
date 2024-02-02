@@ -41,7 +41,7 @@ export default function PlaceDetailInfo({
   };
   const formattedDish = dish?.split(",").join("・");
   const formattedDishDesc = dishDesc?.split(",").join("・");
-  console.log(formattedDishDesc);
+
   const handleScrapClick = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
