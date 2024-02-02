@@ -33,6 +33,7 @@ export default function CurationPage() {
   const fetchData = async () => {
     const userInfo = await getSession();
     if (!userInfo?.accessToken) {
+      alert("로그인이 필요합니다.");
       location.replace("/login");
     } else {
       const myCurationData = await getMyCuration();

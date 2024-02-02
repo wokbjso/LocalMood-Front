@@ -20,7 +20,7 @@ export default function MyPage() {
     nickname: string;
     profileImgUrl: string;
   }>();
-
+  console.log(myPageData);
   const getMyPageData = async () => {
     const userInfo = await getSession();
     if (!userInfo) {
