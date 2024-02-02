@@ -11,7 +11,7 @@ export default async function Home() {
     "연인과의 데이트",
     "친구와의 만남",
     "왁자지껄 떠들 수 있는",
-    "대화에 집중할 수 있는",
+    "대화에 집중할 수 있는", 
   ];
   const randomPlace = await GetRandomPlaces();
   console.log(randomPlace);
