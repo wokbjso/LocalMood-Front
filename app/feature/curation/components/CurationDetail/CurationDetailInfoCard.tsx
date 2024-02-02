@@ -6,10 +6,14 @@ import Image from "next/image";
 import Slider from "@common/components/layout/Slider/Slider";
 import { ForwardedRef, forwardRef } from "react";
 import { CurationPlaceProps } from "@feature/curation/type";
+import DeleteSpaceScrap from "@feature/place/queries/deleteScrapSpace";
+import revalidateMyCuration from "@feature/curation/utils/revalidateMyCuration";
+import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
 
 const CurationDetailInfoCard = forwardRef(
   (
     {
+      id,
       name,
       type,
       address,
@@ -25,6 +29,18 @@ const CurationDetailInfoCard = forwardRef(
     const interiorArray = interior ? interior.split(",") : [];
     const moodArray = mood ? mood.split(",") : [];
     const bestMenuArray = bestMenu ? bestMenu.split(",") : [];
+
+    const handleDeleteScrap = async () => {
+      // const res = await DeleteSpaceScrap(id);
+      // if (res.status === 200) {
+      //   alert("스크랩이 해제되었습니다.");
+      //   revalidateScrapSpace();
+      //   location.reload();
+      // } else {
+      //   alert("에러가 발생했습니다!");
+      //   return;
+      // }
+    };
 
     return (
       <div className="w-full pt-[13rem]" ref={ref}>
@@ -61,7 +77,7 @@ const CurationDetailInfoCard = forwardRef(
                   <div className="body3-medium text-text-gray-5">{address}</div>
                 </div>
               </div>
-              <ScrapFill />
+              <ScrapFill onClick={handleDeleteScrap} />
             </div>
             <PlaceInfoBottom
               type={type}

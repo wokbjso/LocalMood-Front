@@ -8,7 +8,7 @@ export default async function PostModifyImage(image: any): Promise<any> {
   const userInfo = await getSession();
   const token = userInfo?.accessToken;
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/file/uploadFile/temp/2`,
+    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/file/uploadFile`,
     {
       method: "POST",
       headers: {
