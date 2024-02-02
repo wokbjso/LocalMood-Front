@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import Line from "@common/assets/icons/line/line.svg";
@@ -12,10 +11,8 @@ import { getSession } from "@common/utils/getSession";
 import PostSpaceScrap from "@feature/place/queries/postSpaceScrap";
 import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
 import DeleteSpaceScrap from "@feature/place/queries/deleteScrapSpace";
-import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import SaveModal from "@feature/record/components/Modal/SaveModal";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-
+import NoResult from "@common/assets/images/curationHomeNoImg.png";
 export default function PlaceInfoTop({
   id,
   variant,
@@ -61,7 +58,6 @@ export default function PlaceInfoTop({
       }
     }
   };
-
   const sliceText = (text: string, maxLength: number) => {
     if (text.length > maxLength) {
       return text.substring(0, maxLength) + "...";
@@ -83,27 +79,6 @@ export default function PlaceInfoTop({
             direction === "horizontal" && "flex items-center",
             className
           )}
-        >
-          {imgUrl ? (
-            <Image
-              src={imgUrl}
-              alt="공간 사진"
-              fill
-              sizes="100vw"
-              className={twMerge("rounded-[8px]", imgClassName)}
-            />
-          ) : (
-            <Image
-              src={NoResult}
-              alt="No Result"
-              fill
-              sizes="100vw"
-              className={twMerge("rounded-[8px]", imgClassName)}
-            />
-          )}
-        </div>
-        <div
-          className={twMerge("flex-col", size === "normal" ? "relative" : null)}
           onClick={onClick}
         >
           <div
@@ -113,7 +88,7 @@ export default function PlaceInfoTop({
             )}
           >
             <Image
-              src={imgUrl}
+              src={imgUrl ? imgUrl : NoResult}
               alt="공간 사진"
               fill
               sizes="100vw"
@@ -153,7 +128,6 @@ export default function PlaceInfoTop({
                   />
                 )
               ) : null}
-
               <span>
                 {direction === "vertical" && size === "small"
                   ? sliceText(name, 8)
