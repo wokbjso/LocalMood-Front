@@ -125,7 +125,7 @@ export default function PlaceInfoTop({
               ) : null}
 
               <span>
-                {direction === "vertical" && variant === "record"
+                {direction === "vertical" && size === "small"
                   ? sliceText(name, 8)
                   : name}
               </span>
@@ -145,8 +145,8 @@ export default function PlaceInfoTop({
                     size === "normal" ? "body2-medium" : "body3-medium"
                   )}
                 >
-                  {direction === "vertical" && variant === "record"
-                    ? sliceText(address, 7)
+                  {direction === "vertical" && size === "small"
+                    ? sliceText(address, 9)
                     : address.split(" ").slice(0, 4).join(" ")}
                 </span>
               </div>
