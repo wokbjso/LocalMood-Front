@@ -11,7 +11,6 @@ export default function UseKeyword(placeType: string) {
     interior: "",
     positiveEval: [],
     negativeEval: [],
-    files: [],
   });
   const [restaurantKeywordData, setRestaurantKeywordData] = useState<{
     [key: string]: string | any[];
@@ -22,7 +21,6 @@ export default function UseKeyword(placeType: string) {
     interior: "",
     positiveEval: [],
     negativeEval: [],
-    files: [],
   });
 
   const handleIndicatorIndex = (index: number) => {
@@ -96,12 +94,10 @@ export default function UseKeyword(placeType: string) {
     if (placeType === "CAFE") {
       setCafeKeywordData({
         ...cafeKeywordData,
-        files: [...cafeKeywordData.files, file],
       });
     } else if (placeType === "RESTAURANT") {
       setRestaurantKeywordData({
         ...restaurantKeywordData,
-        files: [...restaurantKeywordData.files, file],
       });
     }
   };

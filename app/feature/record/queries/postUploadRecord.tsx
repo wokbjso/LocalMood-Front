@@ -12,8 +12,17 @@ export default async function PostUploadRecord(
     {
       method: "POST",
       headers: {
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      body: JSON.stringify({
+        purpose: uploadData.purpose,
+        mood: uploadData.mood,
+        music: uploadData.music,
+        interior: uploadData.interior,
+        positiveEval: uploadData.positiveEval.join(","),
+        negativeEval: uploadData.negativeEval.join(","),
+      }),
     }
   );
 
