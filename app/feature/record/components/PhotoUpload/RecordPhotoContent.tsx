@@ -53,6 +53,7 @@ export default function PhotoUpload({
 
   const handleRecordUploadClick = async () => {
     const res = await PostModifyImage(image);
+    alert("서비스 준비중입니다...");
     console.log(res);
     // const res = await PostUploadRecord(
     //   spaceId,
