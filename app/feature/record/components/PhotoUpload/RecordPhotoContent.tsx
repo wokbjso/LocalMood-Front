@@ -24,43 +24,11 @@ export default function PhotoUpload({
 }: PhotoUploadProps) {
   const fileInput = useRef<HTMLInputElement>(null);
   const [image, setImage] = useState<any>([]);
-  const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      handleImage(e.target.files[0]);
-
-      const reader = new FileReader();
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          if (image.length === 2) {
-            return;
-          } else {
-            setImage((prev: any) => {
-              return [...prev, reader.result];
-            });
-          }
-        }
-      };
-      reader.readAsDataURL(e.target.files[0]);
-    }
-  };
 
   const handleAddImageClick = () => {
     if (fileInput.current) {
       fileInput.current.click();
     }
-  };
-
-  const modifyData = (data: any) => {
-    return {
-      request: {
-        ...data,
-        positiveEval:
-          data.positiveEval.length > 0 ? data.positiveEval.join(",") : "",
-        negativeEval:
-          data.negativeEval.length > 0 ? data.negativeEval.join(",") : "",
-      },
-      image: data.files,
-    };
   };
 
   const handleRecordUploadClick = async () => {
@@ -74,17 +42,13 @@ export default function PhotoUpload({
       alert("오류가 발생했습니다!");
     }
   };
+  console.log(cafeKeywordData);
   return (
     <>
       <div className="inline-flex flex-col items-start pt-[14.8rem] pl-[2rem] gap-[1.2rem]">
         <div className="flex items-start gap-[0.6rem] headline3-semibold">
           <div className="text-black">사진올리기</div>
-          <div className="text-text-gray-6">
-            {placeType === "CAFE"
-              ? cafeKeywordData.files.length
-              : restaurantKeywordData.files.length}
-            /2
-          </div>
+          <div className="text-text-gray-6"></div>
         </div>
         <div className="flex flex-wrap gap-[0.7rem] pr-[2rem]">
           {image &&
@@ -102,31 +66,6 @@ export default function PhotoUpload({
                 />
               </div>
             ))}
-          {placeType === "CAFE" && cafeKeywordData.files.length < 2 && (
-            <div className="w-[16.4rem] h-[16.4rem] p-[6.2rem] border border-solid border-1px border-line-gray-3 rounded-[10px]">
-              <input
-                ref={fileInput}
-                type="file"
-                accept="image/*"
-                className="hidden w-full h-full"
-                onChange={handleImageUpload}
-              />
-              <AddFillIcon onClick={handleAddImageClick} />
-            </div>
-          )}
-          {placeType === "RESTAURANT" &&
-            restaurantKeywordData.files.length < 2 && (
-              <div className="w-[16.4rem] h-[16.4rem] p-[6.2rem] border border-solid border-1px border-line-gray-3 rounded-[10px]">
-                <input
-                  ref={fileInput}
-                  type="file"
-                  accept="image/*"
-                  className="hidden w-full h-full"
-                  onChange={handleImageUpload}
-                />
-                <AddFillIcon onClick={handleAddImageClick} />
-              </div>
-            )}
         </div>
         <div className="flex justify-center w-full fixed  h-[13.2rem] bottom-0 left-0 bg-white">
           <Button onClick={handleRecordUploadClick}>기록올리기</Button>

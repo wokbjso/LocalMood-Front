@@ -13,6 +13,7 @@ import PostSpaceScrap from "@feature/place/queries/postSpaceScrap";
 import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
 import DeleteSpaceScrap from "@feature/place/queries/deleteScrapSpace";
 import { useRouter } from "next/navigation";
+import NoResult from "@common/assets/images/curationHomeNoImg.png";
 
 export default function PlaceInfoTop({
   id,
@@ -81,13 +82,23 @@ export default function PlaceInfoTop({
             direction === "horizontal" && "w-[8rem] h-[8rem] mr-[1.6rem]"
           )}
         >
-          <Image
-            src={imgUrl} // 이미지 들어가면 해당 이미지로 교체
-            alt="공간 사진"
-            fill
-            sizes="100vw"
-            className={twMerge("rounded-[8px]", imgClassName)}
-          />
+          {imgUrl ? (
+            <Image
+              src={imgUrl}
+              alt="공간 사진"
+              fill
+              sizes="100vw"
+              className={twMerge("rounded-[8px]", imgClassName)}
+            />
+          ) : (
+            <Image
+              src={NoResult}
+              alt="No Result"
+              fill
+              sizes="100vw"
+              className={twMerge("rounded-[8px]", imgClassName)}
+            />
+          )}
         </div>
         <div
           className={twMerge("flex-col", size === "normal" ? "relative" : null)}
