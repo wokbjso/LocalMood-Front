@@ -45,7 +45,7 @@ export default function PlaceDetailInfo({
     setOpenMore((prev) => !prev);
   };
   const formattedDishDesc = dishDesc?.split(",").join("・");
-
+  console.log(formattedDishDesc);
   const handleScrapClick = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
@@ -111,11 +111,13 @@ export default function PlaceDetailInfo({
                 {optionalService && <Line className="mx-[0.8rem]" />}
                 <span>{optionalService}</span>
               </div>
-              <div onClick={moreButtonClicked}>
-                {openMore ? <ArrowUp /> : <ArrowDown />}
-              </div>
+              {formattedDishDesc !== "NULL" && (
+                <div onClick={moreButtonClicked}>
+                  {openMore ? <ArrowUp /> : <ArrowDown />}
+                </div>
+              )}
             </div>
-            {openMore ? (
+            {openMore && formattedDishDesc !== null ? (
               <div className="pt-[1.2rem]">
                 {type === "CAFE" ? "🍰" : "🍷"}
                 &nbsp; &nbsp;
