@@ -12,7 +12,6 @@ import { getSession } from "@common/utils/getSession";
 import PostSpaceScrap from "@feature/place/queries/postSpaceScrap";
 import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
 import DeleteSpaceScrap from "@feature/place/queries/deleteScrapSpace";
-import { useRouter } from "next/navigation";
 import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import SaveModal from "@feature/record/components/Modal/SaveModal";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
