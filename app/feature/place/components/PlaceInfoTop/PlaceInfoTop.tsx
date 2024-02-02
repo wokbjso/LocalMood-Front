@@ -60,6 +60,10 @@ export default function PlaceInfoTop({
       }
     }
   };
+
+  const sliceText = (text: string, maxLength: number) => {
+    return text.substring(0, maxLength) + "...";
+  };
   return (
     <>
       <Link
@@ -117,7 +121,9 @@ export default function PlaceInfoTop({
                 )
               ) : null}
 
-              <span>{name}</span>
+              <span>
+                {direction === "vertical" ? sliceText(name, 8) : name}
+              </span>
               <div className="flex items-center mt-[0.8rem]">
                 <span
                   className={twMerge(
@@ -134,7 +140,9 @@ export default function PlaceInfoTop({
                     size === "normal" ? "body2-medium" : "body3-medium"
                   )}
                 >
-                  {address.split(" ").slice(0, 4).join(" ")}
+                  {direction === "vertical"
+                    ? sliceText(address, 7)
+                    : address.split(" ").slice(0, 4).join(" ")}
                 </span>
               </div>
             </div>
