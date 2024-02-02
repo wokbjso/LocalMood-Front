@@ -15,7 +15,7 @@ export default function TextField({ onChange }: TextFieldProps) {
     setInputValue(value);
   };
   return (
-    <div className="pt-[4.2rem]">
+    <div className="pt-[4.2rem] w-full">
       <div
         className={twMerge(
           "w-full pb-[1.2rem] flex justify-between items-center border-b border-text-gray-6",
@@ -23,7 +23,7 @@ export default function TextField({ onChange }: TextFieldProps) {
         )}
       >
         <input
-          className="w-[33.5rem] h-[2rem] headline1-semibold placeholder:headline1-semibold placeholder:text-text-gray-4 outline-none"
+          className="w-full h-[2rem] headline1-semibold placeholder:headline1-semibold placeholder:text-text-gray-4 outline-none"
           placeholder="새 큐레이션"
           value={inputValue}
           onChange={handleInputChange}

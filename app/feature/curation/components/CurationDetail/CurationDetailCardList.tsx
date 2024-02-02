@@ -25,6 +25,7 @@ export default function CurationDetailCardList({
     setPlaceIndex(index);
     refs.current[index].current?.scrollIntoView({ behavior: "smooth" });
   };
+  console.log(spaceDetails);
   return (
     <>
       <div className="pb-[6.1rem] p-[2rem] pr-0 w-full">

@@ -12,6 +12,7 @@ export interface CurationProps {
 }
 
 export interface CurationPlaceProps {
+  id: number;
   name: string;
   type: string;
   address: string;
