@@ -103,7 +103,7 @@ export default function PlaceInfoTop({
                 size === "normal" ? "headline2" : "headline3"
               )}
             >
-              {!(variant === "record" && direction === "horizontal") ? (
+              {variant !== "record" ? (
                 scrapState ? (
                   <ScrapFill
                     className="absolute right-[0.6rem]"
