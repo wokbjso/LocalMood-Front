@@ -45,7 +45,7 @@ export default function PlaceDetailInfo({
     setOpenMore((prev) => !prev);
   };
   const formattedDishDesc = dishDesc?.split(",").join("・");
-  console.log(formattedDishDesc);
+
   const handleScrapClick = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {

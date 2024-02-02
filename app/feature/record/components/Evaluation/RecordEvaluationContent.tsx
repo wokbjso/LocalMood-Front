@@ -111,7 +111,7 @@ export default function RecordEvaluationContent({
             </div>
           </section>
         ))}
-      <div className="flex justify-center w-full fixed h-[15.5rem] left-0 bottom-0 bg-white">
+      <div className="flex justify-center w-full fixed  h-[13.2rem] left-0 bottom-0 bg-white">
         <Button onClick={handleNextClick}>
           {jump() ? "건너뛰기" : "다음"}
         </Button>
