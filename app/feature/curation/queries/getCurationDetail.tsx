@@ -10,6 +10,7 @@ export default async function GetCurationDetail(curationId: number) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      next: { tags: ["getCurationDetail"] },
     }
   );
   const data = await res.json();

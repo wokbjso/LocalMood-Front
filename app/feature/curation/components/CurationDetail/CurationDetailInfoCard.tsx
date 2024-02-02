@@ -9,10 +9,20 @@ import { CurationPlaceProps } from "@feature/curation/type";
 import DeleteSpaceScrap from "@feature/place/queries/deleteScrapSpace";
 import revalidateMyCuration from "@feature/curation/utils/revalidateMyCuration";
 import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
+import DeleteSpaceFromCuration from "@feature/curation/queries/deleteSpaceFromCuration";
+import revalidateCurationScrap from "@feature/curation/utils/revalidateCurationScrap";
+import revalidateCurationDetail from "@feature/curation/utils/revalidateCurationDetail";
+
+interface AdditionalProps {
+  curationId: number;
+}
+
+type Props = CurationPlaceProps & AdditionalProps;
 
 const CurationDetailInfoCard = forwardRef(
   (
     {
+      curationId,
       id,
       name,
       type,
@@ -22,7 +32,7 @@ const CurationDetailInfoCard = forwardRef(
       mood,
       interior,
       bestMenu,
-    }: CurationPlaceProps,
+    }: Props,
     ref: ForwardedRef<HTMLDivElement>
   ) => {
     const purposeArray = purpose ? purpose.split(",") : [];
@@ -31,15 +41,14 @@ const CurationDetailInfoCard = forwardRef(
     const bestMenuArray = bestMenu ? bestMenu.split(",") : [];
 
     const handleDeleteScrap = async () => {
-      // const res = await DeleteSpaceScrap(id);
-      // if (res.status === 200) {
-      //   alert("스크랩이 해제되었습니다.");
-      //   revalidateScrapSpace();
-      //   location.reload();
-      // } else {
-      //   alert("에러가 발생했습니다!");
-      //   return;
-      // }
+      const res = await DeleteSpaceFromCuration(curationId, id);
+      if (res.status === 200) {
+        alert("스크랩이 해제되었습니다.");
+        revalidateCurationDetail();
+      } else {
+        alert("에러가 발생했습니다!");
+        return;
+      }
     };
 
     return (
