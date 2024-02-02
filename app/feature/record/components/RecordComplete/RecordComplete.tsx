@@ -82,7 +82,7 @@ export default function RecordComplete({
             </div>
           </>
         )}
-        <div className="fixed h-[15.5rem] bottom-0 bg-white">
+        <div className="fixed  h-[13.2rem] bottom-0 bg-white">
           <LinkLayout routeUrl="/record">
             <Button>{hasSomeData ? "완료" : "종료하기"}</Button>
           </LinkLayout>

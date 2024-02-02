@@ -31,7 +31,12 @@ export default function PlaceScrapList() {
       {scrappedPlace &&
         scrappedPlace.map((data, index) => (
           <div key={index}>
-            <PlaceInfoMain variant="record" {...data} className="w-[16.3rem]" />
+            <PlaceInfoMain
+              variant="record"
+              size="small"
+              {...data}
+              className="w-[16.3rem]"
+            />
           </div>
         ))}
     </div>
