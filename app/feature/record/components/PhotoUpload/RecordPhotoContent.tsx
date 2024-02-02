@@ -119,7 +119,7 @@ export default function PhotoUpload({
               </div>
             )}
         </div>
-        <div className="flex justify-center w-full fixed h-[15.5rem] bottom-0 left-0 bg-white">
+        <div className="flex justify-center w-full fixed  h-[13.2rem] bottom-0 left-0 bg-white">
           <Button onClick={handleRecordUploadClick}>기록올리기</Button>
         </div>
       </div>

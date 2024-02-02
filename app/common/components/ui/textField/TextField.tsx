@@ -29,7 +29,7 @@ export default function TextField({ onChange }: TextFieldProps) {
           onChange={handleInputChange}
           maxLength={50}
         />
-        <div className="body2-medium text-text-gray-6 pl-[1rem]">
+        <div className="body2-medium text-text-gray-6 pl-[2rem]">
           {inputValue.length}/50
         </div>
       </div>
