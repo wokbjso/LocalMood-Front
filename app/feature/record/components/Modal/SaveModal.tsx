@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import PostSavePlaceAtCuration from "@feature/curation/queries/postSavePlaceAtCuration";
 import revalidateMyCuration from "@feature/curation/utils/revalidateMyCuration";
 import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
+import revalidateCurationDetail from "@feature/curation/utils/revalidateCurationDetail";
 
 interface SaveModalProps {
   spaceId: number;
@@ -31,6 +32,7 @@ export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
       alert("큐레이션에 장소가 추가되었습니다.");
       revalidateMyCuration();
       revalidateScrapSpace();
+      revalidateCurationDetail();
       handleModalFn(false);
       router.push("/curation");
     } else {

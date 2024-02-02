@@ -25,7 +25,25 @@ export default function PhotoUpload({
 }: PhotoUploadProps) {
   const fileInput = useRef<HTMLInputElement>(null);
   const [image, setImage] = useState<any>([]);
+  // const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files) {
+  //     handleImage(e.target.files[0]);
 
+  //     const reader = new FileReader();
+  //     reader.onload = () => {
+  //       if (reader.readyState === 2) {
+  //         if (image.length === 2) {
+  //           return;
+  //         } else {
+  //           setImage((prev: any) => {
+  //             return [...prev, reader.result];
+  //           });
+  //         }
+  //       }
+  //     };
+  //     reader.readAsDataURL(e.target.files[0]);
+  //   }
+  // };
   const handleAddImageClick = () => {
     if (fileInput.current) {
       fileInput.current.click();
@@ -33,20 +51,19 @@ export default function PhotoUpload({
   };
 
   const handleRecordUploadClick = async () => {
-    const res = await PostModifyImage(image);
-    alert("서비스 준비중입니다...");
-    console.log(res);
-    // const res = await PostUploadRecord(
-    //   spaceId,
-    //   placeType === "CAFE" ? cafeKeywordData : restaurantKeywordData
-    // );
-    // if (res.status === 200) {
-    //   handleIndicatorIndex(3);
-    // } else {
-    //   alert("오류가 발생했습니다!");
-    // }
+    // const res = await PostModifyImage(image);
+    // alert("서비스 준비중입니다...");
+    // console.log(res);
+    const res = await PostUploadRecord(
+      spaceId,
+      placeType === "CAFE" ? cafeKeywordData : restaurantKeywordData
+    );
+    if (res.status === 200) {
+      handleIndicatorIndex(3);
+    } else {
+      alert("오류가 발생했습니다!");
+    }
   };
-  console.log(cafeKeywordData);
   return (
     <>
       <div className="inline-flex flex-col items-start pt-[14.8rem] pl-[2rem] gap-[1.2rem]">
