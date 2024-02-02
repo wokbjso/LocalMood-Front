@@ -50,16 +50,17 @@ export default function PlaceDetailMoreReviews({
         ))}
       </div>
       <Divider className="bg-line-gray-3 h-[0.1rem]" />
-      <section className="px-[2rem] pt-[2.4rem]">
-        {reviews[PLACE_PURPOSE[reviewPurposeIndex]].map((review, i) => {
-          return (
-            <PlaceReview
-              key={review.name + i}
-              purpose={PLACE_PURPOSE[reviewPurposeIndex]}
-              {...review}
-            />
-          );
-        })}
+      <section className="px-[2rem] pt-[2.4rem] min-h-[30vh]">
+        {reviews[PLACE_PURPOSE[reviewPurposeIndex]] &&
+          reviews[PLACE_PURPOSE[reviewPurposeIndex]].map((review, i) => {
+            return (
+              <PlaceReview
+                key={review.name + i}
+                purpose={PLACE_PURPOSE[reviewPurposeIndex]}
+                {...review}
+              />
+            );
+          })}
       </section>
     </>
   );
