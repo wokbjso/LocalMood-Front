@@ -62,7 +62,10 @@ export default function PlaceInfoTop({
   };
 
   const sliceText = (text: string, maxLength: number) => {
-    return text.substring(0, maxLength) + "...";
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + "...";
+    }
+    return text;
   };
   return (
     <>
@@ -122,7 +125,9 @@ export default function PlaceInfoTop({
               ) : null}
 
               <span>
-                {direction === "vertical" ? sliceText(name, 8) : name}
+                {direction === "vertical" && variant === "record"
+                  ? sliceText(name, 8)
+                  : name}
               </span>
               <div className="flex items-center mt-[0.8rem]">
                 <span
@@ -140,7 +145,7 @@ export default function PlaceInfoTop({
                     size === "normal" ? "body2-medium" : "body3-medium"
                   )}
                 >
-                  {direction === "vertical"
+                  {direction === "vertical" && variant === "record"
                     ? sliceText(address, 7)
                     : address.split(" ").slice(0, 4).join(" ")}
                 </span>
