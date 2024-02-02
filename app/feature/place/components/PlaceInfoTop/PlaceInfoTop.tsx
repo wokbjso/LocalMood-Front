@@ -113,12 +113,20 @@ export default function PlaceInfoTop({
               {variant !== "record" ? (
                 scrapState ? (
                   <ScrapFill
-                    className="absolute right-[0.6rem]"
+                    className={twMerge(
+                      "absolute right-[0.6rem]",
+                      size === "small" && "top-[0.8rem]"
+                    )}
+                    color={size === "small" ? "white" : undefined}
                     onClick={handleScrap}
                   />
                 ) : (
                   <ScrapLine
-                    className="absolute right-[0.6rem]"
+                    className={twMerge(
+                      "absolute right-[0.6rem]",
+                      size === "small" && "top-[0.8rem]"
+                    )}
+                    color={size === "small" ? "white" : undefined}
                     onClick={handleScrap}
                   />
                 )
