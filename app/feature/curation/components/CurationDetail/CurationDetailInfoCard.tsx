@@ -6,10 +6,24 @@ import Image from "next/image";
 import Slider from "@common/components/layout/Slider/Slider";
 import { ForwardedRef, forwardRef } from "react";
 import { CurationPlaceProps } from "@feature/curation/type";
+import DeleteSpaceScrap from "@feature/place/queries/deleteScrapSpace";
+import revalidateMyCuration from "@feature/curation/utils/revalidateMyCuration";
+import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
+import DeleteSpaceFromCuration from "@feature/curation/queries/deleteSpaceFromCuration";
+import revalidateCurationScrap from "@feature/curation/utils/revalidateCurationScrap";
+import revalidateCurationDetail from "@feature/curation/utils/revalidateCurationDetail";
+
+interface AdditionalProps {
+  curationId: number;
+}
+
+type Props = CurationPlaceProps & AdditionalProps;
 
 const CurationDetailInfoCard = forwardRef(
   (
     {
+      curationId,
+      id,
       name,
       type,
       address,
@@ -18,14 +32,24 @@ const CurationDetailInfoCard = forwardRef(
       mood,
       interior,
       bestMenu,
-      scrapped,
-    }: CurationPlaceProps,
+    }: Props,
     ref: ForwardedRef<HTMLDivElement>
   ) => {
     const purposeArray = purpose ? purpose.split(",") : [];
     const interiorArray = interior ? interior.split(",") : [];
     const moodArray = mood ? mood.split(",") : [];
     const bestMenuArray = bestMenu ? bestMenu.split(",") : [];
+
+    const handleDeleteScrap = async () => {
+      const res = await DeleteSpaceFromCuration(curationId, id);
+      if (res.status === 200) {
+        alert("스크랩이 해제되었습니다.");
+        revalidateCurationDetail();
+      } else {
+        alert("에러가 발생했습니다!");
+        return;
+      }
+    };
 
     return (
       <div className="w-full pt-[13rem]" ref={ref}>
@@ -55,12 +79,14 @@ const CurationDetailInfoCard = forwardRef(
                   </div>
                 </div>
                 <div className="flex items-center gap-[0.8rem] pt-[0.8rem]">
-                  <div className="body3-semibold text-text-gray-6">{type}</div>
+                  <div className="body3-semibold text-text-gray-6">
+                    {type === "RESTAURANT" ? "음식점" : "카페"}
+                  </div>
                   <div className="w-[0.1rem] h-[1.2rem] bg-text-gray-4"></div>
                   <div className="body3-medium text-text-gray-5">{address}</div>
                 </div>
               </div>
-              <ScrapFill />
+              <ScrapFill onClick={handleDeleteScrap} />
             </div>
             <PlaceInfoBottom
               type={type}

@@ -6,7 +6,6 @@ export default async function PostUploadRecord(
 ): Promise<any> {
   const userInfo = await getSession();
   const token = userInfo?.accessToken;
-  let formData = new FormData();
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/review/${spaceId}`,

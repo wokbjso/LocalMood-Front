@@ -92,7 +92,10 @@ export default async function CurationDetail({
       )}
       {/*저장된 장소(places)가 있을 때*/}
       {curationDetail.spaceDetails && (
-        <CurationDetailCardList spaceDetails={curationDetail.spaceDetails} />
+        <CurationDetailCardList
+          curationId={id}
+          spaceDetails={curationDetail.spaceDetails}
+        />
       )}
     </div>
   );

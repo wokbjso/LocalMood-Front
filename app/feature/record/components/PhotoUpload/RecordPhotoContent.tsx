@@ -1,6 +1,7 @@
 import AddFillIcon from "@common/assets/icons/add/AddFillIcon";
 import Button from "@common/components/ui/buttons/Button/Button";
 import PostUploadFile from "@common/utils/postUploadFile";
+import PostModifyImage from "@feature/record/queries/postModifyImage";
 import PostUploadRecord from "@feature/record/queries/postUploadRecord";
 import Image from "next/image";
 import { ChangeEvent, useRef, useState } from "react";
@@ -32,15 +33,18 @@ export default function PhotoUpload({
   };
 
   const handleRecordUploadClick = async () => {
-    const res = await PostUploadRecord(
-      spaceId,
-      placeType === "CAFE" ? cafeKeywordData : restaurantKeywordData
-    );
-    if (res.status === 200) {
-      handleIndicatorIndex(3);
-    } else {
-      alert("오류가 발생했습니다!");
-    }
+    const res = await PostModifyImage(image);
+    alert("서비스 준비중입니다...");
+    console.log(res);
+    // const res = await PostUploadRecord(
+    //   spaceId,
+    //   placeType === "CAFE" ? cafeKeywordData : restaurantKeywordData
+    // );
+    // if (res.status === 200) {
+    //   handleIndicatorIndex(3);
+    // } else {
+    //   alert("오류가 발생했습니다!");
+    // }
   };
   console.log(cafeKeywordData);
   return (

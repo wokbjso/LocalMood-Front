@@ -5,9 +5,13 @@ import Modal from "@common/components/ui/modal/Modal";
 import CurationMakeModal from "@feature/curation/components/CurationMake/CurationMakeModal";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import GetMyCuration from "@feature/curation/queries/getMyCuration";
+import CurationNoPhoto from "@common/assets/images/curationHomeNoImg.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import PostSavePlaceAtCuration from "@feature/curation/queries/postSavePlaceAtCuration";
+import revalidateMyCuration from "@feature/curation/utils/revalidateMyCuration";
+import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
 
 interface SaveModalProps {
   spaceId: number;
@@ -15,57 +19,23 @@ interface SaveModalProps {
 }
 
 export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
-  const CURATION_DUMMY = [
-    {
-      id: 0,
-      variant: "my" as "my" | "others" | undefined,
-      curationPhoto: [
-        "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
-      ],
-      userImg:
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      mainText: "크리스마스 데이트 코스",
-      onClick: () => {},
-      places: 9,
-      open: false,
-    },
-    {
-      id: 1,
-      variant: "my" as "my" | "others" | undefined,
-      curationPhoto: [
-        "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
-      ],
-      userImg:
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      mainText: "맛집",
-      onClick: () => {},
-      places: 3,
-      open: false,
-    },
-    {
-      id: 2,
-      variant: "my" as "my" | "others" | undefined,
-      curationPhoto: [
-        "https://cdn.pixabay.com/photo/2023/10/24/08/24/sailboats-8337698_1280.jpg",
-      ],
-      userImg:
-        "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
-      mainText: "카공",
-      onClick: () => {},
-      places: 6,
-      open: true,
-    },
-  ];
+  const router = useRouter();
   const [openMakeCuration, setOpenMakeCuration] = useState(false);
   const [curationMy, setCurationMy] = useState<MyCurationResponse>();
-  const router = useRouter();
   const handleModalCloseClick = () => {
     handleModalFn(false);
   };
   const handleCurationClick = async (id: number) => {
-    const res = await fetch(`/api/curation/add/place/${id}/${spaceId}`);
-    //id 활용하여 해당 큐레이션에 공간 정보 전달 api 호출(client-side)
-    router.push("/record");
+    const res = await PostSavePlaceAtCuration(id, spaceId);
+    if (res.status === 200) {
+      alert("큐레이션에 장소가 추가되었습니다.");
+      revalidateMyCuration();
+      revalidateScrapSpace();
+      handleModalFn(false);
+      router.push("/curation");
+    } else {
+      alert("오류가 발생했습니다!");
+    }
   };
   const handleMakeCurationClick = () => {
     setOpenMakeCuration(true);
@@ -105,7 +75,11 @@ export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
             >
               <div className="relative w-[6rem] h-[6rem]">
                 <Image
-                  src={curation.image[0]}
+                  src={
+                    curation.image.length > 0
+                      ? curation.image[0]
+                      : CurationNoPhoto
+                  }
                   alt="큐레이션 이미지"
                   fill
                   sizes="100vw"
@@ -118,12 +92,11 @@ export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
                 </h1>
                 <div className="flex items-center gap-[1rem]">
                   <span className="body2-medium text-text-gray-6">
-                    {/* {curation.open ? "공개" : "비공개"} */}
-                    공개
+                    {curation.privacy ? "공개" : "비공개"}
                   </span>
                   <div className="w-[0.1rem] h-[1.2rem] bg-text-gray-4"></div>
                   <div className="flex items-center gap-[0.2rem] body3-semibold text-text-gray-6">
-                    <LocationLine />
+                    <LocationLine color="#9E9E9E" />
                     <div>{curation.spaceCount}</div>
                   </div>
                 </div>

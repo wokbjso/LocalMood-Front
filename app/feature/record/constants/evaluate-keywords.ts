@@ -1,6 +1,6 @@
 export const PLACE_EVALUATIONS: { [key: string]: string } = {
   positiveEval: "👍 좋았던 점",
-  negativeEval: "👍 아쉬웠던 점",
+  negativeEval: "👎 아쉬웠던 점",
 };
 
 export const CAFE_EVALUATIONS: {
@@ -17,7 +17,7 @@ export const CAFE_EVALUATIONS: {
     "디저트 맛집이에요",
     "가성비가 좋아요",
   ],
-  "👍 아쉬웠던 점": [
+  "👎 아쉬웠던 점": [
     "응대가 불친절해요",
     "사람이 많아서 정신없어요",
     "화장실이 밖에 있어요",
@@ -41,7 +41,7 @@ export const RESTAURANT_EVALUATIONS: {
     "가성비가 좋아요",
     "반찬 맛집이에요",
   ],
-  "👍 아쉬웠던 점": [
+  "👎 아쉬웠던 점": [
     "응대가 불친절해요",
     "사람이 많아서 정신없어요",
     "화장실이 밖에 있어요",

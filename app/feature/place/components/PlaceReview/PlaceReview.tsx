@@ -76,7 +76,15 @@ export default function PlaceReview({
                   keyword[category] &&
                   keyword[category]
                     .split(",")
-                    .map((k: string, i: number) => <Chip key={k + i}>{k}</Chip>)
+                    .slice(0, 1)
+                    .map((k: string, i: number) => (
+                      <Chip
+                        key={k + i}
+                        className="mr-[0.8rem] whitespace-nowrap"
+                      >
+                        {k}
+                      </Chip>
+                    ))
                 )}
               </div>
             ))}
@@ -106,6 +114,7 @@ export default function PlaceReview({
               variant="unite"
               evaluation={li}
               like={false}
+              className="mb-[0.6rem]"
             />
           ))}
         </div>

@@ -14,9 +14,10 @@ export default async function Home() {
     "대화에 집중할 수 있는",
   ];
   const randomPlace = await GetRandomPlaces();
+  console.log(randomPlace);
   const randomCuration = await GetRandomCuration();
   return (
-    <>
+    <div className="h-[100vh] overflow-auto">
       <HomeHeader />
       <HomeBanner />
       {/* randomPlace 데이터 채워지면 교체 */}
@@ -48,6 +49,6 @@ export default async function Home() {
         />
       </div>
       <Footer />
-    </>
+    </div>
   );
 }

@@ -4,7 +4,6 @@ import Slider from "@common/components/layout/Slider/Slider";
 import PlaceDetailInfo from "@feature/place/components/PlaceDetail/PlaceDetailInfo";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import CurationScrapped from "@feature/curation/components/CurationScrapped/CurationScrapped";
-import PlaceDetailTopBar from "@feature/place/components/PlaceDetail/PlaceDetailTopBar";
 import PlaceDetailKeywordEvaluation from "@feature/place/components/PlaceDetail/PlaceDetailKeywordEvaluation";
 import PlaceDetailKeywordSummary from "@feature/place/components/PlaceDetail/PlaceDetailKeywordSummary";
 import GetPlaceDetail from "@feature/place/queries/getPlaceDetail";
@@ -15,7 +14,7 @@ export default async function PlaceDetail({
   params: { id: number };
 }) {
   const detailData = await GetPlaceDetail(id);
-
+  console.log(detailData);
   return (
     <div className="pb-[12rem]">
       <div className="w-full h-[30rem] mb-[1.5rem] relative">
@@ -30,6 +29,7 @@ export default async function PlaceDetail({
         id={detailData.info.id}
         name={detailData.info.name}
         type={detailData.info.type}
+        subType={detailData.info.subType}
         address={detailData.info.address}
         isScraped={detailData.info.isScraped}
         visitorNum={detailData.info.visitorNum}
