@@ -8,10 +8,12 @@ import useGetScrollHeight from "@common/hooks/useGetScrollHeight";
 import { CurationPlaceProps } from "@feature/curation/type";
 
 interface CurationDetailCardListProps {
+  curationId: number;
   spaceDetails: CurationPlaceProps[];
 }
 
 export default function CurationDetailCardList({
+  curationId,
   spaceDetails,
 }: CurationDetailCardListProps) {
   const [placeIndex, setPlaceIndex] = useState(0);
@@ -25,7 +27,7 @@ export default function CurationDetailCardList({
     setPlaceIndex(index);
     refs.current[index].current?.scrollIntoView({ behavior: "smooth" });
   };
-  console.log(spaceDetails);
+
   return (
     <>
       <div className="pb-[6.1rem] p-[2rem] pr-0 w-full">
@@ -53,6 +55,7 @@ export default function CurationDetailCardList({
         {spaceDetails.map((props, i) => (
           <CurationDetailInfoCard
             key={props.name}
+            curationId={curationId}
             {...props}
             ref={refs.current[i]}
           />
