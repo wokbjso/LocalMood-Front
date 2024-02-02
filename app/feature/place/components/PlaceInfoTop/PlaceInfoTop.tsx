@@ -79,12 +79,12 @@ export default function PlaceInfoTop({
         >
           <div
             className={twMerge(
-              "w-full h-[16rem] relative bg-contain",
+              "w-full h-[16rem] relative",
               direction === "horizontal" && "w-[8rem] h-[8rem] mr-[1.6rem]"
             )}
           >
             <Image
-              src={imgUrl} // 이미지 들어가면 해당 이미지로 교체
+              src={imgUrl}
               alt="공간 사진"
               fill
               sizes="100vw"
@@ -134,7 +134,7 @@ export default function PlaceInfoTop({
                     size === "normal" ? "body2-medium" : "body3-medium"
                   )}
                 >
-                  {address.split(" ").slice(0, 3).join(" ")}
+                  {address.split(" ").slice(0, 4).join(" ")}
                 </span>
               </div>
             </div>

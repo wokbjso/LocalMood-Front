@@ -2,9 +2,10 @@ import { getSession } from "@common/utils/getSession";
 
 export default async function PostModifyImage(image: any[]): Promise<any> {
   const formData = new FormData();
-  for (let i = 0; i < image.length; i++) {
-    formData.append("file", image[i]);
-  }
+  image.forEach((image, index) => {
+    formData.append(`file${index + 1}`, image); // Append with a unique key
+  });
+  console.log(formData);
 
   const userInfo = await getSession();
   const token = userInfo?.accessToken;

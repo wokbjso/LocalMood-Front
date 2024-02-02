@@ -13,7 +13,6 @@ export default async function PlaceDetailMore({
 }) {
   const reviewData = await GetPlaceReview(id);
   const detailData = await GetPlaceDetail(id);
-  console.log(reviewData);
   return (
     <div className="pb-[14.2rem]">
       <BasicTopBar color="#9E9E9E" className="" />
@@ -26,7 +25,7 @@ export default async function PlaceDetailMore({
             <GraphGage
               key={li + i}
               evaluation={li}
-              percentage={"25%"}
+              percentage={i < 2 ? "50%" : "0%"}
               className={i === 0 ? "mt-[3.2rem] mb-[2.4rem]" : "mb-[2.4rem]"}
             />
           ))}
