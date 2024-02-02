@@ -1,10 +1,8 @@
 import { getSession } from "@common/utils/getSession";
 
-export default async function PostModifyImage(image: any[]): Promise<any> {
+export default async function PostModifyImage(image: any): Promise<any> {
   const formData = new FormData();
-  image.forEach((image, index) => {
-    formData.append(`file${index + 1}`, image); // Append with a unique key
-  });
+  formData.append("file", image); // Append with a unique key
   console.log(formData);
 
   const userInfo = await getSession();
@@ -14,7 +12,6 @@ export default async function PostModifyImage(image: any[]): Promise<any> {
     {
       method: "POST",
       headers: {
-        "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,
       },
       body: formData,
