@@ -4,12 +4,15 @@ import MyPageTopBar from "@common/components/ui/topBar/MyPageTopBar/MyPageTopBar
 import Image from "next/image";
 import ArrowRight from "@common/assets/icons/arrow/arrow-right.svg";
 import { twMerge } from "tailwind-merge";
-import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import GetPlaceMyPage from "@feature/place/queries/getPlaceMyPage";
-import { useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import GetMemberInfo from "@feature/user/queries/getMemberInfo";
 import Link from "next/link";
 import { getSession } from "@common/utils/getSession";
+import RecordMyPageSkeleton from "@feature/record/components/RecordMyPageSkeleton";
+const PlaceInfoMain = lazy(
+  () => import("@feature/place/components/PlaceInfoMain/PlaceInfoMain")
+);
 
 export default function MyPage() {
   const [myPageData, setMyPageData] = useState<{
@@ -60,46 +63,52 @@ export default function MyPage() {
               </Chip>
             )} */}
             <span className="text-black headline1">
-              {userData && userData.nickname}
+              {userData ? (
+                userData.nickname
+              ) : (
+                <div className="bg-text-gray-4 w-[10.6rem] h-[2.2rem] animate-pulse" />
+              )}
             </span>
           </div>
         </div>
       </section>
       <section className="h-full">
-        <div
-          className={twMerge(
-            "text-text-gray-8 headline3",
-            myPageData && myPageData.reviewCount > 0 && "mb-[1.6rem]"
-          )}
-        >
-          공간 기록 {myPageData && myPageData.reviewCount}
-        </div>
-        {myPageData && myPageData.reviewCount === 0 && (
-          <div className="h-[60%] flex flex-col items-center justify-center">
-            <p className="text-black headline1 mb-[1.2rem]">
-              아직 기록을 남긴 공간이 없습니다
-            </p>
-            <div className="flex items-center">
-              <span className="text-text-gray-6 body2-semibold mr-[0.4rem]">
-                공간 기록하러 가기
-              </span>
-              <Link
-                href={{
-                  pathname: "/record",
-                }}
-              >
-                <ArrowRight />
-              </Link>
+        <Suspense fallback={<RecordMyPageSkeleton />}>
+          <div
+            className={twMerge(
+              "text-text-gray-8 headline3",
+              myPageData && myPageData.reviewCount > 0 && "mb-[1.6rem]"
+            )}
+          >
+            {myPageData && "공간 기록 " + myPageData.reviewCount}
+          </div>
+          {myPageData && myPageData.reviewCount === 0 && (
+            <div className="h-[60%] flex flex-col items-center justify-center">
+              <p className="text-black headline1 mb-[1.2rem]">
+                아직 기록을 남긴 공간이 없습니다
+              </p>
+              <div className="flex items-center">
+                <span className="text-text-gray-6 body2-semibold mr-[0.4rem]">
+                  공간 기록하러 가기
+                </span>
+                <Link
+                  href={{
+                    pathname: "/record",
+                  }}
+                >
+                  <ArrowRight />
+                </Link>
+              </div>
             </div>
-          </div>
-        )}
-        {myPageData && myPageData.reviewCount > 0 && (
-          <div className="grid grid-cols-2 gap-x-[1rem] gap-y-[1.6rem] pb-[40.1rem] h-full overflow-y-scroll">
-            {myPageData.reviews.map((record) => (
-              <PlaceInfoMain key={record.id} {...record} className="w-full" />
-            ))}
-          </div>
-        )}
+          )}
+          {myPageData && myPageData.reviewCount > 0 && (
+            <div className="grid grid-cols-2 gap-x-[1rem] gap-y-[1.6rem] pb-[40.1rem] h-full overflow-y-scroll">
+              {myPageData.reviews.map((record) => (
+                <PlaceInfoMain key={record.id} {...record} className="w-full" />
+              ))}
+            </div>
+          )}
+        </Suspense>
       </section>
     </div>
   );
