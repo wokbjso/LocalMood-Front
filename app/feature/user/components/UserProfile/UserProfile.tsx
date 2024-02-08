@@ -23,7 +23,6 @@ export default function UserProfile({
           className="cursor-pointer"
         />
       </div>
-
       <span
         className={twMerge(
           "text-white",
