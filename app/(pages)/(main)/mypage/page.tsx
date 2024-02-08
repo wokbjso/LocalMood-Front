@@ -65,11 +65,7 @@ export default function MyPage() {
               </Chip>
             )} */}
                   <span className="text-black headline1">
-                    {userData ? (
-                      userData.nickname
-                    ) : (
-                      <div className="bg-text-gray-4 w-[10.6rem] h-[2.2rem] animate-pulse" />
-                    )}
+                    {userData && userData.nickname}
                   </span>
                 </div>
               </div>
