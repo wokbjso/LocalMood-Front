@@ -8,7 +8,7 @@ import MenuIcon from "@common/assets/icons/menu/MenuIcon";
 import useGetScrollHeight from "@common/hooks/useGetScrollHeight";
 import { useState } from "react";
 import CurationMenuModal from "../CurationModal/CurationMenuModal";
-import { copyLink } from "@common/utils/copyLink";
+import { copyLink } from "@common/utils/text/copy-link";
 
 interface CurationTopAppBarProps {
   id: number;

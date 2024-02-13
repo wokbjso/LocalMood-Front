@@ -5,7 +5,7 @@ import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import LinkIcon from "@common/assets/icons/link/LinkIcon";
 import { TopBarProps } from "../../../../common/components/ui/topBar/type";
 import BasicTopBar from "../../../../common/components/ui/topBar/BasicTopBar/BasicTopBar";
-import { copyLink } from "@common/utils/copyLink";
+import { copyLink } from "@common/utils/text/copy-link";
 import { getSession } from "@common/utils/getSession";
 import DeleteSpaceScrap from "@feature/place/queries/deleteScrapSpace";
 import PostSpaceScrap from "@feature/place/queries/postSpaceScrap";
