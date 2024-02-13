@@ -10,6 +10,7 @@ export default async function GetRandomPlaces() {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      next: { tags: ["getHomeRecommend"] },
     }
   );
   const data = await res.json();

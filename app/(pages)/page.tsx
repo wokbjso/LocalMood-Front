@@ -1,11 +1,9 @@
-import HomeHeader from "@common/components/layout/Header/HomeHeader";
 import Footer from "@common/components/layout/Footer/Footer";
 import PlaceHomeSlider from "@feature/place/components/PlaceHomeSlider/PlaceHomeSlider";
 import HomeBanner from "./components/HomeBanner";
 import CurationHomePopular from "@feature/curation/components/CurationHomePopular/CurationHomePopular";
 import GetRandomCuration from "@feature/curation/queries/getRandomCuration";
 import GetRandomPlaces from "@feature/place/queries/getRandomPlaces";
-import Button from "@common/components/ui/buttons/Button/Button";
 
 export default async function Home() {
   const HOME_SLIDER_PURPOSE = [
@@ -17,14 +15,7 @@ export default async function Home() {
   const randomPlace = await GetRandomPlaces();
   const randomCuration = await GetRandomCuration();
   return (
-    <>
-      <HomeHeader
-        showWhenScroll={
-          <Button className="w-[12.5rem] h-full py-[0.6rem] mr-[1.2rem] body2-semibold">
-            키워드로 공간 찾기
-          </Button>
-        }
-      />
+    <div className="w-full h-[100vh] overflow-auto">
       <HomeBanner
         textNormalFirst="나에게 딱 맞는 공간을"
         textBold="키워드"
@@ -56,9 +47,8 @@ export default async function Home() {
         mainText={HOME_SLIDER_PURPOSE[3]}
         subText="공간"
         placeList={randomPlace[HOME_SLIDER_PURPOSE[3]]}
-        className="mb-[18.3rem]"
       />
       <Footer />
-    </>
+    </div>
   );
 }

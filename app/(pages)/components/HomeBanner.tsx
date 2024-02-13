@@ -1,3 +1,5 @@
+"use client";
+
 import ElectricCordIcon from "@common/assets/icons/electric-cord/ElectricCordIcon";
 import HeartIcon from "@common/assets/icons/heart/HeartIcon";
 import LampIcon from "@common/assets/icons/lamp/LampIcon";
@@ -5,9 +7,11 @@ import MusicIcon from "@common/assets/icons/music/MusicIcon";
 import PetIcon from "@common/assets/icons/pet/PetIcon";
 import WindowIcon from "@common/assets/icons/window/WindowIcon";
 import WineIcon from "@common/assets/icons/wine/Wine";
+import HomeHeader from "@common/components/layout/Header/HomeHeader";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import Button from "@common/components/ui/buttons/Button/Button";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
+import { useInView } from "react-intersection-observer";
 
 interface HomeBannerProps {
   textNormalFirst: string;
@@ -22,6 +26,9 @@ export default function HomeBanner({
   textNormalLast,
   buttonLabel,
 }: HomeBannerProps) {
+  const [ref, inView] = useInView({
+    threshold: 1,
+  });
   const HEADER_KEYWORD = [
     { icon: HeartIcon, label: "연인과의 데이트" },
     { icon: MusicIcon, label: "잔잔한 음악" },
@@ -33,6 +40,7 @@ export default function HomeBanner({
   ];
   return (
     <>
+      <HomeHeader setShowBtn={!inView} />
       <p className="header-light pb-[2.4rem] px-[2rem] pt-[5.4rem] bg-background-secondary-light">
         {textNormalFirst}
         <br />
@@ -63,7 +71,10 @@ export default function HomeBanner({
           </div>
         </ul>
       </div>
-      <div className="flex justify-center pb-[2rem] bg-background-secondary-light">
+      <div
+        className="flex justify-center pb-[2rem] bg-background-secondary-light"
+        ref={ref}
+      >
         {/* search 하는 페이지로 이동 시 키워드 선택 모달 바로 뜨도록 쿼리로 상태 전달 */}
         <LinkLayout
           routeUrl="/search"

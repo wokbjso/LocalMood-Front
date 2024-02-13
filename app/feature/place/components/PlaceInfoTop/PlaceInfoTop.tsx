@@ -9,10 +9,12 @@ import Link from "next/link";
 import { PlaceInfoProps } from "@feature/place/type";
 import { getSession } from "@common/utils/getSession";
 import PostSpaceScrap from "@feature/place/queries/postSpaceScrap";
-import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
 import DeleteSpaceScrap from "@feature/place/queries/deleteScrapSpace";
 import SaveModal from "@feature/record/components/Modal/SaveModal";
 import NoResult from "@common/assets/images/curationHomeNoImg.png";
+import { sliceText } from "@common/utils/text/slice-text";
+import UsePlaceInfoTop from "./usePlaceInfoTop";
+
 export default function PlaceInfoTop({
   id,
   variant,
@@ -27,8 +29,8 @@ export default function PlaceInfoTop({
   className,
   imgClassName,
 }: PlaceInfoProps) {
-  const [openSaveModal, setOpenSaveModal] = useState(false);
-  const [scrapState, setScrapState] = useState<boolean>(isScraped);
+  const { openCurationSaveModal, scrapState, handlers } =
+    UsePlaceInfoTop(isScraped);
   const handleScrap = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
@@ -40,8 +42,7 @@ export default function PlaceInfoTop({
       if (scrapState) {
         const res = await DeleteSpaceScrap(id);
         if (res.status === 200) {
-          revalidateScrapSpace();
-          location.reload();
+          handlers.changeScrapState(false);
         } else {
           alert("에러가 발생했습니다!");
           return;
@@ -49,20 +50,14 @@ export default function PlaceInfoTop({
       } else {
         const res = await PostSpaceScrap(id);
         if (res.status === 200) {
-          setScrapState(true);
-          setOpenSaveModal(true);
+          handlers.changeScrapState(true);
+          handlers.changeOpenCurationSaveModal(true);
         } else {
           alert("에러가 발생했습니다!");
           return;
         }
       }
     }
-  };
-  const sliceText = (text: string, maxLength: number) => {
-    if (text.length > maxLength) {
-      return text.substring(0, maxLength) + "...";
-    }
-    return text;
   };
   return (
     <>
@@ -158,8 +153,11 @@ export default function PlaceInfoTop({
           </div>
         </div>
       </Link>
-      {openSaveModal && (
-        <SaveModal spaceId={id} handleModalFn={setOpenSaveModal} />
+      {openCurationSaveModal && (
+        <SaveModal
+          spaceId={id}
+          handleModalFn={handlers.changeOpenCurationSaveModal}
+        />
       )}
     </>
   );
