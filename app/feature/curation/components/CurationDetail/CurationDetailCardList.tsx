@@ -3,7 +3,7 @@
 import LocationFillIcon from "@common/assets/icons/location/location-fill.svg";
 import Filter from "@common/components/ui/buttons/Filter/Filter";
 import CurationDetailInfoCard from "./CurationDetailInfoCard";
-import { createRef, useRef, useState } from "react";
+import { RefObject, createRef, useRef, useState } from "react";
 import useGetScrollHeight from "@common/hooks/useGetScrollHeight";
 import { CurationPlaceProps } from "@feature/curation/type";
 
@@ -18,14 +18,13 @@ export default function CurationDetailCardList({
 }: CurationDetailCardListProps) {
   const [placeIndex, setPlaceIndex] = useState(0);
   const { scrollHeight } = useGetScrollHeight();
-  const refs = useRef(
-    Array.from({ length: spaceDetails.length }, () =>
-      createRef<HTMLDivElement>()
-    )
+  const refs = Array.from({ length: spaceDetails.length }, () =>
+    createRef<HTMLDivElement>()
   );
+
   const handlePlaceFilterClick = (index: number) => {
     setPlaceIndex(index);
-    refs.current[index].current?.scrollIntoView({ behavior: "smooth" });
+    refs[index].current?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -42,7 +41,7 @@ export default function CurationDetailCardList({
             {spaceDetails.map((item, index) => (
               <Filter
                 key={index}
-                photo={item.imageUrls ? item.imageUrls[0] : undefined}
+                photo={item.imageUrls && item.imageUrls[0]}
                 label={item.name}
                 selected={placeIndex === index}
                 className="whitespace-nowrap"
@@ -57,7 +56,7 @@ export default function CurationDetailCardList({
             key={props.name}
             curationId={curationId}
             {...props}
-            ref={refs.current[i]}
+            ref={refs[i]}
           />
         ))}
       </div>

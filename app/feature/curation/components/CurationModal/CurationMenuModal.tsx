@@ -5,7 +5,7 @@ import Modal from "@common/components/ui/modal/Modal";
 import { useState } from "react";
 import CurationDeleteConfirmModal from "./CurationDeleteConfirmModal";
 import UseOutsideClick from "@common/hooks/useOutsideClick";
-import { copyLink } from "@common/utils/copyLink";
+import { copyLink } from "@common/utils/text/copy-link";
 
 interface CurationMenuModalProps {
   id: number;
