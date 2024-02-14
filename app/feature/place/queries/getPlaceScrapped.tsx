@@ -1,9 +1,12 @@
 import { getSession } from "@common/utils/getSession";
 import { PlaceScrappedResponse } from "./dto/place-scrapped";
 
-export default async function GetPlaceScrapped(): Promise<PlaceScrappedResponse> {
+export default async function GetPlaceScrapped(): Promise<PlaceScrappedResponse | null> {
   const userInfo = await getSession();
   const token = userInfo?.accessToken;
+  if (!token) {
+    return null;
+  }
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/members/me/scraps/space`,
     {
