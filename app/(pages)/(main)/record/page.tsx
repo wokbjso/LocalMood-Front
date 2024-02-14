@@ -1,10 +1,12 @@
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import PlaceScrapList from "@feature/place/components/PlaceScrapList/PlaceScrapList";
 import PlaceScrappedSkeleton from "@feature/place/components/PlaceScrappedSkeleton/PlaceScrappedSkeleton";
+import GetPlaceScrapped from "@feature/place/queries/getPlaceScrapped";
 import PlaceSearchBar from "@feature/record/components/PlaceSearch/PlaceSearchBar";
 import { Suspense } from "react";
 
-export default function Record() {
+export default async function Record() {
+  const scrappedPlace = await GetPlaceScrapped();
   return (
     <div className="h-[100vh]">
       <div className="w-full h-[10.6rem] flex px-[2rem] pt-[3.8rem] pb-[1.2rem] justify-between items-center">
@@ -26,7 +28,7 @@ export default function Record() {
         </LinkLayout>
       </div>
       <Suspense fallback={<PlaceScrappedSkeleton />}>
-        <PlaceScrapList />
+        <PlaceScrapList data={scrappedPlace} />
       </Suspense>
     </div>
   );
