@@ -1,8 +1,8 @@
 "use client";
+
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import Line from "@common/assets/icons/line/line.svg";
-import { useState } from "react";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import Link from "next/link";
@@ -14,6 +14,8 @@ import SaveModal from "@feature/record/components/Modal/SaveModal";
 import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import { sliceText } from "@common/utils/text/slice-text";
 import UsePlaceInfoTop from "./usePlaceInfoTop";
+import revalidateHomeRecommend from "@feature/place/utils/revalidateHomeRecomment";
+import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
 
 export default function PlaceInfoTop({
   id,
@@ -29,8 +31,7 @@ export default function PlaceInfoTop({
   className,
   imgClassName,
 }: PlaceInfoProps) {
-  const { openCurationSaveModal, scrapState, handlers } =
-    UsePlaceInfoTop(isScraped);
+  const { openCurationSaveModal, handlers } = UsePlaceInfoTop(isScraped);
   const handleScrap = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
@@ -39,10 +40,12 @@ export default function PlaceInfoTop({
     if (!userInfo) {
       location.replace("/login");
     } else {
-      if (scrapState) {
+      if (isScraped) {
         const res = await DeleteSpaceScrap(id);
         if (res.status === 200) {
-          handlers.changeScrapState(false);
+          alert("스크랩이 해제되었습니다.");
+          revalidateScrapSpace();
+          revalidateHomeRecommend();
         } else {
           alert("에러가 발생했습니다!");
           return;
@@ -50,8 +53,10 @@ export default function PlaceInfoTop({
       } else {
         const res = await PostSpaceScrap(id);
         if (res.status === 200) {
-          handlers.changeScrapState(true);
+          alert(`${name}이(가) 스크랩 되었습니다.`);
           handlers.changeOpenCurationSaveModal(true);
+          revalidateScrapSpace();
+          revalidateHomeRecommend();
         } else {
           alert("에러가 발생했습니다!");
           return;
@@ -102,8 +107,8 @@ export default function PlaceInfoTop({
                 size === "normal" ? "headline2" : "headline3"
               )}
             >
-              {variant !== "record" ? (
-                scrapState ? (
+              {direction === "vertical" ? (
+                isScraped ? (
                   <ScrapFill
                     className={twMerge(
                       "absolute right-[0.6rem]",

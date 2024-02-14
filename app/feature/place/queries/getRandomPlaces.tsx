@@ -11,6 +11,7 @@ export default async function GetRandomPlaces() {
         Authorization: `Bearer ${token}`,
       },
       next: { tags: ["getHomeRecommend"] },
+      cache: "force-cache",
     }
   );
   const data = await res.json();
