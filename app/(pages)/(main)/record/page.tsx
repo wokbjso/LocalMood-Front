@@ -1,7 +1,6 @@
-"use client";
-
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import PlaceScrapList from "@feature/place/components/PlaceScrapList/PlaceScrapList";
+import PlaceScrappedSkeleton from "@feature/place/components/PlaceScrappedSkeleton/PlaceScrappedSkeleton";
 import PlaceSearchBar from "@feature/record/components/PlaceSearch/PlaceSearchBar";
 import { Suspense } from "react";
 
@@ -20,13 +19,13 @@ export default function Record() {
         공간 검색하기
         <PlaceSearchBar />
       </div>
-      <div className="w-full flex justify-between items-center pl-[2rem] pr-[1.5rem] pt-[4.4rem] text-black headline2-semibold">
+      <div className="w-full flex justify-between items-center pl-[2rem] pr-[1.5rem] pt-[4.4rem] mb-[1.6rem] text-black headline2-semibold">
         <span>스크랩한 공간</span>
         <LinkLayout routeUrl="/record/scrapped/more">
           <span className="text-text-gray-6 body2-semibold">더보기</span>
         </LinkLayout>
       </div>
-      <Suspense fallback={<div>loading</div>}>
+      <Suspense fallback={<PlaceScrappedSkeleton />}>
         <PlaceScrapList />
       </Suspense>
     </div>

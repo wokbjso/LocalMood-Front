@@ -2,9 +2,8 @@
 
 import Search from "@common/assets/icons/search/search.svg";
 import Delete from "@common/assets/icons/close/close-gray.svg";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 export default function PlaceSearchBar() {
   const router = useRouter();
