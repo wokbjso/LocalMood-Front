@@ -16,6 +16,7 @@ import { sliceText } from "@common/utils/text/slice-text";
 import UsePlaceInfoTop from "./usePlaceInfoTop";
 import revalidateHomeRecommend from "@feature/place/utils/revalidateHomeRecomment";
 import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
+import Toast from "@common/components/ui/toast/Toast";
 
 export default function PlaceInfoTop({
   id,
@@ -31,7 +32,8 @@ export default function PlaceInfoTop({
   className,
   imgClassName,
 }: PlaceInfoProps) {
-  const { openCurationSaveModal, handlers } = UsePlaceInfoTop(isScraped);
+  const { openCurationSaveModal, openScrapToast, toastText, handlers } =
+    UsePlaceInfoTop();
   const handleScrap = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
@@ -43,7 +45,8 @@ export default function PlaceInfoTop({
       if (isScraped) {
         const res = await DeleteSpaceScrap(id);
         if (res.status === 200) {
-          alert("스크랩이 해제되었습니다.");
+          handlers.openScrapToast(true);
+          handlers.changeToastText("스크랩이 해제되었습니다");
           revalidateScrapSpace();
           revalidateHomeRecommend();
         } else {
@@ -53,8 +56,9 @@ export default function PlaceInfoTop({
       } else {
         const res = await PostSpaceScrap(id);
         if (res.status === 200) {
-          alert(`${name}이(가) 스크랩 되었습니다.`);
           handlers.changeOpenCurationSaveModal(true);
+          handlers.openScrapToast(true);
+          handlers.changeToastText("스크랩 되었습니다");
           revalidateScrapSpace();
           revalidateHomeRecommend();
         } else {
@@ -164,6 +168,7 @@ export default function PlaceInfoTop({
           handleModalFn={handlers.changeOpenCurationSaveModal}
         />
       )}
+      <Toast open={openScrapToast} text={toastText} />
     </>
   );
 }
