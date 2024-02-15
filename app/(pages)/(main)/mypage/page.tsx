@@ -40,7 +40,7 @@ export default function MyPage() {
   }, []);
   return (
     <div className="px-[2rem] h-[100vh] overflow-hidden">
-      <MyPageTopBar />
+      <MyPageTopBar text="프로필" />
       <Suspense fallback={<RecordMyPageSkeleton />}>
         {myPageData && (
           <>
@@ -103,6 +103,7 @@ export default function MyPage() {
                   {myPageData.reviews.map((record) => (
                     <PlaceInfoMain
                       key={record.id}
+                      size="small"
                       {...record}
                       className="w-full"
                     />

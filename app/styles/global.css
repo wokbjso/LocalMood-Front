@@ -1,6 +1,24 @@
 @import "./tailwind.css";
 @import "./font.css";
 
+.toast-enter {
+  opacity: 0;
+}
+
+.toast-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in-out;
+}
+
+.toast-exit {
+  opacity: 1;
+}
+
+.toast-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+
 @keyframes slide-modal {
   from {
     transform: translateY(100%);
@@ -8,14 +26,6 @@
   to {
     transform: translateY(0);
   }
-}
-
-.header-slider1 {
-  animation: 23s linear infinite normal none running infiniteSlider1;
-}
-
-.header-slider2 {
-  animation: 23s linear infinite infiniteSlider2;
 }
 
 @keyframes infiniteSlider1 {
@@ -40,4 +50,12 @@
   100% {
     transform: translateX(-200%);
   }
+}
+
+.header-slider1 {
+  animation: 23s linear infinite normal none running infiniteSlider1;
+}
+
+.header-slider2 {
+  animation: 23s linear infinite infiniteSlider2;
 }
