@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { CSSTransition } from "react-transition-group";
-import { twMerge } from "tailwind-merge";
 
 interface ToastProps {
   open: boolean;
@@ -8,7 +7,7 @@ interface ToastProps {
 }
 
 export default function Toast({ open, text }: ToastProps) {
-  const ref = useRef<HTMLButtonElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   return (
     <CSSTransition
       nodeRef={ref}
@@ -18,12 +17,12 @@ export default function Toast({ open, text }: ToastProps) {
       mountOnEnter
       unmountOnExit
     >
-      <button
+      <div
         ref={ref}
-        className="absolute bottom-[5rem] left-1/2 transform -translate-x-1/2 rounded-[8px] h-[3.8rem] px-[2.4rem] py-[1.2rem] min-w-[19.8rem] bg-[#212121CC] text-white whitespace-nowrap body2-medium z-50"
+        className="flex justify-center items-center absolute bottom-[5rem] left-1/2 transform -translate-x-1/2 rounded-[8px] h-[3.8rem] px-[2.4rem] py-[1.2rem] min-w-[19.8rem] bg-[#212121CC] text-white whitespace-nowrap body2-medium z-50"
       >
         {text}
-      </button>
+      </div>
     </CSSTransition>
   );
 }
