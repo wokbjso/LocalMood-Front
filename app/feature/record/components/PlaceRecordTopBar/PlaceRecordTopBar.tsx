@@ -25,6 +25,7 @@ export default function PlaceRecordTopBar({
         {showIndicator && (
           <div className="flex h-[2.8rem] pl-[1.1rem] justify-end items-center">
             <Indicator
+              clickAble={false}
               indicatorIndex={indicatorIndex}
               handleIndicatorIndex={handleIndicatorIndex}
             />

@@ -1,5 +1,5 @@
 "use client";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import RecordComplete from "@feature/record/components/RecordComplete/RecordComplete";
 import SelectKeyword from "@feature/record/components/Keyword/SelectKeyword";
 import SelectEvaluation from "@feature/record/components/Evaluation/SelectEvaluation";
@@ -9,6 +9,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import Button from "@common/components/ui/buttons/Button/Button";
 import { cloneElement, useState } from "react";
+import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 
 export default function RecordSelect({
   params: id,
@@ -19,10 +20,12 @@ export default function RecordSelect({
   const placeType = searchParams.get("type") || "";
   const name = searchParams.get("name") || "";
   const [direction, setDirection] = useState("");
+  const router = useRouter();
   const {
     indicatorIndex,
     cafeKeywordData,
     restaurantKeywordData,
+    hasSomeData,
     checkJump,
     handlers,
   } = UseKeyword(placeType);
@@ -33,6 +36,9 @@ export default function RecordSelect({
   const handleBtnBackClicked = () => {
     handlers.changeIndicatorIndex(indicatorIndex - 1);
     setDirection("back");
+  };
+  const handleExitClicked = () => {
+    router.replace("/record");
   };
   return (
     <div className="w-full h-[100vh] overflow-auto relative">
@@ -45,11 +51,7 @@ export default function RecordSelect({
         }}
       >
         {indicatorIndex === 0 && (
-          <CSSTransition
-            key={0}
-            classNames={`record-jump-${direction}`}
-            timeout={300}
-          >
+          <CSSTransition key={0} timeout={300}>
             <SelectKeyword
               placeType={placeType}
               name={name}
@@ -62,11 +64,7 @@ export default function RecordSelect({
           </CSSTransition>
         )}
         {indicatorIndex === 1 && (
-          <CSSTransition
-            key={1}
-            classNames={`record-jump-${direction}`}
-            timeout={300}
-          >
+          <CSSTransition key={1} timeout={300}>
             <SelectEvaluation
               placeType={placeType}
               indicatorIndex={indicatorIndex}
@@ -78,11 +76,7 @@ export default function RecordSelect({
           </CSSTransition>
         )}
         {indicatorIndex === 2 && (
-          <CSSTransition
-            key={2}
-            classNames={`record-jump-${direction}`}
-            timeout={300}
-          >
+          <CSSTransition key={2} timeout={300}>
             <SelectPhoto
               placeType={placeType}
               spaceId={id.id}
@@ -95,37 +89,36 @@ export default function RecordSelect({
           </CSSTransition>
         )}
         {indicatorIndex === 3 && (
-          <CSSTransition
-            key={3}
-            classNames={`record-jump-${direction}`}
-            timeout={300}
-          >
+          <CSSTransition key={3} timeout={300}>
             <RecordComplete
-              placeType={placeType}
               spaceId={id.id}
               handleIndicatorIndex={handlers.changeIndicatorIndex}
-              restaurantKeywordData={restaurantKeywordData}
-              cafeKeywordData={cafeKeywordData}
+              hasSomeData={hasSomeData}
             />
           </CSSTransition>
         )}
       </TransitionGroup>
-      {indicatorIndex < 3 && (
-        <div className="flex justify-center w-full fixed h-[13.2rem] px-[2rem] gap-[0.8rem] left-0 bottom-0 bg-white">
-          {indicatorIndex > 0 && (
-            <Button
-              variant="line"
-              className="h-[4.8rem]"
-              onClick={handleBtnBackClicked}
-            >
-              이전
-            </Button>
-          )}
+      <div className="flex justify-center w-full fixed h-[13.2rem] px-[2rem] gap-[0.8rem] left-0 bottom-0 bg-white">
+        {indicatorIndex > 0 && indicatorIndex < 3 && (
+          <Button
+            variant="line"
+            className="h-[4.8rem]"
+            onClick={handleBtnBackClicked}
+          >
+            이전
+          </Button>
+        )}
+        {indicatorIndex < 3 && (
           <Button onClick={handleBtnForwardClicked}>
             {checkJump() ? "건너뛰기" : "다음"}
           </Button>
-        </div>
-      )}
+        )}
+        {indicatorIndex === 3 && (
+          <Button onClick={handleExitClicked}>
+            {hasSomeData ? "완료" : "종료하기"}
+          </Button>
+        )}
+      </div>
     </div>
   );
 }

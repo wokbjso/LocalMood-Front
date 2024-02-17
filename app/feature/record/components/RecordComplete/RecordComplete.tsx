@@ -2,49 +2,22 @@ import React, { useState } from "react";
 import CompleteIcon from "@common/assets/images/record_complete.svg";
 import ArrowIcon from "@common/assets/icons/arrow/arrow-right.svg";
 import SaveModal from "../Modal/SaveModal";
-import Button from "@common/components/ui/buttons/Button/Button";
-import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 
 interface RecordCompleteProps {
-  placeType: string;
   spaceId: number;
   handleIndicatorIndex: (index: number) => void;
-  cafeKeywordData: { [key: string]: string | Array<string> };
-  restaurantKeywordData: { [key: string]: string | Array<string> };
+  hasSomeData: boolean;
 }
 
 export default function RecordComplete({
-  placeType,
   spaceId,
   handleIndicatorIndex,
-  cafeKeywordData,
-  restaurantKeywordData,
+  hasSomeData,
 }: RecordCompleteProps) {
   const [isAddCuration, setIsAddCuration] = useState(false);
   const handleAddCurationButtonClick = () => {
     setIsAddCuration(true);
   };
-  const handleCloseModal = () => {
-    setIsAddCuration(false);
-  };
-
-  const hasSomeData =
-    placeType === "CAFE"
-      ? Object.keys(cafeKeywordData).some((k) => {
-          if (typeof cafeKeywordData[k] === "string")
-            return cafeKeywordData[k] !== "";
-          else if (Array.isArray(cafeKeywordData[k]))
-            return cafeKeywordData[k].length > 0;
-          return false;
-        })
-      : Object.keys(restaurantKeywordData).some((k) => {
-          if (typeof restaurantKeywordData[k] === "string")
-            return restaurantKeywordData[k] !== "";
-          else if (Array.isArray(restaurantKeywordData[k]))
-            return restaurantKeywordData[k].length > 0;
-          return false;
-        });
-
   return (
     <>
       <div className="absolute w-full h-[100vh] flex flex-col justify-center items-center">
@@ -82,11 +55,6 @@ export default function RecordComplete({
             </div>
           </>
         )}
-        <div className="fixed  h-[13.2rem] bottom-0 bg-white">
-          <LinkLayout routeUrl="/record">
-            <Button>{hasSomeData ? "완료" : "종료하기"}</Button>
-          </LinkLayout>
-        </div>
       </div>
       {isAddCuration && (
         <SaveModal spaceId={spaceId} handleModalFn={setIsAddCuration} />

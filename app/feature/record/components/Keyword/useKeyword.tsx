@@ -24,6 +24,22 @@ export default function UseKeyword(placeType: string) {
     negativeEval: [],
   });
 
+  const hasSomeData =
+    placeType === "CAFE"
+      ? Object.keys(cafeKeywordData).some((k) => {
+          if (typeof cafeKeywordData[k] === "string")
+            return cafeKeywordData[k] !== "";
+          else if (Array.isArray(cafeKeywordData[k]))
+            return cafeKeywordData[k].length > 0;
+          return false;
+        })
+      : Object.keys(restaurantKeywordData).some((k) => {
+          if (typeof restaurantKeywordData[k] === "string")
+            return restaurantKeywordData[k] !== "";
+          else if (Array.isArray(restaurantKeywordData[k]))
+            return restaurantKeywordData[k].length > 0;
+          return false;
+        });
   const checkJump = () => {
     if (indicatorIndex === 0) {
       if (placeType === "CAFE") {
@@ -57,6 +73,8 @@ export default function UseKeyword(placeType: string) {
           ).length === 2
         );
       }
+    } else if (indicatorIndex === 2) {
+      return true;
     }
   };
 
@@ -143,6 +161,7 @@ export default function UseKeyword(placeType: string) {
     indicatorIndex,
     cafeKeywordData,
     restaurantKeywordData,
+    hasSomeData,
     checkJump,
     handlers: {
       changeKeyword: handleKeyword,
