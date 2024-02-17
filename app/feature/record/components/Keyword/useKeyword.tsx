@@ -1,3 +1,4 @@
+import { PLACE_EVALUATIONS } from "@feature/record/constants/evaluate-keywords";
 import { useState } from "react";
 
 export default function UseKeyword(placeType: string) {
@@ -22,6 +23,42 @@ export default function UseKeyword(placeType: string) {
     positiveEval: [],
     negativeEval: [],
   });
+
+  const checkJump = () => {
+    if (indicatorIndex === 0) {
+      if (placeType === "CAFE") {
+        return (
+          Object.keys(cafeKeywordData).filter(
+            (category) =>
+              typeof cafeKeywordData[category] === "string" &&
+              cafeKeywordData[category] !== ""
+          ).length === 0
+        );
+      } else if (placeType === "RESTAURANT") {
+        return (
+          Object.keys(restaurantKeywordData).filter(
+            (category) =>
+              typeof restaurantKeywordData[category] === "string" &&
+              restaurantKeywordData[category] !== ""
+          ).length === 0
+        );
+      }
+    } else if (indicatorIndex === 1) {
+      if (placeType === "CAFE") {
+        return (
+          Object.keys(PLACE_EVALUATIONS).filter(
+            (category) => cafeKeywordData[category].length === 0
+          ).length === 2
+        );
+      } else if (placeType === "RESTAURANT") {
+        return (
+          Object.keys(PLACE_EVALUATIONS).filter(
+            (category) => restaurantKeywordData[category].length === 0
+          ).length === 2
+        );
+      }
+    }
+  };
 
   const handleIndicatorIndex = (index: number) => {
     setIndicatorIndex(index);
@@ -106,6 +143,7 @@ export default function UseKeyword(placeType: string) {
     indicatorIndex,
     cafeKeywordData,
     restaurantKeywordData,
+    checkJump,
     handlers: {
       changeKeyword: handleKeyword,
       changeIndicatorIndex: handleIndicatorIndex,

@@ -25,25 +25,25 @@ export default function PhotoUpload({
 }: PhotoUploadProps) {
   const fileInput = useRef<HTMLInputElement>(null);
   const [image, setImage] = useState<any>([]);
-  // const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
-  //   if (e.target.files) {
-  //     handleImage(e.target.files[0]);
+  const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      handleImage(e.target.files[0]);
 
-  //     const reader = new FileReader();
-  //     reader.onload = () => {
-  //       if (reader.readyState === 2) {
-  //         if (image.length === 2) {
-  //           return;
-  //         } else {
-  //           setImage((prev: any) => {
-  //             return [...prev, reader.result];
-  //           });
-  //         }
-  //       }
-  //     };
-  //     reader.readAsDataURL(e.target.files[0]);
-  //   }
-  // };
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          if (image.length === 2) {
+            return;
+          } else {
+            setImage((prev: any) => {
+              return [...prev, reader.result];
+            });
+          }
+        }
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
   const handleAddImageClick = () => {
     if (fileInput.current) {
       fileInput.current.click();
@@ -87,9 +87,6 @@ export default function PhotoUpload({
                 />
               </div>
             ))}
-        </div>
-        <div className="flex justify-center w-full fixed  h-[13.2rem] bottom-0 left-0 bg-white">
-          <Button onClick={handleRecordUploadClick}>기록올리기</Button>
         </div>
       </div>
     </>

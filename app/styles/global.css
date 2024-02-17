@@ -19,6 +19,42 @@
   transition: opacity 300ms ease-in-out;
 }
 
+.record-jump-forward-enter {
+  transform: translateX(100%);
+}
+
+.record-jump-forward-enter-active {
+  transform: translateX(0);
+  transition: transform 300ms ease-in-out;
+}
+
+.record-jump-forward-exit {
+  transform: translateX(0);
+}
+
+.record-jump-forward-exit-active {
+  transform: translateX(-100%);
+  transition: transform 300ms ease-in-out;
+}
+
+.record-jump-back-enter {
+  transform: translateX(-100%);
+}
+
+.record-jump-back-enter-active {
+  transform: translateX(0);
+  transition: transform 300ms ease-in-out;
+}
+
+.record-jump-back-exit {
+  transform: translateX(0);
+}
+
+.record-jump-back-exit-active {
+  transform: translateX(100%);
+  transition: transform 300ms ease-in-out;
+}
+
 @keyframes slide-modal {
   from {
     transform: translateY(100%);

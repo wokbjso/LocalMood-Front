@@ -98,7 +98,7 @@ export default function PlaceInfoTop({
               src={imgUrl ? imgUrl : NoResult}
               alt="공간 사진"
               fill
-              sizes="100vw"
+              sizes="100vw,50vw"
               className={twMerge("rounded-[8px]", imgClassName)}
             />
           </div>

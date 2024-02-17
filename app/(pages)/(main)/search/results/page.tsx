@@ -22,7 +22,6 @@ export default function SearchResult() {
   const searchParams = useSearchParams();
   const [textSearchPlaceData, setTextSearchPlaceData] =
     useState<SearchPlaceResponse>();
-  console.log(textSearchPlaceData);
   const [keywordSearchPlaceData, setKeywordSearchPlaceData] =
     useState<SearchPlaceResponse>();
   const [textSearchCurationData, setTextSearchCurationData] =
