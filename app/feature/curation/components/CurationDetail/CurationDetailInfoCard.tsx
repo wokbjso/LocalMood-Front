@@ -3,12 +3,11 @@ import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import PlaceInfoBottom from "@feature/place/components/PlaceInfoBottom/PlaceInfoBottom";
 import Image from "next/image";
 import Slider from "@common/components/layout/Slider/Slider";
-import { MutableRefObject, forwardRef } from "react";
+import { forwardRef } from "react";
 import { CurationPlaceProps } from "@feature/curation/type";
 import DeleteSpaceFromCuration from "@feature/curation/queries/deleteSpaceFromCuration";
 import revalidateCurationDetail from "@feature/curation/utils/revalidateCurationDetail";
-import UseGetWidth from "@common/hooks/useGetWidth";
-import { assignMultipleRefs } from "@common/utils/dom/assign-multiple-refs";
+import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 
 interface AdditionalProps {
   curationId: number;
@@ -25,8 +24,6 @@ const CurationDetailInfoCard = forwardRef<
   const moodArray = props.mood ? props.mood.split(",") : [];
   const bestMenuArray = props.bestMenu ? props.bestMenu.split(",") : [];
 
-  const { ref: ref2, width } = UseGetWidth();
-
   const handleDeleteScrap = async () => {
     const res = await DeleteSpaceFromCuration(props.curationId, props.id);
     if (res.status === 200) {
@@ -39,12 +36,7 @@ const CurationDetailInfoCard = forwardRef<
   };
 
   return (
-    <div
-      className="w-full pt-[13rem]"
-      ref={(el) =>
-        assignMultipleRefs(el, [ref, ref2 as MutableRefObject<HTMLDivElement>])
-      }
-    >
+    <div className="w-full pt-[13rem]" ref={ref}>
       <Slider>
         <div className="flex gap-[0.8rem]">
           {props.imageUrls?.map((url, i) => (
@@ -67,7 +59,9 @@ const CurationDetailInfoCard = forwardRef<
               <div className="flex items-center gap-[0.4rem] text-black headline2-semibold">
                 {props.name}
                 <div className="px-[0.6rem] py-[0.4rem]">
-                  <ArrowIcon />
+                  <LinkLayout routeUrl={`/place/${props.id}`}>
+                    <ArrowIcon />
+                  </LinkLayout>
                 </div>
               </div>
               <div className="flex items-center gap-[0.8rem] pt-[0.8rem]">
