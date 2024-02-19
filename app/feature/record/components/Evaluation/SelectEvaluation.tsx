@@ -19,7 +19,7 @@ export default function SelectEvaluation({
   handleKeyword,
 }: SelectEvaluation) {
   return (
-    <div>
+    <div className="absolute">
       <PlaceRecordTopBar
         showIndicator={true}
         indicatorIndex={indicatorIndex}

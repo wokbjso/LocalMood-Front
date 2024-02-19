@@ -47,8 +47,11 @@ export default function PlaceInfoTop({
         if (res.status === 200) {
           handlers.openScrapToast(true);
           handlers.changeToastText("스크랩이 해제되었습니다");
-          revalidateScrapSpace();
-          revalidateHomeRecommend();
+          const timeoutId = setTimeout(() => {
+            revalidateScrapSpace();
+            revalidateHomeRecommend();
+          }, 1000);
+          return () => clearTimeout(timeoutId);
         } else {
           alert("에러가 발생했습니다!");
           return;
@@ -95,7 +98,7 @@ export default function PlaceInfoTop({
               src={imgUrl ? imgUrl : NoResult}
               alt="공간 사진"
               fill
-              sizes="100vw"
+              sizes="100vw,50vw"
               className={twMerge("rounded-[8px]", imgClassName)}
             />
           </div>

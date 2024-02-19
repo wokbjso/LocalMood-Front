@@ -4,12 +4,14 @@ import { useState } from "react";
 
 interface IndicatorProps {
   indicatorIndex: number;
+  clickAble?: boolean;
   className?: string;
   handleIndicatorIndex?: (index: number) => void;
 }
 
 export default function Indicator({
   indicatorIndex,
+  clickAble,
   className,
   handleIndicatorIndex,
 }: IndicatorProps) {
@@ -24,7 +26,7 @@ export default function Indicator({
           <IndicatorShape
             key={i}
             indicate={indicatorIndex === i}
-            onClick={() => indicatorChange(i)}
+            onClick={clickAble ? () => indicatorChange(i) : undefined}
           />
         ))}
     </div>

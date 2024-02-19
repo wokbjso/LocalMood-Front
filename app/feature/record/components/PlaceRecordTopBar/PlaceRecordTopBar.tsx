@@ -1,6 +1,7 @@
 import ArrowIcon from "@common/assets/icons/arrow/arrow-left.svg";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import Indicator from "@common/components/ui/indicator/Indicator";
+import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -18,15 +19,13 @@ export default function PlaceRecordTopBar({
   handleIndicatorIndex,
 }: RecordTopBarProps) {
   return (
-    <div className="flex flex-col items-start w-full px-[2rem] py-[1.2rem] gap-[1.2rem] fixed bg-white z-10">
-      <LinkLayout routeUrl="/record">
-        <ArrowIcon />
-      </LinkLayout>
-      <div className="flex justify-between items-start self-stretch">
+    <div className="flex items-start w-full px-[2rem] pb-[1.2rem] pt-[4.8rem] fixed bg-white z-10">
+      <div className="w-full flex justify-between items-start">
         <div className="headline1-semibold text-black">{text}</div>
         {showIndicator && (
           <div className="flex h-[2.8rem] pl-[1.1rem] justify-end items-center">
             <Indicator
+              clickAble={false}
               indicatorIndex={indicatorIndex}
               handleIndicatorIndex={handleIndicatorIndex}
             />
