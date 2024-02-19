@@ -43,7 +43,7 @@
     "tsconfig-paths-webpack-plugin": "^4.1.0",
     "typescript": "^5"
   },
-  "packageManager": "yarn@1.22.21",
+  "packageManager": "yarn@1.22.19",
   "readme": "ERROR: No README data found!",
   "_id": "localmood-front@0.1.0"
 }
