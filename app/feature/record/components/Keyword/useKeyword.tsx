@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export default function UseKeyword(placeType: string) {
   const [indicatorIndex, setIndicatorIndex] = useState(0);
+  const [nextDirection, setNextDirection] = useState("");
   const [cafeKeywordData, setCafeKeywordData] = useState<{
     [key: string]: string | any[];
   }>({
@@ -82,6 +83,10 @@ export default function UseKeyword(placeType: string) {
     setIndicatorIndex(index);
   };
 
+  const handleNextDirection = (direction: string) => {
+    setNextDirection(direction);
+  };
+
   const handleKeyword = (category: string, keyword: string) => {
     if (placeType === "CAFE") {
       if (Array.isArray(cafeKeywordData[category])) {
@@ -159,12 +164,14 @@ export default function UseKeyword(placeType: string) {
 
   return {
     indicatorIndex,
+    nextDirection,
     cafeKeywordData,
     restaurantKeywordData,
     hasSomeData,
     checkJump,
     handlers: {
       changeKeyword: handleKeyword,
+      changeNextDirection: handleNextDirection,
       changeIndicatorIndex: handleIndicatorIndex,
       changeImage: handleImage,
     },
