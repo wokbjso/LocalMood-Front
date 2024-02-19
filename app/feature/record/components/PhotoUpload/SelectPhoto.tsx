@@ -21,23 +21,21 @@ export default function SelectPhoto({
   handleImage,
 }: SelectPhoto) {
   return (
-    <div>
-      <div>
-        <PlaceRecordTopBar
-          showIndicator={true}
-          text="방문한 사진을 업로드해주세요!"
-          indicatorIndex={indicatorIndex}
-          handleIndicatorIndex={handleIndicatorIndex}
-        />
-        <RecordPhotoContent
-          placeType={placeType}
-          spaceId={spaceId}
-          cafeKeywordData={cafeKeywordData}
-          restaurantKeywordData={restaurantKeywordData}
-          handleImage={handleImage}
-          handleIndicatorIndex={handleIndicatorIndex}
-        />
-      </div>
+    <div className="absolute w-full h-[100vh] overflow-hidden">
+      <PlaceRecordTopBar
+        showIndicator={true}
+        text="방문한 사진을 업로드해주세요!"
+        indicatorIndex={indicatorIndex}
+        handleIndicatorIndex={handleIndicatorIndex}
+      />
+      <RecordPhotoContent
+        placeType={placeType}
+        spaceId={spaceId}
+        cafeKeywordData={cafeKeywordData}
+        restaurantKeywordData={restaurantKeywordData}
+        handleImage={handleImage}
+        handleIndicatorIndex={handleIndicatorIndex}
+      />
     </div>
   );
 }

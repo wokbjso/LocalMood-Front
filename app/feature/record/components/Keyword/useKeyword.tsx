@@ -1,7 +1,9 @@
+import { PLACE_EVALUATIONS } from "@feature/record/constants/evaluate-keywords";
 import { useState } from "react";
 
 export default function UseKeyword(placeType: string) {
   const [indicatorIndex, setIndicatorIndex] = useState(0);
+  const [nextDirection, setNextDirection] = useState("");
   const [cafeKeywordData, setCafeKeywordData] = useState<{
     [key: string]: string | any[];
   }>({
@@ -23,8 +25,66 @@ export default function UseKeyword(placeType: string) {
     negativeEval: [],
   });
 
+  const hasSomeData =
+    placeType === "CAFE"
+      ? Object.keys(cafeKeywordData).some((k) => {
+          if (typeof cafeKeywordData[k] === "string")
+            return cafeKeywordData[k] !== "";
+          else if (Array.isArray(cafeKeywordData[k]))
+            return cafeKeywordData[k].length > 0;
+          return false;
+        })
+      : Object.keys(restaurantKeywordData).some((k) => {
+          if (typeof restaurantKeywordData[k] === "string")
+            return restaurantKeywordData[k] !== "";
+          else if (Array.isArray(restaurantKeywordData[k]))
+            return restaurantKeywordData[k].length > 0;
+          return false;
+        });
+  const checkJump = () => {
+    if (indicatorIndex === 0) {
+      if (placeType === "CAFE") {
+        return (
+          Object.keys(cafeKeywordData).filter(
+            (category) =>
+              typeof cafeKeywordData[category] === "string" &&
+              cafeKeywordData[category] !== ""
+          ).length === 0
+        );
+      } else if (placeType === "RESTAURANT") {
+        return (
+          Object.keys(restaurantKeywordData).filter(
+            (category) =>
+              typeof restaurantKeywordData[category] === "string" &&
+              restaurantKeywordData[category] !== ""
+          ).length === 0
+        );
+      }
+    } else if (indicatorIndex === 1) {
+      if (placeType === "CAFE") {
+        return (
+          Object.keys(PLACE_EVALUATIONS).filter(
+            (category) => cafeKeywordData[category].length === 0
+          ).length === 2
+        );
+      } else if (placeType === "RESTAURANT") {
+        return (
+          Object.keys(PLACE_EVALUATIONS).filter(
+            (category) => restaurantKeywordData[category].length === 0
+          ).length === 2
+        );
+      }
+    } else if (indicatorIndex === 2) {
+      return true;
+    }
+  };
+
   const handleIndicatorIndex = (index: number) => {
     setIndicatorIndex(index);
+  };
+
+  const handleNextDirection = (direction: string) => {
+    setNextDirection(direction);
   };
 
   const handleKeyword = (category: string, keyword: string) => {
@@ -104,10 +164,14 @@ export default function UseKeyword(placeType: string) {
 
   return {
     indicatorIndex,
+    nextDirection,
     cafeKeywordData,
     restaurantKeywordData,
+    hasSomeData,
+    checkJump,
     handlers: {
       changeKeyword: handleKeyword,
+      changeNextDirection: handleNextDirection,
       changeIndicatorIndex: handleIndicatorIndex,
       changeImage: handleImage,
     },

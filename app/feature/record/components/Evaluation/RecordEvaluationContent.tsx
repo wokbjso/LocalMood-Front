@@ -25,21 +25,6 @@ export default function RecordEvaluationContent({
   const handleNextClick = () => {
     handleIndicatorIndex(2);
   };
-  const jump = () => {
-    if (placeType === "CAFE") {
-      return (
-        Object.keys(PLACE_EVALUATIONS).filter(
-          (category) => cafeKeywordData[category].length === 0
-        ).length === 2
-      );
-    } else if (placeType === "RESTAURANT") {
-      return (
-        Object.keys(PLACE_EVALUATIONS).filter(
-          (category) => restaurantKeywordData[category].length === 0
-        ).length === 2
-      );
-    }
-  };
 
   return (
     <div className="flex flex-col items-start pt-[14.8rem] pb-[18rem] px-[2rem] overflow-y-scroll">
@@ -111,11 +96,6 @@ export default function RecordEvaluationContent({
             </div>
           </section>
         ))}
-      <div className="flex justify-center w-full fixed  h-[13.2rem] left-0 bottom-0 bg-white">
-        <Button onClick={handleNextClick}>
-          {jump() ? "건너뛰기" : "다음"}
-        </Button>
-      </div>
     </div>
   );
 }

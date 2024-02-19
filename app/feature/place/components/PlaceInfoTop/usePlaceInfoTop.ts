@@ -16,11 +16,15 @@ export default function UsePlaceInfoTop() {
   };
 
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
     if (openScrapToast) {
-      setTimeout(() => {
+      timeoutId = setTimeout(() => {
         setOpenScrapToast(false);
-      }, 1500);
+      }, 1000);
     }
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, [openScrapToast]);
 
   return {

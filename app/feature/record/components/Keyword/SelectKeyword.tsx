@@ -25,7 +25,7 @@ export default function SelectKeyword({
   handleIndicatorIndex,
 }: SelectKeyword) {
   return (
-    <div>
+    <div className="absolute w-full top-0">
       <PlaceRecordTopBar
         showIndicator={true}
         indicatorIndex={indicatorIndex}
@@ -37,7 +37,6 @@ export default function SelectKeyword({
         cafeKeywordData={cafeKeywordData}
         restaurantKeywordData={restaurantKeywordData}
         handleKeyword={handleKeyword}
-        handleIndicatorIndex={handleIndicatorIndex}
       />
     </div>
   );

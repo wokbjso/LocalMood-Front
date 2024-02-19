@@ -22,7 +22,6 @@ export default function SearchResult() {
   const searchParams = useSearchParams();
   const [textSearchPlaceData, setTextSearchPlaceData] =
     useState<SearchPlaceResponse>();
-  console.log(textSearchPlaceData);
   const [keywordSearchPlaceData, setKeywordSearchPlaceData] =
     useState<SearchPlaceResponse>();
   const [textSearchCurationData, setTextSearchCurationData] =
@@ -129,7 +128,16 @@ export default function SearchResult() {
               <div className="h-full px-[2rem] pt-[2rem] pb-[14.5rem] overflow-y-scroll">
                 {textSearchPlaceData.spaceList.map((place) => (
                   <div key={place.id + place.type} className="mb-[4rem]">
-                    <PlaceInfoMain {...place} keywordCategoryNum={2} />
+                    <PlaceInfoMain
+                      {...place}
+                      interior={
+                        place.type === "CAFE" ? place.keyword : undefined
+                      }
+                      bestMenu={
+                        place.type === "RESTAURANT" ? place.keyword : undefined
+                      }
+                      keywordCategoryNum={2}
+                    />
                   </div>
                 ))}
               </div>
@@ -173,7 +181,18 @@ export default function SearchResult() {
                 <div className="h-full px-[2rem] pt-[1.2rem] pb-[14.5rem] overflow-y-scroll">
                   {textSearchPlaceData.spaceList.map((place) => (
                     <div key={place.id + place.type} className="mb-[4rem]">
-                      <PlaceInfoMain {...place} keywordCategoryNum={2} />
+                      <PlaceInfoMain
+                        {...place}
+                        interior={
+                          place.type === "CAFE" ? place.keyword : undefined
+                        }
+                        bestMenu={
+                          place.type === "RESTAURANT"
+                            ? place.keyword
+                            : undefined
+                        }
+                        keywordCategoryNum={2}
+                      />
                     </div>
                   ))}
                 </div>

@@ -1,16 +1,11 @@
 import ArrowIcon from "@common/assets/icons/arrow/arrow-right.svg";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
-import { PlaceInfoProps } from "@feature/place/type";
 import PlaceInfoBottom from "@feature/place/components/PlaceInfoBottom/PlaceInfoBottom";
 import Image from "next/image";
 import Slider from "@common/components/layout/Slider/Slider";
-import { ForwardedRef, MutableRefObject, forwardRef } from "react";
+import { MutableRefObject, forwardRef } from "react";
 import { CurationPlaceProps } from "@feature/curation/type";
-import DeleteSpaceScrap from "@feature/place/queries/deleteScrapSpace";
-import revalidateMyCuration from "@feature/curation/utils/revalidateMyCuration";
-import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
 import DeleteSpaceFromCuration from "@feature/curation/queries/deleteSpaceFromCuration";
-import revalidateCurationScrap from "@feature/curation/utils/revalidateCurationScrap";
 import revalidateCurationDetail from "@feature/curation/utils/revalidateCurationDetail";
 import UseGetWidth from "@common/hooks/useGetWidth";
 import { assignMultipleRefs } from "@common/utils/dom/assign-multiple-refs";
@@ -31,7 +26,6 @@ const CurationDetailInfoCard = forwardRef<
   const bestMenuArray = props.bestMenu ? props.bestMenu.split(",") : [];
 
   const { ref: ref2, width } = UseGetWidth();
-  console.log(width);
 
   const handleDeleteScrap = async () => {
     const res = await DeleteSpaceFromCuration(props.curationId, props.id);
