@@ -21,7 +21,7 @@ export default function PlaceDetailKeywordEvaluation({
     <div className="pt-[3.6rem] px-[2rem] pb-[3rem]">
       <div className="text-black headline2 mb-[1.2rem]">{mainText}</div>
       <div className="mb-[2rem]">
-        <div className="flex flex-col items-start gap-[0.4rem]">
+        <div className="flex flex-col items-start gap-[0.4rem] mb-[0.4rem]">
           {positiveEval &&
             positiveEval.map((li, i) => (
               <GraphUpDownVote

@@ -7,6 +7,7 @@ import CurationScrapped from "@feature/curation/components/CurationScrapped/Cura
 import PlaceDetailKeywordEvaluation from "@feature/place/components/PlaceDetail/PlaceDetailKeywordEvaluation";
 import PlaceDetailKeywordSummary from "@feature/place/components/PlaceDetail/PlaceDetailKeywordSummary";
 import GetPlaceDetail from "@feature/place/queries/getPlaceDetail";
+import PlaceDetailTopBar from "@feature/place/components/PlaceDetail/PlaceDetailTopBar";
 
 export default async function PlaceDetail({
   params: { id },
@@ -15,7 +16,14 @@ export default async function PlaceDetail({
 }) {
   const detailData = await GetPlaceDetail(id);
   return (
-    <div className="pb-[12rem]">
+    <div className="relative pb-[12rem] w-full h-[100vh] overflow-auto">
+      <PlaceDetailTopBar
+        id={id}
+        isScraped={detailData.info.isScraped}
+        address={detailData.info.address}
+        name={detailData.info.name}
+        className="absolute top-[4.7rem] z-10"
+      />
       <div className="w-full h-[30rem] mb-[1.5rem] relative">
         <Image
           src={detailData.info.imgUrlList[0]}

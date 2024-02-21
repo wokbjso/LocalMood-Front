@@ -15,6 +15,7 @@ export default async function CurationDetail({
   params: { id: number };
 }) {
   const curationDetail = await GetCurationDetail(id);
+  console.log(curationDetail);
   const formattedDate = new Date(curationDetail.createdDate).toLocaleDateString(
     "ko-KR",
     {
