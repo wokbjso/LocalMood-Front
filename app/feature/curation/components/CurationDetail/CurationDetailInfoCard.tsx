@@ -38,7 +38,7 @@ const CurationDetailInfoCard = forwardRef<
   return (
     <div className="w-full pt-[13rem]" ref={ref}>
       <Slider>
-        <div className="flex gap-[0.8rem]">
+        <div className="flex gap-[0.8rem] mr-[0.8rem]">
           {props.imageUrls?.map((url, i) => (
             <div key={url + i} className="relative w-[28rem] h-[28rem]">
               <Image
