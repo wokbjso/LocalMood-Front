@@ -41,7 +41,7 @@ export default function Map({ handleMapOpen, address, className }: MapProps) {
     const mapOptions: naver.maps.MapOptions = {
       //center 옵션에 생성한 지도 중심 인스턴스 넣기
       center: center,
-      zoom: 12,
+      zoom: 17,
       minZoom: 11,
       maxZoom: 19,
       zoomControl: true,
@@ -55,6 +55,11 @@ export default function Map({ handleMapOpen, address, className }: MapProps) {
     //설정해놓은 옵션을 바탕으로 지도 생성
     let map = new naver.maps.Map(mapRef.current, mapOptions);
     setNewMap(map);
+    let marker = new naver.maps.Marker({
+      position: new naver.maps.LatLng(addressY, addressX),
+      //4번에서 생성한 지도 세팅
+      map: map,
+    });
   }, [addressX, addressY]);
 
   return (
