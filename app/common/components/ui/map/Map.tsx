@@ -68,7 +68,7 @@ export default function Map({ handleMapOpen, address, className }: MapProps) {
       <div className={twMerge("w-full h-[100vh]", className)}>
         <div
           ref={(el) => assignMultipleRefs(el, [outsideClickRef, mapRef])}
-          className="w-full h-[65%]"
+          className="w-full h-[78%]"
         />
       </div>
     </>
