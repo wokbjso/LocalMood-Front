@@ -22,7 +22,7 @@ export default async function PlaceDetail({
         isScraped={detailData.info.isScraped}
         address={detailData.info.address}
         name={detailData.info.name}
-        className="absolute top-[4.7rem] z-10"
+        className="absolute top-[1.2rem] z-10"
       />
       <div className="w-full h-[30rem] mb-[1.5rem] relative">
         <Image

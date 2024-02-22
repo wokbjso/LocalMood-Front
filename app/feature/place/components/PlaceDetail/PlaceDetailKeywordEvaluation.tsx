@@ -25,7 +25,7 @@ export default function PlaceDetailKeywordEvaluation({
           {positiveEval &&
             positiveEval.map((li, i) => (
               <GraphUpDownVote
-                key={li[i]}
+                key={li[i] + i}
                 evaluation={li[0]}
                 percentage={li[1] + "%"}
                 like={true}
@@ -37,7 +37,7 @@ export default function PlaceDetailKeywordEvaluation({
           {negativeEval &&
             negativeEval.map((li, i) => (
               <GraphUpDownVote
-                key={li[i]}
+                key={li[i] + i}
                 evaluation={li[0]}
                 percentage={li[1] + "%"}
                 like={false}
