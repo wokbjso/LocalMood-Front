@@ -88,7 +88,7 @@ export default function PlaceDetailTopBar({
       {mapOpen && (
         <Map
           handleMapOpen={handleMapOpen}
-          address={address + " " + name}
+          address={[address + " " + name]}
           className="fixed top-[7rem] z-10"
         />
       )}
