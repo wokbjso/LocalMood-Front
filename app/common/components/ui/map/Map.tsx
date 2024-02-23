@@ -2,9 +2,11 @@ import UseOutsideClick from "@common/hooks/useOutsideClick";
 import { assignMultipleRefs } from "@common/utils/dom/assign-multiple-refs";
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
+import MapMarker from "../mapMarker/MapMarker";
 
 interface MapProps {
   handleMapOpen: (state: boolean) => void;
+  type: string;
   address: string[];
   zoom?: number;
   className?: string;
@@ -12,12 +14,13 @@ interface MapProps {
 
 export default function Map({
   handleMapOpen,
+  type,
   address,
   zoom = 17,
   className,
 }: MapProps) {
-  const [addressX, setAddressX] = useState<number>(0);
-  const [addressY, setAddressY] = useState<number>(0);
+  const [centerX, setCenterX] = useState<number>(0);
+  const [centerY, setCenterY] = useState<number>(0);
   const mapRef = useRef<HTMLDivElement>(null);
   const { ref: outsideClickRef } =
     UseOutsideClick<HTMLDivElement>(handleMapOpen);
@@ -32,16 +35,13 @@ export default function Map({
     address.forEach((addr, i) => {
       naver.maps.Service.geocode({ query: addr }, function (status, res) {
         if (status !== naver.maps.Service.Status.OK) {
-          alert("결과가 없습니다");
+          alert(`${addr} 주소에 맞는 결과가 없습니다`);
         } else {
-          // 요청 성공에 대한 핸들링
           // 검색된 주소에 해당하는 위도, 경도를 숫자로 변환후 상태 저장
           const resAddress = res.v2.addresses[0];
           if (i === 0) {
-            const x = parseFloat(resAddress.x);
-            const y = parseFloat(resAddress.y);
-            setAddressX(x);
-            setAddressY(y);
+            setCenterX(parseFloat(resAddress.x));
+            setCenterY(parseFloat(resAddress.y));
           }
           setTotalPlaceData((prev) => [
             ...prev,
@@ -51,10 +51,10 @@ export default function Map({
       });
     });
     if (!mapRef.current || !naver) return;
-    const center = new naver.maps.LatLng(addressY, addressX);
+    const center = new naver.maps.LatLng(centerY, centerX);
     const mapOptions: naver.maps.MapOptions = {
       //center 옵션에 생성한 지도 중심 인스턴스 넣기
-      center: center,
+      center,
       zoom,
       minZoom: 11,
       maxZoom: 20,
@@ -72,9 +72,12 @@ export default function Map({
         position: new naver.maps.LatLng(data.y, data.x),
         //4번에서 생성한 지도 세팅
         map: map,
+        icon: {
+          content: MapMarker({ type }),
+        },
       });
     });
-  }, [address, addressX, addressY]);
+  }, [address, centerX, centerY, zoom]);
 
   return (
     <>

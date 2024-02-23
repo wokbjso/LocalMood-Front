@@ -19,10 +19,12 @@ import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
 export default function PlaceDetailTopBar({
   id,
   isScraped,
+  type,
   address,
   name,
   className,
 }: Partial<TopBarProps> & {
+  type: string;
   address: string;
   name: string;
   isScraped: boolean;
@@ -88,6 +90,7 @@ export default function PlaceDetailTopBar({
       {mapOpen && (
         <Map
           handleMapOpen={handleMapOpen}
+          type={type}
           address={[address + " " + name]}
           className="fixed top-[7rem] z-10"
         />
