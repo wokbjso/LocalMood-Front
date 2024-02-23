@@ -20,6 +20,7 @@ export default async function PlaceDetail({
       <PlaceDetailTopBar
         id={id}
         isScraped={detailData.info.isScraped}
+        type={detailData.info.type}
         address={detailData.info.address}
         name={detailData.info.name}
         className="absolute top-[1.2rem] z-10"
