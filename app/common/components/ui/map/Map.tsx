@@ -50,34 +50,39 @@ export default function Map({
         }
       });
     });
-    if (!mapRef.current || !naver) return;
-    const center = new naver.maps.LatLng(centerY, centerX);
-    const mapOptions: naver.maps.MapOptions = {
-      //center 옵션에 생성한 지도 중심 인스턴스 넣기
-      center,
-      zoom,
-      minZoom: 11,
-      maxZoom: 20,
-      zoomControl: true,
-      zoomControlOptions: {
-        style: naver.maps.ZoomControlStyle.SMALL,
-        position: naver.maps.Position.TOP_RIGHT,
-      },
-      mapDataControl: false,
-      scaleControl: false,
-    };
-    let map = new naver.maps.Map(mapRef.current, mapOptions);
-    totalPlaceData.forEach((data) => {
-      new naver.maps.Marker({
-        position: new naver.maps.LatLng(data.y, data.x),
-        //4번에서 생성한 지도 세팅
-        map: map,
-        icon: {
-          content: MapMarker({ type }),
+  }, [address]);
+
+  useEffect(() => {
+    if (address.length === totalPlaceData.length) {
+      if (!mapRef.current || !naver) return;
+      const center = new naver.maps.LatLng(centerY, centerX);
+      const mapOptions: naver.maps.MapOptions = {
+        //center 옵션에 생성한 지도 중심 인스턴스 넣기
+        center,
+        zoom,
+        minZoom: 11,
+        maxZoom: 20,
+        zoomControl: true,
+        zoomControlOptions: {
+          style: naver.maps.ZoomControlStyle.SMALL,
+          position: naver.maps.Position.TOP_RIGHT,
         },
+        mapDataControl: false,
+        scaleControl: false,
+      };
+      let map = new naver.maps.Map(mapRef.current, mapOptions);
+      totalPlaceData.forEach((data) => {
+        new naver.maps.Marker({
+          position: new naver.maps.LatLng(data.y, data.x),
+          //4번에서 생성한 지도 세팅
+          map: map,
+          icon: {
+            content: MapMarker({ type }),
+          },
+        });
       });
-    });
-  }, [address, centerX, centerY, zoom]);
+    }
+  }, [address, centerX, centerY, type, zoom, totalPlaceData]);
 
   return (
     <>
