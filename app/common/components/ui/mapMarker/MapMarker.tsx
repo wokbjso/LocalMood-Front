@@ -2,7 +2,7 @@ interface MapMarkerProps {
   type: string;
 }
 
-export default function MapMarker({ type }: MapMarkerProps) {
+export default function MapMarker(type: string) {
   const mobileContentArray = [
     `<div style="width:5rem; height:5rem; background-image:url(${
       type == "CAFE" ? "/coffee.png" : "/restaurant.png"

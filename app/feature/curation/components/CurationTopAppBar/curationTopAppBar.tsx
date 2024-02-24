@@ -30,7 +30,13 @@ export default function CurationTopAppBar({
   const [menuModalOpen, setMenuModalOpen] = useState(false);
   const [mapOpen, setMapOpen] = useState(false);
   const pathname = usePathname();
-  const [addresses, setAddresses] = useState<string[]>([]);
+  const [mapPlaceData, setMapPlaceData] = useState<
+    {
+      address: string;
+      name: string;
+      type: string;
+    }[]
+  >([]);
 
   const handleMenuClick = () => {
     setMenuModalOpen(true);
@@ -50,10 +56,16 @@ export default function CurationTopAppBar({
   const { scrollHeight } = useGetScrollHeight();
 
   useEffect(() => {
-    const newAddresses = curationDetail.spaceDetails.map(
-      (space) => space.address + " " + space.name
+    curationDetail.spaceDetails.map((space) =>
+      setMapPlaceData((prev) => [
+        ...prev,
+        {
+          address: space.address,
+          name: space.name,
+          type: space.type,
+        },
+      ])
     );
-    setAddresses(newAddresses);
   }, [curationDetail]);
   return (
     <>
@@ -133,7 +145,7 @@ export default function CurationTopAppBar({
       </div>
       {mapOpen && (
         <Map
-          address={addresses}
+          placeData={mapPlaceData}
           zoom={13}
           handleMapOpen={handleMapClick}
           className="fixed top-[7rem] z-10"
