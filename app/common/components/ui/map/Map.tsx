@@ -5,20 +5,23 @@ import { twMerge } from "tailwind-merge";
 import MapMarker from "../mapMarker/MapMarker";
 
 interface MapProps {
-  handleMapOpen: (state: boolean) => void;
-  type: string;
-  address: string[];
+  placeData: {
+    address: string;
+    name: string;
+    type: string;
+  }[];
   zoom?: number;
+  handleMapOpen: (state: boolean) => void;
   className?: string;
 }
 
 export default function Map({
-  handleMapOpen,
-  type,
-  address,
+  placeData,
   zoom = 17,
+  handleMapOpen,
   className,
 }: MapProps) {
+  console.log(placeData);
   const [centerX, setCenterX] = useState<number>(0);
   const [centerY, setCenterY] = useState<number>(0);
   const mapRef = useRef<HTMLDivElement>(null);
@@ -28,32 +31,40 @@ export default function Map({
     {
       x: number;
       y: number;
+      type: string;
     }[]
   >([]);
 
   useEffect(() => {
-    address.forEach((addr, i) => {
-      naver.maps.Service.geocode({ query: addr }, function (status, res) {
-        if (status !== naver.maps.Service.Status.OK) {
-          alert(`${addr} 주소에 맞는 결과가 없습니다`);
-        } else {
-          // 검색된 주소에 해당하는 위도, 경도를 숫자로 변환후 상태 저장
-          const resAddress = res.v2.addresses[0];
-          if (i === 0) {
-            setCenterX(parseFloat(resAddress.x));
-            setCenterY(parseFloat(resAddress.y));
+    placeData.forEach((place, i) => {
+      naver.maps.Service.geocode(
+        { query: place.address + " " + place.name },
+        function (status, res) {
+          if (status !== naver.maps.Service.Status.OK) {
+            alert(`${place} 주소에 맞는 결과가 없습니다`);
+          } else {
+            // 검색된 주소에 해당하는 위도, 경도를 숫자로 변환후 상태 저장
+            const resAddress = res.v2.addresses[0];
+            if (i === 0) {
+              setCenterX(parseFloat(resAddress.x));
+              setCenterY(parseFloat(resAddress.y));
+            }
+            setTotalPlaceData((prev) => [
+              ...prev,
+              {
+                x: parseFloat(resAddress.x),
+                y: parseFloat(resAddress.y),
+                type: place.type,
+              },
+            ]);
           }
-          setTotalPlaceData((prev) => [
-            ...prev,
-            { x: Number(resAddress.x), y: Number(resAddress.y) },
-          ]);
         }
-      });
+      );
     });
-  }, [address]);
+  }, [placeData]);
 
   useEffect(() => {
-    if (address.length === totalPlaceData.length) {
+    if (placeData.length === totalPlaceData.length) {
       if (!mapRef.current || !naver) return;
       const center = new naver.maps.LatLng(centerY, centerX);
       const mapOptions: naver.maps.MapOptions = {
@@ -77,12 +88,12 @@ export default function Map({
           //4번에서 생성한 지도 세팅
           map: map,
           icon: {
-            content: MapMarker({ type }),
+            content: MapMarker(data.type),
           },
         });
       });
     }
-  }, [address, centerX, centerY, type, zoom, totalPlaceData]);
+  }, [placeData, centerX, centerY, zoom, totalPlaceData]);
 
   return (
     <>
