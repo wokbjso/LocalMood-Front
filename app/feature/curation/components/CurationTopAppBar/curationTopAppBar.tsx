@@ -56,15 +56,14 @@ export default function CurationTopAppBar({
   const { scrollHeight } = useGetScrollHeight();
 
   useEffect(() => {
-    curationDetail.spaceDetails.map((space) =>
-      setMapPlaceData((prev) => [
-        ...prev,
-        {
+    setMapPlaceData(
+      curationDetail.spaceDetails.map((space) => {
+        return {
           address: space.address,
           name: space.name,
           type: space.type,
-        },
-      ])
+        };
+      })
     );
   }, [curationDetail]);
   return (
