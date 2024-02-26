@@ -1,13 +1,13 @@
 import NonCuration from "@common/assets/icons/illustration/CurationNoSeat.png";
 import ArrowRight from "@common/assets/icons/arrow/arrow-right.svg";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
-import CurationTopAppBar from "@feature/curation/components/CurationTopAppBar/curationTopAppBar";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
 import Image from "next/image";
 import ProfileIcon from "@common/assets/icons/profile/greenProfile.png";
 import CurationPrivacyToggleButton from "@feature/curation/components/CurationButton/CurationPrivacyToggleButton";
 import CurationDetailCardList from "@feature/curation/components/CurationDetail/CurationDetailCardList";
 import GetCurationDetail from "@feature/curation/queries/getCurationDetail";
+import CurationTopAppBar from "@feature/curation/components/CurationTopAppBar/curationTopAppBar";
 
 export default async function CurationDetail({
   params: { id },

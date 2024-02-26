@@ -22,6 +22,8 @@ export default function PlaceDetailTopBar({
   type,
   address,
   name,
+  imgUrl,
+  purpose,
   className,
 }: Partial<TopBarProps> & {
   type: string;
@@ -29,6 +31,8 @@ export default function PlaceDetailTopBar({
   name: string;
   isScraped: boolean;
   id: number;
+  imgUrl: string;
+  purpose: string[];
 }) {
   const pathname = usePathname();
   const [mapOpen, setMapOpen] = useState(false);
@@ -90,11 +94,10 @@ export default function PlaceDetailTopBar({
       {mapOpen && (
         <Map
           handleMapOpen={handleMapOpen}
-          placeData={[{ address: address, name, type }]}
+          placeData={[{ address: address, name, type, purpose, imgUrl }]}
           className="fixed top-[7rem] z-10"
         />
       )}
-
       {openSaveModal && (
         <SaveModal spaceId={id} handleModalFn={setOpenSaveModal} />
       )}
