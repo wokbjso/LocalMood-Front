@@ -3,12 +3,16 @@ import { assignMultipleRefs } from "@common/utils/dom/assign-multiple-refs";
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import MapMarker from "../mapMarker/MapMarker";
+import MapInfoWindow from "@feature/map/components/MapInfoWindow/MapInfoWindow";
+import { sliceText } from "@common/utils/text/slice-text";
 
 interface MapProps {
   placeData: {
     address: string;
     name: string;
     type: string;
+    purpose: string[];
+    imgUrl: string;
   }[];
   zoom?: number;
   handleMapOpen: (state: boolean) => void;
@@ -21,17 +25,20 @@ export default function Map({
   handleMapOpen,
   className,
 }: MapProps) {
-  console.log(placeData);
   const [centerX, setCenterX] = useState<number>(0);
   const [centerY, setCenterY] = useState<number>(0);
   const mapRef = useRef<HTMLDivElement>(null);
   const { ref: outsideClickRef } =
     UseOutsideClick<HTMLDivElement>(handleMapOpen);
-  const [totalPlaceData, setTotalPlaceData] = useState<
+  const [geocodeLocations, setGeocodeLocations] = useState<
     {
       x: number;
       y: number;
       type: string;
+      name: string;
+      address: string;
+      purpose: string[];
+      imgUrl: string;
     }[]
   >([]);
 
@@ -49,12 +56,16 @@ export default function Map({
               setCenterX(parseFloat(resAddress.x));
               setCenterY(parseFloat(resAddress.y));
             }
-            setTotalPlaceData((prev) => [
+            setGeocodeLocations((prev) => [
               ...prev,
               {
                 x: parseFloat(resAddress.x),
                 y: parseFloat(resAddress.y),
                 type: place.type,
+                name: place.name,
+                address: place.address,
+                purpose: place.purpose,
+                imgUrl: place.imgUrl,
               },
             ]);
           }
@@ -64,7 +75,7 @@ export default function Map({
   }, [placeData]);
 
   useEffect(() => {
-    if (placeData.length === totalPlaceData.length) {
+    if (placeData.length === geocodeLocations.length) {
       if (!mapRef.current || !naver) return;
       const center = new naver.maps.LatLng(centerY, centerX);
       const mapOptions: naver.maps.MapOptions = {
@@ -82,18 +93,39 @@ export default function Map({
         scaleControl: false,
       };
       let map = new naver.maps.Map(mapRef.current, mapOptions);
-      totalPlaceData.forEach((data) => {
-        new naver.maps.Marker({
-          position: new naver.maps.LatLng(data.y, data.x),
+      geocodeLocations.forEach((location) => {
+        let marker = new naver.maps.Marker({
+          position: new naver.maps.LatLng(location.y, location.x),
           //4번에서 생성한 지도 세팅
-          map: map,
+          map,
           icon: {
-            content: MapMarker(data.type),
+            content: MapMarker(location.type),
           },
+          animation: naver.maps.Animation.BOUNCE,
+        });
+        let infoWindow = new naver.maps.InfoWindow({
+          content: MapInfoWindow({
+            name: location.name,
+            type: location.type,
+            address: sliceText(location.address, 15),
+            purpose: location.purpose,
+            imgUrl: location.imgUrl,
+          }),
+          borderWidth: 0,
+          pixelOffset: new naver.maps.Point(0, 150),
+          disableAnchor: true,
+          backgroundColor: "transparent",
+        });
+        naver.maps.Event.addListener(marker, "click", function (e) {
+          if (infoWindow.getMap()) {
+            infoWindow.close();
+          } else {
+            infoWindow.open(map, marker);
+          }
         });
       });
     }
-  }, [placeData, centerX, centerY, zoom, totalPlaceData]);
+  }, [placeData, centerX, centerY, zoom, geocodeLocations]);
 
   return (
     <>
