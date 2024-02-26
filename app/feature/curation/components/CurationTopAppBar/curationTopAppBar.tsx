@@ -35,6 +35,8 @@ export default function CurationTopAppBar({
       address: string;
       name: string;
       type: string;
+      purpose: string[];
+      imgUrl: string;
     }[]
   >([]);
 
@@ -62,6 +64,8 @@ export default function CurationTopAppBar({
           address: space.address,
           name: space.name,
           type: space.type,
+          purpose: space.purpose.split(","),
+          imgUrl: space.imageUrls[0],
         };
       })
     );

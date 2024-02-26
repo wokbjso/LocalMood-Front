@@ -23,6 +23,8 @@ export default async function PlaceDetail({
         type={detailData.info.type}
         address={detailData.info.address}
         name={detailData.info.name}
+        purpose={detailData.info.purpose}
+        imgUrl={detailData.info.imgUrlList[0]}
         className="absolute top-[1.2rem] z-10"
       />
       <div className="w-full h-[30rem] mb-[1.5rem] relative">
