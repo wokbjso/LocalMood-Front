@@ -8,7 +8,6 @@ import GetPlaceMyPage from "@feature/place/queries/getPlaceMyPage";
 import { Suspense, lazy, useEffect, useState } from "react";
 import GetMemberInfo from "@feature/user/queries/getMemberInfo";
 import Link from "next/link";
-import { getSession } from "@common/utils/getSession";
 import RecordMyPageSkeleton from "@feature/record/components/RecordMyPageSkeleton/RecordMyPageSkeleton";
 const PlaceInfoMain = lazy(
   () => import("@feature/place/components/PlaceInfoMain/PlaceInfoMain")
@@ -23,17 +22,11 @@ export default function MyPage() {
     nickname: string;
     profileImgUrl: string;
   }>();
-  console.log(myPageData);
   const getMyPageData = async () => {
-    const userInfo = await getSession();
-    if (!userInfo) {
-      location.replace("/login");
-    } else {
-      const placeData = await GetPlaceMyPage();
-      setMyPageData(placeData);
-      const memberData = await GetMemberInfo();
-      setUserData(memberData);
-    }
+    const placeData = await GetPlaceMyPage();
+    setMyPageData(placeData);
+    const memberData = await GetMemberInfo();
+    setUserData(memberData);
   };
   useEffect(() => {
     getMyPageData();
