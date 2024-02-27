@@ -2,7 +2,7 @@ import UseOutsideClick from "@common/hooks/useOutsideClick";
 import { assignMultipleRefs } from "@common/utils/dom/assign-multiple-refs";
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import MapMarker from "../mapMarker/MapMarker";
+import MapMarker from "../MapMarker/MapMarker";
 import MapInfoWindow from "@feature/map/components/MapInfoWindow/MapInfoWindow";
 import { sliceText } from "@common/utils/text/slice-text";
 
@@ -30,7 +30,7 @@ export default function Map({
   const mapRef = useRef<HTMLDivElement>(null);
   const { ref: outsideClickRef } =
     UseOutsideClick<HTMLDivElement>(handleMapOpen);
-  const [geocodeLocations, setGeocodeLocations] = useState<
+  const [mapPlacesData, setMapPlacesData] = useState<
     {
       x: number;
       y: number;
@@ -56,7 +56,7 @@ export default function Map({
               setCenterX(parseFloat(resAddress.x));
               setCenterY(parseFloat(resAddress.y));
             }
-            setGeocodeLocations((prev) => [
+            setMapPlacesData((prev) => [
               ...prev,
               {
                 x: parseFloat(resAddress.x),
@@ -75,7 +75,7 @@ export default function Map({
   }, [placeData]);
 
   useEffect(() => {
-    if (placeData.length === geocodeLocations.length) {
+    if (placeData.length === mapPlacesData.length) {
       if (!mapRef.current || !naver) return;
       const center = new naver.maps.LatLng(centerY, centerX);
       const mapOptions: naver.maps.MapOptions = {
@@ -93,23 +93,23 @@ export default function Map({
         scaleControl: false,
       };
       let map = new naver.maps.Map(mapRef.current, mapOptions);
-      geocodeLocations.forEach((location) => {
+      mapPlacesData.forEach((place) => {
         let marker = new naver.maps.Marker({
-          position: new naver.maps.LatLng(location.y, location.x),
+          position: new naver.maps.LatLng(place.y, place.x),
           //4번에서 생성한 지도 세팅
           map,
           icon: {
-            content: MapMarker(location.type),
+            content: MapMarker(place.type),
           },
           animation: naver.maps.Animation.BOUNCE,
         });
         let infoWindow = new naver.maps.InfoWindow({
           content: MapInfoWindow({
-            name: location.name,
-            type: location.type,
-            address: sliceText(location.address, 15),
-            purpose: location.purpose,
-            imgUrl: location.imgUrl,
+            name: place.name,
+            type: place.type,
+            address: sliceText(place.address, 15),
+            purpose: place.purpose,
+            imgUrl: place.imgUrl,
           }),
           borderWidth: 0,
           pixelOffset: new naver.maps.Point(0, 150),
@@ -125,7 +125,7 @@ export default function Map({
         });
       });
     }
-  }, [placeData, centerX, centerY, zoom, geocodeLocations]);
+  }, [placeData, centerX, centerY, zoom, mapPlacesData]);
 
   return (
     <>

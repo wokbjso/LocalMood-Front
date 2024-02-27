@@ -12,7 +12,7 @@ import PostSpaceScrap from "@feature/place/queries/postSpaceScrap";
 import { usePathname } from "next/navigation";
 import MapIcon from "@common/assets/icons/map/map";
 import { useState } from "react";
-import Map from "@common/components/ui/map/Map";
+import Map from "@feature/map/components/Map/Map";
 import SaveModal from "@feature/record/components/Modal/SaveModal";
 import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
 

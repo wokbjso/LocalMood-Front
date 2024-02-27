@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import CurationMenuModal from "../CurationModal/CurationMenuModal";
 import { copyLink } from "@common/utils/text/copy-link";
 import MapIcon from "@common/assets/icons/map/map";
-import Map from "@common/components/ui/map/Map";
+import Map from "@feature/map/components/Map/Map";
 import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-detail";
 
 interface CurationTopAppBarProps {
