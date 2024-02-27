@@ -10,7 +10,6 @@ import CurationMakeModal from "@feature/curation/components/CurationMake/Curatio
 import { CurationProps } from "@feature/curation/type";
 import getMyCuration from "@feature/curation/queries/getMyCuration";
 import getScrappedCuration from "@feature/curation/queries/getScrappedCuration";
-import { getSession } from "@common/utils/getSession";
 
 export default function CurationPage() {
   const { tabIndex, isCurationMakeOpen, handlers } = UseCuration();
@@ -31,15 +30,10 @@ export default function CurationPage() {
   ];
 
   const fetchData = async () => {
-    const userInfo = await getSession();
-    if (!userInfo?.accessToken) {
-      location.replace("/login");
-    } else {
-      const myCurationData = await getMyCuration();
-      setMyCuration(myCurationData);
-      const scrappedCurationData = await getScrappedCuration();
-      setScrappedCuration(scrappedCurationData);
-    }
+    const myCurationData = await getMyCuration();
+    setMyCuration(myCurationData);
+    const scrappedCurationData = await getScrappedCuration();
+    setScrappedCuration(scrappedCurationData);
   };
 
   useEffect(() => {

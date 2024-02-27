@@ -12,8 +12,8 @@ import { loginAction } from "@feature/auth/utils/loginAction";
 
 export default function Login() {
   const handleSubmit = async (e: LoginFormState) => {
-    const status = await loginAction(e);
-    if (status.status === 200) {
+    const res = await loginAction(e);
+    if (res.status === 200) {
       location.replace("/");
     } else {
       alert("로그인 정보가 올바르지 않습니다.");
