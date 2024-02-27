@@ -9,7 +9,7 @@ import { PLACE_PURPOSE } from "@feature/place/constants/place-tag-category";
 interface PlaceDetailMoreReviewsProps {
   reviews: {
     [key: string]: {
-      image: string;
+      image: string[];
       name: string;
       type: string;
       address: string;
@@ -28,6 +28,7 @@ interface PlaceDetailMoreReviewsProps {
 export default function PlaceDetailMoreReviews({
   reviews,
 }: PlaceDetailMoreReviewsProps) {
+  console.log(reviews);
   const [reviewPurposeIndex, setReviewPurposeIndex] = useState(0);
   const handleReviewFilterClick = (index: number) => {
     setReviewPurposeIndex(index);

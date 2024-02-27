@@ -7,7 +7,7 @@ import { CAFE_TAG_CATEGORY } from "@feature/place/constants/place-tag-category";
 import { twMerge } from "tailwind-merge";
 
 interface PlaceReviewProps {
-  image: string;
+  image: string[];
   name: string;
   type: string;
   address: string;
@@ -44,7 +44,7 @@ export default function PlaceReview({
       <div className="flex items-start">
         <div className="w-[1.6rem] h-[1.6rem] relative mr-[0.8rem]">
           <Image
-            src={image}
+            src={"/default_user.png"}
             alt="프로필 사진"
             fill
             sizes="10vw"
@@ -90,12 +90,18 @@ export default function PlaceReview({
             ))}
           </div>
           <div className="flex my-[1.6rem]">
-            {Array(image)?.map((photo, i) => (
+            {image?.map((img, i) => (
               <div
-                key={photo + i}
+                key={img + i}
                 className="w-[15rem] h-[15rem] mr-[0.5rem] relative"
               >
-                <Image alt="리뷰 사진" src={photo} fill sizes="" />
+                <Image
+                  alt="리뷰 사진"
+                  src={img}
+                  fill
+                  sizes="40vw"
+                  className="rounded-[8px]"
+                />
               </div>
             ))}
           </div>
