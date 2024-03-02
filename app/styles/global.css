@@ -89,9 +89,9 @@
 }
 
 .header-slider1 {
-  animation: 23s linear infinite normal none running infiniteSlider1;
+  animation: 35s linear infinite normal none running infiniteSlider1;
 }
 
 .header-slider2 {
-  animation: 23s linear infinite infiniteSlider2;
+  animation: 35s linear infinite infiniteSlider2;
 }

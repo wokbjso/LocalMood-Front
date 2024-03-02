@@ -4,22 +4,16 @@ import useSearchBar from "@feature/search/components/SearchBar/useSearchBar";
 import Tab from "@common/components/ui/tab/Tab";
 import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
-import { useSearchParams } from "next/navigation";
 import SearchNoResult from "@feature/search/components/SearchNoResult/SearchNoResult";
 import { useEffect, useState } from "react";
-import PostKeywordPlaceSearch from "@feature/search/queries/postKeywordPlaceSearch";
-import PostTextPlaceSearch from "@feature/search/queries/postTextPlaceSearch";
 import {
   SearchCurationResponse,
   SearchPlaceResponse,
 } from "@feature/search/queries/dto/search-type";
-import GetTextCurationSearch from "@feature/search/queries/getTextCurationSearch";
-import PostKeywordCurationSearch from "@feature/search/queries/postKeywordCurationSearch";
 import Divider from "@common/components/ui/divider/Divider";
 import FilterIcon from "@common//assets/icons/filter/filter-keyword.svg";
 
-export default function SearchResult() {
-  const searchParams = useSearchParams();
+export default function SearchResult({ searchParams }: { searchParams: any }) {
   const [textSearchPlaceData, setTextSearchPlaceData] =
     useState<SearchPlaceResponse>();
   const [keywordSearchPlaceData, setKeywordSearchPlaceData] =
@@ -30,55 +24,104 @@ export default function SearchResult() {
     useState<SearchCurationResponse>();
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
     useSearchBar();
-  const getTextSearchPlaceData = async () => {
-    const data = await PostTextPlaceSearch(
-      searchParams.get("search_query") as string
-    );
-    setTextSearchPlaceData(data);
-  };
   const getTextSearchCurationData = async () => {
-    const data = await GetTextCurationSearch(
-      searchParams.get("search_query") as string
+    const response = await fetch(
+      `/api/search/curation-search-text?search_query=${searchParams.search_query}`
     );
-    setTextSearchCurationData(data);
+
+    if (!response.ok) {
+      alert("오류가 발생했습니다.");
+      return;
+    }
+
+    setTextSearchCurationData(await response.json());
   };
+
+  const getTextSearchPlaceData = async () => {
+    const response = await fetch("/api/search/place-search-text", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name: searchParams.search_query }),
+    });
+
+    if (!response.ok) {
+      alert("오류가 발생했습니다.");
+      return;
+    }
+
+    setTextSearchPlaceData(await response.json());
+  };
+
   const getKeywordSearchPlaceData = async () => {
-    const data = await PostKeywordPlaceSearch(
-      JSON.parse(searchParams.get("keyword") as string)
-    );
-    setKeywordSearchPlaceData(data);
+    const response = await fetch("/api/search/place-search-keyword", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(searchParams.keyword),
+    });
+
+    if (!response.ok) {
+      alert("오류가 발생했습니다.");
+      return;
+    }
+
+    setKeywordSearchPlaceData(await response.json());
   };
-  const getKeywordSearchCurationData = async () => {
+
+  const manufactureCurationKeyword = () => {
     let keyword = [];
     let count = 0;
 
-    for (const [, value] of Object.entries(
-      JSON.parse(searchParams.get("keyword") as string)
+    for (const [key, value] of Object.entries(
+      JSON.parse(searchParams.keyword as string)
     )) {
-      if (value !== "ALL") {
+      if (key !== "type" && value !== "ALL") {
         keyword.push(value as string);
         count++;
       }
       if (count === 2) break;
     }
-    const data = await PostKeywordCurationSearch(keyword);
-    setKeywordSearchCurationData(data);
+
+    return keyword;
   };
+
+  const getKeywordSearchCurationData = async () => {
+    const response = await fetch("/api/search/curation-search-keyword", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(manufactureCurationKeyword()),
+    });
+
+    if (!response.ok) {
+      alert("오류가 발생했습니다.");
+      return;
+    }
+
+    setKeywordSearchCurationData(await response.json());
+  };
+
   useEffect(() => {
-    if (searchParams.get("search_query")) {
+    if (searchParams.search_query) {
       getTextSearchPlaceData();
       getTextSearchCurationData();
-    } else if (searchParams.get("keyword")) {
+    }
+
+    if (searchParams.keyword) {
       getKeywordSearchPlaceData();
       getKeywordSearchCurationData();
     }
-  }, [searchParams.get("search_query"), searchParams.get("keyword")]);
+  }, [searchParams]);
   return (
     <>
-      {searchParams.get("search_query") &&
+      {searchParams.search_query &&
         textSearchPlaceData?.spaceCount === 0 &&
         textSearchCurationData?.CurationCount === 0 && <SearchNoResult />}
-      {searchParams.get("search_query") &&
+      {searchParams.search_query &&
         textSearchPlaceData?.spaceCount === 0 &&
         textSearchCurationData &&
         textSearchCurationData.CurationCount > 0 && (
@@ -112,7 +155,7 @@ export default function SearchResult() {
             )}
           </div>
         )}
-      {searchParams.get("search_query") &&
+      {searchParams.search_query &&
         textSearchPlaceData &&
         textSearchPlaceData?.spaceCount > 0 &&
         textSearchCurationData?.CurationCount === 0 && (
@@ -145,7 +188,7 @@ export default function SearchResult() {
             {searchBarTabIndex === 1 && <SearchNoResult />}
           </div>
         )}
-      {searchParams.get("search_query") &&
+      {searchParams.search_query &&
         textSearchPlaceData &&
         textSearchPlaceData?.spaceCount > 0 &&
         textSearchCurationData &&
@@ -216,10 +259,10 @@ export default function SearchResult() {
             )}
           </div>
         )}
-      {searchParams.get("keyword") &&
+      {searchParams.keyword &&
         keywordSearchPlaceData?.spaceCount === 0 &&
         keywordSearchCurationData?.CurationCount === 0 && <SearchNoResult />}
-      {searchParams.get("keyword") &&
+      {searchParams.keyword &&
         keywordSearchPlaceData?.spaceCount === 0 &&
         keywordSearchCurationData &&
         keywordSearchCurationData.CurationCount > 0 && (
@@ -253,7 +296,7 @@ export default function SearchResult() {
             )}
           </div>
         )}
-      {searchParams.get("keyword") &&
+      {searchParams.keyword &&
         keywordSearchPlaceData &&
         keywordSearchPlaceData?.spaceCount > 0 &&
         keywordSearchCurationData?.CurationCount === 0 && (
@@ -277,7 +320,7 @@ export default function SearchResult() {
             {searchBarTabIndex === 1 && <SearchNoResult />}
           </div>
         )}
-      {searchParams.get("keyword") &&
+      {searchParams.keyword &&
         keywordSearchPlaceData &&
         keywordSearchPlaceData?.spaceCount > 0 &&
         keywordSearchCurationData &&

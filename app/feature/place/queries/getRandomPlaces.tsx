@@ -1,6 +1,7 @@
-import { getSession } from "@common/utils/getSession";
+"use server";
 
 export default async function GetRandomPlaces() {
+  await new Promise((resolve) => setTimeout(resolve, 5000));
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/spaces/recommend`,
     {

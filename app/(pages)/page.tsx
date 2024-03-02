@@ -4,6 +4,7 @@ import HomeBanner from "./components/HomeBanner";
 import CurationHomePopular from "@feature/curation/components/CurationHomePopular/CurationHomePopular";
 import GetRandomCuration from "@feature/curation/queries/getRandomCuration";
 import GetRandomPlaces from "@feature/place/queries/getRandomPlaces";
+import { Suspense } from "react";
 
 export default async function Home() {
   const HOME_SLIDER_PURPOSE = [

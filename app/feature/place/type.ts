@@ -1,6 +1,6 @@
 export interface PlaceInfoProps {
   id: number;
-  variant?: "main" | "record";
+  variant?: "main" | "search" | "record";
   direction?: "vertical" | "horizontal";
   size?: "normal" | "small";
   name: string;

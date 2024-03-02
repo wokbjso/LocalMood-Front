@@ -39,6 +39,13 @@ export default function HomeBanner({
     { icon: ElectricCordIcon, label: "콘센트 있음" },
     { icon: PetIcon, label: "애견동반 가능" },
     { icon: WindowIcon, label: "통창뷰" },
+    { icon: HeartIcon, label: "연인과의 데이트" },
+    { icon: MusicIcon, label: "잔잔한 음악" },
+    { icon: LampIcon, label: "따뜻한 조명" },
+    { icon: WineIcon, label: "와인" },
+    { icon: ElectricCordIcon, label: "콘센트 있음" },
+    { icon: PetIcon, label: "애견동반 가능" },
+    { icon: WindowIcon, label: "통창뷰" },
   ];
   return (
     <>

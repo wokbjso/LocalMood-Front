@@ -1,9 +1,8 @@
 import { getSession } from "@common/utils/getSession";
-import { SearchCurationResponse, SearchPlaceResponse } from "./dto/search-type";
+import { NextRequest, NextResponse } from "next/server";
 
-export default async function PostKeywordCurationSearch(
-  keyword: string[]
-): Promise<SearchCurationResponse> {
+export async function POST(request: NextRequest) {
+  const body = await request.json();
   const userInfo = await getSession();
   const token = userInfo?.accessToken;
   const res = await fetch(
@@ -15,12 +14,13 @@ export default async function PostKeywordCurationSearch(
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        keyword1: keyword[0],
-        keyword2: keyword.length === 2 ? keyword[1] : "ALL",
+        keyword1: body[0],
+        keyword2: body.length > 1 && body[1],
       }),
     }
   );
   const data = await res.json();
+  console.log(data);
 
-  return data;
+  return NextResponse.json(data);
 }

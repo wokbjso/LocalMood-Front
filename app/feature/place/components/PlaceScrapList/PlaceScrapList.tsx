@@ -1,8 +1,5 @@
-"use client";
-
 import { PlaceScrappedResponse } from "@feature/place/queries/dto/place-scrapped";
 import dynamic from "next/dynamic";
-import { useEffect } from "react";
 const PlaceInfoMain = dynamic(() => import("../PlaceInfoMain/PlaceInfoMain"));
 
 export default function PlaceScrapList({
@@ -10,11 +7,6 @@ export default function PlaceScrapList({
 }: {
   data: PlaceScrappedResponse | null;
 }) {
-  useEffect(() => {
-    if (!data) {
-      location.replace("/login");
-    }
-  }, [data]);
   return (
     <div className="flex overflow-x-scroll px-[2rem] gap-[0.8rem] overflow-y-hidden h-[40%]">
       {data?.length === 0 && (

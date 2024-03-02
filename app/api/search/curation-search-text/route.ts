@@ -1,25 +1,22 @@
 import { getSession } from "@common/utils/getSession";
-import { SearchPlaceResponse } from "./dto/search-type";
+import { NextRequest, NextResponse } from "next/server";
 
-export default async function PostTextPlaceSearch(
-  name: string
-): Promise<SearchPlaceResponse> {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
   const userInfo = await getSession();
   const token = userInfo?.accessToken;
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/spaces/search?sort=recent`,
+    `${
+      process.env.NEXT_PUBLIC_SERVER_API
+    }/api/v1/curation/search?title=${searchParams.get("search_query")}`,
     {
-      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({
-        name,
-      }),
     }
   );
   const data = await res.json();
 
-  return data;
+  return NextResponse.json(data);
 }
