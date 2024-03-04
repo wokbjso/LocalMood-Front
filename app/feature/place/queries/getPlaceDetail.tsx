@@ -1,15 +1,21 @@
+import { getSession } from "@common/utils/getSession";
 import { PlaceDetailResponse } from "./dto/place-detail";
 
 export default async function GetPlaceDetail(
   id: number
 ): Promise<PlaceDetailResponse> {
+  const userInfo = await getSession();
+  const token = userInfo?.accessToken;
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/spaces/${id}`,
     {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
+      cache: "force-cache",
+      next: { tags: [`getPlaceDetail${id}`] },
     }
   );
   const data = await res.json();

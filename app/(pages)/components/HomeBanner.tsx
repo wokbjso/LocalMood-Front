@@ -11,7 +11,8 @@ import HomeHeader from "@common/components/layout/Header/HomeHeader";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import Button from "@common/components/ui/buttons/Button/Button";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
-import { useEffect, useState } from "react";
+import revalidateHomeRecommend from "@feature/place/utils/revalidateHomeRecomment";
+import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
 interface HomeBannerProps {
@@ -30,7 +31,6 @@ export default function HomeBanner({
   const [ref, inView] = useInView({
     threshold: 1,
   });
-  const [test, setTest] = useState<number[]>([]);
   const HEADER_KEYWORD = [
     { icon: HeartIcon, label: "연인과의 데이트" },
     { icon: MusicIcon, label: "잔잔한 음악" },

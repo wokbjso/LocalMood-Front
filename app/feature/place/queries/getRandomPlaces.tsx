@@ -1,13 +1,13 @@
 "use server";
 
 export default async function GetRandomPlaces() {
-  await new Promise((resolve) => setTimeout(resolve, 5000));
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/spaces/recommend`,
     {
       headers: {
         "Content-Type": "application/json",
       },
+      cache: "no-store",
       next: { tags: ["getHomeRecommend"] },
     }
   );

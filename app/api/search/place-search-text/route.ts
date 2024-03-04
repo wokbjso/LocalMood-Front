@@ -16,6 +16,8 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         name: body.name,
       }),
+      cache: "no-cache",
+      next: { tags: [`get${body.name}searchText`] },
     }
   );
   const data = await res.json();

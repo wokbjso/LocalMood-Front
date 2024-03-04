@@ -37,15 +37,9 @@ export default function SearchBar({
     setSearchText("");
   };
 
-  useEffect(() => {
-    // 화면에 표시되면서 input 요소에 focus
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, []);
-
-  useEffect(() => {
+  const searchIconClicked = () => {
     if (searchText.length < 2) {
+      alert("2글자 이상 입력해주세요");
       router.push(
         variant === "home"
           ? "/search" + keyword_search_queries
@@ -58,7 +52,21 @@ export default function SearchBar({
           : "/record/search" + queries
       );
     }
-  }, [searchText]);
+  };
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      searchIconClicked();
+    }
+  };
+
+  useEffect(() => {
+    // 화면에 표시되면서 input 요소에 focus
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   return (
     <div
       className={twMerge(
@@ -67,7 +75,7 @@ export default function SearchBar({
       )}
     >
       <div className="flex items-center w-full mr-[0.8rem]">
-        <div>
+        <div onClick={searchIconClicked}>
           <Search />
         </div>
         <input
@@ -78,6 +86,7 @@ export default function SearchBar({
           value={searchText}
           placeholder={placeholder}
           onChange={handleSearchTextChange}
+          onKeyDown={handleKeyPress}
         />
       </div>
       <Delete onClick={handleTextDelete} />

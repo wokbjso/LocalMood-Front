@@ -1,7 +1,7 @@
 import { getSession } from "@common/utils/getSession";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const userInfo = await getSession();
   const token = userInfo?.accessToken;

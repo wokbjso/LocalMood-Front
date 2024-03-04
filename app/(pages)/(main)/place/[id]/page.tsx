@@ -15,6 +15,7 @@ export default async function PlaceDetail({
   params: { id: number };
 }) {
   const detailData = await GetPlaceDetail(id);
+  console.log(detailData);
   return (
     <div className="relative pb-[12rem] w-full h-[100vh] overflow-auto">
       <PlaceDetailTopBar
@@ -59,12 +60,11 @@ export default async function PlaceDetail({
       <PlaceDetailKeywordEvaluation
         id={detailData.info.id}
         mainText="키워드 평가"
-        type={detailData.info.type}
         positiveEval={
-          detailData.info.positiveEval ? detailData.info.positiveEval : null
+          detailData.info.positiveEval ? detailData.info.positiveEval[0] : null
         }
         negativeEval={
-          detailData.info.negativeEval ? detailData.info.negativeEval : null
+          detailData.info.negativeEval ? detailData.info.negativeEval[0] : null
         }
       />
       <Divider className="bg-line-gray-3 h-[0.4rem] mb-[4.8rem]" />

@@ -17,6 +17,8 @@ import UsePlaceInfoTop from "./usePlaceInfoTop";
 import revalidateHomeRecommend from "@feature/place/utils/revalidateHomeRecomment";
 import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
 import Toast from "@common/components/ui/toast/Toast";
+import revalidatePlaceDetailById from "@feature/place/utils/revalidatePlaceDetailById";
+import revalidateSearchPlaceText from "@feature/search/utils/revalidateSearchPlaceText";
 
 export default function PlaceInfoTop({
   id,
@@ -49,8 +51,10 @@ export default function PlaceInfoTop({
           handlers.changeToastText("스크랩이 해제되었습니다");
           const timeoutId = setTimeout(() => {
             revalidateScrapSpace();
+            revalidateSearchPlaceText(name);
+            revalidatePlaceDetailById(id);
             revalidateHomeRecommend();
-          }, 1000);
+          }, 1500);
           return () => clearTimeout(timeoutId);
         } else {
           alert("에러가 발생했습니다!");
@@ -63,6 +67,8 @@ export default function PlaceInfoTop({
           handlers.openScrapToast(true);
           handlers.changeToastText("스크랩 되었습니다");
           revalidateScrapSpace();
+          revalidateSearchPlaceText(name);
+          revalidatePlaceDetailById(id);
           revalidateHomeRecommend();
         } else {
           alert("에러가 발생했습니다!");
