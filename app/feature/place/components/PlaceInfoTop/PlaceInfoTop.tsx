@@ -54,7 +54,7 @@ export default function PlaceInfoTop({
             revalidateSearchPlaceText(name);
             revalidatePlaceDetailById(id);
             revalidateHomeRecommend();
-          }, 1500);
+          }, 1200);
           return () => clearTimeout(timeoutId);
         } else {
           alert("에러가 발생했습니다!");
@@ -65,7 +65,7 @@ export default function PlaceInfoTop({
         if (res.status === 200) {
           handlers.changeOpenCurationSaveModal(true);
           handlers.openScrapToast(true);
-          handlers.changeToastText("스크랩 되었습니다");
+          handlers.changeToastText("저장할 큐레이션을 선택해주세요");
           revalidateScrapSpace();
           revalidateSearchPlaceText(name);
           revalidatePlaceDetailById(id);

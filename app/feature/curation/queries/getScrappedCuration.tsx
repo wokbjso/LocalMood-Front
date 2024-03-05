@@ -10,6 +10,7 @@ export default async function getScrappedCuration() {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      cache: "force-cache",
       next: { tags: ["getScrapedCuration"] },
     }
   );

@@ -1,20 +1,21 @@
 import { getSession } from "@common/utils/getSession";
-import { MyCurationResponse } from "./dto/my-curation";
+import { NextRequest, NextResponse } from "next/server";
 
-export default async function getMyCuration(): Promise<MyCurationResponse> {
+export async function POST(request: NextRequest) {
+  const body = await request.json();
   const userInfo = await getSession();
   const token = userInfo?.accessToken;
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/curation/member`,
+    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/curation`,
     {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      next: { tags: ["getMyCuration"] },
+      body: JSON.stringify(body),
     }
   );
   const data = await res.json();
-
-  return data;
+  return NextResponse.json(data);
 }

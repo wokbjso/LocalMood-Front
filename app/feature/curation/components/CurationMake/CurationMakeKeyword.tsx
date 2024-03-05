@@ -7,8 +7,8 @@ import {
   CURATION_MAKE_KEYWORD,
 } from "@feature/curation/constants/curation-make";
 import Button from "@common/components/ui/buttons/Button/Button";
-import PostCurationMake from "@feature/curation/queries/postCurationMake";
 import revalidateMyCuration from "@feature/curation/utils/revalidateMyCuration";
+import { useRouter } from "next/navigation";
 
 interface CurationMakeKeywordProps {
   curationMakeData: {
@@ -26,7 +26,6 @@ export default function CurationMakeKeyword({
   onClick,
 }: CurationMakeKeywordProps) {
   const [isExpanded, setIsExpanded] = useState(false);
-
   const toggleExpansion = () => {
     setIsExpanded((prevIsExpanded) => !prevIsExpanded);
   };
@@ -63,12 +62,13 @@ export default function CurationMakeKeyword({
 
   const handleButtonClick = async () => {
     const dataCurationMake = getSendingCurationData();
-    const res = await PostCurationMake(dataCurationMake);
-    console.log(res);
-    if (res.status === 200) {
+    const res = await fetch("/api/curation/make", {
+      method: "POST",
+      body: JSON.stringify(dataCurationMake),
+    });
+    if (res.ok) {
       revalidateMyCuration();
       handleOpen(false);
-      location.reload();
     } else alert("오류가 발생했습니다!");
     return;
   };

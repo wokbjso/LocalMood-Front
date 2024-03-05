@@ -15,7 +15,6 @@ export default async function PlaceDetail({
   params: { id: number };
 }) {
   const detailData = await GetPlaceDetail(id);
-  console.log(detailData);
   return (
     <div className="relative pb-[12rem] w-full h-[100vh] overflow-auto">
       <PlaceDetailTopBar
@@ -70,7 +69,7 @@ export default async function PlaceDetail({
       <Divider className="bg-line-gray-3 h-[0.4rem] mb-[4.8rem]" />
       <section className="pl-[2rem] w-full">
         <span className="text-black headline2">
-          {detailData.info.name}와 비슷한 장소
+          {detailData.info.name}와(과) 비슷한 장소
         </span>
         <Slider className="mt-[1.6rem] mb-[6rem]">
           {detailData.similarSpaceList.slice(0, 6).map((data) => (
@@ -82,9 +81,11 @@ export default async function PlaceDetail({
             />
           ))}
         </Slider>
-        <span className="text-black headline2">
-          {detailData.info.name}가 담긴 큐레이션
-        </span>
+        {detailData.relatedCurationList.length > 0 && (
+          <span className="text-black headline2">
+            {detailData.info.name}이(가) 담긴 큐레이션
+          </span>
+        )}
         <Slider className="mt-[1.6rem] mb-[6rem]">
           {detailData.relatedCurationList.map((data) => (
             <CurationScrapped

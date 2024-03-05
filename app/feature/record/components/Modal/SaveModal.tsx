@@ -4,7 +4,6 @@ import LocationLine from "@common/assets/icons/location/LocationLine";
 import Modal from "@common/components/ui/modal/Modal";
 import CurationMakeModal from "@feature/curation/components/CurationMake/CurationMakeModal";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
-import GetMyCuration from "@feature/curation/queries/getMyCuration";
 import CurationNoPhoto from "@common/assets/images/curationHomeNoImg.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -43,8 +42,11 @@ export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
     setOpenMakeCuration(true);
   };
   const getCurationList = async () => {
-    const myCuration = await GetMyCuration();
-    setCurationMy(myCuration);
+    const res = await fetch("/api/curation/my", {
+      cache: "force-cache",
+      next: { tags: ["getMyCuration"] },
+    });
+    setCurationMy(await res.json());
   };
   useEffect(() => {
     getCurationList();
