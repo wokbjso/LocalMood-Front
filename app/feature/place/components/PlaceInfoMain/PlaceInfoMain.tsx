@@ -1,6 +1,7 @@
 import PlaceInfoTop from "../PlaceInfoTop/PlaceInfoTop";
 import PlaceInfoBottom from "../PlaceInfoBottom/PlaceInfoBottom";
 import { PlaceInfoProps } from "@feature/place/type";
+import { useSession } from "next-auth/react";
 
 export default function PlaceInfoMain({
   id,

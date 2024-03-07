@@ -2,6 +2,7 @@ import Modal from "@common/components/ui/modal/Modal";
 import UserIcon from "@common/assets/icons/user/UserProfile";
 import Link from "next/link";
 import UseOutsideClick from "@common/hooks/useOutsideClick";
+import { signOut } from "next-auth/react";
 
 export default function LogoutModal({
   handleFn,

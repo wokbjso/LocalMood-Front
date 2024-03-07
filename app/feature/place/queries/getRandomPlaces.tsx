@@ -1,5 +1,7 @@
 "use server";
 
+import { PlaceInfoProps } from "../type";
+
 export default async function GetRandomPlaces() {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/spaces/recommend`,

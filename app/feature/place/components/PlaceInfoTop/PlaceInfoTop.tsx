@@ -19,6 +19,7 @@ import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
 import Toast from "@common/components/ui/toast/Toast";
 import revalidatePlaceDetailById from "@feature/place/utils/revalidatePlaceDetailById";
 import revalidateSearchPlaceText from "@feature/search/utils/revalidateSearchPlaceText";
+import { useSession } from "next-auth/react";
 
 export default function PlaceInfoTop({
   id,

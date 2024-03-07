@@ -13,9 +13,9 @@ export const getSession = async () => {
     refreshToken: string;
     expTime: number;
   } = JSON.parse(stored.value);
-  if (userInfo.expTime < new Date().getTime()) {
-    cookieStore.delete("user_info");
-    return null;
-  }
+  // if (userInfo.expTime < new Date().getTime()) {
+  //   cookieStore.delete("user_info");
+  //   return null;
+  // }
   return userInfo;
 };
