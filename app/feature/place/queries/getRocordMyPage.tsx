@@ -1,6 +1,9 @@
 import { getSession } from "@common/utils/getSession";
 
-export default async function GetRecordMyPage() {
+export default async function GetRecordMyPage(): Promise<{
+  reviewCount: number;
+  reviews: any[];
+}> {
   const auth_info = await getSession();
   const token = auth_info?.data?.accessToken;
   const res = await fetch(

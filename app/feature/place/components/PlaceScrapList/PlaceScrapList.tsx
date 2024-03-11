@@ -5,9 +5,9 @@ const PlaceInfoMain = dynamic(() => import("../PlaceInfoMain/PlaceInfoMain"));
 export default async function PlaceScrapList() {
   const scrappedPlace = await GetPlaceScrapped();
   return (
-    <div className="flex overflow-x-scroll px-[2rem] gap-[0.8rem] overflow-y-hidden h-[40%]">
+    <div className="px-[2rem] gap-[0.8rem]">
       {scrappedPlace?.length === 0 && (
-        <div className="flex items-center justify-center w-full">
+        <div className="flex items-center justify-center w-full h-[18rem]">
           <p className="body1-medium text-text-gray-8">
             아직 스크랩한 공간이 없습니다.
           </p>

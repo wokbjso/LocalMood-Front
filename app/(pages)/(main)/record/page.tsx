@@ -6,7 +6,7 @@ import { Suspense } from "react";
 
 export default async function Record() {
   return (
-    <div className="h-[100vh]">
+    <>
       <div className="w-full h-[10.6rem] flex px-[2rem] pt-[3.8rem] pb-[1.2rem] justify-between items-center">
         <div className="max-w-[33.5rem] h-[5.3rem] headline1-semibold text-black grow shrink-0 basis-0">
           <div>
@@ -28,6 +28,6 @@ export default async function Record() {
       <Suspense fallback={<PlaceScrappedSkeleton />}>
         <PlaceScrapList />
       </Suspense>
-    </div>
+    </>
   );
 }

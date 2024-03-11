@@ -4,7 +4,6 @@ import PlaceRecordTopBar from "@feature/record/components/PlaceRecordTopBar/Plac
 
 export default async function RecordScrappedMore() {
   const scrappedPlace = await GetPlaceScrapped();
-
   return (
     <div>
       <PlaceRecordTopBar
@@ -13,16 +12,22 @@ export default async function RecordScrappedMore() {
         text="스크랩한 공간"
       />
       <div className="flex flex-col items-start w-full pt-[9.6rem] px-[2rem] gap-[0.8rem] pb-[15rem]">
-        {scrappedPlace &&
-          scrappedPlace.map((props, index) => (
-            <div key={index} className="w-full">
-              <PlaceInfoMain
-                direction="horizontal"
-                variant="record"
-                {...props}
-              />
-            </div>
-          ))}
+        {scrappedPlace && scrappedPlace.length === 0 && (
+          <p className="flex w-full justify-center items-center h-[12rem] body1-medium text-text-gray-8">
+            아직 스크랩한 공간이 없습니다.
+          </p>
+        )}
+        {scrappedPlace && scrappedPlace.length > 0
+          ? scrappedPlace.map((props, index) => (
+              <div key={index} className="w-full">
+                <PlaceInfoMain
+                  direction="horizontal"
+                  variant="record"
+                  {...props}
+                />
+              </div>
+            ))
+          : null}
       </div>
     </div>
   );
