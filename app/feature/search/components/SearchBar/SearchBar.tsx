@@ -1,10 +1,10 @@
 "use client";
 
 import { twMerge } from "tailwind-merge";
-import Search from "@common/assets/icons/search/search.svg";
 import Delete from "@common/assets/icons/close/close-gray.svg";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import SearchIcon from "@common/assets/icons/search/SearchIcon";
 
 interface SearchBarProps {
   variant?: "home" | "record";
@@ -24,11 +24,6 @@ export default function SearchBar({
     (searchParams.get("search_query") as string) || ""
   );
   const queries = `?search_query=${searchText}`;
-  const keyword_search_queries = `?keyword_search=${
-    searchParams.get("keyword_search")
-      ? searchParams.get("keyword_search")
-      : false
-  }`;
   const handleSearchTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newText = e.target.value;
     setSearchText(newText);
@@ -40,17 +35,10 @@ export default function SearchBar({
   const searchIconClicked = () => {
     if (searchText.length < 2) {
       alert("2글자 이상 입력해주세요");
-      router.push(
-        variant === "home"
-          ? "/search" + keyword_search_queries
-          : "/record/search"
-      );
     } else if (searchText.length >= 2) {
-      router.push(
-        variant === "home"
-          ? "/search/results" + queries
-          : "/record/search" + queries
-      );
+      variant === "home"
+        ? location.replace("/search/results" + queries)
+        : location.replace("/record/search" + queries);
     }
   };
 
@@ -76,7 +64,7 @@ export default function SearchBar({
     >
       <div className="flex items-center w-full mr-[0.8rem]">
         <div onClick={searchIconClicked}>
-          <Search />
+          <SearchIcon />
         </div>
         <input
           ref={inputRef}

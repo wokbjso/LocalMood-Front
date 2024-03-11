@@ -3,23 +3,30 @@ import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import { SearchPlaceResponse } from "@feature/search/queries/dto/search-type";
-import PostTextPlaceSearch from "@feature/search/queries/postTextPlaceSearch";
-import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 
-export default function RecordSearch() {
-  const searchParams = useSearchParams();
+export default function RecordSearch({ searchParams }: { searchParams: any }) {
   const [textSearchPlaceData, setTextSearchPlaceData] =
     useState<SearchPlaceResponse>();
   const getTextSearchPlaceData = async () => {
-    const data = await PostTextPlaceSearch(
-      searchParams.get("search_query") as string
-    );
-    setTextSearchPlaceData(data);
+    const response = await fetch("/api/search/place-search-text", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name: searchParams.search_query }),
+    });
+
+    if (!response.ok) {
+      alert("오류가 발생했습니다.");
+      return;
+    }
+
+    setTextSearchPlaceData(await response.json());
   };
   useEffect(() => {
     getTextSearchPlaceData();
-  }, [searchParams.get("search_query")]);
+  }, [searchParams]);
   return (
     <>
       <div>

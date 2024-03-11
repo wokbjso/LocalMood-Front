@@ -1,9 +1,4 @@
-import ArrowIcon from "@common/assets/icons/arrow/arrow-left.svg";
-import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import Indicator from "@common/components/ui/indicator/Indicator";
-import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 interface RecordTopBarProps {
   showIndicator: boolean;

@@ -11,8 +11,6 @@ import HomeHeader from "@common/components/layout/Header/HomeHeader";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import Button from "@common/components/ui/buttons/Button/Button";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
-import revalidateHomeRecommend from "@feature/place/utils/revalidateHomeRecomment";
-import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
 interface HomeBannerProps {

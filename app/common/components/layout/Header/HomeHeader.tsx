@@ -1,5 +1,5 @@
 import HeaderText from "@common/assets/icons/header/HeaderText";
-import SearchIcon from "@common/assets/icons/search/search.svg";
+import SearchIcon from "@common/assets/icons/search/SearchIcon";
 import Button from "@common/components/ui/buttons/Button/Button";
 import Link from "next/link";
 

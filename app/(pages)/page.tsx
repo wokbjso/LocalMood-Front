@@ -3,7 +3,6 @@ import PlaceHomeSlider from "@feature/place/components/PlaceHomeSlider/PlaceHome
 import HomeBanner from "./components/HomeBanner";
 import CurationHomePopular from "@feature/curation/components/CurationHomePopular/CurationHomePopular";
 import GetRandomCuration from "@feature/curation/queries/getRandomCuration";
-import { getServerSession } from "next-auth";
 import { NextRequest } from "next/server";
 
 export default async function Home(req: NextRequest) {

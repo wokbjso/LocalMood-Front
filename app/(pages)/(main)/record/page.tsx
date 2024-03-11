@@ -1,7 +1,7 @@
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import PlaceScrapList from "@feature/place/components/PlaceScrapList/PlaceScrapList";
 import PlaceScrappedSkeleton from "@feature/place/components/PlaceScrappedSkeleton/PlaceScrappedSkeleton";
-import PlaceSearchBar from "@feature/record/components/PlaceSearch/PlaceSearchBar";
+import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import { Suspense } from "react";
 
 export default async function Record() {
@@ -17,7 +17,7 @@ export default async function Record() {
       </div>
       <div className="w-full flex flex-col items-start pl-[2rem] pr-[1.9rem] pt-[6rem] gap-[1.6rem] text-black headline2-semibold">
         공간 검색하기
-        <PlaceSearchBar />
+        <SearchBar placeholder="공간 이름을 검색해보세요" variant="record" />
       </div>
       <div className="w-full flex justify-between items-center pl-[2rem] pr-[1.5rem] pt-[4.4rem] mb-[1.6rem] text-black headline2-semibold">
         <span>스크랩한 공간</span>

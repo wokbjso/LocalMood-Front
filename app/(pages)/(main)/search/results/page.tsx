@@ -35,7 +35,6 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
 
     setTextSearchCurationData(await response.json());
   };
-  console.log(textSearchPlaceData);
   const getTextSearchPlaceData = async () => {
     const response = await fetch("/api/search/place-search-text", {
       method: "POST",
@@ -44,7 +43,6 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
       },
       body: JSON.stringify({ name: searchParams.search_query }),
       cache: "no-cache",
-      next: { tags: [`get${searchParams.search_query}searchText`] },
     });
 
     if (!response.ok) {
