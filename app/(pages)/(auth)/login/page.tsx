@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Button from "@common/components/ui/buttons/Button/Button";
-import KakaoIcon from "@common/assets/icons/kakao/KakaoIcon";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import KakaoButton from "@common/components/ui/buttons/Kakao/KakaoButton";
 

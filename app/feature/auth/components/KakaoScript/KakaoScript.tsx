@@ -11,11 +11,11 @@ declare global {
 function KakaoScript() {
   const onLoad = () => {
     window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY);
-    console.log(window.Kakao.isInitialized());
   };
   return (
     <Script
       src="https://developers.kakao.com/sdk/js/kakao.js"
+      async
       onLoad={onLoad}
     ></Script>
   );

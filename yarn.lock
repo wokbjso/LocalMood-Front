@@ -9733,6 +9733,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jose@npm:^5.2.3":
+  version: 5.2.3
+  resolution: "jose@npm:5.2.3"
+  checksum: 7c41025d3e449f654a4cbf0e18e3a4a3bcb74b242d716e2e665a20be5c93b3f68421032a4531fd984d4bad6aa225c7c517da18da6e0cf778b104cd7e30bde5de
+  languageName: node
+  linkType: hard
+
 "js-tokens@npm:^3.0.0 || ^4.0.0, js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -10045,6 +10052,7 @@ __metadata:
     chromatic: ^10.2.0
     eslint: ^8
     eslint-config-next: 14.0.4
+    jose: ^5.2.3
     next: ^14.0.4
     next-auth: ^4.24.6
     postcss: ^8

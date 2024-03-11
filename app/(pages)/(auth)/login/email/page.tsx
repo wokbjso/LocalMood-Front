@@ -33,7 +33,7 @@ export default function Login() {
     ).length >= 1;
 
   return (
-    <div className="px-[2rem] pb-[9.6rem]">
+    <div className="px-[2rem] pb-[6.6rem]">
       <BasicTopBar color="#9E9E9E" className="px-0" />
       <div className="flex justify-center mb-[7.5rem]">
         <Logo />

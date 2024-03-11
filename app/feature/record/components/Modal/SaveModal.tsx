@@ -42,10 +42,7 @@ export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
     setOpenMakeCuration(true);
   };
   const getCurationList = async () => {
-    const res = await fetch("/api/curation/my", {
-      cache: "force-cache",
-      next: { tags: ["getMyCuration"] },
-    });
+    const res = await fetch("/api/curation/my");
     setCurationMy(await res.json());
   };
   useEffect(() => {

@@ -1,7 +1,8 @@
 import { getSession } from "@common/utils/getSession";
 import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
-export default async function PostLogout() {
+export async function POST() {
   const auth_info = await getSession();
   const token = auth_info?.data?.accessToken;
   const res = await fetch(
@@ -14,13 +15,9 @@ export default async function PostLogout() {
       },
     }
   );
-  cookies().delete("user_info");
   if (res.ok) {
-    return new Response("Logout Success", {
-      status: 200,
-    });
-  } else
-    return new Response("Logout Failed", {
-      status: 400,
-    });
+    cookies().delete("auth_session");
+    return NextResponse.json({ success: "Logout Successful" }, { status: 200 });
+  }
+  return NextResponse.json({ error: "Logout Failed" }, { status: 400 });
 }

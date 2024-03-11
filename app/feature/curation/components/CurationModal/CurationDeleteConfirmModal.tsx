@@ -27,7 +27,6 @@ export default function CurationDeleteConfirmModal({
     const res = await DeleteCuration(id);
     if (res.status === 200) {
       revalidateMyCuration();
-      location.replace("/curation");
     } else {
       alert("에러");
     }

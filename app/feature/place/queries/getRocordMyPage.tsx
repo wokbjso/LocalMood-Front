@@ -1,8 +1,8 @@
 import { getSession } from "@common/utils/getSession";
 
-export default async function GetPlaceMyPage() {
-  const userInfo = await getSession();
-  const token = userInfo?.accessToken;
+export default async function GetRecordMyPage() {
+  const auth_info = await getSession();
+  const token = auth_info?.data?.accessToken;
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/review/member`,
     {

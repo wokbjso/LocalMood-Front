@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const userInfo = await getSession();
-  const token = userInfo?.accessToken;
+  const auth_info = await getSession();
+  const token = auth_info?.data?.accessToken;
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/curation`,
     {

@@ -2,7 +2,6 @@ import Modal from "@common/components/ui/modal/Modal";
 import UserIcon from "@common/assets/icons/user/UserProfile";
 import Link from "next/link";
 import UseOutsideClick from "@common/hooks/useOutsideClick";
-import { signOut } from "next-auth/react";
 
 export default function LogoutModal({
   handleFn,
@@ -10,6 +9,17 @@ export default function LogoutModal({
   handleFn: (state: boolean) => void;
 }) {
   const { ref } = UseOutsideClick<HTMLDivElement>(handleFn);
+  const handleLogout = async () => {
+    const res = await fetch("/api/auth/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (res.status === 200) {
+      alert("로그아웃 되었습니다");
+    }
+  };
   return (
     <Modal ref={ref}>
       <Link
@@ -17,7 +27,10 @@ export default function LogoutModal({
           pathname: "/",
         }}
       >
-        <div className="flex items-center pl-[2rem] mt-[1.8rem]">
+        <div
+          className="flex items-center pl-[2rem] mt-[1.8rem]"
+          onClick={handleLogout}
+        >
           <UserIcon />
           <span className="body1 text-black ml-[1.2rem]">로그아웃</span>
         </div>

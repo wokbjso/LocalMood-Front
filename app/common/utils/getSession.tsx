@@ -1,21 +1,17 @@
 "use server";
 
+import { decryptData } from "@feature/auth/utils/decryptData";
+import { JWTPayload } from "jose";
 import { cookies } from "next/headers";
 
-export const getSession = async () => {
-  const cookieStore = cookies();
-  const stored = cookieStore.get("user_info");
-  if (!stored) {
-    return null;
-  }
-  const userInfo: {
+export interface CustomJWTPayload extends JWTPayload {
+  data?: {
     accessToken: string;
     refreshToken: string;
-    expTime: number;
-  } = JSON.parse(stored.value);
-  // if (userInfo.expTime < new Date().getTime()) {
-  //   cookieStore.delete("user_info");
-  //   return null;
-  // }
-  return userInfo;
+  };
+}
+
+export const getSession = async (): Promise<CustomJWTPayload | null> => {
+  const encryptedSession = cookies().get("auth_session")?.value;
+  return encryptedSession ? await decryptData(encryptedSession) : null;
 };

@@ -8,11 +8,17 @@ export default function KakaoRedirect({
   searchParams: { code: string };
 }) {
   const { code } = searchParams;
-  const getAuthorization = async () => {
-    const res = await fetch(`/api/kakao/authorize?code=${code}`);
-  };
   useEffect(() => {
+    const getAuthorization = async () => {
+      const res = await fetch(`/api/auth/login/kakao?code=${code}`);
+      if (res.status === 200) {
+        location.replace("/");
+      }
+      if (res.status === 400) {
+        alert("로그인 과정에서 문제가 발생했습니다");
+      }
+    };
     getAuthorization();
-  });
-  return <div></div>;
+  }, [code]);
+  return <div>로그인 중입니다...</div>;
 }

@@ -33,8 +33,9 @@ export default function CurationMain({
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
     e.preventDefault();
-    const userInfo = await getSession();
-    if (!userInfo) {
+    const auth_info = await getSession();
+    const token = auth_info?.data?.accessToken;
+    if (!token) {
       location.replace("/login");
     } else {
       handlers.changeScrapState(id);
