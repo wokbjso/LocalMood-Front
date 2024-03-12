@@ -11,7 +11,7 @@ import Chip from "@common/components/ui/buttons/Chip/Chip";
 import LocationLine from "@common/assets/icons/location/LocationLine";
 import CurationMenuModal from "../CurationModal/CurationMenuModal";
 import UseCurationMain from "./useCurationMain";
-import { getSession } from "@common/utils/getSession";
+import { getSession } from "@common/utils/session/getSession";
 import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import Toast from "@common/components/ui/toast/Toast";
 

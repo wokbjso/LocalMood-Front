@@ -4,17 +4,17 @@ import Button from "@common/components/ui/buttons/Button/Button";
 import Link from "next/link";
 
 interface HomeHeaderProps {
-  setShowBtn: boolean;
+  showBtn: boolean;
 }
 
-export default function HomeHeader({ setShowBtn }: HomeHeaderProps) {
+export default function HomeHeader({ showBtn }: HomeHeaderProps) {
   return (
     <header className="fixed flex justify-between items-center px-[2rem] pt-[1.6rem] pb-[1rem] w-full z-10 bg-[#F5F8FF]">
       <div className="py-[0.7rem]">
         <HeaderText />
       </div>
       <div className="flex items-center">
-        {setShowBtn && (
+        {showBtn && (
           <Link
             href={{
               pathname: "/search",

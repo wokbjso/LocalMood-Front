@@ -8,9 +8,9 @@ import PetIcon from "@common/assets/icons/pet/PetIcon";
 import WindowIcon from "@common/assets/icons/window/WindowIcon";
 import WineIcon from "@common/assets/icons/wine/Wine";
 import HomeHeader from "@common/components/layout/Header/HomeHeader";
-import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import Button from "@common/components/ui/buttons/Button/Button";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
+import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 
 interface HomeBannerProps {
@@ -26,7 +26,7 @@ export default function HomeBanner({
   textNormalLast,
   buttonLabel,
 }: HomeBannerProps) {
-  const [ref, inView] = useInView({
+  const [inViewRef, inView] = useInView({
     threshold: 1,
   });
   const HEADER_KEYWORD = [
@@ -47,7 +47,7 @@ export default function HomeBanner({
   ];
   return (
     <>
-      <HomeHeader setShowBtn={!inView} />
+      <HomeHeader showBtn={!inView} />
       <p className="header-light pb-[2.4rem] px-[2rem] pt-[5.4rem] bg-background-secondary-light">
         {textNormalFirst}
         <br />
@@ -80,16 +80,18 @@ export default function HomeBanner({
       </div>
       <div
         className="flex justify-center pb-[2rem] bg-background-secondary-light"
-        ref={ref}
+        ref={inViewRef}
       >
         {/* search 하는 페이지로 이동 시 키워드 선택 모달 바로 뜨도록 쿼리로 상태 전달 */}
-        <LinkLayout
-          routeUrl="/search"
-          query={{ keyword_search: true }}
+        <Link
+          href={{
+            pathname: "/search",
+            query: { keyword_search: true },
+          }}
           className="w-full flex justify-center px-[2rem]"
         >
           <Button className="w-full">{buttonLabel}</Button>
-        </LinkLayout>
+        </Link>
       </div>
     </>
   );

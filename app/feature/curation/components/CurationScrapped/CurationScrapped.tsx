@@ -7,7 +7,7 @@ import { CurationProps } from "@feature/curation/type";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
-import { getSession } from "@common/utils/getSession";
+import { getSession } from "@common/utils/session/getSession";
 import DeleteCurationScrap from "@feature/curation/queries/deleteCurationScrap";
 import revalidateCurationScrap from "@feature/curation/utils/revalidateCurationScrap";
 import PostCurationScrap from "@feature/curation/queries/postCurationScrap";

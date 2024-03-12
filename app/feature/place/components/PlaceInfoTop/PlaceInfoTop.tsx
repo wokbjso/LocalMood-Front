@@ -7,7 +7,7 @@ import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import Link from "next/link";
 import { PlaceInfoProps } from "@feature/place/type";
-import { getSession } from "@common/utils/getSession";
+import { getSession } from "@common/utils/session/getSession";
 import PostSpaceScrap from "@feature/place/queries/postSpaceScrap";
 import DeleteSpaceScrap from "@feature/place/queries/deleteScrapSpace";
 import SaveModal from "@feature/record/components/Modal/SaveModal";

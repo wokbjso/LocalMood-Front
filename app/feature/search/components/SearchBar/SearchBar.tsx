@@ -2,8 +2,8 @@
 
 import { twMerge } from "tailwind-merge";
 import Delete from "@common/assets/icons/close/close-gray.svg";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import SearchIcon from "@common/assets/icons/search/SearchIcon";
 
 interface SearchBarProps {
@@ -18,7 +18,6 @@ export default function SearchBar({
   className,
 }: SearchBarProps) {
   const searchParams = useSearchParams();
-  const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const [searchText, setSearchText] = useState<string>(
     (searchParams.get("search_query") as string) || ""

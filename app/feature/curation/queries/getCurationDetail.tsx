@@ -1,4 +1,4 @@
-import { getSession } from "@common/utils/getSession";
+import { getSession } from "@common/utils/session/getSession";
 
 export default async function GetCurationDetail(curationId: number) {
   const auth_info = await getSession();

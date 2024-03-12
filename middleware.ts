@@ -1,4 +1,4 @@
-import { getSession } from "@common/utils/getSession";
+import { getSession } from "@common/utils/session/getSession";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 

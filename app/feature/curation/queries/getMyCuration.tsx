@@ -1,4 +1,4 @@
-import { getSession } from "@common/utils/getSession";
+import { getSession } from "@common/utils/session/getSession";
 import { MyCurationResponse } from "./dto/my-curation";
 
 export default async function getMyCuration(): Promise<MyCurationResponse> {

@@ -1,11 +1,10 @@
 import Footer from "@common/components/layout/Footer/Footer";
 import PlaceHomeSlider from "@feature/place/components/PlaceHomeSlider/PlaceHomeSlider";
-import HomeBanner from "./components/HomeBanner";
+import HomeBanner from "./HomeBanner";
 import CurationHomePopular from "@feature/curation/components/CurationHomePopular/CurationHomePopular";
 import GetRandomCuration from "@feature/curation/queries/getRandomCuration";
-import { NextRequest } from "next/server";
 
-export default async function Home(req: NextRequest) {
+export default async function Home() {
   const HOME_SLIDER_PURPOSE = [
     "연인과의 데이트",
     "친구와의 만남",

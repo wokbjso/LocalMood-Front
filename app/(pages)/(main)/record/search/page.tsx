@@ -3,30 +3,35 @@ import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import { SearchPlaceResponse } from "@feature/search/queries/dto/search-type";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 
 export default function RecordSearch({ searchParams }: { searchParams: any }) {
   const [textSearchPlaceData, setTextSearchPlaceData] =
     useState<SearchPlaceResponse>();
-  const getTextSearchPlaceData = async () => {
-    const response = await fetch("/api/search/place-search-text", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name: searchParams.search_query }),
-    });
+  const getTextSearchPlaceData = useCallback(async () => {
+    try {
+      const response = await fetch("/api/search/place-search-text", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name: searchParams.search_query }),
+      });
 
-    if (!response.ok) {
-      alert("오류가 발생했습니다.");
-      return;
+      if (!response.ok) {
+        alert("오류가 발생했습니다.");
+        return;
+      }
+
+      setTextSearchPlaceData(await response.json());
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
+  }, [searchParams.search_query]);
 
-    setTextSearchPlaceData(await response.json());
-  };
   useEffect(() => {
     getTextSearchPlaceData();
-  }, [searchParams]);
+  }, [getTextSearchPlaceData]);
   return (
     <>
       <div>

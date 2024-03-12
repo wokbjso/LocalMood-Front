@@ -1,4 +1,4 @@
-import { getSession } from "@common/utils/getSession";
+import { getSession } from "@common/utils/session/getSession";
 import { cookies } from "next/headers";
 
 export default async function PostLogout() {
