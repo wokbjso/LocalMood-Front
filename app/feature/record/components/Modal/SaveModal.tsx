@@ -13,6 +13,7 @@ import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
 import revalidatePlaceDetailById from "@feature/place/actions/revalidatePlaceDetailById";
 import Toast from "@common/components/ui/toast/Toast";
 import revalidateMyCuration from "@feature/curation/utils/revalidateMyCuration";
+import UseOutsideClick from "@common/hooks/useOutsideClick";
 
 interface SaveModalProps {
   spaceId: number;
@@ -24,6 +25,8 @@ export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
   const [openScrapToast, setOpenScrapToast] = useState(false);
   const [toastText, setToastText] = useState("");
   const [curationMy, setCurationMy] = useState<MyCurationResponse>();
+  const { ref: outsideClickRef } =
+    UseOutsideClick<HTMLDivElement>(handleModalFn);
   const handleModalCloseClick = () => {
     handleModalFn(false);
   };
@@ -63,7 +66,7 @@ export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
   }, [openScrapToast]);
   return (
     <>
-      <Modal className="px-[2rem]">
+      <Modal className="px-[2rem]" ref={outsideClickRef}>
         <div className="flex pt-[2.4rem] pr-[18rem] headline2-semibold">
           저장할 큐레이션
         </div>
