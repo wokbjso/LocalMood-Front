@@ -28,7 +28,6 @@ interface PlaceDetailMoreReviewsProps {
 export default function PlaceDetailMoreReviews({
   reviews,
 }: PlaceDetailMoreReviewsProps) {
-  console.log(reviews);
   const [reviewPurposeIndex, setReviewPurposeIndex] = useState(0);
   const handleReviewFilterClick = (index: number) => {
     setReviewPurposeIndex(index);

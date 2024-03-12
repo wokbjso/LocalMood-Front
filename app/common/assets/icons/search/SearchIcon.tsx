@@ -11,7 +11,7 @@ export default function SearchIcon({ className, onClick }: IconProps) {
       className={className}
       onClick={onClick}
     >
-      <g clip-path="url(#clip0_1139_154)">
+      <g clipPath="url(#clip0_1139_154)">
         <path
           d="M8.57144 16.4286C12.9108 16.4286 16.4286 12.9108 16.4286 8.57142C16.4286 4.23204 12.9108 0.714279 8.57144 0.714279C4.23205 0.714279 0.714294 4.23204 0.714294 8.57142C0.714294 12.9108 4.23205 16.4286 8.57144 16.4286Z"
           stroke="#9E9E9E"

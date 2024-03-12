@@ -6,12 +6,11 @@ import CurationMakeModal from "@feature/curation/components/CurationMake/Curatio
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import CurationNoPhoto from "@common/assets/images/curationHomeNoImg.png";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import PostSavePlaceAtCuration from "@feature/curation/queries/postSavePlaceAtCuration";
-import revalidateMyCuration from "@feature/curation/utils/revalidateMyCuration";
 import revalidateCurationDetail from "@feature/curation/utils/revalidateCurationDetail";
 import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
+import revalidatePlaceDetailById from "@feature/place/actions/revalidatePlaceDetailById";
 
 interface SaveModalProps {
   spaceId: number;
@@ -19,7 +18,6 @@ interface SaveModalProps {
 }
 
 export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
-  const router = useRouter();
   const [openMakeCuration, setOpenMakeCuration] = useState(false);
   const [curationMy, setCurationMy] = useState<MyCurationResponse>();
   const handleModalCloseClick = () => {
@@ -29,11 +27,10 @@ export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
     const res = await PostSavePlaceAtCuration(id, spaceId);
     if (res.status === 200) {
       alert("큐레이션에 장소가 추가되었습니다.");
-      revalidateMyCuration();
       revalidateScrapSpace();
+      revalidatePlaceDetailById(spaceId);
       revalidateCurationDetail();
       handleModalFn(false);
-      router.push("/curation");
     } else {
       alert("오류가 발생했습니다!");
     }
@@ -47,7 +44,7 @@ export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
   };
   useEffect(() => {
     getCurationList();
-  }, []);
+  }, [curationMy]);
   return (
     <>
       <Modal className="px-[2rem]">

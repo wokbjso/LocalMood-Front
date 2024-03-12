@@ -8,6 +8,8 @@ import DeleteSpaceFromCuration from "@feature/curation/queries/deleteSpaceFromCu
 import revalidateCurationDetail from "@feature/curation/utils/revalidateCurationDetail";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import PlaceInfoCardBottom from "@feature/place/components/PlaceInfoCardBottom/PlaceInfoCardBottom";
+import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
+import revalidatePlaceDetailById from "@feature/place/actions/revalidatePlaceDetailById";
 
 interface AdditionalProps {
   curationId: number;
@@ -28,6 +30,8 @@ const CurationDetailInfoCard = forwardRef<
     const res = await DeleteSpaceFromCuration(props.curationId, props.id);
     if (res.status === 200) {
       alert("스크랩이 해제되었습니다.");
+      revalidateScrapSpace();
+      revalidatePlaceDetailById(props.id);
       revalidateCurationDetail();
     } else {
       alert("에러가 발생했습니다!");
