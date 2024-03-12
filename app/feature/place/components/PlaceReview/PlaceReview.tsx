@@ -1,6 +1,4 @@
-import UserProfile from "@feature/user/components/UserProfile/UserProfile";
 import Image from "next/image";
-import PlaceInfoBottom from "../PlaceInfoBottom/PlaceInfoBottom";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
 import GraphUpDownVote from "@common/components/ui/graph/GraphUpDownVote/GraphUpDownVote";
 import { CAFE_TAG_CATEGORY } from "@feature/place/constants/place-tag-category";

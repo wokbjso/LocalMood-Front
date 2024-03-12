@@ -2,12 +2,12 @@ import Image from "next/image";
 import Divider from "@common/components/ui/divider/Divider";
 import Slider from "@common/components/layout/Slider/Slider";
 import PlaceDetailInfo from "@feature/place/components/PlaceDetail/PlaceDetailInfo";
-import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import CurationScrapped from "@feature/curation/components/CurationScrapped/CurationScrapped";
 import PlaceDetailKeywordEvaluation from "@feature/place/components/PlaceDetail/PlaceDetailKeywordEvaluation";
 import PlaceDetailKeywordSummary from "@feature/place/components/PlaceDetail/PlaceDetailKeywordSummary";
 import GetPlaceDetail from "@feature/place/queries/getPlaceDetail";
 import PlaceDetailTopBar from "@feature/place/components/PlaceDetail/PlaceDetailTopBar";
+import PlaceInfoCard from "@feature/place/components/PlaceInfoCard/PlaceInfoCard";
 
 export default async function PlaceDetail({
   params: { id },
@@ -59,22 +59,21 @@ export default async function PlaceDetail({
       <PlaceDetailKeywordEvaluation
         id={detailData.info.id}
         mainText="키워드 평가"
-        type={detailData.info.type}
         positiveEval={
-          detailData.info.positiveEval ? detailData.info.positiveEval : null
+          detailData.info.positiveEval ? detailData.info.positiveEval[0] : null
         }
         negativeEval={
-          detailData.info.negativeEval ? detailData.info.negativeEval : null
+          detailData.info.negativeEval ? detailData.info.negativeEval[0] : null
         }
       />
       <Divider className="bg-line-gray-3 h-[0.4rem] mb-[4.8rem]" />
       <section className="pl-[2rem] w-full">
         <span className="text-black headline2">
-          {detailData.info.name}와 비슷한 장소
+          {detailData.info.name}와(과) 비슷한 장소
         </span>
         <Slider className="mt-[1.6rem] mb-[6rem]">
           {detailData.similarSpaceList.slice(0, 6).map((data) => (
-            <PlaceInfoMain
+            <PlaceInfoCard
               key={data.id}
               size="small"
               {...data}
@@ -82,9 +81,11 @@ export default async function PlaceDetail({
             />
           ))}
         </Slider>
-        <span className="text-black headline2">
-          {detailData.info.name}가 담긴 큐레이션
-        </span>
+        {detailData.relatedCurationList.length > 0 && (
+          <span className="text-black headline2">
+            {detailData.info.name}이(가) 담긴 큐레이션
+          </span>
+        )}
         <Slider className="mt-[1.6rem] mb-[6rem]">
           {detailData.relatedCurationList.map((data) => (
             <CurationScrapped

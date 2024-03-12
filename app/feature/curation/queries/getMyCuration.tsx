@@ -1,8 +1,9 @@
-import { getSession } from "@common/utils/getSession";
+import { getSession } from "@common/utils/session/getSession";
+import { MyCurationResponse } from "./dto/my-curation";
 
-export default async function getMyCuration() {
-  const userInfo = await getSession();
-  const token = userInfo?.accessToken;
+export default async function getMyCuration(): Promise<MyCurationResponse> {
+  const auth_info = await getSession();
+  const token = auth_info?.data?.accessToken;
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/curation/member`,
     {

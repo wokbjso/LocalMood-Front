@@ -7,7 +7,7 @@ import { CurationProps } from "@feature/curation/type";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
-import { getSession } from "@common/utils/getSession";
+import { getSession } from "@common/utils/session/getSession";
 import DeleteCurationScrap from "@feature/curation/queries/deleteCurationScrap";
 import revalidateCurationScrap from "@feature/curation/utils/revalidateCurationScrap";
 import PostCurationScrap from "@feature/curation/queries/postCurationScrap";
@@ -26,8 +26,9 @@ export default function CurationScrapped({
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
     e.preventDefault();
-    const userInfo = await getSession();
-    if (!userInfo) {
+    const auth_info = await getSession();
+    const token = auth_info?.data?.accessToken;
+    if (!token) {
       location.replace("/login");
     } else {
       if (scrapState) {

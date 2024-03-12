@@ -1,8 +1,8 @@
-import { getSession } from "@common/utils/getSession";
+import { getSession } from "@common/utils/session/getSession";
 
 export default async function GetCurationDetail(curationId: number) {
-  const userInfo = await getSession();
-  const token = userInfo?.accessToken;
+  const auth_info = await getSession();
+  const token = auth_info?.data?.accessToken;
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/curation/${curationId}`,
     {

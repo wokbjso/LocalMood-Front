@@ -1,20 +1,21 @@
 import DeleteCurationScrap from "@feature/curation/queries/deleteCurationScrap";
 import PostCurationScrap from "@feature/curation/queries/postCurationScrap";
+import revalidateCurationRandom from "@feature/curation/utils/revalidateCurationRandom";
 import revalidateCurationScrap from "@feature/curation/utils/revalidateCurationScrap";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function UseCurationMain(isScraped: boolean) {
-  const [scrapState, setScrapState] = useState<boolean>(isScraped);
   const [isMenuOpened, setIsMenuOpened] = useState(false);
-  const router = useRouter();
+  const [openScrapToast, setOpenScrapToast] = useState(false);
+  const [toastText, setToastText] = useState("");
   const handleScrapState = async (id: number) => {
-    setScrapState((prev) => !prev);
-    if (scrapState) {
+    if (isScraped) {
       const res = await DeleteCurationScrap(id);
       if (res.status === 200) {
+        setOpenScrapToast(true);
+        setToastText("큐레이션 스크랩이 해제되었습니다");
+        revalidateCurationRandom();
         revalidateCurationScrap();
-        location.reload();
       } else {
         alert("에러가 발생했습니다!");
         return;
@@ -22,9 +23,10 @@ export default function UseCurationMain(isScraped: boolean) {
     } else {
       const res = await PostCurationScrap(id);
       if (res.status === 200) {
-        alert("큐레이션이 스크랩되었습니다.");
+        setOpenScrapToast(true);
+        setToastText("큐레이션이 스크랩 되었습니다");
+        revalidateCurationRandom();
         revalidateCurationScrap();
-        router.push("/curation");
       } else {
         alert("에러가 발생했습니다!");
         return;
@@ -37,12 +39,30 @@ export default function UseCurationMain(isScraped: boolean) {
     setIsMenuOpened(state);
   };
 
+  const handleToastClose = () => {
+    setOpenScrapToast(false);
+  };
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    if (openScrapToast) {
+      timeoutId = setTimeout(() => {
+        setOpenScrapToast(false);
+      }, 1000);
+    }
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [openScrapToast]);
+
   return {
-    scrapState,
     isMenuOpened,
+    openScrapToast,
+    toastText,
     handlers: {
       changeScrapState: handleScrapState,
       changeMenuModalState: handleMenuModalState,
+      activateToastClose: handleToastClose,
     },
   };
 }

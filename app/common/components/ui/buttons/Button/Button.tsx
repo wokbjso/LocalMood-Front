@@ -23,7 +23,7 @@ export default function Button({
       className={twMerge(
         `w-[33.5rem] h-[4.8rem] headline3 rounded-[10px] text-white bg-primary-normal disabled:bg-text-gray-4`,
         variant === "line" &&
-          "h-[4rem] bg-white text-text-gray-6 body2-semibold border-[1.125px] border-text-gray-6",
+          "bg-white text-text-gray-6 body2-semibold border-[1.125px] border-text-gray-6",
         className
       )}
       onClick={onClick}

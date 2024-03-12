@@ -1,10 +1,10 @@
 "use client";
 
 import { twMerge } from "tailwind-merge";
-import Search from "@common/assets/icons/search/search.svg";
 import Delete from "@common/assets/icons/close/close-gray.svg";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import SearchIcon from "@common/assets/icons/search/SearchIcon";
 
 interface SearchBarProps {
   variant?: "home" | "record";
@@ -18,23 +18,33 @@ export default function SearchBar({
   className,
 }: SearchBarProps) {
   const searchParams = useSearchParams();
-  const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const [searchText, setSearchText] = useState<string>(
     (searchParams.get("search_query") as string) || ""
   );
   const queries = `?search_query=${searchText}`;
-  const keyword_search_queries = `?keyword_search=${
-    searchParams.get("keyword_search")
-      ? searchParams.get("keyword_search")
-      : false
-  }`;
   const handleSearchTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newText = e.target.value;
     setSearchText(newText);
   };
   const handleTextDelete = () => {
     setSearchText("");
+  };
+
+  const searchIconClicked = () => {
+    if (searchText.length < 2) {
+      alert("2글자 이상 입력해주세요");
+    } else if (searchText.length >= 2) {
+      variant === "home"
+        ? location.replace("/search/results" + queries)
+        : location.replace("/record/search" + queries);
+    }
+  };
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      searchIconClicked();
+    }
   };
 
   useEffect(() => {
@@ -44,21 +54,6 @@ export default function SearchBar({
     }
   }, []);
 
-  useEffect(() => {
-    if (searchText.length < 2) {
-      router.push(
-        variant === "home"
-          ? "/search" + keyword_search_queries
-          : "/record/search"
-      );
-    } else if (searchText.length >= 2) {
-      router.push(
-        variant === "home"
-          ? "/search/results" + queries
-          : "/record/search" + queries
-      );
-    }
-  }, [searchText]);
   return (
     <div
       className={twMerge(
@@ -67,8 +62,8 @@ export default function SearchBar({
       )}
     >
       <div className="flex items-center w-full mr-[0.8rem]">
-        <div>
-          <Search />
+        <div onClick={searchIconClicked}>
+          <SearchIcon />
         </div>
         <input
           ref={inputRef}
@@ -78,6 +73,7 @@ export default function SearchBar({
           value={searchText}
           placeholder={placeholder}
           onChange={handleSearchTextChange}
+          onKeyDown={handleKeyPress}
         />
       </div>
       <Delete onClick={handleTextDelete} />

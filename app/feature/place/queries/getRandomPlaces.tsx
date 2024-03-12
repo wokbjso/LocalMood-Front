@@ -1,4 +1,6 @@
-import { getSession } from "@common/utils/getSession";
+"use server";
+
+import { PlaceInfoProps } from "../type";
 
 export default async function GetRandomPlaces() {
   const res = await fetch(
@@ -7,6 +9,7 @@ export default async function GetRandomPlaces() {
       headers: {
         "Content-Type": "application/json",
       },
+      cache: "no-store",
       next: { tags: ["getHomeRecommend"] },
     }
   );

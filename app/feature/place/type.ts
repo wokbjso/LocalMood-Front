@@ -1,26 +1,30 @@
-export interface PlaceInfoProps {
+export interface PlaceInfoCardTopProps {
   id: number;
-  variant?: "main" | "record";
+  variant?: "main" | "search" | "record";
   direction?: "vertical" | "horizontal";
   size?: "normal" | "small";
   name: string;
   imgUrl: string;
   type: string;
-  subType?: string;
   address: string;
   isScraped: boolean;
+}
+
+export interface PlaceInfoCardBottomProps {
   keyword?: string[];
   purpose?: string[];
   interior?: string[];
   bestMenu?: string[];
   mood?: string[];
-  keywordCategoryNum?: number;
-  onClick?: () => void;
-  className?: string;
-  imgClassName?: string;
-  bottomClassName?: string;
   visitorNum?: string;
   dish?: string;
   dishDesc?: string;
   optionalService?: string;
+}
+
+export interface PlaceInfoCardAdditionalProps {
+  className?: string;
+  imgClassName?: string;
+  bottomClassName?: string;
+  keywordCategoryNum?: number;
 }

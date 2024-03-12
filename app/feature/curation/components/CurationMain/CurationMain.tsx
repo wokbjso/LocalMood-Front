@@ -11,8 +11,9 @@ import Chip from "@common/components/ui/buttons/Chip/Chip";
 import LocationLine from "@common/assets/icons/location/LocationLine";
 import CurationMenuModal from "../CurationModal/CurationMenuModal";
 import UseCurationMain from "./useCurationMain";
-import { getSession } from "@common/utils/getSession";
+import { getSession } from "@common/utils/session/getSession";
 import NoResult from "@common/assets/images/curationHomeNoImg.png";
+import Toast from "@common/components/ui/toast/Toast";
 
 export default function CurationMain({
   id,
@@ -25,14 +26,16 @@ export default function CurationMain({
   isScraped = false,
   className,
 }: CurationProps) {
-  const { scrapState, isMenuOpened, handlers } = UseCurationMain(isScraped);
+  const { isMenuOpened, openScrapToast, toastText, handlers } =
+    UseCurationMain(isScraped);
 
   const handleScrapClick = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
     e.preventDefault();
-    const userInfo = await getSession();
-    if (!userInfo) {
+    const auth_info = await getSession();
+    const token = auth_info?.data?.accessToken;
+    if (!token) {
       location.replace("/login");
     } else {
       handlers.changeScrapState(id);
@@ -78,7 +81,7 @@ export default function CurationMain({
               </div>
               <div className="w-full pt-[1.6rem] pl-[1.6rem] pr-[0.8rem] pb-[2rem] relative border-b-[0.1rem] border-x-[0.1rem] border-line-gray-3 rounded-b-[8px]">
                 {variant === "others" ? (
-                  scrapState ? (
+                  isScraped ? (
                     <ScrapFill
                       className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
                       onClick={handleScrapClick}
@@ -122,6 +125,7 @@ export default function CurationMain({
           handleMenuModalState={handlers.changeMenuModalState}
         />
       )}
+      <Toast open={openScrapToast} text={toastText} />
     </>
   );
 }

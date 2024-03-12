@@ -1,4 +1,4 @@
-import { getSession } from "@common/utils/getSession";
+import { getSession } from "@common/utils/session/getSession";
 
 interface CurationDataProps {
   title: string;
@@ -9,8 +9,8 @@ interface CurationDataProps {
 export default async function PostCurationMake(
   dataCurationMake: CurationDataProps
 ) {
-  const userInfo = await getSession();
-  const token = userInfo?.accessToken;
+  const auth_info = await getSession();
+  const token = auth_info?.data?.accessToken;
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/curation`,
     {

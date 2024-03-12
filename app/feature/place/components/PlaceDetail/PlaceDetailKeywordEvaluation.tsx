@@ -5,7 +5,6 @@ import GraphUpDownVote from "@common/components/ui/graph/GraphUpDownVote/GraphUp
 interface PlaceDetailKeywordEvaluationProps {
   id: number;
   mainText: string;
-  type: string;
   positiveEval: string[] | null;
   negativeEval: string[] | null;
 }
@@ -13,7 +12,6 @@ interface PlaceDetailKeywordEvaluationProps {
 export default function PlaceDetailKeywordEvaluation({
   id,
   mainText,
-  type,
   positiveEval,
   negativeEval,
 }: PlaceDetailKeywordEvaluationProps) {

@@ -1,6 +1,7 @@
 import Head from "next/head";
 import "../styles/global.css";
 import Script from "next/script";
+import KakaoScript from "@feature/auth/components/KakaoScript/KakaoScript";
 
 export const metadata = {
   title: "Localmood",
@@ -18,7 +19,10 @@ export default function RootLayout({
         type="text/javascript"
         src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}&submodules=geocoder`}
       ></Script>
-      <body>{children}</body>
+      <body>
+        <KakaoScript />
+        {children}
+      </body>
     </html>
   );
 }

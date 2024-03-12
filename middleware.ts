@@ -1,4 +1,4 @@
-import { getSession } from "@common/utils/getSession";
+import { getSession } from "@common/utils/session/getSession";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
@@ -11,5 +11,11 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/record/:path*", "/mypage", "/curation/:path*"],
+  matcher: [
+    "/record",
+    "/record/:path*",
+    "/mypage",
+    "/curation",
+    "/curation/:path*",
+  ],
 };

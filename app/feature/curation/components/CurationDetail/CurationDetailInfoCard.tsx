@@ -1,6 +1,5 @@
 import ArrowIcon from "@common/assets/icons/arrow/arrow-right.svg";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
-import PlaceInfoBottom from "@feature/place/components/PlaceInfoBottom/PlaceInfoBottom";
 import Image from "next/image";
 import Slider from "@common/components/layout/Slider/Slider";
 import { forwardRef } from "react";
@@ -8,6 +7,7 @@ import { CurationPlaceProps } from "@feature/curation/type";
 import DeleteSpaceFromCuration from "@feature/curation/queries/deleteSpaceFromCuration";
 import revalidateCurationDetail from "@feature/curation/utils/revalidateCurationDetail";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
+import PlaceInfoCardBottom from "@feature/place/components/PlaceInfoCardBottom/PlaceInfoCardBottom";
 
 interface AdditionalProps {
   curationId: number;
@@ -76,7 +76,7 @@ const CurationDetailInfoCard = forwardRef<
             </div>
             <ScrapFill onClick={handleDeleteScrap} />
           </div>
-          <PlaceInfoBottom
+          <PlaceInfoCardBottom
             type={props.type}
             purpose={purposeArray}
             interior={interiorArray}

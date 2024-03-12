@@ -31,4 +31,5 @@ export const customColors = {
   white: "#FFFFFF",
   black: "#212121",
   error: "#F04438",
+  kakao: "#FEE500",
 };

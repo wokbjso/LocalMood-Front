@@ -1,25 +1,37 @@
 "use client";
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
-import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
+import PlaceInfoCard from "@feature/place/components/PlaceInfoCard/PlaceInfoCard";
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import { SearchPlaceResponse } from "@feature/search/queries/dto/search-type";
-import PostTextPlaceSearch from "@feature/search/queries/postTextPlaceSearch";
-import { useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 
-export default function RecordSearch() {
-  const searchParams = useSearchParams();
+export default function RecordSearch({ searchParams }: { searchParams: any }) {
   const [textSearchPlaceData, setTextSearchPlaceData] =
     useState<SearchPlaceResponse>();
-  const getTextSearchPlaceData = async () => {
-    const data = await PostTextPlaceSearch(
-      searchParams.get("search_query") as string
-    );
-    setTextSearchPlaceData(data);
-  };
+  const getTextSearchPlaceData = useCallback(async () => {
+    try {
+      const response = await fetch("/api/search/place-search-text", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name: searchParams.search_query }),
+      });
+
+      if (!response.ok) {
+        alert("오류가 발생했습니다.");
+        return;
+      }
+
+      setTextSearchPlaceData(await response.json());
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }, [searchParams.search_query]);
+
   useEffect(() => {
     getTextSearchPlaceData();
-  }, [searchParams.get("search_query")]);
+  }, [getTextSearchPlaceData]);
   return (
     <>
       <div>
@@ -40,7 +52,7 @@ export default function RecordSearch() {
           textSearchPlaceData?.spaceCount > 0 &&
           textSearchPlaceData?.spaceList.map((li) => (
             <div key={li.id} className="w-full px-[2rem]">
-              <PlaceInfoMain
+              <PlaceInfoCard
                 className="mt-[0.8rem]"
                 direction="horizontal"
                 variant="record"
