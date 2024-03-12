@@ -12,7 +12,7 @@ export default function PlaceDetailInfo({
   id,
   name,
   type,
-  subType,
+  subType, 
   address,
   isScraped,
   visitorNum,
