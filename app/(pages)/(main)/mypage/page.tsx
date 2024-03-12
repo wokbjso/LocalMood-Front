@@ -8,8 +8,8 @@ import Link from "next/link";
 import RecordMyPageSkeleton from "@feature/record/components/RecordMyPageSkeleton/RecordMyPageSkeleton";
 import GetRecordMyPage from "@feature/place/queries/getRocordMyPage";
 import dynamic from "next/dynamic";
-const PlaceInfoMain = dynamic(
-  () => import("@feature/place/components/PlaceInfoMain/PlaceInfoMain")
+const PlaceInfoCard = dynamic(
+  () => import("@feature/place/components/PlaceInfoCard/PlaceInfoCard")
 );
 
 export default async function MyPage() {
@@ -74,7 +74,7 @@ export default async function MyPage() {
               {record.reviewCount > 0 && (
                 <div className="grid grid-cols-2 gap-x-[1rem] gap-y-[1.6rem] pb-[40.1rem] h-full overflow-y-scroll">
                   {record.reviews.map((record) => (
-                    <PlaceInfoMain
+                    <PlaceInfoCard
                       key={record.id}
                       size="small"
                       {...record}

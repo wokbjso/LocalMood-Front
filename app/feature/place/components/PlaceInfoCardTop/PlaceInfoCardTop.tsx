@@ -7,8 +7,8 @@ import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import Link from "next/link";
 import {
-  PlaceInfoAdditionalProps,
-  PlaceInfoTopProps,
+  PlaceInfoCardAdditionalProps,
+  PlaceInfoCardTopProps,
 } from "@feature/place/type";
 import { getSession } from "@common/utils/session/getSession";
 import PostSpaceScrap from "@feature/place/queries/postSpaceScrap";
@@ -16,14 +16,14 @@ import DeleteSpaceScrap from "@feature/place/queries/deleteScrapSpace";
 import SaveModal from "@feature/record/components/Modal/SaveModal";
 import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import { sliceText } from "@common/utils/text/slice-text";
-import UsePlaceInfoTop from "./usePlaceInfoTop";
-import revalidateHomeRecommend from "@feature/place/utils/revalidateHomeRecomment";
-import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
 import Toast from "@common/components/ui/toast/Toast";
-import revalidatePlaceDetailById from "@feature/place/utils/revalidatePlaceDetailById";
 import revalidateSearchPlaceText from "@feature/search/utils/revalidateSearchPlaceText";
+import UsePlaceInfoCardTop from "./usePlaceInfoCardTop";
+import revalidateHomeRecommend from "@feature/place/actions/revalidateHomeRecommend";
+import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
+import revalidatePlaceDetailById from "@feature/place/actions/revalidatePlaceDetailById";
 
-export default function PlaceInfoTop({
+export default function PlaceInfoCardTop({
   id,
   variant,
   direction,
@@ -35,9 +35,9 @@ export default function PlaceInfoTop({
   isScraped,
   className,
   imgClassName,
-}: PlaceInfoTopProps & Partial<PlaceInfoAdditionalProps>) {
+}: PlaceInfoCardTopProps & Partial<PlaceInfoCardAdditionalProps>) {
   const { openCurationSaveModal, openScrapToast, toastText, handlers } =
-    UsePlaceInfoTop();
+    UsePlaceInfoCardTop();
   const handleScrap = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {

@@ -1,6 +1,6 @@
 import GetPlaceScrapped from "@feature/place/queries/getPlaceScrapped";
 import dynamic from "next/dynamic";
-const PlaceInfoMain = dynamic(() => import("../PlaceInfoMain/PlaceInfoMain"));
+const PlaceInfoCard = dynamic(() => import("../PlaceInfoCard/PlaceInfoCard"));
 
 export default async function PlaceScrapList() {
   const scrappedPlace = await GetPlaceScrapped();
@@ -16,7 +16,7 @@ export default async function PlaceScrapList() {
       {scrappedPlace &&
         scrappedPlace.map((li, index) => (
           <div key={index}>
-            <PlaceInfoMain
+            <PlaceInfoCard
               variant="record"
               size="small"
               {...li}

@@ -1,12 +1,12 @@
-import PlaceInfoTop from "../PlaceInfoTop/PlaceInfoTop";
-import PlaceInfoBottom from "../PlaceInfoBottom/PlaceInfoBottom";
 import {
-  PlaceInfoAdditionalProps,
-  PlaceInfoBottomProps,
-  PlaceInfoTopProps,
+  PlaceInfoCardAdditionalProps,
+  PlaceInfoCardBottomProps,
+  PlaceInfoCardTopProps,
 } from "@feature/place/type";
+import PlaceInfoCardTop from "../PlaceInfoCardTop/PlaceInfoCardTop";
+import PlaceInfoCardBottom from "../PlaceInfoCardBottom/PlaceInfoCardBottom";
 
-export default function PlaceInfoMain({
+export default function PlaceInfoCard({
   id,
   variant = "main",
   direction = "vertical",
@@ -24,10 +24,12 @@ export default function PlaceInfoMain({
   imgClassName,
   bottomClassName,
   keywordCategoryNum,
-}: PlaceInfoTopProps & PlaceInfoBottomProps & PlaceInfoAdditionalProps) {
+}: PlaceInfoCardTopProps &
+  PlaceInfoCardBottomProps &
+  PlaceInfoCardAdditionalProps) {
   return (
     <div>
-      <PlaceInfoTop
+      <PlaceInfoCardTop
         id={id}
         variant={variant}
         direction={direction}
@@ -41,7 +43,7 @@ export default function PlaceInfoMain({
         imgClassName={imgClassName}
       />
       {keywordCategoryNum && (
-        <PlaceInfoBottom
+        <PlaceInfoCardBottom
           type={type}
           keyword={keyword}
           purpose={purpose}

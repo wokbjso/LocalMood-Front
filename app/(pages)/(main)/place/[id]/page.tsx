@@ -2,12 +2,12 @@ import Image from "next/image";
 import Divider from "@common/components/ui/divider/Divider";
 import Slider from "@common/components/layout/Slider/Slider";
 import PlaceDetailInfo from "@feature/place/components/PlaceDetail/PlaceDetailInfo";
-import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import CurationScrapped from "@feature/curation/components/CurationScrapped/CurationScrapped";
 import PlaceDetailKeywordEvaluation from "@feature/place/components/PlaceDetail/PlaceDetailKeywordEvaluation";
 import PlaceDetailKeywordSummary from "@feature/place/components/PlaceDetail/PlaceDetailKeywordSummary";
 import GetPlaceDetail from "@feature/place/queries/getPlaceDetail";
 import PlaceDetailTopBar from "@feature/place/components/PlaceDetail/PlaceDetailTopBar";
+import PlaceInfoCard from "@feature/place/components/PlaceInfoCard/PlaceInfoCard";
 
 export default async function PlaceDetail({
   params: { id },
@@ -73,7 +73,7 @@ export default async function PlaceDetail({
         </span>
         <Slider className="mt-[1.6rem] mb-[6rem]">
           {detailData.similarSpaceList.slice(0, 6).map((data) => (
-            <PlaceInfoMain
+            <PlaceInfoCard
               key={data.id}
               size="small"
               {...data}

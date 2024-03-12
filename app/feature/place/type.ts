@@ -1,4 +1,4 @@
-export interface PlaceInfoTopProps {
+export interface PlaceInfoCardTopProps {
   id: number;
   variant?: "main" | "search" | "record";
   direction?: "vertical" | "horizontal";
@@ -10,7 +10,7 @@ export interface PlaceInfoTopProps {
   isScraped: boolean;
 }
 
-export interface PlaceInfoBottomProps {
+export interface PlaceInfoCardBottomProps {
   keyword?: string[];
   purpose?: string[];
   interior?: string[];
@@ -22,7 +22,7 @@ export interface PlaceInfoBottomProps {
   optionalService?: string;
 }
 
-export interface PlaceInfoAdditionalProps {
+export interface PlaceInfoCardAdditionalProps {
   className?: string;
   imgClassName?: string;
   bottomClassName?: string;

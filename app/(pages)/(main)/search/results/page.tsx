@@ -3,7 +3,6 @@
 import useSearchBar from "@feature/search/components/SearchBar/useSearchBar";
 import Tab from "@common/components/ui/tab/Tab";
 import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
-import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
 import SearchNoResult from "@feature/search/components/SearchNoResult/SearchNoResult";
 import { useEffect, useState } from "react";
 import {
@@ -12,6 +11,7 @@ import {
 } from "@feature/search/queries/dto/search-type";
 import Divider from "@common/components/ui/divider/Divider";
 import FilterIcon from "@common//assets/icons/filter/filter-keyword.svg";
+import PlaceInfoCard from "@feature/place/components/PlaceInfoCard/PlaceInfoCard";
 
 export default function SearchResult({ searchParams }: { searchParams: any }) {
   const [textSearchPlaceData, setTextSearchPlaceData] =
@@ -170,7 +170,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
               <div className="h-full px-[2rem] pt-[2rem] pb-[14.5rem] overflow-y-scroll">
                 {textSearchPlaceData.spaceList.map((place) => (
                   <div key={place.id + place.type} className="mb-[4rem]">
-                    <PlaceInfoMain
+                    <PlaceInfoCard
                       {...place}
                       interior={
                         place.type === "CAFE" ? place.keyword : undefined
@@ -223,7 +223,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
                 <div className="h-full px-[2rem] pt-[1.2rem] pb-[14.5rem] overflow-y-scroll">
                   {textSearchPlaceData.spaceList.map((place) => (
                     <div key={place.id + place.type} className="mb-[4rem]">
-                      <PlaceInfoMain
+                      <PlaceInfoCard
                         {...place}
                         interior={
                           place.type === "CAFE" ? place.keyword : undefined
@@ -311,7 +311,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
               <div className="h-full px-[2rem] pt-[2rem] pb-[14.5rem] overflow-y-scroll">
                 {keywordSearchPlaceData.spaceList.map((place) => (
                   <div key={place.id + place.type} className="mb-[4rem]">
-                    <PlaceInfoMain {...place} keywordCategoryNum={2} />
+                    <PlaceInfoCard {...place} keywordCategoryNum={2} />
                   </div>
                 ))}
               </div>
@@ -355,7 +355,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
                 <div className="h-full px-[2rem] pt-[1.2rem] pb-[14.5rem] overflow-y-scroll">
                   {keywordSearchPlaceData.spaceList.map((place) => (
                     <div key={place.id + place.type} className="mb-[4rem]">
-                      <PlaceInfoMain {...place} keywordCategoryNum={2} />
+                      <PlaceInfoCard {...place} keywordCategoryNum={2} />
                     </div>
                   ))}
                 </div>

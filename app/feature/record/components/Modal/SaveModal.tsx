@@ -10,8 +10,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import PostSavePlaceAtCuration from "@feature/curation/queries/postSavePlaceAtCuration";
 import revalidateMyCuration from "@feature/curation/utils/revalidateMyCuration";
-import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
 import revalidateCurationDetail from "@feature/curation/utils/revalidateCurationDetail";
+import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
 
 interface SaveModalProps {
   spaceId: number;

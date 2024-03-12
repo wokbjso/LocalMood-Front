@@ -1,9 +1,12 @@
 import Slider from "@common/components/layout/Slider/Slider";
-import { PlaceInfoProps } from "@feature/place/type";
 import { twMerge } from "tailwind-merge";
 import dynamic from "next/dynamic";
 import GetRandomPlaces from "@feature/place/queries/getRandomPlaces";
-const PlaceInfoMain = dynamic(() => import("../PlaceInfoMain/PlaceInfoMain"));
+import {
+  PlaceInfoCardBottomProps,
+  PlaceInfoCardTopProps,
+} from "@feature/place/type";
+const PlaceInfoCard = dynamic(() => import("../PlaceInfoCard/PlaceInfoCard"));
 
 interface PlaceHomeSliderProps {
   mainText: string;
@@ -16,8 +19,9 @@ export default async function PlaceHomeSlider({
   subText,
   className,
 }: PlaceHomeSliderProps) {
-  const randomPlace: { [key: string]: PlaceInfoProps[] } =
-    await GetRandomPlaces();
+  const randomPlace: {
+    [key: string]: (PlaceInfoCardTopProps & PlaceInfoCardBottomProps)[];
+  } = await GetRandomPlaces();
   return (
     <section className={twMerge("mb-[4rem] pl-[2rem]", className)}>
       <span className="text-primary-normal headline2"># </span>
@@ -25,14 +29,16 @@ export default async function PlaceHomeSlider({
       <span className="text-text-gray-6 body1"> {subText}</span>
       <Slider className="mt-[1.6rem]">
         {randomPlace[mainText] &&
-          randomPlace[mainText].map((data: PlaceInfoProps) => (
-            <PlaceInfoMain
-              key={data.id}
-              {...data}
-              keywordCategoryNum={1}
-              className="w-[33.5rem] mr-[1.2rem]"
-            />
-          ))}
+          randomPlace[mainText].map(
+            (data: PlaceInfoCardTopProps & PlaceInfoCardBottomProps) => (
+              <PlaceInfoCard
+                key={data.id}
+                {...data}
+                keywordCategoryNum={1}
+                className="w-[33.5rem] mr-[1.2rem]"
+              />
+            )
+          )}
       </Slider>
     </section>
   );

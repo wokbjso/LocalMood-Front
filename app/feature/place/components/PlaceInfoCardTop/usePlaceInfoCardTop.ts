@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function UsePlaceInfoTop() {
+export default function UsePlaceInfoCardTop() {
   const [openCurationSaveModal, setOpenCurationSaveModal] = useState(false);
   const [openScrapToast, setOpenScrapToast] = useState(false);
   const [toastText, setToastText] = useState("");

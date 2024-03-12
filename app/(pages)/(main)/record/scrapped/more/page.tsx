@@ -1,4 +1,4 @@
-import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
+import PlaceInfoCard from "@feature/place/components/PlaceInfoCard/PlaceInfoCard";
 import GetPlaceScrapped from "@feature/place/queries/getPlaceScrapped";
 import PlaceRecordTopBar from "@feature/record/components/PlaceRecordTopBar/PlaceRecordTopBar";
 
@@ -20,7 +20,7 @@ export default async function RecordScrappedMore() {
         {scrappedPlace && scrappedPlace.length > 0
           ? scrappedPlace.map((props, index) => (
               <div key={index} className="w-full">
-                <PlaceInfoMain
+                <PlaceInfoCard
                   direction="horizontal"
                   variant="record"
                   {...props}

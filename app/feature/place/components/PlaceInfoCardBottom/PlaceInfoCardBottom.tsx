@@ -1,12 +1,12 @@
 import { twMerge } from "tailwind-merge";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
 import {
-  PlaceInfoAdditionalProps,
-  PlaceInfoBottomProps,
-  PlaceInfoTopProps,
+  PlaceInfoCardAdditionalProps,
+  PlaceInfoCardBottomProps,
+  PlaceInfoCardTopProps,
 } from "@feature/place/type";
 
-export default function PlaceInfoBottom({
+export default function PlaceInfoCardBottom({
   type,
   keyword,
   purpose,
@@ -15,9 +15,9 @@ export default function PlaceInfoBottom({
   bestMenu,
   keywordCategoryNum,
   bottomClassName,
-}: Pick<PlaceInfoTopProps, "type"> &
-  PlaceInfoBottomProps &
-  Partial<PlaceInfoAdditionalProps>) {
+}: Pick<PlaceInfoCardTopProps, "type"> &
+  PlaceInfoCardBottomProps &
+  Partial<PlaceInfoCardAdditionalProps>) {
   return (
     <div
       className={twMerge(

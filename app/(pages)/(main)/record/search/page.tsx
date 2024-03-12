@@ -1,6 +1,6 @@
 "use client";
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
-import PlaceInfoMain from "@feature/place/components/PlaceInfoMain/PlaceInfoMain";
+import PlaceInfoCard from "@feature/place/components/PlaceInfoCard/PlaceInfoCard";
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import { SearchPlaceResponse } from "@feature/search/queries/dto/search-type";
 import { Suspense, useCallback, useEffect, useState } from "react";
@@ -52,7 +52,7 @@ export default function RecordSearch({ searchParams }: { searchParams: any }) {
           textSearchPlaceData?.spaceCount > 0 &&
           textSearchPlaceData?.spaceList.map((li) => (
             <div key={li.id} className="w-full px-[2rem]">
-              <PlaceInfoMain
+              <PlaceInfoCard
                 className="mt-[0.8rem]"
                 direction="horizontal"
                 variant="record"
