@@ -8,11 +8,11 @@ import CurationNoPhoto from "@common/assets/images/curationHomeNoImg.png";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import PostSavePlaceAtCuration from "@feature/curation/queries/postSavePlaceAtCuration";
-import revalidateCurationDetail from "@feature/curation/utils/revalidateCurationDetail";
+import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
 import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
 import revalidatePlaceDetailById from "@feature/place/actions/revalidatePlaceDetailById";
 import Toast from "@common/components/ui/toast/Toast";
-import revalidateMyCuration from "@feature/curation/utils/revalidateMyCuration";
+import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
 import UseOutsideClick from "@common/hooks/useOutsideClick";
 
 interface SaveModalProps {

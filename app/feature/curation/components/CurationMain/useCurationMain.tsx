@@ -1,7 +1,7 @@
 import DeleteCurationScrap from "@feature/curation/queries/deleteCurationScrap";
 import PostCurationScrap from "@feature/curation/queries/postCurationScrap";
-import revalidateCurationRandom from "@feature/curation/utils/revalidateCurationRandom";
-import revalidateCurationScrap from "@feature/curation/utils/revalidateCurationScrap";
+import revalidateCurationRandom from "@feature/curation/actions/revalidateCurationRandom";
+import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
 import { useEffect, useState } from "react";
 
 export default function UseCurationMain(isScraped: boolean) {

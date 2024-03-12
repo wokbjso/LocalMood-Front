@@ -2,7 +2,7 @@ import CloseIcon from "@common/assets/icons/close/CloseIcon";
 import Button from "@common/components/ui/buttons/Button/Button";
 import Modal from "@common/components/ui/modal/Modal";
 import DeleteCuration from "@feature/curation/queries/deleteCuration";
-import revalidateMyCuration from "@feature/curation/utils/revalidateMyCuration";
+import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
 
 interface CurationDeleteConfirmModalProps {
   id: number;

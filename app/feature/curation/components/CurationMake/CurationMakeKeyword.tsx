@@ -7,7 +7,7 @@ import {
   CURATION_MAKE_KEYWORD,
 } from "@feature/curation/constants/curation-make";
 import Button from "@common/components/ui/buttons/Button/Button";
-import revalidateMyCuration from "@feature/curation/utils/revalidateMyCuration";
+import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
 import { useRouter } from "next/navigation";
 
 interface CurationMakeKeywordProps {

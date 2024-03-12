@@ -9,7 +9,7 @@ import { twMerge } from "tailwind-merge";
 import Link from "next/link";
 import { getSession } from "@common/utils/session/getSession";
 import DeleteCurationScrap from "@feature/curation/queries/deleteCurationScrap";
-import revalidateCurationScrap from "@feature/curation/utils/revalidateCurationScrap";
+import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
 import PostCurationScrap from "@feature/curation/queries/postCurationScrap";
 
 export default function CurationScrapped({

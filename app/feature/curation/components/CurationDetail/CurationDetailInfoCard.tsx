@@ -5,7 +5,7 @@ import Slider from "@common/components/layout/Slider/Slider";
 import { forwardRef } from "react";
 import { CurationPlaceProps } from "@feature/curation/type";
 import DeleteSpaceFromCuration from "@feature/curation/queries/deleteSpaceFromCuration";
-import revalidateCurationDetail from "@feature/curation/utils/revalidateCurationDetail";
+import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import PlaceInfoCardBottom from "@feature/place/components/PlaceInfoCardBottom/PlaceInfoCardBottom";
 import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
