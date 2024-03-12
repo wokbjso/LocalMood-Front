@@ -2,7 +2,6 @@
 
 import KakaoIcon from "@common/assets/icons/kakao/KakaoIcon";
 import Button from "../Button/Button";
-import { useEffect } from "react";
 
 export default function KakaoButton() {
   const protocol = process?.env.NODE_ENV === "development" ? "http" : "https";

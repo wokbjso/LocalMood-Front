@@ -24,8 +24,8 @@ export default function Login() {
           </Button>
         </LinkLayout>
       </div>
-      <LinkLayout routeUrl="/" className="mt-[2rem]">
-        <span className="text-text-gray-6 body2-semibold pb-[0.4rem] border border-b-text-gray-6">
+      <LinkLayout routeUrl="/" className="mt-[2rem] pb-[6.6rem]">
+        <span className="text-text-gray-6 body2-semibold pb-[0.4rem] border-b-[1px] border-b-text-gray-6">
           로그인없이 둘러보기
         </span>
       </LinkLayout>
