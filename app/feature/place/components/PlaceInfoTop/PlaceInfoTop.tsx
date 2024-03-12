@@ -6,7 +6,10 @@ import Line from "@common/assets/icons/line/line.svg";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import Link from "next/link";
-import { PlaceInfoProps } from "@feature/place/type";
+import {
+  PlaceInfoAdditionalProps,
+  PlaceInfoTopProps,
+} from "@feature/place/type";
 import { getSession } from "@common/utils/session/getSession";
 import PostSpaceScrap from "@feature/place/queries/postSpaceScrap";
 import DeleteSpaceScrap from "@feature/place/queries/deleteScrapSpace";
@@ -19,7 +22,6 @@ import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
 import Toast from "@common/components/ui/toast/Toast";
 import revalidatePlaceDetailById from "@feature/place/utils/revalidatePlaceDetailById";
 import revalidateSearchPlaceText from "@feature/search/utils/revalidateSearchPlaceText";
-import { useSession } from "next-auth/react";
 
 export default function PlaceInfoTop({
   id,
@@ -31,10 +33,9 @@ export default function PlaceInfoTop({
   type,
   address,
   isScraped,
-  onClick,
   className,
   imgClassName,
-}: PlaceInfoProps) {
+}: PlaceInfoTopProps & Partial<PlaceInfoAdditionalProps>) {
   const { openCurationSaveModal, openScrapToast, toastText, handlers } =
     UsePlaceInfoTop();
   const handleScrap = async (
@@ -94,7 +95,6 @@ export default function PlaceInfoTop({
             direction === "horizontal" && "flex items-center",
             className
           )}
-          onClick={onClick}
         >
           <div
             className={twMerge(

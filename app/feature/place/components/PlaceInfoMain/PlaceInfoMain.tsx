@@ -1,7 +1,10 @@
 import PlaceInfoTop from "../PlaceInfoTop/PlaceInfoTop";
 import PlaceInfoBottom from "../PlaceInfoBottom/PlaceInfoBottom";
-import { PlaceInfoProps } from "@feature/place/type";
-import { useSession } from "next-auth/react";
+import {
+  PlaceInfoAdditionalProps,
+  PlaceInfoBottomProps,
+  PlaceInfoTopProps,
+} from "@feature/place/type";
 
 export default function PlaceInfoMain({
   id,
@@ -17,12 +20,11 @@ export default function PlaceInfoMain({
   purpose,
   interior,
   bestMenu,
-  keywordCategoryNum,
-  onClick,
   className,
   imgClassName,
   bottomClassName,
-}: PlaceInfoProps) {
+  keywordCategoryNum,
+}: PlaceInfoTopProps & PlaceInfoBottomProps & PlaceInfoAdditionalProps) {
   return (
     <div>
       <PlaceInfoTop
@@ -35,7 +37,6 @@ export default function PlaceInfoMain({
         type={type}
         address={address}
         isScraped={isScraped}
-        onClick={onClick}
         className={className}
         imgClassName={imgClassName}
       />

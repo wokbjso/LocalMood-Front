@@ -1,4 +1,4 @@
-export interface PlaceInfoProps {
+export interface PlaceInfoTopProps {
   id: number;
   variant?: "main" | "search" | "record";
   direction?: "vertical" | "horizontal";
@@ -6,21 +6,25 @@ export interface PlaceInfoProps {
   name: string;
   imgUrl: string;
   type: string;
-  subType?: string;
   address: string;
   isScraped: boolean;
+}
+
+export interface PlaceInfoBottomProps {
   keyword?: string[];
   purpose?: string[];
   interior?: string[];
   bestMenu?: string[];
   mood?: string[];
-  keywordCategoryNum?: number;
-  onClick?: () => void;
-  className?: string;
-  imgClassName?: string;
-  bottomClassName?: string;
   visitorNum?: string;
   dish?: string;
   dishDesc?: string;
   optionalService?: string;
+}
+
+export interface PlaceInfoAdditionalProps {
+  className?: string;
+  imgClassName?: string;
+  bottomClassName?: string;
+  keywordCategoryNum?: number;
 }
