@@ -1,7 +1,6 @@
 "use client";
 
-import revalidateHomeRecommend from "@feature/place/utils/revalidateHomeRecomment";
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface SliderProps {

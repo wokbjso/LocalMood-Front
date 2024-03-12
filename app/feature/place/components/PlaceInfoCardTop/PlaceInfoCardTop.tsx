@@ -11,17 +11,11 @@ import {
   PlaceInfoCardTopProps,
 } from "@feature/place/type";
 import { getSession } from "@common/utils/session/getSession";
-import PostSpaceScrap from "@feature/place/queries/postSpaceScrap";
-import DeleteSpaceScrap from "@feature/place/queries/deleteScrapSpace";
 import SaveModal from "@feature/record/components/Modal/SaveModal";
 import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import { sliceText } from "@common/utils/text/slice-text";
 import Toast from "@common/components/ui/toast/Toast";
-import revalidateSearchPlaceText from "@feature/search/utils/revalidateSearchPlaceText";
 import UsePlaceInfoCardTop from "./usePlaceInfoCardTop";
-import revalidateHomeRecommend from "@feature/place/actions/revalidateHomeRecommend";
-import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
-import revalidatePlaceDetailById from "@feature/place/actions/revalidatePlaceDetailById";
 
 export default function PlaceInfoCardTop({
   id,
@@ -47,37 +41,9 @@ export default function PlaceInfoCardTop({
     if (!token) {
       location.replace("/login");
     } else {
-      if (isScraped) {
-        const res = await DeleteSpaceScrap(id);
-        if (res.status === 200) {
-          handlers.openScrapToast(true);
-          handlers.changeToastText("스크랩이 해제되었습니다");
-          const timeoutId = setTimeout(() => {
-            revalidateScrapSpace();
-            revalidateSearchPlaceText(name);
-            revalidatePlaceDetailById(id);
-            revalidateHomeRecommend();
-          }, 1200);
-          return () => clearTimeout(timeoutId);
-        } else {
-          alert("에러가 발생했습니다!");
-          return;
-        }
-      } else {
-        const res = await PostSpaceScrap(id);
-        if (res.status === 200) {
-          handlers.changeOpenCurationSaveModal(true);
-          handlers.openScrapToast(true);
-          handlers.changeToastText("저장할 큐레이션을 선택해주세요");
-          revalidateScrapSpace();
-          revalidateSearchPlaceText(name);
-          revalidatePlaceDetailById(id);
-          revalidateHomeRecommend();
-        } else {
-          alert("에러가 발생했습니다!");
-          return;
-        }
-      }
+      handlers.changeOpenCurationSaveModal(true);
+      handlers.openScrapToast(true);
+      handlers.changeToastText("저장할 큐레이션을 선택해주세요");
     }
   };
   return (

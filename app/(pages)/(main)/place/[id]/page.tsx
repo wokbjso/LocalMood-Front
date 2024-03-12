@@ -18,8 +18,6 @@ export default async function PlaceDetail({
   return (
     <div className="relative pb-[12rem] w-full h-[100vh] overflow-auto">
       <PlaceDetailTopBar
-        id={id}
-        isScraped={detailData.info.isScraped}
         type={detailData.info.type}
         address={detailData.info.address}
         name={detailData.info.name}
