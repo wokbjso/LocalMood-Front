@@ -11,6 +11,8 @@ import PostSavePlaceAtCuration from "@feature/curation/queries/postSavePlaceAtCu
 import revalidateCurationDetail from "@feature/curation/utils/revalidateCurationDetail";
 import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
 import revalidatePlaceDetailById from "@feature/place/actions/revalidatePlaceDetailById";
+import Toast from "@common/components/ui/toast/Toast";
+import revalidateMyCuration from "@feature/curation/utils/revalidateMyCuration";
 
 interface SaveModalProps {
   spaceId: number;
@@ -19,6 +21,8 @@ interface SaveModalProps {
 
 export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
   const [openMakeCuration, setOpenMakeCuration] = useState(false);
+  const [openScrapToast, setOpenScrapToast] = useState(false);
+  const [toastText, setToastText] = useState("");
   const [curationMy, setCurationMy] = useState<MyCurationResponse>();
   const handleModalCloseClick = () => {
     handleModalFn(false);
@@ -26,11 +30,12 @@ export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
   const handleCurationClick = async (id: number) => {
     const res = await PostSavePlaceAtCuration(id, spaceId);
     if (res.status === 200) {
-      alert("큐레이션에 장소가 추가되었습니다.");
+      setOpenScrapToast(true);
+      setToastText("큐레이션에 장소가 추가되었습니다.");
       revalidateScrapSpace();
+      revalidateMyCuration();
       revalidatePlaceDetailById(spaceId);
       revalidateCurationDetail();
-      handleModalFn(false);
     } else {
       alert("오류가 발생했습니다!");
     }
@@ -45,6 +50,17 @@ export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
   useEffect(() => {
     getCurationList();
   }, [curationMy]);
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    if (openScrapToast) {
+      timeoutId = setTimeout(() => {
+        setOpenScrapToast(false);
+      }, 1000);
+    }
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [openScrapToast]);
   return (
     <>
       <Modal className="px-[2rem]">
@@ -103,12 +119,11 @@ export default function SaveModal({ spaceId, handleModalFn }: SaveModalProps) {
           ))}
         </div>
       </Modal>
-      {
-        <CurationMakeModal
-          isOpen={openMakeCuration}
-          handleOpen={setOpenMakeCuration}
-        />
-      }
+      <CurationMakeModal
+        isOpen={openMakeCuration}
+        handleOpen={setOpenMakeCuration}
+      />
+      <Toast open={openScrapToast} text={toastText} />
     </>
   );
 }

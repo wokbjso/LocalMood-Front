@@ -1,5 +1,7 @@
-import UseOutsideClick from "@common/hooks/useOutsideClick";
-import { PlaceInfoProps } from "@feature/place/type";
+import {
+  PlaceInfoCardBottomProps,
+  PlaceInfoCardTopProps,
+} from "@feature/place/type";
 
 export default function MapInfoWindow({
   name,
@@ -7,7 +9,8 @@ export default function MapInfoWindow({
   address,
   purpose,
   imgUrl,
-}: Pick<PlaceInfoProps, "name" | "type" | "address" | "purpose" | "imgUrl">) {
+}: Pick<PlaceInfoCardTopProps, "name" | "type" | "address" | "imgUrl"> &
+  Pick<PlaceInfoCardBottomProps, "purpose">) {
   const infoWindowArray = [
     `<div style="display:flex; width:33.5rem; height:10.4rem; padding:1.2rem 2rem; border-radius:12px; box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.10); background-color:white;">`,
     `<div style="width:8rem; height:8rem; margin-right:1.3rem; border-radius:4px; background-image:url(${imgUrl}); background-size: cover; background-repeat: no-repeat;"></div>`, // 이미지 div
