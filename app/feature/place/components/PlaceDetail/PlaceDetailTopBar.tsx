@@ -14,10 +14,10 @@ import MapIcon from "@common/assets/icons/map/map";
 import { useEffect, useState } from "react";
 import Map from "@feature/map/components/Map/Map";
 import SaveModal from "@feature/record/components/Modal/SaveModal";
-import revalidateScrapSpace from "@feature/place/utils/revalidateScrapSpace";
 import Toast from "@common/components/ui/toast/Toast";
-import revalidatePlaceDetailById from "@feature/place/utils/revalidatePlaceDetailById";
-import revalidateHomeRecommend from "@feature/place/utils/revalidateHomeRecomment";
+import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
+import revalidateHomeRecommend from "@feature/place/actions/revalidateHomeRecommend";
+import revalidatePlaceDetailById from "@feature/place/actions/revalidatePlaceDetailById";
 
 export default function PlaceDetailTopBar({
   id,
