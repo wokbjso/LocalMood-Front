@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CompleteIcon from "@common/assets/images/record_complete.svg";
 import ArrowIcon from "@common/assets/icons/arrow/arrow-right.svg";
-import SaveModal from "../Modal/SaveModal";
+import SavePlaceModal from "@feature/curation/components/CurationModal/SavePlaceModal/SavePlaceModal";
 
 interface RecordCompleteProps {
   spaceId: number;
@@ -57,7 +57,7 @@ export default function RecordComplete({
         )}
       </div>
       {isAddCuration && (
-        <SaveModal spaceId={spaceId} handleModalFn={setIsAddCuration} />
+        <SavePlaceModal spaceId={spaceId} handleModalFn={setIsAddCuration} />
       )}
     </>
   );

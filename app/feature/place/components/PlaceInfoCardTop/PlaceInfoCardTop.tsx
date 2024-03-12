@@ -11,11 +11,11 @@ import {
   PlaceInfoCardTopProps,
 } from "@feature/place/type";
 import { getSession } from "@common/utils/session/getSession";
-import SaveModal from "@feature/record/components/Modal/SaveModal";
 import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import { sliceText } from "@common/utils/text/slice-text";
 import Toast from "@common/components/ui/toast/Toast";
 import UsePlaceInfoCardTop from "./usePlaceInfoCardTop";
+import SavePlaceModal from "@feature/curation/components/CurationModal/SavePlaceModal/SavePlaceModal";
 
 export default function PlaceInfoCardTop({
   id,
@@ -140,7 +140,7 @@ export default function PlaceInfoCardTop({
         </div>
       </Link>
       {openCurationSaveModal && (
-        <SaveModal
+        <SavePlaceModal
           spaceId={id}
           handleModalFn={handlers.changeOpenCurationSaveModal}
         />

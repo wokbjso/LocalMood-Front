@@ -8,8 +8,8 @@ import { PLACE_SUB_TYPE } from "@feature/place/constants/place-tag-category";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { getSession } from "@common/utils/session/getSession";
-import SaveModal from "@feature/record/components/Modal/SaveModal";
 import Toast from "@common/components/ui/toast/Toast";
+import SavePlaceModal from "@feature/curation/components/CurationModal/SavePlaceModal/SavePlaceModal";
 
 export default function PlaceDetailInfo({
   id,
@@ -105,7 +105,7 @@ export default function PlaceDetailInfo({
         </div>
       </div>
       {openSaveModal && (
-        <SaveModal spaceId={id} handleModalFn={setOpenSaveModal} />
+        <SavePlaceModal spaceId={id} handleModalFn={setOpenSaveModal} />
       )}
       <Toast open={openScrapToast} text={toastText} />
     </>

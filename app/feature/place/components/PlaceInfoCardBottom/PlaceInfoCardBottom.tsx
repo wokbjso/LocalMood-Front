@@ -50,7 +50,7 @@ export default function PlaceInfoCardBottom({
           className={twMerge("flex items-center", keywordCategoryNum > 2 && "")}
         >
           <div className="mr-[2rem]">
-            <span className="body2-medium text-text-gray-6">
+            <span className="body2-medium text-text-gray-6 whitespace-nowrap">
               {type === "CAFE" ? "인테리어" : "대표메뉴"}
             </span>
           </div>
