@@ -22,6 +22,7 @@ export default function PlaceDetailInfo({
   optionalService,
   dish,
   dishDesc,
+  myCurationData,
 }: any) {
   const [openSaveModal, setOpenSaveModal] = useState(false);
   const [openScrapToast, setOpenScrapToast] = useState(false);
@@ -105,7 +106,11 @@ export default function PlaceDetailInfo({
         </div>
       </div>
       {openSaveModal && (
-        <SavePlaceModal spaceId={id} handleModalFn={setOpenSaveModal} />
+        <SavePlaceModal
+          myCurationData={myCurationData}
+          spaceId={id}
+          handleModalFn={setOpenSaveModal}
+        />
       )}
       <Toast open={openScrapToast} text={toastText} />
     </>

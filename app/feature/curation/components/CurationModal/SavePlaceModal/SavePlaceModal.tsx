@@ -2,15 +2,20 @@ import AddIcon from "@common/assets/icons/add/AddIcon";
 import CloseIcon from "@common/assets/icons/close/CloseIcon";
 import Modal from "@common/components/ui/modal/Modal";
 import CurationMakeModal from "@feature/curation/components/CurationMake/CurationMakeModal";
-import { Suspense, useState } from "react";
-import SavePlaceModalMyCurationList from "./SavePlaceModalMyCurationList";
+import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
+import { Suspense, lazy, useState } from "react";
+const SavePlaceModalMyCurationCard = lazy(
+  () => import("./SavePlaceModalMyCurationCard")
+);
 
 interface SavePlaceModalProps {
+  myCurationData?: MyCurationResponse;
   spaceId: number;
   handleModalFn: (state: boolean) => void;
 }
 
 export default function SavePlaceModal({
+  myCurationData,
   spaceId,
   handleModalFn,
 }: SavePlaceModalProps) {
@@ -45,7 +50,15 @@ export default function SavePlaceModal({
             <div className="w-full h-[6rem] bg-background-gray-2 animate-pulse" />
           }
         >
-          <SavePlaceModalMyCurationList spaceId={spaceId} />
+          <div className="flex flex-col items-start gap-[0.8rem]">
+            {myCurationData?.curation.map((curationData) => (
+              <SavePlaceModalMyCurationCard
+                key={curationData.id}
+                curationData={curationData}
+                spaceId={spaceId}
+              />
+            ))}
+          </div>
         </Suspense>
       </Modal>
       <CurationMakeModal

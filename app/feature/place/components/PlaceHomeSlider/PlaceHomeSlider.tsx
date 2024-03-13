@@ -6,6 +6,7 @@ import {
   PlaceInfoCardBottomProps,
   PlaceInfoCardTopProps,
 } from "@feature/place/type";
+import getMyCuration from "@feature/curation/queries/getMyCuration";
 const PlaceInfoCard = dynamic(() => import("../PlaceInfoCard/PlaceInfoCard"));
 
 interface PlaceHomeSliderProps {
@@ -22,6 +23,7 @@ export default async function PlaceHomeSlider({
   const randomPlace: {
     [key: string]: (PlaceInfoCardTopProps & PlaceInfoCardBottomProps)[];
   } = await GetRandomPlaces();
+  const myCurationData = await getMyCuration();
   return (
     <section className={twMerge("mb-[4rem] pl-[2rem]", className)}>
       <span className="text-primary-normal headline2"># </span>
@@ -35,6 +37,7 @@ export default async function PlaceHomeSlider({
                 key={data.id}
                 {...data}
                 keywordCategoryNum={1}
+                myCurationData={myCurationData}
                 className="w-[33.5rem] mr-[1.2rem]"
               />
             )

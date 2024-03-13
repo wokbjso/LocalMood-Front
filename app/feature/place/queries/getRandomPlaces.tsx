@@ -7,7 +7,7 @@ export default async function GetRandomPlaces() {
       headers: {
         "Content-Type": "application/json",
       },
-      cache: "no-store",
+      cache: "no-cache",
       next: { tags: ["getHomeRecommend"] },
     }
   );

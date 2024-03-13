@@ -5,6 +5,7 @@ import {
 } from "@feature/place/type";
 import PlaceInfoCardTop from "../PlaceInfoCardTop/PlaceInfoCardTop";
 import PlaceInfoCardBottom from "../PlaceInfoCardBottom/PlaceInfoCardBottom";
+import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 
 export default function PlaceInfoCard({
   id,
@@ -20,13 +21,14 @@ export default function PlaceInfoCard({
   purpose,
   interior,
   bestMenu,
+  myCurationData,
   className,
   imgClassName,
   bottomClassName,
   keywordCategoryNum,
 }: PlaceInfoCardTopProps &
   PlaceInfoCardBottomProps &
-  PlaceInfoCardAdditionalProps) {
+  PlaceInfoCardAdditionalProps & { myCurationData?: MyCurationResponse }) {
   return (
     <div>
       <PlaceInfoCardTop
@@ -41,6 +43,7 @@ export default function PlaceInfoCard({
         isScraped={isScraped}
         className={className}
         imgClassName={imgClassName}
+        myCurationData={myCurationData}
       />
       {keywordCategoryNum && (
         <PlaceInfoCardBottom

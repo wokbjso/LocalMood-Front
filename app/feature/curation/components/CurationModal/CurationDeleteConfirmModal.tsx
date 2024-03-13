@@ -24,7 +24,13 @@ export default function CurationDeleteConfirmModal({
   };
 
   const handleDeleteConfirmClick = async () => {
-    const res = await DeleteCuration(id);
+    const res = await fetch("/api/curation/delete", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(id),
+    });
     if (res.status === 200) {
       revalidateMyCuration();
     } else {
