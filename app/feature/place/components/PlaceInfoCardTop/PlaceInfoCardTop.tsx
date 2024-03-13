@@ -11,11 +11,12 @@ import {
   PlaceInfoCardTopProps,
 } from "@feature/place/type";
 import { getSession } from "@common/utils/session/getSession";
-import SaveModal from "@feature/record/components/Modal/SaveModal";
 import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import { sliceText } from "@common/utils/text/slice-text";
 import Toast from "@common/components/ui/toast/Toast";
 import UsePlaceInfoCardTop from "./usePlaceInfoCardTop";
+import SavePlaceModal from "@feature/curation/components/CurationModal/SavePlaceModal/SavePlaceModal";
+import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 
 export default function PlaceInfoCardTop({
   id,
@@ -27,9 +28,13 @@ export default function PlaceInfoCardTop({
   type,
   address,
   isScraped,
+  myCurationData,
   className,
   imgClassName,
-}: PlaceInfoCardTopProps & Partial<PlaceInfoCardAdditionalProps>) {
+}: PlaceInfoCardTopProps &
+  Partial<PlaceInfoCardAdditionalProps> & {
+    myCurationData?: MyCurationResponse;
+  }) {
   const { openCurationSaveModal, openScrapToast, toastText, handlers } =
     UsePlaceInfoCardTop();
   const handleScrap = async (
@@ -43,7 +48,7 @@ export default function PlaceInfoCardTop({
     } else {
       handlers.changeOpenCurationSaveModal(true);
       handlers.openScrapToast(true);
-      handlers.changeToastText("저장할 큐레이션을 선택해주세요");
+      handlers.changeToastText(`저장할 큐레이션을 선택해주세요`);
     }
   };
   return (
@@ -88,7 +93,7 @@ export default function PlaceInfoCardTop({
                 size === "normal" ? "headline2" : "headline3"
               )}
             >
-              {direction === "vertical" ? (
+              {direction === "vertical" && variant !== "record" ? (
                 isScraped ? (
                   <ScrapFill
                     className={twMerge(
@@ -140,7 +145,8 @@ export default function PlaceInfoCardTop({
         </div>
       </Link>
       {openCurationSaveModal && (
-        <SaveModal
+        <SavePlaceModal
+          myCurationData={myCurationData}
           spaceId={id}
           handleModalFn={handlers.changeOpenCurationSaveModal}
         />

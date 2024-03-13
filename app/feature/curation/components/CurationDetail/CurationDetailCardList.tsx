@@ -3,7 +3,7 @@
 import LocationFillIcon from "@common/assets/icons/location/location-fill.svg";
 import Filter from "@common/components/ui/buttons/Filter/Filter";
 import CurationDetailInfoCard from "./CurationDetailInfoCard";
-import { RefObject, createRef, useRef, useState } from "react";
+import { createRef, useState } from "react";
 import useGetScrollHeight from "@common/hooks/useGetScrollHeight";
 import { CurationPlaceProps } from "@feature/curation/type";
 

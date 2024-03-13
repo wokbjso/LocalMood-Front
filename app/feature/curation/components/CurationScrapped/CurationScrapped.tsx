@@ -9,18 +9,21 @@ import { twMerge } from "tailwind-merge";
 import Link from "next/link";
 import { getSession } from "@common/utils/session/getSession";
 import DeleteCurationScrap from "@feature/curation/queries/deleteCurationScrap";
-import revalidateCurationScrap from "@feature/curation/utils/revalidateCurationScrap";
+import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
 import PostCurationScrap from "@feature/curation/queries/postCurationScrap";
+import LocationLine from "@common/assets/icons/location/LocationLine";
 
 export default function CurationScrapped({
   id,
-  imgUrl,
-  author,
   title,
+  author,
   keyword,
+  spaceCount,
+  image,
   isScraped = true,
   className,
-}: Omit<CurationProps, "places">) {
+}: Omit<CurationProps, "places"> & { className: string }) {
+  console.log(spaceCount);
   const [scrapState, setScrapState] = useState(isScraped);
   const handleScrap = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
@@ -35,7 +38,6 @@ export default function CurationScrapped({
         const res = await DeleteCurationScrap(id);
         if (res.status === 200) {
           revalidateCurationScrap();
-          location.reload();
         } else {
           alert("에러가 발생했습니다!");
           return;
@@ -53,57 +55,57 @@ export default function CurationScrapped({
   };
 
   return (
-    <div>
-      <div className={twMerge("w-full", className)}>
-        <div
-          className="w-full h-[16.5rem] bg-cover relative rounded-[8px]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),url(
-             ${imgUrl}
+    <div className={twMerge("w-full", className)}>
+      <div
+        className="w-full h-[16.5rem] bg-cover relative rounded-[8px] p-[1.6rem]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),url(
+             ${image}
           )`,
+        }}
+      >
+        <UserProfile
+          size="small"
+          userName={author}
+          className="absolute bottom-[1.6rem] left-[1.6rem]"
+        />
+        {scrapState ? (
+          <ScrapShadow
+            className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
+            onClick={handleScrap}
+          />
+        ) : (
+          <ScrapLine
+            color="white"
+            className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
+            onClick={handleScrap}
+          />
+        )}
+        <div className="flex items-center absolute bottom-[1.6rem] right-[1.6rem]">
+          {<LocationLine />}
+          <span className="ml-[0.2rem] body3-semibold text-white">
+            {spaceCount}
+          </span>
+        </div>
+        <Link
+          href={{
+            pathname: `/curation/detail/${id}`,
           }}
         >
-          <UserProfile
-            size="small"
-            userName={author}
-            className="absolute bottom-[1.6rem] left-[1.6rem]"
-          />
-          <div className="w-full p-[1.6rem] relative">
-            {scrapState ? (
-              <ScrapShadow
-                className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-                onClick={handleScrap}
-              />
-            ) : (
-              <ScrapLine
-                color="white"
-                className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-                onClick={handleScrap}
-              />
-            )}
-            <Link
-              href={{
-                pathname: `/curation/detail/${id}`,
-              }}
-            >
-              <div className="headline2 w-[70%] break-keep mb-[1.2rem] text-white">
-                <span>{title}</span>
-                <div className="flex flex-wrap gap-[0.8rem]">
-                  {keyword.map((tag) => (
-                    <div key={tag}>
-                      <span className="text-primary-normal body2-medium">
-                        #{" "}
-                      </span>
-                      <span className="text-text-gray-4 body2-medium">
-                        {tag}
-                      </span>
-                    </div>
-                  ))}
+          <div className="headline2 w-[80%] break-keep text-white">
+            <span>{title}</span>
+            <div className="flex flex-wrap gap-x-[0.8rem] mt-[1.2rem]">
+              {keyword.map((tag) => (
+                <div key={tag}>
+                  <span className="text-primary-normal body2-medium"># </span>
+                  <span className="text-text-gray-4 body2-medium whitespace-nowrap">
+                    {tag}
+                  </span>
                 </div>
-              </div>
-            </Link>
+              ))}
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );

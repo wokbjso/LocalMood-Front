@@ -5,8 +5,9 @@ import BasicTopBar from "../../../../common/components/ui/topBar/BasicTopBar/Bas
 import { copyLink } from "@common/utils/text/copy-link";
 import { usePathname } from "next/navigation";
 import MapIcon from "@common/assets/icons/map/map";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Map from "@feature/map/components/Map/Map";
+import Toast from "@common/components/ui/toast/Toast";
 
 interface PlaceDetailTopBar {
   type: string;
@@ -25,14 +26,29 @@ export default function PlaceDetailTopBar({
   purpose,
   className,
 }: PlaceDetailTopBar) {
-  const pathname = usePathname();
   const [mapOpen, setMapOpen] = useState(false);
+  const [linkCopyToastOpen, setLinkCopyToastOpen] = useState(false);
+  const [toastText, setToastText] = useState("");
+  const pathname = usePathname();
   const handleMapOpen = (state: boolean) => {
     setMapOpen(state);
   };
   const handleCopyLinkClick = () => {
     copyLink(pathname);
+    setLinkCopyToastOpen(true);
+    setToastText("링크가 복사되었어요");
   };
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    if (linkCopyToastOpen) {
+      timeoutId = setTimeout(() => {
+        setLinkCopyToastOpen(false);
+      }, 1000);
+    }
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [linkCopyToastOpen]);
   return (
     <>
       <BasicTopBar className={className}>
@@ -48,6 +64,7 @@ export default function PlaceDetailTopBar({
           className="fixed top-[7rem] z-10"
         />
       )}
+      <Toast open={linkCopyToastOpen} text={toastText} />
     </>
   );
 }

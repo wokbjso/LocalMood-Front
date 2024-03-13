@@ -11,6 +11,7 @@ export default async function getMyCuration(): Promise<MyCurationResponse> {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      cache: "force-cache",
       next: { tags: ["getMyCuration"] },
     }
   );

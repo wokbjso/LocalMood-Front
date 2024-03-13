@@ -7,8 +7,7 @@ import {
   CURATION_MAKE_KEYWORD,
 } from "@feature/curation/constants/curation-make";
 import Button from "@common/components/ui/buttons/Button/Button";
-import revalidateMyCuration from "@feature/curation/utils/revalidateMyCuration";
-import { useRouter } from "next/navigation";
+import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
 
 interface CurationMakeKeywordProps {
   curationMakeData: {
@@ -66,7 +65,7 @@ export default function CurationMakeKeyword({
       method: "POST",
       body: JSON.stringify(dataCurationMake),
     });
-    if (res.ok) {
+    if (res.status === 200) {
       revalidateMyCuration();
       handleOpen(false);
     } else alert("오류가 발생했습니다!");

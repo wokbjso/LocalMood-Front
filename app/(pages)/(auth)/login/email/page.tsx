@@ -8,7 +8,7 @@ import ArrowRight from "@common/assets/icons/arrow/arrow-right.svg";
 import Link from "next/link";
 import UseForm from "@feature/auth/useForm";
 import { LoginFormState } from "@feature/auth/type";
-import { loginAction } from "@feature/auth/utils/loginAction";
+import { loginAction } from "@feature/auth/actions/loginAction";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 
 export default function Login() {

@@ -1,13 +1,6 @@
+import { CurationProps } from "@feature/curation/type";
+
 export interface MyCurationResponse {
   curationCount: number;
-  curation: {
-    image: string[];
-    author: string;
-    privacy: boolean;
-    id: number;
-    isScrapped: boolean;
-    keyword: string[];
-    spaceCount: number;
-    title: string;
-  }[];
+  curation: (Omit<CurationProps, "variant"> & { privacy: boolean })[];
 }
