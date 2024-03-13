@@ -22,7 +22,7 @@ type Story = StoryObj<typeof meta>;
 export const ScrappedFalse: Story = {
   args: {
     id: 0,
-    imgUrl: [
+    image: [
       "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
     ],
     author: "김현민",
@@ -35,7 +35,7 @@ export const ScrappedFalse: Story = {
 export const ScrappedTrue: Story = {
   args: {
     id: 0,
-    imgUrl: [
+    image: [
       "https://cdn.pixabay.com/photo/2016/12/03/15/44/fireworks-1880045_1280.jpg",
     ],
     author: "김현민",
