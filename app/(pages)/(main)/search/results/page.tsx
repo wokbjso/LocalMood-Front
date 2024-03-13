@@ -20,6 +20,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
     useState<SearchPlaceResponse>();
   const [textSearchCurationData, setTextSearchCurationData] =
     useState<SearchCurationResponse>();
+  console.log(textSearchCurationData);
   const [keywordSearchCurationData, setKeywordSearchCurationData] =
     useState<SearchCurationResponse>();
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
@@ -142,7 +143,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
                   <CurationMain
                     key={curation.id}
                     id={curation.id}
-                    imgUrl={curation.imgUrl}
+                    image={curation.image}
                     author={curation.author}
                     title={curation.title}
                     keyword={curation.keyword}
@@ -246,7 +247,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
                   <CurationMain
                     key={curation.id}
                     id={curation.id}
-                    imgUrl={curation.imgUrl}
+                    image={curation.image}
                     author={curation.author}
                     title={curation.title}
                     keyword={curation.keyword}
@@ -283,7 +284,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
                   <CurationMain
                     key={curation.id}
                     id={curation.id}
-                    imgUrl={curation.imgUrl}
+                    image={curation.image}
                     author={curation.author}
                     title={curation.title}
                     keyword={curation.keyword}
@@ -367,7 +368,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
                   <CurationMain
                     key={curation.id}
                     id={curation.id}
-                    imgUrl={curation.imgUrl}
+                    image={curation.image}
                     author={curation.author}
                     title={curation.title}
                     keyword={curation.keyword}

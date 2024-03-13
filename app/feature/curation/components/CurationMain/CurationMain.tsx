@@ -25,7 +25,7 @@ export default function CurationMain({
   spaceCount,
   isScraped = false,
   className,
-}: CurationProps) {
+}: CurationProps & { className: string }) {
   const { isMenuOpened, openScrapToast, toastText, handlers } =
     UseCurationMain(isScraped);
 

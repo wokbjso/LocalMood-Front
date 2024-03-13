@@ -2,59 +2,42 @@ import ArrowIcon from "@common/assets/icons/arrow/arrow-right.svg";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import Image from "next/image";
 import Slider from "@common/components/layout/Slider/Slider";
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef, useEffect } from "react";
 import { CurationPlaceProps } from "@feature/curation/type";
-import DeleteSpaceFromCuration from "@feature/curation/queries/deleteSpaceFromCuration";
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import PlaceInfoCardBottom from "@feature/place/components/PlaceInfoCardBottom/PlaceInfoCardBottom";
-import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
-import revalidatePlaceDetailById from "@feature/place/actions/revalidatePlaceDetailById";
-import Toast from "@common/components/ui/toast/Toast";
-
-interface AdditionalProps {
-  curationId: number;
-}
-
-type CurationDetailInfoCardProps = CurationPlaceProps & AdditionalProps;
 
 const CurationDetailInfoCard = forwardRef<
   HTMLDivElement,
-  CurationDetailInfoCardProps
+  CurationPlaceProps & {
+    curationId: number;
+    handleDeleteToast: (state: boolean) => void;
+    handleToastText: (text: string) => void;
+  }
 >(({ ...props }, ref) => {
-  const [openScrapDeleteToast, setOpenScrapDeleteToast] = useState(false);
-  const [toastText, setToastText] = useState("");
   const purposeArray = props.purpose ? props.purpose.split(",") : [];
   const interiorArray = props.interior ? props.interior.split(",") : [];
   const moodArray = props.mood ? props.mood.split(",") : [];
   const bestMenuArray = props.bestMenu ? props.bestMenu.split(",") : [];
 
   const handleDeleteScrap = async () => {
-    const res = await DeleteSpaceFromCuration(props.curationId, props.id);
+    const res = await fetch("/api/curation/delete/space", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ curationId: props.curationId, spaceId: props.id }),
+    });
     if (res.status === 200) {
-      setOpenScrapDeleteToast(true);
-      setToastText("스크랩이 해제되었습니다");
-      setTimeout(() => {
-        revalidateCurationDetail();
-      }, 1200);
-      revalidateScrapSpace();
-      revalidatePlaceDetailById(props.id);
+      props.handleDeleteToast(true);
+      props.handleToastText("스크랩이 해제되었습니다");
+      revalidateCurationDetail();
     } else {
       alert("에러가 발생했습니다!");
       return;
     }
   };
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    if (openScrapDeleteToast) {
-      timeoutId = setTimeout(() => {
-        setOpenScrapDeleteToast(false);
-      }, 1000);
-    }
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [openScrapDeleteToast]);
   return (
     <>
       <div className="w-full pt-[13rem]" ref={ref}>
@@ -109,7 +92,6 @@ const CurationDetailInfoCard = forwardRef<
           </div>
         </div>
       </div>
-      <Toast open={openScrapDeleteToast} text={toastText} />
     </>
   );
 });

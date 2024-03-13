@@ -1,26 +1,16 @@
+import { CurationProps } from "@feature/curation/type";
+import {
+  PlaceInfoCardBottomProps,
+  PlaceInfoCardTopProps,
+} from "@feature/place/type";
+
 export type SearchCurationResponse = {
   CurationCount: number;
-  CurationList: {
-    id: number;
-    author: string;
-    imgUrl: string[];
-    title: string;
-    spaceCount: number;
-    keyword: string[];
-    isScraped: boolean;
-  }[];
+  CurationList: Omit<CurationProps, "variant">[];
 };
 
 export type SearchPlaceResponse = {
   spaceCount: number;
-  spaceList: {
-    id: number;
-    name: string;
-    type: string;
-    address: string;
-    purpose: string[];
-    keyword: string[];
-    imgUrl: string;
-    isScraped: boolean;
-  }[];
+  spaceList: (Omit<PlaceInfoCardTopProps, "variant" | "direction" | "size"> &
+    Pick<PlaceInfoCardBottomProps, "keyword" | "purpose">)[];
 };
