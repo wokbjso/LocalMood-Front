@@ -32,7 +32,7 @@ export default function SavePlaceModal({
           onClick={handleModalCloseClick}
         />
         <div
-          className="flex items-center gap-[1.2rem] mt-[2rem] body1-medium text-text-gray-8"
+          className="flex items-center gap-[1.2rem] mt-[2rem] mb-[1.2rem] body1-medium text-text-gray-8"
           onClick={handleMakeCurationClick}
         >
           <div className="w-[6rem] h-[6rem] bg-background-gray-2 rounded-lg flex p-[2.4rem]">

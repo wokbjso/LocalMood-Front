@@ -10,15 +10,15 @@ export default function SavePlaceModalMyCurationList({
   spaceId: number;
 }) {
   const [curationMy, setCurationMy] = useState<MyCurationResponse>();
-  const getCurationList = async () => {
+  const getMyCurationList = async () => {
     const res = await fetch("/api/curation/my");
     setCurationMy(await res.json());
   };
   useEffect(() => {
-    getCurationList();
+    getMyCurationList();
   }, []);
   return (
-    <div className="flex flex-col items-start gap-[0.8rem] mt-[1.2rem]">
+    <div className="flex flex-col items-start gap-[0.8rem]">
       {curationMy?.curation.map((curationData) => (
         <SavePlaceModalMyCurationCard
           key={curationData.id}
