@@ -22,7 +22,7 @@ export default function CurationScrapped({
   image,
   isScraped = true,
   className,
-}: Omit<CurationProps, "places"> & { className: string }) {
+}: Omit<CurationProps, "places"> & { className?: string }) {
   console.log(spaceCount);
   const [scrapState, setScrapState] = useState(isScraped);
   const handleScrap = async (
