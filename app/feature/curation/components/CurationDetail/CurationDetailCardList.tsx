@@ -6,6 +6,8 @@ import CurationDetailInfoCard from "./CurationDetailInfoCard";
 import { createRef, useState } from "react";
 import useGetScrollHeight from "@common/hooks/useGetScrollHeight";
 import { CurationPlaceProps } from "@feature/curation/type";
+import useCurationDetailCardList from "./useCurationDetailCardList";
+import Toast from "@common/components/ui/toast/Toast";
 
 interface CurationDetailCardListProps {
   curationId: number;
@@ -16,15 +18,18 @@ export default function CurationDetailCardList({
   curationId,
   spaceDetails,
 }: CurationDetailCardListProps) {
-  const [placeIndex, setPlaceIndex] = useState(0);
-  const { scrollHeight } = useGetScrollHeight();
-  const refs = Array.from({ length: spaceDetails.length }, () =>
-    createRef<HTMLDivElement>()
-  );
+  const {
+    cardRefs,
+    openScrapDeleteToast,
+    toastText,
+    placeIndex,
+    scrollHeight,
+    handlers,
+  } = useCurationDetailCardList(spaceDetails);
 
   const handlePlaceFilterClick = (index: number) => {
-    setPlaceIndex(index);
-    refs[index].current?.scrollIntoView({ behavior: "smooth" });
+    handlers.changePlaceIndex(index);
+    cardRefs[index].current?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -56,7 +61,9 @@ export default function CurationDetailCardList({
             key={props.name}
             curationId={curationId}
             {...props}
-            ref={refs[i]}
+            ref={cardRefs[i]}
+            handleDeleteToast={handlers.changeOpenScrapDeleteToast}
+            handleToastText={handlers.changeToastText}
           />
         ))}
       </div>
@@ -75,6 +82,7 @@ export default function CurationDetailCardList({
           ))}
         </div>
       )}
+      <Toast open={openScrapDeleteToast} text={toastText} />
     </>
   );
 }
