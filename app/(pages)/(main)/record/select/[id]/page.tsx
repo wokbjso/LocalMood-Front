@@ -9,7 +9,7 @@ import SelectPhoto from "@feature/record/components/PhotoUpload/SelectPhoto";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import Button from "@common/components/ui/buttons/Button/Button";
-import { cloneElement, createRef, useState } from "react";
+import { cloneElement, createRef } from "react";
 
 export default function RecordSelect({
   params: id,
@@ -31,12 +31,12 @@ export default function RecordSelect({
     handlers,
   } = UseKeyword(placeType);
   const handleBtnForwardClicked = () => {
-    handlers.changeIndicatorIndex(indicatorIndex + 1);
-    handlers.changeNextDirection("forward");
+    handlers.handleIndicatorIndex(indicatorIndex + 1);
+    handlers.handleNextDirection("forward");
   };
   const handleBtnBackClicked = () => {
-    handlers.changeIndicatorIndex(indicatorIndex - 1);
-    handlers.changeNextDirection("back");
+    handlers.handleIndicatorIndex(indicatorIndex - 1);
+    handlers.handleNextDirection("back");
   };
   const handleExitClicked = () => {
     router.replace("/record");
@@ -58,10 +58,10 @@ export default function RecordSelect({
               placeType={placeType}
               name={name}
               indicatorIndex={indicatorIndex}
-              handleIndicatorIndex={handlers.changeIndicatorIndex}
+              handleIndicatorIndex={handlers.handleIndicatorIndex}
               cafeKeywordData={cafeKeywordData}
               restaurantKeywordData={restaurantKeywordData}
-              handleKeyword={handlers.changeKeyword}
+              handleKeyword={handlers.handleKeyword}
             />
           </CSSTransition>
         )}
@@ -70,10 +70,10 @@ export default function RecordSelect({
             <SelectEvaluation
               placeType={placeType}
               indicatorIndex={indicatorIndex}
-              handleIndicatorIndex={handlers.changeIndicatorIndex}
+              handleIndicatorIndex={handlers.handleIndicatorIndex}
               cafeKeywordData={cafeKeywordData}
               restaurantKeywordData={restaurantKeywordData}
-              handleKeyword={handlers.changeKeyword}
+              handleKeyword={handlers.handleKeyword}
             />
           </CSSTransition>
         )}
@@ -83,10 +83,11 @@ export default function RecordSelect({
               placeType={placeType}
               spaceId={id.id}
               indicatorIndex={indicatorIndex}
-              handleIndicatorIndex={handlers.changeIndicatorIndex}
+              handleIndicatorIndex={handlers.handleIndicatorIndex}
               cafeKeywordData={cafeKeywordData}
               restaurantKeywordData={restaurantKeywordData}
-              handleImage={handlers.changeImage}
+              handleAddImage={handlers.handleAddImage}
+              handleDeleteImage={handlers.handleDeleteImage}
             />
           </CSSTransition>
         )}
@@ -94,7 +95,7 @@ export default function RecordSelect({
           <CSSTransition key={3} timeout={300}>
             <RecordComplete
               spaceId={id.id}
-              handleIndicatorIndex={handlers.changeIndicatorIndex}
+              handleIndicatorIndex={handlers.handleIndicatorIndex}
               hasSomeData={hasSomeData}
             />
           </CSSTransition>

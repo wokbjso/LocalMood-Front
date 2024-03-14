@@ -5,7 +5,6 @@ export default async function PostModifyImage(image: any[]): Promise<any> {
   image.forEach((image, index) => {
     formData.append(`multipartFiles[${index}]`, image); // Append with a unique key
   });
-  console.log(formData);
 
   const auth_info = await getSession();
   const token = auth_info?.data?.accessToken;

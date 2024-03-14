@@ -16,13 +16,10 @@ export async function GET(request: NextRequest) {
   );
   if (res.ok) {
     const data = await res.json();
-    const expires = new Date(Date.now() + 2 * 7 * 24 * 60 * 60 * 1000);
+    const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
     const auth_session = await encryptData({ data, expires });
     cookies().set("auth_session", auth_session, { expires, httpOnly: true });
-    return NextResponse.json(
-      { success: "Data Storing Successful" },
-      { status: 200 }
-    );
+    return NextResponse.json("Success", { status: 200 });
   }
-  return NextResponse.json({ error: "Data Storing Failed" }, { status: 400 });
+  return NextResponse.json("Error", { status: 400 });
 }

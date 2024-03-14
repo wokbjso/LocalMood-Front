@@ -23,7 +23,6 @@ export default function CurationScrapped({
   isScraped = true,
   className,
 }: Omit<CurationProps, "places"> & { className?: string }) {
-  console.log(spaceCount);
   const [scrapState, setScrapState] = useState(isScraped);
   const handleScrap = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>

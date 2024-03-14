@@ -20,5 +20,11 @@ export default function KakaoRedirect({
     };
     getAuthorization();
   }, [code]);
-  return <div>로그인 중입니다...</div>;
+  return (
+    <div>
+      <h1 className="flex justify-center items-center h-[100vh] header-light">
+        로그인 중입니다...
+      </h1>
+    </div>
+  );
 }

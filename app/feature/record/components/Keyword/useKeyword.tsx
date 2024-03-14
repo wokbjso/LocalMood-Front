@@ -5,7 +5,7 @@ export default function UseKeyword(placeType: string) {
   const [indicatorIndex, setIndicatorIndex] = useState(0);
   const [nextDirection, setNextDirection] = useState("");
   const [cafeKeywordData, setCafeKeywordData] = useState<{
-    [key: string]: string | any[];
+    [key: string]: any;
   }>({
     purpose: "",
     mood: "",
@@ -13,9 +13,10 @@ export default function UseKeyword(placeType: string) {
     interior: "",
     positiveEval: [],
     negativeEval: [],
+    files: [],
   });
   const [restaurantKeywordData, setRestaurantKeywordData] = useState<{
-    [key: string]: string | any[];
+    [key: string]: any;
   }>({
     purpose: "",
     mood: "",
@@ -23,6 +24,7 @@ export default function UseKeyword(placeType: string) {
     interior: "",
     positiveEval: [],
     negativeEval: [],
+    files: [],
   });
 
   const hasSomeData =
@@ -41,6 +43,7 @@ export default function UseKeyword(placeType: string) {
             return restaurantKeywordData[k].length > 0;
           return false;
         });
+
   const checkJump = () => {
     if (indicatorIndex === 0) {
       if (placeType === "CAFE") {
@@ -150,18 +153,35 @@ export default function UseKeyword(placeType: string) {
     }
   };
 
-  const handleImage = (file: File) => {
+  const handleAddImage = (file: File) => {
     if (placeType === "CAFE") {
       setCafeKeywordData({
         ...cafeKeywordData,
+        files: [...cafeKeywordData.files, file],
       });
     } else if (placeType === "RESTAURANT") {
       setRestaurantKeywordData({
         ...restaurantKeywordData,
+        files: [...restaurantKeywordData.files, file],
       });
     }
   };
 
+  const handleDeleteImage = (index: number) => {
+    if (placeType === "CAFE") {
+      setCafeKeywordData({
+        ...cafeKeywordData,
+        files: cafeKeywordData.files.filter((_: any, i: number) => index !== i),
+      });
+    } else if (placeType === "RESTAURANT") {
+      setRestaurantKeywordData({
+        ...restaurantKeywordData,
+        files: restaurantKeywordData.files.filter(
+          (_: any, i: number) => index !== i
+        ),
+      });
+    }
+  };
   return {
     indicatorIndex,
     nextDirection,
@@ -170,10 +190,11 @@ export default function UseKeyword(placeType: string) {
     hasSomeData,
     checkJump,
     handlers: {
-      changeKeyword: handleKeyword,
-      changeNextDirection: handleNextDirection,
-      changeIndicatorIndex: handleIndicatorIndex,
-      changeImage: handleImage,
+      handleKeyword,
+      handleNextDirection,
+      handleIndicatorIndex,
+      handleAddImage,
+      handleDeleteImage,
     },
   };
 }

@@ -20,7 +20,6 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
     useState<SearchPlaceResponse>();
   const [textSearchCurationData, setTextSearchCurationData] =
     useState<SearchCurationResponse>();
-  console.log(textSearchCurationData);
   const [keywordSearchCurationData, setKeywordSearchCurationData] =
     useState<SearchCurationResponse>();
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =

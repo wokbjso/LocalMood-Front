@@ -1,34 +1,33 @@
 import AddFillIcon from "@common/assets/icons/add/AddFillIcon";
 import Button from "@common/components/ui/buttons/Button/Button";
+import CloseIcon from "@common/assets/icons/close/close-black.svg";
 import PostUploadFile from "@common/utils/postUploadFile";
-import PostModifyImage from "@feature/record/queries/postModifyImage";
 import PostUploadRecord from "@feature/record/queries/postUploadRecord";
 import Image from "next/image";
 import { ChangeEvent, useRef, useState } from "react";
-
 interface PhotoUploadProps {
   placeType: string;
   spaceId: number;
   cafeKeywordData: { [key: string]: string | Array<string> };
   restaurantKeywordData: { [key: string]: string | Array<string> };
-  handleImage: (url: File) => void;
+  handleAddImage: (url: File) => void;
+  handleDeleteImage: (index: number) => void;
   handleIndicatorIndex: (index: number) => void;
 }
-
 export default function PhotoUpload({
   placeType,
   spaceId,
   cafeKeywordData,
   restaurantKeywordData,
-  handleImage,
+  handleAddImage,
+  handleDeleteImage,
   handleIndicatorIndex,
 }: PhotoUploadProps) {
   const fileInput = useRef<HTMLInputElement>(null);
-  const [image, setImage] = useState<any>([]);
+  const [image, setImage] = useState<any[]>([]);
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      handleImage(e.target.files[0]);
-
+      handleAddImage(e.target.files[0]);
       const reader = new FileReader();
       reader.onload = () => {
         if (reader.readyState === 2) {
@@ -44,16 +43,27 @@ export default function PhotoUpload({
       reader.readAsDataURL(e.target.files[0]);
     }
   };
+
   const handleAddImageClick = () => {
     if (fileInput.current) {
       fileInput.current.click();
     }
   };
 
+  const modifyData = (data: any) => {
+    return {
+      request: {
+        ...data,
+        positiveEval:
+          data.positiveEval.length > 0 ? data.positiveEval.join(",") : "",
+        negativeEval:
+          data.negativeEval.length > 0 ? data.negativeEval.join(",") : "",
+      },
+      image: data.files,
+    };
+  };
+
   const handleRecordUploadClick = async () => {
-    // const res = await PostModifyImage(image);
-    // alert("서비스 준비중입니다...");
-    // console.log(res);
     const res = await PostUploadRecord(
       spaceId,
       placeType === "CAFE" ? cafeKeywordData : restaurantKeywordData
@@ -64,29 +74,71 @@ export default function PhotoUpload({
       alert("오류가 발생했습니다!");
     }
   };
+  console.log(restaurantKeywordData);
+  console.log(cafeKeywordData);
+  const handleImageDeleteClicked = (index: number) => {
+    handleDeleteImage(index);
+    setImage(image.filter((_: any, i: number) => i != index));
+  };
   return (
     <>
-      <div className="inline-flex flex-col items-start pt-[14.8rem] pl-[2rem] gap-[1.2rem]">
+      <div className=" flex-col items-start pt-[14.8rem] px-[2rem] gap-[1.2rem]">
         <div className="flex items-start gap-[0.6rem] headline3-semibold">
-          <div className="text-black">사진올리기</div>
-          <div className="text-text-gray-6"></div>
+          <div className="text-black mb-[1.2rem]">사진올리기</div>
+          <div className="text-text-gray-6">
+            {image.length}
+            /2
+          </div>
         </div>
-        <div className="flex flex-wrap gap-[0.7rem] pr-[2rem]">
+        <div className="flex w-full justify-between flex-wrap">
           {image &&
-            image.map((img: any, i: any) => (
-              <div
-                key={img + i}
-                className="relative w-[16.4rem] h-[16.4rem] p-[6.2rem] rounded-[10px] border border-solid border-1px border-line-gray-3"
-              >
-                <Image
-                  src={img}
-                  alt="방문 사진"
-                  fill
-                  sizes="50vw"
-                  className="rounded-[10px]"
-                />
+            image.map((img: any, i: number) => (
+              <div key={img + i} className="relative">
+                <div
+                  className="absolute z-10 top-[1.2rem] right-[1.2rem]"
+                  onClick={() => handleImageDeleteClicked(i)}
+                >
+                  <CloseIcon />
+                </div>
+                <div className="relative w-[43vw] h-[43vw] rounded-[10px]">
+                  <Image
+                    src={img}
+                    alt="방문 사진"
+                    fill
+                    sizes="50vw"
+                    className="rounded-[10px]"
+                  />
+                </div>
               </div>
             ))}
+          {placeType === "CAFE" && cafeKeywordData.files.length < 2 && (
+            <div className="w-[16.4rem] h-[16.4rem] p-[6.2rem] border border-solid border-1px border-line-gray-3 rounded-[10px]">
+              <input
+                ref={fileInput}
+                type="file"
+                accept="image/*"
+                className="hidden w-full h-full"
+                onChange={handleImageUpload}
+              />
+              <AddFillIcon onClick={handleAddImageClick} />
+            </div>
+          )}
+          {placeType === "RESTAURANT" &&
+            restaurantKeywordData.files.length < 2 && (
+              <div className="w-[16.4rem] h-[16.4rem] p-[6.2rem] border border-solid border-1px border-line-gray-3 rounded-[10px]">
+                <input
+                  ref={fileInput}
+                  type="file"
+                  accept="image/*"
+                  className="hidden w-full h-full"
+                  onChange={handleImageUpload}
+                />
+                <AddFillIcon onClick={handleAddImageClick} />
+              </div>
+            )}
+        </div>
+        <div className="flex justify-center w-full fixed  h-[13.2rem] bottom-0 left-0 bg-white">
+          <Button onClick={handleRecordUploadClick}>기록올리기</Button>
         </div>
       </div>
     </>

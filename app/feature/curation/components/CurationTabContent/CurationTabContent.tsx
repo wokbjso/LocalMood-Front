@@ -71,10 +71,12 @@ export default function CurationTabContent({
           ) : null}
         </div>
       </div>
-      <CurationMakeModal
-        isOpen={isCurationMakeOpen}
-        handleOpen={handlers.handleCurationMakeOpen}
-      />
+      {isCurationMakeOpen && (
+        <CurationMakeModal
+          isOpen={isCurationMakeOpen}
+          handleOpen={handlers.handleCurationMakeOpen}
+        />
+      )}
     </>
   );
 }
