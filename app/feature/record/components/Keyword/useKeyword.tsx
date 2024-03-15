@@ -78,7 +78,11 @@ export default function UseKeyword(placeType: string) {
         );
       }
     } else if (indicatorIndex === 2) {
-      return true;
+      if (placeType === "CAFE") {
+        return cafeKeywordData.files.length > 0;
+      } else if (placeType === "RESTAURANT") {
+        return restaurantKeywordData.files.length > 0;
+      }
     }
   };
 

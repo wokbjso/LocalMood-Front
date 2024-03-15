@@ -2,7 +2,6 @@ import AddFillIcon from "@common/assets/icons/add/AddFillIcon";
 import Button from "@common/components/ui/buttons/Button/Button";
 import CloseIcon from "@common/assets/icons/close/close-black.svg";
 import PostUploadFile from "@common/utils/postUploadFile";
-import PostUploadRecord from "@feature/record/queries/postUploadRecord";
 import Image from "next/image";
 import { ChangeEvent, useRef, useState } from "react";
 interface PhotoUploadProps {
@@ -23,6 +22,7 @@ export default function PhotoUpload({
   handleDeleteImage,
   handleIndicatorIndex,
 }: PhotoUploadProps) {
+  console.log(restaurantKeywordData);
   const fileInput = useRef<HTMLInputElement>(null);
   const [image, setImage] = useState<any[]>([]);
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
@@ -50,32 +50,6 @@ export default function PhotoUpload({
     }
   };
 
-  const modifyData = (data: any) => {
-    return {
-      request: {
-        ...data,
-        positiveEval:
-          data.positiveEval.length > 0 ? data.positiveEval.join(",") : "",
-        negativeEval:
-          data.negativeEval.length > 0 ? data.negativeEval.join(",") : "",
-      },
-      image: data.files,
-    };
-  };
-
-  const handleRecordUploadClick = async () => {
-    const res = await PostUploadRecord(
-      spaceId,
-      placeType === "CAFE" ? cafeKeywordData : restaurantKeywordData
-    );
-    if (res.status === 200) {
-      handleIndicatorIndex(3);
-    } else {
-      alert("오류가 발생했습니다!");
-    }
-  };
-  console.log(restaurantKeywordData);
-  console.log(cafeKeywordData);
   const handleImageDeleteClicked = (index: number) => {
     handleDeleteImage(index);
     setImage(image.filter((_: any, i: number) => i != index));
@@ -136,9 +110,6 @@ export default function PhotoUpload({
                 <AddFillIcon onClick={handleAddImageClick} />
               </div>
             )}
-        </div>
-        <div className="flex justify-center w-full fixed  h-[13.2rem] bottom-0 left-0 bg-white">
-          <Button onClick={handleRecordUploadClick}>기록올리기</Button>
         </div>
       </div>
     </>

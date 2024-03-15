@@ -1,9 +1,9 @@
 import { getSession } from "@common/utils/session/getSession";
+import { NextRequest, NextResponse } from "next/server";
 
-export default async function PostUploadRecord(
-  spaceId: number,
-  uploadData: any
-): Promise<any> {
+export async function POST(request: NextRequest) {
+  const body = await request.json();
+  const spaceId = body.spaceId;
   const auth_info = await getSession();
   const token = auth_info?.data?.accessToken;
 
@@ -15,23 +15,16 @@ export default async function PostUploadRecord(
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({
-        purpose: uploadData.purpose,
-        mood: uploadData.mood,
-        music: uploadData.music,
-        interior: uploadData.interior,
-        positiveEval: uploadData.positiveEval.join(","),
-        negativeEval: uploadData.negativeEval.join(","),
-      }),
+      body: JSON.stringify(body),
     }
   );
 
   if (res.ok) {
-    return new Response("Authorized", {
+    return new NextResponse("Success", {
       status: 200,
     });
   } else {
-    return new Response("Error Occured", {
+    return new NextResponse("Error", {
       status: 400,
     });
   }

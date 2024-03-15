@@ -9,7 +9,7 @@ import SelectPhoto from "@feature/record/components/PhotoUpload/SelectPhoto";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import Button from "@common/components/ui/buttons/Button/Button";
-import { cloneElement, createRef } from "react";
+import { cloneElement } from "react";
 
 export default function RecordSelect({
   params: id,
@@ -20,7 +20,6 @@ export default function RecordSelect({
   const placeType = searchParams.get("type") || "";
   const name = searchParams.get("name") || "";
   const router = useRouter();
-  const refs = Array.from({ length: 4 }, () => createRef<HTMLDivElement>());
   const {
     indicatorIndex,
     nextDirection,
@@ -30,9 +29,39 @@ export default function RecordSelect({
     checkJump,
     handlers,
   } = UseKeyword(placeType);
-  const handleBtnForwardClicked = () => {
-    handlers.handleIndicatorIndex(indicatorIndex + 1);
-    handlers.handleNextDirection("forward");
+  const modifyData = (data: any) => {
+    return {
+      request: {
+        ...data,
+        positiveEval:
+          data.positiveEval.length > 0 ? data.positiveEval.join(",") : "",
+        negativeEval:
+          data.negativeEval.length > 0 ? data.negativeEval.join(",") : "",
+      },
+      image: data.files,
+    };
+  };
+  const handleBtnForwardClicked = async () => {
+    if (indicatorIndex < 2) {
+      handlers.handleIndicatorIndex(indicatorIndex + 1);
+      handlers.handleNextDirection("forward");
+    } else {
+      const res = await fetch("/api/record/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(
+          modifyData(
+            placeType === "CAFE" ? cafeKeywordData : restaurantKeywordData
+          )
+        ),
+      });
+      if (res.status === 200) {
+        handlers.handleIndicatorIndex(indicatorIndex + 1);
+        handlers.handleNextDirection("forward");
+      }
+    }
   };
   const handleBtnBackClicked = () => {
     handlers.handleIndicatorIndex(indicatorIndex - 1);
@@ -111,9 +140,14 @@ export default function RecordSelect({
             이전
           </Button>
         )}
-        {indicatorIndex < 3 && (
+        {indicatorIndex < 2 && (
           <Button onClick={handleBtnForwardClicked}>
             {checkJump() ? "건너뛰기" : "다음"}
+          </Button>
+        )}
+        {indicatorIndex === 2 && (
+          <Button onClick={handleBtnForwardClicked}>
+            {checkJump() ? "기록 올리기" : "건너뛰기"}
           </Button>
         )}
         {indicatorIndex === 3 && (
