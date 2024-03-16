@@ -9,7 +9,7 @@ export default function GraphUpDownVote({
   percentage,
   like,
   className,
-}: GraphProps) {
+}: GraphProps & { className?: string }) {
   return (
     <div
       className={twMerge(
