@@ -22,7 +22,7 @@ export default function PhotoUpload({
   handleDeleteImage,
   handleIndicatorIndex,
 }: PhotoUploadProps) {
-  console.log(restaurantKeywordData);
+  console.log(cafeKeywordData);
   const fileInput = useRef<HTMLInputElement>(null);
   const [image, setImage] = useState<any[]>([]);
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {

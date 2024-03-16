@@ -29,16 +29,17 @@ export default function RecordSelect({
     checkJump,
     handlers,
   } = UseKeyword(placeType);
+
   const modifyData = (data: any) => {
     return {
-      request: {
-        ...data,
-        positiveEval:
-          data.positiveEval.length > 0 ? data.positiveEval.join(",") : "",
-        negativeEval:
-          data.negativeEval.length > 0 ? data.negativeEval.join(",") : "",
-      },
-      image: data.files,
+      purpose: data.purpose,
+      mood: data.mood,
+      music: data.music,
+      interior: data.interior,
+      positiveEval:
+        data.positiveEval.length > 0 ? data.positiveEval.join(",") : "",
+      negativeEval:
+        data.negativeEval.length > 0 ? data.negativeEval.join(",") : "",
     };
   };
   const handleBtnForwardClicked = async () => {
@@ -46,20 +47,40 @@ export default function RecordSelect({
       handlers.handleIndicatorIndex(indicatorIndex + 1);
       handlers.handleNextDirection("forward");
     } else {
-      const res = await fetch("/api/record/create", {
+      const formData = new FormData();
+      placeType === "CAFE"
+        ? cafeKeywordData.files.forEach((file: any) => {
+            if (file instanceof File && file.size > 0) {
+              formData.append("image", file);
+            }
+          })
+        : restaurantKeywordData.files.forEach((file: any) => {
+            if (file instanceof File && file.size > 0) {
+              formData.append("image", file);
+            }
+          });
+      const blob = new Blob(
+        [
+          JSON.stringify(
+            modifyData(
+              placeType === "CAFE" ? cafeKeywordData : restaurantKeywordData
+            )
+          ),
+        ],
+        {
+          type: "application/json",
+        }
+      );
+      formData.append("request", blob);
+      const res = await fetch(`/api/record/create/${id.id}`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(
-          modifyData(
-            placeType === "CAFE" ? cafeKeywordData : restaurantKeywordData
-          )
-        ),
+        body: formData,
       });
       if (res.status === 200) {
         handlers.handleIndicatorIndex(indicatorIndex + 1);
         handlers.handleNextDirection("forward");
+      } else if (res.status === 400) {
+        alert("오류가 발생했습니다");
       }
     }
   };

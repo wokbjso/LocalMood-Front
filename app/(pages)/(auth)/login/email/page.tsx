@@ -8,12 +8,17 @@ import ArrowRight from "@common/assets/icons/arrow/arrow-right.svg";
 import Link from "next/link";
 import UseForm from "@feature/auth/useForm";
 import { LoginFormState } from "@feature/auth/type";
-import { loginAction } from "@feature/auth/actions/loginAction";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 
 export default function Login() {
   const handleSubmit = async (e: LoginFormState) => {
-    const res = await loginAction(e);
+    const res = await fetch("/api/auth/login/email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(e),
+    });
     if (res.status === 200) {
       location.replace("/");
     } else {

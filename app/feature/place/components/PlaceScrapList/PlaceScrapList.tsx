@@ -4,6 +4,7 @@ const PlaceInfoCard = dynamic(() => import("../PlaceInfoCard/PlaceInfoCard"));
 
 export default async function PlaceScrapList() {
   const scrappedPlace = await GetPlaceScrapped();
+  console.log(scrappedPlace);
   return (
     <div className="flex px-[2rem] gap-[0.8rem]">
       {scrappedPlace?.length === 0 && (

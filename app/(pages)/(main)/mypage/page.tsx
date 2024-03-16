@@ -6,7 +6,7 @@ import { Suspense } from "react";
 import GetMemberInfo from "@feature/user/queries/getMemberInfo";
 import Link from "next/link";
 import RecordMyPageSkeleton from "@feature/record/components/RecordMyPageSkeleton/RecordMyPageSkeleton";
-import GetRecordMyPage from "@feature/place/queries/getRocordMyPage";
+import GetRecordMyPage from "@feature/place/queries/getRecordMyPage";
 import dynamic from "next/dynamic";
 const PlaceInfoCard = dynamic(
   () => import("@feature/place/components/PlaceInfoCard/PlaceInfoCard")
@@ -16,6 +16,7 @@ export default async function MyPage() {
   const recordData = GetRecordMyPage();
   const memberData = GetMemberInfo();
   const [record, member] = await Promise.all([recordData, memberData]);
+  console.log(record);
   return (
     <div className="px-[2rem] h-[100vh] overflow-hidden">
       <MyPageTopBar text="프로필" />
@@ -78,6 +79,7 @@ export default async function MyPage() {
                       key={record.id}
                       size="small"
                       {...record}
+                      imgUrl={record.image}
                       className="w-full"
                     />
                   ))}
