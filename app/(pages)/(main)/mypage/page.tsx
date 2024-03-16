@@ -8,6 +8,7 @@ import Link from "next/link";
 import RecordMyPageSkeleton from "@feature/record/components/RecordMyPageSkeleton/RecordMyPageSkeleton";
 import GetRecordMyPage from "@feature/place/queries/getRecordMyPage";
 import dynamic from "next/dynamic";
+import getMyCuration from "@feature/curation/queries/getMyCuration";
 const PlaceInfoCard = dynamic(
   () => import("@feature/place/components/PlaceInfoCard/PlaceInfoCard")
 );
@@ -15,6 +16,7 @@ const PlaceInfoCard = dynamic(
 export default async function MyPage() {
   const recordData = GetRecordMyPage();
   const memberData = GetMemberInfo();
+  const myCurationData = await getMyCuration();
   const [record, member] = await Promise.all([recordData, memberData]);
   return (
     <div className="px-[2rem] h-[100vh] overflow-hidden">
@@ -76,6 +78,7 @@ export default async function MyPage() {
                   {record.reviews.map((record) => (
                     <PlaceInfoCard
                       key={record.id}
+                      myCurationData={myCurationData}
                       variant="mypage"
                       size="small"
                       {...record}
