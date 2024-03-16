@@ -14,7 +14,7 @@ export default function GraphGage({
   evaluation,
   percentage,
   className,
-}: Omit<GraphProps, "like"> & { type: string; className: string }) {
+}: Omit<GraphProps, "like"> & { type: string; className?: string }) {
   return (
     <div
       className={twMerge(
