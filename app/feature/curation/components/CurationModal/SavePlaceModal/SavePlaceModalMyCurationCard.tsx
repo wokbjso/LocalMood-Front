@@ -19,7 +19,6 @@ export default function SavePlaceModalMyCurationCard({
   curationData,
   spaceId,
 }: SavePlaceModalMyCurationCardProps) {
-  console.log(curationData);
   const { openSaveToast, toastText, handlers } =
     useSavePlaceModalMyCurationCard();
   const handleCurationClick = async (id: number) => {

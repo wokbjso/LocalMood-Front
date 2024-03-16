@@ -5,18 +5,23 @@ import FormInput from "@common/components/ui/input/FormInput/FormInput";
 import Button from "@common/components/ui/buttons/Button/Button";
 import UseForm from "@feature/auth/useForm";
 import { LoginFormState, RegisterFormState } from "@feature/auth/type";
-import PostRegister from "@feature/auth/queries/postRegister";
 import { useRouter } from "next/navigation";
 
 export default function Register() {
   const router = useRouter();
   const handleSubmit = async (e: LoginFormState | RegisterFormState) => {
     if ("nickname" in e) {
-      const res = await PostRegister(registerFormData);
-      if (res.status === 400) {
-        alert(res.message);
-      } else {
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(registerFormData),
+      });
+      if (res.status === 200) {
         router.push("/register/success");
+      } else {
+        alert("회원가입 과정 중 오류가 발생했습니다");
       }
     }
   };

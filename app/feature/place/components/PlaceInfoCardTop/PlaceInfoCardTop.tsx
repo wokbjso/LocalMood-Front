@@ -56,7 +56,11 @@ export default function PlaceInfoCardTop({
       <Link
         href={{
           pathname:
-            variant === "main" ? `/place/${id}` : `/record/select/${id}`,
+            variant === "main"
+              ? `/place/${id}`
+              : variant === "record"
+              ? `/record/select/${id}`
+              : undefined,
           query: variant === "record" ? { type, name } : null,
         }}
       >

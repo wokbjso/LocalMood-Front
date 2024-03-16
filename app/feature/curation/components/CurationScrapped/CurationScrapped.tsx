@@ -2,9 +2,9 @@
 
 import UserProfile from "@feature/user/components/UserProfile/UserProfile";
 import ScrapShadow from "@common/assets/icons/scrap/scrap-shadow.svg";
-import { useState } from "react";
 import { CurationProps } from "@feature/curation/type";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
+import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
 import { getSession } from "@common/utils/session/getSession";
@@ -12,6 +12,7 @@ import DeleteCurationScrap from "@feature/curation/queries/deleteCurationScrap";
 import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
 import PostCurationScrap from "@feature/curation/queries/postCurationScrap";
 import LocationLine from "@common/assets/icons/location/LocationLine";
+import Image from "next/image";
 
 export default function CurationScrapped({
   id,
@@ -23,8 +24,6 @@ export default function CurationScrapped({
   isScraped = true,
   className,
 }: Omit<CurationProps, "places"> & { className?: string }) {
-  console.log(spaceCount);
-  const [scrapState, setScrapState] = useState(isScraped);
   const handleScrap = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
@@ -34,7 +33,7 @@ export default function CurationScrapped({
     if (!token) {
       location.replace("/login");
     } else {
-      if (scrapState) {
+      if (isScraped) {
         const res = await DeleteCurationScrap(id);
         if (res.status === 200) {
           revalidateCurationScrap();
@@ -64,12 +63,18 @@ export default function CurationScrapped({
           )`,
         }}
       >
+        <Image
+          alt="큐레이션 스크랩 사진"
+          src={image ? (image as string) : NoResult}
+          fill
+          className="linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55))"
+        />
         <UserProfile
           size="small"
           userName={author}
           className="absolute bottom-[1.6rem] left-[1.6rem]"
         />
-        {scrapState ? (
+        {isScraped ? (
           <ScrapShadow
             className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
             onClick={handleScrap}

@@ -8,7 +8,8 @@ interface SelectPhoto {
   handleIndicatorIndex: (index: number) => void;
   cafeKeywordData: { [key: string]: string | Array<string> };
   restaurantKeywordData: { [key: string]: string | Array<string> };
-  handleImage: (url: File) => void;
+  handleAddImage: (url: File) => void;
+  handleDeleteImage: (index: number) => void;
 }
 
 export default function SelectPhoto({
@@ -18,7 +19,8 @@ export default function SelectPhoto({
   handleIndicatorIndex,
   cafeKeywordData,
   restaurantKeywordData,
-  handleImage,
+  handleAddImage,
+  handleDeleteImage,
 }: SelectPhoto) {
   return (
     <div className="absolute w-full h-[100vh] overflow-hidden">
@@ -33,7 +35,8 @@ export default function SelectPhoto({
         spaceId={spaceId}
         cafeKeywordData={cafeKeywordData}
         restaurantKeywordData={restaurantKeywordData}
-        handleImage={handleImage}
+        handleAddImage={handleAddImage}
+        handleDeleteImage={handleDeleteImage}
         handleIndicatorIndex={handleIndicatorIndex}
       />
     </div>

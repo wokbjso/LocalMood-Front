@@ -6,7 +6,7 @@ import { Suspense } from "react";
 import GetMemberInfo from "@feature/user/queries/getMemberInfo";
 import Link from "next/link";
 import RecordMyPageSkeleton from "@feature/record/components/RecordMyPageSkeleton/RecordMyPageSkeleton";
-import GetRecordMyPage from "@feature/place/queries/getRocordMyPage";
+import GetRecordMyPage from "@feature/place/queries/getRecordMyPage";
 import dynamic from "next/dynamic";
 const PlaceInfoCard = dynamic(
   () => import("@feature/place/components/PlaceInfoCard/PlaceInfoCard")
@@ -76,8 +76,10 @@ export default async function MyPage() {
                   {record.reviews.map((record) => (
                     <PlaceInfoCard
                       key={record.id}
+                      variant="mypage"
                       size="small"
                       {...record}
+                      imgUrl={"https://" + record.image}
                       className="w-full"
                     />
                   ))}

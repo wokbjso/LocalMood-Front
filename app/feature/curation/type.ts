@@ -1,7 +1,7 @@
 export interface CurationProps {
   id: number;
   variant?: "others" | "my";
-  image?: string[];
+  image?: string[] | string;
   author: string;
   title: string;
   keyword: string[];
@@ -14,7 +14,7 @@ export interface CurationPlaceProps {
   name: string;
   type: string;
   address: string;
-  imageUrls?: string[] | undefined;
+  imageUrls?: string[];
   purpose: string;
   mood: string;
   interior: string;

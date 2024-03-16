@@ -9,7 +9,7 @@ import SelectPhoto from "@feature/record/components/PhotoUpload/SelectPhoto";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import Button from "@common/components/ui/buttons/Button/Button";
-import { cloneElement, createRef, useState } from "react";
+import { cloneElement } from "react";
 
 export default function RecordSelect({
   params: id,
@@ -20,7 +20,6 @@ export default function RecordSelect({
   const placeType = searchParams.get("type") || "";
   const name = searchParams.get("name") || "";
   const router = useRouter();
-  const refs = Array.from({ length: 4 }, () => createRef<HTMLDivElement>());
   const {
     indicatorIndex,
     nextDirection,
@@ -30,13 +29,64 @@ export default function RecordSelect({
     checkJump,
     handlers,
   } = UseKeyword(placeType);
-  const handleBtnForwardClicked = () => {
-    handlers.changeIndicatorIndex(indicatorIndex + 1);
-    handlers.changeNextDirection("forward");
+
+  const modifyData = (data: any) => {
+    return {
+      purpose: data.purpose,
+      mood: data.mood,
+      music: data.music,
+      interior: data.interior,
+      positiveEval:
+        data.positiveEval.length > 0 ? data.positiveEval.join(",") : "",
+      negativeEval:
+        data.negativeEval.length > 0 ? data.negativeEval.join(",") : "",
+    };
+  };
+  const handleBtnForwardClicked = async () => {
+    if (indicatorIndex < 2) {
+      handlers.handleIndicatorIndex(indicatorIndex + 1);
+      handlers.handleNextDirection("forward");
+    } else {
+      const formData = new FormData();
+      placeType === "CAFE"
+        ? cafeKeywordData.files.forEach((file: any) => {
+            if (file instanceof File && file.size > 0) {
+              formData.append("image", file);
+            }
+          })
+        : restaurantKeywordData.files.forEach((file: any) => {
+            if (file instanceof File && file.size > 0) {
+              formData.append("image", file);
+            }
+          });
+      const blob = new Blob(
+        [
+          JSON.stringify(
+            modifyData(
+              placeType === "CAFE" ? cafeKeywordData : restaurantKeywordData
+            )
+          ),
+        ],
+        {
+          type: "application/json",
+        }
+      );
+      formData.append("request", blob);
+      const res = await fetch(`/api/record/create/${id.id}`, {
+        method: "POST",
+        body: formData,
+      });
+      if (res.status === 200) {
+        handlers.handleIndicatorIndex(indicatorIndex + 1);
+        handlers.handleNextDirection("forward");
+      } else if (res.status === 400) {
+        alert("오류가 발생했습니다");
+      }
+    }
   };
   const handleBtnBackClicked = () => {
-    handlers.changeIndicatorIndex(indicatorIndex - 1);
-    handlers.changeNextDirection("back");
+    handlers.handleIndicatorIndex(indicatorIndex - 1);
+    handlers.handleNextDirection("back");
   };
   const handleExitClicked = () => {
     router.replace("/record");
@@ -58,10 +108,10 @@ export default function RecordSelect({
               placeType={placeType}
               name={name}
               indicatorIndex={indicatorIndex}
-              handleIndicatorIndex={handlers.changeIndicatorIndex}
+              handleIndicatorIndex={handlers.handleIndicatorIndex}
               cafeKeywordData={cafeKeywordData}
               restaurantKeywordData={restaurantKeywordData}
-              handleKeyword={handlers.changeKeyword}
+              handleKeyword={handlers.handleKeyword}
             />
           </CSSTransition>
         )}
@@ -70,10 +120,10 @@ export default function RecordSelect({
             <SelectEvaluation
               placeType={placeType}
               indicatorIndex={indicatorIndex}
-              handleIndicatorIndex={handlers.changeIndicatorIndex}
+              handleIndicatorIndex={handlers.handleIndicatorIndex}
               cafeKeywordData={cafeKeywordData}
               restaurantKeywordData={restaurantKeywordData}
-              handleKeyword={handlers.changeKeyword}
+              handleKeyword={handlers.handleKeyword}
             />
           </CSSTransition>
         )}
@@ -83,10 +133,11 @@ export default function RecordSelect({
               placeType={placeType}
               spaceId={id.id}
               indicatorIndex={indicatorIndex}
-              handleIndicatorIndex={handlers.changeIndicatorIndex}
+              handleIndicatorIndex={handlers.handleIndicatorIndex}
               cafeKeywordData={cafeKeywordData}
               restaurantKeywordData={restaurantKeywordData}
-              handleImage={handlers.changeImage}
+              handleAddImage={handlers.handleAddImage}
+              handleDeleteImage={handlers.handleDeleteImage}
             />
           </CSSTransition>
         )}
@@ -94,7 +145,7 @@ export default function RecordSelect({
           <CSSTransition key={3} timeout={300}>
             <RecordComplete
               spaceId={id.id}
-              handleIndicatorIndex={handlers.changeIndicatorIndex}
+              handleIndicatorIndex={handlers.handleIndicatorIndex}
               hasSomeData={hasSomeData}
             />
           </CSSTransition>
@@ -110,9 +161,14 @@ export default function RecordSelect({
             이전
           </Button>
         )}
-        {indicatorIndex < 3 && (
+        {indicatorIndex < 2 && (
           <Button onClick={handleBtnForwardClicked}>
             {checkJump() ? "건너뛰기" : "다음"}
+          </Button>
+        )}
+        {indicatorIndex === 2 && (
+          <Button onClick={handleBtnForwardClicked}>
+            {checkJump() ? "기록 올리기" : "건너뛰기"}
           </Button>
         )}
         {indicatorIndex === 3 && (
