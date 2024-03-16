@@ -16,10 +16,17 @@ export const RESTAURANT_TAG_CATEGORY: {
   music: "배경음악",
 };
 
-export const PLACE_PURPOSE = [
+export const PLACE_CAFE_PURPOSE = [
   "연인과의 데이트",
-  "친구와의 만남",
+  "친구/가족과의 만남",
   "작업/공부/책",
+  "비즈니스",
+];
+
+export const PLACE_RESTAURANT_PURPOSE = [
+  "연인과의 데이트",
+  "가족모임",
+  "친구와의 만남",
   "비즈니스",
 ];
 
