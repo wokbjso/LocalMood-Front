@@ -14,6 +14,7 @@ import UseCurationMain from "./useCurationMain";
 import { getSession } from "@common/utils/session/getSession";
 import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import Toast from "@common/components/ui/toast/Toast";
+import Image from "next/image";
 
 export default function CurationMain({
   id,
@@ -54,66 +55,57 @@ export default function CurationMain({
           pathname: `/curation/detail/${id}`,
         }}
       >
-        <div>
-          <div className={twMerge("w-full  bg-white rounded-[8px]", className)}>
-            <div>
-              <div
-                className="w-full h-[16.5rem] bg-cover relative rounded-t-[8px]"
-                style={{
-                  backgroundImage: `url(${
-                    (image && image[0]) || NoResult.src
-                  })`, // Use NoResult image when image is not provided
-                }}
-              >
-                {variant === "others" && (
-                  <UserProfile
-                    size="small"
-                    userName={author}
-                    className="absolute bottom-[1.6rem] left-[1.6rem]"
-                  />
-                )}
-                <Chip className="body3-semibold rounded-[4px] bg-[#212121CC] flex items-center pr-[0.4rem] pl-[0.2rem] h-[2rem] absolute right-[1.6rem] bottom-[1.6rem]">
-                  <LocationLine />
-                  <span className="body3-semibold text-white ml-[0.2rem]">
-                    {spaceCount}
-                  </span>
-                </Chip>
-              </div>
-              <div className="w-full pt-[1.6rem] pl-[1.6rem] pr-[0.8rem] pb-[2rem] relative border-b-[0.1rem] border-x-[0.1rem] border-line-gray-3 rounded-b-[8px]">
-                {variant === "others" ? (
-                  isScraped ? (
-                    <ScrapFill
-                      className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-                      onClick={handleScrapClick}
-                    />
-                  ) : (
-                    <ScrapLine
-                      className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-                      onClick={handleScrapClick}
-                    />
-                  )
-                ) : (
-                  <MenuIcon
-                    className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-                    onClick={handleMenuClick}
-                  />
-                )}
-                <div className="max-w-[24.4rem] headline2 w-[70%] break-keep mb-[1.2rem] text-black">
-                  {title}
+        <div className={twMerge("w-full  bg-white rounded-[8px]", className)}>
+          <div className="w-full h-[16.5rem] bg-cover relative rounded-t-[8px] overflow-hidden">
+            <Image
+              alt="큐레이션 사진"
+              src={image && image.length > 0 ? image[0] : NoResult}
+              fill
+              sizes="100vw"
+            />
+            {variant === "others" && (
+              <UserProfile
+                size="small"
+                userName={author}
+                className="absolute bottom-[1.6rem] left-[1.6rem]"
+              />
+            )}
+            <Chip className="body3-semibold rounded-[4px] bg-[#212121CC] flex items-center pr-[0.4rem] pl-[0.2rem] h-[2rem] absolute right-[1.6rem] bottom-[1.6rem]">
+              <LocationLine />
+              <span className="body3-semibold text-white ml-[0.2rem]">
+                {spaceCount}
+              </span>
+            </Chip>
+          </div>
+          <div className="w-full pt-[1.6rem] pl-[1.6rem] pr-[0.8rem] pb-[2rem] relative border-b-[0.1rem] border-x-[0.1rem] border-line-gray-3 rounded-b-[8px]">
+            {variant === "others" ? (
+              isScraped ? (
+                <ScrapFill
+                  className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
+                  onClick={handleScrapClick}
+                />
+              ) : (
+                <ScrapLine
+                  className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
+                  onClick={handleScrapClick}
+                />
+              )
+            ) : (
+              <MenuIcon
+                className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
+                onClick={handleMenuClick}
+              />
+            )}
+            <div className="max-w-[24.4rem] headline2 w-[70%] break-keep mb-[1.2rem] text-black">
+              {title}
+            </div>
+            <div className="flex flex-wrap gap-[0.8rem]">
+              {keyword.map((tag) => (
+                <div key={tag}>
+                  <span className="text-primary-normal body2-medium"># </span>
+                  <span className="text-text-gray-6 body2-medium">{tag}</span>
                 </div>
-                <div className="flex flex-wrap gap-[0.8rem]">
-                  {keyword.map((tag) => (
-                    <div key={tag}>
-                      <span className="text-primary-normal body2-medium">
-                        #{" "}
-                      </span>
-                      <span className="text-text-gray-6 body2-medium">
-                        {tag}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

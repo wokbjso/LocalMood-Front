@@ -2,11 +2,10 @@ import { getSession } from "@common/utils/session/getSession";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(
-  request: Request,
+  request: NextRequest,
   { params }: { params: { id: number } }
 ) {
   const formData = await request.formData();
-  console.log(formData);
   const auth_info = await getSession();
   const token = auth_info?.data?.accessToken;
 
