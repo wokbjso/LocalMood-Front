@@ -1,6 +1,6 @@
 export interface PlaceInfoCardTopProps {
   id: number;
-  variant?: "main" | "search" | "record";
+  variant?: "main" | "search" | "record" | "mypage";
   direction?: "vertical" | "horizontal";
   size?: "normal" | "small";
   name: string;

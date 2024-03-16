@@ -16,7 +16,6 @@ export default async function MyPage() {
   const recordData = GetRecordMyPage();
   const memberData = GetMemberInfo();
   const [record, member] = await Promise.all([recordData, memberData]);
-  console.log(record);
   return (
     <div className="px-[2rem] h-[100vh] overflow-hidden">
       <MyPageTopBar text="프로필" />
@@ -77,9 +76,10 @@ export default async function MyPage() {
                   {record.reviews.map((record) => (
                     <PlaceInfoCard
                       key={record.id}
+                      variant="mypage"
                       size="small"
                       {...record}
-                      imgUrl={record.image}
+                      imgUrl={"https://" + record.image}
                       className="w-full"
                     />
                   ))}

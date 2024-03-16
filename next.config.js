@@ -14,6 +14,7 @@ module.exports = {
       "cdn.pixabay.com",
       "a.cdn-hotels.com",
       "github.com",
+      "localmood-bucket.s3.amazonaws.com",
     ],
   },
 };

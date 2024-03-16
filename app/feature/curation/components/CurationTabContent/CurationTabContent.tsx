@@ -34,7 +34,7 @@ export default function CurationTabContent({
         {tabIndex === 0 && (
           <div className="flex items-center justify-between pb-[0.6rem] pt-[2rem]">
             <div className="flex body1 text-text-gray-8 items-center">
-              총 <p className="text-black">&nbsp;{myCuration?.curationCount}</p>{" "}
+              총 <p className="text-black">&nbsp;{myCuration?.curationCount}</p>
               개
             </div>
             <div onClick={() => handlers.handleCurationMakeOpen(true)}>
