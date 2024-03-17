@@ -3,7 +3,7 @@ import Script from "next/script";
 import KakaoScript from "@feature/auth/components/KakaoScript/KakaoScript";
 
 export const metadata = {
-  title: "Localmood",
+  title: "로컬무드",
   description: "키워드로 내가 원하는 공간을 찾아보세요!",
 };
 
