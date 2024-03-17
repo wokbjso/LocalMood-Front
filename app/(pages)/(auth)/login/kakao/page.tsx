@@ -23,7 +23,7 @@ export default function KakaoRedirect({
   }, [code]);
   return (
     <div className="flex justify-center items-center h-[100vh] header-light">
-      <BeatLoader color="#36d7b7" />
+      <BeatLoader color="#36d7b7" className="z-50" />
     </div>
   );
 }

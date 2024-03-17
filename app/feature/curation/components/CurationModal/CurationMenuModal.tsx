@@ -3,9 +3,10 @@ import DeleteIcon from "@common/assets/icons/delete/delete.svg";
 import ShareIcon from "@common/assets/icons/share/share.svg";
 import Modal from "@common/components/ui/modal/Modal";
 import { useState } from "react";
-import CurationDeleteConfirmModal from "./CurationDeleteConfirmModal";
 import UseOutsideClick from "@common/hooks/useOutsideClick";
 import { copyLink } from "@common/utils/text/copy-link";
+import ConfirmModal from "@common/components/ui/modal/ConfirmModal";
+import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
 
 interface CurationMenuModalProps {
   id: number;
@@ -31,6 +32,25 @@ export default function CurationMenuModal({
 
   const handleLinkCopyClick = async () => {
     copyLink("큐레이션 주소", setDeleteModalOpen);
+  };
+
+  const handleCancleClick = () => {
+    setDeleteModalOpen(false);
+  };
+
+  const handleConfirmClick = async () => {
+    const res = await fetch("/api/curation/delete", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(id),
+    });
+    if (res.status === 200) {
+      revalidateMyCuration();
+    } else {
+      alert("에러");
+    }
   };
 
   return (
@@ -62,10 +82,12 @@ export default function CurationMenuModal({
         </Modal>
       }
       {deleteModalOpen && (
-        <CurationDeleteConfirmModal
-          id={id}
-          handleMenuModalState={handleMenuModalState}
-          handleDeleteModalState={setDeleteModalOpen}
+        <ConfirmModal
+          text="정말 삭제하시겠습니까?"
+          cancleText="취소하기"
+          confirmText="삭제하기"
+          cancelFn={handleCancleClick}
+          confirmFn={handleConfirmClick}
         />
       )}
     </>
