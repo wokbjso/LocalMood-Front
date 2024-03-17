@@ -28,7 +28,7 @@ export default function FormInput({
       <input
         type={type}
         value={text}
-        className="w-full py-[1rem] pl-[0.4rem] border-b-[0.1rem] border-text-gray-6 mt-[0.9rem]"
+        className="w-full py-[0.6rem] pl-[0.4rem] border-b-[0.1rem] border-text-gray-6 mt-[0.9rem] body2-medium"
         onChange={handleInputChange}
       />
       {errorMsg && (

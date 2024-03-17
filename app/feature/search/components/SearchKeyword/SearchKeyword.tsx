@@ -46,15 +46,15 @@ export default function SearchKeyword() {
     handlers.changeKoreanOptionIndex(index);
   };
 
-  function setEmptyKeysToAll(obj: { [key: string]: string }) {
-    const modifiedObj = obj;
-    for (const key in modifiedObj) {
-      if (modifiedObj[key] === "") {
-        modifiedObj[key] = "ALL";
-      }
-    }
-    return modifiedObj;
-  }
+  // function setEmptyKeysToAll(obj: { [key: string]: string }) {
+  //   const modifiedObj = obj;
+  //   for (const key in modifiedObj) {
+  //     if (modifiedObj[key] === "") {
+  //       modifiedObj[key] = "ALL";
+  //     }
+  //   }
+  //   return modifiedObj;
+  // }
   return (
     searchParams.get("keyword_search") === "true" && (
       <>
@@ -157,8 +157,8 @@ export default function SearchKeyword() {
                   query: {
                     keyword:
                       tabIndex === 0
-                        ? JSON.stringify(setEmptyKeysToAll(restaurantKeyword))
-                        : JSON.stringify(setEmptyKeysToAll(cafeKeyword)),
+                        ? JSON.stringify(restaurantKeyword)
+                        : JSON.stringify(cafeKeyword),
                   },
                 }}
               >
