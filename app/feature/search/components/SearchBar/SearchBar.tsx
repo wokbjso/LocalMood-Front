@@ -2,7 +2,7 @@
 
 import { twMerge } from "tailwind-merge";
 import Delete from "@common/assets/icons/close/close-gray.svg";
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import SearchIcon from "@common/assets/icons/search/SearchIcon";
 
@@ -18,7 +18,6 @@ export default function SearchBar({
   className,
 }: SearchBarProps) {
   const searchParams = useSearchParams();
-  const inputRef = useRef<HTMLInputElement>(null);
   const [searchText, setSearchText] = useState<string>(
     (searchParams.get("search_query") as string) || ""
   );
@@ -47,13 +46,6 @@ export default function SearchBar({
     }
   };
 
-  useEffect(() => {
-    // 화면에 표시되면서 input 요소에 focus
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, []);
-
   return (
     <div
       className={twMerge(
@@ -66,7 +58,6 @@ export default function SearchBar({
           <SearchIcon />
         </div>
         <input
-          ref={inputRef}
           className={twMerge(
             "body2-medium text-text-gray-5 w-full ml-[0.8rem] pl-[0.3rem] outline-none bg-transparent"
           )}
