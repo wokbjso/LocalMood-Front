@@ -6,34 +6,34 @@ import { useEffect, useState } from "react";
 export default function useSearchKeyword() {
   const [cafeKeyword, setCafeKeyword] = useState<{ [key: string]: string }>({
     type: "CAFE",
-    subType: "",
-    purpose: "",
-    mood: "",
-    music: "",
-    interior: "",
-    visitor: "",
-    optServ: "",
-    dish: "",
-    disDesc: "",
+    subType: "ALL",
+    purpose: "ALL",
+    mood: "ALL",
+    music: "ALL",
+    interior: "ALL",
+    visitor: "ALL",
+    optServ: "ALL",
+    dish: "ALL",
+    disDesc: "ALL",
   });
   const [restaurantKeyword, setRestaurantKeyword] = useState<{
     [key: string]: string;
   }>({
     type: "RESTAURANT",
-    subType: "",
-    purpose: "",
-    mood: "",
-    music: "",
-    interior: "",
-    visitor: "",
-    optServ: "",
-    dish: "",
-    disDesc: "",
+    subType: "ALL",
+    purpose: "ALL",
+    mood: "ALL",
+    music: "ALL",
+    interior: "ALL",
+    visitor: "ALL",
+    optServ: "ALL",
+    dish: "ALL",
+    disDesc: "ALL",
   });
   const [tabIndex, setTabIndex] = useState<number>(0);
   const [showResultAble, setShowResultAble] = useState<boolean>(false);
   const [openKoreanOption, setOpenKoreanOption] = useState(false);
-  const [koreanOptionIndex, setKoreanOptionIndex] = useState(-1);
+  const [koreanOptionIndex, setKoreanOptionIndex] = useState(0);
 
   const handleKeywordData = (category: string, keyword: string) => {
     if (tabIndex === 0) {
@@ -42,42 +42,35 @@ export default function useSearchKeyword() {
           if (restaurantKeyword[category] === keyword) {
             setRestaurantKeyword({
               ...restaurantKeyword,
-              [category]: "",
-              dish: "",
+              [category]: "ALL",
+              dish: "ALL",
             });
           } else {
-            if (koreanOptionIndex === -1) {
-              setRestaurantKeyword({
-                ...restaurantKeyword,
-                [category]: keyword,
-                dish: "",
-              });
-            } else
-              setRestaurantKeyword({
-                ...restaurantKeyword,
-                [category]: keyword,
-                dish: KOREAN_OPTION[koreanOptionIndex],
-              });
+            setRestaurantKeyword({
+              ...restaurantKeyword,
+              [category]: keyword,
+              dish: KOREAN_OPTION[koreanOptionIndex],
+            });
           }
         } else {
           if (restaurantKeyword[category] === keyword) {
             setRestaurantKeyword({
               ...restaurantKeyword,
-              [category]: "",
+              [category]: "ALL",
             });
           } else {
             setOpenKoreanOption(false);
             setRestaurantKeyword({
               ...restaurantKeyword,
               [category]: keyword,
-              dish: "",
+              dish: "ALL",
             });
           }
         }
       } else if (restaurantKeyword[category] === keyword) {
         setRestaurantKeyword({
           ...restaurantKeyword,
-          [category]: "",
+          [category]: "ALL",
         });
       } else {
         setRestaurantKeyword({
@@ -87,7 +80,7 @@ export default function useSearchKeyword() {
       }
     } else if (tabIndex === 1) {
       if (cafeKeyword[category] === keyword)
-        setCafeKeyword({ ...cafeKeyword, [category]: "" });
+        setCafeKeyword({ ...cafeKeyword, [category]: "ALL" });
       else setCafeKeyword({ ...cafeKeyword, [category]: keyword });
     } else return;
   };
@@ -101,36 +94,30 @@ export default function useSearchKeyword() {
   };
 
   const handleKoreanOptionIndex = (index: number) => {
-    if (restaurantKeyword.dish === KOREAN_OPTION[index]) {
-      setRestaurantKeyword({
-        ...restaurantKeyword,
-        dish: "",
-      });
-      setKoreanOptionIndex(-1);
-    } else {
-      setRestaurantKeyword({
-        ...restaurantKeyword,
-        dish: KOREAN_OPTION[index],
-      });
-      setKoreanOptionIndex(index);
-    }
+    setRestaurantKeyword({
+      ...restaurantKeyword,
+      dish: KOREAN_OPTION[index],
+    });
+    setKoreanOptionIndex(index);
   };
 
   useEffect(() => {
     if (tabIndex === 0)
       setShowResultAble(
-        Object.keys(restaurantKeyword)
-          .filter((keyword) => keyword !== "type")
-          .some((keyword) => restaurantKeyword[keyword] !== "")
+        Object.keys(restaurantKeyword).filter(
+          (keyword) =>
+            keyword !== "type" && restaurantKeyword[keyword] !== "ALL"
+        ).length > 0
       );
     else if (tabIndex === 1)
       setShowResultAble(
-        Object.keys(cafeKeyword)
-          .filter((keyword) => keyword !== "type")
-          .some((keyword) => cafeKeyword[keyword] !== "")
+        Object.keys(cafeKeyword).filter(
+          (keyword) => keyword !== "type" && cafeKeyword[keyword] !== "ALL"
+        ).length > 0
       );
     else return;
   }, [tabIndex, cafeKeyword, restaurantKeyword]);
+  console.log(restaurantKeyword);
   return {
     cafeKeyword,
     restaurantKeyword,
