@@ -117,7 +117,6 @@ export default function useSearchKeyword() {
       );
     else return;
   }, [tabIndex, cafeKeyword, restaurantKeyword]);
-  console.log(restaurantKeyword);
   return {
     cafeKeyword,
     restaurantKeyword,
