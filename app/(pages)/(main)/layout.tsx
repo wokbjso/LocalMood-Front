@@ -1,4 +1,5 @@
 import Footer from "@common/components/layout/Footer/Footer";
+import { BeatLoader } from "react-spinners";
 import { Suspense } from "react";
 
 export default function MainLayout({
@@ -8,7 +9,15 @@ export default function MainLayout({
 }) {
   return (
     <div>
-      <Suspense fallback={null}>{children}</Suspense>
+      <Suspense
+        fallback={
+          <div className="flex justify-center items-center h-[100vh]">
+            <BeatLoader color="#36d7b7" />
+          </div>
+        }
+      >
+        {children}
+      </Suspense>
       <Footer />
     </div>
   );

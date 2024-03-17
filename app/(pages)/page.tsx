@@ -12,7 +12,6 @@ export default async function Home() {
     "대화에 집중할 수 있는",
   ];
   const randomCuration = await GetRandomCuration();
-  console.log(randomCuration);
   return (
     <div className="w-full h-[100vh] overflow-auto pb-[12rem]">
       <HomeBanner
