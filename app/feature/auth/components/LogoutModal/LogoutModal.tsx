@@ -1,15 +1,28 @@
 import Modal from "@common/components/ui/modal/Modal";
 import UserIcon from "@common/assets/icons/user/UserProfile";
-import Link from "next/link";
 import UseOutsideClick from "@common/hooks/useOutsideClick";
+import { useState } from "react";
+import ConfirmModal from "@common/components/ui/modal/ConfirmModal";
+import { useRouter } from "next/navigation";
 
 export default function LogoutModal({
   handleFn,
 }: {
   handleFn: (state: boolean) => void;
 }) {
+  const router = useRouter();
   const { ref } = UseOutsideClick<HTMLDivElement>(handleFn);
-  const handleLogout = async () => {
+  const [logoutConfirmModalOpen, setLogoutConfirmModalOpen] = useState(false);
+
+  const handleLogoutClick = () => {
+    setLogoutConfirmModalOpen(true);
+  };
+
+  const handleCancleClick = () => {
+    setLogoutConfirmModalOpen(false);
+  };
+
+  const handleConfirmClick = async () => {
     const res = await fetch("/api/auth/logout", {
       method: "POST",
       headers: {
@@ -17,24 +30,30 @@ export default function LogoutModal({
       },
     });
     if (res.status === 200) {
+      router.push("/");
       alert("로그아웃 되었습니다");
     }
   };
   return (
-    <Modal ref={ref}>
-      <Link
-        href={{
-          pathname: "/",
-        }}
-      >
+    <>
+      <Modal ref={ref}>
         <div
           className="flex items-center pl-[2rem] mt-[1.8rem]"
-          onClick={handleLogout}
+          onClick={handleLogoutClick}
         >
           <UserIcon />
           <span className="body1 text-black ml-[1.2rem]">로그아웃</span>
         </div>
-      </Link>
-    </Modal>
+      </Modal>
+      {logoutConfirmModalOpen && (
+        <ConfirmModal
+          text="로그아웃 하시겠습니까?"
+          cancleText="취소하기"
+          confirmText="로그아웃"
+          cancelFn={handleCancleClick}
+          confirmFn={handleConfirmClick}
+        />
+      )}
+    </>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { BeatLoader } from "react-spinners";
 
 export default function KakaoRedirect({
   searchParams,
@@ -21,10 +22,8 @@ export default function KakaoRedirect({
     getAuthorization();
   }, [code]);
   return (
-    <div>
-      <h1 className="flex justify-center items-center h-[100vh] header-light">
-        로그인 중입니다...
-      </h1>
+    <div className="flex justify-center items-center h-[100vh] header-light">
+      <BeatLoader color="#36d7b7" className="z-50" />
     </div>
   );
 }
