@@ -1,4 +1,3 @@
-import MyPageTopBar from "@common/components/ui/topBar/MyPageTopBar/MyPageTopBar";
 import Image from "next/image";
 import ArrowRight from "@common/assets/icons/arrow/arrow-right.svg";
 import { twMerge } from "tailwind-merge";
@@ -9,6 +8,7 @@ import RecordMyPageSkeleton from "@feature/record/components/RecordMyPageSkeleto
 import GetRecordMyPage from "@feature/place/queries/getRecordMyPage";
 import dynamic from "next/dynamic";
 import getMyCuration from "@feature/curation/queries/getMyCuration";
+import PageTopBar from "@common/components/ui/topBar/PageTopBar/PageTopBar";
 const PlaceInfoCard = dynamic(
   () => import("@feature/place/components/PlaceInfoCard/PlaceInfoCard")
 );
@@ -20,7 +20,7 @@ export default async function MyPage() {
   const [record, member] = await Promise.all([recordData, memberData]);
   return (
     <div className="px-[2rem] h-[100vh] overflow-hidden">
-      <MyPageTopBar text="프로필" />
+      <PageTopBar text="프로필" hasMenu />
       <Suspense fallback={<RecordMyPageSkeleton />}>
         {record && (
           <>
