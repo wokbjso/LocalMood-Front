@@ -11,8 +11,12 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className="width-[100%] height-[100%]">
+      <body className="w-[100%] h-[100%]">
+        <main className="w-[100%] h-[100%] fixed overflow-hidden">
+          {children}
+        </main>
+      </body>
     </html>
   );
 }

@@ -38,7 +38,7 @@ export default function Login() {
     ).length >= 1;
 
   return (
-    <div className="relative h-[100vh] px-[2rem]">
+    <main className="w-[100%] h-[100%] px-[2rem]">
       <BasicTopBar color="#9E9E9E" className="px-0" />
       <div className="flex justify-center mb-[7.5rem]">
         <Logo />
@@ -73,11 +73,11 @@ export default function Login() {
           href={{ pathname: "/" }}
           className="flex justify-center mt-[2rem]"
         >
-          <span className="text-text-gray-6 body2-semibold border border-b-text-gray-6">
+          <span className="text-text-gray-6 body2-semibold pb-[0.4rem] border-b-[1px] border-b-text-gray-6">
             로그인없이 둘러보기
           </span>
         </Link>
       </div>
-    </div>
+    </main>
   );
 }
