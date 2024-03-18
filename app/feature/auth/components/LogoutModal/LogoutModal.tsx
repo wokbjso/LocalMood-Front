@@ -30,8 +30,8 @@ export default function LogoutModal({
       },
     });
     if (res.status === 200) {
-      router.push("/");
       alert("로그아웃 되었습니다");
+      location.replace("/");
     }
   };
   return (

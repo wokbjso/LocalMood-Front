@@ -3,14 +3,22 @@ import PlaceHomeSlider from "@feature/place/components/PlaceHomeSlider/PlaceHome
 import HomeBanner from "./HomeBanner";
 import CurationHomePopular from "@feature/curation/components/CurationHomePopular/CurationHomePopular";
 import GetRandomCuration from "@feature/curation/queries/getRandomCuration";
+import {
+  PlaceInfoCardBottomProps,
+  PlaceInfoCardTopProps,
+} from "@feature/place/type";
+import GetRandomPlaces from "@feature/place/queries/getRandomPlaces";
 
 export default async function Home() {
   const HOME_SLIDER_PURPOSE = [
     "연인과의 데이트",
     "친구와의 만남",
     "왁자지껄 떠들 수 있는",
-    "대화에 집중할 수 있는", 
+    "대화에 집중할 수 있는",
   ];
+  const randomPlace: {
+    [key: string]: (PlaceInfoCardTopProps & PlaceInfoCardBottomProps)[];
+  } = await GetRandomPlaces();
   const randomCuration = await GetRandomCuration();
   return (
     <div className="w-full h-[100vh] overflow-auto pb-[12rem]">
@@ -24,18 +32,28 @@ export default async function Home() {
         mainText={HOME_SLIDER_PURPOSE[0]}
         subText="를 위한 공간"
         className="mt-[4rem]"
+        placeData={randomPlace[HOME_SLIDER_PURPOSE[0]]}
       />
       <PlaceHomeSlider
         mainText={HOME_SLIDER_PURPOSE[1]}
         subText="을 위한 공간"
+        placeData={randomPlace[HOME_SLIDER_PURPOSE[1]]}
       />
       <CurationHomePopular
         mainText="마포구 인기 큐레이션"
         subText="더보기"
         curationList={randomCuration}
       />
-      <PlaceHomeSlider mainText={HOME_SLIDER_PURPOSE[2]} subText="공간" />
-      <PlaceHomeSlider mainText={HOME_SLIDER_PURPOSE[3]} subText="공간" />
+      <PlaceHomeSlider
+        mainText={HOME_SLIDER_PURPOSE[2]}
+        subText="공간"
+        placeData={randomPlace[HOME_SLIDER_PURPOSE[2]]}
+      />
+      <PlaceHomeSlider
+        mainText={HOME_SLIDER_PURPOSE[3]}
+        subText="공간"
+        placeData={randomPlace[HOME_SLIDER_PURPOSE[3]]}
+      />
       <Footer />
     </div>
   );

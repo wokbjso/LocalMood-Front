@@ -13,16 +13,15 @@ interface PlaceHomeSliderProps {
   mainText: string;
   subText: string;
   className?: string;
+  placeData: (PlaceInfoCardTopProps & PlaceInfoCardBottomProps)[];
 }
 
 export default async function PlaceHomeSlider({
   mainText,
   subText,
   className,
+  placeData,
 }: PlaceHomeSliderProps) {
-  const randomPlace: {
-    [key: string]: (PlaceInfoCardTopProps & PlaceInfoCardBottomProps)[];
-  } = await GetRandomPlaces();
   const myCurationData = await getMyCuration();
   return (
     <section className={twMerge("mb-[4rem] pl-[2rem]", className)}>
@@ -30,8 +29,8 @@ export default async function PlaceHomeSlider({
       <span className="text-black headline2">{mainText}</span>
       <span className="text-text-gray-6 body1"> {subText}</span>
       <Slider className="mt-[1.6rem]">
-        {randomPlace[mainText] &&
-          randomPlace[mainText].map(
+        {placeData &&
+          placeData.map(
             (data: PlaceInfoCardTopProps & PlaceInfoCardBottomProps) => (
               <PlaceInfoCard
                 key={data.id}
