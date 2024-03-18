@@ -17,7 +17,7 @@ export default async function PlaceDetailMore({
   const reviewData = await GetPlaceReview(id);
   const detailData = await GetPlaceDetail(id);
   return (
-    <div className="pb-[14.2rem]">
+    <div className="w-[100%] h-[100%] pb-[14.2rem] overflow-auto">
       <BasicTopBar color="#9E9E9E" className="" />
       <section className="px-[2rem] mt-[1.2rem]">
         <div className="headline1 text-black">
