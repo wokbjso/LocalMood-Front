@@ -8,7 +8,7 @@ export default function KakaoButton() {
   const host =
     process?.env.NODE_ENV === "development"
       ? "localhost:3000"
-      : "www.localmood.co.kr";
+      : "localmood.co.kr";
   const redirectUri = `${protocol}://${host}/login/kakao`;
   const kakaoLogin = () => {
     location.href = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY}&redirect_uri=${redirectUri}`;
