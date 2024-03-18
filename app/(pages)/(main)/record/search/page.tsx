@@ -18,12 +18,12 @@ export default function RecordSearch({ searchParams }: { searchParams: any }) {
         body: JSON.stringify({ name: searchParams.search_query }),
       });
 
-      if (!response.ok) {
+      if (response.ok) {
+        setTextSearchPlaceData(await response.json());
+      } else {
         alert("오류가 발생했습니다.");
         return;
       }
-
-      setTextSearchPlaceData(await response.json());
     } catch (error) {
       console.error("Error fetching data:", error);
     }
