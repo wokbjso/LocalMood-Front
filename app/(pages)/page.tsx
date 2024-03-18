@@ -21,7 +21,7 @@ export default async function Home() {
   } = await GetRandomPlaces();
   const randomCuration = await GetRandomCuration();
   return (
-    <div className="w-full h-[100vh] overflow-auto pb-[12rem]">
+    <div className="w-[100%] h-[100%] overflow-auto">
       <HomeBanner
         textNormalFirst="나에게 딱 맞는 공간을"
         textBold="키워드"
@@ -53,6 +53,7 @@ export default async function Home() {
         mainText={HOME_SLIDER_PURPOSE[3]}
         subText="공간"
         placeData={randomPlace[HOME_SLIDER_PURPOSE[3]]}
+        className="pb-[12rem]"
       />
       <Footer />
     </div>

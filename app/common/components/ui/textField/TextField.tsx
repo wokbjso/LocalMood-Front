@@ -27,10 +27,10 @@ export default function TextField({ onChange }: TextFieldProps) {
           placeholder="새 큐레이션"
           value={inputValue}
           onChange={handleInputChange}
-          maxLength={50}
+          maxLength={25}
         />
         <div className="body2-medium text-text-gray-6 pl-[2rem]">
-          {inputValue.length}/50
+          {inputValue.length}/25
         </div>
       </div>
     </div>
