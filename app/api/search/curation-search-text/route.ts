@@ -14,6 +14,7 @@ export async function GET(request: NextRequest) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      cache: "no-cache",
     }
   );
   const data = await res.json();

@@ -17,6 +17,7 @@ export async function POST(request: NextRequest) {
         keyword1: body[0],
         keyword2: body.length > 1 && body[1],
       }),
+      cache: "no-cache",
     }
   );
   const data = await res.json();
