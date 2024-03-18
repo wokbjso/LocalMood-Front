@@ -38,7 +38,7 @@ export default function Login() {
     ).length >= 1;
 
   return (
-    <div className="relative h-[100vh] px-[2rem]">
+    <main className="w-[100%] h-[100%] px-[2rem]">
       <BasicTopBar color="#9E9E9E" className="px-0" />
       <div className="flex justify-center mb-[7.5rem]">
         <Logo />
@@ -78,6 +78,6 @@ export default function Login() {
           </span>
         </Link>
       </div>
-    </div>
+    </main>
   );
 }

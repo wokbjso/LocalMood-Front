@@ -38,7 +38,7 @@ export default function Register() {
     ).length >= 1;
 
   return (
-    <div className="relative h-[100vh] px-[2rem]">
+    <div className="w-[100%] h-[100%] px-[2rem]">
       <BasicTopBar color="#9E9E9E" className="px-0 mb-[4.8rem]">
         <div className="w-full flex justify-start items-center text-black headline3">
           회원가입
