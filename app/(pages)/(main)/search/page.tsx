@@ -6,7 +6,7 @@ import { Suspense } from "react";
 
 export default function SearchPage() {
   return (
-    <div>
+    <div className="w-[100%] h-[100%]">
       <Suspense fallback={null}>
         <SearchKeyword />
       </Suspense>

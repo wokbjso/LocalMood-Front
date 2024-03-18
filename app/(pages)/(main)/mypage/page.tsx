@@ -19,7 +19,7 @@ export default async function MyPage() {
   const myCurationData = await getMyCuration();
   const [record, member] = await Promise.all([recordData, memberData]);
   return (
-    <div className="px-[2rem] h-[100vh] overflow-hidden">
+    <div className="w-[100%] h-[100%] px-[2rem]">
       <PageTopBar text="프로필" hasMenu />
       <Suspense fallback={<RecordMyPageSkeleton />}>
         {record && (

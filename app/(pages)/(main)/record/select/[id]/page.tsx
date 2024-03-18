@@ -92,7 +92,7 @@ export default function RecordSelect({
     router.replace("/record");
   };
   return (
-    <div className="w-full h-[100vh] overflow-auto relative">
+    <div className="w-[100%] h-[100%] overflow-auto relative">
       <BasicTopBar color="#9E9E9E" className="fixed z-20" />
       <TransitionGroup
         component={null}
