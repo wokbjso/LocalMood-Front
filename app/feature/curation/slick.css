@@ -1,0 +1,28 @@
+.slick-slide {
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+.dots_custom li {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0;
+  margin: 0 3px;
+}
+
+.dots_custom li button {
+  background: #e0e0e0;
+  color: transparent;
+  cursor: pointer;
+  display: block;
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  margin: 0;
+}
+
+.dots_custom li.slick-active button {
+  width: 2.4rem;
+  border-radius: 34px;
+  background-color: #32d5ba;
+}

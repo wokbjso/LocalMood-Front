@@ -55,7 +55,12 @@ export default function CurationMain({
           pathname: `/curation/detail/${id}`,
         }}
       >
-        <div className={twMerge("w-full  bg-white rounded-[8px]", className)}>
+        <div
+          className={twMerge(
+            "w-full min-h-[27.7rem] bg-white rounded-[8px] border-b-[0.1rem] border-x-[0.1rem] border-line-gray-3",
+            className
+          )}
+        >
           <div className="w-full h-[16.5rem] bg-cover relative rounded-t-[8px] overflow-hidden">
             <Image
               alt="큐레이션 사진"
@@ -77,7 +82,7 @@ export default function CurationMain({
               </span>
             </Chip>
           </div>
-          <div className="w-full pt-[1.6rem] pl-[1.6rem] pr-[0.8rem] pb-[2rem] relative border-b-[0.1rem] border-x-[0.1rem] border-line-gray-3 rounded-b-[8px]">
+          <div className="w-full pt-[1.6rem] pl-[1.6rem] pr-[0.8rem] pb-[2rem] relative rounded-b-[8px]">
             {variant === "others" ? (
               isScraped ? (
                 <ScrapFill

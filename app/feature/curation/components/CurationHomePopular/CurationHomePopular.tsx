@@ -1,10 +1,12 @@
 "use client";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "../../slick.css";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import RightArrow from "@common/assets/icons/arrow/arrow-right.svg";
 import CurationMain from "../CurationMain/CurationMain";
-import Indicator from "@common/components/ui/indicator/Indicator";
-import UseCurationHomePopular from "./UseCurationHomeList";
+import Slider from "react-slick";
 
 interface CurationHomePopularProps {
   mainText: string;
@@ -25,12 +27,29 @@ export default function CurationHomePopular({
   subText,
   curationList,
 }: CurationHomePopularProps) {
-  const { indicatorIndex, handlers } = UseCurationHomePopular();
-
-  // 가로 슬라이드시 indicator 늘어나는 로직 구현 필요
+  const sliderSettings = {
+    speed: 500,
+    dots: true,
+    infinite: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    appendDots: (dots: any) => (
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <ul> {dots} </ul>
+      </div>
+    ),
+    dotsClass: "dots_custom",
+  };
   return (
-    <section className="mb-[5.6rem] pt-[2.8rem] pb-[2rem] px-[2rem] bg-background-gray-2">
-      <div className="flex justify-between mb-[1.6rem]">
+    <section className="mb-[5.6rem] pt-[2.8rem] pb-[2rem] bg-background-gray-2">
+      <div className="flex justify-between mb-[1.6rem] px-[2rem]">
         <span className="headline2 text-black">{mainText}</span>
         <div className="flex items-center headline2 text-black">
           <LinkLayout routeUrl="/curation/popular">
@@ -41,24 +60,19 @@ export default function CurationHomePopular({
           <RightArrow />
         </div>
       </div>
-      <div>
-        {curationList.map((curation, i) => {
-          return (
-            indicatorIndex === i && (
+      <div className="slider-container">
+        <Slider {...sliderSettings}>
+          {curationList.map((curation, i) => {
+            return (
               <CurationMain
                 key={curation.author + i}
                 {...curation}
-                className="mb-[2rem] w-full"
+                className="mb-[2rem] w-full mr-[2rem]"
               />
-            )
-          );
-        })}
+            );
+          })}
+        </Slider>
       </div>
-      <Indicator
-        indicatorIndex={indicatorIndex}
-        className="flex justify-center"
-        handleIndicatorIndex={handlers.handleIndicator}
-      />
     </section>
   );
 }
