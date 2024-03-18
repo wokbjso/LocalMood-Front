@@ -8,6 +8,7 @@ import CurationPrivacyToggleButton from "@feature/curation/components/CurationBu
 import CurationDetailCardList from "@feature/curation/components/CurationDetail/CurationDetailCardList";
 import GetCurationDetail from "@feature/curation/queries/getCurationDetail";
 import CurationTopAppBar from "@feature/curation/components/CurationTopAppBar/curationTopAppBar";
+import { formatDate } from "@common/utils/date/formatDate";
 
 export default async function CurationDetail({
   params: { id },
@@ -15,18 +16,11 @@ export default async function CurationDetail({
   params: { id: number };
 }) {
   const curationDetail = await GetCurationDetail(id);
-  const formattedDate = new Date(curationDetail.createdDate).toLocaleDateString(
-    "ko-KR",
-    {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    }
-  );
+  const formattedDate = formatDate(curationDetail.createdDate);
 
   return (
-    <div className="relative pb-[18rem]">
-      <header className="h-[18.8rem] bg-background-secondary-normal">
+    <div className="w-[100%] h-[100%] overflow-auto pb-[18rem]">
+      <header className="w-[100%] h-[18.8rem] bg-background-secondary-normal">
         <CurationTopAppBar
           id={id}
           curationDetail={curationDetail}
@@ -96,7 +90,7 @@ export default async function CurationDetail({
       {curationDetail.spaceDetails && (
         <CurationDetailCardList
           curationId={id}
-          spaceDetails={curationDetail.spaceDetails}
+          curationDetail={curationDetail}
         />
       )}
     </div>

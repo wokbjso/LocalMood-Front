@@ -52,41 +52,48 @@ export default function CurationScrapped({
       }
     }
   };
-
   return (
-    <div className={twMerge("w-full", className)}>
+    <div className={twMerge("w-[100%]", className)}>
       <div
-        className="w-full h-[16.5rem] bg-cover relative rounded-[8px] p-[1.6rem]"
+        className="relative w-[100%] h-[16.5rem] rounded-[8px] overflow-hidden"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),url(
-             ${image}
-          )`,
+          backgroundImage:
+            "linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55))",
         }}
       >
+        <div
+          className="absolute top-0 w-[100%] h-[100%] z-10"
+          style={{
+            background: "linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55))",
+          }}
+        />
         <Image
           alt="큐레이션 스크랩 사진"
           src={image ? (image as string) : NoResult}
           fill
-          className="linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55))"
+          sizes="100vw"
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+          className="rounded-t-[8px] object-cover"
         />
         <UserProfile
           size="small"
           userName={author}
-          className="absolute bottom-[1.6rem] left-[1.6rem]"
+          className="absolute bottom-[1.6rem] left-[1.6rem] z-10"
         />
         {isScraped ? (
           <ScrapShadow
-            className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
+            className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer z-10"
             onClick={handleScrap}
           />
         ) : (
           <ScrapLine
             color="white"
-            className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
+            className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer z-10"
             onClick={handleScrap}
           />
         )}
-        <div className="flex items-center absolute bottom-[1.6rem] right-[1.6rem]">
+        <div className="flex items-center absolute bottom-[1.6rem] right-[1.6rem] z-10">
           {<LocationLine />}
           <span className="ml-[0.2rem] body3-semibold text-white">
             {spaceCount}
@@ -97,7 +104,7 @@ export default function CurationScrapped({
             pathname: `/curation/detail/${id}`,
           }}
         >
-          <div className="headline2 w-[80%] break-keep text-white">
+          <div className="absolute headline2 w-[80%] pt-[1.6rem] pl-[1.6rem] break-keep text-white z-10">
             <span>{title}</span>
             <div className="flex flex-wrap gap-x-[0.8rem] mt-[1.2rem]">
               {keyword.map((tag) => (

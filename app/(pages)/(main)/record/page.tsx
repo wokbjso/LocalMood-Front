@@ -7,7 +7,7 @@ import { Suspense } from "react";
 
 export default async function Record() {
   return (
-    <>
+    <div className="w-[100%] h-[100%]">
       <PageTopBar
         text="기록을 남길 공간을 선택해주세요"
         className="pl-[2rem]"
@@ -26,6 +26,6 @@ export default async function Record() {
       <Suspense fallback={<PlaceScrappedSkeleton />}>
         <PlaceScrapList />
       </Suspense>
-    </>
+    </div>
   );
 }

@@ -116,7 +116,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
     }
   }, [searchParams]);
   return (
-    <>
+    <main className="w-[100%] h-[100%]">
       {searchParams.search_query &&
         textSearchPlaceData?.spaceCount === 0 &&
         textSearchCurationData?.CurationCount === 0 && <SearchNoResult />}
@@ -167,7 +167,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
               onChange={searchBarHandlers.handleTabIndex}
             />
             {searchBarTabIndex === 0 && (
-              <div className="h-full px-[2rem] pt-[2rem] pb-[14.5rem] overflow-y-scroll">
+              <div className="h-full px-[2rem] pt-[2rem] pb-[24.5rem] overflow-y-scroll">
                 {textSearchPlaceData.spaceList.map((place) => (
                   <div key={place.id + place.type} className="mb-[4rem]">
                     <PlaceInfoCard
@@ -220,7 +220,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
                   </div>
                 </div>
                 <Divider className="h-[0.1rem] bg-line-gray-3" />
-                <div className="h-full px-[2rem] pt-[1.2rem] pb-[14.5rem] overflow-y-scroll">
+                <div className="h-full px-[2rem] pt-[1.2rem] pb-[24.5rem] overflow-y-scroll">
                   {textSearchPlaceData.spaceList.map((place) => (
                     <div key={place.id + place.type} className="mb-[4rem]">
                       <PlaceInfoCard
@@ -308,7 +308,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
               onChange={searchBarHandlers.handleTabIndex}
             />
             {searchBarTabIndex === 0 && (
-              <div className="h-full px-[2rem] pt-[2rem] pb-[14.5rem] overflow-y-scroll">
+              <div className="h-full px-[2rem] pt-[2rem] pb-[24.5rem] overflow-y-scroll">
                 {keywordSearchPlaceData.spaceList.map((place) => (
                   <div key={place.id + place.type} className="mb-[4rem]">
                     <PlaceInfoCard {...place} keywordCategoryNum={2} />
@@ -352,7 +352,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
                   </div>
                 </div>
                 <Divider className="h-[0.1rem] bg-line-gray-3" />
-                <div className="h-full px-[2rem] pt-[1.2rem] pb-[14.5rem] overflow-y-scroll">
+                <div className="h-full px-[2rem] pt-[1.2rem] pb-[24.5rem] overflow-y-scroll">
                   {keywordSearchPlaceData.spaceList.map((place) => (
                     <div key={place.id + place.type} className="mb-[4rem]">
                       <PlaceInfoCard {...place} keywordCategoryNum={2} />
@@ -379,6 +379,6 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
             )}
           </div>
         )}
-    </>
+    </main>
   );
 }

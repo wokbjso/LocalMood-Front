@@ -5,7 +5,7 @@ import PlaceRecordTopBar from "@feature/record/components/PlaceRecordTopBar/Plac
 export default async function RecordScrappedMore() {
   const scrappedPlace = await GetPlaceScrapped();
   return (
-    <div>
+    <div className="w-[100%] h-[100%]">
       <PlaceRecordTopBar
         showIndicator={false}
         indicatorIndex={0}
