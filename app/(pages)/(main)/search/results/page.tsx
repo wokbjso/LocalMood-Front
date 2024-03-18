@@ -28,12 +28,12 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
     const response = await fetch(
       `/api/search/curation-search-text?search_query=${searchParams.search_query}`
     );
-    if (!response.ok) {
+    if (response.ok) {
+      setTextSearchCurationData(await response.json());
+    } else {
       alert("오류가 발생했습니다.");
       return;
     }
-
-    setTextSearchCurationData(await response.json());
   };
   const getTextSearchPlaceData = async () => {
     const response = await fetch("/api/search/place-search-text", {
@@ -42,15 +42,14 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ name: searchParams.search_query }),
-      cache: "no-cache",
     });
 
-    if (!response.ok) {
+    if (response.ok) {
+      setTextSearchPlaceData(await response.json());
+    } else {
       alert("오류가 발생했습니다.");
       return;
     }
-
-    setTextSearchPlaceData(await response.json());
   };
 
   const getKeywordSearchPlaceData = async () => {
@@ -62,12 +61,12 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
       body: JSON.stringify(searchParams.keyword),
     });
 
-    if (!response.ok) {
+    if (response.ok) {
+      setKeywordSearchPlaceData(await response.json());
+    } else {
       alert("오류가 발생했습니다.");
       return;
     }
-
-    setKeywordSearchPlaceData(await response.json());
   };
 
   const manufactureCurationKeyword = () => {
@@ -96,12 +95,12 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
       body: JSON.stringify(manufactureCurationKeyword()),
     });
 
-    if (!response.ok) {
+    if (response.ok) {
+      setKeywordSearchCurationData(await response.json());
+    } else {
       alert("오류가 발생했습니다.");
       return;
     }
-
-    setKeywordSearchCurationData(await response.json());
   };
 
   useEffect(() => {
