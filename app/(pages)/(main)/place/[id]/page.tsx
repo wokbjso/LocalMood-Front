@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Divider from "@common/components/ui/divider/Divider";
-import Slider from "@common/components/layout/Slider/Slider";
 import PlaceDetailInfo from "@feature/place/components/PlaceDetail/PlaceDetailInfo";
 import CurationScrapped from "@feature/curation/components/CurationScrapped/CurationScrapped";
 import PlaceDetailKeywordEvaluation from "@feature/place/components/PlaceDetail/PlaceDetailKeywordEvaluation";
@@ -9,6 +8,8 @@ import GetPlaceDetail from "@feature/place/queries/getPlaceDetail";
 import PlaceDetailTopBar from "@feature/place/components/PlaceDetail/PlaceDetailTopBar";
 import PlaceInfoCard from "@feature/place/components/PlaceInfoCard/PlaceInfoCard";
 import getMyCuration from "@feature/curation/queries/getMyCuration";
+import SliderLayout from "@common/components/layout/SliderLayout/SliderLayout";
+import PlaceDetailImageSlider from "@feature/place/components/PlaceDetail/PlaceDetailImageSlider";
 
 export default async function PlaceDetail({
   params: { id },
@@ -27,14 +28,7 @@ export default async function PlaceDetail({
         imgUrl={detailData.info.imgUrlList[0]}
         className="absolute top-[1.2rem] z-10"
       />
-      <div className="w-full h-[30rem] mb-[1.5rem] relative">
-        <Image
-          src={detailData.info.imgUrlList[0]}
-          alt="공간 상세 사진"
-          fill
-          sizes="100vw"
-        />
-      </div>
+      <PlaceDetailImageSlider placeImages={detailData.info.imgUrlList} />
       <PlaceDetailInfo
         id={detailData.info.id}
         name={detailData.info.name}
@@ -72,7 +66,7 @@ export default async function PlaceDetail({
         <span className="text-black headline2">
           {detailData.info.name}와(과) 비슷한 장소
         </span>
-        <Slider className="mt-[1.6rem] mb-[6rem]">
+        <SliderLayout className="mt-[1.6rem] mb-[6rem]">
           {detailData.similarSpaceList.slice(0, 6).map((data) => (
             <PlaceInfoCard
               key={data.id}
@@ -82,13 +76,13 @@ export default async function PlaceDetail({
               className="w-[16.3rem] mr-[0.8rem]"
             />
           ))}
-        </Slider>
+        </SliderLayout>
         {detailData.relatedCurationList.length > 0 && (
           <span className="text-black headline2">
             {detailData.info.name}이(가) 담긴 큐레이션
           </span>
         )}
-        <Slider className="mt-[1.6rem] mb-[6rem]">
+        <SliderLayout className="mt-[1.6rem] mb-[6rem]">
           {detailData.relatedCurationList.map((data) => (
             <CurationScrapped
               key={data.id}
@@ -96,7 +90,7 @@ export default async function PlaceDetail({
               className="w-[33.5rem] mr-[0.8rem]"
             />
           ))}
-        </Slider>
+        </SliderLayout>
       </section>
     </div>
   );

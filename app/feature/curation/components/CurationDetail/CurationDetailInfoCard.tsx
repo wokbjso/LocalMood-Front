@@ -1,12 +1,12 @@
 import ArrowIcon from "@common/assets/icons/arrow/arrow-right.svg";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import Image from "next/image";
-import Slider from "@common/components/layout/Slider/Slider";
-import { forwardRef, useEffect } from "react";
+import { forwardRef } from "react";
 import { CurationPlaceProps } from "@feature/curation/type";
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import PlaceInfoCardBottom from "@feature/place/components/PlaceInfoCardBottom/PlaceInfoCardBottom";
+import SliderLayout from "@common/components/layout/SliderLayout/SliderLayout";
 
 const CurationDetailInfoCard = forwardRef<
   HTMLDivElement,
@@ -41,7 +41,7 @@ const CurationDetailInfoCard = forwardRef<
   return (
     <>
       <div className="w-full pt-[13rem]" ref={ref}>
-        <Slider>
+        <SliderLayout>
           <div className="flex gap-[0.8rem] mr-[0.8rem]">
             {props.imageUrls?.map((url, i) => (
               <div key={url + i} className="relative w-[28rem] h-[28rem]">
@@ -55,7 +55,7 @@ const CurationDetailInfoCard = forwardRef<
               </div>
             ))}
           </div>
-        </Slider>
+        </SliderLayout>
         <div className="mb-[-9rem]">
           <div className="w-full pr-[1.9rem]">
             <div className="pt-[2rem] flex justify-between ">
