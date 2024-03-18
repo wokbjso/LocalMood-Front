@@ -14,6 +14,7 @@ export default async function PlaceScrapList() {
         </div>
       )}
       {scrappedPlace &&
+        scrappedPlace.length > 0 &&
         scrappedPlace.map((li, index) => (
           <div key={index}>
             <PlaceInfoCard
