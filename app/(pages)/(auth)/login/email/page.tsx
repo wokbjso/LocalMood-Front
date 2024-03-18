@@ -73,7 +73,7 @@ export default function Login() {
           href={{ pathname: "/" }}
           className="flex justify-center mt-[2rem]"
         >
-          <span className="text-text-gray-6 body2-semibold border border-b-text-gray-6">
+          <span className="text-text-gray-6 body2-semibold pb-[0.4rem] border-b-[1px] border-b-text-gray-6">
             로그인없이 둘러보기
           </span>
         </Link>
