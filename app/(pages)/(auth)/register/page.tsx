@@ -38,7 +38,7 @@ export default function Register() {
     ).length >= 1;
 
   return (
-    <div className="px-[2rem] pb-[9.6rem]">
+    <div className="relative h-[100vh] px-[2rem]">
       <BasicTopBar color="#9E9E9E" className="px-0 mb-[4.8rem]">
         <div className="w-full flex justify-start items-center text-black headline3">
           회원가입
@@ -62,11 +62,12 @@ export default function Register() {
           label="닉네임"
           errorMsg={getErrorMessage("nickname")}
           onChange={handlers.changeNickname}
-          className="mb-[16.1rem]"
         />
-        <Button disabled={ableRegister} className="w-full">
-          가입하기
-        </Button>
+        <div className="absolute flex w-full px-[2rem] bottom-[4rem] left-0">
+          <Button disabled={ableRegister} className="w-full">
+            가입하기
+          </Button>
+        </div>
       </form>
     </div>
   );
