@@ -99,7 +99,7 @@ export default function CurationTopAppBar({
         />
       )}
       {menuModalOpen && (
-        <div className="fixed top-0 left-0 h-[100vh] w-full z-50">
+        <div className="w-[100%] h-[100%] fixed top-0 left-0 z-50">
           <CurationMenuModal id={id} handleMenuModalState={setMenuModalOpen} />
         </div>
       )}

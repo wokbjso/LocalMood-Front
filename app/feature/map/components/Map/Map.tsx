@@ -129,8 +129,8 @@ export default function Map({
 
   return (
     <>
-      <div className="bg-black opacity-[0.5] w-full h-[100vh] fixed top-0 right-0 z-10" />
-      <div className={twMerge("w-full h-[100vh]", className)}>
+      <div className="w-[100%] h-[100%] bg-black opacity-[0.5] fixed top-0 right-0 z-10" />
+      <div className={twMerge("w-[100%] h-[100%]", className)}>
         <div
           ref={(el) => assignMultipleRefs(el, [outsideClickRef, mapRef])}
           className="w-full h-[78%]"
