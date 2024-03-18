@@ -21,7 +21,7 @@ export default async function Home() {
   } = await GetRandomPlaces();
   const randomCuration = await GetRandomCuration();
   return (
-    <div className="w-[100%] h-[100%] overflow-auto">
+    <div className="w-[100%] h-[100%] overflow-y-auto overflow-x-hidden">
       <HomeBanner
         textNormalFirst="나에게 딱 맞는 공간을"
         textBold="키워드"
