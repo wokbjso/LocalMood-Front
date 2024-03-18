@@ -1,12 +1,11 @@
-import Slider from "@common/components/layout/Slider/Slider";
 import { twMerge } from "tailwind-merge";
 import dynamic from "next/dynamic";
-import GetRandomPlaces from "@feature/place/queries/getRandomPlaces";
 import {
   PlaceInfoCardBottomProps,
   PlaceInfoCardTopProps,
 } from "@feature/place/type";
 import getMyCuration from "@feature/curation/queries/getMyCuration";
+import SliderLayout from "@common/components/layout/SliderLayout/SliderLayout";
 const PlaceInfoCard = dynamic(() => import("../PlaceInfoCard/PlaceInfoCard"));
 
 interface PlaceHomeSliderProps {
@@ -28,7 +27,7 @@ export default async function PlaceHomeSlider({
       <span className="text-primary-normal headline2"># </span>
       <span className="text-black headline2">{mainText}</span>
       <span className="text-text-gray-6 body1"> {subText}</span>
-      <Slider className="mt-[1.6rem]">
+      <SliderLayout className="mt-[1.6rem]">
         {placeData &&
           placeData.map(
             (data: PlaceInfoCardTopProps & PlaceInfoCardBottomProps) => (
@@ -41,7 +40,7 @@ export default async function PlaceHomeSlider({
               />
             )
           )}
-      </Slider>
+      </SliderLayout>
     </section>
   );
 }

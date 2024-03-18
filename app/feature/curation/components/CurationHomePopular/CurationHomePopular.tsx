@@ -60,16 +60,14 @@ export default function CurationHomePopular({
           <RightArrow />
         </div>
       </div>
-      <Slider {...sliderSettings}>
-        {curationList.map((curation, i) => {
-          return (
-            <CurationMain
-              key={curation.author + i}
-              {...curation}
-              className="mb-[2rem] w-full mr-[2rem]"
-            />
-          );
-        })}
+      <Slider {...sliderSettings} className="px-[2rem]">
+        {curationList.map((curation, i) => (
+          <CurationMain
+            key={curation.author + i}
+            {...curation}
+            className="mb-[2rem] w-[100%]"
+          />
+        ))}
       </Slider>
     </section>
   );
