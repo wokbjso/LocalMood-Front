@@ -23,7 +23,7 @@ export default function SelectPhoto({
   handleDeleteImage,
 }: SelectPhoto) {
   return (
-    <div className="absolute w-full h-[100vh] overflow-hidden">
+    <div className="absolute w-[100%] h-[100%] overflow-hidden">
       <PlaceRecordTopBar
         showIndicator={true}
         text="방문한 사진을 업로드해주세요!"

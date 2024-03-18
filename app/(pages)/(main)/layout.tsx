@@ -16,7 +16,7 @@ export default function MainLayout({
       ></Script>
       <Suspense
         fallback={
-          <div className="flex justify-center items-center h-[100vh]">
+          <div className="w-[100%] h-[100%] flex justify-center items-center">
             <BeatLoader color="#36d7b7" />
           </div>
         }

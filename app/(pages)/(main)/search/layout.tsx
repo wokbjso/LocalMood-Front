@@ -1,17 +1,15 @@
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
-import { ReactNode, Suspense } from "react";
+import { ReactNode } from "react";
 
 export default function SearchLayout({ children }: { children: ReactNode }) {
   return (
-    <div>
+    <div className="w-[100%] h-[100%]">
       <BasicTopBar color="#9E9E9E" className="fixed pt-[1.2rem]">
-        <Suspense fallback={null}>
-          <SearchBar
-            placeholder="공간, 큐레이션을 검색해보세요"
-            className="rounded-[1000px]"
-          />
-        </Suspense>
+        <SearchBar
+          placeholder="공간, 큐레이션을 검색해보세요"
+          className="rounded-[1000px]"
+        />
       </BasicTopBar>
       {children}
     </div>

@@ -20,7 +20,7 @@ export default function RecordComplete({
   };
   return (
     <>
-      <div className="absolute w-full h-[100vh] flex flex-col justify-center items-center">
+      <div className="absolute w-[100%] h-[100%] flex flex-col justify-center items-center">
         {hasSomeData ? (
           <div className="pb-[10rem]">
             <CompleteIcon />

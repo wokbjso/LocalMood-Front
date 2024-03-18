@@ -18,7 +18,7 @@ export default async function PlaceDetail({
   const detailData = await GetPlaceDetail(id);
   const myCurationData = await getMyCuration();
   return (
-    <div className="relative pb-[12rem] w-full h-[100vh] overflow-auto">
+    <div className="w-[100%] h-[100%] relative pb-[12rem] overflow-auto">
       <PlaceDetailTopBar
         type={detailData.info.type}
         address={detailData.info.address}

@@ -124,7 +124,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
         textSearchPlaceData?.spaceCount === 0 &&
         textSearchCurationData &&
         textSearchCurationData.CurationCount > 0 && (
-          <div className="h-[100vh] pt-[5.4rem] overflow-y-hidden">
+          <div className="h-[100%] pt-[5.4rem] overflow-y-hidden">
             <Tab
               sections={[
                 { text: "공간", length: 0 },
@@ -158,7 +158,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
         textSearchPlaceData &&
         textSearchPlaceData?.spaceCount > 0 &&
         textSearchCurationData?.CurationCount === 0 && (
-          <div className="h-[100vh] pt-[5.4rem] overflow-y-hidden">
+          <div className="h-[100%] pt-[5.4rem] overflow-y-hidden">
             <Tab
               sections={[
                 { text: "공간", length: textSearchPlaceData.spaceCount },
@@ -192,7 +192,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
         textSearchPlaceData?.spaceCount > 0 &&
         textSearchCurationData &&
         textSearchCurationData?.CurationCount > 0 && (
-          <div className="h-[100vh] pt-[5.4rem] overflow-y-hidden">
+          <div className="h-[100%] pt-[5.4rem] overflow-y-hidden">
             <Tab
               sections={[
                 { text: "공간", length: textSearchPlaceData.spaceCount },
@@ -220,7 +220,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
                   </div>
                 </div>
                 <Divider className="h-[0.1rem] bg-line-gray-3" />
-                <div className="h-full px-[2rem] pt-[1.2rem] pb-[24.5rem] overflow-y-scroll">
+                <div className="h-[100%] px-[2rem] pt-[1.2rem] pb-[24.5rem] overflow-auto">
                   {textSearchPlaceData.spaceList.map((place) => (
                     <div key={place.id + place.type} className="mb-[4rem]">
                       <PlaceInfoCard
@@ -265,7 +265,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
         keywordSearchPlaceData?.spaceCount === 0 &&
         keywordSearchCurationData &&
         keywordSearchCurationData.CurationCount > 0 && (
-          <div className="h-[100vh] pt-[5.4rem] overflow-y-hidden">
+          <div className="h-[100%] pt-[5.4rem] overflow-y-hidden">
             <Tab
               sections={[
                 { text: "공간", length: 0 },
@@ -299,7 +299,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
         keywordSearchPlaceData &&
         keywordSearchPlaceData?.spaceCount > 0 &&
         keywordSearchCurationData?.CurationCount === 0 && (
-          <div className="h-[100vh] pt-[5.4rem] overflow-y-hidden">
+          <div className="h-[100%] pt-[5.4rem] overflow-y-hidden">
             <Tab
               sections={[
                 { text: "공간", length: keywordSearchPlaceData.spaceCount },
@@ -324,7 +324,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
         keywordSearchPlaceData?.spaceCount > 0 &&
         keywordSearchCurationData &&
         keywordSearchCurationData?.CurationCount > 0 && (
-          <div className="h-[100vh] pt-[5.4rem] overflow-y-hidden">
+          <div className="h-[100%] pt-[5.4rem] overflow-y-hidden">
             <Tab
               sections={[
                 { text: "공간", length: keywordSearchPlaceData.spaceCount },

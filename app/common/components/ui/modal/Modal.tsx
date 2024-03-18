@@ -10,7 +10,7 @@ const Modal = forwardRef(
   ({ children, className }: ModalProps, ref: ForwardedRef<HTMLDivElement>) => {
     return (
       <>
-        <div className="w-full h-[100vh] fixed bottom-0 left-0 bg-black opacity-[0.5] z-50" />
+        <div className="w-[100%] h-[100%] fixed bottom-0 left-0 bg-black opacity-[0.5] z-50" />
         <div
           ref={ref}
           className={twMerge(
