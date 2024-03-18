@@ -38,7 +38,7 @@ export default function Login() {
     ).length >= 1;
 
   return (
-    <div className="px-[2rem] pb-[6.6rem]">
+    <div className="relative h-[100vh] px-[2rem]">
       <BasicTopBar color="#9E9E9E" className="px-0" />
       <div className="flex justify-center mb-[7.5rem]">
         <Logo />
@@ -61,26 +61,23 @@ export default function Login() {
           로그인하기
         </Button>
       </form>
-      <div className="flex justify-center items-center mt-[2rem] mb-[16.1rem]">
-        <span className="mr-[0.4rem] text-text-gray-8 body2-semibold">
-          비밀번호 찾기
-        </span>
-        <ArrowRight />
+      <div className="absolute flex flex-col items-center w-full bottom-[4rem] left-0">
+        <Link
+          href={{
+            pathname: "/register",
+          }}
+        >
+          <Button variant="line">회원가입 하기</Button>
+        </Link>
+        <Link
+          href={{ pathname: "/" }}
+          className="flex justify-center mt-[2rem]"
+        >
+          <span className="text-text-gray-6 body2-semibold border border-b-text-gray-6">
+            로그인없이 둘러보기
+          </span>
+        </Link>
       </div>
-      <Link
-        href={{
-          pathname: "/register",
-        }}
-      >
-        <Button variant="line" className="w-full">
-          회원가입 하기
-        </Button>
-      </Link>
-      <LinkLayout routeUrl="/" className="flex justify-center mt-[2rem]">
-        <span className="text-text-gray-6 body2-semibold pb-[0.4rem] border border-b-text-gray-6">
-          로그인없이 둘러보기
-        </span>
-      </LinkLayout>
     </div>
   );
 }
