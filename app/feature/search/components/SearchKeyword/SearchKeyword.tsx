@@ -46,15 +46,6 @@ export default function SearchKeyword() {
     handlers.changeKoreanOptionIndex(index);
   };
 
-  // function setEmptyKeysToAll(obj: { [key: string]: string }) {
-  //   const modifiedObj = obj;
-  //   for (const key in modifiedObj) {
-  //     if (modifiedObj[key] === "") {
-  //       modifiedObj[key] = "ALL";
-  //     }
-  //   }
-  //   return modifiedObj;
-  // }
   return (
     searchParams.get("keyword_search") === "true" && (
       <>

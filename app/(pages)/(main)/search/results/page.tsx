@@ -141,14 +141,14 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
     searchParams.search_query,
   ]);
   return (
-    <main className="w-[100%] h-[100%]">
+    <div className="w-[100%] h-[100%]">
       {searchParams.search_query &&
         textSearchPlaceData?.spaceCount === 0 &&
         textSearchCurationData?.CurationCount === 0 && <SearchNoResult />}
       {searchParams.search_query &&
         textSearchPlaceData?.spaceCount === 0 &&
         textSearchCurationData &&
-        textSearchCurationData.CurationCount > 0 && (
+        textSearchCurationData?.CurationCount > 0 && (
           <div className="h-[100%] pt-[5.4rem] overflow-y-hidden">
             <Tab
               sections={[
@@ -404,6 +404,6 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
             )}
           </div>
         )}
-    </main>
+    </div>
   );
 }

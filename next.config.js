@@ -7,7 +7,7 @@ module.exports = {
 
     return config;
   },
-  reactStrictMode: false,
+  reactStrictMode: true,
   images: {
     domains: [
       "media.istockphoto.com",
