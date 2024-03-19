@@ -6,7 +6,7 @@ import KakaoScript from "@feature/auth/components/KakaoScript/KakaoScript";
 
 export default function Login() {
   return (
-    <main className="w-[100%] h-[100%]">
+    <div className="w-[100%] h-[100%]">
       <KakaoScript />
       <div className="relative h-[30rem] w-full mb-[6rem]">
         <Image src="/loginLogo.png" alt="로그인 이미지" fill sizes="100vw" />
@@ -33,6 +33,6 @@ export default function Login() {
           </span>
         </LinkLayout>
       </div>
-    </main>
+    </div>
   );
 }
