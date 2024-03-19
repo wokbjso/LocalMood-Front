@@ -9,23 +9,19 @@ export default function RecordSearch({ searchParams }: { searchParams: any }) {
   const [textSearchPlaceData, setTextSearchPlaceData] =
     useState<SearchPlaceResponse>();
   const getTextSearchPlaceData = useCallback(async () => {
-    try {
-      const response = await fetch("/api/search/place-search-text", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name: searchParams.search_query }),
-      });
+    const response = await fetch("/api/search/place-search-text", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name: searchParams.search_query }),
+    });
 
-      if (response.ok) {
-        setTextSearchPlaceData(await response.json());
-      } else {
-        alert("오류가 발생했습니다.");
-        return;
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error);
+    if (response.ok) {
+      setTextSearchPlaceData(await response.json());
+    } else {
+      alert("오류가 발생했습니다.");
+      return;
     }
   }, [searchParams.search_query]);
 
