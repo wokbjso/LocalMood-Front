@@ -25,23 +25,23 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
     useSearchBar();
 
-  const getTextSearchCurationData = useCallback(async () => {
-    const response = await fetch(
-      `/api/search/curation-search-text?search_query=${searchParams.search_query}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        cache: "no-store",
-      }
-    );
-    if (response.ok) {
-      setTextSearchCurationData(await response.json());
-    } else {
-      alert("오류가 발생했습니다.");
-      return;
-    }
-  }, [searchParams.search_query]);
+  // const getTextSearchCurationData = useCallback(async () => {
+  //   const response = await fetch(
+  //     `/api/search/curation-search-text?search_query=${searchParams.search_query}`,
+  //     {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       cache: "no-store",
+  //     }
+  //   );
+  //   if (response.ok) {
+  //     setTextSearchCurationData(await response.json());
+  //   } else {
+  //     alert("오류가 발생했습니다.");
+  //     return;
+  //   }
+  // }, [searchParams.search_query]);
 
   const getTextSearchPlaceData = useCallback(async () => {
     {
@@ -62,80 +62,81 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
       }
     }
   }, [searchParams.search_query]);
+  console.log(textSearchPlaceData);
 
-  const getKeywordSearchPlaceData = useCallback(async () => {
-    {
-      const response = await fetch("/api/search/place-search-keyword", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        cache: "no-store",
-        body: JSON.stringify(searchParams.keyword),
-      });
+  // const getKeywordSearchPlaceData = useCallback(async () => {
+  //   {
+  //     const response = await fetch("/api/search/place-search-keyword", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       cache: "no-store",
+  //       body: JSON.stringify(searchParams.keyword),
+  //     });
 
-      if (response.ok) {
-        setKeywordSearchPlaceData(await response.json());
-      } else {
-        alert("오류가 발생했습니다.");
-        return;
-      }
-    }
-  }, [searchParams.keyword]);
+  //     if (response.ok) {
+  //       setKeywordSearchPlaceData(await response.json());
+  //     } else {
+  //       alert("오류가 발생했습니다.");
+  //       return;
+  //     }
+  //   }
+  // }, [searchParams.keyword]);
 
-  const manufactureCurationKeyword = useCallback(() => {
-    {
-      let keyword = [];
-      let count = 0;
+  // const manufactureCurationKeyword = useCallback(() => {
+  //   {
+  //     let keyword = [];
+  //     let count = 0;
 
-      for (const [key, value] of Object.entries(
-        JSON.parse(searchParams.keyword as string)
-      )) {
-        if (key !== "type" && value !== "ALL") {
-          keyword.push(value as string);
-          count++;
-        }
-        if (count === 2) break;
-      }
+  //     for (const [key, value] of Object.entries(
+  //       JSON.parse(searchParams.keyword as string)
+  //     )) {
+  //       if (key !== "type" && value !== "ALL") {
+  //         keyword.push(value as string);
+  //         count++;
+  //       }
+  //       if (count === 2) break;
+  //     }
 
-      return keyword;
-    }
-  }, [searchParams.keyword]);
+  //     return keyword;
+  //   }
+  // }, [searchParams.keyword]);
 
-  const getKeywordSearchCurationData = useCallback(async () => {
-    {
-      const response = await fetch("/api/search/curation-search-keyword", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        cache: "no-store",
-        body: JSON.stringify(manufactureCurationKeyword()),
-      });
+  // const getKeywordSearchCurationData = useCallback(async () => {
+  //   {
+  //     const response = await fetch("/api/search/curation-search-keyword", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       cache: "no-store",
+  //       body: JSON.stringify(manufactureCurationKeyword()),
+  //     });
 
-      if (response.ok) {
-        setKeywordSearchCurationData(await response.json());
-      } else {
-        alert("오류가 발생했습니다.");
-        return;
-      }
-    }
-  }, [manufactureCurationKeyword]);
+  //     if (response.ok) {
+  //       setKeywordSearchCurationData(await response.json());
+  //     } else {
+  //       alert("오류가 발생했습니다.");
+  //       return;
+  //     }
+  //   }
+  // }, [manufactureCurationKeyword]);
 
   useEffect(() => {
     if (searchParams.search_query) {
       getTextSearchPlaceData();
-      getTextSearchCurationData();
+      // getTextSearchCurationData();
     }
 
-    if (searchParams.keyword) {
-      getKeywordSearchPlaceData();
-      getKeywordSearchCurationData();
-    }
+    // if (searchParams.keyword) {
+    //   getKeywordSearchPlaceData();
+    //   getKeywordSearchCurationData();
+    // }
   }, [
-    getKeywordSearchCurationData,
-    getTextSearchCurationData,
-    getKeywordSearchPlaceData,
+    // getKeywordSearchCurationData,
+    // getTextSearchCurationData,
+    // getKeywordSearchPlaceData,
     getTextSearchPlaceData,
     searchParams.keyword,
     searchParams.search_query,
