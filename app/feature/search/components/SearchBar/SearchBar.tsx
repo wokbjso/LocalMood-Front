@@ -1,10 +1,10 @@
 "use client";
 
 import { twMerge } from "tailwind-merge";
-import Delete from "@common/assets/icons/close/close-gray.svg";
 import React, { ChangeEvent, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import SearchIcon from "@common/assets/icons/search/SearchIcon";
+import CloseGrayIcon from "@common/assets/icons/close/CloseGrayIcon";
 
 interface SearchBarProps {
   variant?: "home" | "record";
@@ -67,7 +67,9 @@ export default function SearchBar({
           onKeyDown={handleKeyPress}
         />
       </div>
-      <Delete onClick={handleTextDelete} />
+      <div className="flex justify-center items-center bg-line-gray-3 rounded-full w-[2.4rem] h-[2.4rem]">
+        <CloseGrayIcon className="" />
+      </div>
     </div>
   );
 }

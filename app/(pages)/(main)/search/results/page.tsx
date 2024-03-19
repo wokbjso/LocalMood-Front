@@ -4,7 +4,7 @@ import useSearchBar from "@feature/search/components/SearchBar/useSearchBar";
 import Tab from "@common/components/ui/tab/Tab";
 import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
 import SearchNoResult from "@feature/search/components/SearchNoResult/SearchNoResult";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   SearchCurationResponse,
   SearchPlaceResponse,
@@ -24,7 +24,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
     useState<SearchCurationResponse>();
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
     useSearchBar();
-  const getTextSearchCurationData = async () => {
+  const getTextSearchCurationData = useCallback(async () => {
     const response = await fetch(
       `/api/search/curation-search-text?search_query=${searchParams.search_query}`,
       {
@@ -40,77 +40,86 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
       alert("오류가 발생했습니다.");
       return;
     }
-  };
-  const getTextSearchPlaceData = async () => {
-    const response = await fetch("/api/search/place-search-text", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      cache: "no-cache",
-      body: JSON.stringify({ name: searchParams.search_query }),
-    });
+  }, [searchParams.search_query]);
 
-    if (response.ok) {
-      setTextSearchPlaceData(await response.json());
-    } else {
-      alert("오류가 발생했습니다.");
-      return;
-    }
-  };
+  const getTextSearchPlaceData = useCallback(async () => {
+    {
+      const response = await fetch("/api/search/place-search-text", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-cache",
+        body: JSON.stringify({ name: searchParams.search_query }),
+      });
 
-  const getKeywordSearchPlaceData = async () => {
-    const response = await fetch("/api/search/place-search-keyword", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      cache: "no-cache",
-      body: JSON.stringify(searchParams.keyword),
-    });
-
-    if (response.ok) {
-      setKeywordSearchPlaceData(await response.json());
-    } else {
-      alert("오류가 발생했습니다.");
-      return;
-    }
-  };
-
-  const manufactureCurationKeyword = () => {
-    let keyword = [];
-    let count = 0;
-
-    for (const [key, value] of Object.entries(
-      JSON.parse(searchParams.keyword as string)
-    )) {
-      if (key !== "type" && value !== "ALL") {
-        keyword.push(value as string);
-        count++;
+      if (response.ok) {
+        setTextSearchPlaceData(await response.json());
+      } else {
+        alert("오류가 발생했습니다.");
+        return;
       }
-      if (count === 2) break;
     }
+  }, [searchParams.search_query]);
 
-    return keyword;
-  };
+  const getKeywordSearchPlaceData = useCallback(async () => {
+    {
+      const response = await fetch("/api/search/place-search-keyword", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-cache",
+        body: JSON.stringify(searchParams.keyword),
+      });
 
-  const getKeywordSearchCurationData = async () => {
-    const response = await fetch("/api/search/curation-search-keyword", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      cache: "no-cache",
-      body: JSON.stringify(manufactureCurationKeyword()),
-    });
-
-    if (response.ok) {
-      setKeywordSearchCurationData(await response.json());
-    } else {
-      alert("오류가 발생했습니다.");
-      return;
+      if (response.ok) {
+        setKeywordSearchPlaceData(await response.json());
+      } else {
+        alert("오류가 발생했습니다.");
+        return;
+      }
     }
-  };
+  }, [searchParams.keyword]);
+
+  const manufactureCurationKeyword = useCallback(() => {
+    {
+      let keyword = [];
+      let count = 0;
+
+      for (const [key, value] of Object.entries(
+        JSON.parse(searchParams.keyword as string)
+      )) {
+        if (key !== "type" && value !== "ALL") {
+          keyword.push(value as string);
+          count++;
+        }
+        if (count === 2) break;
+      }
+
+      return keyword;
+    }
+  }, [searchParams.keyword]);
+
+  const getKeywordSearchCurationData = useCallback(async () => {
+    {
+      const response = await fetch("/api/search/curation-search-keyword", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-cache",
+        body: JSON.stringify(manufactureCurationKeyword()),
+      });
+
+      if (response.ok) {
+        setKeywordSearchCurationData(await response.json());
+      } else {
+        alert("오류가 발생했습니다.");
+        return;
+      }
+    }
+  }, [manufactureCurationKeyword]);
 
   useEffect(() => {
     if (searchParams.search_query) {
@@ -122,7 +131,14 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
       getKeywordSearchPlaceData();
       getKeywordSearchCurationData();
     }
-  }, [searchParams]);
+  }, [
+    getKeywordSearchCurationData,
+    getTextSearchCurationData,
+    getKeywordSearchPlaceData,
+    getTextSearchPlaceData,
+    searchParams.keyword,
+    searchParams.search_query,
+  ]);
   return (
     <main className="w-[100%] h-[100%]">
       {searchParams.search_query &&
