@@ -1,11 +1,19 @@
 import SearchImage from "@common/assets/images/search_start.svg";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import Button from "@common/components/ui/buttons/Button/Button";
+import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
+import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import SearchKeyword from "@feature/search/components/SearchKeyword/SearchKeyword";
 
 export default function SearchPage() {
   return (
     <div className="w-[100%] h-[100%]">
+      <BasicTopBar color="#9E9E9E" className="fixed pt-[1.2rem]">
+        <SearchBar
+          placeholder="공간, 큐레이션을 검색해보세요"
+          className="rounded-[1000px]"
+        />
+      </BasicTopBar>
       <SearchKeyword />
       <div className="flex justify-center pt-[8.2rem] mb-[0.8rem]">
         <SearchImage />

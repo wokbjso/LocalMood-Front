@@ -12,6 +12,8 @@ import {
 import Divider from "@common/components/ui/divider/Divider";
 import FilterIcon from "@common/assets/icons/filter/filter-keyword.svg";
 import PlaceInfoCard from "@feature/place/components/PlaceInfoCard/PlaceInfoCard";
+import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
+import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 
 export default function SearchResult({ searchParams }: { searchParams: any }) {
   const [textSearchPlaceData, setTextSearchPlaceData] =
@@ -25,23 +27,23 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
     useSearchBar();
 
-  // const getTextSearchCurationData = useCallback(async () => {
-  //   const response = await fetch(
-  //     `/api/search/curation-search-text?search_query=${searchParams.search_query}`,
-  //     {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       cache: "no-store",
-  //     }
-  //   );
-  //   if (response.ok) {
-  //     setTextSearchCurationData(await response.json());
-  //   } else {
-  //     alert("오류가 발생했습니다.");
-  //     return;
-  //   }
-  // }, [searchParams.search_query]);
+  const getTextSearchCurationData = useCallback(async () => {
+    const response = await fetch(
+      `/api/search/curation-search-text?search_query=${searchParams.search_query}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-store",
+      }
+    );
+    if (response.ok) {
+      setTextSearchCurationData(await response.json());
+    } else {
+      alert("오류가 발생했습니다.");
+      return;
+    }
+  }, [searchParams.search_query]);
 
   const getTextSearchPlaceData = useCallback(async () => {
     {
@@ -62,87 +64,92 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
       }
     }
   }, [searchParams.search_query]);
-  console.log(textSearchPlaceData);
 
-  // const getKeywordSearchPlaceData = useCallback(async () => {
-  //   {
-  //     const response = await fetch("/api/search/place-search-keyword", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       cache: "no-store",
-  //       body: JSON.stringify(searchParams.keyword),
-  //     });
+  const getKeywordSearchPlaceData = useCallback(async () => {
+    {
+      const response = await fetch("/api/search/place-search-keyword", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-store",
+        body: JSON.stringify(searchParams.keyword),
+      });
 
-  //     if (response.ok) {
-  //       setKeywordSearchPlaceData(await response.json());
-  //     } else {
-  //       alert("오류가 발생했습니다.");
-  //       return;
-  //     }
-  //   }
-  // }, [searchParams.keyword]);
+      if (response.ok) {
+        setKeywordSearchPlaceData(await response.json());
+      } else {
+        alert("오류가 발생했습니다.");
+        return;
+      }
+    }
+  }, [searchParams.keyword]);
 
-  // const manufactureCurationKeyword = useCallback(() => {
-  //   {
-  //     let keyword = [];
-  //     let count = 0;
+  const manufactureCurationKeyword = useCallback(() => {
+    {
+      let keyword = [];
+      let count = 0;
 
-  //     for (const [key, value] of Object.entries(
-  //       JSON.parse(searchParams.keyword as string)
-  //     )) {
-  //       if (key !== "type" && value !== "ALL") {
-  //         keyword.push(value as string);
-  //         count++;
-  //       }
-  //       if (count === 2) break;
-  //     }
+      for (const [key, value] of Object.entries(
+        JSON.parse(searchParams.keyword as string)
+      )) {
+        if (key !== "type" && value !== "ALL") {
+          keyword.push(value as string);
+          count++;
+        }
+        if (count === 2) break;
+      }
 
-  //     return keyword;
-  //   }
-  // }, [searchParams.keyword]);
+      return keyword;
+    }
+  }, [searchParams.keyword]);
 
-  // const getKeywordSearchCurationData = useCallback(async () => {
-  //   {
-  //     const response = await fetch("/api/search/curation-search-keyword", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       cache: "no-store",
-  //       body: JSON.stringify(manufactureCurationKeyword()),
-  //     });
+  const getKeywordSearchCurationData = useCallback(async () => {
+    {
+      const response = await fetch("/api/search/curation-search-keyword", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-store",
+        body: JSON.stringify(manufactureCurationKeyword()),
+      });
 
-  //     if (response.ok) {
-  //       setKeywordSearchCurationData(await response.json());
-  //     } else {
-  //       alert("오류가 발생했습니다.");
-  //       return;
-  //     }
-  //   }
-  // }, [manufactureCurationKeyword]);
+      if (response.ok) {
+        setKeywordSearchCurationData(await response.json());
+      } else {
+        alert("오류가 발생했습니다.");
+        return;
+      }
+    }
+  }, [manufactureCurationKeyword]);
 
   useEffect(() => {
     if (searchParams.search_query) {
       getTextSearchPlaceData();
-      // getTextSearchCurationData();
+      getTextSearchCurationData();
     }
 
-    // if (searchParams.keyword) {
-    //   getKeywordSearchPlaceData();
-    //   getKeywordSearchCurationData();
-    // }
+    if (searchParams.keyword) {
+      getKeywordSearchPlaceData();
+      getKeywordSearchCurationData();
+    }
   }, [
-    // getKeywordSearchCurationData,
-    // getTextSearchCurationData,
-    // getKeywordSearchPlaceData,
+    getKeywordSearchCurationData,
+    getTextSearchCurationData,
+    getKeywordSearchPlaceData,
     getTextSearchPlaceData,
     searchParams.keyword,
     searchParams.search_query,
   ]);
   return (
-    <div className="w-[100%] h-[100%]">
+    <main className="w-[100%] h-[100%]">
+      <BasicTopBar color="#9E9E9E" className="fixed pt-[1.2rem]">
+        <SearchBar
+          placeholder="공간, 큐레이션을 검색해보세요"
+          className="rounded-[1000px]"
+        />
+      </BasicTopBar>
       {searchParams.search_query &&
         textSearchPlaceData?.spaceCount === 0 &&
         textSearchCurationData?.CurationCount === 0 && <SearchNoResult />}
@@ -405,6 +412,6 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
             )}
           </div>
         )}
-    </div>
+    </main>
   );
 }
