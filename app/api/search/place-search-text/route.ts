@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         name: body.name,
       }),
-      cache: "no-cache",
+      cache: "no-store",
       next: { tags: [`get${body.name}searchText`] },
     }
   );
