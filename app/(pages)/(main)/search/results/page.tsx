@@ -10,7 +10,7 @@ import {
   SearchPlaceResponse,
 } from "@feature/search/queries/dto/search-type";
 import Divider from "@common/components/ui/divider/Divider";
-import FilterIcon from "@common//assets/icons/filter/filter-keyword.svg";
+import FilterIcon from "@common/assets/icons/filter/filter-keyword.svg";
 import PlaceInfoCard from "@feature/place/components/PlaceInfoCard/PlaceInfoCard";
 
 export default function SearchResult({ searchParams }: { searchParams: any }) {
@@ -26,7 +26,13 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
     useSearchBar();
   const getTextSearchCurationData = async () => {
     const response = await fetch(
-      `/api/search/curation-search-text?search_query=${searchParams.search_query}`
+      `/api/search/curation-search-text?search_query=${searchParams.search_query}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-cache",
+      }
     );
     if (response.ok) {
       setTextSearchCurationData(await response.json());
@@ -41,6 +47,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
       headers: {
         "Content-Type": "application/json",
       },
+      cache: "no-cache",
       body: JSON.stringify({ name: searchParams.search_query }),
     });
 
@@ -58,6 +65,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
       headers: {
         "Content-Type": "application/json",
       },
+      cache: "no-cache",
       body: JSON.stringify(searchParams.keyword),
     });
 
@@ -92,6 +100,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
       headers: {
         "Content-Type": "application/json",
       },
+      cache: "no-cache",
       body: JSON.stringify(manufactureCurationKeyword()),
     });
 
