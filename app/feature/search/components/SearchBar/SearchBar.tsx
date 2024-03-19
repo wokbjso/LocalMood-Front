@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 import React, { ChangeEvent, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import SearchIcon from "@common/assets/icons/search/SearchIcon";
-import CloseIconSmall from "@common/assets/icons/close/CloseIconSmall";
+import CloseGrayIcon from "@common/assets/icons/close/CloseGrayIcon";
 
 interface SearchBarProps {
   variant?: "home" | "record";
@@ -68,7 +68,7 @@ export default function SearchBar({
         />
       </div>
       <div className="flex justify-center items-center bg-line-gray-3 rounded-full w-[2.4rem] h-[2.4rem]">
-        <CloseIconSmall className="" />
+        <CloseGrayIcon className="" />
       </div>
     </div>
   );

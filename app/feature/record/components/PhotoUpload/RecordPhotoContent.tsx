@@ -1,5 +1,5 @@
 import AddFillIcon from "@common/assets/icons/add/AddFillIcon";
-import CloseIcon from "@common/assets/icons/close/close-black.svg";
+import CloseBlackIcon from "@common/assets/icons/close/CloseBlackIcon";
 import Image from "next/image";
 import { ChangeEvent, useRef, useState } from "react";
 interface PhotoUploadProps {
@@ -69,7 +69,7 @@ export default function PhotoUpload({
                   className="absolute z-10 top-[1.2rem] right-[1.2rem]"
                   onClick={() => handleImageDeleteClicked(i)}
                 >
-                  <CloseIcon />
+                  <CloseBlackIcon />
                 </div>
                 <div className="relative w-[43vw] h-[43vw] rounded-[10px]">
                   <Image
