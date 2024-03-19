@@ -1,7 +1,5 @@
 import AddFillIcon from "@common/assets/icons/add/AddFillIcon";
-import Button from "@common/components/ui/buttons/Button/Button";
 import CloseIcon from "@common/assets/icons/close/close-black.svg";
-import PostUploadFile from "@common/utils/postUploadFile";
 import Image from "next/image";
 import { ChangeEvent, useRef, useState } from "react";
 interface PhotoUploadProps {

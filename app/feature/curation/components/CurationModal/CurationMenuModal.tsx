@@ -1,5 +1,4 @@
 import EditIcon from "@common/assets/icons/edit/edit.svg";
-import DeleteIcon from "@common/assets/icons/delete/delete.svg";
 import ShareIcon from "@common/assets/icons/share/share.svg";
 import Modal from "@common/components/ui/modal/Modal";
 import { useState } from "react";
@@ -7,6 +6,7 @@ import UseOutsideClick from "@common/hooks/useOutsideClick";
 import { copyLink } from "@common/utils/text/copy-link";
 import ConfirmModal from "@common/components/ui/modal/ConfirmModal";
 import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
+import DeleteIcon from "@common/assets/icons/delete/DeleteIcon";
 
 interface CurationMenuModalProps {
   id: number;
