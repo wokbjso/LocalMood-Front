@@ -24,6 +24,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
     useState<SearchCurationResponse>();
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
     useSearchBar();
+
   const getTextSearchCurationData = useCallback(async () => {
     const response = await fetch(
       `/api/search/curation-search-text?search_query=${searchParams.search_query}`,
@@ -31,7 +32,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
         headers: {
           "Content-Type": "application/json",
         },
-        cache: "no-cache",
+        cache: "no-store",
       }
     );
     if (response.ok) {
@@ -49,7 +50,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
         headers: {
           "Content-Type": "application/json",
         },
-        cache: "no-cache",
+        cache: "no-store",
         body: JSON.stringify({ name: searchParams.search_query }),
       });
 
@@ -69,7 +70,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
         headers: {
           "Content-Type": "application/json",
         },
-        cache: "no-cache",
+        cache: "no-store",
         body: JSON.stringify(searchParams.keyword),
       });
 
@@ -108,7 +109,7 @@ export default function SearchResult({ searchParams }: { searchParams: any }) {
         headers: {
           "Content-Type": "application/json",
         },
-        cache: "no-cache",
+        cache: "no-store",
         body: JSON.stringify(manufactureCurationKeyword()),
       });
 
