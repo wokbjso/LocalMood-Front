@@ -8,11 +8,10 @@ import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
 import { getSession } from "@common/utils/session/getSession";
-import DeleteCurationScrap from "@feature/curation/queries/deleteCurationScrap";
 import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
-import PostCurationScrap from "@feature/curation/queries/postCurationScrap";
 import LocationLine from "@common/assets/icons/location/LocationLine";
 import Image from "next/image";
+import revalidateCurationRandom from "@feature/curation/actions/revalidateCurationRandom";
 
 export default function CurationScrapped({
   id,
@@ -34,17 +33,24 @@ export default function CurationScrapped({
       location.replace("/login");
     } else {
       if (isScraped) {
-        const res = await DeleteCurationScrap(id);
+        const res = await fetch(`api/curation/scrap/delete/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
         if (res.status === 200) {
           revalidateCurationScrap();
+          revalidateCurationRandom();
         } else {
           alert("에러가 발생했습니다!");
           return;
         }
       } else {
-        const res = await PostCurationScrap(id);
+        const res = await fetch(`/api/curation/scrap/add/${id}`);
         if (res.status === 200) {
           revalidateCurationScrap();
+          revalidateCurationRandom();
         } else {
           alert("에러가 발생했습니다!");
           return;
