@@ -34,7 +34,9 @@ export default function PlaceInfoCardBottom({
       {keywordCategoryNum && keywordCategoryNum >= 2 && (
         <div className="flex items-center">
           <div className="mr-[2rem]">
-            <span className="body2-medium text-text-gray-6">방문목적</span>
+            <span className="body2-medium text-text-gray-6 whitespace-nowrap">
+              방문목적
+            </span>
           </div>
           <div className="flex flex-wrap gap-[0.8rem]">
             {purpose?.map((tag, i) => (
@@ -82,7 +84,9 @@ export default function PlaceInfoCardBottom({
           )}
         >
           <div className="mr-[2rem]">
-            <span className="body2-medium text-text-gray-6">공간무드</span>
+            <span className="body2-medium text-text-gray-6 whitespace-nowrap">
+              공간무드
+            </span>
           </div>
           <div className="flex flex-wrap gap-[0.8rem]">
             {mood?.map((tag, i) => (

@@ -1,12 +1,15 @@
 import ArrowIcon from "@common/assets/icons/arrow/arrow-right.svg";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import Image from "next/image";
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import { CurationPlaceProps } from "@feature/curation/type";
-import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import PlaceInfoCardBottom from "@feature/place/components/PlaceInfoCardBottom/PlaceInfoCardBottom";
 import SliderLayout from "@common/components/layout/SliderLayout/SliderLayout";
+import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
+import { getSession } from "@common/utils/session/getSession";
+import SavePlaceModal from "../CurationModal/SavePlaceModal/SavePlaceModal";
+import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 
 const CurationDetailInfoCard = forwardRef<
   HTMLDivElement,
@@ -14,28 +17,25 @@ const CurationDetailInfoCard = forwardRef<
     curationId: number;
     handleDeleteToast: (state: boolean) => void;
     handleToastText: (text: string) => void;
+    myCurationData: MyCurationResponse;
   }
 >(({ ...props }, ref) => {
+  const [openCurationSaveModal, setOpenCurationSaveModal] = useState(false);
   const purposeArray = props.purpose ? props.purpose.split(",") : [];
   const interiorArray = props.interior ? props.interior.split(",") : [];
   const moodArray = props.mood ? props.mood.split(",") : [];
   const bestMenuArray = props.bestMenu ? props.bestMenu.split(",") : [];
 
-  const handleDeleteScrap = async () => {
-    const res = await fetch("/api/curation/delete/space", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ curationId: props.curationId, spaceId: props.id }),
-    });
-    if (res.status === 200) {
-      props.handleDeleteToast(true);
-      props.handleToastText("스크랩이 해제되었습니다");
-      revalidateCurationDetail();
+  const handleScrapState = async (
+    e: React.MouseEvent<SVGSVGElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    const auth_info = await getSession();
+    const token = auth_info?.data?.accessToken;
+    if (!token) {
+      location.replace("/login");
     } else {
-      alert("에러가 발생했습니다!");
-      return;
+      setOpenCurationSaveModal(true);
     }
   };
   return (
@@ -46,11 +46,13 @@ const CurationDetailInfoCard = forwardRef<
             {props.imageUrls?.map((url, i) => (
               <div key={url + i} className="relative w-[28rem] h-[28rem]">
                 <Image
-                  src={url}
+                  src={url.startsWith("localmood") ? "https://" + url : url}
                   alt="장소 사진"
                   fill
-                  sizes="90vw"
-                  className="rounded-[8px]"
+                  sizes="100vw,90vw"
+                  placeholder="blur"
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+                  className="rounded-[8px] object-cover"
                 />
               </div>
             ))}
@@ -78,7 +80,11 @@ const CurationDetailInfoCard = forwardRef<
                   </div>
                 </div>
               </div>
-              <ScrapFill onClick={handleDeleteScrap} />
+              {props.isScraped ? (
+                <ScrapFill onClick={handleScrapState} />
+              ) : (
+                <ScrapLine onClick={handleScrapState} />
+              )}
             </div>
             <PlaceInfoCardBottom
               type={props.type}
@@ -92,6 +98,13 @@ const CurationDetailInfoCard = forwardRef<
           </div>
         </div>
       </div>
+      {openCurationSaveModal && (
+        <SavePlaceModal
+          myCurationData={props.myCurationData}
+          spaceId={props.id}
+          handleModalFn={setOpenCurationSaveModal}
+        />
+      )}
     </>
   );
 });

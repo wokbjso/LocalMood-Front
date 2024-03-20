@@ -15,6 +15,6 @@ export interface CurationDetailResponse {
     mood: string;
     interior: string;
     bestMenu: string;
-    scrapped: boolean;
+    isScraped: boolean;
   }[];
 }

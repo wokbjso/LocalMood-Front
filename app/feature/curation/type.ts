@@ -19,5 +19,5 @@ export interface CurationPlaceProps {
   mood: string;
   interior: string;
   bestMenu: string;
-  scrapped: boolean;
+  isScraped: boolean;
 }

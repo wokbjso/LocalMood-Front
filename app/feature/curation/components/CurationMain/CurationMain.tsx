@@ -66,7 +66,10 @@ export default function CurationMain({
               alt="큐레이션 사진"
               src={image && image.length > 0 ? image[0] : NoResult}
               fill
-              sizes="100vw"
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+              sizes="100vw,90vw"
+              className="object-cover"
             />
             {variant === "others" && (
               <UserProfile
