@@ -9,15 +9,18 @@ import { useInView } from "react-intersection-observer";
 import CurationTopAppBar from "../CurationTopAppBar/curationTopAppBar";
 import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-detail";
 import { twMerge } from "tailwind-merge";
+import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 
 interface CurationDetailCardListProps {
   curationId: number;
   curationDetail: CurationDetailResponse;
+  myCurationData: MyCurationResponse;
 }
 
 export default function CurationDetailCardList({
   curationId,
   curationDetail,
+  myCurationData,
 }: CurationDetailCardListProps) {
   const {
     cardRefs,
@@ -99,6 +102,7 @@ export default function CurationDetailCardList({
             ref={cardRefs[i]}
             handleDeleteToast={handlers.changeOpenScrapDeleteToast}
             handleToastText={handlers.changeToastText}
+            myCurationData={myCurationData}
           />
         ))}
       </div>
