@@ -1,5 +1,3 @@
-import DeleteCurationScrap from "@feature/curation/queries/deleteCurationScrap";
-import PostCurationScrap from "@feature/curation/queries/postCurationScrap";
 import revalidateCurationRandom from "@feature/curation/actions/revalidateCurationRandom";
 import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
 import { useEffect, useState } from "react";
@@ -10,7 +8,12 @@ export default function UseCurationMain(isScraped: boolean) {
   const [toastText, setToastText] = useState("");
   const handleScrapState = async (id: number) => {
     if (isScraped) {
-      const res = await DeleteCurationScrap(id);
+      const res = await fetch(`/api/curation/scrap/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (res.status === 200) {
         setOpenScrapToast(true);
         setToastText("큐레이션 스크랩이 해제되었습니다");
@@ -21,7 +24,12 @@ export default function UseCurationMain(isScraped: boolean) {
         return;
       }
     } else {
-      const res = await PostCurationScrap(id);
+      const res = await fetch(`/api/curation/scrap/add/${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (res.status === 200) {
         setOpenScrapToast(true);
         setToastText("큐레이션이 스크랩 되었습니다");
