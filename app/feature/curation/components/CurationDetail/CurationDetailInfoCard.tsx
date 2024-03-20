@@ -46,7 +46,7 @@ const CurationDetailInfoCard = forwardRef<
             {props.imageUrls?.map((url, i) => (
               <div key={url + i} className="relative w-[28rem] h-[28rem]">
                 <Image
-                  src={url.startsWith("localmood") ? "https://" + url : url}
+                  src={url}
                   alt="장소 사진"
                   fill
                   sizes="100vw,90vw"

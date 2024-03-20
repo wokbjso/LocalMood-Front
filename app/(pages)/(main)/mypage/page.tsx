@@ -79,7 +79,7 @@ export default async function MyPage() {
                     variant="mypage"
                     size="small"
                     {...record}
-                    imgUrl={"https://" + record.image}
+                    imgUrl={record.image}
                     className="w-full"
                   />
                 ))}
