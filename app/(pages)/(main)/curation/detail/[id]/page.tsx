@@ -9,6 +9,7 @@ import CurationDetailCardList from "@feature/curation/components/CurationDetail/
 import GetCurationDetail from "@feature/curation/queries/getCurationDetail";
 import CurationTopAppBar from "@feature/curation/components/CurationTopAppBar/curationTopAppBar";
 import { formatDate } from "@common/utils/date/formatDate";
+import getMyCuration from "@feature/curation/queries/getMyCuration";
 
 export default async function CurationDetail({
   params: { id },
@@ -16,6 +17,7 @@ export default async function CurationDetail({
   params: { id: number };
 }) {
   const curationDetail = await GetCurationDetail(id);
+  const myCurationData = await getMyCuration();
   const formattedDate = formatDate(curationDetail.createdDate);
 
   return (
@@ -91,6 +93,7 @@ export default async function CurationDetail({
         <CurationDetailCardList
           curationId={id}
           curationDetail={curationDetail}
+          myCurationData={myCurationData}
         />
       )}
     </div>

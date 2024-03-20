@@ -59,7 +59,7 @@ export default function SearchBar({
         </div>
         <input
           className={twMerge(
-            "body2-medium text-text-gray-5 w-full ml-[0.8rem] pl-[0.3rem] outline-none bg-transparent"
+            "body2-medium text-text-gray-6 placeholder-text-gray-6 w-full ml-[0.8rem] pl-[0.3rem] outline-none bg-transparent"
           )}
           value={searchText}
           placeholder={placeholder}
