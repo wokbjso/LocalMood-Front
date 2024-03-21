@@ -1,7 +1,7 @@
 import EditIcon from "@common/assets/icons/edit/edit.svg";
 import ShareIcon from "@common/assets/icons/share/share.svg";
 import Modal from "@common/components/ui/modal/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UseOutsideClick from "@common/hooks/useOutsideClick";
 import { copyLink } from "@common/utils/text/copy-link";
 import ConfirmModal from "@common/components/ui/modal/ConfirmModal";
@@ -9,6 +9,8 @@ import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration
 import DeleteIcon from "@common/assets/icons/delete/DeleteIcon";
 import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
 import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail";
+import { usePathname } from "next/navigation";
+import Toast from "@common/components/ui/toast/Toast";
 
 interface CurationMenuModalProps {
   id: number;
@@ -23,7 +25,9 @@ export default function CurationMenuModal({
 }: CurationMenuModalProps) {
   const { ref } = UseOutsideClick<HTMLDivElement>(handleMenuModalState);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-
+  const [linkCopyToastOpen, setLinkCopyToastOpen] = useState(false);
+  const [toastText, setToastText] = useState("");
+  const pathname = usePathname();
   const handleCurationEditClick = () => {
     //편집하기 로직
   };
@@ -33,7 +37,9 @@ export default function CurationMenuModal({
   };
 
   const handleLinkCopyClick = async () => {
-    copyLink("큐레이션 주소", setDeleteModalOpen);
+    copyLink(pathname + `/${id}`);
+    setLinkCopyToastOpen(true);
+    setToastText("링크가 복사되었어요");
   };
 
   const handleCancleClick = () => {
@@ -56,6 +62,18 @@ export default function CurationMenuModal({
       alert("에러가 발생했습니다");
     }
   };
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    if (linkCopyToastOpen) {
+      timeoutId = setTimeout(() => {
+        setLinkCopyToastOpen(false);
+      }, 1000);
+    }
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [linkCopyToastOpen]);
 
   return (
     <>
@@ -94,6 +112,7 @@ export default function CurationMenuModal({
           confirmFn={handleConfirmClick}
         />
       )}
+      <Toast open={linkCopyToastOpen} text={toastText} />
     </>
   );
 }
