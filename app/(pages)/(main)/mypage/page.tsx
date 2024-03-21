@@ -9,6 +9,7 @@ import GetRecordMyPage from "@feature/place/queries/getRecordMyPage";
 import dynamic from "next/dynamic";
 import getMyCuration from "@feature/curation/queries/getMyCuration";
 import PageTopBar from "@common/components/ui/topBar/PageTopBar/PageTopBar";
+import UseDeferredComponent from "@common/hooks/useDeferredComponent";
 const PlaceInfoCard = dynamic(
   () => import("@feature/place/components/PlaceInfoCard/PlaceInfoCard")
 );
@@ -21,7 +22,13 @@ export default async function MyPage() {
   return (
     <div className="w-[100%] h-[100%] px-[2rem]">
       <PageTopBar text="프로필" hasMenu />
-      <Suspense fallback={<RecordMyPageSkeleton />}>
+      <Suspense
+        fallback={
+          <UseDeferredComponent>
+            <RecordMyPageSkeleton />
+          </UseDeferredComponent>
+        }
+      >
         <>
           <section className="flex pt-[1.2rem] mb-[3.6rem]">
             <div className="w-[7.2rem] h-[7.2rem] relative mr-[1.6rem]">

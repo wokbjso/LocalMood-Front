@@ -3,12 +3,12 @@ import Image from "next/image";
 import Toast from "@common/components/ui/toast/Toast";
 import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
 import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
-import revalidatePlaceDetailById from "@feature/place/actions/revalidatePlaceDetailById";
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
 import CurationNoPhoto from "@common/assets/images/curationHomeNoImg.png";
 import { CurationProps } from "@feature/curation/type";
 import LocationLine from "@common/assets/icons/location/LocationLine";
 import useSavePlaceModalMyCurationCard from "./useSavePlaceModalMyCurationCard";
+import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail";
 
 interface SavePlaceModalMyCurationCardProps {
   curationData: Omit<CurationProps, "variant"> & { privacy: boolean };
@@ -28,7 +28,7 @@ export default function SavePlaceModalMyCurationCard({
       handlers.changeToastText("큐레이션에 장소가 추가되었습니다.");
       revalidateScrapSpace();
       revalidateMyCuration();
-      revalidatePlaceDetailById(spaceId);
+      revalidatePlaceDetail();
       revalidateCurationDetail();
     } else {
       alert("오류가 발생했습니다!");

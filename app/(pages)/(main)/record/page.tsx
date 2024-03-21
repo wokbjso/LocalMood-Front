@@ -1,5 +1,6 @@
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import PageTopBar from "@common/components/ui/topBar/PageTopBar/PageTopBar";
+import UseDeferredComponent from "@common/hooks/useDeferredComponent";
 import PlaceScrapList from "@feature/place/components/PlaceScrapList/PlaceScrapList";
 import PlaceScrappedSkeleton from "@feature/place/components/PlaceScrappedSkeleton/PlaceScrappedSkeleton";
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
@@ -23,7 +24,13 @@ export default async function Record() {
           <span className="text-text-gray-6 body2-semibold">더보기</span>
         </LinkLayout>
       </div>
-      <Suspense fallback={<PlaceScrappedSkeleton />}>
+      <Suspense
+        fallback={
+          <UseDeferredComponent>
+            <PlaceScrappedSkeleton />
+          </UseDeferredComponent>
+        }
+      >
         <PlaceScrapList />
       </Suspense>
     </div>

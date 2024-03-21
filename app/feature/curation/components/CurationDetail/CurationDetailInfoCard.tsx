@@ -11,8 +11,8 @@ import { getSession } from "@common/utils/session/getSession";
 import SavePlaceModal from "../CurationModal/SavePlaceModal/SavePlaceModal";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
-import revalidatePlaceDetailById from "@feature/place/actions/revalidatePlaceDetailById";
 import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
+import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail";
 
 const CurationDetailInfoCard = forwardRef<
   HTMLDivElement,
@@ -52,7 +52,7 @@ const CurationDetailInfoCard = forwardRef<
         if (res.status === 200) {
           revalidateMyCuration();
           revalidateScrapSpace();
-          revalidatePlaceDetailById(props.id);
+          revalidatePlaceDetail();
         }
       } else {
         setOpenCurationSaveModal(true);

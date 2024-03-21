@@ -2,6 +2,7 @@ import Footer from "@common/components/layout/Footer/Footer";
 import { BeatLoader } from "react-spinners";
 import { Suspense } from "react";
 import Script from "next/script";
+import UseDeferredComponent from "@common/hooks/useDeferredComponent";
 
 export default function MainLayout({
   children,
@@ -17,7 +18,9 @@ export default function MainLayout({
       <Suspense
         fallback={
           <div className="w-[100%] h-[100%] flex justify-center items-center">
-            <BeatLoader color="#36d7b7" />
+            <UseDeferredComponent>
+              <BeatLoader color="#36d7b7" />
+            </UseDeferredComponent>
           </div>
         }
       >
