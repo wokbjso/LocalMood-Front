@@ -15,7 +15,7 @@ export default function PlaceDetailInfo({
   id,
   name,
   type,
-  subType, 
+  subType,
   address,
   isScraped,
   visitorNum,
@@ -60,7 +60,7 @@ export default function PlaceDetailInfo({
   return (
     <>
       <div className="flex-col px-[2rem] relative">
-        <div className="headline2 mb-[0.8rem]">{name}</div>
+        <div className="headline0 mb-[0.8rem]">{name}</div>
         {isScraped ? (
           <ScrapFill
             color="#9E9E9E"

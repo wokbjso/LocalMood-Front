@@ -15,7 +15,7 @@ export default async function GetPlaceDetail(
         Authorization: `Bearer ${token}`,
       },
       cache: "force-cache",
-      next: { tags: [`getPlaceDetail${id}`] },
+      next: { tags: ["getPlaceDetail"] },
     }
   );
   const data = await res.json();

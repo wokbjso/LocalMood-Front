@@ -12,6 +12,7 @@ import Map from "@feature/map/components/Map/Map";
 import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-detail";
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import { sliceText } from "@common/utils/text/slice-text";
+import Toast from "@common/components/ui/toast/Toast";
 
 interface CurationTopAppBarProps {
   id: number;
@@ -30,6 +31,8 @@ export default function CurationTopAppBar({
 }: CurationTopAppBarProps) {
   const [menuModalOpen, setMenuModalOpen] = useState(false);
   const [mapOpen, setMapOpen] = useState(false);
+  const [linkCopyToastOpen, setLinkCopyToastOpen] = useState(false);
+  const [toastText, setToastText] = useState("");
   const pathname = usePathname();
   const [mapPlaceData, setMapPlaceData] = useState<
     {
@@ -45,8 +48,10 @@ export default function CurationTopAppBar({
     setMenuModalOpen(true);
   };
 
-  const handleLinkClick = async () => {
-    copyLink(pathname, setMenuModalOpen);
+  const handleCopyLinkClick = async () => {
+    copyLink(pathname);
+    setLinkCopyToastOpen(true);
+    setToastText("링크가 복사되었어요");
   };
 
   const handleMapClick = (state: boolean) => {
@@ -66,6 +71,18 @@ export default function CurationTopAppBar({
       })
     );
   }, [curationDetail]);
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    if (linkCopyToastOpen) {
+      timeoutId = setTimeout(() => {
+        setLinkCopyToastOpen(false);
+      }, 1000);
+    }
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [linkCopyToastOpen]);
   return (
     <>
       <BasicTopBar color="#9E9E9E" className={className}>
@@ -79,11 +96,11 @@ export default function CurationTopAppBar({
             {variant === "others" ? (
               <>
                 <ScrapLine color="#9E9E9E" />
-                <ShareIcon onClick={handleLinkClick} />
+                <ShareIcon onClick={handleCopyLinkClick} />
               </>
             ) : (
               <>
-                <ShareIcon onClick={handleLinkClick} />
+                <ShareIcon onClick={handleCopyLinkClick} />
                 <MenuIcon onClick={handleMenuClick} />
               </>
             )}
@@ -103,6 +120,7 @@ export default function CurationTopAppBar({
           <CurationMenuModal id={id} handleMenuModalState={setMenuModalOpen} />
         </div>
       )}
+      <Toast open={linkCopyToastOpen} text={toastText} />
     </>
   );
 }

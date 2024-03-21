@@ -54,7 +54,7 @@ export default function PlaceDetailTopBar({
       <BasicTopBar className={className}>
         <div className="w-full flex justify-end items-center relative">
           <MapIcon color="white" onClick={() => handleMapOpen(true)} />
-          <LinkIcon className="ml-[0.8rem]" onClick={handleCopyLinkClick} />
+          <LinkIcon className="ml-[1.6rem]" onClick={handleCopyLinkClick} />
         </div>
       </BasicTopBar>
       {mapOpen && (

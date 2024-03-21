@@ -1,6 +1,7 @@
 import AddIcon from "@common/assets/icons/add/AddIcon";
 import CloseIcon from "@common/assets/icons/close/CloseIcon";
 import Modal from "@common/components/ui/modal/Modal";
+import UseDeferredComponent from "@common/hooks/useDeferredComponent";
 import CurationMakeModal from "@feature/curation/components/CurationMake/CurationMakeModal";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import { Suspense, lazy, useState } from "react";
@@ -47,7 +48,9 @@ export default function SavePlaceModal({
         </div>
         <Suspense
           fallback={
-            <div className="w-full h-[6rem] bg-background-gray-2 animate-pulse" />
+            <UseDeferredComponent>
+              <div className="w-full h-[6rem] bg-background-gray-2 animate-pulse" />
+            </UseDeferredComponent>
           }
         >
           <div className="flex flex-col items-start gap-[0.8rem]">
