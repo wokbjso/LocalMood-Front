@@ -10,10 +10,14 @@ import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { getSession } from "@common/utils/session/getSession";
 import SavePlaceModal from "../CurationModal/SavePlaceModal/SavePlaceModal";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
+import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
+import revalidatePlaceDetailById from "@feature/place/actions/revalidatePlaceDetailById";
+import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
 
 const CurationDetailInfoCard = forwardRef<
   HTMLDivElement,
   CurationPlaceProps & {
+    variant: string;
     curationId: number;
     handleDeleteToast: (state: boolean) => void;
     handleToastText: (text: string) => void;
@@ -25,7 +29,6 @@ const CurationDetailInfoCard = forwardRef<
   const interiorArray = props.interior ? props.interior.split(",") : [];
   const moodArray = props.mood ? props.mood.split(",") : [];
   const bestMenuArray = props.bestMenu ? props.bestMenu.split(",") : [];
-
   const handleScrapState = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
@@ -35,7 +38,25 @@ const CurationDetailInfoCard = forwardRef<
     if (!token) {
       location.replace("/login");
     } else {
-      setOpenCurationSaveModal(true);
+      if (props.variant === "my") {
+        const res = await fetch("/api/curation/delete/space", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            curationId: props.curationId,
+            spaceId: props.id,
+          }),
+        });
+        if (res.status === 200) {
+          revalidateMyCuration();
+          revalidateScrapSpace();
+          revalidatePlaceDetailById(props.id);
+        }
+      } else {
+        setOpenCurationSaveModal(true);
+      }
     }
   };
   return (

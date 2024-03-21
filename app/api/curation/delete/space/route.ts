@@ -22,9 +22,6 @@ export async function DELETE(request: NextRequest) {
   );
 
   if (res.ok) {
-    revalidateMyCuration();
-    revalidateScrapSpace();
-    revalidatePlaceDetailById(body.spaceId);
     return new NextResponse("Success", {
       status: 200,
     });
