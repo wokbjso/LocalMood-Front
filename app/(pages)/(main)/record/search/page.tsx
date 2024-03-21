@@ -3,7 +3,7 @@ import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import PlaceInfoCard from "@feature/place/components/PlaceInfoCard/PlaceInfoCard";
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import { SearchPlaceResponse } from "@feature/search/queries/dto/search-type";
-import { Suspense, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function RecordSearch({ searchParams }: { searchParams: any }) {
   const [textSearchPlaceData, setTextSearchPlaceData] =
@@ -31,9 +31,7 @@ export default function RecordSearch({ searchParams }: { searchParams: any }) {
   return (
     <div className="w-[100%] h-[100%]">
       <BasicTopBar color="#9E9E9E">
-        <Suspense fallback={null}>
-          <SearchBar variant="record" placeholder="공간 이름을 검색해보세요" />
-        </Suspense>
+        <SearchBar variant="record" placeholder="공간 이름을 검색해보세요" />
       </BasicTopBar>
       {textSearchPlaceData?.spaceCount === 0 && (
         <div className="flex justify-center items-center body1-medium text-text-gray-8 h-[31vh]">
