@@ -37,7 +37,6 @@ export default function CurationDetailCardList({
     handlers.changePlaceIndex(index);
     cardRefs[index].current?.scrollIntoView({ behavior: "smooth" });
   };
-
   return (
     <>
       {!inView && (
@@ -97,6 +96,7 @@ export default function CurationDetailCardList({
         {curationDetail.spaceDetails.map((props, i) => (
           <CurationDetailInfoCard
             key={props.name}
+            variant={curationDetail.variant}
             curationId={curationId}
             {...props}
             ref={cardRefs[i]}
