@@ -1,7 +1,4 @@
 import { getSession } from "@common/utils/session/getSession";
-import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
-import revalidatePlaceDetailById from "@feature/place/actions/revalidatePlaceDetailById";
-import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE(request: NextRequest) {

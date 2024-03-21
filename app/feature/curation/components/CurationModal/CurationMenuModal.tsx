@@ -7,6 +7,8 @@ import { copyLink } from "@common/utils/text/copy-link";
 import ConfirmModal from "@common/components/ui/modal/ConfirmModal";
 import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
 import DeleteIcon from "@common/assets/icons/delete/DeleteIcon";
+import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
+import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail";
 
 interface CurationMenuModalProps {
   id: number;
@@ -48,8 +50,10 @@ export default function CurationMenuModal({
     });
     if (res.status === 200) {
       revalidateMyCuration();
+      revalidateScrapSpace();
+      revalidatePlaceDetail();
     } else {
-      alert("에러");
+      alert("에러가 발생했습니다");
     }
   };
 
