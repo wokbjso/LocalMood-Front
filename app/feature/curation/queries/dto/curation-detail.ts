@@ -2,6 +2,7 @@ export interface CurationDetailResponse {
   title: string;
   keyword: string;
   privacy: boolean;
+  isScraped: boolean;
   author: string;
   variant: string;
   createdData: Date;

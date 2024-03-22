@@ -13,6 +13,7 @@ import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-d
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import { sliceText } from "@common/utils/text/slice-text";
 import Toast from "@common/components/ui/toast/Toast";
+import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 
 interface CurationTopAppBarProps {
   id: number;
@@ -58,6 +59,10 @@ export default function CurationTopAppBar({
     setMapOpen(state);
   };
 
+  const handleScrapDelete = () => {};
+
+  const handleScrapAdd = () => {};
+
   useEffect(() => {
     setMapPlaceData(
       curationDetail.spaceDetails.map((space) => {
@@ -95,7 +100,11 @@ export default function CurationTopAppBar({
             />
             {variant === "others" ? (
               <>
-                <ScrapLine color="#9E9E9E" />
+                {curationDetail.isScraped ? (
+                  <ScrapFill onClick={handleScrapDelete} />
+                ) : (
+                  <ScrapLine color="#9E9E9E" onClick={handleScrapAdd} />
+                )}
                 <ShareIcon onClick={handleCopyLinkClick} />
               </>
             ) : (

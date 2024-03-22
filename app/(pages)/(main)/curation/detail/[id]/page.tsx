@@ -19,7 +19,6 @@ export default async function CurationDetail({
   const curationDetail = await GetCurationDetail(id);
   const myCurationData = await getMyCuration();
   const formattedDate = formatDate(curationDetail.createdDate);
-
   return (
     <div className="w-[100%] h-[100%] overflow-auto pb-[18rem]">
       <header className="w-[100%] h-[18.8rem] bg-background-secondary-normal">
