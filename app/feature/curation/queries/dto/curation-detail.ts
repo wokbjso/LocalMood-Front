@@ -1,11 +1,12 @@
 export interface CurationDetailResponse {
   title: string;
+  id: number;
   keyword: string;
   privacy: boolean;
   isScraped: boolean;
   author: string;
   variant: string;
-  createdData: Date;
+  createdDate: Date;
   spaceDetails: {
     id: number;
     name: string;
