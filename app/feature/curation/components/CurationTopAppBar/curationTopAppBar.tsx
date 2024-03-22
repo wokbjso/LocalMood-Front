@@ -13,9 +13,11 @@ import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-d
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import { sliceText } from "@common/utils/text/slice-text";
 import Toast from "@common/components/ui/toast/Toast";
+import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
+import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
+import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
 
 interface CurationTopAppBarProps {
-  id: number;
   curationDetail: CurationDetailResponse;
   text?: string;
   variant?: string;
@@ -23,7 +25,6 @@ interface CurationTopAppBarProps {
 }
 
 export default function CurationTopAppBar({
-  id,
   curationDetail,
   text,
   variant,
@@ -56,6 +57,36 @@ export default function CurationTopAppBar({
 
   const handleMapClick = (state: boolean) => {
     setMapOpen(state);
+  };
+
+  const handleScrapDelete = async () => {
+    const res = await fetch(`/api/curation/scrap/delete/${curationDetail.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (res.status === 200) {
+      revalidateCurationScrap();
+      revalidateCurationDetail();
+    } else {
+      alert("에러가 발생했습니다.");
+    }
+  };
+
+  const handleScrapAdd = async () => {
+    const res = await fetch(`/api/curation/scrap/add/${curationDetail.id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (res.status === 200) {
+      revalidateCurationScrap();
+      revalidateCurationDetail();
+    } else {
+      alert("에러가 발생했습니다.");
+    }
   };
 
   useEffect(() => {
@@ -95,7 +126,11 @@ export default function CurationTopAppBar({
             />
             {variant === "others" ? (
               <>
-                <ScrapLine color="#9E9E9E" />
+                {curationDetail.isScraped ? (
+                  <ScrapFill onClick={handleScrapDelete} />
+                ) : (
+                  <ScrapLine color="#9E9E9E" onClick={handleScrapAdd} />
+                )}
                 <ShareIcon onClick={handleCopyLinkClick} />
               </>
             ) : (
@@ -117,7 +152,10 @@ export default function CurationTopAppBar({
       )}
       {menuModalOpen && (
         <div className="w-[100%] h-[100%] fixed top-0 left-0 z-50">
-          <CurationMenuModal id={id} handleMenuModalState={setMenuModalOpen} />
+          <CurationMenuModal
+            id={curationDetail.id}
+            handleMenuModalState={setMenuModalOpen}
+          />
         </div>
       )}
       <Toast open={linkCopyToastOpen} text={toastText} />

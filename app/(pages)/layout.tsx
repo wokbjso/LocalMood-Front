@@ -1,4 +1,7 @@
+import { Suspense } from "react";
 import "../styles/global.css";
+import UseDeferredComponent from "@common/hooks/useDeferredComponent";
+import { BeatLoader } from "react-spinners";
 
 export const metadata = {
   title: "로컬무드",

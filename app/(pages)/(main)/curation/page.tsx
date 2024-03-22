@@ -8,7 +8,7 @@ export default async function CurationPage() {
   const scrappedCuration = await getScrappedCuration();
 
   return (
-    <div className="w-[100%] h-[100%] overflow-auto">
+    <div className="w-[100%] h-[100%] overflow-hidden">
       <PageTopBar text="큐레이션" className="pl-[2rem]" />
       <CurationTabContent
         myCuration={myCuration}

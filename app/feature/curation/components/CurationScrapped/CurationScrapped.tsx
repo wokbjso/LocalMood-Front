@@ -112,7 +112,7 @@ export default function CurationScrapped({
         >
           <div className="absolute headline2 w-[80%] pt-[1.6rem] pl-[1.6rem] break-keep text-white z-10">
             <span>{title}</span>
-            <div className="flex flex-wrap gap-x-[0.8rem] mt-[1.2rem]">
+            <div className="flex flex-wrap gap-x-[0.8rem]">
               {keyword.map((tag) => (
                 <div key={tag}>
                   <span className="text-primary-normal body2-medium"># </span>
