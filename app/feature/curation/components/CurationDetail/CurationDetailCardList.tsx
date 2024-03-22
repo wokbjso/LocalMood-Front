@@ -42,7 +42,6 @@ export default function CurationDetailCardList({
       {!inView && (
         <div className="w-[100%] absolute top-0 z-10">
           <CurationTopAppBar
-            id={curationId}
             curationDetail={curationDetail}
             text={curationDetail.title}
             variant={curationDetail.variant}
