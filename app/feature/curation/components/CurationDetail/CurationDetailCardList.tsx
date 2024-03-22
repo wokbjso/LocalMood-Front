@@ -10,6 +10,9 @@ import CurationTopAppBar from "../CurationTopAppBar/curationTopAppBar";
 import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-detail";
 import { twMerge } from "tailwind-merge";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
+import MapIcon from "@common/assets/icons/map/map";
+import { useEffect, useState } from "react";
+import Map from "@feature/map/components/Map/Map";
 
 interface CurationDetailCardListProps {
   curationId: number;
@@ -33,10 +36,38 @@ export default function CurationDetailCardList({
   const [inViewRef, inView] = useInView({
     threshold: 1,
   });
+  const [mapOpen, setMapOpen] = useState(false);
+  const [mapPlaceData, setMapPlaceData] = useState<
+    {
+      address: string;
+      name: string;
+      type: string;
+      purpose: string[];
+      imgUrl: string;
+    }[]
+  >([]);
+  const handleMapClick = (state: boolean) => {
+    setMapOpen(state);
+  };
+
   const handlePlaceFilterClick = (index: number) => {
     handlers.changePlaceIndex(index);
     cardRefs[index].current?.scrollIntoView({ behavior: "smooth" });
   };
+
+  useEffect(() => {
+    setMapPlaceData(
+      curationDetail.spaceDetails.map((space) => {
+        return {
+          address: space.address,
+          name: space.name,
+          type: space.type,
+          purpose: space.purpose.split(","),
+          imgUrl: space.imageUrls[0],
+        };
+      })
+    );
+  }, [curationDetail]);
   return (
     <>
       {!inView && (
@@ -66,11 +97,20 @@ export default function CurationDetailCardList({
       )}
       <div className="pb-[6.1rem] p-[2rem] pr-0 w-full">
         <div className="w-full items-start">
-          <div className="flex items-center gap-[0.4rem] mb-[1.2rem]">
-            <LocationFillIcon />
-            <p className="text-black body2-medium">
-              {curationDetail.spaceDetails.length}개의 공간
-            </p>
+          <div className="flex items-center justify-between mb-[1.2rem] pr-[2rem]">
+            <div className="flex items-center gap-[0.4rem]">
+              <LocationFillIcon />
+              <h3 className="text-black body2-medium">
+                {curationDetail.spaceDetails.length}개의 공간
+              </h3>
+            </div>
+            <button
+              className="flex items-center gap-[0.4rem]"
+              onClick={() => handleMapClick(true)}
+            >
+              <MapIcon />
+              <span className="body2-medium text-text-gray-6">지도로 보기</span>
+            </button>
           </div>
           <div
             ref={inViewRef}
@@ -119,6 +159,14 @@ export default function CurationDetailCardList({
             />
           ))}
         </div>
+      )}
+      {mapOpen && (
+        <Map
+          placeData={mapPlaceData}
+          zoom={13}
+          handleMapOpen={handleMapClick}
+          className="fixed top-[7rem] z-10"
+        />
       )}
       <Toast open={openScrapDeleteToast} text={toastText} />
     </>
