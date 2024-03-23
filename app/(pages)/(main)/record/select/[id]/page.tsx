@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import RecordComplete from "@feature/record/components/RecordComplete/RecordComplete";
 import SelectKeyword from "@feature/record/components/Keyword/SelectKeyword";
 import SelectEvaluation from "@feature/record/components/Evaluation/SelectEvaluation";
@@ -11,14 +11,15 @@ import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import Button from "@common/components/ui/buttons/Button/Button";
 import { cloneElement } from "react";
 
-export default function RecordSelect({
+export default function RecordSelectPage({
   params: id,
+  searchParams,
 }: {
   params: { id: number };
+  searchParams: any;
 }) {
-  const searchParams = useSearchParams();
-  const placeType = searchParams.get("type") || "";
-  const name = searchParams.get("name") || "";
+  const placeType = searchParams.type || "";
+  const name = searchParams.name || "";
   const router = useRouter();
   const {
     indicatorIndex,
@@ -142,13 +143,11 @@ export default function RecordSelect({
           </CSSTransition>
         )}
         {indicatorIndex === 3 && (
-          <CSSTransition key={3} timeout={300}>
-            <RecordComplete
-              spaceId={id.id}
-              handleIndicatorIndex={handlers.handleIndicatorIndex}
-              hasSomeData={hasSomeData}
-            />
-          </CSSTransition>
+          <RecordComplete
+            spaceId={id.id}
+            handleIndicatorIndex={handlers.handleIndicatorIndex}
+            hasSomeData={hasSomeData}
+          />
         )}
       </TransitionGroup>
       <div className="flex justify-center w-full fixed h-[13.2rem] px-[2rem] gap-[0.8rem] left-0 bottom-0 bg-white">

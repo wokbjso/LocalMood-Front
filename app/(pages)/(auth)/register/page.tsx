@@ -7,7 +7,7 @@ import UseForm from "@feature/auth/useForm";
 import { LoginFormState, RegisterFormState } from "@feature/auth/type";
 import { useRouter } from "next/navigation";
 
-export default function Register() {
+export default function RegisterPage() {
   const router = useRouter();
   const handleSubmit = async (e: LoginFormState | RegisterFormState) => {
     if ("nickname" in e) {

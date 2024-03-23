@@ -2,7 +2,7 @@ import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
 import GetRandomCuration from "@feature/curation/queries/getRandomCuration";
 
-export default async function CurationPopular() {
+export default async function CurationPopularPage() {
   const randomCuration = await GetRandomCuration();
   return (
     <div className="w-[100%] h-[100%] overflow-auto">

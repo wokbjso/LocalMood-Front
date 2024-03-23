@@ -6,7 +6,7 @@ import PlaceScrappedSkeleton from "@feature/place/components/PlaceScrappedSkelet
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import { Suspense } from "react";
 
-export default async function Record() {
+export default async function RecordPage() {
   return (
     <div className="w-[100%] h-[100%]">
       <PageTopBar
