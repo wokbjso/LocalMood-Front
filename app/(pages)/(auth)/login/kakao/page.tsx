@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { BeatLoader } from "react-spinners";
 
-export default function KakaoRedirect({
+export default function KakaoRedirectPage({
   searchParams,
 }: {
   searchParams: { code: string };

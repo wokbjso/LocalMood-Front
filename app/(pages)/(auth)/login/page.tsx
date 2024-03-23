@@ -4,7 +4,7 @@ import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import KakaoButton from "@common/components/ui/buttons/Kakao/KakaoButton";
 import KakaoScript from "@feature/auth/components/KakaoScript/KakaoScript";
 
-export default function Login() {
+export default function LoginPage() {
   return (
     <div className="w-[100%] h-[100%]">
       <KakaoScript />

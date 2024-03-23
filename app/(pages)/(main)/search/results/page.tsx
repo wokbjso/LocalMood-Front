@@ -18,7 +18,11 @@ import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import HomeSearchSkeleton from "@feature/search/components/HomeSearchSkeleton/HomeSearchSkeleton";
 
-export default function SearchResult({ searchParams }: { searchParams: any }) {
+export default function SearchResultPage({
+  searchParams,
+}: {
+  searchParams: any;
+}) {
   const [textSearchPlaceData, setTextSearchPlaceData] =
     useState<SearchPlaceResponse>();
   const [keywordSearchPlaceData, setKeywordSearchPlaceData] =

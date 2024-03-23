@@ -9,7 +9,7 @@ import {
 import GetPlaceDetail from "@feature/place/queries/getPlaceDetail";
 import GetPlaceReview from "@feature/place/queries/getPlaceReview";
 
-export default async function PlaceDetailMore({
+export default async function PlaceDetailMorePage({
   params: { id },
 }: {
   params: { id: number };

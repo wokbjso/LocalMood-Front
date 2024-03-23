@@ -2,7 +2,7 @@ import PlaceInfoCard from "@feature/place/components/PlaceInfoCard/PlaceInfoCard
 import GetPlaceScrapped from "@feature/place/queries/getPlaceScrapped";
 import PlaceRecordTopBar from "@feature/record/components/PlaceRecordTopBar/PlaceRecordTopBar";
 
-export default async function RecordScrappedMore() {
+export default async function RecordScrappedMorePage() {
   const scrappedPlace = await GetPlaceScrapped();
   return (
     <div className="w-[100%] h-[100%]">

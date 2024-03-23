@@ -4,13 +4,11 @@ import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import Logo from "@common/assets/images/localmood_logo.svg";
 import FormInput from "@common/components/ui/input/FormInput/FormInput";
 import Button from "@common/components/ui/buttons/Button/Button";
-import ArrowRight from "@common/assets/icons/arrow/arrow-right.svg";
 import Link from "next/link";
 import UseForm from "@feature/auth/useForm";
 import { LoginFormState } from "@feature/auth/type";
-import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 
-export default function Login() {
+export default function LoginEmailPage() {
   const handleSubmit = async (e: LoginFormState) => {
     const res = await fetch("/api/auth/login/email", {
       method: "POST",

@@ -11,7 +11,7 @@ import getMyCuration from "@feature/curation/queries/getMyCuration";
 import SliderLayout from "@common/components/layout/SliderLayout/SliderLayout";
 import PlaceDetailImageSlider from "@feature/place/components/PlaceDetail/PlaceDetailImageSlider";
 
-export default async function PlaceDetail({
+export default async function PlaceDetailPage({
   params: { id },
 }: {
   params: { id: number };
