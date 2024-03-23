@@ -5,7 +5,11 @@ import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import { SearchPlaceResponse } from "@feature/search/queries/dto/search-type";
 import { useCallback, useEffect, useState } from "react";
 
-export default function RecordSearch({ searchParams }: { searchParams: any }) {
+export default function RecordSearchPage({
+  searchParams,
+}: {
+  searchParams: any;
+}) {
   const [textSearchPlaceData, setTextSearchPlaceData] =
     useState<SearchPlaceResponse>();
   const getTextSearchPlaceData = useCallback(async () => {

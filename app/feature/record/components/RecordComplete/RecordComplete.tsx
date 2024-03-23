@@ -2,17 +2,20 @@ import React, { useState } from "react";
 import CompleteIcon from "@common/assets/images/record_complete.svg";
 import ArrowIcon from "@common/assets/icons/arrow/arrow-right.svg";
 import SavePlaceModal from "@feature/curation/components/CurationModal/SavePlaceModal/SavePlaceModal";
+import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 
 interface RecordCompleteProps {
   spaceId: number;
   handleIndicatorIndex: (index: number) => void;
   hasSomeData: boolean;
+  myCuration: MyCurationResponse;
 }
 
 export default function RecordComplete({
   spaceId,
   handleIndicatorIndex,
   hasSomeData,
+  myCuration,
 }: RecordCompleteProps) {
   const [isAddCuration, setIsAddCuration] = useState(false);
   const handleAddCurationButtonClick = () => {
@@ -57,7 +60,11 @@ export default function RecordComplete({
         )}
       </div>
       {isAddCuration && (
-        <SavePlaceModal spaceId={spaceId} handleModalFn={setIsAddCuration} />
+        <SavePlaceModal
+          myCurationData={myCuration}
+          spaceId={spaceId}
+          handleModalFn={setIsAddCuration}
+        />
       )}
     </>
   );

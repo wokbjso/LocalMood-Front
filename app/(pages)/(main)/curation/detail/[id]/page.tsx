@@ -11,7 +11,7 @@ import CurationTopAppBar from "@feature/curation/components/CurationTopAppBar/cu
 import { formatDate } from "@common/utils/date/formatDate";
 import getMyCuration from "@feature/curation/queries/getMyCuration";
 
-export default async function CurationDetail({
+export default async function CurationDetailPage({
   params: { id },
 }: {
   params: { id: number };

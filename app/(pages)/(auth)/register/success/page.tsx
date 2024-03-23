@@ -2,7 +2,7 @@ import Success from "@common/assets/images/register_success.svg";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import Button from "@common/components/ui/buttons/Button/Button";
 
-export default function RegisterSuccess() {
+export default function RegisterSuccessPage() {
   return (
     <div className="w-[100%] h-[100%] pb-[9.4rem] flex flex-col justify-center items-center">
       <Success />
