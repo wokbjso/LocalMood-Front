@@ -1,23 +1,25 @@
 import { getSession } from "@common/utils/session/getSession";
-import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
+export async function postKeywordSearchCurationData(keyword: any) {
   const auth_info = await getSession();
   const token = auth_info?.data?.accessToken;
   const res = await fetch(
-    `${
-      process.env.NEXT_PUBLIC_SERVER_API
-    }/api/v1/curation/search?title=${searchParams.get("search_query")}`,
+    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/curation/filter`,
     {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      body: JSON.stringify({
+        keyword1: keyword[0],
+        keyword2: keyword.length > 1 && keyword[1],
+      }),
       cache: "no-store",
+      next: { tags: ["postKeywordSearchCurationData"] },
     }
   );
   const data = await res.json();
 
-  return NextResponse.json(data);
+  return data;
 }

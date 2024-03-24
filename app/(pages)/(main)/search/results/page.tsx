@@ -1,428 +1,57 @@
-"use client";
+import getMyCuration from "@feature/curation/queries/getMyCuration";
+import SearchResult from "@feature/search/components/SearchResult/SearchResult";
+import { getTextSearchCurationData } from "@feature/search/queries/getTextSearchCurationData";
+import { getTextSearchPlaceData } from "@feature/search/queries/getTextSearchPlaceData";
+import { postKeywordSearchCurationData } from "@feature/search/queries/postKeywordSearchCurationData";
+import { postKeywordSearchPlaceData } from "@feature/search/queries/postKeywordSearchPlaceData";
 
-import useSearchBar from "@feature/search/components/SearchBar/useSearchBar";
-import Tab from "@common/components/ui/tab/Tab";
-import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
-import SearchNoResult from "@feature/search/components/SearchNoResult/SearchNoResult";
-import { Suspense, lazy, useCallback, useEffect, useState } from "react";
-import {
-  SearchCurationResponse,
-  SearchPlaceResponse,
-} from "@feature/search/queries/dto/search-type";
-import Divider from "@common/components/ui/divider/Divider";
-import FilterIcon from "@common/assets/icons/filter/filter-keyword.svg";
-const PlaceInfoCard = lazy(
-  () => import("@feature/place/components/PlaceInfoCard/PlaceInfoCard")
-);
-import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
-import SearchBar from "@feature/search/components/SearchBar/SearchBar";
-import HomeSearchSkeleton from "@feature/search/components/HomeSearchSkeleton/HomeSearchSkeleton";
-
-export default function SearchResultPage({
+export default async function SearchResultPage({
   searchParams,
 }: {
   searchParams: any;
 }) {
-  const [textSearchPlaceData, setTextSearchPlaceData] =
-    useState<SearchPlaceResponse>();
-  const [keywordSearchPlaceData, setKeywordSearchPlaceData] =
-    useState<SearchPlaceResponse>();
-  const [textSearchCurationData, setTextSearchCurationData] =
-    useState<SearchCurationResponse>();
-  const [keywordSearchCurationData, setKeywordSearchCurationData] =
-    useState<SearchCurationResponse>();
-  const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
-    useSearchBar();
+  const manufactureCurationKeyword = (keyword: string) => {
+    let curation_keyword = [];
+    let count = 0;
 
-  const getTextSearchCurationData = useCallback(async () => {
-    const response = await fetch(
-      `/api/search/curation-search-text?search_query=${searchParams.search_query}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        cache: "no-store",
+    for (const [key, value] of Object.entries(JSON.parse(keyword as string))) {
+      if (key !== "type" && value !== "ALL") {
+        curation_keyword.push(value as string);
+        count++;
       }
-    );
-    if (response.ok) {
-      setTextSearchCurationData(await response.json());
-    } else {
-      alert("오류가 발생했습니다.");
-      return;
+      if (count === 2) break;
+
+      return curation_keyword;
     }
-  }, [searchParams.search_query]);
+  };
 
-  const getTextSearchPlaceData = useCallback(async () => {
-    {
-      const response = await fetch("/api/search/place-search-text", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        cache: "no-store",
-        body: JSON.stringify({ name: searchParams.search_query }),
-      });
+  const myCuration = await getMyCuration();
+  const textSearchPlaceData =
+    searchParams.search_query &&
+    (await getTextSearchPlaceData(searchParams.search_query));
+  const textSearchCurationData =
+    searchParams.search_query &&
+    (await getTextSearchCurationData(searchParams.search_query));
+  const keywordSearchPlaceData =
+    searchParams.keyword &&
+    (await postKeywordSearchPlaceData(searchParams.keyword));
+  const keywordSearchCurationData =
+    searchParams.keyword &&
+    (await postKeywordSearchCurationData(
+      manufactureCurationKeyword(searchParams.keyword)
+    ));
 
-      if (response.ok) {
-        setTextSearchPlaceData(await response.json());
-      } else {
-        alert("오류가 발생했습니다.");
-        return;
-      }
-    }
-  }, [searchParams.search_query]);
-
-  const getKeywordSearchPlaceData = useCallback(async () => {
-    {
-      const response = await fetch("/api/search/place-search-keyword", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        cache: "no-store",
-        body: JSON.stringify(searchParams.keyword),
-      });
-
-      if (response.ok) {
-        setKeywordSearchPlaceData(await response.json());
-      } else {
-        alert("오류가 발생했습니다.");
-        return;
-      }
-    }
-  }, [searchParams.keyword]);
-
-  const manufactureCurationKeyword = useCallback(() => {
-    {
-      let keyword = [];
-      let count = 0;
-
-      for (const [key, value] of Object.entries(
-        JSON.parse(searchParams.keyword as string)
-      )) {
-        if (key !== "type" && value !== "ALL") {
-          keyword.push(value as string);
-          count++;
-        }
-        if (count === 2) break;
-      }
-
-      return keyword;
-    }
-  }, [searchParams.keyword]);
-
-  const getKeywordSearchCurationData = useCallback(async () => {
-    {
-      const response = await fetch("/api/search/curation-search-keyword", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        cache: "no-store",
-        body: JSON.stringify(manufactureCurationKeyword()),
-      });
-
-      if (response.ok) {
-        setKeywordSearchCurationData(await response.json());
-      } else {
-        alert("오류가 발생했습니다.");
-        return;
-      }
-    }
-  }, [manufactureCurationKeyword]);
-
-  useEffect(() => {
-    if (searchParams.search_query) {
-      getTextSearchPlaceData();
-      getTextSearchCurationData();
-    }
-
-    if (searchParams.keyword) {
-      getKeywordSearchPlaceData();
-      getKeywordSearchCurationData();
-    }
-  }, [
-    getKeywordSearchCurationData,
-    getTextSearchCurationData,
-    getKeywordSearchPlaceData,
-    getTextSearchPlaceData,
-    searchParams.keyword,
-    searchParams.search_query,
-  ]);
   return (
     <main className="w-[100%] h-[100%]">
-      <BasicTopBar color="#9E9E9E" className="pt-[1.2rem]">
-        <SearchBar
-          placeholder="공간, 큐레이션을 검색해보세요"
-          className="rounded-[1000px]"
-        />
-      </BasicTopBar>
-      <Suspense fallback={<HomeSearchSkeleton />}>
-        {searchParams.search_query &&
-          textSearchPlaceData?.spaceCount === 0 &&
-          textSearchCurationData?.CurationCount === 0 && <SearchNoResult />}
-        {searchParams.search_query &&
-          textSearchPlaceData?.spaceCount === 0 &&
-          textSearchCurationData &&
-          textSearchCurationData?.CurationCount > 0 && (
-            <div className="h-[100%] overflow-y-hidden">
-              <Tab
-                sections={[
-                  { text: "공간", length: 0 },
-                  {
-                    text: "큐레이션",
-                    length: textSearchCurationData.CurationCount,
-                  },
-                ]}
-                onChange={searchBarHandlers.handleTabIndex}
-              />
-              {searchBarTabIndex === 0 && <SearchNoResult />}
-              {searchBarTabIndex === 1 && (
-                <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
-                  {textSearchCurationData?.CurationList.map((curation) => (
-                    <CurationMain
-                      key={curation.id}
-                      id={curation.id}
-                      image={curation.image}
-                      author={curation.author}
-                      title={curation.title}
-                      keyword={curation.keyword}
-                      spaceCount={curation.spaceCount}
-                      className="mb-[4rem]"
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-        {searchParams.search_query &&
-          textSearchPlaceData &&
-          textSearchPlaceData?.spaceCount > 0 &&
-          textSearchCurationData?.CurationCount === 0 && (
-            <div className="h-[100%] overflow-y-hidden">
-              <Tab
-                sections={[
-                  { text: "공간", length: textSearchPlaceData.spaceCount },
-                  { text: "큐레이션", length: 0 },
-                ]}
-                onChange={searchBarHandlers.handleTabIndex}
-              />
-              {searchBarTabIndex === 0 && (
-                <div className="h-full px-[2rem] pt-[2rem] pb-[24.5rem] overflow-y-scroll">
-                  {textSearchPlaceData.spaceList.map((place) => (
-                    <div key={place.id + place.type} className="mb-[4rem]">
-                      <PlaceInfoCard
-                        {...place}
-                        interior={
-                          place.type === "CAFE" ? place.keyword : undefined
-                        }
-                        bestMenu={
-                          place.type === "RESTAURANT"
-                            ? place.keyword
-                            : undefined
-                        }
-                        keywordCategoryNum={2}
-                      />
-                    </div>
-                  ))}
-                </div>
-              )}
-              {searchBarTabIndex === 1 && <SearchNoResult />}
-            </div>
-          )}
-        {searchParams.search_query &&
-          textSearchPlaceData &&
-          textSearchPlaceData?.spaceCount > 0 &&
-          textSearchCurationData &&
-          textSearchCurationData?.CurationCount > 0 && (
-            <div className="h-[100%] overflow-y-hidden">
-              <Tab
-                sections={[
-                  { text: "공간", length: textSearchPlaceData.spaceCount },
-                  {
-                    text: "큐레이션",
-                    length: textSearchCurationData.CurationCount,
-                  },
-                ]}
-                onChange={searchBarHandlers.handleTabIndex}
-              />
-              {searchBarTabIndex === 0 && (
-                <>
-                  <div className="flex justify-between px-[2rem] pt-[1.6rem] pb-[1.2rem]">
-                    <div className="flex items-center">
-                      <FilterIcon />
-                      <span className="ml-[0.8rem] body2-semibold text-text-gray-8">
-                        키워드 설정
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <FilterIcon />
-                      <span className="ml-[0.8rem] body2-semibold text-text-gray-8">
-                        리뷰 최신순
-                      </span>
-                    </div>
-                  </div>
-                  <Divider className="h-[0.1rem] bg-line-gray-3" />
-                  <div className="h-[100%] px-[2rem] pt-[1.2rem] pb-[24.5rem] overflow-auto">
-                    {textSearchPlaceData.spaceList.map((place) => (
-                      <div key={place.id + place.type} className="mb-[4rem]">
-                        <PlaceInfoCard
-                          {...place}
-                          interior={
-                            place.type === "CAFE" ? place.keyword : undefined
-                          }
-                          bestMenu={
-                            place.type === "RESTAURANT"
-                              ? place.keyword
-                              : undefined
-                          }
-                          keywordCategoryNum={2}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
-              {searchBarTabIndex === 1 && (
-                <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
-                  {textSearchCurationData.CurationList.map((curation) => (
-                    <CurationMain
-                      key={curation.id}
-                      id={curation.id}
-                      image={curation.image}
-                      author={curation.author}
-                      title={curation.title}
-                      keyword={curation.keyword}
-                      spaceCount={curation.spaceCount}
-                      className="mb-[4rem]"
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-        {searchParams.keyword &&
-          keywordSearchPlaceData?.spaceCount === 0 &&
-          keywordSearchCurationData?.CurationCount === 0 && <SearchNoResult />}
-        {searchParams.keyword &&
-          keywordSearchPlaceData?.spaceCount === 0 &&
-          keywordSearchCurationData &&
-          keywordSearchCurationData.CurationCount > 0 && (
-            <div className="h-[100%] overflow-y-hidden">
-              <Tab
-                sections={[
-                  { text: "공간", length: 0 },
-                  {
-                    text: "큐레이션",
-                    length: keywordSearchCurationData.CurationCount,
-                  },
-                ]}
-                onChange={searchBarHandlers.handleTabIndex}
-              />
-              {searchBarTabIndex === 0 && <SearchNoResult />}
-              {searchBarTabIndex === 1 && (
-                <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
-                  {keywordSearchCurationData?.CurationList.map((curation) => (
-                    <CurationMain
-                      key={curation.id}
-                      id={curation.id}
-                      image={curation.image}
-                      author={curation.author}
-                      title={curation.title}
-                      keyword={curation.keyword}
-                      spaceCount={curation.spaceCount}
-                      className="mb-[4rem]"
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-        {searchParams.keyword &&
-          keywordSearchPlaceData &&
-          keywordSearchPlaceData?.spaceCount > 0 &&
-          keywordSearchCurationData?.CurationCount === 0 && (
-            <div className="h-[100%] overflow-y-hidden">
-              <Tab
-                sections={[
-                  { text: "공간", length: keywordSearchPlaceData.spaceCount },
-                  { text: "큐레이션", length: 0 },
-                ]}
-                onChange={searchBarHandlers.handleTabIndex}
-              />
-              {searchBarTabIndex === 0 && (
-                <div className="h-full px-[2rem] pt-[2rem] pb-[24.5rem] overflow-y-scroll">
-                  {keywordSearchPlaceData.spaceList.map((place) => (
-                    <div key={place.id + place.type} className="mb-[4rem]">
-                      <PlaceInfoCard {...place} keywordCategoryNum={2} />
-                    </div>
-                  ))}
-                </div>
-              )}
-              {searchBarTabIndex === 1 && <SearchNoResult />}
-            </div>
-          )}
-        {searchParams.keyword &&
-          keywordSearchPlaceData &&
-          keywordSearchPlaceData?.spaceCount > 0 &&
-          keywordSearchCurationData &&
-          keywordSearchCurationData?.CurationCount > 0 && (
-            <div className="h-[100%] overflow-y-hidden">
-              <Tab
-                sections={[
-                  { text: "공간", length: keywordSearchPlaceData.spaceCount },
-                  {
-                    text: "큐레이션",
-                    length: keywordSearchCurationData.CurationCount,
-                  },
-                ]}
-                onChange={searchBarHandlers.handleTabIndex}
-              />
-              {searchBarTabIndex === 0 && (
-                <>
-                  <div className="flex justify-between px-[2rem] pt-[1.6rem] pb-[1.2rem]">
-                    <div className="flex items-center">
-                      <FilterIcon />
-                      <span className="ml-[0.8rem] body2-semibold text-text-gray-8">
-                        키워드 설정
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <FilterIcon />
-                      <span className="ml-[0.8rem] body2-semibold text-text-gray-8">
-                        리뷰 최신순
-                      </span>
-                    </div>
-                  </div>
-                  <Divider className="h-[0.1rem] bg-line-gray-3" />
-                  <div className="h-full px-[2rem] pt-[1.2rem] pb-[24.5rem] overflow-y-scroll">
-                    {keywordSearchPlaceData.spaceList.map((place) => (
-                      <div key={place.id + place.type} className="mb-[4rem]">
-                        <PlaceInfoCard {...place} keywordCategoryNum={2} />
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
-              {searchBarTabIndex === 1 && (
-                <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
-                  {keywordSearchCurationData.CurationList.map((curation) => (
-                    <CurationMain
-                      key={curation.id}
-                      id={curation.id}
-                      image={curation.image}
-                      author={curation.author}
-                      title={curation.title}
-                      keyword={curation.keyword}
-                      spaceCount={curation.spaceCount}
-                      className="mb-[4rem]"
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-      </Suspense>
+      <SearchResult
+        search_query={searchParams.search_query}
+        keyword={searchParams.keyword}
+        textSearchPlaceData={textSearchPlaceData}
+        textSearchCurationData={textSearchCurationData}
+        keywordSearchPlaceData={keywordSearchPlaceData}
+        keywordSearchCurationData={keywordSearchCurationData}
+        myCuration={myCuration}
+      />
     </main>
   );
 }
