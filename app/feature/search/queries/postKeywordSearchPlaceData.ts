@@ -1,8 +1,9 @@
 import { getSession } from "@common/utils/session/getSession";
-import { NextRequest, NextResponse } from "next/server";
+import { SearchPlaceResponse } from "./dto/search-type";
 
-export async function POST(request: NextRequest) {
-  const body = await request.json();
+export async function postKeywordSearchPlaceData(
+  keyword: string
+): Promise<SearchPlaceResponse> {
   const auth_info = await getSession();
   const token = auth_info?.data?.accessToken;
   const res = await fetch(
@@ -14,10 +15,11 @@ export async function POST(request: NextRequest) {
         Authorization: `Bearer ${token}`,
       },
       cache: "no-store",
-      body,
+      next: { tags: ["postKeywordSearchPlaceData"] },
+      body: keyword,
     }
   );
   const data = await res.json();
 
-  return NextResponse.json(data);
+  return data;
 }

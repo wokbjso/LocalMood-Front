@@ -9,6 +9,8 @@ import { CurationProps } from "@feature/curation/type";
 import LocationLine from "@common/assets/icons/location/LocationLine";
 import useSavePlaceModalMyCurationCard from "./useSavePlaceModalMyCurationCard";
 import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail";
+import revalidateTextSearchPlaceData from "@feature/search/actions/revalidateTextSearchPlaceData";
+import revalidateKeywordSearchPlaceData from "@feature/search/actions/revalidateKeywordSearchPlaceData";
 
 interface SavePlaceModalMyCurationCardProps {
   curationData: Omit<CurationProps, "variant"> & { privacy: boolean };
@@ -30,6 +32,8 @@ export default function SavePlaceModalMyCurationCard({
       revalidateMyCuration();
       revalidatePlaceDetail();
       revalidateCurationDetail();
+      revalidateTextSearchPlaceData();
+      revalidateKeywordSearchPlaceData();
     } else {
       alert("오류가 발생했습니다!");
     }
