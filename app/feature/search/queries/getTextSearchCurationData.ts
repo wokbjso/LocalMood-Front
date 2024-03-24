@@ -1,26 +1,21 @@
 import { getSession } from "@common/utils/session/getSession";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: NextRequest) {
-  const body = await request.json();
+export async function getTextSearchCurationData(title: string) {
   const auth_info = await getSession();
   const token = auth_info?.data?.accessToken;
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/spaces/search?sort=recent`,
+    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/curation/search?title=${title}`,
     {
-      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({
-        name: body.name,
-      }),
       cache: "no-store",
-      next: { tags: [`get${body.name}searchText`] },
+      next: { tags: ["getTextSearchCurationData"] },
     }
   );
   const data = await res.json();
 
-  return NextResponse.json(data);
+  return data;
 }
