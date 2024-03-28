@@ -59,13 +59,12 @@ export default function RecordComplete({
           </>
         )}
       </div>
-      {isAddCuration && (
-        <SavePlaceModal
-          myCurationData={myCuration}
-          spaceId={spaceId}
-          handleModalFn={setIsAddCuration}
-        />
-      )}
+      <SavePlaceModal
+        open={isAddCuration}
+        myCurationData={myCuration}
+        spaceId={spaceId}
+        handleModalFn={setIsAddCuration}
+      />
     </>
   );
 }

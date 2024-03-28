@@ -5,14 +5,17 @@ export default function UsePlaceInfoCardTop() {
   const [openScrapToast, setOpenScrapToast] = useState(false);
   const [toastText, setToastText] = useState("");
 
-  const handleOpenCurationSaveModal = (state: boolean) => {
+  const openCurationModal = () => {
+    setOpenCurationSaveModal(true);
+  };
+
+  const openToast = (toastText: string) => {
+    setOpenScrapToast(true);
+    setToastText(toastText);
+  };
+
+  const handleCurationModal = (state: boolean) => {
     setOpenCurationSaveModal(state);
-  };
-  const handleScrapToast = (state: boolean) => {
-    setOpenScrapToast(state);
-  };
-  const handleToastText = (text: string) => {
-    setToastText(text);
   };
 
   useEffect(() => {
@@ -31,10 +34,10 @@ export default function UsePlaceInfoCardTop() {
     openCurationSaveModal,
     openScrapToast,
     toastText,
+    openCurationModal,
+    openToast,
     handlers: {
-      changeOpenCurationSaveModal: handleOpenCurationSaveModal,
-      openScrapToast: handleScrapToast,
-      changeToastText: handleToastText,
+      handleCurationModal,
     },
   };
 }

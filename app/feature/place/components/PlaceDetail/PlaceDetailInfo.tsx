@@ -105,13 +105,12 @@ export default function PlaceDetailInfo({
           </div>
         </div>
       </div>
-      {openSaveModal && (
-        <SavePlaceModal
-          myCurationData={myCurationData}
-          spaceId={id}
-          handleModalFn={setOpenSaveModal}
-        />
-      )}
+      <SavePlaceModal
+        open={openSaveModal}
+        myCurationData={myCurationData}
+        spaceId={id}
+        handleModalFn={setOpenSaveModal}
+      />
       <Toast open={openScrapToast} text={toastText} />
     </>
   );

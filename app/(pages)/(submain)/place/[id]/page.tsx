@@ -19,7 +19,7 @@ export default async function PlaceDetailPage({
   const detailData = await GetPlaceDetail(id);
   const myCurationData = await getMyCuration();
   return (
-    <div className="w-[100%] h-[100%] relative pb-[12rem] overflow-y-auto">
+    <div className="w-[100%] h-[100%] relative pb-[12rem] overflow-auto">
       <PlaceDetailTopBar
         type={detailData.info.type}
         address={detailData.info.address}
@@ -62,7 +62,7 @@ export default async function PlaceDetailPage({
         }
       />
       <Divider className="bg-line-gray-3 h-[0.4rem] mb-[4.8rem]" />
-      <section className="pl-[2rem] w-full">
+      <section className="pl-[2rem] w-[100%]">
         <span className="text-black headline2">
           {detailData.info.name}와(과) 비슷한 장소
         </span>
