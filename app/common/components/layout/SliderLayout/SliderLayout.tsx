@@ -10,8 +10,8 @@ interface SliderProps {
 
 export default function SliderLayout({ className, children }: SliderProps) {
   return (
-    <div className={twMerge("w-full", className)}>
-      <div className="flex overflow-x-scroll">{children}</div>
+    <div className={twMerge("w-[100%]", className)}>
+      <div className="flex overflow-x-auto">{children}</div>
     </div>
   );
 }

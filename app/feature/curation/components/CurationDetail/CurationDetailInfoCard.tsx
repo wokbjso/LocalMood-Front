@@ -119,13 +119,12 @@ const CurationDetailInfoCard = forwardRef<
           </div>
         </div>
       </div>
-      {openCurationSaveModal && (
-        <SavePlaceModal
-          myCurationData={props.myCurationData}
-          spaceId={props.id}
-          handleModalFn={setOpenCurationSaveModal}
-        />
-      )}
+      <SavePlaceModal
+        open={openCurationSaveModal}
+        myCurationData={props.myCurationData}
+        spaceId={props.id}
+        handleModalFn={setOpenCurationSaveModal}
+      />
     </>
   );
 });
