@@ -3,8 +3,6 @@
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import Line from "@common/assets/icons/line/line.svg";
-import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
-import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import Link from "next/link";
 import {
   PlaceInfoCardAdditionalProps,
@@ -13,10 +11,9 @@ import {
 import { getSession } from "@common/utils/session/getSession";
 import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import { sliceText } from "@common/utils/text/slice-text";
-import Toast from "@common/components/ui/toast/Toast";
 import UsePlaceInfoCardTop from "./usePlaceInfoCardTop";
-import SavePlaceModal from "@feature/curation/components/CurationModal/SavePlaceModal/SavePlaceModal";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
+import PlaceInfoCardTopScrapIcon from "./PlaceInfoCardTopScrapIcon";
 
 export default function PlaceInfoCardTop({
   id,
@@ -35,8 +32,15 @@ export default function PlaceInfoCardTop({
   Partial<PlaceInfoCardAdditionalProps> & {
     myCurationData?: MyCurationResponse;
   }) {
-  const { openCurationSaveModal, openScrapToast, toastText, handlers } =
-    UsePlaceInfoCardTop();
+  const {
+    openCurationSaveModal,
+    openScrapToast,
+    toastText,
+    openCurationModal,
+    openToast,
+    handlers,
+  } = UsePlaceInfoCardTop();
+
   const handleScrap = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
@@ -46,13 +50,18 @@ export default function PlaceInfoCardTop({
     if (!token) {
       location.replace("/login");
     } else {
-      handlers.changeOpenCurationSaveModal(true);
-      handlers.openScrapToast(true);
-      handlers.changeToastText(`저장할 큐레이션을 선택해주세요`);
+      openCurationModal();
+      openToast("저장할 큐레이션을 선택해주세요");
     }
   };
   return (
-    <>
+    <div
+      className={twMerge(
+        "w-full relative",
+        direction === "horizontal" && "flex items-center",
+        className
+      )}
+    >
       <Link
         href={{
           pathname:
@@ -66,98 +75,88 @@ export default function PlaceInfoCardTop({
       >
         <div
           className={twMerge(
-            "w-full relative",
-            direction === "horizontal" && "flex items-center",
-            className
+            "w-full h-[16rem] relative",
+            direction === "horizontal" && "w-[8rem] h-[8rem] mr-[1.6rem]"
           )}
         >
-          <div
-            className={twMerge(
-              "w-full h-[16rem] relative",
-              direction === "horizontal" && "w-[8rem] h-[8rem] mr-[1.6rem]"
-            )}
-          >
-            <Image
-              src={imgUrl ? imgUrl : NoResult}
-              alt="공간 사진"
-              fill
-              placeholder="blur"
-              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
-              sizes="100vw,50vw"
-              className={twMerge("rounded-[8px] object-cover", imgClassName)}
-            />
-          </div>
-          <div
-            className={twMerge(
-              "flex-col",
-              size === "normal" ? "relative" : null
-            )}
-          >
-            <div
-              className={twMerge(
-                direction === "vertical" && "w-[85%] pt-[1.6rem]",
-                size === "normal" ? "headline2" : "headline3"
-              )}
-            >
-              {direction === "vertical" && variant !== "record" ? (
-                isScraped ? (
-                  <ScrapFill
-                    className={twMerge(
-                      "absolute right-[0.6rem]",
-                      size === "small" && "top-[0.8rem]"
-                    )}
-                    color={size === "small" ? "white" : undefined}
-                    onClick={handleScrap}
-                  />
-                ) : (
-                  <ScrapLine
-                    className={twMerge(
-                      "absolute right-[0.6rem]",
-                      size === "small" && "top-[0.8rem]"
-                    )}
-                    color={size === "small" ? "white" : undefined}
-                    onClick={handleScrap}
-                  />
-                )
-              ) : null}
-              <span>
-                {direction === "vertical" && size === "small"
-                  ? sliceText(name, 8)
-                  : name}
-              </span>
-              <div className="flex items-center mt-[0.8rem]">
-                <span
-                  className={twMerge(
-                    "text-text-gray-6 whitespace-nowrap",
-                    size === "normal" ? "body2-semibold" : "body3-semibold"
-                  )}
-                >
-                  {type === "RESTAURANT" ? "음식점" : "카페"}
-                </span>
-                <Line className="mx-[0.8rem]" />
-                <span
-                  className={twMerge(
-                    "text-text-gray-5",
-                    size === "normal" ? "body2-medium" : "body3-medium"
-                  )}
-                >
-                  {direction === "vertical" && size === "small"
-                    ? sliceText(address, 9)
-                    : address.split(" ").slice(0, 4).join(" ")}
-                </span>
-              </div>
-            </div>
-          </div>
+          <Image
+            src={imgUrl ? imgUrl : NoResult}
+            alt="공간 사진"
+            fill
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+            sizes="100vw,50vw"
+            className={twMerge("rounded-[8px] object-cover", imgClassName)}
+          />
         </div>
       </Link>
-      {openCurationSaveModal && (
-        <SavePlaceModal
-          myCurationData={myCurationData}
-          spaceId={id}
-          handleModalFn={handlers.changeOpenCurationSaveModal}
-        />
-      )}
-      <Toast open={openScrapToast} text={toastText} />
-    </>
+      <div
+        className={twMerge("flex-col", size === "normal" ? "relative" : null)}
+      >
+        <div
+          className={twMerge(
+            direction === "vertical" && "w-[85%] pt-[1.6rem]",
+            size === "normal" ? "headline2" : "headline3"
+          )}
+        >
+          {direction === "vertical" && variant !== "record" && (
+            <PlaceInfoCardTopScrapIcon
+              isScraped={isScraped}
+              cardSize={size}
+              curationModalInfo={{
+                open: openCurationSaveModal,
+                title: "저장할 큐레이션",
+                spaceId: id,
+                myCurationData,
+                handleModalFn: handlers.handleCurationModal,
+              }}
+              toastInfo={{
+                open: openScrapToast,
+                text: toastText,
+              }}
+              onClick={handleScrap}
+            />
+          )}
+          <Link
+            href={{
+              pathname:
+                variant === "main"
+                  ? `/place/${id}`
+                  : variant === "record"
+                  ? `/record/select/${id}`
+                  : undefined,
+              query: variant === "record" ? { type, name } : null,
+            }}
+          >
+            <span>
+              {direction === "vertical" && size === "small"
+                ? sliceText(name, 8)
+                : name}
+            </span>
+          </Link>
+          <div className="flex items-center mt-[0.8rem]">
+            <span
+              className={twMerge(
+                "text-text-gray-6 whitespace-nowrap",
+                size === "normal" ? "body2-semibold" : "body3-semibold"
+              )}
+            >
+              {type === "RESTAURANT" ? "음식점" : "카페"}
+            </span>
+            <Line className="mx-[0.8rem]" />
+            <span
+              className={twMerge(
+                "text-text-gray-5",
+                size === "normal" ? "body2-medium" : "body3-medium"
+              )}
+            >
+              {direction === "vertical" && size === "small"
+                ? sliceText(address, 9)
+                : address.split(" ").slice(0, 4).join(" ")}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
