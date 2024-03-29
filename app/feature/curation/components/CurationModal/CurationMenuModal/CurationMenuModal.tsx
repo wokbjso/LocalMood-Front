@@ -13,17 +13,19 @@ import { usePathname } from "next/navigation";
 import Toast from "@common/components/ui/toast/Toast";
 
 interface CurationMenuModalProps {
-  id: number;
+  open: boolean;
+  curationId: number;
   hasCopyLink?: boolean;
-  handleMenuModalState: (state: boolean) => void;
+  handleModalFn: (state: boolean) => void;
 }
 
 export default function CurationMenuModal({
-  id,
+  open,
+  curationId,
   hasCopyLink = false,
-  handleMenuModalState,
+  handleModalFn,
 }: CurationMenuModalProps) {
-  const { ref } = UseOutsideClick<HTMLDivElement>(handleMenuModalState);
+  const { ref } = UseOutsideClick<HTMLDivElement>(handleModalFn);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [linkCopyToastOpen, setLinkCopyToastOpen] = useState(false);
   const [toastText, setToastText] = useState("");
@@ -37,7 +39,7 @@ export default function CurationMenuModal({
   };
 
   const handleLinkCopyClick = async () => {
-    copyLink(pathname + `/${id}`);
+    copyLink(pathname + `/${curationId}`);
     setLinkCopyToastOpen(true);
     setToastText("링크가 복사되었어요");
   };
@@ -52,7 +54,7 @@ export default function CurationMenuModal({
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(id),
+      body: JSON.stringify(curationId),
     });
     if (res.status === 200) {
       revalidateMyCuration();
@@ -77,7 +79,7 @@ export default function CurationMenuModal({
 
   return (
     <>
-      {
+      {open && (
         <Modal ref={ref}>
           <div className="pl-[2rem] pt-[1.8rem]">
             <div
@@ -102,7 +104,7 @@ export default function CurationMenuModal({
             )}
           </div>
         </Modal>
-      }
+      )}
       {deleteModalOpen && (
         <ConfirmModal
           text="정말 삭제하시겠습니까?"

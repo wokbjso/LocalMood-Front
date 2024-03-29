@@ -2,21 +2,21 @@
 
 import UserProfile from "@feature/user/components/UserProfile/UserProfile";
 import { CurationProps } from "@feature/curation/type";
-import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { twMerge } from "tailwind-merge";
-import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import Link from "next/link";
-import MenuIcon from "@common/assets/icons/menu/MenuIcon";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
 import LocationLine from "@common/assets/icons/location/LocationLine";
-import CurationMenuModal from "../CurationModal/CurationMenuModal";
-import UseCurationMain from "./useCurationMain";
-import { getSession } from "@common/utils/session/getSession";
 import NoResult from "@common/assets/images/curationHomeNoImg.png";
-import Toast from "@common/components/ui/toast/Toast";
 import Image from "next/image";
+import useToast from "@common/hooks/useToast";
+import revalidateCurationRandom from "@feature/curation/actions/revalidateCurationRandom";
+import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
+import CurationCardScrapIcon from "./CurationCardScrapIcon";
+import CurationCardMenuIcon from "./CurationCardMenuIcon";
+import useCurationMenuModal from "../CurationModal/CurationMenuModal/useCurationMenuModal";
+import { validateToken } from "@common/utils/validate/validateToken";
 
-export default function CurationMain({
+export default function CurationCard({
   id,
   variant = "others",
   image,
@@ -27,25 +27,68 @@ export default function CurationMain({
   isScraped = false,
   className,
 }: CurationProps & { className?: string }) {
-  const { isMenuOpened, openScrapToast, toastText, handlers } =
-    UseCurationMain(isScraped);
+  const { isMenuModalOpen, openMenuModal, handlers } = useCurationMenuModal();
 
-  const handleScrapClick = async (
+  const { isToastOpen, toastText, openToast } = useToast();
+
+  const curationScrapAdd = async () => {
+    const res = await fetch(`/api/curation/scrap/add/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return res.status;
+  };
+
+  const curationScrapDelete = async () => {
+    const res = await fetch(`/api/curation/scrap/delete/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return res.status;
+  };
+
+  const revalidateRelatedData = () => {
+    revalidateCurationRandom();
+    revalidateCurationScrap();
+  };
+
+  const handleScrapIconClick = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
     e.preventDefault();
-    const auth_info = await getSession();
-    const token = auth_info?.data?.accessToken;
+    const token = await validateToken();
     if (!token) {
       location.replace("/login");
     } else {
-      handlers.changeScrapState(id);
+      if (isScraped) {
+        if ((await curationScrapDelete()) === 200) {
+          openToast("큐레이션 스크랩이 해제되었습니다");
+          revalidateRelatedData();
+        } else {
+          alert("에러가 발생했습니다!");
+          return;
+        }
+      } else {
+        if ((await curationScrapAdd()) === 200) {
+          openToast("큐레이션이 스크랩 되었습니다");
+          revalidateRelatedData();
+        } else {
+          alert("에러가 발생했습니다!");
+          return;
+        }
+      }
     }
   };
 
   const handleMenuClick = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     e.preventDefault();
-    handlers.changeMenuModalState(true);
+    openMenuModal();
   };
 
   return (
@@ -87,20 +130,22 @@ export default function CurationMain({
           </div>
           <div className="w-full pt-[1.6rem] pl-[1.6rem] pr-[0.8rem] pb-[2rem] relative rounded-b-[8px]">
             {variant === "others" ? (
-              isScraped ? (
-                <ScrapFill
-                  className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-                  onClick={handleScrapClick}
-                />
-              ) : (
-                <ScrapLine
-                  className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-                  onClick={handleScrapClick}
-                />
-              )
+              <CurationCardScrapIcon
+                isScraped={isScraped}
+                toastInfo={{
+                  open: isToastOpen,
+                  text: toastText,
+                }}
+                onClick={handleScrapIconClick}
+              />
             ) : (
-              <MenuIcon
-                className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
+              <CurationCardMenuIcon
+                menuModalInfo={{
+                  open: isMenuModalOpen,
+                  curationId: id,
+                  hasCopyLink: true,
+                  handleModalFn: handlers.handleMenuModalOpen,
+                }}
                 onClick={handleMenuClick}
               />
             )}
@@ -118,14 +163,6 @@ export default function CurationMain({
           </div>
         </div>
       </Link>
-      {isMenuOpened && (
-        <CurationMenuModal
-          id={id}
-          hasCopyLink
-          handleMenuModalState={handlers.changeMenuModalState}
-        />
-      )}
-      <Toast open={openScrapToast} text={toastText} />
     </>
   );
 }

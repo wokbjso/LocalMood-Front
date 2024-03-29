@@ -1,5 +1,5 @@
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
-import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
+import CurationCard from "@feature/curation/components/CurationCard/CurationCard";
 import GetRandomCuration from "@feature/curation/queries/getRandomCuration";
 
 export default async function CurationPopularPage() {
@@ -13,7 +13,7 @@ export default async function CurationPopularPage() {
         </div>
         <section className="mt-[2.4rem] px-[2rem] pb-[12rem]">
           {randomCuration.map((curation: any) => (
-            <CurationMain
+            <CurationCard
               key={curation.author + curation.id}
               {...curation}
               className="mb-[2rem] w-full"

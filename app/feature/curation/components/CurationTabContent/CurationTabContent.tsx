@@ -3,11 +3,11 @@
 import Tab from "@common/components/ui/tab/Tab";
 import CurationMakeModal from "../CurationMake/CurationMakeModal";
 import CurationScrapped from "../CurationScrapped/CurationScrapped";
-import CurationMain from "../CurationMain/CurationMain";
 import AddIcon from "@common/assets/icons/add/add-line.svg";
 import { CurationProps } from "@feature/curation/type";
 import UseCuration from "@feature/curation/useCuration";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
+import CurationCard from "../CurationCard/CurationCard";
 
 interface CurationTabContentProps {
   myCuration: MyCurationResponse;
@@ -51,7 +51,7 @@ export default function CurationTabContent({
           myCuration && myCuration?.curation.length > 0 ? (
             myCuration?.curation.map((props: CurationProps) => (
               <div key={props.author + props.id} className="mb-[1.2rem]">
-                <CurationMain variant="my" {...props} />
+                <CurationCard variant="my" {...props} />
               </div>
             ))
           ) : (

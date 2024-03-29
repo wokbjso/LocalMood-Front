@@ -5,7 +5,7 @@ import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { usePathname } from "next/navigation";
 import MenuIcon from "@common/assets/icons/menu/MenuIcon";
 import { useEffect, useState } from "react";
-import CurationMenuModal from "../CurationModal/CurationMenuModal";
+import CurationMenuModal from "../CurationModal/CurationMenuModal/CurationMenuModal";
 import { copyLink } from "@common/utils/text/copy-link";
 import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-detail";
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
@@ -108,14 +108,13 @@ export default function CurationTopAppBar({
           </div>
         </div>
       </BasicTopBar>
-      {menuModalOpen && (
-        <div className="w-[100%] h-[100%] fixed top-0 left-0 z-50">
-          <CurationMenuModal
-            id={curationDetail.id}
-            handleMenuModalState={setMenuModalOpen}
-          />
-        </div>
-      )}
+      <div className="w-[100%] h-[100%] fixed top-0 left-0 z-50">
+        <CurationMenuModal
+          open={menuModalOpen}
+          curationId={curationDetail.id}
+          handleModalFn={setMenuModalOpen}
+        />
+      </div>
       <Toast open={linkCopyToastOpen} text={toastText} />
     </>
   );

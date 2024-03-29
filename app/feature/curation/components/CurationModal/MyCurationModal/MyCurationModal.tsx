@@ -42,16 +42,24 @@ export default function MyCurationModal({
     openModal();
   };
 
-  const handleMyCurationCardClick = async (curationId: number) => {
+  const savePlaceAtCuration = async (curationId: number) => {
     const res = await PostSavePlaceAtCuration(curationId, spaceId);
-    if (res.status === 200) {
+    return res.status;
+  };
+
+  const revalidateRelatedData = () => {
+    revalidateScrapSpace();
+    revalidateMyCuration();
+    revalidatePlaceDetail();
+    revalidateCurationDetail();
+    revalidateTextSearchPlaceData();
+    revalidateKeywordSearchPlaceData();
+  };
+
+  const handleMyCurationCardClick = async (curationId: number) => {
+    if ((await savePlaceAtCuration(curationId)) === 200) {
       openToast("큐레이션에 장소가 추가되었습니다.");
-      revalidateScrapSpace();
-      revalidateMyCuration();
-      revalidatePlaceDetail();
-      revalidateCurationDetail();
-      revalidateTextSearchPlaceData();
-      revalidateKeywordSearchPlaceData();
+      revalidateRelatedData();
     } else {
       alert("오류가 발생했습니다!");
     }

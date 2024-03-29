@@ -5,8 +5,8 @@ import "slick-carousel/slick/slick-theme.css";
 import "../../slick.css";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import RightArrow from "@common/assets/icons/arrow/arrow-right.svg";
-import CurationMain from "../CurationMain/CurationMain";
 import Slider from "react-slick";
+import CurationCard from "../CurationCard/CurationCard";
 
 interface CurationHomePopularProps {
   mainText: string;
@@ -62,7 +62,7 @@ export default function CurationHomePopular({
       </div>
       <Slider {...sliderSettings} className="px-[2rem]">
         {curationList.map((curation, i) => (
-          <CurationMain
+          <CurationCard
             key={curation.author + i}
             {...curation}
             className="mb-[2rem] w-[100%]"
