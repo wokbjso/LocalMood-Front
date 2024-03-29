@@ -14,6 +14,7 @@ import { sliceText } from "@common/utils/text/slice-text";
 import UsePlaceInfoCardTop from "./usePlaceInfoCardTop";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import PlaceInfoCardTopScrapIcon from "./PlaceInfoCardTopScrapIcon";
+import { validateToken } from "@common/utils/validate/validateToken";
 
 export default function PlaceInfoCardTop({
   id,
@@ -45,8 +46,7 @@ export default function PlaceInfoCardTop({
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
     e.preventDefault();
-    const auth_info = await getSession();
-    const token = auth_info?.data?.accessToken;
+    const token = await validateToken();
     if (!token) {
       location.replace("/login");
     } else {
@@ -54,6 +54,7 @@ export default function PlaceInfoCardTop({
       openToast("저장할 큐레이션을 선택해주세요");
     }
   };
+
   return (
     <div
       className={twMerge(
