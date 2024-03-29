@@ -1,10 +1,10 @@
 "use client";
 
 import Tab from "@common/components/ui/tab/Tab";
-import CurationMakeButton from "../CurationButton/CurationMakeButton";
 import CurationMakeModal from "../CurationMake/CurationMakeModal";
 import CurationScrapped from "../CurationScrapped/CurationScrapped";
 import CurationMain from "../CurationMain/CurationMain";
+import AddIcon from "@common/assets/icons/add/add-line.svg";
 import { CurationProps } from "@feature/curation/type";
 import UseCuration from "@feature/curation/useCuration";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
@@ -38,7 +38,12 @@ export default function CurationTabContent({
               개
             </div>
             <div onClick={() => handlers.handleCurationMakeOpen(true)}>
-              <CurationMakeButton />
+              <div>
+                <div className="flex text-text-gray-8 items-center">
+                  <AddIcon />
+                  <p className="body2-semibold ml-[0.4rem]">만들기</p>
+                </div>
+              </div>
             </div>
           </div>
         )}
@@ -73,8 +78,8 @@ export default function CurationTabContent({
       </div>
       {isCurationMakeOpen && (
         <CurationMakeModal
-          isOpen={isCurationMakeOpen}
-          handleOpen={handlers.handleCurationMakeOpen}
+          open={isCurationMakeOpen}
+          handleModalFn={handlers.handleCurationMakeOpen}
         />
       )}
     </>

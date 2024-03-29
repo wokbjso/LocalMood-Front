@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import CompleteIcon from "@common/assets/images/record_complete.svg";
 import ArrowIcon from "@common/assets/icons/arrow/arrow-right.svg";
-import SavePlaceModal from "@feature/curation/components/CurationModal/SavePlaceModal/SavePlaceModal";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
+import SavePlaceModalMyCurationCard from "@feature/curation/components/CurationModal/MyCurationModal/MyCurationCard";
+import MyCurationModal from "@feature/curation/components/CurationModal/MyCurationModal/MyCurationModal";
 
 interface RecordCompleteProps {
   spaceId: number;
@@ -17,9 +18,9 @@ export default function RecordComplete({
   hasSomeData,
   myCuration,
 }: RecordCompleteProps) {
-  const [isAddCuration, setIsAddCuration] = useState(false);
+  const [openMyCurationModal, setOpenMyCurationModal] = useState(false);
   const handleAddCurationButtonClick = () => {
-    setIsAddCuration(true);
+    setOpenMyCurationModal(true);
   };
   return (
     <>
@@ -59,11 +60,12 @@ export default function RecordComplete({
           </>
         )}
       </div>
-      <SavePlaceModal
-        open={isAddCuration}
+      <MyCurationModal
+        open={openMyCurationModal}
+        title="저장할 큐레이션"
         myCurationData={myCuration}
         spaceId={spaceId}
-        handleModalFn={setIsAddCuration}
+        handleModalFn={setOpenMyCurationModal}
       />
     </>
   );
