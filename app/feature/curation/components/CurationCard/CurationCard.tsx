@@ -8,11 +8,11 @@ import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import Image from "next/image";
 import revalidateCurationRandom from "@feature/curation/actions/revalidateCurationRandom";
 import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
-import CurationCardMenuIcon from "./CurationCardMenuIcon";
 import useCurationMenuModal from "../CurationModal/CurationMenuModal/useCurationMenuModal";
 import { validateToken } from "@common/utils/validate/validateToken";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
+import CurationMenuIcon from "../CurationMenuIcon/CurationMenuIcon";
 
 export default function CurationCard({
   id,
@@ -139,13 +139,15 @@ export default function CurationCard({
             />
           )
         ) : (
-          <CurationCardMenuIcon
+          <CurationMenuIcon
             menuModalInfo={{
               open: isMenuModalOpen,
               curationId: id,
               hasCopyLink: true,
               handleModalFn: handlers.handleMenuModalOpen,
             }}
+            showAt="card"
+            className="absolute top-[1.6rem] right-[1.2rem]"
             onClick={handleMenuClick}
           />
         )}

@@ -14,6 +14,7 @@ import Toast from "@common/components/ui/toast/Toast";
 
 interface CurationMenuModalProps {
   open: boolean;
+  triggeredAt: "card" | "topBar";
   curationId: number;
   hasCopyLink?: boolean;
   handleModalFn: (state: boolean) => void;
@@ -21,6 +22,7 @@ interface CurationMenuModalProps {
 
 export default function CurationMenuModal({
   open,
+  triggeredAt,
   curationId,
   hasCopyLink = false,
   handleModalFn,
@@ -57,6 +59,9 @@ export default function CurationMenuModal({
       body: JSON.stringify(curationId),
     });
     if (res.status === 200) {
+      if (triggeredAt === "topBar") {
+        location.replace("/curation");
+      }
       revalidateMyCuration();
       revalidateScrapSpace();
       revalidatePlaceDetail();

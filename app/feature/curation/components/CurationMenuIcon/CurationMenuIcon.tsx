@@ -1,28 +1,34 @@
 import MenuIcon from "@common/assets/icons/menu/MenuIcon";
 import CurationMenuModal from "../CurationModal/CurationMenuModal/CurationMenuModal";
+import { twMerge } from "tailwind-merge";
 
-interface CurationCardMenuIconProps {
+interface CurationMenuIconProps {
   menuModalInfo: {
     open: boolean;
     curationId: number;
     hasCopyLink?: boolean;
     handleModalFn: (state: boolean) => void;
   };
+  showAt: "card" | "topBar";
+  className?: string;
   onClick: (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
 }
 
-export default function CurationCardMenuIcon({
+export default function CurationMenuIcon({
   menuModalInfo,
+  showAt,
+  className,
   onClick,
-}: CurationCardMenuIconProps) {
+}: CurationMenuIconProps) {
   return (
     <>
       <MenuIcon
-        className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
+        className={twMerge("cursor-pointer", className)}
         onClick={onClick}
       />
       <CurationMenuModal
         open={menuModalInfo.open}
+        triggeredAt={showAt}
         curationId={menuModalInfo.curationId}
         hasCopyLink={menuModalInfo.hasCopyLink}
         handleModalFn={menuModalInfo.handleModalFn}
