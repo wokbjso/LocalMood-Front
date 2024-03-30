@@ -8,7 +8,6 @@ interface ToastProps {
 
 export default function Toast({ open, text }: ToastProps) {
   const ref = useRef<HTMLDivElement>(null);
-
   return (
     <CSSTransition
       nodeRef={ref}

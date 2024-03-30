@@ -28,8 +28,10 @@ export default function Map({
   const [centerX, setCenterX] = useState<number>(0);
   const [centerY, setCenterY] = useState<number>(0);
   const mapRef = useRef<HTMLDivElement>(null);
-  const { ref: outsideClickRef } =
-    UseOutsideClick<HTMLDivElement>(handleMapOpen);
+  const { ref: outsideClickRef } = UseOutsideClick<HTMLDivElement>(
+    true,
+    handleMapOpen
+  );
   const [mapPlacesData, setMapPlacesData] = useState<
     {
       x: number;

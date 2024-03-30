@@ -53,7 +53,7 @@ export default function PlaceInfoCardTop({
   return (
     <div
       className={twMerge(
-        "w-full relative",
+        "w-[100%] relative",
         direction === "horizontal" && "flex items-center",
         className
       )}

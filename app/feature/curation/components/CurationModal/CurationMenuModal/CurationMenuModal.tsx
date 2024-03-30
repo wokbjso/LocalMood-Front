@@ -25,7 +25,7 @@ export default function CurationMenuModal({
   hasCopyLink = false,
   handleModalFn,
 }: CurationMenuModalProps) {
-  const { ref } = UseOutsideClick<HTMLDivElement>(handleModalFn);
+  const { ref } = UseOutsideClick<HTMLDivElement>(open, handleModalFn);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [linkCopyToastOpen, setLinkCopyToastOpen] = useState(false);
   const [toastText, setToastText] = useState("");
@@ -76,7 +76,6 @@ export default function CurationMenuModal({
       clearTimeout(timeoutId);
     };
   }, [linkCopyToastOpen]);
-
   return (
     <>
       {open && (

@@ -108,14 +108,6 @@ export default function CurationTopAppBar({
           </div>
         </div>
       </BasicTopBar>
-      <div className="w-[100%] h-[100%] fixed top-0 left-0 z-50">
-        <CurationMenuModal
-          open={menuModalOpen}
-          curationId={curationDetail.id}
-          handleModalFn={setMenuModalOpen}
-        />
-      </div>
-      <Toast open={linkCopyToastOpen} text={toastText} />
     </>
   );
 }
