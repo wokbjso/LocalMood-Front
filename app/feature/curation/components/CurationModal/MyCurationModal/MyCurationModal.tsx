@@ -82,6 +82,8 @@ export default function MyCurationModal({
               open: isModalOpen,
               handleModalFn: handlers.handleModal,
             }}
+            toastOutside
+            outsideOpenToast={openToast}
             onClick={handleMakeCurationClick}
           />
           <Suspense

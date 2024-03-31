@@ -18,8 +18,10 @@ export default function CurationMakeModal({
   toastOutside,
   outsideOpenToast,
 }: CurationMakeProps) {
-  const { curationMakeData, handlers } = UseCurationMake();
+  const { curationMakeData, resetCurationMakeData, handlers } =
+    UseCurationMake();
   const closeIconClicked = () => {
+    resetCurationMakeData();
     handleModalFn(false);
   };
   return (
@@ -42,6 +44,7 @@ export default function CurationMakeModal({
             <div className="w-full pt-[3.2rem] overflow-auto">
               <CurationMakeKeyword
                 curationMakeData={curationMakeData}
+                resetCurationMakeData={resetCurationMakeData}
                 handleOpen={handleModalFn}
                 toastOutside={toastOutside}
                 outsideOpenToast={outsideOpenToast}

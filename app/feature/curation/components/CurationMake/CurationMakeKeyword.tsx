@@ -15,6 +15,7 @@ interface CurationMakeKeywordProps {
     open: boolean;
     keyword: { [key: string]: string };
   };
+  resetCurationMakeData: () => void;
   handleOpen: (state: boolean) => void;
   toastOutside?: boolean;
   outsideOpenToast?: (text: string) => void;
@@ -23,6 +24,7 @@ interface CurationMakeKeywordProps {
 
 export default function CurationMakeKeyword({
   curationMakeData,
+  resetCurationMakeData,
   handleOpen,
   toastOutside,
   outsideOpenToast,
@@ -73,6 +75,7 @@ export default function CurationMakeKeyword({
       toastOutside
         ? outsideOpenToast && outsideOpenToast("큐레이션이 생성되었습니다")
         : null;
+      resetCurationMakeData();
       revalidateMyCuration();
       handleOpen(false);
     } else alert("오류가 발생했습니다!");
