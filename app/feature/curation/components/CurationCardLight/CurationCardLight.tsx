@@ -13,6 +13,8 @@ import { validateToken } from "@common/utils/validate/validateToken";
 import CurationMenuIcon from "../CurationMenuIcon/CurationMenuIcon";
 import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
 import useToast from "@common/hooks/useToast";
+import revalidateTextSearchCurationData from "@feature/search/actions/revalidateTextSearchCurationData";
+import revalidateKeywordSearchCurationData from "@feature/search/actions/revalidateKeywordSearchCurationData";
 
 export default function CurationCardLight({
   id,
@@ -60,6 +62,8 @@ export default function CurationCardLight({
   const revalidateRelatedData = () => {
     revalidateCurationRandom();
     revalidateCurationScrap();
+    revalidateTextSearchCurationData();
+    revalidateKeywordSearchCurationData();
   };
 
   const handleScrapAddClick = async () => {

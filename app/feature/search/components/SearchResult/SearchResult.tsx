@@ -40,7 +40,6 @@ export default function SearchResult({
 }: SearchResultProps) {
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
     useSearchBar();
-
   return (
     <>
       <BasicTopBar color="#9E9E9E" className="pt-[1.2rem]">
@@ -74,12 +73,7 @@ export default function SearchResult({
                   {textSearchCurationData?.CurationList.map((curation) => (
                     <CurationCardLight
                       key={curation.id}
-                      id={curation.id}
-                      image={curation.image}
-                      author={curation.author}
-                      title={curation.title}
-                      keyword={curation.keyword}
-                      spaceCount={curation.spaceCount}
+                      {...curation}
                       className="mb-[4rem]"
                     />
                   ))}
@@ -182,12 +176,7 @@ export default function SearchResult({
                   {textSearchCurationData.CurationList.map((curation) => (
                     <CurationCardLight
                       key={curation.id}
-                      id={curation.id}
-                      image={curation.image}
-                      author={curation.author}
-                      title={curation.title}
-                      keyword={curation.keyword}
-                      spaceCount={curation.spaceCount}
+                      {...curation}
                       className="mb-[4rem]"
                     />
                   ))}
@@ -219,12 +208,7 @@ export default function SearchResult({
                   {keywordSearchCurationData?.CurationList.map((curation) => (
                     <CurationCardLight
                       key={curation.id}
-                      id={curation.id}
-                      image={curation.image}
-                      author={curation.author}
-                      title={curation.title}
-                      keyword={curation.keyword}
-                      spaceCount={curation.spaceCount}
+                      {...curation}
                       className="mb-[4rem]"
                     />
                   ))}
@@ -311,12 +295,7 @@ export default function SearchResult({
                   {keywordSearchCurationData.CurationList.map((curation) => (
                     <CurationCardLight
                       key={curation.id}
-                      id={curation.id}
-                      image={curation.image}
-                      author={curation.author}
-                      title={curation.title}
-                      keyword={curation.keyword}
-                      spaceCount={curation.spaceCount}
+                      {...curation}
                       className="mb-[4rem]"
                     />
                   ))}
