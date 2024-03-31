@@ -12,6 +12,7 @@ import CurationMenuIcon from "../CurationMenuIcon/CurationMenuIcon";
 import useToast from "@common/hooks/useToast";
 import CopyLinkIcon from "@common/components/ui/copy/CopyIcon";
 import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
+import useCurationScrapIcon from "../CurationScrapIcon/useCurationScrapIcon";
 
 interface CurationTopAppBarProps {
   curationId: number;
@@ -28,8 +29,9 @@ export default function CurationTopAppBar({
   variant,
   className,
 }: CurationTopAppBarProps) {
+  const { scraped, fetching, toggleScrap, toggleFetching } =
+    useCurationScrapIcon(curationDetail.isScraped);
   const { isMenuModalOpen, openMenuModal, handlers } = useCurationMenuModal();
-
   const { isToastOpen, toastText, openToast } = useToast();
 
   const pathname = usePathname();
@@ -41,6 +43,11 @@ export default function CurationTopAppBar({
   const handleCopyLinkClick = async () => {
     copyLink(pathname);
     openToast("링크가 복사되었습니다");
+  };
+
+  const checkFetching = () => {
+    if (fetching) return true;
+    return false;
   };
 
   const deleteScrap = async () => {
@@ -69,19 +76,35 @@ export default function CurationTopAppBar({
   };
 
   const handleScrapDelete = async () => {
+    if (checkFetching()) {
+      alert("이전 요청을 처리중입니다");
+      return;
+    }
+    toggleFetching();
+    toggleScrap();
+    openToast("큐레이션 스크랩이 해제되었습니다");
     if ((await deleteScrap()) === 200) {
-      openToast("큐레이션 스크랩이 해제되었습니다");
+      toggleFetching();
       revalidateRelatedData();
     } else {
+      toggleScrap();
       alert("에러가 발생했습니다.");
     }
   };
 
   const handleScrapAdd = async () => {
+    if (checkFetching()) {
+      alert("이전 요청을 처리중입니다");
+      return;
+    }
+    toggleFetching();
+    toggleScrap();
+    openToast("큐레이션이 스크랩 되었습니다");
     if ((await addScrap()) === 200) {
-      openToast("큐레이션이 스크랩 되었습니다");
+      toggleFetching();
       revalidateRelatedData();
     } else {
+      toggleScrap();
       alert("에러가 발생했습니다.");
     }
   };
@@ -94,9 +117,9 @@ export default function CurationTopAppBar({
           <div className="flex items-center gap-[0.6rem]">
             {variant === "others" ? (
               <>
-                {curationDetail.isScraped ? (
+                {scraped ? (
                   <CurationScrapIcon
-                    isScraped={curationDetail.isScraped}
+                    isScraped={scraped}
                     backgroundBrightness="light"
                     toastInfo={{
                       open: isToastOpen,
@@ -106,7 +129,7 @@ export default function CurationTopAppBar({
                   />
                 ) : (
                   <CurationScrapIcon
-                    isScraped={curationDetail.isScraped}
+                    isScraped={scraped}
                     backgroundBrightness="light"
                     toastInfo={{
                       open: isToastOpen,

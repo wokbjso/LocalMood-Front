@@ -1,3 +1,4 @@
+import { twMerge } from "tailwind-merge";
 import { IconProps } from "../icon-type";
 
 export default function ScrapFill({
@@ -12,7 +13,7 @@ export default function ScrapFill({
       height="24"
       viewBox="0 0 24 24"
       fill="none"
-      className={className}
+      className={twMerge("icon-clicked", className)}
       onClick={onClick}
     >
       <path
