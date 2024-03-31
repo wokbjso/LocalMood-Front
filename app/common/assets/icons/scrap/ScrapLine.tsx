@@ -1,4 +1,3 @@
-import { twMerge } from "tailwind-merge";
 import { IconProps } from "../icon-type";
 
 export default function ScrapLine({
@@ -13,7 +12,7 @@ export default function ScrapLine({
       height="24"
       viewBox="0 0 24 24"
       fill="none"
-      className={twMerge("icon-clicked", className)}
+      className={className}
       onClick={onClick}
     >
       <path

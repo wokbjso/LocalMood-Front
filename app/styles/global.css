@@ -95,8 +95,3 @@
 .header-slider2 {
   animation: 35s linear infinite infiniteSlider2;
 }
-
-.icon-clicked:hover {
-  transform: scale(1.1); /* 아이콘 크기를 1.1배로 확대 */
-  transition: transform 0.2s ease; /* 변환을 부드럽게 진행 */
-}
