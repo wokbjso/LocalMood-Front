@@ -12,7 +12,6 @@ import revalidateCurationDetail from "@feature/curation/actions/revalidateCurati
 import useCurationMenuModal from "../CurationModal/CurationMenuModal/useCurationMenuModal";
 import CurationMenuIcon from "../CurationMenuIcon/CurationMenuIcon";
 import useToast from "@common/hooks/useToast";
-import ShareIcon from "@common/assets/icons/share/ShareIcon";
 import CopyLinkIcon from "@common/components/ui/copy/CopyIcon";
 
 interface CurationTopAppBarProps {
@@ -45,31 +44,42 @@ export default function CurationTopAppBar({
     openToast("링크가 복사되었습니다");
   };
 
-  const handleScrapDelete = async () => {
+  const deleteScrap = async () => {
     const res = await fetch(`/api/curation/scrap/delete/${curationDetail.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
     });
-    if (res.status === 200) {
-      revalidateCurationScrap();
-      revalidateCurationDetail();
-    } else {
-      alert("에러가 발생했습니다.");
-    }
+    return res.status;
   };
 
-  const handleScrapAdd = async () => {
+  const addScrap = async () => {
     const res = await fetch(`/api/curation/scrap/add/${curationDetail.id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
     });
-    if (res.status === 200) {
-      revalidateCurationScrap();
-      revalidateCurationDetail();
+    return res.status;
+  };
+
+  const revalidateRelatedData = () => {
+    revalidateCurationScrap();
+    revalidateCurationDetail();
+  };
+
+  const handleScrapDelete = async () => {
+    if ((await deleteScrap()) === 200) {
+      revalidateRelatedData();
+    } else {
+      alert("에러가 발생했습니다.");
+    }
+  };
+
+  const handleScrapAdd = async () => {
+    if ((await addScrap()) === 200) {
+      revalidateRelatedData();
     } else {
       alert("에러가 발생했습니다.");
     }
