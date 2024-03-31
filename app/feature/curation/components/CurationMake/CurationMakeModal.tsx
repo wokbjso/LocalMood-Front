@@ -8,11 +8,15 @@ import CloseIcon from "@common/assets/icons/close/CloseIcon";
 interface CurationMakeProps {
   open: boolean;
   handleModalFn: (state: boolean) => void;
+  toastOutside?: boolean;
+  outsideOpenToast?: (text: string) => void;
 }
 
 export default function CurationMakeModal({
   open,
   handleModalFn,
+  toastOutside,
+  outsideOpenToast,
 }: CurationMakeProps) {
   const { curationMakeData, handlers } = UseCurationMake();
   const closeIconClicked = () => {
@@ -39,6 +43,8 @@ export default function CurationMakeModal({
               <CurationMakeKeyword
                 curationMakeData={curationMakeData}
                 handleOpen={handleModalFn}
+                toastOutside={toastOutside}
+                outsideOpenToast={outsideOpenToast}
                 onClick={handlers.changeKeyword}
               />
             </div>

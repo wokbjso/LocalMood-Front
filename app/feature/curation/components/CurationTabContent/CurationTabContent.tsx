@@ -42,6 +42,7 @@ export default function CurationTabContent({
   const handleMakeCurationClick = () => {
     openModal();
   };
+
   return (
     <>
       <Tab sections={CurationTabSections} onChange={changeTabIndex} />
@@ -59,6 +60,8 @@ export default function CurationTabContent({
                 open: isModalOpen,
                 handleModalFn: curationMakeModalHandlers.handleModal,
               }}
+              toastOutside
+              outsideOpenToast={openToast}
               onClick={handleMakeCurationClick}
             />
           </div>
