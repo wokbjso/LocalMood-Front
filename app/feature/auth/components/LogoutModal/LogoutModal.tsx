@@ -3,14 +3,12 @@ import UserIcon from "@common/assets/icons/user/UserProfile";
 import UseOutsideClick from "@common/hooks/useOutsideClick";
 import { useState } from "react";
 import ConfirmModal from "@common/components/ui/modal/ConfirmModal";
-import { useRouter } from "next/navigation";
 
 export default function LogoutModal({
   handleFn,
 }: {
   handleFn: (state: boolean) => void;
 }) {
-  const router = useRouter();
   const { ref } = UseOutsideClick<HTMLDivElement>(true, handleFn);
   const [logoutConfirmModalOpen, setLogoutConfirmModalOpen] = useState(false);
 
