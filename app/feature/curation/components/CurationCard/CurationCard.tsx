@@ -10,9 +10,9 @@ import revalidateCurationRandom from "@feature/curation/actions/revalidateCurati
 import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
 import useCurationMenuModal from "../CurationModal/CurationMenuModal/useCurationMenuModal";
 import { validateToken } from "@common/utils/validate/validateToken";
-import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
-import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import CurationMenuIcon from "../CurationMenuIcon/CurationMenuIcon";
+import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
+import useToast from "@common/hooks/useToast";
 
 export default function CurationCard({
   id,
@@ -23,10 +23,17 @@ export default function CurationCard({
   keyword,
   spaceCount,
   isScraped = false,
-  openToast,
+  toastOutside = false,
+  outsideOpenToast,
   className,
-}: CurationProps & { openToast: (text: string) => void; className?: string }) {
+}: CurationProps & {
+  toastOutside?: boolean;
+  outsideOpenToast?: (text: string) => void;
+  className?: string;
+}) {
   const { isMenuModalOpen, openMenuModal, handlers } = useCurationMenuModal();
+
+  const { isToastOpen, toastText, openToast } = useToast();
 
   const curationScrapAdd = async () => {
     const res = await fetch(`/api/curation/scrap/add/${id}`, {
@@ -55,30 +62,37 @@ export default function CurationCard({
     revalidateCurationScrap();
   };
 
-  const handleScrapIconClick = async (
-    e: React.MouseEvent<SVGSVGElement, MouseEvent>
-  ) => {
-    e.preventDefault();
+  const handleScrapAddClick = async () => {
     const token = await validateToken();
     if (!token) {
       location.replace("/login");
     } else {
-      if (isScraped) {
-        if ((await curationScrapDelete()) === 200) {
-          openToast("큐레이션 스크랩이 해제되었습니다");
-          revalidateRelatedData();
-        } else {
-          alert("에러가 발생했습니다!");
-          return;
-        }
+      if ((await curationScrapAdd()) === 200) {
+        toastOutside
+          ? outsideOpenToast && outsideOpenToast("큐레이션이 스크랩 되었습니다")
+          : openToast("큐레이션이 스크랩 되었습니다");
+        revalidateRelatedData();
       } else {
-        if ((await curationScrapAdd()) === 200) {
-          openToast("큐레이션이 스크랩 되었습니다");
-          revalidateRelatedData();
-        } else {
-          alert("에러가 발생했습니다!");
-          return;
-        }
+        alert("에러가 발생했습니다!");
+        return;
+      }
+    }
+  };
+
+  const handleScrapDeleteClick = async () => {
+    const token = await validateToken();
+    if (!token) {
+      location.replace("/login");
+    } else {
+      if ((await curationScrapDelete()) === 200) {
+        toastOutside
+          ? outsideOpenToast &&
+            outsideOpenToast("큐레이션 스크랩이 해제되었습니다")
+          : openToast("큐레이션 스크랩이 해제되었습니다");
+        revalidateRelatedData();
+      } else {
+        alert("에러가 발생했습니다!");
+        return;
       }
     }
   };
@@ -128,14 +142,26 @@ export default function CurationCard({
       <div className="w-[100%] pt-[1.6rem] pl-[1.6rem] pr-[0.8rem] pb-[2rem] relative rounded-b-[8px]">
         {variant === "others" ? (
           isScraped ? (
-            <ScrapFill
+            <CurationScrapIcon
+              isScraped={isScraped}
+              backgroundBrightness="light"
+              toastInfo={{
+                open: isToastOpen,
+                text: toastText,
+              }}
               className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-              onClick={handleScrapIconClick}
+              onClick={handleScrapDeleteClick}
             />
           ) : (
-            <ScrapLine
+            <CurationScrapIcon
+              isScraped={isScraped}
+              backgroundBrightness="light"
+              toastInfo={{
+                open: isToastOpen,
+                text: toastText,
+              }}
               className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-              onClick={handleScrapIconClick}
+              onClick={handleScrapAddClick}
             />
           )
         ) : (

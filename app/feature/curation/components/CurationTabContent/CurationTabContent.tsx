@@ -8,6 +8,8 @@ import { CurationProps } from "@feature/curation/type";
 import UseCuration from "@feature/curation/useCuration";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import CurationCard from "../CurationCard/CurationCard";
+import useToast from "@common/hooks/useToast";
+import Toast from "@common/components/ui/toast/Toast";
 
 interface CurationTabContentProps {
   myCuration: MyCurationResponse;
@@ -19,6 +21,7 @@ export default function CurationTabContent({
   scrappedCuration,
 }: CurationTabContentProps) {
   const { tabIndex, isCurationMakeOpen, handlers } = UseCuration();
+  const { isToastOpen, toastText, openToast } = useToast();
   const CurationTabSections = [
     {
       text: "내 큐레이션",
@@ -65,7 +68,11 @@ export default function CurationTabContent({
             scrappedCuration?.length > 0 ? (
               scrappedCuration?.map((props: any) => (
                 <div key={props.author + props.id} className="mb-[1.6rem]">
-                  <CurationScrapped {...props} />
+                  <CurationScrapped
+                    toastOutside
+                    outsideOpenToast={openToast}
+                    {...props}
+                  />
                 </div>
               ))
             ) : (
@@ -82,6 +89,7 @@ export default function CurationTabContent({
           handleModalFn={handlers.handleCurationMakeOpen}
         />
       )}
+      <Toast open={isToastOpen} text={toastText} />
     </>
   );
 }

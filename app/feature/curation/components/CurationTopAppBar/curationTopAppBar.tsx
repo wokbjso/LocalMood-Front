@@ -97,6 +97,7 @@ export default function CurationTopAppBar({
                 {curationDetail.isScraped ? (
                   <CurationScrapIcon
                     isScraped={curationDetail.isScraped}
+                    backgroundBrightness="light"
                     toastInfo={{
                       open: isToastOpen,
                       text: toastText,
@@ -106,6 +107,7 @@ export default function CurationTopAppBar({
                 ) : (
                   <CurationScrapIcon
                     isScraped={curationDetail.isScraped}
+                    backgroundBrightness="light"
                     toastInfo={{
                       open: isToastOpen,
                       text: toastText,

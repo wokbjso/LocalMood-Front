@@ -69,7 +69,8 @@ export default function CurationHomePopular({
             <CurationCard
               key={curation.author + i}
               {...curation}
-              openToast={openToast}
+              toastOutside
+              outsideOpenToast={openToast}
               className="mb-[2rem] w-[100%]"
             />
           ))}
