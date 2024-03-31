@@ -75,6 +75,9 @@ export default function CurationMenuModal({
       if (triggeredAt === "topBar") {
         location.replace("/curation");
       }
+      toastOutside &&
+        outsideOpenToast &&
+        outsideOpenToast("큐레이션이 삭제되었습니다");
       revalidateRelatedData();
     } else {
       alert("에러가 발생했습니다");
@@ -116,8 +119,6 @@ export default function CurationMenuModal({
           confirmText="삭제하기"
           cancelFn={handleCancleClick}
           confirmFn={handleConfirmClick}
-          toastOutside={toastOutside}
-          outsideOpenToast={outsideOpenToast}
         />
       )}
     </>
