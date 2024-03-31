@@ -1,9 +1,7 @@
 "use client";
 
-import ShareIcon from "@common/assets/icons/share/share.svg";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 import { copyLink } from "@common/utils/text/copy-link";
 import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-detail";
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
@@ -13,6 +11,9 @@ import revalidateCurationScrap from "@feature/curation/actions/revalidateCuratio
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
 import useCurationMenuModal from "../CurationModal/CurationMenuModal/useCurationMenuModal";
 import CurationMenuIcon from "../CurationMenuIcon/CurationMenuIcon";
+import useToast from "@common/hooks/useToast";
+import ShareIcon from "@common/assets/icons/share/ShareIcon";
+import CopyLinkIcon from "@common/components/ui/copy/CopyIcon";
 
 interface CurationTopAppBarProps {
   curationId: number;
@@ -31,7 +32,8 @@ export default function CurationTopAppBar({
 }: CurationTopAppBarProps) {
   const { isMenuModalOpen, openMenuModal, handlers } = useCurationMenuModal();
 
-  const [linkCopyToastOpen, setLinkCopyToastOpen] = useState(false);
+  const { isToastOpen, toastText, openToast } = useToast();
+
   const pathname = usePathname();
 
   const handleMenuIconClick = () => {
@@ -40,7 +42,7 @@ export default function CurationTopAppBar({
 
   const handleCopyLinkClick = async () => {
     copyLink(pathname);
-    setLinkCopyToastOpen(true);
+    openToast("링크가 복사되었습니다");
   };
 
   const handleScrapDelete = async () => {
@@ -73,17 +75,6 @@ export default function CurationTopAppBar({
     }
   };
 
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    if (linkCopyToastOpen) {
-      timeoutId = setTimeout(() => {
-        setLinkCopyToastOpen(false);
-      }, 1000);
-    }
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [linkCopyToastOpen]);
   return (
     <>
       <BasicTopBar color="#9E9E9E" className={className}>
@@ -97,16 +88,27 @@ export default function CurationTopAppBar({
                 ) : (
                   <ScrapLine color="#9E9E9E" onClick={handleScrapAdd} />
                 )}
-                <ShareIcon onClick={handleCopyLinkClick} />
+                <CopyLinkIcon
+                  toastInfo={{
+                    open: isToastOpen,
+                    text: toastText,
+                  }}
+                  onClick={handleCopyLinkClick}
+                />
               </>
             ) : (
               <>
-                <ShareIcon onClick={handleCopyLinkClick} />
+                <CopyLinkIcon
+                  toastInfo={{
+                    open: isToastOpen,
+                    text: toastText,
+                  }}
+                  onClick={handleCopyLinkClick}
+                />
                 <CurationMenuIcon
                   menuModalInfo={{
                     open: isMenuModalOpen,
                     curationId,
-                    hasCopyLink: true,
                     handleModalFn: handlers.handleMenuModalOpen,
                   }}
                   showAt="topBar"

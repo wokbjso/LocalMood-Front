@@ -77,7 +77,7 @@ export default function CurationDetailCardList({
             curationDetail={curationDetail}
             text={curationDetail.title}
             variant={curationDetail.variant}
-            className="bg-white z-10"
+            className="bg-white"
           />
           <div className="flex bg-white z-10 gap-[0.8rem] pb-[0.8rem] pt-[0.6rem] pl-[2rem] overflow-x-scroll">
             {curationDetail.spaceDetails.map((item, i) => (

@@ -1,5 +1,4 @@
 import EditIcon from "@common/assets/icons/edit/edit.svg";
-import ShareIcon from "@common/assets/icons/share/share.svg";
 import Modal from "@common/components/ui/modal/Modal";
 import { useEffect, useState } from "react";
 import UseOutsideClick from "@common/hooks/useOutsideClick";
@@ -11,6 +10,7 @@ import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
 import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail";
 import { usePathname } from "next/navigation";
 import Toast from "@common/components/ui/toast/Toast";
+import ShareIcon from "@common/assets/icons/share/ShareIcon";
 
 interface CurationMenuModalProps {
   open: boolean;
