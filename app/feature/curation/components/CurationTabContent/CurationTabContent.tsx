@@ -1,13 +1,15 @@
 "use client";
 
 import Tab from "@common/components/ui/tab/Tab";
-import CurationMakeButton from "../CurationButton/CurationMakeButton";
-import CurationMakeModal from "../CurationMake/CurationMakeModal";
-import CurationScrapped from "../CurationScrapped/CurationScrapped";
-import CurationMain from "../CurationMain/CurationMain";
 import { CurationProps } from "@feature/curation/type";
-import UseCuration from "@feature/curation/useCuration";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
+import useToast from "@common/hooks/useToast";
+import Toast from "@common/components/ui/toast/Toast";
+import CurationCardLight from "../CurationCardLight/CurationCardLight";
+import CurationCardDark from "../CurationCardDark/CurationCardDark";
+import CurationMakeButton from "../CurationMake/CurationMakeButton";
+import useOpenCurationMakeModal from "../CurationMake/useOpenCurationMakeModal";
+import useTab from "@common/components/ui/tab/useTab";
 
 interface CurationTabContentProps {
   myCuration: MyCurationResponse;
@@ -18,7 +20,6 @@ export default function CurationTabContent({
   myCuration,
   scrappedCuration,
 }: CurationTabContentProps) {
-  const { tabIndex, isCurationMakeOpen, handlers } = UseCuration();
   const CurationTabSections = [
     {
       text: "내 큐레이션",
@@ -27,9 +28,24 @@ export default function CurationTabContent({
       text: "스크랩",
     },
   ];
+
+  const { tabIndex, changeTabIndex } = useTab();
+
+  const { isToastOpen, toastText, openToast } = useToast();
+
+  const {
+    isModalOpen,
+    openModal,
+    handlers: curationMakeModalHandlers,
+  } = useOpenCurationMakeModal();
+
+  const handleMakeCurationClick = () => {
+    openModal();
+  };
+
   return (
     <>
-      <Tab sections={CurationTabSections} onChange={handlers.handleTabIndex} />
+      <Tab sections={CurationTabSections} onChange={changeTabIndex} />
       <div className="h-full px-[2rem] pb-[18.2rem] bg-background-gray-2 items-center overflow-y-scroll">
         {tabIndex === 0 && (
           <div className="flex items-center justify-between pb-[1.6rem] pt-[2rem]">
@@ -37,16 +53,29 @@ export default function CurationTabContent({
               총 <p className="text-black">&nbsp;{myCuration?.curationCount}</p>
               개
             </div>
-            <div onClick={() => handlers.handleCurationMakeOpen(true)}>
-              <CurationMakeButton />
-            </div>
+            <CurationMakeButton
+              size="small"
+              text="만들기"
+              curationMakeModalInfo={{
+                open: isModalOpen,
+                handleModalFn: curationMakeModalHandlers.handleModal,
+              }}
+              toastOutside
+              outsideOpenToast={openToast}
+              onClick={handleMakeCurationClick}
+            />
           </div>
         )}
         {tabIndex === 0 ? (
           myCuration && myCuration?.curation.length > 0 ? (
             myCuration?.curation.map((props: CurationProps) => (
               <div key={props.author + props.id} className="mb-[1.2rem]">
-                <CurationMain variant="my" {...props} />
+                <CurationCardLight
+                  variant="my"
+                  toastOutside
+                  outsideOpenToast={openToast}
+                  {...props}
+                />
               </div>
             ))
           ) : (
@@ -60,7 +89,11 @@ export default function CurationTabContent({
             scrappedCuration?.length > 0 ? (
               scrappedCuration?.map((props: any) => (
                 <div key={props.author + props.id} className="mb-[1.6rem]">
-                  <CurationScrapped {...props} />
+                  <CurationCardDark
+                    toastOutside
+                    outsideOpenToast={openToast}
+                    {...props}
+                  />
                 </div>
               ))
             ) : (
@@ -71,12 +104,7 @@ export default function CurationTabContent({
           ) : null}
         </div>
       </div>
-      {isCurationMakeOpen && (
-        <CurationMakeModal
-          isOpen={isCurationMakeOpen}
-          handleOpen={handlers.handleCurationMakeOpen}
-        />
-      )}
+      <Toast open={isToastOpen} text={toastText} />
     </>
   );
 }

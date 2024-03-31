@@ -1,19 +1,19 @@
 "use client";
 
 import UserProfile from "@feature/user/components/UserProfile/UserProfile";
-import ScrapShadow from "@common/assets/icons/scrap/scrap-shadow.svg";
 import { CurationProps } from "@feature/curation/type";
-import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
-import { getSession } from "@common/utils/session/getSession";
 import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
 import LocationLine from "@common/assets/icons/location/LocationLine";
 import Image from "next/image";
 import revalidateCurationRandom from "@feature/curation/actions/revalidateCurationRandom";
+import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
+import useToast from "@common/hooks/useToast";
+import { validateToken } from "@common/utils/validate/validateToken";
 
-export default function CurationScrapped({
+export default function CurationCardDark({
   id,
   title,
   author,
@@ -21,43 +21,71 @@ export default function CurationScrapped({
   spaceCount,
   image,
   isScraped = true,
+  toastOutside = false,
+  outsideOpenToast,
   className,
-}: Omit<CurationProps, "places"> & { className?: string }) {
-  const handleScrap = async (
-    e: React.MouseEvent<SVGSVGElement, MouseEvent>
-  ) => {
-    e.preventDefault();
-    const auth_info = await getSession();
-    const token = auth_info?.data?.accessToken;
+}: Omit<CurationProps, "places"> & {
+  toastOutside?: boolean;
+  outsideOpenToast?: (text: string) => void;
+  className?: string;
+}) {
+  const { isToastOpen, toastText, openToast } = useToast();
+
+  const addScrap = async () => {
+    const res = await fetch(`/api/curation/scrap/add/${id}`);
+    return res.status;
+  };
+
+  const handleScrapAddClick = async () => {
+    const token = validateToken();
     if (!token) {
       location.replace("/login");
     } else {
-      if (isScraped) {
-        const res = await fetch(`api/curation/scrap/delete/${id}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        if (res.status === 200) {
-          revalidateCurationScrap();
-          revalidateCurationRandom();
-        } else {
-          alert("에러가 발생했습니다!");
-          return;
-        }
+      if ((await addScrap()) === 200) {
+        toastOutside
+          ? outsideOpenToast && outsideOpenToast("큐레이션이 스크랩 되었습니다")
+          : openToast("큐레이션이 스크랩 되었습니다");
+        revalidateRelatedData();
       } else {
-        const res = await fetch(`/api/curation/scrap/add/${id}`);
-        if (res.status === 200) {
-          revalidateCurationScrap();
-          revalidateCurationRandom();
-        } else {
-          alert("에러가 발생했습니다!");
-          return;
-        }
+        alert("에러가 발생했습니다!");
+        return;
       }
     }
   };
+
+  const deleteScrap = async () => {
+    const res = await fetch(`api/curation/scrap/delete/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return res.status;
+  };
+
+  const handleScrapDeleteClick = async () => {
+    const token = validateToken();
+    if (!token) {
+      location.replace("/login");
+    } else {
+      if ((await deleteScrap()) === 200) {
+        toastOutside
+          ? outsideOpenToast &&
+            outsideOpenToast("큐레이션 스크랩이 해제되었습니다")
+          : openToast("큐레이션 스크랩이 해제되었습니다");
+        revalidateRelatedData();
+      } else {
+        alert("에러가 발생했습니다!");
+        return;
+      }
+    }
+  };
+
+  const revalidateRelatedData = () => {
+    revalidateCurationScrap();
+    revalidateCurationRandom();
+  };
+
   return (
     <div>
       <div className={twMerge("w-[100%]", className)}>
@@ -89,15 +117,23 @@ export default function CurationScrapped({
             className="absolute bottom-[1.6rem] left-[1.6rem] z-10"
           />
           {isScraped ? (
-            <ScrapShadow
+            <CurationScrapIcon
+              isScraped={isScraped}
+              backgroundBrightness="dark"
+              toastInfo={{
+                open: isToastOpen,
+                text: toastText,
+              }}
               className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer z-10"
-              onClick={handleScrap}
+              onClick={handleScrapDeleteClick}
             />
           ) : (
-            <ScrapLine
-              color="white"
+            <CurationScrapIcon
+              isScraped={isScraped}
+              backgroundBrightness="dark"
+              toastInfo={{ open: isToastOpen, text: toastText }}
               className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer z-10"
-              onClick={handleScrap}
+              onClick={handleScrapAddClick}
             />
           )}
           <div className="flex items-center absolute bottom-[1.6rem] right-[1.6rem] z-10">

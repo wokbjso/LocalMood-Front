@@ -1,7 +1,7 @@
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import Toast from "@common/components/ui/toast/Toast";
-import SavePlaceModal from "@feature/curation/components/CurationModal/SavePlaceModal/SavePlaceModal";
+import MyCurationModal from "@feature/curation/components/CurationModal/MyCurationModal/MyCurationModal";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import { twMerge } from "tailwind-merge";
 
@@ -50,13 +50,14 @@ export default function PlaceInfoCardTopScrapIcon({
           onClick={onClick}
         />
       )}
-      <SavePlaceModal
+      <MyCurationModal
         open={curationModalInfo.open}
+        title={curationModalInfo.title}
         spaceId={curationModalInfo.spaceId}
         myCurationData={curationModalInfo.myCurationData}
         handleModalFn={curationModalInfo.handleModalFn}
       />
-      {<Toast open={toastInfo.open} text={toastInfo.text} />}
+      <Toast open={toastInfo.open} text={toastInfo.text} />
     </>
   );
 }

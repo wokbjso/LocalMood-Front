@@ -9,7 +9,7 @@ import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { getSession } from "@common/utils/session/getSession";
 import Toast from "@common/components/ui/toast/Toast";
-import SavePlaceModal from "@feature/curation/components/CurationModal/SavePlaceModal/SavePlaceModal";
+import MyCurationModal from "@feature/curation/components/CurationModal/MyCurationModal/MyCurationModal";
 
 export default function PlaceDetailInfo({
   id,
@@ -24,7 +24,7 @@ export default function PlaceDetailInfo({
   dishDesc,
   myCurationData,
 }: any) {
-  const [openSaveModal, setOpenSaveModal] = useState(false);
+  const [openMyCurationModal, setOpenMyCurationModal] = useState(false);
   const [openScrapToast, setOpenScrapToast] = useState(false);
   const [toastText, setToastText] = useState("");
   const [openMoreDetail, setOpenMoreDetail] = useState(false);
@@ -41,7 +41,7 @@ export default function PlaceDetailInfo({
     if (!token) {
       location.replace("/login");
     } else {
-      setOpenSaveModal(true);
+      setOpenMyCurationModal(true);
       setOpenScrapToast(true);
       setToastText("저장할 큐레이션을 선택해주세요");
     }
@@ -105,11 +105,12 @@ export default function PlaceDetailInfo({
           </div>
         </div>
       </div>
-      <SavePlaceModal
-        open={openSaveModal}
+      <MyCurationModal
+        open={openMyCurationModal}
+        title="저장할 큐레이션"
         myCurationData={myCurationData}
         spaceId={id}
-        handleModalFn={setOpenSaveModal}
+        handleModalFn={setOpenMyCurationModal}
       />
       <Toast open={openScrapToast} text={toastText} />
     </>

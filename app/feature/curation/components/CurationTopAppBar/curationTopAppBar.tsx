@@ -1,21 +1,20 @@
 "use client";
 
-import ShareIcon from "@common/assets/icons/share/share.svg";
-import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { usePathname } from "next/navigation";
-import MenuIcon from "@common/assets/icons/menu/MenuIcon";
-import { useEffect, useState } from "react";
-import CurationMenuModal from "../CurationModal/CurationMenuModal";
 import { copyLink } from "@common/utils/text/copy-link";
 import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-detail";
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import { sliceText } from "@common/utils/text/slice-text";
-import Toast from "@common/components/ui/toast/Toast";
-import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
+import useCurationMenuModal from "../CurationModal/CurationMenuModal/useCurationMenuModal";
+import CurationMenuIcon from "../CurationMenuIcon/CurationMenuIcon";
+import useToast from "@common/hooks/useToast";
+import CopyLinkIcon from "@common/components/ui/copy/CopyIcon";
+import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
 
 interface CurationTopAppBarProps {
+  curationId: number;
   curationDetail: CurationDetailResponse;
   text?: string;
   variant?: string;
@@ -23,67 +22,70 @@ interface CurationTopAppBarProps {
 }
 
 export default function CurationTopAppBar({
+  curationId,
   curationDetail,
   text,
   variant,
   className,
 }: CurationTopAppBarProps) {
-  const [menuModalOpen, setMenuModalOpen] = useState(false);
-  const [linkCopyToastOpen, setLinkCopyToastOpen] = useState(false);
-  const [toastText, setToastText] = useState("");
+  const { isMenuModalOpen, openMenuModal, handlers } = useCurationMenuModal();
+
+  const { isToastOpen, toastText, openToast } = useToast();
+
   const pathname = usePathname();
 
-  const handleMenuClick = () => {
-    setMenuModalOpen(true);
+  const handleMenuIconClick = () => {
+    openMenuModal();
   };
 
   const handleCopyLinkClick = async () => {
     copyLink(pathname);
-    setLinkCopyToastOpen(true);
-    setToastText("링크가 복사되었어요");
+    openToast("링크가 복사되었습니다");
   };
 
-  const handleScrapDelete = async () => {
+  const deleteScrap = async () => {
     const res = await fetch(`/api/curation/scrap/delete/${curationDetail.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
     });
-    if (res.status === 200) {
-      revalidateCurationScrap();
-      revalidateCurationDetail();
-    } else {
-      alert("에러가 발생했습니다.");
-    }
+    return res.status;
   };
 
-  const handleScrapAdd = async () => {
+  const addScrap = async () => {
     const res = await fetch(`/api/curation/scrap/add/${curationDetail.id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
     });
-    if (res.status === 200) {
-      revalidateCurationScrap();
-      revalidateCurationDetail();
+    return res.status;
+  };
+
+  const revalidateRelatedData = () => {
+    revalidateCurationScrap();
+    revalidateCurationDetail();
+  };
+
+  const handleScrapDelete = async () => {
+    if ((await deleteScrap()) === 200) {
+      openToast("큐레이션 스크랩이 해제되었습니다");
+      revalidateRelatedData();
     } else {
       alert("에러가 발생했습니다.");
     }
   };
 
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    if (linkCopyToastOpen) {
-      timeoutId = setTimeout(() => {
-        setLinkCopyToastOpen(false);
-      }, 1000);
+  const handleScrapAdd = async () => {
+    if ((await addScrap()) === 200) {
+      openToast("큐레이션이 스크랩 되었습니다");
+      revalidateRelatedData();
+    } else {
+      alert("에러가 발생했습니다.");
     }
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [linkCopyToastOpen]);
+  };
+
   return (
     <>
       <BasicTopBar color="#9E9E9E" className={className}>
@@ -93,30 +95,57 @@ export default function CurationTopAppBar({
             {variant === "others" ? (
               <>
                 {curationDetail.isScraped ? (
-                  <ScrapFill onClick={handleScrapDelete} />
+                  <CurationScrapIcon
+                    isScraped={curationDetail.isScraped}
+                    backgroundBrightness="light"
+                    toastInfo={{
+                      open: isToastOpen,
+                      text: toastText,
+                    }}
+                    onClick={handleScrapDelete}
+                  />
                 ) : (
-                  <ScrapLine color="#9E9E9E" onClick={handleScrapAdd} />
+                  <CurationScrapIcon
+                    isScraped={curationDetail.isScraped}
+                    backgroundBrightness="light"
+                    toastInfo={{
+                      open: isToastOpen,
+                      text: toastText,
+                    }}
+                    onClick={handleScrapAdd}
+                  />
                 )}
-                <ShareIcon onClick={handleCopyLinkClick} />
+                <CopyLinkIcon
+                  toastInfo={{
+                    open: isToastOpen,
+                    text: toastText,
+                  }}
+                  onClick={handleCopyLinkClick}
+                />
               </>
             ) : (
               <>
-                <ShareIcon onClick={handleCopyLinkClick} />
-                <MenuIcon onClick={handleMenuClick} />
+                <CopyLinkIcon
+                  toastInfo={{
+                    open: isToastOpen,
+                    text: toastText,
+                  }}
+                  onClick={handleCopyLinkClick}
+                />
+                <CurationMenuIcon
+                  menuModalInfo={{
+                    open: isMenuModalOpen,
+                    curationId,
+                    handleModalFn: handlers.handleMenuModalOpen,
+                  }}
+                  showAt="topBar"
+                  onClick={handleMenuIconClick}
+                />
               </>
             )}
           </div>
         </div>
       </BasicTopBar>
-      {menuModalOpen && (
-        <div className="w-[100%] h-[100%] fixed top-0 left-0 z-50">
-          <CurationMenuModal
-            id={curationDetail.id}
-            handleMenuModalState={setMenuModalOpen}
-          />
-        </div>
-      )}
-      <Toast open={linkCopyToastOpen} text={toastText} />
     </>
   );
 }

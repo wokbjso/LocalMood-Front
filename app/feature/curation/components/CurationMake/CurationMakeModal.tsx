@@ -6,20 +6,26 @@ import Modal from "@common/components/ui/modal/Modal";
 import CloseIcon from "@common/assets/icons/close/CloseIcon";
 
 interface CurationMakeProps {
-  isOpen: boolean;
-  handleOpen: (state: boolean) => void;
+  open: boolean;
+  handleModalFn: (state: boolean) => void;
+  toastOutside?: boolean;
+  outsideOpenToast?: (text: string) => void;
 }
 
 export default function CurationMakeModal({
-  isOpen,
-  handleOpen,
+  open,
+  handleModalFn,
+  toastOutside,
+  outsideOpenToast,
 }: CurationMakeProps) {
-  const { curationMakeData, handlers } = UseCurationMake();
+  const { curationMakeData, resetCurationMakeData, handlers } =
+    UseCurationMake();
   const closeIconClicked = () => {
-    handleOpen(false);
+    resetCurationMakeData();
+    handleModalFn(false);
   };
   return (
-    isOpen && (
+    open && (
       <Modal className="h-[94%]">
         <div className="bg-white">
           <div className="h-[81.2rem] p-[2rem] flex flex-col items-center">
@@ -38,7 +44,10 @@ export default function CurationMakeModal({
             <div className="w-full pt-[3.2rem] overflow-auto">
               <CurationMakeKeyword
                 curationMakeData={curationMakeData}
-                handleOpen={handleOpen}
+                resetCurationMakeData={resetCurationMakeData}
+                handleOpen={handleModalFn}
+                toastOutside={toastOutside}
+                outsideOpenToast={outsideOpenToast}
                 onClick={handlers.changeKeyword}
               />
             </div>

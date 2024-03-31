@@ -33,7 +33,7 @@ export default function Footer() {
   ];
   const { footerState, handlers } = useFooter();
   return (
-    <footer className="flex justify-between w-full bg-background-gray-1 px-[3.2rem] pt-[0.8rem] pb-[1.2rem] fixed bottom-0 z-10">
+    <footer className="flex justify-between w-full bg-background-gray-1 px-[3.2rem] pt-[0.8rem] pb-[1.2rem] fixed bottom-0">
       {FOOTER_CATEGORY.map((category, i) => (
         <Link
           key={category.text}
