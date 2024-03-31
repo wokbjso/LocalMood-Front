@@ -2,7 +2,6 @@
 
 import useSearchBar from "@feature/search/components/SearchBar/useSearchBar";
 import Tab from "@common/components/ui/tab/Tab";
-import CurationMain from "@feature/curation/components/CurationMain/CurationMain";
 import SearchNoResult from "@feature/search/components/SearchNoResult/SearchNoResult";
 import { Suspense, lazy } from "react";
 import {
@@ -18,6 +17,7 @@ import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import HomeSearchSkeleton from "@feature/search/components/HomeSearchSkeleton/HomeSearchSkeleton";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
+import CurationCardLight from "@feature/curation/components/CurationCardLight/CurationCardLight";
 
 interface SearchResultProps {
   search_query?: string;
@@ -40,7 +40,6 @@ export default function SearchResult({
 }: SearchResultProps) {
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
     useSearchBar();
-
   return (
     <>
       <BasicTopBar color="#9E9E9E" className="pt-[1.2rem]">
@@ -72,14 +71,9 @@ export default function SearchResult({
               {searchBarTabIndex === 1 && (
                 <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
                   {textSearchCurationData?.CurationList.map((curation) => (
-                    <CurationMain
+                    <CurationCardLight
                       key={curation.id}
-                      id={curation.id}
-                      image={curation.image}
-                      author={curation.author}
-                      title={curation.title}
-                      keyword={curation.keyword}
-                      spaceCount={curation.spaceCount}
+                      {...curation}
                       className="mb-[4rem]"
                     />
                   ))}
@@ -180,14 +174,9 @@ export default function SearchResult({
               {searchBarTabIndex === 1 && (
                 <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
                   {textSearchCurationData.CurationList.map((curation) => (
-                    <CurationMain
+                    <CurationCardLight
                       key={curation.id}
-                      id={curation.id}
-                      image={curation.image}
-                      author={curation.author}
-                      title={curation.title}
-                      keyword={curation.keyword}
-                      spaceCount={curation.spaceCount}
+                      {...curation}
                       className="mb-[4rem]"
                     />
                   ))}
@@ -217,14 +206,9 @@ export default function SearchResult({
               {searchBarTabIndex === 1 && (
                 <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
                   {keywordSearchCurationData?.CurationList.map((curation) => (
-                    <CurationMain
+                    <CurationCardLight
                       key={curation.id}
-                      id={curation.id}
-                      image={curation.image}
-                      author={curation.author}
-                      title={curation.title}
-                      keyword={curation.keyword}
-                      spaceCount={curation.spaceCount}
+                      {...curation}
                       className="mb-[4rem]"
                     />
                   ))}
@@ -309,14 +293,9 @@ export default function SearchResult({
               {searchBarTabIndex === 1 && (
                 <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
                   {keywordSearchCurationData.CurationList.map((curation) => (
-                    <CurationMain
+                    <CurationCardLight
                       key={curation.id}
-                      id={curation.id}
-                      image={curation.image}
-                      author={curation.author}
-                      title={curation.title}
-                      keyword={curation.keyword}
-                      spaceCount={curation.spaceCount}
+                      {...curation}
                       className="mb-[4rem]"
                     />
                   ))}

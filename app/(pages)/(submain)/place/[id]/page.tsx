@@ -1,7 +1,5 @@
-import Image from "next/image";
 import Divider from "@common/components/ui/divider/Divider";
 import PlaceDetailInfo from "@feature/place/components/PlaceDetail/PlaceDetailInfo";
-import CurationScrapped from "@feature/curation/components/CurationScrapped/CurationScrapped";
 import PlaceDetailKeywordEvaluation from "@feature/place/components/PlaceDetail/PlaceDetailKeywordEvaluation";
 import PlaceDetailKeywordSummary from "@feature/place/components/PlaceDetail/PlaceDetailKeywordSummary";
 import GetPlaceDetail from "@feature/place/queries/getPlaceDetail";
@@ -10,6 +8,7 @@ import PlaceInfoCard from "@feature/place/components/PlaceInfoCard/PlaceInfoCard
 import getMyCuration from "@feature/curation/queries/getMyCuration";
 import SliderLayout from "@common/components/layout/SliderLayout/SliderLayout";
 import PlaceDetailImageSlider from "@feature/place/components/PlaceDetail/PlaceDetailImageSlider";
+import CurationCardDark from "@feature/curation/components/CurationCardDark/CurationCardDark";
 
 export default async function PlaceDetailPage({
   params: { id },
@@ -84,7 +83,7 @@ export default async function PlaceDetailPage({
         )}
         <SliderLayout className="mt-[1.6rem] mb-[6rem]">
           {detailData.relatedCurationList.map((data) => (
-            <CurationScrapped
+            <CurationCardDark
               key={data.id}
               {...data}
               className="w-[33.5rem] mr-[0.8rem]"

@@ -73,10 +73,11 @@ export default function CurationDetailCardList({
       {!inView && (
         <div className="w-[100%] absolute top-0 z-10">
           <CurationTopAppBar
+            curationId={curationId}
             curationDetail={curationDetail}
             text={curationDetail.title}
             variant={curationDetail.variant}
-            className="bg-white z-10"
+            className="bg-white"
           />
           <div className="flex bg-white z-10 gap-[0.8rem] pb-[0.8rem] pt-[0.6rem] pl-[2rem] overflow-x-scroll">
             {curationDetail.spaceDetails.map((item, i) => (

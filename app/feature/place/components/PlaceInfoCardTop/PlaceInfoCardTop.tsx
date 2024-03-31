@@ -8,12 +8,13 @@ import {
   PlaceInfoCardAdditionalProps,
   PlaceInfoCardTopProps,
 } from "@feature/place/type";
-import { getSession } from "@common/utils/session/getSession";
 import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import { sliceText } from "@common/utils/text/slice-text";
-import UsePlaceInfoCardTop from "./usePlaceInfoCardTop";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import PlaceInfoCardTopScrapIcon from "./PlaceInfoCardTopScrapIcon";
+import { validateToken } from "@common/utils/validate/validateToken";
+import useOpenMyCurationModal from "@feature/curation/components/CurationModal/MyCurationModal/useOpenMyCurationModal";
+import useToast from "@common/hooks/useToast";
 
 export default function PlaceInfoCardTop({
   id,
@@ -32,32 +33,27 @@ export default function PlaceInfoCardTop({
   Partial<PlaceInfoCardAdditionalProps> & {
     myCurationData?: MyCurationResponse;
   }) {
-  const {
-    openCurationSaveModal,
-    openScrapToast,
-    toastText,
-    openCurationModal,
-    openToast,
-    handlers,
-  } = UsePlaceInfoCardTop();
+  const { isModalOpen, openModal, handlers } = useOpenMyCurationModal();
+
+  const { isToastOpen, toastText, openToast } = useToast();
 
   const handleScrap = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
     e.preventDefault();
-    const auth_info = await getSession();
-    const token = auth_info?.data?.accessToken;
+    const token = await validateToken();
     if (!token) {
       location.replace("/login");
     } else {
-      openCurationModal();
+      openModal();
       openToast("저장할 큐레이션을 선택해주세요");
     }
   };
+
   return (
     <div
       className={twMerge(
-        "w-full relative",
+        "w-[100%] relative",
         direction === "horizontal" && "flex items-center",
         className
       )}
@@ -104,14 +100,14 @@ export default function PlaceInfoCardTop({
               isScraped={isScraped}
               cardSize={size}
               curationModalInfo={{
-                open: openCurationSaveModal,
+                open: isModalOpen,
                 title: "저장할 큐레이션",
                 spaceId: id,
                 myCurationData,
                 handleModalFn: handlers.handleCurationModal,
               }}
               toastInfo={{
-                open: openScrapToast,
+                open: isToastOpen,
                 text: toastText,
               }}
               onClick={handleScrap}

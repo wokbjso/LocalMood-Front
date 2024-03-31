@@ -53,8 +53,22 @@ export default function UseCurationMake() {
     }
   };
 
+  const resetCurationMakeData = () => {
+    setCurationMakeData({
+      curation_name: "",
+      open: false,
+      keyword: {
+        purpose: "",
+        mood: "",
+        music: "",
+        interior: "",
+      },
+    });
+  };
+
   return {
     curationMakeData,
+    resetCurationMakeData,
     handlers: {
       changeCurationName: handleCurationName,
       changeCurationOpen: handleCurationOpen,

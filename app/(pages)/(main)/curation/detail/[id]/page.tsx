@@ -23,6 +23,7 @@ export default async function CurationDetailPage({
     <div className="w-[100%] h-[100%] overflow-auto pb-[18rem]">
       <header className="w-[100%] h-[18.8rem] bg-background-secondary-normal">
         <CurationTopAppBar
+        curationId={id}
           curationDetail={curationDetail}
           variant={curationDetail.variant}
         />

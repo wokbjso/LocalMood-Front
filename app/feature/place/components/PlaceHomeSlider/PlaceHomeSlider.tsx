@@ -30,18 +30,17 @@ export default async function PlaceHomeSlider({
       <span className="text-black headline2">{mainText}</span>
       <span className="text-text-gray-6 body1"> {subText}</span>
       <SliderLayout className="mt-[1.6rem]">
-        {randomPlace[mainText] &&
-          randomPlace[mainText].map(
-            (data: PlaceInfoCardTopProps & PlaceInfoCardBottomProps) => (
-              <PlaceInfoCard
-                key={data.id}
-                {...data}
-                keywordCategoryNum={1}
-                myCurationData={myCurationData}
-                className="w-[33.5rem] mr-[1.2rem]"
-              />
-            )
-          )}
+        {randomPlace[mainText].map(
+          (data: PlaceInfoCardTopProps & PlaceInfoCardBottomProps) => (
+            <PlaceInfoCard
+              key={data.id}
+              {...data}
+              keywordCategoryNum={1}
+              myCurationData={myCurationData}
+              className="w-[33.5rem] mr-[1.2rem]"
+            />
+          )
+        )}
       </SliderLayout>
     </section>
   );

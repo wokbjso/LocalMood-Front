@@ -8,11 +8,11 @@ import PlaceInfoCardBottom from "@feature/place/components/PlaceInfoCardBottom/P
 import SliderLayout from "@common/components/layout/SliderLayout/SliderLayout";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { getSession } from "@common/utils/session/getSession";
-import SavePlaceModal from "../CurationModal/SavePlaceModal/SavePlaceModal";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
 import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
 import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail";
+import MyCurationModal from "../CurationModal/MyCurationModal/MyCurationModal";
 
 const CurationDetailInfoCard = forwardRef<
   HTMLDivElement,
@@ -119,8 +119,9 @@ const CurationDetailInfoCard = forwardRef<
           </div>
         </div>
       </div>
-      <SavePlaceModal
+      <MyCurationModal
         open={openCurationSaveModal}
+        title="저장할 큐레이션"
         myCurationData={props.myCurationData}
         spaceId={props.id}
         handleModalFn={setOpenCurationSaveModal}

@@ -8,6 +8,8 @@ interface ConfirmModalProps {
   confirmText: string;
   cancelFn: () => void;
   confirmFn: () => void;
+  toastOutside?: boolean;
+  outsideOpenToast?: (text: string) => void;
 }
 
 export default function ConfirmModal({
@@ -16,6 +18,8 @@ export default function ConfirmModal({
   confirmText,
   cancelFn,
   confirmFn,
+  toastOutside,
+  outsideOpenToast,
 }: ConfirmModalProps) {
   const handleCancleClick = () => {
     cancelFn();
@@ -23,6 +27,9 @@ export default function ConfirmModal({
 
   const handleConfirmClick = () => {
     confirmFn();
+    toastOutside &&
+      outsideOpenToast &&
+      outsideOpenToast("큐레이션이 삭제되었습니다");
   };
   return (
     <Modal className="px-[2rem]">

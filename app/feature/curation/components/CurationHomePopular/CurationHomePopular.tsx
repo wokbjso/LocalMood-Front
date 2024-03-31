@@ -5,8 +5,10 @@ import "slick-carousel/slick/slick-theme.css";
 import "../../slick.css";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import RightArrow from "@common/assets/icons/arrow/arrow-right.svg";
-import CurationMain from "../CurationMain/CurationMain";
 import Slider from "react-slick";
+import useToast from "@common/hooks/useToast";
+import Toast from "@common/components/ui/toast/Toast";
+import CurationCardLight from "../CurationCardLight/CurationCardLight";
 
 interface CurationHomePopularProps {
   mainText: string;
@@ -47,28 +49,34 @@ export default function CurationHomePopular({
     ),
     dotsClass: "dots_custom",
   };
+  const { isToastOpen, toastText, openToast } = useToast();
   return (
-    <section className="mb-[5.6rem] pt-[2.8rem] pb-[2rem] bg-background-gray-2">
-      <div className="flex justify-between mb-[1.6rem] px-[2rem]">
-        <span className="headline2 text-black">{mainText}</span>
-        <div className="flex items-center headline2 text-black">
-          <LinkLayout routeUrl="/curation/popular">
-            <span className="mr-[1rem] text-text-gray-6 body2-semibold">
-              {subText}
-            </span>
-          </LinkLayout>
-          <RightArrow />
+    <>
+      <section className="mb-[5.6rem] pt-[2.8rem] pb-[2rem] bg-background-gray-2">
+        <div className="flex justify-between mb-[1.6rem] px-[2rem]">
+          <span className="headline2 text-black">{mainText}</span>
+          <div className="flex items-center headline2 text-black">
+            <LinkLayout routeUrl="/curation/popular">
+              <span className="mr-[1rem] text-text-gray-6 body2-semibold">
+                {subText}
+              </span>
+            </LinkLayout>
+            <RightArrow />
+          </div>
         </div>
-      </div>
-      <Slider {...sliderSettings} className="px-[2rem]">
-        {curationList.map((curation, i) => (
-          <CurationMain
-            key={curation.author + i}
-            {...curation}
-            className="mb-[2rem] w-[100%]"
-          />
-        ))}
-      </Slider>
-    </section>
+        <Slider {...sliderSettings} className="px-[2rem]">
+          {curationList.map((curation, i) => (
+            <CurationCardLight
+              key={curation.author + i}
+              {...curation}
+              toastOutside
+              outsideOpenToast={openToast}
+              className="mb-[2rem] w-[100%]"
+            />
+          ))}
+        </Slider>
+      </section>
+      <Toast open={isToastOpen} text={toastText} />
+    </>
   );
 }

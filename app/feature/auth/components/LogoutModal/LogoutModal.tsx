@@ -11,7 +11,7 @@ export default function LogoutModal({
   handleFn: (state: boolean) => void;
 }) {
   const router = useRouter();
-  const { ref } = UseOutsideClick<HTMLDivElement>(handleFn);
+  const { ref } = UseOutsideClick<HTMLDivElement>(true, handleFn);
   const [logoutConfirmModalOpen, setLogoutConfirmModalOpen] = useState(false);
 
   const handleLogoutClick = () => {
