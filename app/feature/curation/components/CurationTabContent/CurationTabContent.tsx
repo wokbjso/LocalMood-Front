@@ -70,7 +70,12 @@ export default function CurationTabContent({
           myCuration && myCuration?.curation.length > 0 ? (
             myCuration?.curation.map((props: CurationProps) => (
               <div key={props.author + props.id} className="mb-[1.2rem]">
-                <CurationCardLight variant="my" {...props} />
+                <CurationCardLight
+                  variant="my"
+                  toastOutside
+                  outsideOpenToast={openToast}
+                  {...props}
+                />
               </div>
             ))
           ) : (

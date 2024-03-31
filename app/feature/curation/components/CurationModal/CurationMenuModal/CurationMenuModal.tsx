@@ -1,6 +1,6 @@
 import EditIcon from "@common/assets/icons/edit/edit.svg";
 import Modal from "@common/components/ui/modal/Modal";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import UseOutsideClick from "@common/hooks/useOutsideClick";
 import { copyLink } from "@common/utils/text/copy-link";
 import ConfirmModal from "@common/components/ui/modal/ConfirmModal";
@@ -9,7 +9,6 @@ import DeleteIcon from "@common/assets/icons/delete/DeleteIcon";
 import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
 import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail";
 import { usePathname } from "next/navigation";
-import Toast from "@common/components/ui/toast/Toast";
 import ShareIcon from "@common/assets/icons/share/ShareIcon";
 
 interface CurationMenuModalProps {
@@ -18,6 +17,8 @@ interface CurationMenuModalProps {
   curationId: number;
   hasCopyLink?: boolean;
   handleModalFn: (state: boolean) => void;
+  toastOutside?: boolean;
+  outsideOpenToast?: (text: string) => void;
 }
 
 export default function CurationMenuModal({
@@ -26,13 +27,14 @@ export default function CurationMenuModal({
   curationId,
   hasCopyLink = false,
   handleModalFn,
+  toastOutside,
+  outsideOpenToast,
 }: CurationMenuModalProps) {
   const { ref } = UseOutsideClick<HTMLDivElement>(open, handleModalFn);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [linkCopyToastOpen, setLinkCopyToastOpen] = useState(false);
-  const [toastText, setToastText] = useState("");
   const pathname = usePathname();
   const handleCurationEditClick = () => {
+    alert("서비스 준비중입니다");
     //편집하기 로직
   };
 
@@ -42,15 +44,15 @@ export default function CurationMenuModal({
 
   const handleLinkCopyClick = async () => {
     copyLink(pathname + `/${curationId}`);
-    setLinkCopyToastOpen(true);
-    setToastText("링크가 복사되었어요");
+    toastOutside && outsideOpenToast && outsideOpenToast("링크가 복사되었어요");
+    handleModalFn(false);
   };
 
   const handleCancleClick = () => {
     setDeleteModalOpen(false);
   };
 
-  const handleConfirmClick = async () => {
+  const deleteCuration = async () => {
     const res = await fetch("/api/curation/delete", {
       method: "DELETE",
       headers: {
@@ -58,29 +60,27 @@ export default function CurationMenuModal({
       },
       body: JSON.stringify(curationId),
     });
-    if (res.status === 200) {
+
+    return res.status;
+  };
+
+  const revalidateRelatedData = () => {
+    revalidateMyCuration();
+    revalidateScrapSpace();
+    revalidatePlaceDetail();
+  };
+
+  const handleConfirmClick = async () => {
+    if ((await deleteCuration()) === 200) {
       if (triggeredAt === "topBar") {
         location.replace("/curation");
       }
-      revalidateMyCuration();
-      revalidateScrapSpace();
-      revalidatePlaceDetail();
+      revalidateRelatedData();
     } else {
       alert("에러가 발생했습니다");
     }
   };
 
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    if (linkCopyToastOpen) {
-      timeoutId = setTimeout(() => {
-        setLinkCopyToastOpen(false);
-      }, 1000);
-    }
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [linkCopyToastOpen]);
   return (
     <>
       {open && (
@@ -116,9 +116,10 @@ export default function CurationMenuModal({
           confirmText="삭제하기"
           cancelFn={handleCancleClick}
           confirmFn={handleConfirmClick}
+          toastOutside={toastOutside}
+          outsideOpenToast={outsideOpenToast}
         />
       )}
-      <Toast open={linkCopyToastOpen} text={toastText} />
     </>
   );
 }

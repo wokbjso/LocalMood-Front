@@ -173,6 +173,8 @@ export default function CurationCardLight({
               handleModalFn: handlers.handleMenuModalOpen,
             }}
             showAt="card"
+            toastOutside
+            outsideOpenToast={outsideOpenToast}
             className="absolute top-[1.6rem] right-[1.2rem]"
             onClick={handleMenuClick}
           />
