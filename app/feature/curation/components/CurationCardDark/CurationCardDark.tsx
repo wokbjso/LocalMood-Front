@@ -13,7 +13,7 @@ import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
 import useToast from "@common/hooks/useToast";
 import { validateToken } from "@common/utils/validate/validateToken";
 
-export default function CurationScrapped({
+export default function CurationCardDark({
   id,
   title,
   author,

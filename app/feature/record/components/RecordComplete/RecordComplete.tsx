@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import CompleteIcon from "@common/assets/images/record_complete.svg";
 import ArrowIcon from "@common/assets/icons/arrow/arrow-right.svg";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
-import SavePlaceModalMyCurationCard from "@feature/curation/components/CurationModal/MyCurationModal/MyCurationCard";
 import MyCurationModal from "@feature/curation/components/CurationModal/MyCurationModal/MyCurationModal";
 
 interface RecordCompleteProps {

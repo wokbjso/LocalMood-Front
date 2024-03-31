@@ -14,7 +14,7 @@ import CurationMenuIcon from "../CurationMenuIcon/CurationMenuIcon";
 import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
 import useToast from "@common/hooks/useToast";
 
-export default function CurationCard({
+export default function CurationCardLight({
   id,
   variant = "others",
   image,

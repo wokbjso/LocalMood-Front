@@ -17,7 +17,7 @@ import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import HomeSearchSkeleton from "@feature/search/components/HomeSearchSkeleton/HomeSearchSkeleton";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
-import CurationCard from "@feature/curation/components/CurationCard/CurationCard";
+import CurationCardLight from "@feature/curation/components/CurationCardLight/CurationCardLight";
 
 interface SearchResultProps {
   search_query?: string;
@@ -72,7 +72,7 @@ export default function SearchResult({
               {searchBarTabIndex === 1 && (
                 <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
                   {textSearchCurationData?.CurationList.map((curation) => (
-                    <CurationCard
+                    <CurationCardLight
                       key={curation.id}
                       id={curation.id}
                       image={curation.image}
@@ -180,7 +180,7 @@ export default function SearchResult({
               {searchBarTabIndex === 1 && (
                 <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
                   {textSearchCurationData.CurationList.map((curation) => (
-                    <CurationCard
+                    <CurationCardLight
                       key={curation.id}
                       id={curation.id}
                       image={curation.image}
@@ -217,7 +217,7 @@ export default function SearchResult({
               {searchBarTabIndex === 1 && (
                 <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
                   {keywordSearchCurationData?.CurationList.map((curation) => (
-                    <CurationCard
+                    <CurationCardLight
                       key={curation.id}
                       id={curation.id}
                       image={curation.image}
@@ -309,7 +309,7 @@ export default function SearchResult({
               {searchBarTabIndex === 1 && (
                 <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
                   {keywordSearchCurationData.CurationList.map((curation) => (
-                    <CurationCard
+                    <CurationCardLight
                       key={curation.id}
                       id={curation.id}
                       image={curation.image}

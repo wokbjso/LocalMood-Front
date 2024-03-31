@@ -6,9 +6,9 @@ import "../../slick.css";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import RightArrow from "@common/assets/icons/arrow/arrow-right.svg";
 import Slider from "react-slick";
-import CurationCard from "../CurationCard/CurationCard";
 import useToast from "@common/hooks/useToast";
 import Toast from "@common/components/ui/toast/Toast";
+import CurationCardLight from "../CurationCardLight/CurationCardLight";
 
 interface CurationHomePopularProps {
   mainText: string;
@@ -66,7 +66,7 @@ export default function CurationHomePopular({
         </div>
         <Slider {...sliderSettings} className="px-[2rem]">
           {curationList.map((curation, i) => (
-            <CurationCard
+            <CurationCardLight
               key={curation.author + i}
               {...curation}
               toastOutside

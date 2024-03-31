@@ -76,6 +76,7 @@ export default function MyCurationModal({
             onClick={handleModalCloseClick}
           />
           <CurationMakeButton
+            size="large"
             text="새 큐레이션 만들기"
             curationMakeModalInfo={{
               open: isModalOpen,

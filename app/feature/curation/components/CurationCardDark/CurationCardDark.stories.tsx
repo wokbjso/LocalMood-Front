@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import CurationScrapped from "./CurationScrapped";
+import CurationCardDark from "./CurationCardDark";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
   title: "Feature/Curation/CurationScrapped/CurationScrapped",
-  component: CurationScrapped,
+  component: CurationCardDark,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
@@ -13,7 +13,7 @@ const meta = {
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {},
-} satisfies Meta<typeof CurationScrapped>;
+} satisfies Meta<typeof CurationCardDark>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
