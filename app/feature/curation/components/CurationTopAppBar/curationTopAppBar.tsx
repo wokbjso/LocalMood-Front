@@ -13,6 +13,7 @@ import useToast from "@common/hooks/useToast";
 import CopyLinkIcon from "@common/components/ui/copy/CopyIcon";
 import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
 import useCurationScrapIcon from "../CurationScrapIcon/useCurationScrapIcon";
+import useFetching from "@common/hooks/useFetching";
 
 interface CurationTopAppBarProps {
   curationId: number;
@@ -29,8 +30,10 @@ export default function CurationTopAppBar({
   variant,
   className,
 }: CurationTopAppBarProps) {
-  const { scraped, fetching, toggleScrap, toggleFetching } =
-    useCurationScrapIcon(curationDetail.isScraped);
+  const { scraped, toggleScrap } = useCurationScrapIcon(
+    curationDetail.isScraped
+  );
+  const { isFetching, toggleFetching } = useFetching();
   const { isMenuModalOpen, openMenuModal, handlers } = useCurationMenuModal();
   const { isToastOpen, toastText, openToast } = useToast();
 
@@ -46,7 +49,7 @@ export default function CurationTopAppBar({
   };
 
   const checkFetching = () => {
-    if (fetching) return true;
+    if (isFetching) return true;
     return false;
   };
 
