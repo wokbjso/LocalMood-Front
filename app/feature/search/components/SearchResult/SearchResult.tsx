@@ -234,6 +234,14 @@ export default function SearchResult({
                     <div key={place.id + place.type} className="mb-[4rem]">
                       <PlaceInfoCard
                         {...place}
+                        interior={
+                          place.type === "CAFE" ? place.keyword : undefined
+                        }
+                        bestMenu={
+                          place.type === "RESTAURANT"
+                            ? place.keyword
+                            : undefined
+                        }
                         keywordCategoryNum={2}
                         myCurationData={myCuration}
                       />
@@ -282,6 +290,14 @@ export default function SearchResult({
                       <div key={place.id + place.type} className="mb-[4rem]">
                         <PlaceInfoCard
                           {...place}
+                          interior={
+                            place.type === "CAFE" ? place.keyword : undefined
+                          }
+                          bestMenu={
+                            place.type === "RESTAURANT"
+                              ? place.keyword
+                              : undefined
+                          }
                           keywordCategoryNum={2}
                           myCurationData={myCuration}
                         />
