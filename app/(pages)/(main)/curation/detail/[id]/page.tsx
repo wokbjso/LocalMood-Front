@@ -4,7 +4,7 @@ import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
 import Image from "next/image";
 import ProfileIcon from "@common/assets/icons/profile/greenProfile.png";
-import CurationPrivacyToggleButton from "@feature/curation/components/CurationButton/CurationPrivacyToggleButton";
+import CurationPrivacyToggleButton from "@feature/curation/components/CuratonPrivacyToggleButton/CurationPrivacyToggleButton";
 import CurationDetailCardList from "@feature/curation/components/CurationDetail/CurationDetailCardList";
 import GetCurationDetail from "@feature/curation/queries/getCurationDetail";
 import CurationTopAppBar from "@feature/curation/components/CurationTopAppBar/curationTopAppBar";
@@ -23,7 +23,7 @@ export default async function CurationDetailPage({
     <div className="w-[100%] h-[100%] overflow-auto pb-[18rem]">
       <header className="w-[100%] h-[18.8rem] bg-background-secondary-normal">
         <CurationTopAppBar
-        curationId={id}
+          curationId={id}
           curationDetail={curationDetail}
           variant={curationDetail.variant}
         />
@@ -50,7 +50,10 @@ export default async function CurationDetailPage({
               {curationDetail.title}
             </div>
             {curationDetail.variant === "my" ? (
-              <CurationPrivacyToggleButton id={id} />
+              <CurationPrivacyToggleButton
+                id={id}
+                privacy={curationDetail.privacy}
+              />
             ) : (
               <div className="flex items-center gap-[1.2rem]">
                 <div className="flex items-center gap-[0.4rem]">
