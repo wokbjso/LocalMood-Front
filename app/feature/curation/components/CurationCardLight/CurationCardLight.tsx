@@ -1,3 +1,5 @@
+"use client";
+
 import UserProfile from "@feature/user/components/UserProfile/UserProfile";
 import { CurationProps } from "@feature/curation/type";
 import { twMerge } from "tailwind-merge";
