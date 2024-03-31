@@ -1,18 +1,17 @@
 "use client";
 
-import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { usePathname } from "next/navigation";
 import { copyLink } from "@common/utils/text/copy-link";
 import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-detail";
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import { sliceText } from "@common/utils/text/slice-text";
-import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
 import useCurationMenuModal from "../CurationModal/CurationMenuModal/useCurationMenuModal";
 import CurationMenuIcon from "../CurationMenuIcon/CurationMenuIcon";
 import useToast from "@common/hooks/useToast";
 import CopyLinkIcon from "@common/components/ui/copy/CopyIcon";
+import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
 
 interface CurationTopAppBarProps {
   curationId: number;
@@ -71,6 +70,7 @@ export default function CurationTopAppBar({
 
   const handleScrapDelete = async () => {
     if ((await deleteScrap()) === 200) {
+      openToast("큐레이션 스크랩이 해제되었습니다");
       revalidateRelatedData();
     } else {
       alert("에러가 발생했습니다.");
@@ -79,6 +79,7 @@ export default function CurationTopAppBar({
 
   const handleScrapAdd = async () => {
     if ((await addScrap()) === 200) {
+      openToast("큐레이션이 스크랩 되었습니다");
       revalidateRelatedData();
     } else {
       alert("에러가 발생했습니다.");
@@ -94,9 +95,23 @@ export default function CurationTopAppBar({
             {variant === "others" ? (
               <>
                 {curationDetail.isScraped ? (
-                  <ScrapFill onClick={handleScrapDelete} />
+                  <CurationScrapIcon
+                    isScraped={curationDetail.isScraped}
+                    toastInfo={{
+                      open: isToastOpen,
+                      text: toastText,
+                    }}
+                    onClick={handleScrapDelete}
+                  />
                 ) : (
-                  <ScrapLine color="#9E9E9E" onClick={handleScrapAdd} />
+                  <CurationScrapIcon
+                    isScraped={curationDetail.isScraped}
+                    toastInfo={{
+                      open: isToastOpen,
+                      text: toastText,
+                    }}
+                    onClick={handleScrapAdd}
+                  />
                 )}
                 <CopyLinkIcon
                   toastInfo={{
