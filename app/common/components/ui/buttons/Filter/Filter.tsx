@@ -4,6 +4,7 @@ import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import ArrowDown from "@common/assets/icons/arrow/arrow-down.svg";
 import ArrowUp from "@common/assets/icons/arrow/ArrowUp";
+import Image from "next/image";
 
 interface FilterProps {
   variant?: "static" | "showOptions";
@@ -45,10 +46,17 @@ export default function Filter({
       disabled={disabled}
     >
       {photo && (
-        <div
-          className="w-[3.2rem] h-[3.2rem] mr-[0.8rem] bg-cover rounded-full"
-          style={{ backgroundImage: `url(${photo})` }}
-        />
+        <div className="w-[3.2rem] h-[3.2rem] mr-[0.8rem] relative">
+          <Image
+            alt="필터 사진"
+            src={photo}
+            fill
+            sizes="15vw,10vw"
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+            className="rounded-full object-cover"
+          />
+        </div>
       )}
       <span
         className={twMerge(
