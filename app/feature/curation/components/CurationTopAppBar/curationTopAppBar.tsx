@@ -16,6 +16,7 @@ import useCurationScrapIcon from "../CurationScrapIcon/useCurationScrapIcon";
 import useFetching from "@common/hooks/useFetching";
 
 interface CurationTopAppBarProps {
+  inView: boolean;
   curationId: number;
   curationDetail: CurationDetailResponse;
   text?: string;
@@ -24,6 +25,7 @@ interface CurationTopAppBarProps {
 }
 
 export default function CurationTopAppBar({
+  inView,
   curationId,
   curationDetail,
   text,
@@ -114,9 +116,14 @@ export default function CurationTopAppBar({
 
   return (
     <>
-      <BasicTopBar color="#9E9E9E" className={className}>
+      <BasicTopBar
+        color="#9E9E9E"
+        className={!inView ? "bg-white fixed top-0 z-10" : ""}
+      >
         <div className="w-[100%] flex items-center justify-between gap-[0.8rem]">
-          <h1 className="headline3-semibold">{text && sliceText(text, 16)}</h1>
+          <h1 className="headline3-semibold">
+            {!inView && text && sliceText(text, 16)}
+          </h1>
           <div className="flex items-center gap-[0.6rem]">
             {variant === "others" ? (
               <>
