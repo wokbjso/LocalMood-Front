@@ -1,4 +1,3 @@
-import useGetScrollHeight from "@common/hooks/useGetScrollHeight";
 import { CurationPlaceProps } from "@feature/curation/type";
 import { createRef, useEffect, useState } from "react";
 
@@ -8,7 +7,6 @@ export default function useCurationDetailCardList(
   const [openScrapDeleteToast, setOpenScrapDeleteToast] = useState(false);
   const [toastText, setToastText] = useState("");
   const [placeIndex, setPlaceIndex] = useState(0);
-  const { scrollHeight } = useGetScrollHeight();
   const cardRefs = Array.from({ length: spaceDetails.length }, () =>
     createRef<HTMLDivElement>()
   );
@@ -42,7 +40,6 @@ export default function useCurationDetailCardList(
     openScrapDeleteToast,
     toastText,
     placeIndex,
-    scrollHeight,
     handlers: {
       changeOpenScrapDeleteToast: handleOpenScrapDeleteToast,
       changeToastText: handleToastText,
