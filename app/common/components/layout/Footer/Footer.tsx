@@ -7,6 +7,8 @@ import Curation from "@common/assets/icons/curation/Curation";
 import UserProfile from "@common/assets/icons/user/UserProfile";
 import useFooter from "./useFooter";
 import Link from "next/link";
+import Toast from "@common/components/ui/toast/Toast";
+import useToastValue from "../ContextProvider/useToastValue";
 
 export default function Footer() {
   const FOOTER_CATEGORY = [
@@ -32,31 +34,37 @@ export default function Footer() {
     },
   ];
   const { footerState, handlers } = useFooter();
+  const toastValue = useToastValue();
   return (
-    <footer className="flex justify-between w-full bg-background-gray-1 px-[3.2rem] pt-[0.8rem] pb-[1.2rem] fixed bottom-0">
-      {FOOTER_CATEGORY.map((category, i) => (
-        <Link
-          key={category.text}
-          href={{
-            pathname: category.navigateTo,
-          }}
-        >
-          <div
-            className="px-[1.2rem] flex flex-col items-center cursor-pointer"
-            onClick={() => handlers.handleFooterState(i)}
+    <>
+      <footer className="flex justify-between w-full bg-background-gray-1 px-[3.2rem] pt-[0.8rem] pb-[1.2rem] fixed bottom-0">
+        {FOOTER_CATEGORY.map((category, i) => (
+          <Link
+            key={category.text}
+            href={{
+              pathname: category.navigateTo,
+            }}
           >
-            <category.icon color={footerState === i ? "#32D5BA" : "#BDBDBD"} />
-            <span
-              className={twMerge(
-                "mt-[0.6rem]",
-                footerState === i ? "text-primary-normal" : "text-text-gray-5"
-              )}
+            <div
+              className="px-[1.2rem] flex flex-col items-center cursor-pointer"
+              onClick={() => handlers.handleFooterState(i)}
             >
-              {category.text}
-            </span>
-          </div>
-        </Link>
-      ))}
-    </footer>
+              <category.icon
+                color={footerState === i ? "#32D5BA" : "#BDBDBD"}
+              />
+              <span
+                className={twMerge(
+                  "mt-[0.6rem]",
+                  footerState === i ? "text-primary-normal" : "text-text-gray-5"
+                )}
+              >
+                {category.text}
+              </span>
+            </div>
+          </Link>
+        ))}
+      </footer>
+      <Toast open={toastValue.open} text={toastValue.text} />
+    </>
   );
 }

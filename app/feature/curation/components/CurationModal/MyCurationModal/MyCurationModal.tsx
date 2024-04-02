@@ -11,7 +11,7 @@ import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail"
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
 import revalidateTextSearchPlaceData from "@feature/search/actions/revalidateTextSearchPlaceData";
 import revalidateKeywordSearchPlaceData from "@feature/search/actions/revalidateKeywordSearchPlaceData";
-import useToast from "@common/hooks/useToast";
+import useToast from "@common/components/ui/toast/useToast";
 import useOpenCurationMakeModal from "../../CurationMake/useOpenCurationMakeModal";
 const MyCurationCard = lazy(() => import("./MyCurationCard"));
 

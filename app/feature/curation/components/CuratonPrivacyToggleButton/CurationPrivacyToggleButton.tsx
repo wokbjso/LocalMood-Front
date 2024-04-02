@@ -3,7 +3,7 @@
 import LockIcon from "@common/assets/icons/lock/lock.svg";
 import UnlockIcon from "@common/assets/icons/lock/unlock.svg";
 import Toast from "@common/components/ui/toast/Toast";
-import useToast from "@common/hooks/useToast";
+import useToast from "@common/components/ui/toast/useToast";
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
 
 interface CurationPrivacyToggleButtonProps {

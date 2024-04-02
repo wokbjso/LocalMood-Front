@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import "../styles/global.css";
 import UseDeferredComponent from "@common/hooks/useDeferredComponent";
 import { BeatLoader } from "react-spinners";
+import ToastContextProvider from "@common/components/layout/ContextProvider/ToastContextProvider";
 
 export const metadata = {
   title: "로컬무드",
@@ -17,7 +18,7 @@ export default async function RootLayout({
     <html lang="en" className="width-[100%] height-[100%]">
       <body className="w-[100%] h-[100%]">
         <main className="w-[100%] h-[100%] fixed overflow-hidden">
-          {children}
+          <ToastContextProvider>{children}</ToastContextProvider>
         </main>
       </body>
     </html>

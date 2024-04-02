@@ -14,7 +14,7 @@ import useCurationMenuModal from "../CurationModal/CurationMenuModal/useCuration
 import { validateToken } from "@common/utils/validate/validateToken";
 import CurationMenuIcon from "../CurationMenuIcon/CurationMenuIcon";
 import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
-import useToast from "@common/hooks/useToast";
+import useToast from "@common/components/ui/toast/useToast";
 import revalidateTextSearchCurationData from "@feature/search/actions/revalidateTextSearchCurationData";
 import revalidateKeywordSearchCurationData from "@feature/search/actions/revalidateKeywordSearchCurationData";
 import useCurationScrapIcon from "../CurationScrapIcon/useCurationScrapIcon";

@@ -14,7 +14,7 @@ import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import PlaceInfoCardTopScrapIcon from "./PlaceInfoCardTopScrapIcon";
 import { validateToken } from "@common/utils/validate/validateToken";
 import useOpenMyCurationModal from "@feature/curation/components/CurationModal/MyCurationModal/useOpenMyCurationModal";
-import useToast from "@common/hooks/useToast";
+import useToastActions from "@common/components/layout/ContextProvider/useToastAction";
 
 export default function PlaceInfoCardTop({
   id,
@@ -34,8 +34,7 @@ export default function PlaceInfoCardTop({
     myCurationData?: MyCurationResponse;
   }) {
   const { isModalOpen, openModal, handlers } = useOpenMyCurationModal();
-
-  const { isToastOpen, toastText, openToast } = useToast();
+  const { openToast } = useToastActions();
 
   const handleScrap = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
@@ -105,10 +104,6 @@ export default function PlaceInfoCardTop({
                 spaceId: id,
                 myCurationData,
                 handleModalFn: handlers.handleCurationModal,
-              }}
-              toastInfo={{
-                open: isToastOpen,
-                text: toastText,
               }}
               onClick={handleScrap}
             />

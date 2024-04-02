@@ -3,6 +3,7 @@ import PlaceHomeSlider from "@feature/place/components/PlaceHomeSlider/PlaceHome
 import HomeBanner from "./HomeBanner";
 import CurationHomePopular from "@feature/curation/components/CurationHomePopular/CurationHomePopular";
 import GetRandomCuration from "@feature/curation/queries/getRandomCuration";
+import useToastValue from "@common/components/layout/ContextProvider/useToastValue";
 
 export default async function Home() {
   const HOME_SLIDER_PURPOSE = [

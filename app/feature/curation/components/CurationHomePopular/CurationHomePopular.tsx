@@ -6,7 +6,7 @@ import "../../slick.css";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import RightArrow from "@common/assets/icons/arrow/arrow-right.svg";
 import Slider from "react-slick";
-import useToast from "@common/hooks/useToast";
+import useToast from "@common/components/ui/toast/useToast";
 import Toast from "@common/components/ui/toast/Toast";
 import CurationCardLight from "../CurationCardLight/CurationCardLight";
 

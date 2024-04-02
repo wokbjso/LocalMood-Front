@@ -10,7 +10,7 @@ import LocationLine from "@common/assets/icons/location/LocationLine";
 import Image from "next/image";
 import revalidateCurationRandom from "@feature/curation/actions/revalidateCurationRandom";
 import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
-import useToast from "@common/hooks/useToast";
+import useToast from "@common/components/ui/toast/useToast";
 import { validateToken } from "@common/utils/validate/validateToken";
 
 export default function CurationCardDark({

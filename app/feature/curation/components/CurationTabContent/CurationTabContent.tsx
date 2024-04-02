@@ -3,7 +3,7 @@
 import Tab from "@common/components/ui/tab/Tab";
 import { CurationProps } from "@feature/curation/type";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
-import useToast from "@common/hooks/useToast";
+import useToast from "@common/components/ui/toast/useToast";
 import Toast from "@common/components/ui/toast/Toast";
 import CurationCardLight from "../CurationCardLight/CurationCardLight";
 import CurationCardDark from "../CurationCardDark/CurationCardDark";

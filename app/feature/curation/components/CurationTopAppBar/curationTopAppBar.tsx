@@ -9,7 +9,7 @@ import revalidateCurationScrap from "@feature/curation/actions/revalidateCuratio
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
 import useCurationMenuModal from "../CurationModal/CurationMenuModal/useCurationMenuModal";
 import CurationMenuIcon from "../CurationMenuIcon/CurationMenuIcon";
-import useToast from "@common/hooks/useToast";
+import useToast from "@common/components/ui/toast/useToast";
 import CopyLinkIcon from "@common/components/ui/copy/CopyIcon";
 import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
 import useCurationScrapIcon from "../CurationScrapIcon/useCurationScrapIcon";
