@@ -35,7 +35,7 @@ export default function CurationTopAppBar({
   const { scraped, toggleScrap } = useCurationScrapIcon(
     curationDetail.isScraped
   );
-  const { isFetching, toggleFetching } = useFetching();
+  const { isFetching, changeFetching } = useFetching();
   const { isMenuModalOpen, openMenuModal, handlers } = useCurationMenuModal();
   const { isToastOpen, toastText, openToast } = useToast();
 
@@ -80,11 +80,11 @@ export default function CurationTopAppBar({
       alert("이전 요청을 처리중입니다");
       return;
     }
-    toggleFetching();
+    changeFetching(true);
     toggleScrap();
     openToast("큐레이션 스크랩이 해제되었습니다");
     if ((await deleteScrap()) === 200) {
-      toggleFetching();
+      changeFetching(false);
       revalidateRelatedData();
     } else {
       toggleScrap();
@@ -97,11 +97,11 @@ export default function CurationTopAppBar({
       alert("이전 요청을 처리중입니다");
       return;
     }
-    toggleFetching();
+    changeFetching(true);
     toggleScrap();
     openToast("큐레이션이 스크랩 되었습니다");
     if ((await addScrap()) === 200) {
-      toggleFetching();
+      changeFetching(false);
       revalidateRelatedData();
     } else {
       toggleScrap();
@@ -126,20 +126,12 @@ export default function CurationTopAppBar({
                   <CurationScrapIcon
                     isScraped={scraped}
                     backgroundBrightness="light"
-                    toastInfo={{
-                      open: isToastOpen,
-                      text: toastText,
-                    }}
                     onClick={handleScrapDeleteClick}
                   />
                 ) : (
                   <CurationScrapIcon
                     isScraped={scraped}
                     backgroundBrightness="light"
-                    toastInfo={{
-                      open: isToastOpen,
-                      text: toastText,
-                    }}
                     onClick={handleScrapAddClick}
                   />
                 )}
