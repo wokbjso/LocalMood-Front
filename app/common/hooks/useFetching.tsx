@@ -7,8 +7,5 @@ export default function useFetching() {
     setIsFetching((prev) => !prev);
   };
 
-  return {
-    isFetching,
-    toggleFetching,
-  };
+  return { isFetching, toggleFetching };
 }

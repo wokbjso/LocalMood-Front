@@ -50,11 +50,6 @@ export default function CurationTopAppBar({
     openToast("링크가 복사되었습니다");
   };
 
-  const checkFetching = () => {
-    if (isFetching) return true;
-    return false;
-  };
-
   const deleteScrap = async () => {
     const res = await fetch(`/api/curation/scrap/delete/${curationDetail.id}`, {
       method: "DELETE",
@@ -80,8 +75,8 @@ export default function CurationTopAppBar({
     revalidateCurationDetail();
   };
 
-  const handleScrapDelete = async () => {
-    if (checkFetching()) {
+  const handleScrapDeleteClick = async () => {
+    if (isFetching) {
       alert("이전 요청을 처리중입니다");
       return;
     }
@@ -97,8 +92,8 @@ export default function CurationTopAppBar({
     }
   };
 
-  const handleScrapAdd = async () => {
-    if (checkFetching()) {
+  const handleScrapAddClick = async () => {
+    if (isFetching) {
       alert("이전 요청을 처리중입니다");
       return;
     }
@@ -135,7 +130,7 @@ export default function CurationTopAppBar({
                       open: isToastOpen,
                       text: toastText,
                     }}
-                    onClick={handleScrapDelete}
+                    onClick={handleScrapDeleteClick}
                   />
                 ) : (
                   <CurationScrapIcon
@@ -145,7 +140,7 @@ export default function CurationTopAppBar({
                       open: isToastOpen,
                       text: toastText,
                     }}
-                    onClick={handleScrapAdd}
+                    onClick={handleScrapAddClick}
                   />
                 )}
                 <CopyLinkIcon
