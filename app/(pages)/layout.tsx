@@ -1,7 +1,4 @@
-import { Suspense } from "react";
 import "../styles/global.css";
-import UseDeferredComponent from "@common/hooks/useDeferredComponent";
-import { BeatLoader } from "react-spinners";
 import ToastContextProvider from "@common/components/layout/ContextProvider/ToastContextProvider";
 
 export const metadata = {

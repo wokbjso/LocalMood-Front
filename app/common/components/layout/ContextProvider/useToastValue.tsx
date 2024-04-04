@@ -4,7 +4,7 @@ import { ToastValueContext } from "./ToastContextProvider";
 export default function useToastValue() {
   const value = useContext(ToastValueContext);
   if (value === undefined) {
-    throw new Error("useTodosValue should be used within TodosProvider");
+    throw new Error("No Provider");
   }
   return value;
 }

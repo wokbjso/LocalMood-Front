@@ -40,7 +40,6 @@ export default function CurationCardLight({
   const { isFetching, changeFetching } = useFetching();
 
   const { openToast } = useToastActions();
-
   const curationScrapAdd = async () => {
     const res = await fetch(`/api/curation/scrap/add/${id}`, {
       method: "POST",
