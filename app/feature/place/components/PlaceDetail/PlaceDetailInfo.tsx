@@ -3,12 +3,11 @@
 import Line from "@common/assets/icons/line/line.svg";
 import ArrowDown from "@common/assets/icons/arrow/arrow-down.svg";
 import ArrowUp from "@common/assets/icons/arrow/ArrowUp";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { PLACE_SUB_TYPE } from "@feature/place/constants/place-tag-category";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { getSession } from "@common/utils/session/getSession";
-import Toast from "@common/components/ui/toast/Toast";
 import MyCurationModal from "@feature/curation/components/CurationModal/MyCurationModal/MyCurationModal";
 import { useRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
