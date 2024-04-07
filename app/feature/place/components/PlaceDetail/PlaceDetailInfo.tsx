@@ -10,6 +10,8 @@ import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { getSession } from "@common/utils/session/getSession";
 import Toast from "@common/components/ui/toast/Toast";
 import MyCurationModal from "@feature/curation/components/CurationModal/MyCurationModal/MyCurationModal";
+import { useRecoilState } from "recoil";
+import { toastInfoSelector } from "@common/atom/toast";
 
 export default function PlaceDetailInfo({
   id,
@@ -24,9 +26,9 @@ export default function PlaceDetailInfo({
   dishDesc,
   myCurationData,
 }: any) {
+  const [toast, setToast] = useRecoilState(toastInfoSelector);
+
   const [openMyCurationModal, setOpenMyCurationModal] = useState(false);
-  const [openScrapToast, setOpenScrapToast] = useState(false);
-  const [toastText, setToastText] = useState("");
   const [openMoreDetail, setOpenMoreDetail] = useState(false);
   const moreButtonClicked = () => {
     setOpenMoreDetail((prev) => !prev);
@@ -42,21 +44,25 @@ export default function PlaceDetailInfo({
       location.replace("/login");
     } else {
       setOpenMyCurationModal(true);
-      setOpenScrapToast(true);
-      setToastText("저장할 큐레이션을 선택해주세요");
+      setToast({
+        open: true,
+        text: "저장할 큐레이션을 선택해주세요",
+      });
     }
   };
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
-    if (openScrapToast) {
+    if (toast.open) {
       timeoutId = setTimeout(() => {
-        setOpenScrapToast(false);
+        setToast((prev) => {
+          return { ...prev, open: false };
+        });
       }, 1000);
     }
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [openScrapToast]);
+  }, [toast.open, setToast]);
   return (
     <>
       <div className="flex-col px-[2rem] relative">
@@ -112,7 +118,7 @@ export default function PlaceDetailInfo({
         spaceId={id}
         handleModalFn={setOpenMyCurationModal}
       />
-      <Toast open={openScrapToast} text={toastText} />
+      <Toast open={toast.open} text={toast.text} />
     </>
   );
 }
