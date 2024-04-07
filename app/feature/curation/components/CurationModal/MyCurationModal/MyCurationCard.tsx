@@ -36,7 +36,7 @@ export default function MyCurationCard({
       });
       return;
     }
-    onClick && onClick;
+    onClick && onClick();
   };
 
   return (
