@@ -6,10 +6,6 @@ import Toast from "@common/components/ui/toast/Toast";
 interface CurationScrapIconProps {
   isScraped: boolean;
   backgroundBrightness: "light" | "dark";
-  toastInfo: {
-    open: boolean;
-    text: string;
-  };
   onClick?: () => void;
   className?: string;
 }
@@ -17,7 +13,6 @@ interface CurationScrapIconProps {
 export default function CurationScrapIcon({
   isScraped,
   backgroundBrightness,
-  toastInfo,
   onClick,
   className,
 }: CurationScrapIconProps) {
@@ -39,7 +34,6 @@ export default function CurationScrapIcon({
           className={className}
         />
       )}
-      <Toast open={toastInfo.open} text={toastInfo.text} />
     </>
   );
 }

@@ -9,11 +9,12 @@ import revalidateCurationScrap from "@feature/curation/actions/revalidateCuratio
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
 import useCurationMenuModal from "../CurationModal/CurationMenuModal/useCurationMenuModal";
 import CurationMenuIcon from "../CurationMenuIcon/CurationMenuIcon";
-import useToast from "@common/hooks/useToast";
-import CopyLinkIcon from "@common/components/ui/copy/CopyIcon";
 import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
 import useCurationScrapIcon from "../CurationScrapIcon/useCurationScrapIcon";
 import useFetching from "@common/hooks/useFetching";
+import { useSetRecoilState } from "recoil";
+import { toastInfoSelector } from "@common/atom/toast";
+import ShareIcon from "@common/assets/icons/share/ShareIcon";
 
 interface CurationTopAppBarProps {
   inView: boolean;
@@ -32,12 +33,13 @@ export default function CurationTopAppBar({
   variant,
   className,
 }: CurationTopAppBarProps) {
+  const setToast = useSetRecoilState(toastInfoSelector);
+
   const { scraped, toggleScrap } = useCurationScrapIcon(
     curationDetail.isScraped
   );
-  const { isFetching, toggleFetching } = useFetching();
+  const { isFetching, changeFetching } = useFetching();
   const { isMenuModalOpen, openMenuModal, handlers } = useCurationMenuModal();
-  const { isToastOpen, toastText, openToast } = useToast();
 
   const pathname = usePathname();
 
@@ -47,12 +49,10 @@ export default function CurationTopAppBar({
 
   const handleCopyLinkClick = async () => {
     copyLink(pathname);
-    openToast("링크가 복사되었습니다");
-  };
-
-  const checkFetching = () => {
-    if (isFetching) return true;
-    return false;
+    setToast({
+      open: true,
+      text: "링크가 복사되었습니다",
+    });
   };
 
   const deleteScrap = async () => {
@@ -80,16 +80,19 @@ export default function CurationTopAppBar({
     revalidateCurationDetail();
   };
 
-  const handleScrapDelete = async () => {
-    if (checkFetching()) {
+  const handleScrapDeleteClick = async () => {
+    if (isFetching) {
       alert("이전 요청을 처리중입니다");
       return;
     }
-    toggleFetching();
+    changeFetching(true);
     toggleScrap();
-    openToast("큐레이션 스크랩이 해제되었습니다");
+    setToast({
+      open: true,
+      text: "큐레이션 스크랩이 해제되었습니다",
+    });
     if ((await deleteScrap()) === 200) {
-      toggleFetching();
+      changeFetching(false);
       revalidateRelatedData();
     } else {
       toggleScrap();
@@ -97,16 +100,19 @@ export default function CurationTopAppBar({
     }
   };
 
-  const handleScrapAdd = async () => {
-    if (checkFetching()) {
+  const handleScrapAddClick = async () => {
+    if (isFetching) {
       alert("이전 요청을 처리중입니다");
       return;
     }
-    toggleFetching();
+    changeFetching(true);
     toggleScrap();
-    openToast("큐레이션이 스크랩 되었습니다");
+    setToast({
+      open: true,
+      text: "큐레이션이 스크랩 되었습니다",
+    });
     if ((await addScrap()) === 200) {
-      toggleFetching();
+      changeFetching(false);
       revalidateRelatedData();
     } else {
       toggleScrap();
@@ -131,40 +137,20 @@ export default function CurationTopAppBar({
                   <CurationScrapIcon
                     isScraped={scraped}
                     backgroundBrightness="light"
-                    toastInfo={{
-                      open: isToastOpen,
-                      text: toastText,
-                    }}
-                    onClick={handleScrapDelete}
+                    onClick={handleScrapDeleteClick}
                   />
                 ) : (
                   <CurationScrapIcon
                     isScraped={scraped}
                     backgroundBrightness="light"
-                    toastInfo={{
-                      open: isToastOpen,
-                      text: toastText,
-                    }}
-                    onClick={handleScrapAdd}
+                    onClick={handleScrapAddClick}
                   />
                 )}
-                <CopyLinkIcon
-                  toastInfo={{
-                    open: isToastOpen,
-                    text: toastText,
-                  }}
-                  onClick={handleCopyLinkClick}
-                />
+                <ShareIcon onClick={handleCopyLinkClick} />
               </>
             ) : (
               <>
-                <CopyLinkIcon
-                  toastInfo={{
-                    open: isToastOpen,
-                    text: toastText,
-                  }}
-                  onClick={handleCopyLinkClick}
-                />
+                <ShareIcon onClick={handleCopyLinkClick} />
                 <CurationMenuIcon
                   menuModalInfo={{
                     open: isMenuModalOpen,

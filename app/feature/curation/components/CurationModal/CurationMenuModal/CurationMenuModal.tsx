@@ -10,6 +10,8 @@ import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
 import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail";
 import { usePathname } from "next/navigation";
 import ShareIcon from "@common/assets/icons/share/ShareIcon";
+import { useSetRecoilState } from "recoil";
+import { toastInfo } from "@common/atom/toast";
 
 interface CurationMenuModalProps {
   open: boolean;
@@ -17,8 +19,6 @@ interface CurationMenuModalProps {
   curationId: number;
   hasCopyLink?: boolean;
   handleModalFn: (state: boolean) => void;
-  toastOutside?: boolean;
-  outsideOpenToast?: (text: string) => void;
 }
 
 export default function CurationMenuModal({
@@ -27,9 +27,8 @@ export default function CurationMenuModal({
   curationId,
   hasCopyLink = false,
   handleModalFn,
-  toastOutside,
-  outsideOpenToast,
 }: CurationMenuModalProps) {
+  const setToast = useSetRecoilState(toastInfo);
   const { ref } = UseOutsideClick<HTMLDivElement>(open, handleModalFn);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const pathname = usePathname();
@@ -44,7 +43,10 @@ export default function CurationMenuModal({
 
   const handleLinkCopyClick = async () => {
     copyLink(pathname + `/${curationId}`);
-    toastOutside && outsideOpenToast && outsideOpenToast("링크가 복사되었어요");
+    setToast({
+      open: true,
+      text: "링크가 복사되었어요",
+    });
     handleModalFn(false);
   };
 
@@ -75,9 +77,10 @@ export default function CurationMenuModal({
       if (triggeredAt === "topBar") {
         location.replace("/curation");
       }
-      toastOutside &&
-        outsideOpenToast &&
-        outsideOpenToast("큐레이션이 삭제되었습니다");
+      setToast({
+        open: true,
+        text: "큐레이션이 삭제되었습니다",
+      });
       revalidateRelatedData();
     } else {
       alert("에러가 발생했습니다");
