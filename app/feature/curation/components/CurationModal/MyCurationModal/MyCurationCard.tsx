@@ -2,7 +2,6 @@ import Image from "next/image";
 import CurationNoPhoto from "@common/assets/images/curationHomeNoImg.png";
 import { CurationProps } from "@feature/curation/type";
 import LocationLine from "@common/assets/icons/location/LocationLine";
-import CheckIcon from "@common/assets/icons/check/CheckIcon";
 import SpaceAlreadyInCurationImageWrapper from "./SpaceAlreadyInCurationImageWrapper";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
