@@ -2,20 +2,48 @@ import Image from "next/image";
 import CurationNoPhoto from "@common/assets/images/curationHomeNoImg.png";
 import { CurationProps } from "@feature/curation/type";
 import LocationLine from "@common/assets/icons/location/LocationLine";
+import CheckIcon from "@common/assets/icons/check/CheckIcon";
+import SpaceAlreadyInCurationImageWrapper from "./SpaceAlreadyInCurationImageWrapper";
+import { useSetRecoilState } from "recoil";
+import { toastInfoSelector } from "@common/state/toast";
 
 interface MyCurationCardProps {
-  curationData: Omit<CurationProps, "variant"> & { privacy: boolean };
+  spaceId: number;
+  curationData: Omit<CurationProps, "variant"> & {
+    privacy: boolean;
+    spaceIds: number[];
+  };
   onClick?: () => void;
 }
 
 export default function MyCurationCard({
+  spaceId,
   curationData,
   onClick,
 }: MyCurationCardProps) {
+  const setToast = useSetRecoilState(toastInfoSelector);
+
+  const isSpaceAlreadyInCuration = () => {
+    if (curationData.spaceIds.includes(spaceId)) return true;
+    else return false;
+  };
+
+  const handleMyCurationCardClick = () => {
+    if (isSpaceAlreadyInCuration()) {
+      setToast({
+        open: true,
+        text: "장소가 이미 저장되어 있습니다",
+      });
+      return;
+    }
+    onClick && onClick;
+  };
+
   return (
     <>
-      <div className="flex w-full" onClick={onClick && onClick}>
+      <div className="flex w-full" onClick={handleMyCurationCardClick}>
         <div className="relative w-[6rem] h-[6rem]">
+          {isSpaceAlreadyInCuration() && <SpaceAlreadyInCurationImageWrapper />}
           <Image
             src={
               curationData.image && curationData.image.length > 0
