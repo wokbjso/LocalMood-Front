@@ -19,7 +19,7 @@ import revalidateKeywordSearchCurationData from "@feature/search/actions/revalid
 import useCurationScrapIcon from "../CurationScrapIcon/useCurationScrapIcon";
 import useFetching from "@common/hooks/useFetching";
 import { useSetRecoilState } from "recoil";
-import { toastInfoSelector } from "@common/atom/toast";
+import { toastInfoSelector } from "@common/state/toast";
 
 export default function CurationCardLight({
   id,

@@ -13,7 +13,7 @@ import revalidateTextSearchPlaceData from "@feature/search/actions/revalidateTex
 import revalidateKeywordSearchPlaceData from "@feature/search/actions/revalidateKeywordSearchPlaceData";
 import useOpenCurationMakeModal from "../../CurationMake/useOpenCurationMakeModal";
 import { useSetRecoilState } from "recoil";
-import { toastInfoSelector } from "@common/atom/toast";
+import { toastInfoSelector } from "@common/state/toast";
 const MyCurationCard = lazy(() => import("./MyCurationCard"));
 
 interface MyCurationModalProps {

@@ -13,7 +13,7 @@ import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
 import useCurationScrapIcon from "../CurationScrapIcon/useCurationScrapIcon";
 import useFetching from "@common/hooks/useFetching";
 import { useSetRecoilState } from "recoil";
-import { toastInfoSelector } from "@common/atom/toast";
+import { toastInfoSelector } from "@common/state/toast";
 import ShareIcon from "@common/assets/icons/share/ShareIcon";
 
 interface CurationTopAppBarProps {
