@@ -77,6 +77,8 @@ export default function CurationMenuModal({
       open: true,
       text: "큐레이션이 삭제되었습니다",
     });
+    handleModalFn(false);
+    setDeleteModalOpen(false);
     if (triggeredAt === "topBar") {
       location.replace("/curation");
     }
