@@ -99,6 +99,7 @@ export default function MyCurationModal({
               {myCurationData?.curation.map((curationData) => (
                 <MyCurationCard
                   key={curationData.id}
+                  spaceId={spaceId}
                   curationData={curationData}
                   onClick={() => handleMyCurationCardClick(curationData.id)}
                 />
