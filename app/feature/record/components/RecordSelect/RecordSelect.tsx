@@ -153,7 +153,6 @@ export default function RecordSelect({
               spaceId={id}
               handleIndicatorIndex={handlers.handleIndicatorIndex}
               hasSomeData={hasSomeData}
-              myCuration={myCuration}
             />
           </CSSTransition>
         )}
