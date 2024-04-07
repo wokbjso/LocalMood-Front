@@ -8,7 +8,7 @@ import {
   PlaceInfoCardAdditionalProps,
   PlaceInfoCardTopProps,
 } from "@feature/place/type";
-import NoResult from "@common/assets/images/curationHomeNoImg.png";
+import RecordNoImage from "@common/assets/images/RecordNoImage.png";
 import { sliceText } from "@common/utils/text/slice-text";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import PlaceInfoCardTopScrapIcon from "./PlaceInfoCardTopScrapIcon";
@@ -79,7 +79,7 @@ export default function PlaceInfoCardTop({
           )}
         >
           <Image
-            src={imgUrl ? imgUrl : NoResult}
+            src={imgUrl ? imgUrl : RecordNoImage}
             alt="공간 사진"
             fill
             placeholder="blur"
