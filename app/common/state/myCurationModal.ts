@@ -5,7 +5,7 @@ interface MyCurationInfoProps {
   spaceId: number;
 }
 
-export const myCurationInfo = atom<MyCurationInfoProps>({
+export const myCurationModalInfo = atom<MyCurationInfoProps>({
   key: "myCurationInfo",
   default: {
     open: false,
@@ -13,12 +13,12 @@ export const myCurationInfo = atom<MyCurationInfoProps>({
   },
 });
 
-export const myCurationInfoSelector = selector<MyCurationInfoProps>({
+export const myCurationModalInfoSelector = selector<MyCurationInfoProps>({
   key: "myCurationInfoSelector",
   get: ({ get }) => {
-    return get(myCurationInfo);
+    return get(myCurationModalInfo);
   },
   set: ({ set }, newValue) => {
-    set(myCurationInfo, newValue);
+    set(myCurationModalInfo, newValue);
   },
 });

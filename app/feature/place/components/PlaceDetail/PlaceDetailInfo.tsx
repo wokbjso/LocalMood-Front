@@ -8,9 +8,9 @@ import { PLACE_SUB_TYPE } from "@feature/place/constants/place-tag-category";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { getSession } from "@common/utils/session/getSession";
-import MyCurationModal from "@feature/curation/components/CurationModal/MyCurationModal/MyCurationModal";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
+import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
 
 export default function PlaceDetailInfo({
   id,
@@ -23,11 +23,9 @@ export default function PlaceDetailInfo({
   optionalService,
   dish,
   dishDesc,
-  myCurationData,
 }: any) {
-  const [toast, setToast] = useRecoilState(toastInfoSelector);
-
-  const [openMyCurationModal, setOpenMyCurationModal] = useState(false);
+  const setToast = useSetRecoilState(toastInfoSelector);
+  const setMyCurationModal = useSetRecoilState(myCurationModalInfoSelector);
   const [openMoreDetail, setOpenMoreDetail] = useState(false);
   const moreButtonClicked = () => {
     setOpenMoreDetail((prev) => !prev);
@@ -42,7 +40,10 @@ export default function PlaceDetailInfo({
     if (!token) {
       location.replace("/login");
     } else {
-      setOpenMyCurationModal(true);
+      setMyCurationModal({
+        open: true,
+        spaceId: id,
+      });
       setToast({
         open: true,
         text: "저장할 큐레이션을 선택해주세요",
@@ -97,13 +98,6 @@ export default function PlaceDetailInfo({
           </div>
         </div>
       </div>
-      <MyCurationModal
-        open={openMyCurationModal}
-        title="저장할 큐레이션"
-        myCurationData={myCurationData}
-        spaceId={id}
-        handleModalFn={setOpenMyCurationModal}
-      />
     </>
   );
 }

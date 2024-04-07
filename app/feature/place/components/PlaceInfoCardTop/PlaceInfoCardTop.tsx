@@ -15,7 +15,7 @@ import PlaceInfoCardTopScrapIcon from "./PlaceInfoCardTopScrapIcon";
 import { validateToken } from "@common/utils/validate/validateToken";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
-import { myCurationInfoSelector } from "@common/state/myCurationModal";
+import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
 
 export default function PlaceInfoCardTop({
   id,
@@ -34,7 +34,7 @@ export default function PlaceInfoCardTop({
     myCurationData?: MyCurationResponse;
   }) {
   const setToast = useSetRecoilState(toastInfoSelector);
-  const setModalInfo = useSetRecoilState(myCurationInfoSelector);
+  const setModalInfo = useSetRecoilState(myCurationModalInfoSelector);
   const handleScrap = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {

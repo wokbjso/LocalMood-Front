@@ -1,6 +1,6 @@
 "use client";
 
-import { myCurationInfo } from "@common/state/myCurationModal";
+import { myCurationModalInfo } from "@common/state/myCurationModal";
 import MyCurationModal from "@feature/curation/components/CurationModal/MyCurationModal/MyCurationModal";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import { useRecoilValue } from "recoil";
@@ -10,7 +10,7 @@ export default function MyCurationModalProvider({
 }: {
   myCurationData?: MyCurationResponse;
 }) {
-  const myCuration = useRecoilValue(myCurationInfo);
+  const myCuration = useRecoilValue(myCurationModalInfo);
   return (
     <MyCurationModal
       open={myCuration.open}

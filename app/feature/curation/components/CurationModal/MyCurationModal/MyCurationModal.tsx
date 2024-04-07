@@ -15,7 +15,7 @@ import useOpenCurationMakeModal from "../../CurationMake/useOpenCurationMakeModa
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import useFetching from "@common/hooks/useFetching";
-import { myCurationInfoSelector } from "@common/state/myCurationModal";
+import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
 const MyCurationCard = lazy(() => import("./MyCurationCard"));
 
 interface MyCurationModalProps {
@@ -34,7 +34,7 @@ export default function MyCurationModal({
 }: MyCurationModalProps) {
   const setToast = useSetRecoilState(toastInfoSelector);
 
-  const setMyCurationModal = useSetRecoilState(myCurationInfoSelector);
+  const setMyCurationModal = useSetRecoilState(myCurationModalInfoSelector);
 
   const { isFetching, changeFetching } = useFetching();
 
