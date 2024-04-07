@@ -1,5 +1,5 @@
+import RecoilRootLayout from "@common/components/layout/RecoilRootLayout/RecoilRootLayout";
 import "../styles/global.css";
-import ToastContextProvider from "@common/components/layout/ContextProvider/ToastContextProvider";
 
 export const metadata = {
   title: "로컬무드",
@@ -15,7 +15,7 @@ export default async function RootLayout({
     <html lang="en" className="width-[100%] height-[100%]">
       <body className="w-[100%] h-[100%]">
         <main className="w-[100%] h-[100%] fixed overflow-hidden">
-          <ToastContextProvider>{children}</ToastContextProvider>
+          <RecoilRootLayout>{children}</RecoilRootLayout>
         </main>
       </body>
     </html>

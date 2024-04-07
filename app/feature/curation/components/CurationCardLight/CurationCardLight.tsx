@@ -18,7 +18,8 @@ import revalidateTextSearchCurationData from "@feature/search/actions/revalidate
 import revalidateKeywordSearchCurationData from "@feature/search/actions/revalidateKeywordSearchCurationData";
 import useCurationScrapIcon from "../CurationScrapIcon/useCurationScrapIcon";
 import useFetching from "@common/hooks/useFetching";
-import useToastActions from "@common/components/layout/ContextProvider/useToastAction";
+import { useSetRecoilState } from "recoil";
+import { toastInfoSelector } from "@common/atom/toast";
 
 export default function CurationCardLight({
   id,
@@ -33,13 +34,14 @@ export default function CurationCardLight({
 }: CurationProps & {
   className?: string;
 }) {
+  const setToast = useSetRecoilState(toastInfoSelector);
+
   const { isMenuModalOpen, openMenuModal, handlers } = useCurationMenuModal();
 
   const { scraped, toggleScrap } = useCurationScrapIcon(isScraped);
 
   const { isFetching, changeFetching } = useFetching();
 
-  const { openToast } = useToastActions();
   const curationScrapAdd = async () => {
     const res = await fetch(`/api/curation/scrap/add/${id}`, {
       method: "POST",
@@ -80,7 +82,10 @@ export default function CurationCardLight({
       }
       changeFetching(true);
       toggleScrap();
-      openToast("큐레이션이 스크랩 되었습니다");
+      setToast({
+        open: true,
+        text: "큐레이션이 스크랩 되었습니다",
+      });
       if ((await curationScrapAdd()) === 200) {
         changeFetching(false);
         revalidateRelatedData();
@@ -103,7 +108,10 @@ export default function CurationCardLight({
       }
       changeFetching(true);
       toggleScrap();
-      openToast("큐레이션 스크랩이 해제되었습니다");
+      setToast({
+        open: true,
+        text: "큐레이션 스크랩이 해제되었습니다",
+      });
       if ((await curationScrapDelete()) === 200) {
         changeFetching(false);
         revalidateRelatedData();
@@ -183,7 +191,6 @@ export default function CurationCardLight({
               handleModalFn: handlers.handleMenuModalOpen,
             }}
             showAt="card"
-            toastOutside
             className="absolute top-[1.6rem] right-[1.2rem]"
             onClick={handleMenuClick}
           />

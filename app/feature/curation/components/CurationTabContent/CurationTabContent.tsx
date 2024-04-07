@@ -3,8 +3,6 @@
 import Tab from "@common/components/ui/tab/Tab";
 import { CurationProps } from "@feature/curation/type";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
-import useToast from "@common/components/ui/toast/useToast";
-import Toast from "@common/components/ui/toast/Toast";
 import CurationCardLight from "../CurationCardLight/CurationCardLight";
 import CurationCardDark from "../CurationCardDark/CurationCardDark";
 import CurationMakeButton from "../CurationMake/CurationMakeButton";
@@ -30,8 +28,6 @@ export default function CurationTabContent({
   ];
 
   const { tabIndex, changeTabIndex } = useTab();
-
-  const { isToastOpen, toastText, openToast } = useToast();
 
   const {
     isModalOpen,
@@ -60,8 +56,6 @@ export default function CurationTabContent({
                 open: isModalOpen,
                 handleModalFn: curationMakeModalHandlers.handleModal,
               }}
-              toastOutside
-              outsideOpenToast={openToast}
               onClick={handleMakeCurationClick}
             />
           </div>
@@ -70,12 +64,7 @@ export default function CurationTabContent({
           myCuration && myCuration?.curation.length > 0 ? (
             myCuration?.curation.map((props: CurationProps) => (
               <div key={props.author + props.id} className="mb-[1.2rem]">
-                <CurationCardLight
-                  variant="my"
-                  toastOutside
-                  outsideOpenToast={openToast}
-                  {...props}
-                />
+                <CurationCardLight variant="my" {...props} />
               </div>
             ))
           ) : (
@@ -89,11 +78,7 @@ export default function CurationTabContent({
             scrappedCuration?.length > 0 ? (
               scrappedCuration?.map((props: any) => (
                 <div key={props.author + props.id} className="mb-[1.6rem]">
-                  <CurationCardDark
-                    toastOutside
-                    outsideOpenToast={openToast}
-                    {...props}
-                  />
+                  <CurationCardDark {...props} />
                 </div>
               ))
             ) : (
@@ -104,7 +89,6 @@ export default function CurationTabContent({
           ) : null}
         </div>
       </div>
-      <Toast open={isToastOpen} text={toastText} />
     </>
   );
 }

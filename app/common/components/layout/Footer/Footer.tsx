@@ -8,7 +8,9 @@ import UserProfile from "@common/assets/icons/user/UserProfile";
 import useFooter from "./useFooter";
 import Link from "next/link";
 import Toast from "@common/components/ui/toast/Toast";
-import useToastValue from "../ContextProvider/useToastValue";
+import { useRecoilState } from "recoil";
+import { toastInfoSelector } from "@common/atom/toast";
+import { useEffect } from "react";
 
 export default function Footer() {
   const FOOTER_CATEGORY = [
@@ -34,7 +36,22 @@ export default function Footer() {
     },
   ];
   const { footerState, handlers } = useFooter();
-  const toastValue = useToastValue();
+  const [toast, setToast] = useRecoilState(toastInfoSelector);
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    if (toast.open) {
+      timeoutId = setTimeout(() => {
+        setToast((prev) => {
+          return { ...prev, open: false };
+        });
+      }, 1000);
+    }
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [toast.open, setToast]);
+
   return (
     <>
       <footer className="flex justify-between w-full bg-background-gray-1 px-[3.2rem] pt-[0.8rem] pb-[1.2rem] fixed bottom-0">
@@ -64,7 +81,7 @@ export default function Footer() {
           </Link>
         ))}
       </footer>
-      <Toast open={toastValue.open} text={toastValue.text} />
+      <Toast open={toast.open} text={toast.text} />
     </>
   );
 }

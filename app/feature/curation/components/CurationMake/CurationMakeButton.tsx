@@ -10,8 +10,6 @@ interface CurationMakeButtonProps {
     open: boolean;
     handleModalFn: (state: boolean) => void;
   };
-  toastOutside?: boolean;
-  outsideOpenToast?: (text: string) => void;
   onClick?: (state: boolean) => void;
 }
 
@@ -19,8 +17,6 @@ export default function CurationMakeButton({
   size,
   text,
   curationMakeModalInfo,
-  toastOutside,
-  outsideOpenToast,
   onClick,
 }: CurationMakeButtonProps) {
   return (
@@ -53,8 +49,6 @@ export default function CurationMakeButton({
       <CurationMakeModal
         open={curationMakeModalInfo.open}
         handleModalFn={curationMakeModalInfo.handleModalFn}
-        toastOutside={toastOutside}
-        outsideOpenToast={outsideOpenToast}
       />
     </>
   );

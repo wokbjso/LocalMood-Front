@@ -11,8 +11,9 @@ import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail"
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
 import revalidateTextSearchPlaceData from "@feature/search/actions/revalidateTextSearchPlaceData";
 import revalidateKeywordSearchPlaceData from "@feature/search/actions/revalidateKeywordSearchPlaceData";
-import useToast from "@common/components/ui/toast/useToast";
 import useOpenCurationMakeModal from "../../CurationMake/useOpenCurationMakeModal";
+import { useSetRecoilState } from "recoil";
+import { toastInfoSelector } from "@common/atom/toast";
 const MyCurationCard = lazy(() => import("./MyCurationCard"));
 
 interface MyCurationModalProps {
@@ -30,9 +31,9 @@ export default function MyCurationModal({
   spaceId,
   handleModalFn,
 }: MyCurationModalProps) {
-  const { isModalOpen, openModal, handlers } = useOpenCurationMakeModal();
+  const setToast = useSetRecoilState(toastInfoSelector);
 
-  const { isToastOpen, toastText, openToast } = useToast();
+  const { isModalOpen, openModal, handlers } = useOpenCurationMakeModal();
 
   const handleModalCloseClick = () => {
     handleModalFn(false);
@@ -58,7 +59,10 @@ export default function MyCurationModal({
 
   const handleMyCurationCardClick = async (curationId: number) => {
     if ((await savePlaceAtCuration(curationId)) === 200) {
-      openToast("큐레이션에 장소가 추가되었습니다.");
+      setToast({
+        open: true,
+        text: "큐레이션에 장소가 추가되었습니다.",
+      });
       revalidateRelatedData();
     } else {
       alert("오류가 발생했습니다!");
@@ -82,8 +86,6 @@ export default function MyCurationModal({
               open: isModalOpen,
               handleModalFn: handlers.handleModal,
             }}
-            toastOutside
-            outsideOpenToast={openToast}
             onClick={handleMakeCurationClick}
           />
           <Suspense
@@ -98,10 +100,6 @@ export default function MyCurationModal({
                 <MyCurationCard
                   key={curationData.id}
                   curationData={curationData}
-                  toastInfo={{
-                    open: isToastOpen,
-                    text: toastText,
-                  }}
                   onClick={() => handleMyCurationCardClick(curationData.id)}
                 />
               ))}
