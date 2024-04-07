@@ -73,17 +73,17 @@ export default function CurationMenuModal({
   };
 
   const handleConfirmClick = async () => {
+    setToast({
+      open: true,
+      text: "큐레이션이 삭제되었습니다",
+    });
+    if (triggeredAt === "topBar") {
+      location.replace("/curation");
+    }
     if ((await deleteCuration()) === 200) {
-      if (triggeredAt === "topBar") {
-        location.replace("/curation");
-      }
-      setToast({
-        open: true,
-        text: "큐레이션이 삭제되었습니다",
-      });
       revalidateRelatedData();
     } else {
-      alert("에러가 발생했습니다");
+      alert("큐레이션 삭제 중 에러가 발생했습니다");
     }
   };
 
