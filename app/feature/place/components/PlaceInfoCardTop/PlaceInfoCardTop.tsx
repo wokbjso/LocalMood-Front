@@ -13,9 +13,9 @@ import { sliceText } from "@common/utils/text/slice-text";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import PlaceInfoCardTopScrapIcon from "./PlaceInfoCardTopScrapIcon";
 import { validateToken } from "@common/utils/validate/validateToken";
-import useOpenMyCurationModal from "@feature/curation/components/CurationModal/MyCurationModal/useOpenMyCurationModal";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
+import { myCurationInfoSelector } from "@common/state/myCurationModal";
 
 export default function PlaceInfoCardTop({
   id,
@@ -27,16 +27,14 @@ export default function PlaceInfoCardTop({
   type,
   address,
   isScraped,
-  myCurationData,
   className,
   imgClassName,
 }: PlaceInfoCardTopProps &
   Partial<PlaceInfoCardAdditionalProps> & {
     myCurationData?: MyCurationResponse;
   }) {
-  const { isModalOpen, openModal, handlers } = useOpenMyCurationModal();
   const setToast = useSetRecoilState(toastInfoSelector);
-
+  const setModalInfo = useSetRecoilState(myCurationInfoSelector);
   const handleScrap = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
@@ -45,7 +43,10 @@ export default function PlaceInfoCardTop({
     if (!token) {
       location.replace("/login");
     } else {
-      openModal();
+      setModalInfo({
+        open: true,
+        spaceId: id,
+      });
       setToast({
         open: true,
         text: "저장할 큐레이션을 선택해주세요",
@@ -102,13 +103,6 @@ export default function PlaceInfoCardTop({
             <PlaceInfoCardTopScrapIcon
               isScraped={isScraped}
               cardSize={size}
-              curationModalInfo={{
-                open: isModalOpen,
-                title: "저장할 큐레이션",
-                spaceId: id,
-                myCurationData,
-                handleModalFn: handlers.handleCurationModal,
-              }}
               onClick={handleScrap}
             />
           )}
