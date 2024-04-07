@@ -66,20 +66,20 @@ export default function CurationMakeKeyword({
   };
 
   const handleButtonClick = async () => {
+    setToast({
+      open: true,
+      text: "큐레이션이 생성되었습니다",
+    });
+    handleOpen(false);
     const dataCurationMake = getSendingCurationData();
     const res = await fetch("/api/curation/make", {
       method: "POST",
       body: JSON.stringify(dataCurationMake),
     });
     if (res.status === 200) {
-      setToast({
-        open: true,
-        text: "큐레이션이 생성되었습니다",
-      });
       resetCurationMakeData();
       revalidateMyCuration();
-      handleOpen(false);
-    } else alert("오류가 발생했습니다!");
+    } else alert("큐레이션 생성 중 에러가 발생했습니다!");
     return;
   };
 
