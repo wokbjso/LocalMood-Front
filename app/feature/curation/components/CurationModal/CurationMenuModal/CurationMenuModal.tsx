@@ -11,7 +11,7 @@ import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail"
 import { usePathname } from "next/navigation";
 import ShareIcon from "@common/assets/icons/share/ShareIcon";
 import { useSetRecoilState } from "recoil";
-import { toastInfo } from "@common/atom/toast";
+import { toastInfo } from "@common/state/toast";
 
 interface CurationMenuModalProps {
   open: boolean;

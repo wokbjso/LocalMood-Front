@@ -5,11 +5,10 @@ import BasicTopBar from "../../../../common/components/ui/topBar/BasicTopBar/Bas
 import { copyLink } from "@common/utils/text/copy-link";
 import { usePathname } from "next/navigation";
 import MapIcon from "@common/assets/icons/map/map";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Map from "@feature/map/components/Map/Map";
 import { useRecoilState } from "recoil";
-import { toastInfoSelector } from "@common/atom/toast";
-import Toast from "@common/components/ui/toast/Toast";
+import { toastInfoSelector } from "@common/state/toast";
 
 interface PlaceDetailTopBar {
   type: string;
@@ -43,20 +42,6 @@ export default function PlaceDetailTopBar({
     });
   };
 
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    if (toast.open) {
-      timeoutId = setTimeout(() => {
-        setToast((prev) => {
-          return { ...prev, open: false };
-        });
-      }, 1000);
-    }
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [toast.open, setToast]);
-
   return (
     <>
       <BasicTopBar className={className}>
@@ -72,7 +57,6 @@ export default function PlaceDetailTopBar({
           className="fixed top-[7rem] z-10"
         />
       )}
-      <Toast open={toast.open} text={toast.text} />
     </>
   );
 }

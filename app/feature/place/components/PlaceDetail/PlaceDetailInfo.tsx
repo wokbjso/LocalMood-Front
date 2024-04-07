@@ -11,7 +11,7 @@ import { getSession } from "@common/utils/session/getSession";
 import Toast from "@common/components/ui/toast/Toast";
 import MyCurationModal from "@feature/curation/components/CurationModal/MyCurationModal/MyCurationModal";
 import { useRecoilState } from "recoil";
-import { toastInfoSelector } from "@common/atom/toast";
+import { toastInfoSelector } from "@common/state/toast";
 
 export default function PlaceDetailInfo({
   id,
@@ -50,19 +50,6 @@ export default function PlaceDetailInfo({
       });
     }
   };
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    if (toast.open) {
-      timeoutId = setTimeout(() => {
-        setToast((prev) => {
-          return { ...prev, open: false };
-        });
-      }, 1000);
-    }
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [toast.open, setToast]);
   return (
     <>
       <div className="flex-col px-[2rem] relative">
@@ -118,7 +105,6 @@ export default function PlaceDetailInfo({
         spaceId={id}
         handleModalFn={setOpenMyCurationModal}
       />
-      <Toast open={toast.open} text={toast.text} />
     </>
   );
 }

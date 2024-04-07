@@ -15,7 +15,7 @@ import PlaceInfoCardTopScrapIcon from "./PlaceInfoCardTopScrapIcon";
 import { validateToken } from "@common/utils/validate/validateToken";
 import useOpenMyCurationModal from "@feature/curation/components/CurationModal/MyCurationModal/useOpenMyCurationModal";
 import { useSetRecoilState } from "recoil";
-import { toastInfoSelector } from "@common/atom/toast";
+import { toastInfoSelector } from "@common/state/toast";
 
 export default function PlaceInfoCardTop({
   id,
