@@ -1,25 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import CompleteIcon from "@common/assets/images/record_complete.svg";
 import ArrowIcon from "@common/assets/icons/arrow/arrow-right.svg";
-import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
-import MyCurationModal from "@feature/curation/components/CurationModal/MyCurationModal/MyCurationModal";
+import { useSetRecoilState } from "recoil";
+import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
 
 interface RecordCompleteProps {
   spaceId: number;
   handleIndicatorIndex: (index: number) => void;
   hasSomeData: boolean;
-  myCuration: MyCurationResponse;
 }
 
 export default function RecordComplete({
   spaceId,
   handleIndicatorIndex,
   hasSomeData,
-  myCuration,
 }: RecordCompleteProps) {
-  const [openMyCurationModal, setOpenMyCurationModal] = useState(false);
+  const setMyCurationModal = useSetRecoilState(myCurationModalInfoSelector);
   const handleAddCurationButtonClick = () => {
-    setOpenMyCurationModal(true);
+    setMyCurationModal({
+      open: true,
+      spaceId,
+    });
   };
   return (
     <>
@@ -59,13 +60,6 @@ export default function RecordComplete({
           </>
         )}
       </div>
-      <MyCurationModal
-        open={openMyCurationModal}
-        title="저장할 큐레이션"
-        myCurationData={myCuration}
-        spaceId={spaceId}
-        handleModalFn={setOpenMyCurationModal}
-      />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import ArrowIcon from "@common/assets/icons/arrow/arrow-right.svg";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import Image from "next/image";
-import { forwardRef, useState } from "react";
+import { forwardRef } from "react";
 import { CurationPlaceProps } from "@feature/curation/type";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import PlaceInfoCardBottom from "@feature/place/components/PlaceInfoCardBottom/PlaceInfoCardBottom";
@@ -12,7 +12,8 @@ import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
 import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
 import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail";
-import MyCurationModal from "../CurationModal/MyCurationModal/MyCurationModal";
+import { useSetRecoilState } from "recoil";
+import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
 
 const CurationDetailInfoCard = forwardRef<
   HTMLDivElement,
@@ -24,7 +25,7 @@ const CurationDetailInfoCard = forwardRef<
     myCurationData: MyCurationResponse;
   }
 >(({ ...props }, ref) => {
-  const [openCurationSaveModal, setOpenCurationSaveModal] = useState(false);
+  const setMyCurationModal = useSetRecoilState(myCurationModalInfoSelector);
   const purposeArray = props.purpose ? props.purpose.split(",") : [];
   const interiorArray = props.interior ? props.interior.split(",") : [];
   const moodArray = props.mood ? props.mood.split(",") : [];
@@ -55,7 +56,10 @@ const CurationDetailInfoCard = forwardRef<
           revalidatePlaceDetail();
         }
       } else {
-        setOpenCurationSaveModal(true);
+        setMyCurationModal({
+          open: true,
+          spaceId: props.id,
+        });
       }
     }
   };
@@ -119,13 +123,6 @@ const CurationDetailInfoCard = forwardRef<
           </div>
         </div>
       </div>
-      <MyCurationModal
-        open={openCurationSaveModal}
-        title="저장할 큐레이션"
-        myCurationData={props.myCurationData}
-        spaceId={props.id}
-        handleModalFn={setOpenCurationSaveModal}
-      />
     </>
   );
 });
