@@ -2,7 +2,7 @@
 
 import LockIcon from "@common/assets/icons/lock/lock.svg";
 import UnlockIcon from "@common/assets/icons/lock/unlock.svg";
-import { toastInfoSelector } from "@common/atom/toast";
+import { toastInfoSelector } from "@common/state/toast";
 import Toast from "@common/components/ui/toast/Toast";
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
 import { useSetRecoilState } from "recoil";

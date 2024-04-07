@@ -12,7 +12,7 @@ import revalidateCurationRandom from "@feature/curation/actions/revalidateCurati
 import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
 import { validateToken } from "@common/utils/validate/validateToken";
 import { useSetRecoilState } from "recoil";
-import { toastInfoSelector } from "@common/atom/toast";
+import { toastInfoSelector } from "@common/state/toast";
 
 export default function CurationCardDark({
   id,

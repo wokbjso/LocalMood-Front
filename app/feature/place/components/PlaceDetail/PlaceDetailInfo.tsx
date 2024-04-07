@@ -3,13 +3,14 @@
 import Line from "@common/assets/icons/line/line.svg";
 import ArrowDown from "@common/assets/icons/arrow/arrow-down.svg";
 import ArrowUp from "@common/assets/icons/arrow/ArrowUp";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { PLACE_SUB_TYPE } from "@feature/place/constants/place-tag-category";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { getSession } from "@common/utils/session/getSession";
-import Toast from "@common/components/ui/toast/Toast";
 import MyCurationModal from "@feature/curation/components/CurationModal/MyCurationModal/MyCurationModal";
+import { useRecoilState } from "recoil";
+import { toastInfoSelector } from "@common/state/toast";
 
 export default function PlaceDetailInfo({
   id,
@@ -24,9 +25,9 @@ export default function PlaceDetailInfo({
   dishDesc,
   myCurationData,
 }: any) {
+  const [toast, setToast] = useRecoilState(toastInfoSelector);
+
   const [openMyCurationModal, setOpenMyCurationModal] = useState(false);
-  const [openScrapToast, setOpenScrapToast] = useState(false);
-  const [toastText, setToastText] = useState("");
   const [openMoreDetail, setOpenMoreDetail] = useState(false);
   const moreButtonClicked = () => {
     setOpenMoreDetail((prev) => !prev);
@@ -42,21 +43,12 @@ export default function PlaceDetailInfo({
       location.replace("/login");
     } else {
       setOpenMyCurationModal(true);
-      setOpenScrapToast(true);
-      setToastText("저장할 큐레이션을 선택해주세요");
+      setToast({
+        open: true,
+        text: "저장할 큐레이션을 선택해주세요",
+      });
     }
   };
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    if (openScrapToast) {
-      timeoutId = setTimeout(() => {
-        setOpenScrapToast(false);
-      }, 1000);
-    }
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [openScrapToast]);
   return (
     <>
       <div className="flex-col px-[2rem] relative">
@@ -112,7 +104,6 @@ export default function PlaceDetailInfo({
         spaceId={id}
         handleModalFn={setOpenMyCurationModal}
       />
-      <Toast open={openScrapToast} text={toastText} />
     </>
   );
 }

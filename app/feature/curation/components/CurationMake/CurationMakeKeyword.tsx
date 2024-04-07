@@ -9,7 +9,7 @@ import {
 import Button from "@common/components/ui/buttons/Button/Button";
 import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
 import { useSetRecoilState } from "recoil";
-import { toastInfoSelector } from "@common/atom/toast";
+import { toastInfoSelector } from "@common/state/toast";
 
 interface CurationMakeKeywordProps {
   curationMakeData: {

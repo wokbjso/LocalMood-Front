@@ -7,10 +7,6 @@ import Curation from "@common/assets/icons/curation/Curation";
 import UserProfile from "@common/assets/icons/user/UserProfile";
 import useFooter from "./useFooter";
 import Link from "next/link";
-import Toast from "@common/components/ui/toast/Toast";
-import { useRecoilState } from "recoil";
-import { toastInfoSelector } from "@common/atom/toast";
-import { useEffect } from "react";
 
 export default function Footer() {
   const FOOTER_CATEGORY = [
@@ -36,21 +32,6 @@ export default function Footer() {
     },
   ];
   const { footerState, handlers } = useFooter();
-  const [toast, setToast] = useRecoilState(toastInfoSelector);
-
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    if (toast.open) {
-      timeoutId = setTimeout(() => {
-        setToast((prev) => {
-          return { ...prev, open: false };
-        });
-      }, 1000);
-    }
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [toast.open, setToast]);
 
   return (
     <>
@@ -81,7 +62,6 @@ export default function Footer() {
           </Link>
         ))}
       </footer>
-      <Toast open={toast.open} text={toast.text} />
     </>
   );
 }
