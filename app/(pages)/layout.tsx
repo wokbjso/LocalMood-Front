@@ -1,7 +1,5 @@
-import { Suspense } from "react";
+import RecoilRootLayout from "@common/components/layout/RecoilRootLayout/RecoilRootLayout";
 import "../styles/global.css";
-import UseDeferredComponent from "@common/hooks/useDeferredComponent";
-import { BeatLoader } from "react-spinners";
 
 export const metadata = {
   title: "로컬무드",
@@ -17,7 +15,7 @@ export default async function RootLayout({
     <html lang="en" className="width-[100%] height-[100%]">
       <body className="w-[100%] h-[100%]">
         <main className="w-[100%] h-[100%] fixed overflow-hidden">
-          {children}
+          <RecoilRootLayout>{children}</RecoilRootLayout>
         </main>
       </body>
     </html>

@@ -1,6 +1,5 @@
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
-import Toast from "@common/components/ui/toast/Toast";
 import MyCurationModal from "@feature/curation/components/CurationModal/MyCurationModal/MyCurationModal";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import { twMerge } from "tailwind-merge";
@@ -15,10 +14,6 @@ interface PlaceInfoCardTopScrapIconProps {
     myCurationData?: MyCurationResponse;
     handleModalFn: (state: boolean) => void;
   };
-  toastInfo: {
-    open: boolean;
-    text: string;
-  };
   onClick?: (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
 }
 
@@ -26,7 +21,6 @@ export default function PlaceInfoCardTopScrapIcon({
   isScraped,
   cardSize,
   curationModalInfo,
-  toastInfo,
   onClick,
 }: PlaceInfoCardTopScrapIconProps) {
   return (
@@ -57,7 +51,6 @@ export default function PlaceInfoCardTopScrapIcon({
         myCurationData={curationModalInfo.myCurationData}
         handleModalFn={curationModalInfo.handleModalFn}
       />
-      <Toast open={toastInfo.open} text={toastInfo.text} />
     </>
   );
 }

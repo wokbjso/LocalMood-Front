@@ -10,8 +10,9 @@ import LocationLine from "@common/assets/icons/location/LocationLine";
 import Image from "next/image";
 import revalidateCurationRandom from "@feature/curation/actions/revalidateCurationRandom";
 import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
-import useToast from "@common/hooks/useToast";
 import { validateToken } from "@common/utils/validate/validateToken";
+import { useSetRecoilState } from "recoil";
+import { toastInfoSelector } from "@common/atom/toast";
 
 export default function CurationCardDark({
   id,
@@ -29,7 +30,7 @@ export default function CurationCardDark({
   outsideOpenToast?: (text: string) => void;
   className?: string;
 }) {
-  const { isToastOpen, toastText, openToast } = useToast();
+  const setToast = useSetRecoilState(toastInfoSelector);
 
   const addScrap = async () => {
     const res = await fetch(`/api/curation/scrap/add/${id}`);
@@ -42,9 +43,10 @@ export default function CurationCardDark({
       location.replace("/login");
     } else {
       if ((await addScrap()) === 200) {
-        toastOutside
-          ? outsideOpenToast && outsideOpenToast("큐레이션이 스크랩 되었습니다")
-          : openToast("큐레이션이 스크랩 되었습니다");
+        setToast({
+          open: true,
+          text: "큐레이션이 스크랩 되었습니다",
+        });
         revalidateRelatedData();
       } else {
         alert("에러가 발생했습니다!");
@@ -69,10 +71,10 @@ export default function CurationCardDark({
       location.replace("/login");
     } else {
       if ((await deleteScrap()) === 200) {
-        toastOutside
-          ? outsideOpenToast &&
-            outsideOpenToast("큐레이션 스크랩이 해제되었습니다")
-          : openToast("큐레이션 스크랩이 해제되었습니다");
+        setToast({
+          open: true,
+          text: "큐레이션 스크랩이 해제되었습니다",
+        });
         revalidateRelatedData();
       } else {
         alert("에러가 발생했습니다!");
@@ -120,10 +122,6 @@ export default function CurationCardDark({
             <CurationScrapIcon
               isScraped={isScraped}
               backgroundBrightness="dark"
-              toastInfo={{
-                open: isToastOpen,
-                text: toastText,
-              }}
               className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer z-10"
               onClick={handleScrapDeleteClick}
             />
@@ -131,7 +129,6 @@ export default function CurationCardDark({
             <CurationScrapIcon
               isScraped={isScraped}
               backgroundBrightness="dark"
-              toastInfo={{ open: isToastOpen, text: toastText }}
               className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer z-10"
               onClick={handleScrapAddClick}
             />

@@ -14,9 +14,12 @@ import useCurationMenuModal from "../CurationModal/CurationMenuModal/useCuration
 import { validateToken } from "@common/utils/validate/validateToken";
 import CurationMenuIcon from "../CurationMenuIcon/CurationMenuIcon";
 import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
-import useToast from "@common/hooks/useToast";
 import revalidateTextSearchCurationData from "@feature/search/actions/revalidateTextSearchCurationData";
 import revalidateKeywordSearchCurationData from "@feature/search/actions/revalidateKeywordSearchCurationData";
+import useCurationScrapIcon from "../CurationScrapIcon/useCurationScrapIcon";
+import useFetching from "@common/hooks/useFetching";
+import { useSetRecoilState } from "recoil";
+import { toastInfoSelector } from "@common/atom/toast";
 
 export default function CurationCardLight({
   id,
@@ -27,17 +30,17 @@ export default function CurationCardLight({
   keyword,
   spaceCount,
   isScraped = false,
-  toastOutside = false,
-  outsideOpenToast,
   className,
 }: CurationProps & {
-  toastOutside?: boolean;
-  outsideOpenToast?: (text: string) => void;
   className?: string;
 }) {
+  const setToast = useSetRecoilState(toastInfoSelector);
+
   const { isMenuModalOpen, openMenuModal, handlers } = useCurationMenuModal();
 
-  const { isToastOpen, toastText, openToast } = useToast();
+  const { scraped, toggleScrap } = useCurationScrapIcon(isScraped);
+
+  const { isFetching, changeFetching } = useFetching();
 
   const curationScrapAdd = async () => {
     const res = await fetch(`/api/curation/scrap/add/${id}`, {
@@ -73,12 +76,21 @@ export default function CurationCardLight({
     if (!token) {
       location.replace("/login");
     } else {
+      if (isFetching) {
+        alert("이전 요청을 처리중입니다");
+        return;
+      }
+      changeFetching(true);
+      toggleScrap();
+      setToast({
+        open: true,
+        text: "큐레이션이 스크랩 되었습니다",
+      });
       if ((await curationScrapAdd()) === 200) {
-        toastOutside
-          ? outsideOpenToast && outsideOpenToast("큐레이션이 스크랩 되었습니다")
-          : openToast("큐레이션이 스크랩 되었습니다");
+        changeFetching(false);
         revalidateRelatedData();
       } else {
+        toggleScrap();
         alert("에러가 발생했습니다!");
         return;
       }
@@ -90,13 +102,21 @@ export default function CurationCardLight({
     if (!token) {
       location.replace("/login");
     } else {
+      if (isFetching) {
+        alert("이전 요청을 처리중입니다");
+        return;
+      }
+      changeFetching(true);
+      toggleScrap();
+      setToast({
+        open: true,
+        text: "큐레이션 스크랩이 해제되었습니다",
+      });
       if ((await curationScrapDelete()) === 200) {
-        toastOutside
-          ? outsideOpenToast &&
-            outsideOpenToast("큐레이션 스크랩이 해제되었습니다")
-          : openToast("큐레이션 스크랩이 해제되었습니다");
+        changeFetching(false);
         revalidateRelatedData();
       } else {
+        toggleScrap();
         alert("에러가 발생했습니다!");
         return;
       }
@@ -147,25 +167,17 @@ export default function CurationCardLight({
       </Link>
       <div className="w-[100%] pt-[1.6rem] pl-[1.6rem] pr-[0.8rem] pb-[2rem] relative rounded-b-[8px]">
         {variant === "others" ? (
-          isScraped ? (
+          scraped ? (
             <CurationScrapIcon
-              isScraped={isScraped}
+              isScraped={scraped}
               backgroundBrightness="light"
-              toastInfo={{
-                open: isToastOpen,
-                text: toastText,
-              }}
               className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
               onClick={handleScrapDeleteClick}
             />
           ) : (
             <CurationScrapIcon
-              isScraped={isScraped}
+              isScraped={scraped}
               backgroundBrightness="light"
-              toastInfo={{
-                open: isToastOpen,
-                text: toastText,
-              }}
               className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
               onClick={handleScrapAddClick}
             />
@@ -179,8 +191,6 @@ export default function CurationCardLight({
               handleModalFn: handlers.handleMenuModalOpen,
             }}
             showAt="card"
-            toastOutside
-            outsideOpenToast={outsideOpenToast}
             className="absolute top-[1.6rem] right-[1.2rem]"
             onClick={handleMenuClick}
           />

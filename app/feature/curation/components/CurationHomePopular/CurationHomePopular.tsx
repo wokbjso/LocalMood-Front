@@ -6,8 +6,6 @@ import "../../slick.css";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import RightArrow from "@common/assets/icons/arrow/arrow-right.svg";
 import Slider from "react-slick";
-import useToast from "@common/hooks/useToast";
-import Toast from "@common/components/ui/toast/Toast";
 import CurationCardLight from "../CurationCardLight/CurationCardLight";
 
 interface CurationHomePopularProps {
@@ -49,7 +47,6 @@ export default function CurationHomePopular({
     ),
     dotsClass: "dots_custom",
   };
-  const { isToastOpen, toastText, openToast } = useToast();
   return (
     <>
       <section className="mb-[5.6rem] pt-[2.8rem] pb-[2rem] bg-background-gray-2">
@@ -69,14 +66,11 @@ export default function CurationHomePopular({
             <CurationCardLight
               key={curation.author + i}
               {...curation}
-              toastOutside
-              outsideOpenToast={openToast}
               className="mb-[2rem] w-[100%]"
             />
           ))}
         </Slider>
       </section>
-      <Toast open={isToastOpen} text={toastText} />
     </>
   );
 }

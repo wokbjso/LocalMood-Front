@@ -2,9 +2,10 @@
 
 import LockIcon from "@common/assets/icons/lock/lock.svg";
 import UnlockIcon from "@common/assets/icons/lock/unlock.svg";
+import { toastInfoSelector } from "@common/atom/toast";
 import Toast from "@common/components/ui/toast/Toast";
-import useToast from "@common/hooks/useToast";
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
+import { useSetRecoilState } from "recoil";
 
 interface CurationPrivacyToggleButtonProps {
   id: number;
@@ -15,7 +16,7 @@ export default function CurationPrivacyToggleButton({
   id,
   privacy,
 }: CurationPrivacyToggleButtonProps) {
-  const { isToastOpen, toastText, openToast } = useToast();
+  const setToast = useSetRecoilState(toastInfoSelector);
 
   const togglePrivacy = async () => {
     const res = await fetch(`/api/curation/privacy/toggle/${id}`);
@@ -31,8 +32,14 @@ export default function CurationPrivacyToggleButton({
     if ((await togglePrivacy()) === 200) {
       revalidateRelatedData();
       privacy
-        ? openToast("비공개로 변경되었습니다")
-        : openToast("공개로 변경되었습니다");
+        ? setToast({
+            open: true,
+            text: "비공개로 변경되었습니다",
+          })
+        : setToast({
+            open: true,
+            text: "공개로 변경되었습니다",
+          });
     }
   };
 
@@ -45,7 +52,6 @@ export default function CurationPrivacyToggleButton({
         {privacy ? <UnlockIcon /> : <LockIcon />}
         {privacy ? "공개" : "비공개"}
       </div>
-      <Toast open={isToastOpen} text={toastText} />
     </>
   );
 }

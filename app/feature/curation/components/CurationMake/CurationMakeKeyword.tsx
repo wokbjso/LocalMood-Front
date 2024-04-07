@@ -8,6 +8,8 @@ import {
 } from "@feature/curation/constants/curation-make";
 import Button from "@common/components/ui/buttons/Button/Button";
 import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
+import { useSetRecoilState } from "recoil";
+import { toastInfoSelector } from "@common/atom/toast";
 
 interface CurationMakeKeywordProps {
   curationMakeData: {
@@ -17,8 +19,6 @@ interface CurationMakeKeywordProps {
   };
   resetCurationMakeData: () => void;
   handleOpen: (state: boolean) => void;
-  toastOutside?: boolean;
-  outsideOpenToast?: (text: string) => void;
   onClick?: (category: string, keyword: string) => void;
 }
 
@@ -26,10 +26,10 @@ export default function CurationMakeKeyword({
   curationMakeData,
   resetCurationMakeData,
   handleOpen,
-  toastOutside,
-  outsideOpenToast,
   onClick,
 }: CurationMakeKeywordProps) {
+  const setToast = useSetRecoilState(toastInfoSelector);
+
   const [isExpanded, setIsExpanded] = useState(false);
   const toggleExpansion = () => {
     setIsExpanded((prevIsExpanded) => !prevIsExpanded);
@@ -72,9 +72,10 @@ export default function CurationMakeKeyword({
       body: JSON.stringify(dataCurationMake),
     });
     if (res.status === 200) {
-      toastOutside
-        ? outsideOpenToast && outsideOpenToast("큐레이션이 생성되었습니다")
-        : null;
+      setToast({
+        open: true,
+        text: "큐레이션이 생성되었습니다",
+      });
       resetCurationMakeData();
       revalidateMyCuration();
       handleOpen(false);

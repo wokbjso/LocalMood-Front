@@ -2,20 +2,14 @@ import Image from "next/image";
 import CurationNoPhoto from "@common/assets/images/curationHomeNoImg.png";
 import { CurationProps } from "@feature/curation/type";
 import LocationLine from "@common/assets/icons/location/LocationLine";
-import Toast from "@common/components/ui/toast/Toast";
 
 interface MyCurationCardProps {
   curationData: Omit<CurationProps, "variant"> & { privacy: boolean };
-  toastInfo: {
-    open: boolean;
-    text: string;
-  };
   onClick?: () => void;
 }
 
 export default function MyCurationCard({
   curationData,
-  toastInfo,
   onClick,
 }: MyCurationCardProps) {
   return (
@@ -52,7 +46,6 @@ export default function MyCurationCard({
           </div>
         </div>
       </div>
-      <Toast open={toastInfo.open} text={toastInfo.text} />
     </>
   );
 }
