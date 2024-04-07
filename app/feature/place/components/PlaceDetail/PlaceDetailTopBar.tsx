@@ -7,6 +7,8 @@ import { usePathname } from "next/navigation";
 import MapIcon from "@common/assets/icons/map/map";
 import { useEffect, useState } from "react";
 import Map from "@feature/map/components/Map/Map";
+import { useRecoilState } from "recoil";
+import { toastInfoSelector } from "@common/atom/toast";
 import Toast from "@common/components/ui/toast/Toast";
 
 interface PlaceDetailTopBar {
@@ -26,29 +28,35 @@ export default function PlaceDetailTopBar({
   purpose,
   className,
 }: PlaceDetailTopBar) {
+  const [toast, setToast] = useRecoilState(toastInfoSelector);
+
   const [mapOpen, setMapOpen] = useState(false);
-  const [linkCopyToastOpen, setLinkCopyToastOpen] = useState(false);
-  const [toastText, setToastText] = useState("");
   const pathname = usePathname();
   const handleMapOpen = (state: boolean) => {
     setMapOpen(state);
   };
   const handleCopyLinkClick = () => {
     copyLink(pathname);
-    setLinkCopyToastOpen(true);
-    setToastText("링크가 복사되었어요");
+    setToast({
+      open: true,
+      text: "링크가 복사되었어요",
+    });
   };
+
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
-    if (linkCopyToastOpen) {
+    if (toast.open) {
       timeoutId = setTimeout(() => {
-        setLinkCopyToastOpen(false);
+        setToast((prev) => {
+          return { ...prev, open: false };
+        });
       }, 1000);
     }
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [linkCopyToastOpen]);
+  }, [toast.open, setToast]);
+
   return (
     <>
       <BasicTopBar className={className}>
@@ -64,7 +72,7 @@ export default function PlaceDetailTopBar({
           className="fixed top-[7rem] z-10"
         />
       )}
-      <Toast open={linkCopyToastOpen} text={toastText} />
+      <Toast open={toast.open} text={toast.text} />
     </>
   );
 }
