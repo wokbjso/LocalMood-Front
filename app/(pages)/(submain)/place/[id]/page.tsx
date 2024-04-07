@@ -5,7 +5,6 @@ import PlaceDetailKeywordSummary from "@feature/place/components/PlaceDetail/Pla
 import GetPlaceDetail from "@feature/place/queries/getPlaceDetail";
 import PlaceDetailTopBar from "@feature/place/components/PlaceDetail/PlaceDetailTopBar";
 import PlaceInfoCard from "@feature/place/components/PlaceInfoCard/PlaceInfoCard";
-import getMyCuration from "@feature/curation/queries/getMyCuration";
 import SliderLayout from "@common/components/layout/SliderLayout/SliderLayout";
 import PlaceDetailImageSlider from "@feature/place/components/PlaceDetail/PlaceDetailImageSlider";
 import CurationCardDark from "@feature/curation/components/CurationCardDark/CurationCardDark";
@@ -16,7 +15,6 @@ export default async function PlaceDetailPage({
   params: { id: number };
 }) {
   const detailData = await GetPlaceDetail(id);
-  const myCurationData = await getMyCuration();
   return (
     <div className="w-[100%] h-[100%] relative pb-[12rem] overflow-auto">
       <PlaceDetailTopBar
@@ -39,7 +37,6 @@ export default async function PlaceDetailPage({
         optionalService={detailData.info.optionalService}
         dish={detailData.info.dish}
         dishDesc={detailData.info.dishDesc}
-        myCurationData={myCurationData}
       />
       <Divider className="h-[0.4rem] mt-[2rem] mb-[3.6rem] bg-line-gray-3" />
       <PlaceDetailKeywordSummary
@@ -71,7 +68,6 @@ export default async function PlaceDetailPage({
               key={data.id}
               size="small"
               {...data}
-              myCurationData={myCurationData}
               className="w-[16.3rem] mr-[0.8rem]"
             />
           ))}

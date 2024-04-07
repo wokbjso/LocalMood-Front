@@ -31,6 +31,7 @@ export default function CurationMakeKeyword({
   const setToast = useSetRecoilState(toastInfoSelector);
 
   const [isExpanded, setIsExpanded] = useState(false);
+
   const toggleExpansion = () => {
     setIsExpanded((prevIsExpanded) => !prevIsExpanded);
   };
