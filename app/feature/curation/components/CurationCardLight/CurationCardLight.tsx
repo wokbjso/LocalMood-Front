@@ -107,7 +107,7 @@ export default function CurationCardLight({
           return;
         }
       }
-    }, 1200);
+    }, 500);
     return () => {
       clearTimeout(timeoutId);
     };
