@@ -91,7 +91,7 @@ export default function SearchResult({
                 onChange={searchBarHandlers.handleTabIndex}
               />
               {searchBarTabIndex === 0 && (
-                <div className="h-full px-[2rem] pt-[2rem] pb-[34.5rem] overflow-y-scroll">
+                <div className="h-full px-[2rem] pt-[2rem] pb-[24.5rem] overflow-y-scroll">
                   {textSearchPlaceData.spaceList.map((place) => (
                     <div key={place.id + place.type} className="mb-[4rem]">
                       <PlaceInfoCard
@@ -146,7 +146,7 @@ export default function SearchResult({
                     </div>
                   </div>
                   <Divider className="h-[0.1rem] bg-line-gray-3" />
-                  <div className="h-[100%] px-[2rem] pt-[1.2rem] pb-[34.5rem] overflow-auto">
+                  <div className="h-[100%] px-[2rem] pt-[1.2rem] pb-[24.5rem] overflow-auto">
                     {textSearchPlaceData.spaceList.map((place) => (
                       <div key={place.id + place.type} className="mb-[4rem]">
                         <PlaceInfoCard
@@ -224,7 +224,7 @@ export default function SearchResult({
                 onChange={searchBarHandlers.handleTabIndex}
               />
               {searchBarTabIndex === 0 && (
-                <div className="h-full px-[2rem] pt-[2rem] pb-[34.5rem] overflow-y-scroll">
+                <div className="h-full px-[2rem] pt-[2rem] pb-[24.5rem] overflow-y-scroll">
                   {keywordSearchPlaceData.spaceList.map((place) => (
                     <div key={place.id + place.type} className="mb-[4rem]">
                       <PlaceInfoCard
@@ -279,7 +279,7 @@ export default function SearchResult({
                     </div>
                   </div>
                   <Divider className="h-[0.1rem] bg-line-gray-3" />
-                  <div className="h-full px-[2rem] pt-[1.2rem] pb-[34.5rem] overflow-y-scroll">
+                  <div className="h-full px-[2rem] pt-[1.2rem] pb-[24.5rem] overflow-y-scroll">
                     {keywordSearchPlaceData.spaceList.map((place) => (
                       <div key={place.id + place.type} className="mb-[4rem]">
                         <PlaceInfoCard
