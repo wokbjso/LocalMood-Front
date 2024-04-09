@@ -17,18 +17,18 @@ export default function PlaceInfoCard({
   type,
   address,
   isScraped,
+  isReviewed,
   keyword,
   purpose,
   interior,
   bestMenu,
-  myCurationData,
   className,
   imgClassName,
   bottomClassName,
   keywordCategoryNum,
 }: PlaceInfoCardTopProps &
   PlaceInfoCardBottomProps &
-  PlaceInfoCardAdditionalProps & { myCurationData?: MyCurationResponse }) {
+  PlaceInfoCardAdditionalProps) {
   return (
     <div>
       <PlaceInfoCardTop
@@ -41,9 +41,9 @@ export default function PlaceInfoCard({
         type={type}
         address={address}
         isScraped={isScraped}
+        isReviewed={isReviewed}
         className={className}
         imgClassName={imgClassName}
-        myCurationData={myCurationData}
       />
       {keywordCategoryNum && (
         <PlaceInfoCardBottom

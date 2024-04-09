@@ -7,7 +7,6 @@ import Link from "next/link";
 import RecordMyPageSkeleton from "@feature/record/components/RecordMyPageSkeleton/RecordMyPageSkeleton";
 import GetRecordMyPage from "@feature/place/queries/getRecordMyPage";
 import dynamic from "next/dynamic";
-import getMyCuration from "@feature/curation/queries/getMyCuration";
 import PageTopBar from "@common/components/ui/topBar/PageTopBar/PageTopBar";
 import UseDeferredComponent from "@common/hooks/useDeferredComponent";
 const PlaceInfoCard = dynamic(
@@ -17,7 +16,6 @@ const PlaceInfoCard = dynamic(
 export default async function MyPage() {
   const recordData = GetRecordMyPage();
   const memberData = GetMemberInfo();
-  const myCurationData = await getMyCuration();
   const [record, member] = await Promise.all([recordData, memberData]);
   return (
     <div className="w-[100%] h-[100%] px-[2rem]">
@@ -82,7 +80,6 @@ export default async function MyPage() {
                 {record.reviews.map((record) => (
                   <PlaceInfoCard
                     key={record.id}
-                    myCurationData={myCurationData}
                     variant="mypage"
                     size="small"
                     {...record}

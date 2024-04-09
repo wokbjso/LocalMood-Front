@@ -10,12 +10,14 @@ import {
 } from "@feature/place/type";
 import RecordNoImage from "@common/assets/images/RecordNoImage.png";
 import { sliceText } from "@common/utils/text/slice-text";
-import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import PlaceInfoCardTopScrapIcon from "./PlaceInfoCardTopScrapIcon";
 import { validateToken } from "@common/utils/validate/validateToken";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
+import Chip from "@common/components/ui/buttons/Chip/Chip";
+import CheckIcon from "@common/assets/icons/check/CheckIcon";
+import CheckIconSmall from "@common/assets/icons/check/CheckIconSmall";
 
 export default function PlaceInfoCardTop({
   id,
@@ -27,14 +29,13 @@ export default function PlaceInfoCardTop({
   type,
   address,
   isScraped,
+  isReviewed,
   className,
   imgClassName,
-}: PlaceInfoCardTopProps &
-  Partial<PlaceInfoCardAdditionalProps> & {
-    myCurationData?: MyCurationResponse;
-  }) {
+}: PlaceInfoCardTopProps & Partial<PlaceInfoCardAdditionalProps>) {
   const setToast = useSetRecoilState(toastInfoSelector);
   const setModalInfo = useSetRecoilState(myCurationModalInfoSelector);
+
   const handleScrap = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
@@ -79,6 +80,12 @@ export default function PlaceInfoCardTop({
             direction === "horizontal" && "w-[8rem] h-[8rem] mr-[1.6rem]"
           )}
         >
+          {isReviewed && (
+            <Chip className="flex items-center absolute bottom-[0.8rem] left-[0.8rem] px-[6px] h-[2rem] rounded-[4px] bg-primary-normal  z-10">
+              <CheckIconSmall className="mr-[4px]" />
+              <span className="body3-semibold text-white">기록 완료</span>
+            </Chip>
+          )}
           <Image
             src={imgUrl ? imgUrl : RecordNoImage}
             alt="공간 사진"

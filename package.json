@@ -11,6 +11,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@opentelemetry/api": "^1.8.0",
     "@types/react-slick": "^0.23.13",
     "@types/react-transition-group": "^4.4.10",
     "jose": "^5.2.3",
