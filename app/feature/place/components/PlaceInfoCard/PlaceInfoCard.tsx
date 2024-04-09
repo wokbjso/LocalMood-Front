@@ -5,7 +5,6 @@ import {
 } from "@feature/place/type";
 import PlaceInfoCardTop from "../PlaceInfoCardTop/PlaceInfoCardTop";
 import PlaceInfoCardBottom from "../PlaceInfoCardBottom/PlaceInfoCardBottom";
-import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 
 export default function PlaceInfoCard({
   id,

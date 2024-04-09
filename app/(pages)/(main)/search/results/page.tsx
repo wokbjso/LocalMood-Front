@@ -1,4 +1,3 @@
-import getMyCuration from "@feature/curation/queries/getMyCuration";
 import SearchResult from "@feature/search/components/SearchResult/SearchResult";
 import { getTextSearchCurationData } from "@feature/search/queries/getTextSearchCurationData";
 import { getTextSearchPlaceData } from "@feature/search/queries/getTextSearchPlaceData";
@@ -25,7 +24,6 @@ export default async function SearchResultPage({
     }
   };
 
-  const myCuration = await getMyCuration();
   const textSearchPlaceData =
     searchParams.search_query &&
     (await getTextSearchPlaceData(searchParams.search_query));
@@ -49,7 +47,6 @@ export default async function SearchResultPage({
         textSearchCurationData={textSearchCurationData}
         keywordSearchPlaceData={keywordSearchPlaceData}
         keywordSearchCurationData={keywordSearchCurationData}
-        myCuration={myCuration}
       />
     </main>
   );
