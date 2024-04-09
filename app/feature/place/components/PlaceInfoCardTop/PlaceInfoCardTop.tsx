@@ -16,7 +16,6 @@ import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
-import CheckIcon from "@common/assets/icons/check/CheckIcon";
 import CheckIconSmall from "@common/assets/icons/check/CheckIconSmall";
 import ImageWrapper from "@common/components/ui/imageWrapper/ImageWrapper";
 

@@ -26,7 +26,6 @@ interface SearchResultProps {
   textSearchCurationData?: SearchCurationResponse;
   keywordSearchPlaceData?: SearchPlaceResponse;
   keywordSearchCurationData: SearchCurationResponse;
-  myCuration: MyCurationResponse;
 }
 
 export default function SearchResult({
@@ -36,7 +35,6 @@ export default function SearchResult({
   textSearchCurationData,
   keywordSearchPlaceData,
   keywordSearchCurationData,
-  myCuration,
 }: SearchResultProps) {
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
     useSearchBar();
@@ -108,7 +106,6 @@ export default function SearchResult({
                             : undefined
                         }
                         keywordCategoryNum={2}
-                        myCurationData={myCuration}
                       />
                     </div>
                   ))}
@@ -164,7 +161,6 @@ export default function SearchResult({
                               : undefined
                           }
                           keywordCategoryNum={2}
-                          myCurationData={myCuration}
                         />
                       </div>
                     ))}
@@ -243,7 +239,6 @@ export default function SearchResult({
                             : undefined
                         }
                         keywordCategoryNum={2}
-                        myCurationData={myCuration}
                       />
                     </div>
                   ))}
@@ -299,7 +294,6 @@ export default function SearchResult({
                               : undefined
                           }
                           keywordCategoryNum={2}
-                          myCurationData={myCuration}
                         />
                       </div>
                     ))}
