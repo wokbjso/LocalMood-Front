@@ -18,6 +18,7 @@ import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
 import CheckIcon from "@common/assets/icons/check/CheckIcon";
 import CheckIconSmall from "@common/assets/icons/check/CheckIconSmall";
+import ImageWrapper from "@common/components/ui/imageWrapper/ImageWrapper";
 
 export default function PlaceInfoCardTop({
   id,
@@ -92,11 +93,14 @@ export default function PlaceInfoCardTop({
             direction === "horizontal" && "w-[8rem] h-[8rem] mr-[1.6rem]"
           )}
         >
-          {isReviewed && (
+          {variant === "record" && isReviewed && direction === "vertical" && (
             <Chip className="flex items-center absolute bottom-[0.8rem] left-[0.8rem] px-[6px] h-[2rem] rounded-[4px] bg-primary-normal  z-10">
               <CheckIconSmall className="mr-[4px]" />
               <span className="body3-semibold text-white">기록 완료</span>
             </Chip>
+          )}
+          {variant === "record" && isReviewed && direction === "horizontal" && (
+            <ImageWrapper text="기록 완료" className="w-[8rem] h-[8rem]" />
           )}
           <Image
             src={imgUrl ? imgUrl : RecordNoImage}
