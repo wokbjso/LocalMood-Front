@@ -16,10 +16,10 @@ import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
 import revalidateTextSearchCurationData from "@feature/search/actions/revalidateTextSearchCurationData";
 import revalidateKeywordSearchCurationData from "@feature/search/actions/revalidateKeywordSearchCurationData";
 import useCurationScrapIcon from "../CurationScrapIcon/useCurationScrapIcon";
-import useFetching from "@common/hooks/useFetching";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
+import { useCallback, useEffect } from "react";
 
 export default function CurationCardLight({
   id,
@@ -40,9 +40,7 @@ export default function CurationCardLight({
 
   const { scraped, toggleScrap } = useCurationScrapIcon(isScraped);
 
-  const { isFetching, changeFetching } = useFetching();
-
-  const curationScrapAdd = async () => {
+  const curationScrapAdd = useCallback(async () => {
     const res = await fetch(`/api/curation/scrap/add/${id}`, {
       method: "POST",
       headers: {
@@ -51,9 +49,9 @@ export default function CurationCardLight({
     });
 
     return res.status;
-  };
+  }, [id]);
 
-  const curationScrapDelete = async () => {
+  const curationScrapDelete = useCallback(async () => {
     const res = await fetch(`/api/curation/scrap/delete/${id}`, {
       method: "DELETE",
       headers: {
@@ -62,7 +60,7 @@ export default function CurationCardLight({
     });
 
     return res.status;
-  };
+  }, [id]);
 
   const revalidateRelatedData = () => {
     revalidateCurationRandom();
@@ -71,53 +69,17 @@ export default function CurationCardLight({
     revalidateKeywordSearchCurationData();
   };
 
-  const handleScrapAddClick = async () => {
+  const handleScrapClick = async () => {
     if (!validateLoggedIn()) {
       location.replace("/login");
     } else {
-      if (isFetching) {
-        alert("이전 요청을 처리중입니다");
-        return;
-      }
-      changeFetching(true);
       toggleScrap();
       setToast({
         open: true,
-        text: "큐레이션이 스크랩 되었습니다",
+        text: !scraped
+          ? "큐레이션이 스크랩 되었습니다"
+          : "큐레이션 스크랩이 해제되었습니다",
       });
-      if ((await curationScrapAdd()) === 200) {
-        changeFetching(false);
-        revalidateRelatedData();
-      } else {
-        toggleScrap();
-        alert("에러가 발생했습니다!");
-        return;
-      }
-    }
-  };
-
-  const handleScrapDeleteClick = async () => {
-    if (!validateLoggedIn()) {
-      location.replace("/login");
-    } else {
-      if (isFetching) {
-        alert("이전 요청을 처리중입니다");
-        return;
-      }
-      changeFetching(true);
-      toggleScrap();
-      setToast({
-        open: true,
-        text: "큐레이션 스크랩이 해제되었습니다",
-      });
-      if ((await curationScrapDelete()) === 200) {
-        changeFetching(false);
-        revalidateRelatedData();
-      } else {
-        toggleScrap();
-        alert("에러가 발생했습니다!");
-        return;
-      }
     }
   };
 
@@ -125,6 +87,31 @@ export default function CurationCardLight({
     e.preventDefault();
     openMenuModal();
   };
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    timeoutId = setTimeout(async () => {
+      if (isScraped === scraped) return;
+      if (scraped) {
+        if ((await curationScrapAdd()) === 200) {
+          revalidateRelatedData();
+        } else {
+          alert("에러가 발생했습니다!");
+          return;
+        }
+      } else {
+        if ((await curationScrapDelete()) === 200) {
+          revalidateRelatedData();
+        } else {
+          alert("에러가 발생했습니다!");
+          return;
+        }
+      }
+    }, 1200);
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [isScraped, scraped, curationScrapAdd, curationScrapDelete]);
 
   return (
     <div
@@ -170,14 +157,14 @@ export default function CurationCardLight({
               isScraped={scraped}
               backgroundBrightness="light"
               className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-              onClick={handleScrapDeleteClick}
+              onClick={handleScrapClick}
             />
           ) : (
             <CurationScrapIcon
               isScraped={scraped}
               backgroundBrightness="light"
               className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-              onClick={handleScrapAddClick}
+              onClick={handleScrapClick}
             />
           )
         ) : (

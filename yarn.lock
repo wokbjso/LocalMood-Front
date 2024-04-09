@@ -4461,6 +4461,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash@npm:^4.17.0":
+  version: 4.17.0
+  resolution: "@types/lodash@npm:4.17.0"
+  checksum: 3f98c0b67a93994cbc3403d4fa9dbaf52b0b6bb7f07a764d73875c2dcd5ef91222621bd5bcf8eee7b417a74d175c2f7191b9f595f8603956fd06f0674c0cba93
+  languageName: node
+  linkType: hard
+
 "@types/mdx@npm:^2.0.0":
   version: 2.0.11
   resolution: "@types/mdx@npm:2.0.11"
@@ -10137,6 +10144,7 @@ __metadata:
     "@storybook/react": 7.6.6
     "@storybook/test": 7.6.6
     "@svgr/webpack": ^8.1.0
+    "@types/lodash": ^4.17.0
     "@types/navermaps": ^3.7.4
     "@types/node": ^20
     "@types/react": ^18.2.45
@@ -10148,6 +10156,7 @@ __metadata:
     eslint: ^8
     eslint-config-next: 14.0.4
     jose: ^5.2.3
+    lodash: ^4.17.21
     mime: ^4.0.1
     next: ^14.0.4
     next-auth: ^4.24.6
