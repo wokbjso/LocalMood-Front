@@ -16,7 +16,6 @@ const PlaceInfoCard = lazy(
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import HomeSearchSkeleton from "@feature/search/components/HomeSearchSkeleton/HomeSearchSkeleton";
-import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import CurationCardLight from "@feature/curation/components/CurationCardLight/CurationCardLight";
 
 interface SearchResultProps {
