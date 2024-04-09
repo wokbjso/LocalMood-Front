@@ -11,13 +11,13 @@ import {
 import RecordNoImage from "@common/assets/images/RecordNoImage.png";
 import { sliceText } from "@common/utils/text/slice-text";
 import PlaceInfoCardTopScrapIcon from "./PlaceInfoCardTopScrapIcon";
-import { validateToken } from "@common/utils/validate/validateToken";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
 import CheckIconSmall from "@common/assets/icons/check/CheckIconSmall";
 import ImageWrapper from "@common/components/ui/imageWrapper/ImageWrapper";
+import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
 
 export default function PlaceInfoCardTop({
   id,
@@ -47,8 +47,7 @@ export default function PlaceInfoCardTop({
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
     e.preventDefault();
-    const token = await validateToken();
-    if (!token) {
+    if (!validateLoggedIn()) {
       location.replace("/login");
     } else {
       setModalInfo({
