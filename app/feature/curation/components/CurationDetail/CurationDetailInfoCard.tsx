@@ -13,7 +13,7 @@ import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail"
 import { useSetRecoilState } from "recoil";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
 import { toastInfoSelector } from "@common/state/toast";
-import { validateToken } from "@common/utils/validate/validateToken";
+import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
 
 const CurationDetailInfoCard = forwardRef<
   HTMLDivElement,
@@ -24,6 +24,7 @@ const CurationDetailInfoCard = forwardRef<
 >(({ ...props }, ref) => {
   const setMyCurationModal = useSetRecoilState(myCurationModalInfoSelector);
   const setToast = useSetRecoilState(toastInfoSelector);
+
   const purposeArray = props.purpose ? props.purpose.split(",") : [];
   const interiorArray = props.interior ? props.interior.split(",") : [];
   const moodArray = props.mood ? props.mood.split(",") : [];
@@ -53,8 +54,7 @@ const CurationDetailInfoCard = forwardRef<
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
     e.preventDefault();
-    const token = await validateToken();
-    if (!token) {
+    if (!validateLoggedIn()) {
       location.replace("/login");
     } else {
       if (props.variant === "my") {

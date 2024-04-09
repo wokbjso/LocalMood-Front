@@ -11,7 +11,6 @@ import Image from "next/image";
 import revalidateCurationRandom from "@feature/curation/actions/revalidateCurationRandom";
 import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
 import useCurationMenuModal from "../CurationModal/CurationMenuModal/useCurationMenuModal";
-import { validateToken } from "@common/utils/validate/validateToken";
 import CurationMenuIcon from "../CurationMenuIcon/CurationMenuIcon";
 import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
 import revalidateTextSearchCurationData from "@feature/search/actions/revalidateTextSearchCurationData";
@@ -20,6 +19,7 @@ import useCurationScrapIcon from "../CurationScrapIcon/useCurationScrapIcon";
 import useFetching from "@common/hooks/useFetching";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
+import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
 
 export default function CurationCardLight({
   id,
@@ -72,8 +72,7 @@ export default function CurationCardLight({
   };
 
   const handleScrapAddClick = async () => {
-    const token = await validateToken();
-    if (!token) {
+    if (!validateLoggedIn()) {
       location.replace("/login");
     } else {
       if (isFetching) {
@@ -98,8 +97,7 @@ export default function CurationCardLight({
   };
 
   const handleScrapDeleteClick = async () => {
-    const token = await validateToken();
-    if (!token) {
+    if (!validateLoggedIn()) {
       location.replace("/login");
     } else {
       if (isFetching) {
