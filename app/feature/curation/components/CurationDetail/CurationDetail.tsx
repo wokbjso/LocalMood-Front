@@ -10,20 +10,17 @@ import CurationPrivacyToggleButton from "@feature/curation/components/CuratonPri
 import CurationDetailCardList from "@feature/curation/components/CurationDetail/CurationDetailCardList";
 import CurationTopAppBar from "@feature/curation/components/CurationTopAppBar/curationTopAppBar";
 import { formatDate } from "@common/utils/date/formatDate";
-import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-detail";
 import { useInView } from "react-intersection-observer";
 
 interface CurationDetailProps {
   id: number;
   curationDetail: CurationDetailResponse;
-  myCurationData: MyCurationResponse;
 }
 
 export default function CurationDetail({
   id,
   curationDetail,
-  myCurationData,
 }: CurationDetailProps) {
   const formattedDate = formatDate(curationDetail.createdDate);
   const [inViewRef, inView] = useInView({
@@ -109,7 +106,6 @@ export default function CurationDetail({
           inView={inView}
           curationId={id}
           curationDetail={curationDetail}
-          myCurationData={myCurationData}
         />
       )}
     </>

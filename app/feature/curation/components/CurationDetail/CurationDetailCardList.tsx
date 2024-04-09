@@ -3,30 +3,27 @@
 import LocationFillIcon from "@common/assets/icons/location/location-fill.svg";
 import Filter from "@common/components/ui/buttons/Filter/Filter";
 import CurationDetailInfoCard from "./CurationDetailInfoCard";
-import useCurationDetailCardList from "./useCurationDetailCardList";
-import Toast from "@common/components/ui/toast/Toast";
-import { useInView } from "react-intersection-observer";
-import CurationTopAppBar from "../CurationTopAppBar/curationTopAppBar";
 import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-detail";
 import { twMerge } from "tailwind-merge";
-import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import MapIcon from "@common/assets/icons/map/map";
-import { forwardRef, useEffect, useState } from "react";
+import { createRef, forwardRef, useEffect, useState } from "react";
 import Map from "@feature/map/components/Map/Map";
 
 interface CurationDetailCardListProps {
   inView: boolean;
   curationId: number;
   curationDetail: CurationDetailResponse;
-  myCurationData: MyCurationResponse;
 }
 
 const CurationDetailCardList = forwardRef<
   HTMLDivElement,
   CurationDetailCardListProps
 >(({ ...props }, ref) => {
-  const { cardRefs, openScrapDeleteToast, toastText, placeIndex, handlers } =
-    useCurationDetailCardList(props.curationDetail.spaceDetails);
+  const cardRefs = Array.from(
+    { length: props.curationDetail.spaceDetails.length },
+    () => createRef<HTMLDivElement>()
+  );
+  const [placeIndex, setPlaceIndex] = useState(0);
   const [mapOpen, setMapOpen] = useState(false);
   const [mapPlaceData, setMapPlaceData] = useState<
     {
@@ -42,7 +39,7 @@ const CurationDetailCardList = forwardRef<
   };
 
   const handlePlaceFilterClick = (index: number) => {
-    handlers.changePlaceIndex(index);
+    setPlaceIndex(index);
     cardRefs[index].current?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -126,9 +123,6 @@ const CurationDetailCardList = forwardRef<
             curationId={props.curationId}
             {...space}
             ref={cardRefs[i]}
-            handleDeleteToast={handlers.changeOpenScrapDeleteToast}
-            handleToastText={handlers.changeToastText}
-            myCurationData={props.myCurationData}
           />
         ))}
       </div>
@@ -140,7 +134,6 @@ const CurationDetailCardList = forwardRef<
           className="fixed top-[7rem] z-10"
         />
       )}
-      <Toast open={openScrapDeleteToast} text={toastText} />
     </>
   );
 });
