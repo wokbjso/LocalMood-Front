@@ -22,8 +22,6 @@ export default function CurationCardDark({
   spaceCount,
   image,
   isScraped = true,
-  toastOutside = false,
-  outsideOpenToast,
   className,
 }: Omit<CurationProps, "places"> & {
   toastOutside?: boolean;
@@ -65,7 +63,7 @@ export default function CurationCardDark({
   };
 
   const handleScrapDeleteClick = async () => {
-    if (!!validateLoggedIn()) {
+    if (!validateLoggedIn()) {
       location.replace("/login");
     } else {
       if ((await deleteScrap()) === 200) {
@@ -142,7 +140,7 @@ export default function CurationCardDark({
               pathname: `/curation/detail/${id}`,
             }}
           >
-            <div className="absolute headline2 w-[80%] pt-[1.6rem] pl-[1.6rem] break-keep text-white z-10">
+            <div className="absolute top-0 headline2 w-[80%] pt-[1.6rem] pl-[1.6rem] break-keep text-white z-10">
               <span>{title}</span>
               <div className="flex flex-wrap gap-x-[0.8rem]">
                 {keyword.map((tag) => (

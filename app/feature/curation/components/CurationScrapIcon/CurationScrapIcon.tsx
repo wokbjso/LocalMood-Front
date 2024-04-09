@@ -1,7 +1,6 @@
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import ScrapShadow from "@common/assets/icons/scrap/ScrapShadow";
-import Toast from "@common/components/ui/toast/Toast";
 
 interface CurationScrapIconProps {
   isScraped: boolean;
@@ -21,7 +20,9 @@ export default function CurationScrapIcon({
       {isScraped ? (
         <>
           {backgroundBrightness === "dark" && (
-            <ScrapShadow onClick={onClick} className={className} />
+            <div className="w-[3rem] h-[3rem] bg-red-400">
+              <ScrapShadow onClick={onClick} className={className} />
+            </div>
           )}
           {backgroundBrightness === "light" && (
             <ScrapFill onClick={onClick} className={className} />
