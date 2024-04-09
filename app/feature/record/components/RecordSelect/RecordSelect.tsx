@@ -10,21 +10,14 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import Button from "@common/components/ui/buttons/Button/Button";
 import { cloneElement } from "react";
-import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 
 interface RecordSelectProps {
   id: number;
   type: string;
   name: string;
-  myCuration: MyCurationResponse;
 }
 
-export default function RecordSelect({
-  id,
-  type,
-  name,
-  myCuration,
-}: RecordSelectProps) {
+export default function RecordSelect({ id, type, name }: RecordSelectProps) {
   const router = useRouter();
   const {
     indicatorIndex,

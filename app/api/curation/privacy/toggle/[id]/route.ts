@@ -15,7 +15,7 @@ export async function GET(
         Authorization: `Bearer ${token}`,
       },
       cache: "no-cache",
-      next: { tags: ["getMyCuration"] },
+      next: { tags: ["getPrivacyToggle"] },
     }
   );
   if (res.ok) {
