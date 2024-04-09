@@ -30,7 +30,9 @@ export default function CurationHomePopular({
   const sliderSettings = {
     speed: 500,
     dots: true,
-    infinite: false,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 3200,
     slidesToShow: 1,
     slidesToScroll: 1,
     appendDots: (dots: any) => (

@@ -14,8 +14,8 @@ import revalidateKeywordSearchPlaceData from "@feature/search/actions/revalidate
 import useOpenCurationMakeModal from "../../CurationMake/useOpenCurationMakeModal";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
-import useFetching from "@common/hooks/useFetching";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
+import revalidateHomeRecommend from "@feature/place/actions/revalidateHomeRecommend";
 const MyCurationCard = lazy(() => import("./MyCurationCard"));
 
 interface MyCurationModalProps {
@@ -36,8 +36,6 @@ export default function MyCurationModal({
 
   const setMyCurationModal = useSetRecoilState(myCurationModalInfoSelector);
 
-  const { isFetching, changeFetching } = useFetching();
-
   const { isModalOpen, openModal, handlers } = useOpenCurationMakeModal();
 
   const handleModalCloseClick = () => {
@@ -57,6 +55,7 @@ export default function MyCurationModal({
   };
 
   const revalidateRelatedData = () => {
+    revalidateHomeRecommend();
     revalidateScrapSpace();
     revalidateMyCuration();
     revalidatePlaceDetail();
@@ -66,17 +65,12 @@ export default function MyCurationModal({
   };
 
   const handleMyCurationCardClick = async (curationId: number) => {
-    if (isFetching) {
-      alert("이전 요청을 처리중입니다");
-      return;
-    }
-    changeFetching(true);
+    handleModalCloseClick();
     setToast({
       open: true,
       text: "큐레이션에 장소가 추가되었습니다.",
     });
     if ((await savePlaceAtCuration(curationId)) === 200) {
-      changeFetching(false);
       revalidateRelatedData();
     } else {
       alert("큐레이션에 장소 추가 도중 오류가 발생했습니다");
