@@ -36,6 +36,13 @@ export default function PlaceInfoCardTop({
   const setToast = useSetRecoilState(toastInfoSelector);
   const setModalInfo = useSetRecoilState(myCurationModalInfoSelector);
 
+  const handleplaceInfoCardClick = () => {
+    setToast({
+      open: true,
+      text: "이미 공간기록을 완료한 장소입니다",
+    });
+  };
+
   const handleScrap = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
@@ -56,23 +63,28 @@ export default function PlaceInfoCardTop({
   };
 
   return (
-    <div
-      className={twMerge(
-        "w-[100%] relative",
-        direction === "horizontal" && "flex items-center",
-        className
-      )}
+    <Link
+      href={{
+        pathname:
+          variant === "main"
+            ? `/place/${id}`
+            : variant === "record" && !isReviewed
+            ? `/record/select/${id}`
+            : undefined,
+        query: variant === "record" && !isReviewed ? { type, name } : null,
+      }}
     >
-      <Link
-        href={{
-          pathname:
-            variant === "main"
-              ? `/place/${id}`
-              : variant === "record"
-              ? `/record/select/${id}`
-              : undefined,
-          query: variant === "record" ? { type, name } : null,
-        }}
+      <div
+        className={twMerge(
+          "w-[100%] relative",
+          direction === "horizontal" && "flex items-center",
+          className
+        )}
+        onClick={
+          variant === "record" && isReviewed
+            ? handleplaceInfoCardClick
+            : undefined
+        }
       >
         <div
           className={twMerge(
@@ -96,63 +108,51 @@ export default function PlaceInfoCardTop({
             className={twMerge("rounded-[8px] object-cover", imgClassName)}
           />
         </div>
-      </Link>
-      <div
-        className={twMerge("flex-col", size === "normal" ? "relative" : null)}
-      >
         <div
-          className={twMerge(
-            direction === "vertical" && "w-[85%] pt-[1.6rem]",
-            size === "normal" ? "headline2" : "headline3"
-          )}
+          className={twMerge("flex-col", size === "normal" ? "relative" : null)}
         >
-          {direction === "vertical" && variant !== "record" && (
-            <PlaceInfoCardTopScrapIcon
-              isScraped={isScraped}
-              cardSize={size}
-              onClick={handleScrap}
-            />
-          )}
-          <Link
-            href={{
-              pathname:
-                variant === "main"
-                  ? `/place/${id}`
-                  : variant === "record"
-                  ? `/record/select/${id}`
-                  : undefined,
-              query: variant === "record" ? { type, name } : null,
-            }}
+          <div
+            className={twMerge(
+              direction === "vertical" && "w-[85%] pt-[1.6rem]",
+              size === "normal" ? "headline2" : "headline3"
+            )}
           >
+            {direction === "vertical" && variant !== "record" && (
+              <PlaceInfoCardTopScrapIcon
+                isScraped={isScraped}
+                cardSize={size}
+                onClick={handleScrap}
+              />
+            )}
             <span>
               {direction === "vertical" && size === "small"
                 ? sliceText(name, 8)
                 : name}
             </span>
-          </Link>
-          <div className="flex items-center mt-[0.8rem]">
-            <span
-              className={twMerge(
-                "text-text-gray-6 whitespace-nowrap",
-                size === "normal" ? "body2-semibold" : "body3-semibold"
-              )}
-            >
-              {type === "RESTAURANT" ? "음식점" : "카페"}
-            </span>
-            <Line className="mx-[0.8rem]" />
-            <span
-              className={twMerge(
-                "text-text-gray-5",
-                size === "normal" ? "body2-medium" : "body3-medium"
-              )}
-            >
-              {direction === "vertical" && size === "small"
-                ? sliceText(address, 9)
-                : address.split(" ").slice(0, 4).join(" ")}
-            </span>
+            <div className="flex items-center mt-[0.8rem]">
+              <span
+                className={twMerge(
+                  "text-text-gray-6 whitespace-nowrap",
+                  size === "normal" ? "body2-semibold" : "body3-semibold"
+                )}
+              >
+                {type === "RESTAURANT" ? "음식점" : "카페"}
+              </span>
+              <Line className="mx-[0.8rem]" />
+              <span
+                className={twMerge(
+                  "text-text-gray-5",
+                  size === "normal" ? "body2-medium" : "body3-medium"
+                )}
+              >
+                {direction === "vertical" && size === "small"
+                  ? sliceText(address, 9)
+                  : address.split(" ").slice(0, 4).join(" ")}
+              </span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
