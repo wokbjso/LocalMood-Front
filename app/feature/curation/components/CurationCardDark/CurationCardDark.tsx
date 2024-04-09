@@ -10,9 +10,9 @@ import LocationLine from "@common/assets/icons/location/LocationLine";
 import Image from "next/image";
 import revalidateCurationRandom from "@feature/curation/actions/revalidateCurationRandom";
 import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
-import { validateToken } from "@common/utils/validate/validateToken";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
+import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
 
 export default function CurationCardDark({
   id,
@@ -38,8 +38,7 @@ export default function CurationCardDark({
   };
 
   const handleScrapAddClick = async () => {
-    const token = validateToken();
-    if (!token) {
+    if (!validateLoggedIn()) {
       location.replace("/login");
     } else {
       if ((await addScrap()) === 200) {
@@ -66,8 +65,7 @@ export default function CurationCardDark({
   };
 
   const handleScrapDeleteClick = async () => {
-    const token = validateToken();
-    if (!token) {
+    if (!!validateLoggedIn()) {
       location.replace("/login");
     } else {
       if ((await deleteScrap()) === 200) {
