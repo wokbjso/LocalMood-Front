@@ -7,55 +7,71 @@ import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import PlaceInfoCardBottom from "@feature/place/components/PlaceInfoCardBottom/PlaceInfoCardBottom";
 import SliderLayout from "@common/components/layout/SliderLayout/SliderLayout";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
-import { getSession } from "@common/utils/session/getSession";
-import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
 import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
 import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail";
 import { useSetRecoilState } from "recoil";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
+import { toastInfoSelector } from "@common/state/toast";
+import { validateToken } from "@common/utils/validate/validateToken";
 
 const CurationDetailInfoCard = forwardRef<
   HTMLDivElement,
   CurationPlaceProps & {
     variant: string;
     curationId: number;
-    handleDeleteToast: (state: boolean) => void;
-    handleToastText: (text: string) => void;
-    myCurationData: MyCurationResponse;
   }
 >(({ ...props }, ref) => {
   const setMyCurationModal = useSetRecoilState(myCurationModalInfoSelector);
+  const setToast = useSetRecoilState(toastInfoSelector);
   const purposeArray = props.purpose ? props.purpose.split(",") : [];
   const interiorArray = props.interior ? props.interior.split(",") : [];
   const moodArray = props.mood ? props.mood.split(",") : [];
   const bestMenuArray = props.bestMenu ? props.bestMenu.split(",") : [];
+
+  const deleteScrap = async () => {
+    const res = await fetch("/api/curation/delete/space", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        curationId: props.curationId,
+        spaceId: props.id,
+      }),
+    });
+    return res.status;
+  };
+
+  const revalidateRelatedData = () => {
+    revalidateMyCuration();
+    revalidateScrapSpace();
+    revalidatePlaceDetail();
+  };
+
   const handleScrapState = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
     e.preventDefault();
-    const auth_info = await getSession();
-    const token = auth_info?.data?.accessToken;
+    const token = await validateToken();
     if (!token) {
       location.replace("/login");
     } else {
       if (props.variant === "my") {
-        const res = await fetch("/api/curation/delete/space", {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            curationId: props.curationId,
-            spaceId: props.id,
-          }),
+        setToast({
+          open: true,
+          text: "스크랩이 해제되었습니다",
         });
-        if (res.status === 200) {
-          revalidateMyCuration();
-          revalidateScrapSpace();
-          revalidatePlaceDetail();
+        if ((await deleteScrap()) === 200) {
+          revalidateRelatedData();
+        } else {
+          alert("스크랩 해제 중 오류가 발생했습니다");
         }
       } else {
+        setToast({
+          open: true,
+          text: "저장할 큐레이션을 선택해주세요",
+        });
         setMyCurationModal({
           open: true,
           spaceId: props.id,
