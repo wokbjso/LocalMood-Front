@@ -5,12 +5,6 @@ import CurationHomePopular from "@feature/curation/components/CurationHomePopula
 import GetRandomCuration from "@feature/curation/queries/getRandomCuration";
 
 export default async function Home() {
-  const HOME_SLIDER_PURPOSE = [
-    "연인과의 데이트",
-    "친구와의 만남",
-    "왁자지껄 떠들 수 있는",
-    "대화에 집중할 수 있는",
-  ];
   const randomCuration = await GetRandomCuration();
   return (
     <div className="w-[100%] h-[100%] overflow-y-auto overflow-x-hidden">
@@ -21,22 +15,19 @@ export default async function Home() {
         buttonLabel="키워드로 공간 찾기"
       />
       <PlaceHomeSlider
-        mainText={HOME_SLIDER_PURPOSE[0]}
+        mainText="연인과의 데이트"
         subText="를 위한 공간"
         className="mt-[4rem]"
       />
-      <PlaceHomeSlider
-        mainText={HOME_SLIDER_PURPOSE[1]}
-        subText="을 위한 공간"
-      />
+      <PlaceHomeSlider mainText="친구와의 만남" subText="을 위한 공간" />
       <CurationHomePopular
         mainText="마포구 인기 큐레이션"
         subText="더보기"
         curationList={randomCuration}
       />
-      <PlaceHomeSlider mainText={HOME_SLIDER_PURPOSE[2]} subText="공간" />
+      <PlaceHomeSlider mainText="왁자지껄 떠들 수 있는" subText="공간" />
       <PlaceHomeSlider
-        mainText={HOME_SLIDER_PURPOSE[3]}
+        mainText="대화에 집중할 수 있는"
         subText="공간"
         className="pb-[12rem]"
       />

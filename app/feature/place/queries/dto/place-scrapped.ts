@@ -5,4 +5,5 @@ export type PlaceScrappedResponse = {
   address: string;
   imgUrl: string;
   isScraped: boolean;
+  isReviewed: boolean;
 }[];

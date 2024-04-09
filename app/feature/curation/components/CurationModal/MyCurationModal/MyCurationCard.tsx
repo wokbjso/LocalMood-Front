@@ -2,9 +2,9 @@ import Image from "next/image";
 import CurationNoPhoto from "@common/assets/images/curationHomeNoImg.png";
 import { CurationProps } from "@feature/curation/type";
 import LocationLine from "@common/assets/icons/location/LocationLine";
-import SpaceAlreadyInCurationImageWrapper from "./SpaceAlreadyInCurationImageWrapper";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
+import ImageWrapper from "@common/components/ui/imageWrapper/ImageWrapper";
 
 interface MyCurationCardProps {
   spaceId: number;
@@ -42,7 +42,7 @@ export default function MyCurationCard({
     <>
       <div className="flex w-full" onClick={handleMyCurationCardClick}>
         <div className="relative w-[6rem] h-[6rem]">
-          {isSpaceAlreadyInCuration() && <SpaceAlreadyInCurationImageWrapper />}
+          {isSpaceAlreadyInCuration() && <ImageWrapper text="저장됨" />}
           <Image
             src={
               curationData.image && curationData.image.length > 0

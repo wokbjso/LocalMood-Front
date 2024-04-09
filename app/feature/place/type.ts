@@ -1,6 +1,6 @@
 export interface PlaceInfoCardTopProps {
   id: number;
-  variant?: "main" | "search" | "record" | "mypage";
+  variant?: "main" | "record" | "mypage";
   direction?: "vertical" | "horizontal";
   size?: "normal" | "small";
   name: string;
@@ -8,6 +8,7 @@ export interface PlaceInfoCardTopProps {
   type: string;
   address: string;
   isScraped: boolean;
+  isReviewed?: boolean;
 }
 
 export interface PlaceInfoCardBottomProps {
