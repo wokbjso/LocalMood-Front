@@ -1,10 +1,11 @@
 "use client";
 
 import { twMerge } from "tailwind-merge";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useCallback, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import SearchIcon from "@common/assets/icons/search/SearchIcon";
 import CloseGrayIcon from "@common/assets/icons/close/CloseGrayIcon";
+import SearchTextDelete from "../SearchTextDelete/SearchTextDelete";
 
 interface SearchBarProps {
   variant?: "home" | "record";
@@ -26,9 +27,9 @@ export default function SearchBar({
     const newText = e.target.value;
     setSearchText(newText);
   };
-  const handleTextDelete = () => {
+  const handleTextDeleteClick = useCallback(() => {
     setSearchText("");
-  };
+  }, []);
 
   const searchIconClicked = () => {
     if (searchText.length < 2) {
@@ -67,9 +68,7 @@ export default function SearchBar({
           onKeyDown={handleKeyPress}
         />
       </div>
-      <div className="flex justify-center items-center bg-line-gray-3 rounded-full w-[2.4rem] h-[2.4rem]">
-        <CloseGrayIcon className="" />
-      </div>
+      <SearchTextDelete onClick={handleTextDeleteClick} />
     </div>
   );
 }
