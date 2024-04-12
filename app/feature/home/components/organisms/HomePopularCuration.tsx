@@ -3,14 +3,13 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../slick.css";
-import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
-import RightArrow from "@common/assets/icons/arrow/arrow-right.svg";
 import Slider from "react-slick";
-import CurationCardLight from "../CurationCardLight/CurationCardLight";
+import CurationCardLight from "../../../curation/components/CurationCardLight/CurationCardLight";
+import MoreTopBar from "@common/components/ui/topBar/MoreTopBar/MoreTopBar";
 
+//Organism
 interface CurationHomePopularProps {
-  mainText: string;
-  subText: string;
+  title: string;
   curationList: {
     id: number;
     author: string;
@@ -22,9 +21,9 @@ interface CurationHomePopularProps {
   }[];
 }
 
-export default function CurationHomePopular({
-  mainText,
-  subText,
+//Organism
+export default function HomePopularCuration({
+  title,
   curationList,
 }: CurationHomePopularProps) {
   const sliderSettings = {
@@ -50,17 +49,7 @@ export default function CurationHomePopular({
   return (
     <>
       <section className="mb-[5.6rem] pt-[2.8rem] pb-[2rem] bg-background-gray-2">
-        <div className="flex justify-between mb-[1.6rem] px-[2rem]">
-          <span className="headline2 text-black">{mainText}</span>
-          <div className="flex items-center headline2 text-black">
-            <LinkLayout routeUrl="/curation/popular">
-              <span className="mr-[1rem] text-text-gray-6 body2-semibold">
-                {subText}
-              </span>
-            </LinkLayout>
-            <RightArrow />
-          </div>
-        </div>
+        <MoreTopBar title={title} />
         <Slider {...sliderSettings} className="px-[2rem]">
           {curationList.map((curation, i) => (
             <CurationCardLight

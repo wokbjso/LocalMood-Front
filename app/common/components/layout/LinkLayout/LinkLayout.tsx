@@ -4,16 +4,17 @@ import Link from "next/link";
 import { ReactNode } from "react";
 
 interface LinkLayoutProps {
-  children: ReactNode;
   routeUrl: string;
   query?: Record<string, any>;
+  children: ReactNode;
   className?: string;
 }
 
+//Atom
 export default function LinkLayout({
-  children,
   routeUrl,
   query,
+  children,
   className,
 }: LinkLayoutProps) {
   return (

@@ -4,7 +4,7 @@ import Button from "@common/components/ui/buttons/Button/Button";
 import HomeTopBar from "@feature/home/components/organisms/HomeTopBar";
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
-import KeywordInfiniteScroller from "../../../../common/components/ui/infiniteScroller/KeywordInfiniteScroller";
+import KeywordInfiniteScroller from "./KeywordInfiniteScroller";
 import HomeBannerTitle from "@feature/home/components/organisms/HomeBannerTitle";
 
 export interface HomeBannerProps {

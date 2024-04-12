@@ -1,8 +1,8 @@
 import Footer from "@common/components/layout/Footer/Footer";
 import PlaceHomeSlider from "@feature/place/components/PlaceHomeSlider/PlaceHomeSlider";
 import HomeBanner from "../feature/home/components/organisms/HomeBanner";
-import CurationHomePopular from "@feature/curation/components/CurationHomePopular/CurationHomePopular";
 import GetRandomCuration from "@feature/curation/queries/getRandomCuration";
+import HomePopularCuration from "@feature/home/components/organisms/HomePopularCuration";
 
 //Page
 export default async function Home() {
@@ -22,9 +22,8 @@ export default async function Home() {
         className="mt-[4rem]"
       />
       <PlaceHomeSlider mainText="친구와의 만남" subText="을 위한 공간" />
-      <CurationHomePopular
-        mainText="마포구 인기 큐레이션"
-        subText="더보기"
+      <HomePopularCuration
+        title="마포구 인기 큐레이션"
         curationList={randomCuration}
       />
       <PlaceHomeSlider mainText="왁자지껄 떠들 수 있는" subText="공간" />

@@ -15,7 +15,7 @@ export interface PlaceHomeSliderProps {
   className?: string;
 }
 
-//Molecule
+//Organism
 export default async function PlaceHomeSlider({
   mainText,
   subText,

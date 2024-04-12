@@ -1,5 +1,5 @@
 import { HEADER_KEYWORD } from "@feature/home/constants/banner-keyword";
-import Chip from "../buttons/Chip/Chip";
+import Chip from "../../../../common/components/ui/buttons/Chip/Chip";
 
 //Organism
 export default function KeywordInfiniteScroller() {
