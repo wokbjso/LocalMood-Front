@@ -34,7 +34,7 @@ export default function PlaceInfoCardTop({
   imgClassName,
 }: PlaceInfoCardTopProps & Partial<PlaceInfoCardAdditionalProps>) {
   const setToast = useSetRecoilState(toastInfoSelector);
-  const setModalInfo = useSetRecoilState(myCurationModalInfoSelector);
+  const setMyCurationModal = useSetRecoilState(myCurationModalInfoSelector);
 
   const handleplaceInfoCardClick = () => {
     setToast({
@@ -50,7 +50,7 @@ export default function PlaceInfoCardTop({
     if (!validateLoggedIn()) {
       location.replace("/login");
     } else {
-      setModalInfo({
+      setMyCurationModal({
         open: true,
         spaceId: id,
       });

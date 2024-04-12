@@ -1,6 +1,7 @@
 import { IconProps } from "../icon-type";
 
-export default function HeaderText({
+//Atom
+export default function HeaderTextIcon({
   color = "#616161",
   className,
 }: IconProps) {

@@ -20,6 +20,8 @@ import useFetching from "@common/hooks/useFetching";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function CurationCardLight({
   id,

@@ -35,7 +35,13 @@ export default function PlaceDetailImageSlider({
             key={image + i}
             className="w-[100%] h-[30rem] mb-[1.5rem] relative"
           >
-            <Image src={image} alt="공간 상세 사진" fill sizes="100vw" />
+            <Image
+              src={image}
+              alt="공간 상세 사진"
+              fill
+              sizes="100vw"
+              priority
+            />
           </div>
         ))}
       </Slider>

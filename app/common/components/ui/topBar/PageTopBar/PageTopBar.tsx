@@ -22,6 +22,7 @@ export default function PageTopBar({
   const handleMenuIconClick = () => {
     setLogoutModalOpen(true);
   };
+
   return (
     <div
       className={twMerge(
