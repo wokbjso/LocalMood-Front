@@ -1,12 +1,13 @@
 "use client";
 
 import Button from "@common/components/ui/buttons/Button/Button";
-import HomeTopBar from "@common/components/ui/topBar/HomeTopBar/HomeTopBar";
+import HomeTopBar from "@feature/home/components/organisms/HomeTopBar";
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
-import KeywordInfiniteScroller from "../infiniteScroller/KeywordInfiniteScroller";
+import KeywordInfiniteScroller from "../../../../common/components/ui/infiniteScroller/KeywordInfiniteScroller";
+import HomeBannerTitle from "@feature/home/components/organisms/HomeBannerTitle";
 
-interface HomeBannerProps {
+export interface HomeBannerProps {
   textNormalFirst: string;
   textBold: string;
   textNormalLast: string;
@@ -27,12 +28,11 @@ export default function HomeBanner({
   return (
     <>
       <HomeTopBar showBtn={!inView} />
-      <p className="header-light pb-[2.4rem] px-[2rem] pt-[5.4rem] bg-background-secondary-light">
-        {textNormalFirst}
-        <br />
-        <span className="header-main"> {textBold}</span>
-        {textNormalLast}
-      </p>
+      <HomeBannerTitle
+        textNormalFirst={textNormalFirst}
+        textBold={textBold}
+        textNormalLast={textNormalLast}
+      />
       <KeywordInfiniteScroller />
       <div
         className="flex justify-center pb-[2rem] bg-background-secondary-light"

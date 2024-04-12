@@ -1,6 +1,6 @@
 import Footer from "@common/components/layout/Footer/Footer";
 import PlaceHomeSlider from "@feature/place/components/PlaceHomeSlider/PlaceHomeSlider";
-import HomeBanner from "../common/components/ui/banner/HomeBanner";
+import HomeBanner from "../feature/home/components/organisms/HomeBanner";
 import CurationHomePopular from "@feature/curation/components/CurationHomePopular/CurationHomePopular";
 import GetRandomCuration from "@feature/curation/queries/getRandomCuration";
 
@@ -9,6 +9,7 @@ export default async function Home() {
   const randomCuration = await GetRandomCuration();
   return (
     <div className="w-[100%] h-[100%] overflow-y-auto overflow-x-hidden">
+      {/* Template */}
       <HomeBanner
         textNormalFirst="나에게 딱 맞는 공간을"
         textBold="키워드"
