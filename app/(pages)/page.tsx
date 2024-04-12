@@ -1,9 +1,10 @@
 import Footer from "@common/components/layout/Footer/Footer";
 import PlaceHomeSlider from "@feature/place/components/PlaceHomeSlider/PlaceHomeSlider";
-import HomeBanner from "./HomeBanner";
+import HomeBanner from "../common/components/ui/banner/HomeBanner";
 import CurationHomePopular from "@feature/curation/components/CurationHomePopular/CurationHomePopular";
 import GetRandomCuration from "@feature/curation/queries/getRandomCuration";
 
+//Page
 export default async function Home() {
   const randomCuration = await GetRandomCuration();
   return (
