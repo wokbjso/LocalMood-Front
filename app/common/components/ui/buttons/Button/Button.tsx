@@ -11,6 +11,7 @@ export interface ButtonProps {
   className?: string;
 }
 
+//Atom
 export default function Button({
   variant = "fill",
   disabled = false,

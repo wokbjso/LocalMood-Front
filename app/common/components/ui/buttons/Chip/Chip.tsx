@@ -8,6 +8,7 @@ interface ChipProps {
   children: ReactNode;
 }
 
+//Atoms
 export default function Chip({
   variant = "light",
   className,

@@ -6,6 +6,7 @@ import {
 import PlaceInfoCardTop from "../PlaceInfoCardTop/PlaceInfoCardTop";
 import PlaceInfoCardBottom from "../PlaceInfoCardBottom/PlaceInfoCardBottom";
 
+//Molecule
 export default function PlaceInfoCard({
   id,
   variant = "main",

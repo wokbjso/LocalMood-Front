@@ -6,6 +6,7 @@ interface SliderProps {
   children?: ReactNode;
 }
 
+//Atoms
 export default function SliderLayout({ className, children }: SliderProps) {
   return (
     <>
