@@ -10,6 +10,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import Button from "@common/components/ui/buttons/Button/Button";
 import { cloneElement } from "react";
+import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
 
 interface RecordSelectProps {
   id: number;
@@ -78,6 +79,7 @@ export default function RecordSelect({ id, type, name }: RecordSelectProps) {
       if (res.status === 200) {
         handlers.handleIndicatorIndex(indicatorIndex + 1);
         handlers.handleNextDirection("forward");
+        revalidateScrapSpace();
       } else if (res.status === 400) {
         alert("오류가 발생했습니다");
       }

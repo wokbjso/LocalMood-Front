@@ -19,6 +19,7 @@ import CheckIconSmall from "@common/assets/icons/check/CheckIconSmall";
 import ImageWrapper from "@common/components/ui/imageWrapper/ImageWrapper";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
 
+//Molecule
 export default function PlaceInfoCardTop({
   id,
   variant,
