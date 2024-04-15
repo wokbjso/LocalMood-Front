@@ -1,37 +1,16 @@
-"use client";
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import PlaceInfoCard from "@feature/place/components/PlaceInfoCard/PlaceInfoCard";
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
-import { SearchPlaceResponse } from "@feature/search/queries/dto/search-type";
-import { useCallback, useEffect, useState } from "react";
+import { getTextSearchPlaceData } from "@feature/search/queries/getTextSearchPlaceData";
 
-export default function RecordSearchPage({
+export default async function RecordSearchPage({
   searchParams,
 }: {
   searchParams: any;
 }) {
-  const [textSearchPlaceData, setTextSearchPlaceData] =
-    useState<SearchPlaceResponse>();
-  const getTextSearchPlaceData = useCallback(async () => {
-    const response = await fetch("/api/search/place-search-text", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name: searchParams.search_query }),
-    });
-
-    if (response.ok) {
-      setTextSearchPlaceData(await response.json());
-    } else {
-      alert("오류가 발생했습니다.");
-      return;
-    }
-  }, [searchParams.search_query]);
-
-  useEffect(() => {
-    getTextSearchPlaceData();
-  }, [getTextSearchPlaceData]);
+  const textSearchPlaceData =
+    searchParams.search_query &&
+    (await getTextSearchPlaceData(searchParams.search_query));
   return (
     <div className="w-[100%] h-[100%]">
       <BasicTopBar color="#9E9E9E">
@@ -44,7 +23,7 @@ export default function RecordSearchPage({
       )}
       {textSearchPlaceData &&
         textSearchPlaceData?.spaceCount > 0 &&
-        textSearchPlaceData?.spaceList.map((li) => (
+        textSearchPlaceData?.spaceList.map((li: any) => (
           <div key={li.id} className="w-full px-[2rem]">
             <PlaceInfoCard
               className="mt-[0.8rem]"
