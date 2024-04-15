@@ -19,6 +19,7 @@ import CheckIconSmall from "@common/assets/icons/check/CheckIconSmall";
 import ImageWrapper from "@common/components/ui/imageWrapper/ImageWrapper";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
 
+//Molecule
 export default function PlaceInfoCardTop({
   id,
   variant,
@@ -106,7 +107,7 @@ export default function PlaceInfoCardTop({
             fill
             placeholder="blur"
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
-            sizes="100vw,50vw"
+            sizes="40vw"
             className={twMerge("rounded-[8px] object-cover", imgClassName)}
           />
         </div>

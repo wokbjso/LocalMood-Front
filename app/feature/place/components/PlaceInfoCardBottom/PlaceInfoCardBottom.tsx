@@ -6,6 +6,7 @@ import {
   PlaceInfoCardTopProps,
 } from "@feature/place/type";
 
+//Molecule
 export default function PlaceInfoCardBottom({
   type,
   keyword,

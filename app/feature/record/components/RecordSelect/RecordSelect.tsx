@@ -10,6 +10,8 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import Button from "@common/components/ui/buttons/Button/Button";
 import { cloneElement } from "react";
+import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
+import revalidatePlaceReview from "@feature/record/actions/revalidatePlaceReview";
 
 interface RecordSelectProps {
   id: number;
@@ -78,6 +80,8 @@ export default function RecordSelect({ id, type, name }: RecordSelectProps) {
       if (res.status === 200) {
         handlers.handleIndicatorIndex(indicatorIndex + 1);
         handlers.handleNextDirection("forward");
+        revalidateScrapSpace();
+        revalidatePlaceReview();
       } else if (res.status === 400) {
         alert("오류가 발생했습니다");
       }
@@ -166,9 +170,7 @@ export default function RecordSelect({ id, type, name }: RecordSelectProps) {
           </Button>
         )}
         {indicatorIndex === 2 && (
-          <Button onClick={handleBtnForwardClicked}>
-            {checkJump() ? "기록 올리기" : "건너뛰기"}
-          </Button>
+          <Button onClick={handleBtnForwardClicked}>기록 올리기</Button>
         )}
         {indicatorIndex === 3 && (
           <Button onClick={handleExitClicked}>

@@ -6,7 +6,7 @@ export default function useFooter() {
   const searchPattern = /^\/search(\/.*)?$/;
   const recordPattern = /^\/record(\/.*)?$/;
   const curationPattern = /^\/curation(\/.*)?$/;
-  const [footerState, setFooterState] = useState<number>(
+  const [footerIndex, setFooterIndex] = useState<number>(
     pathname === "/" || searchPattern.test(pathname)
       ? 0
       : recordPattern.test(pathname)
@@ -18,16 +18,14 @@ export default function useFooter() {
       : -1
   );
 
-  const handleFooterState = (index: number) => {
-    setFooterState(index);
+  const changeFooterIndex = (index: number) => {
+    setFooterIndex(index);
   };
 
   useEffect(() => {}, [pathname]);
 
   return {
-    footerState,
-    handlers: {
-      handleFooterState,
-    },
+    footerIndex,
+    changeFooterIndex,
   };
 }
