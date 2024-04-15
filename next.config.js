@@ -9,6 +9,8 @@ module.exports = {
   },
   reactStrictMode: true,
   images: {
+    deviceSizes: [640, 785],
+    imageSizes: [16, 48, 96, 128, 256, 385],
     domains: [
       "media.istockphoto.com",
       "cdn.pixabay.com",
