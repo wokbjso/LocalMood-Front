@@ -1,8 +1,42 @@
-import RecoilRootLayout from "@common/components/layout/RecoilRootLayout/RecoilRootLayout";
 import "../styles/global.css";
+import RecoilRootLayout from "@common/components/layout/RecoilRootLayout/RecoilRootLayout";
 import ToastProvider from "@common/components/layout/ToastProvider/ToastProvider";
-import MyCurationModalProvider from "@common/components/layout/MyCurationModalProvider/MyCurationModalProvider";
+const MyCurationModalProvider = dynamic(
+  () =>
+    import(
+      "@common/components/layout/MyCurationModalProvider/MyCurationModalProvider"
+    )
+);
 import getMyCuration from "@feature/curation/queries/getMyCuration";
+import dynamic from "next/dynamic";
+import localFont from "next/font/local";
+import { twMerge } from "tailwind-merge";
+
+const globalFont = localFont({
+  src: [
+    {
+      path: "../common/assets/fonts/pretendard/Pretendard-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../common/assets/fonts/pretendard/Pretendard-SemiBold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../common/assets/fonts/pretendard/Pretendard-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../common/assets/fonts/pretendard/Pretendard-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--pretandard-variable",
+});
 
 export const metadata = {
   title: "로컬무드",
@@ -17,7 +51,7 @@ export default async function RootLayout({
   const myCurationData = await getMyCuration();
   return (
     <html lang="en" className="width-[100%] height-[100%]">
-      <body className="w-[100%] h-[100%]">
+      <body className={twMerge("w-[100%] h-[100%]", globalFont.variable)}>
         <main className="w-[100%] h-[100%] fixed overflow-hidden">
           <RecoilRootLayout>
             {children}

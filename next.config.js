@@ -1,4 +1,8 @@
-module.exports = {
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
+
+const nextConfig = {
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
@@ -7,16 +11,11 @@ module.exports = {
 
     return config;
   },
-  reactStrictMode: true,
   images: {
-    deviceSizes: [640, 785],
-    imageSizes: [16, 48, 96, 128, 256, 385],
-    domains: [
-      "media.istockphoto.com",
-      "cdn.pixabay.com",
-      "a.cdn-hotels.com",
-      "github.com",
-      "localmood-bucket.s3.amazonaws.com",
-    ],
+    deviceSizes: [640, 750, 828],
+    imageSizes: [96, 384],
+    domains: ["github.com", "localmood-bucket.s3.amazonaws.com"],
   },
 };
+
+module.exports = withBundleAnalyzer(nextConfig);

@@ -2,6 +2,7 @@
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "./slick-theme.css";
 import Image from "next/image";
 import Slider from "react-slick";
 import { useEffect, useState } from "react";
@@ -40,7 +41,8 @@ export default function PlaceDetailImageSlider({
               alt="공간 상세 사진"
               fill
               sizes="100vw"
-              priority
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
             />
           </div>
         ))}

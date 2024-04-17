@@ -88,7 +88,7 @@ export default function PlaceInfoCardTop({
       >
         <div
           className={twMerge(
-            "w-full h-[16rem] relative",
+            "w-full h-[16rem]",
             direction === "horizontal" && "w-[8rem] h-[8rem] mr-[1.6rem]"
           )}
         >
@@ -104,11 +104,14 @@ export default function PlaceInfoCardTop({
           <Image
             src={imgUrl ? imgUrl : RecordNoImage}
             alt="공간 사진"
-            fill
+            width={335}
+            height={160}
             placeholder="blur"
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
-            sizes="40vw"
-            className={twMerge("rounded-[8px] object-cover", imgClassName)}
+            className={twMerge(
+              "rounded-[8px] object-cover w-full h-full",
+              imgClassName
+            )}
           />
         </div>
         <div
