@@ -1,5 +1,4 @@
 import { twMerge } from "tailwind-merge";
-import dynamic from "next/dynamic";
 import {
   PlaceInfoCardBottomProps,
   PlaceInfoCardTopProps,
@@ -7,7 +6,7 @@ import {
 import SliderLayout from "@common/components/layout/SliderLayout/SliderLayout";
 import GetRandomPlaces from "@feature/place/queries/getRandomPlaces";
 import SliderHashTag from "@feature/home/components/molecules/SliderHashTag";
-const PlaceInfoCard = dynamic(() => import("../PlaceInfoCard/PlaceInfoCard"));
+import PlaceInfoCard from "../PlaceInfoCard/PlaceInfoCard";
 
 export interface PlaceHomeSliderProps {
   mainText: string;
@@ -29,7 +28,7 @@ export default async function PlaceHomeSlider({
       <SliderHashTag mainText={mainText} subText={subText} />
       <SliderLayout className="mt-[1.6rem]">
         {randomPlace[mainText].map(
-          (data: PlaceInfoCardTopProps & PlaceInfoCardBottomProps) => (
+          (data: PlaceInfoCardTopProps & PlaceInfoCardBottomProps, i) => (
             <PlaceInfoCard
               key={data.id}
               {...data}

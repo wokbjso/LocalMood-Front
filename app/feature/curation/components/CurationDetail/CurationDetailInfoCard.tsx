@@ -90,7 +90,7 @@ const CurationDetailInfoCard = forwardRef<
                   src={url}
                   alt="장소 사진"
                   fill
-                  sizes="100vw,90vw"
+                  sizes="100vw"
                   placeholder="blur"
                   blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
                   className="rounded-[8px] object-cover"

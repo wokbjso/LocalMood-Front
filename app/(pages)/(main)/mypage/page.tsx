@@ -29,15 +29,13 @@ export default async function MyPage() {
       >
         <>
           <section className="flex pt-[1.2rem] mb-[3.6rem]">
-            <div className="w-[7.2rem] h-[7.2rem] relative mr-[1.6rem]">
-              <Image
-                src={"/default_user.png"}
-                alt="프로필 사진"
-                fill
-                sizes="10vw"
-                className="rounded-full"
-              />
-            </div>
+            <Image
+              src={"/default_user.png"}
+              alt="프로필 사진"
+              width={72}
+              height={72}
+              className="rounded-full mr-[1.6rem]"
+            />
             <div className="flex flex-col justify-center">
               <p className="text-text-gray-8 body2-medium mb-[0.8rem]">
                 공간 기록을 남겨 타이틀을 얻어보세요!
