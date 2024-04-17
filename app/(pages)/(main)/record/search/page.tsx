@@ -11,7 +11,6 @@ export default async function RecordSearchPage({
   const textSearchPlaceData =
     searchParams.search_query &&
     (await getTextSearchPlaceData(searchParams.search_query));
-  console.log(textSearchPlaceData);
   return (
     <div className="w-[100%] h-[100%]">
       <BasicTopBar color="#9E9E9E">

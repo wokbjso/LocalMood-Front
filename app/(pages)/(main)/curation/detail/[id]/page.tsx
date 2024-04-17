@@ -1,5 +1,6 @@
 import GetCurationDetail from "@feature/curation/queries/getCurationDetail";
 import CurationDetail from "@feature/curation/components/CurationDetail/CurationDetail";
+import Script from "next/script";
 
 export default async function CurationDetailPage({
   params: { id },
