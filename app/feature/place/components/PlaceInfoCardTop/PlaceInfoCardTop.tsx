@@ -104,8 +104,10 @@ export default function PlaceInfoCardTop({
           <Image
             src={imgUrl ? imgUrl : RecordNoImage}
             alt="공간 사진"
-            width={335}
-            height={160}
+            width={
+              direction === "horizontal" ? 80 : size === "small" ? 163 : 335
+            }
+            height={direction === "horizontal" ? 80 : 160}
             placeholder="blur"
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
             className={twMerge(
