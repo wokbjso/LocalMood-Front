@@ -1,5 +1,4 @@
 import { getSession } from "@common/utils/session/getSession";
-import { NextRequest, NextResponse } from "next/server";
 import { SearchPlaceResponse } from "./dto/search-type";
 
 export async function getTextSearchPlaceData(

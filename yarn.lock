@@ -2027,12 +2027,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/bundle-analyzer@npm:^14.1.3":
-  version: 14.1.3
-  resolution: "@next/bundle-analyzer@npm:14.1.3"
+"@next/bundle-analyzer@npm:^14.2.1":
+  version: 14.2.1
+  resolution: "@next/bundle-analyzer@npm:14.2.1"
   dependencies:
     webpack-bundle-analyzer: 4.10.1
-  checksum: 28158ca44559f23c2f592f7f940586c0e17d485275b7a85562cd279b8cbec1af5c9238daa953f6dc7b23d5f8b31acc996a925162140740a2fbe14fb617c7acef
+  checksum: d4d712694c257a03757c4b98b4166d84cbecfe52626e52cc34e488f8666e72bdf1361959b260a158ca5e8de2788938798d9e219440f54a52cfc8397fecb1459a
   languageName: node
   linkType: hard
 
@@ -6619,7 +6619,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cross-spawn@npm:^7.0.0, cross-spawn@npm:^7.0.2, cross-spawn@npm:^7.0.3":
+"cross-env@npm:^7.0.3":
+  version: 7.0.3
+  resolution: "cross-env@npm:7.0.3"
+  dependencies:
+    cross-spawn: ^7.0.1
+  bin:
+    cross-env: src/bin/cross-env.js
+    cross-env-shell: src/bin/cross-env-shell.js
+  checksum: 26f2f3ea2ab32617f57effb70d329c2070d2f5630adc800985d8b30b56e8bf7f5f439dd3a0358b79cee6f930afc23cf8e23515f17ccfb30092c6b62c6b630a79
+  languageName: node
+  linkType: hard
+
+"cross-spawn@npm:^7.0.0, cross-spawn@npm:^7.0.1, cross-spawn@npm:^7.0.2, cross-spawn@npm:^7.0.3":
   version: 7.0.3
   resolution: "cross-spawn@npm:7.0.3"
   dependencies:
@@ -10133,7 +10145,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "localmood-front@workspace:."
   dependencies:
-    "@next/bundle-analyzer": ^14.1.3
+    "@next/bundle-analyzer": ^14.2.1
     "@opentelemetry/api": ^1.8.0
     "@storybook/addon-essentials": 7.6.6
     "@storybook/addon-interactions": 7.6.6
@@ -10153,6 +10165,7 @@ __metadata:
     "@types/react-transition-group": ^4.4.10
     autoprefixer: ^10.0.1
     chromatic: ^10.2.0
+    cross-env: ^7.0.3
     eslint: ^8
     eslint-config-next: 14.0.4
     jose: ^5.2.3
