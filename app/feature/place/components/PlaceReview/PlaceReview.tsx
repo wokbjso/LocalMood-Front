@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
 import GraphUpDownVote from "@common/components/ui/graph/GraphUpDownVote/GraphUpDownVote";
-import { CAFE_TAG_CATEGORY } from "@feature/place/constants/place-tag-category";
 import { twMerge } from "tailwind-merge";
+import { PLACE_CATEGORY } from "@feature/place/constants/place-tag-category";
 
 interface PlaceReviewProps {
   image: string[];
@@ -57,7 +57,7 @@ export default function PlaceReview({
             </div>
           </div>
           <div>
-            {Object.keys(CAFE_TAG_CATEGORY).map((category, i) => (
+            {Object.keys(PLACE_CATEGORY).map((category, i) => (
               <div
                 key={category}
                 className={twMerge(
@@ -66,7 +66,7 @@ export default function PlaceReview({
                 )}
               >
                 <span className="mr-[2rem] text-text-gray-7 body2-medium">
-                  {keyword[category] && CAFE_TAG_CATEGORY[category]}
+                  {keyword[category] && PLACE_CATEGORY[category]}
                 </span>
                 {category === "purpose" ? (
                   <Chip>{purpose}</Chip>

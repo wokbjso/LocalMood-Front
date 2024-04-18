@@ -1,13 +1,13 @@
 import Divider from "@common/components/ui/divider/Divider";
 import PlaceDetailInfo from "@feature/place/components/PlaceDetail/organisms/PlaceDetailInfo";
-import PlaceDetailKeywordEvaluation from "@feature/place/components/PlaceDetail/PlaceDetailKeywordEvaluation";
-import PlaceDetailKeywordSummary from "@feature/place/components/PlaceDetail/PlaceDetailKeywordSummary";
 import GetPlaceDetail from "@feature/place/queries/getPlaceDetail";
 import PlaceDetailTopBar from "@feature/place/components/PlaceDetail/organisms/PlaceDetailTopBar";
 import PlaceInfoCard from "@feature/place/components/PlaceInfo/molecules/PlaceInfoCard";
 import SliderLayout from "@common/components/layout/SliderLayout/SliderLayout";
 import CurationCardDark from "@feature/curation/components/CurationCardDark/CurationCardDark";
 import PlaceImageSlider from "@feature/place/components/PlaceDetail/organisms/PlaceImageSlider";
+import PlaceKeywordEvaluation from "@feature/place/components/PlaceDetail/PlaceKeywordEvaluation";
+import PlaceKeywordSummary from "@feature/place/components/PlaceDetail/organisms/PlaceKeywordSummary";
 
 //Page
 export default async function PlaceDetailPage({
@@ -40,7 +40,7 @@ export default async function PlaceDetailPage({
         dishDesc={detailData.info.dishDesc}
       />
       <Divider className="h-[0.4rem] mt-[2rem] mb-[3.6rem] bg-line-gray-3" />
-      <PlaceDetailKeywordSummary
+      <PlaceKeywordSummary
         mainText="유저들이 기록한 키워드 요약"
         subText="이 공간을 가장 잘 설명하는 키워드에요"
         purpose={detailData.info.purpose}
@@ -48,7 +48,7 @@ export default async function PlaceDetailPage({
         interior={detailData.info.interior && detailData.info.interior}
         music={detailData.info.music}
       />
-      <PlaceDetailKeywordEvaluation
+      <PlaceKeywordEvaluation
         mainText="키워드 평가"
         id={detailData.info.id}
         positiveEval={

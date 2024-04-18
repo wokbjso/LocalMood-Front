@@ -1,19 +1,10 @@
-export const CAFE_TAG_CATEGORY: {
+export const PLACE_CATEGORY: {
   [key: string]: string;
 } = {
-  purpose: "방문목적",
+  purpose: "방문 목적",
   interior: "인테리어",
-  mood: "공간무드",
-  music: "배경음악",
-};
-
-export const RESTAURANT_TAG_CATEGORY: {
-  [key: string]: string;
-} = {
-  purpose: "방문목적",
-  bestMenu: "대표메뉴",
-  mood: "공간무드",
-  music: "배경음악",
+  mood: "공간 무드",
+  music: "배경 음악",
 };
 
 export const PLACE_CAFE_PURPOSE = [

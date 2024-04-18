@@ -4,14 +4,12 @@ import ChatIcon from "@common/assets/icons/chat/ChatIcon";
 import HeartIcon from "@common/assets/icons/heart/HeartIcon";
 import UserDouble from "@common/assets/icons/user/UserDouble";
 
-interface PlaceDetailPurposeBoxProps {
+interface PlacePurposeBoxProps {
   purpose: string;
 }
 
 //Molecule
-export default function PlaceDetailPurposeBox({
-  purpose,
-}: PlaceDetailPurposeBoxProps) {
+export default function PlacePurposeBox({ purpose }: PlacePurposeBoxProps) {
   const returnPurposeIcon = (purpose: string) => {
     if (purpose === "연인과의 데이트") return <HeartIcon color="#F670C7" />;
     if (purpose === "친구와의 만남" || purpose === "친구/가족과의 만남")

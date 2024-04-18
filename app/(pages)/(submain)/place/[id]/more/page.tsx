@@ -1,7 +1,7 @@
 import Divider from "@common/components/ui/divider/Divider";
 import GraphGage from "@common/components/ui/graph/GraphGage/GraphGage";
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
-import PlaceDetailMoreReviews from "@feature/place/components/PlaceDetail/PlaceDetailMoreReviews";
+import PlaceReviews from "@feature/place/components/PlaceDetail/PlaceReviews";
 import {
   PLACE_CAFE_PURPOSE,
   PLACE_RESTAURANT_PURPOSE,
@@ -50,10 +50,7 @@ export default async function PlaceDetailMorePage({
         </div>
       </section>
       <Divider className="bg-line-gray-3 h-[0.4rem]" />
-      <PlaceDetailMoreReviews
-        type={detailData.info.type}
-        reviews={reviewData.reviews}
-      />
+      <PlaceReviews type={detailData.info.type} reviews={reviewData.reviews} />
     </div>
   );
 }

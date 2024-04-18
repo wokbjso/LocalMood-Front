@@ -3,7 +3,7 @@ import Button from "@common/components/ui/buttons/Button/Button";
 import GraphUpDownVote from "@common/components/ui/graph/GraphUpDownVote/GraphUpDownVote";
 import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
 
-export default function PlaceDetailKeywordEvaluation({
+export default function PlaceKeywordEvaluation({
   id,
   mainText,
   positiveEval,
