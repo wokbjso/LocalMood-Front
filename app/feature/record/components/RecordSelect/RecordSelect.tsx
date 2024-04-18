@@ -28,6 +28,7 @@ export default function RecordSelect({ id, type, name }: RecordSelectProps) {
     restaurantKeywordData,
     hasSomeData,
     checkJump,
+    checkPurposeChosen,
     handlers,
   } = UseKeyword(type);
 
@@ -164,11 +165,20 @@ export default function RecordSelect({ id, type, name }: RecordSelectProps) {
             이전
           </Button>
         )}
-        {indicatorIndex < 2 && (
+        {indicatorIndex === 0 && (
+          <Button
+            onClick={handleBtnForwardClicked}
+            disabled={!checkPurposeChosen()}
+          >
+            다음
+          </Button>
+        )}
+        {indicatorIndex > 0 && indicatorIndex < 2 && (
           <Button onClick={handleBtnForwardClicked}>
             {checkJump() ? "건너뛰기" : "다음"}
           </Button>
         )}
+
         {indicatorIndex === 2 && (
           <Button onClick={handleBtnForwardClicked}>기록 올리기</Button>
         )}
