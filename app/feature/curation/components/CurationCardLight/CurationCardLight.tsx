@@ -72,7 +72,7 @@ export default function CurationCardLight({
   };
 
   const handleScrapAddClick = async () => {
-    if (!validateLoggedIn()) {
+    if ((await validateLoggedIn()) === false) {
       location.replace("/login");
     } else {
       if (isFetching) {
@@ -97,7 +97,7 @@ export default function CurationCardLight({
   };
 
   const handleScrapDeleteClick = async () => {
-    if (!validateLoggedIn()) {
+    if ((await validateLoggedIn()) === false) {
       location.replace("/login");
     } else {
       if (isFetching) {

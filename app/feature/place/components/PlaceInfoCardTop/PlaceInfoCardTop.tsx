@@ -48,7 +48,7 @@ export default function PlaceInfoCardTop({
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
     e.preventDefault();
-    if (!validateLoggedIn()) {
+    if ((await validateLoggedIn()) === false) {
       location.replace("/login");
     } else {
       setMyCurationModal({
