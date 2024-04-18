@@ -1,11 +1,11 @@
 "use client";
 
-import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import FormInput from "@common/components/ui/input/FormInput/FormInput";
 import Button from "@common/components/ui/buttons/Button/Button";
 import UseForm from "@feature/auth/useForm";
 import { LoginFormState, RegisterFormState } from "@feature/auth/type";
 import { useRouter } from "next/navigation";
+import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -39,11 +39,11 @@ export default function RegisterPage() {
 
   return (
     <div className="w-[100%] h-[100%] px-[2rem]">
-      <BasicTopBar color="#9E9E9E" className="px-0 mb-[4.8rem]">
+      <ArrowBackTopBar color="#9E9E9E" className="px-0 mb-[4.8rem]">
         <div className="w-full flex justify-start items-center text-black headline3">
           회원가입
         </div>
-      </BasicTopBar>
+      </ArrowBackTopBar>
       <form onSubmit={handlers.submit}>
         <FormInput
           label="아이디 (이메일)"
