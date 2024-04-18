@@ -9,8 +9,7 @@ import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
 import PlaceDetailInfoMore from "./PlaceDetailInfoMore";
 import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
-import PlaceTypeAndAddress from "../PlaceInfo/PlaceTypeAndAddress";
-import PlaceName from "../PlaceInfo/PlaceName";
+import PlaceTypeAndAddress from "../../PlaceInfo/molecules/PlaceTypeAndAddress";
 
 //Organism
 export default function PlaceDetailInfo({
@@ -58,7 +57,7 @@ export default function PlaceDetailInfo({
   return (
     <>
       <div className="flex-col px-[2rem] relative">
-        <PlaceName name={name} />
+        <div className="headline0 mb-[0.8rem]">{name}</div>{" "}
         {isScraped ? (
           <ScrapFill
             color="#9E9E9E"

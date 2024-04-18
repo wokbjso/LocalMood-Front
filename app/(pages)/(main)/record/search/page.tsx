@@ -1,5 +1,5 @@
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
-import PlaceInfoCard from "@feature/place/components/PlaceInfoCard/PlaceInfoCard";
+import PlaceInfoCard from "@feature/place/components/PlaceInfo/molecules/PlaceInfoCard";
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import { getTextSearchPlaceData } from "@feature/search/queries/getTextSearchPlaceData";
 

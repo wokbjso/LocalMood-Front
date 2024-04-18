@@ -10,7 +10,7 @@ import {
 } from "@feature/place/type";
 import RecordNoImage from "@common/assets/images/RecordNoImage.png";
 import { sliceText } from "@common/utils/text/slice-text";
-import PlaceInfoCardTopScrapIcon from "./PlaceInfoCardTopScrapIcon";
+import PlaceInfoCardTopScrapIcon from "../atoms/PlaceInfoCardTopScrapIcon";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";

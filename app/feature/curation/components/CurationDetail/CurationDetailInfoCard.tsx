@@ -4,7 +4,7 @@ import Image from "next/image";
 import { forwardRef } from "react";
 import { CurationPlaceProps } from "@feature/curation/type";
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
-import PlaceInfoCardBottom from "@feature/place/components/PlaceInfoCardBottom/PlaceInfoCardBottom";
+import PlaceInfoCardBottom from "@feature/place/components/PlaceInfo/molecules/PlaceInfoCardBottom";
 import SliderLayout from "@common/components/layout/SliderLayout/SliderLayout";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";

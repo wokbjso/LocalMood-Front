@@ -6,7 +6,7 @@ import {
 import SliderLayout from "@common/components/layout/SliderLayout/SliderLayout";
 import GetRandomPlaces from "@feature/place/queries/getRandomPlaces";
 import SliderHashTag from "@feature/home/components/molecules/SliderHashTag";
-import PlaceInfoCard from "../../../place/components/PlaceInfoCard/PlaceInfoCard";
+import PlaceInfoCard from "../../../place/components/PlaceInfo/molecules/PlaceInfoCard";
 
 export interface HomePlaceSliderProps {
   mainText: string;

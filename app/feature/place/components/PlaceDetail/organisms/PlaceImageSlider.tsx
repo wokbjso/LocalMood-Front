@@ -2,12 +2,12 @@
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./slick-theme.css";
+import "../slick-theme.css";
 import Image from "next/image";
 import Slider from "react-slick";
 import { useEffect, useState } from "react";
 import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
-import PlaceImageSliderCount from "./PlaceImageSliderCount";
+import PlaceImageSliderCount from "../molecules/PlaceImageSliderCount";
 
 //Organism
 export default function PlaceImageSlider({

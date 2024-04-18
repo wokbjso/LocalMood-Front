@@ -3,8 +3,8 @@ import {
   PlaceInfoCardBottomProps,
   PlaceInfoCardTopProps,
 } from "@feature/place/type";
-import PlaceInfoCardTop from "../PlaceInfoCardTop/PlaceInfoCardTop";
-import PlaceInfoCardBottom from "../PlaceInfoCardBottom/PlaceInfoCardBottom";
+import PlaceInfoCardTop from "./PlaceInfoCardTop";
+import PlaceInfoCardBottom from "./PlaceInfoCardBottom";
 
 //Molecule
 export default function PlaceInfoCard({

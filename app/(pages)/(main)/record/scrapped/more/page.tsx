@@ -1,4 +1,4 @@
-import PlaceInfoCard from "@feature/place/components/PlaceInfoCard/PlaceInfoCard";
+import PlaceInfoCard from "@feature/place/components/PlaceInfo/molecules/PlaceInfoCard";
 import GetPlaceScrapped from "@feature/place/queries/getPlaceScrapped";
 import PlaceRecordTopBar from "@feature/record/components/PlaceRecordTopBar/PlaceRecordTopBar";
 
