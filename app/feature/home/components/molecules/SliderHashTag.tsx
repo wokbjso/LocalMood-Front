@@ -1,10 +1,10 @@
-import { PlaceHomeSliderProps } from "@feature/home/components/organisms/HomePlaceSlider";
+import { HomePlaceSliderProps } from "../organisms/HomePlaceSlider";
 
 //Molecule
 export default function SliderHashTag({
   mainText,
   subText,
-}: PlaceHomeSliderProps) {
+}: HomePlaceSliderProps) {
   return (
     <>
       <span className="text-primary-normal headline2"># </span>
