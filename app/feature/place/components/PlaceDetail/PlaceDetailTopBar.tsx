@@ -18,6 +18,7 @@ interface PlaceDetailTopBar {
   className: string;
 }
 
+//Organism
 export default function PlaceDetailTopBar({
   type,
   address,
@@ -26,17 +27,17 @@ export default function PlaceDetailTopBar({
   purpose,
   className,
 }: PlaceDetailTopBar) {
+  const pathname = usePathname();
+
   const setToast = useSetRecoilState(toastInfoSelector);
 
   const { isOpened, openMap, closeMap } = UseMap();
 
-  const pathname = usePathname();
-
-  const handleMapOpen = (state: boolean) => {
+  const handleMapIconClick = () => {
     openMap();
   };
 
-  const handleCopyLinkClick = () => {
+  const handleLinkIconClick = () => {
     copyLink(pathname);
     setToast({
       open: true,
@@ -47,7 +48,7 @@ export default function PlaceDetailTopBar({
   return (
     <>
       <ArrowBackTopBar className={className}>
-        <div className="w-full flex justify-end items-center relative">
+        <div className="flex justify-end items-center">
           <MapIcon
             mapInfo={{
               isOpened,
@@ -56,9 +57,9 @@ export default function PlaceDetailTopBar({
               className: "fixed top-[7rem] left-0 z-20",
             }}
             color="white"
-            onClick={() => handleMapOpen(true)}
+            onClick={handleMapIconClick}
           />
-          <LinkIcon className="ml-[1.6rem]" onClick={handleCopyLinkClick} />
+          <LinkIcon className="ml-[1.6rem]" onClick={handleLinkIconClick} />
         </div>
       </ArrowBackTopBar>
     </>
