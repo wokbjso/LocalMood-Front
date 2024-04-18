@@ -6,8 +6,8 @@ import GetPlaceDetail from "@feature/place/queries/getPlaceDetail";
 import PlaceDetailTopBar from "@feature/place/components/PlaceDetail/PlaceDetailTopBar";
 import PlaceInfoCard from "@feature/place/components/PlaceInfoCard/PlaceInfoCard";
 import SliderLayout from "@common/components/layout/SliderLayout/SliderLayout";
-import PlaceDetailImageSlider from "@feature/place/components/PlaceDetail/PlaceDetailImageSlider";
 import CurationCardDark from "@feature/curation/components/CurationCardDark/CurationCardDark";
+import PlaceImageSlider from "@feature/place/components/PlaceDetail/PlaceImageSlider";
 
 //Page
 export default async function PlaceDetailPage({
@@ -27,7 +27,7 @@ export default async function PlaceDetailPage({
         imgUrl={detailData.info.imgUrlList[0]}
         className="absolute top-[1.2rem] z-10"
       />
-      <PlaceDetailImageSlider imgUrlList={detailData.info.imgUrlList} />
+      <PlaceImageSlider imgUrlList={detailData.info.imgUrlList} />
       <PlaceDetailInfo
         id={detailData.info.id}
         name={detailData.info.name}

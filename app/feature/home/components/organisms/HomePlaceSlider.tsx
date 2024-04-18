@@ -6,20 +6,20 @@ import {
 import SliderLayout from "@common/components/layout/SliderLayout/SliderLayout";
 import GetRandomPlaces from "@feature/place/queries/getRandomPlaces";
 import SliderHashTag from "@feature/home/components/molecules/SliderHashTag";
-import PlaceInfoCard from "../PlaceInfoCard/PlaceInfoCard";
+import PlaceInfoCard from "../../../place/components/PlaceInfoCard/PlaceInfoCard";
 
-export interface PlaceHomeSliderProps {
+export interface HomePlaceSliderProps {
   mainText: string;
   subText: string;
   className?: string;
 }
 
 //Organism
-export default async function PlaceHomeSlider({
+export default async function HomePlaceSlider({
   mainText,
   subText,
   className,
-}: PlaceHomeSliderProps) {
+}: HomePlaceSliderProps) {
   const randomPlace: {
     [key: string]: (PlaceInfoCardTopProps & PlaceInfoCardBottomProps)[];
   } = await GetRandomPlaces();

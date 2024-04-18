@@ -1,4 +1,4 @@
-import { PlaceHomeSliderProps } from "@feature/place/components/PlaceHomeSlider/PlaceHomeSlider";
+import { PlaceHomeSliderProps } from "@feature/home/components/organisms/HomePlaceSlider";
 
 //Molecule
 export default function SliderHashTag({
