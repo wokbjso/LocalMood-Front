@@ -5,11 +5,11 @@ import { useState } from "react";
 import ConfirmModal from "@common/components/ui/modal/ConfirmModal";
 
 export default function LogoutModal({
-  handleFn,
+  closeModal,
 }: {
-  handleFn: (state: boolean) => void;
+  closeModal: () => void;
 }) {
-  const { ref } = UseOutsideClick<HTMLDivElement>(true, handleFn);
+  const { ref } = UseOutsideClick<HTMLDivElement>(true, closeModal);
   const [logoutConfirmModalOpen, setLogoutConfirmModalOpen] = useState(false);
 
   const handleLogoutClick = () => {

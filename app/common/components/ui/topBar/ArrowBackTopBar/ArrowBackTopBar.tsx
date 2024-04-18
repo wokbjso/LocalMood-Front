@@ -5,17 +5,20 @@ import { usePathname, useRouter } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 import { TopBarProps } from "../type";
 
-export default function BasicTopBar({
+//Molecule
+export default function ArrowBackTopBar({
   color = "white",
   children,
   className,
 }: TopBarProps) {
   const pathname = usePathname();
   const router = useRouter();
+
   const arrowBackClicked = () => {
     if (pathname.slice(1) === "search") router.replace("/");
     else router.back();
   };
+
   return (
     <div
       className={twMerge(
@@ -24,7 +27,7 @@ export default function BasicTopBar({
       )}
     >
       <ArrowBack color={color} onClick={arrowBackClicked} />
-      {children && children}
+      {children}
     </div>
   );
 }

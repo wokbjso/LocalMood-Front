@@ -1,13 +1,13 @@
 import Divider from "@common/components/ui/divider/Divider";
-import PlaceDetailInfo from "@feature/place/components/PlaceDetail/PlaceDetailInfo";
-import PlaceDetailKeywordEvaluation from "@feature/place/components/PlaceDetail/PlaceDetailKeywordEvaluation";
-import PlaceDetailKeywordSummary from "@feature/place/components/PlaceDetail/PlaceDetailKeywordSummary";
+import PlaceDetailInfo from "@feature/place/components/PlaceDetail/organisms/PlaceDetailInfo";
 import GetPlaceDetail from "@feature/place/queries/getPlaceDetail";
-import PlaceDetailTopBar from "@feature/place/components/PlaceDetail/PlaceDetailTopBar";
-import PlaceInfoCard from "@feature/place/components/PlaceInfoCard/PlaceInfoCard";
+import PlaceDetailTopBar from "@feature/place/components/PlaceDetail/organisms/PlaceDetailTopBar";
+import PlaceInfoCard from "@feature/place/components/PlaceInfo/molecules/PlaceInfoCard";
 import SliderLayout from "@common/components/layout/SliderLayout/SliderLayout";
-import PlaceDetailImageSlider from "@feature/place/components/PlaceDetail/PlaceDetailImageSlider";
 import CurationCardDark from "@feature/curation/components/CurationCardDark/CurationCardDark";
+import PlaceImageSlider from "@feature/place/components/PlaceDetail/organisms/PlaceImageSlider";
+import PlaceKeywordEvaluation from "@feature/place/components/PlaceDetail/PlaceKeywordEvaluation";
+import PlaceKeywordSummary from "@feature/place/components/PlaceDetail/organisms/PlaceKeywordSummary";
 
 //Page
 export default async function PlaceDetailPage({
@@ -27,7 +27,7 @@ export default async function PlaceDetailPage({
         imgUrl={detailData.info.imgUrlList[0]}
         className="absolute top-[1.2rem] z-10"
       />
-      <PlaceDetailImageSlider placeImages={detailData.info.imgUrlList} />
+      <PlaceImageSlider imgUrlList={detailData.info.imgUrlList} />
       <PlaceDetailInfo
         id={detailData.info.id}
         name={detailData.info.name}
@@ -37,11 +37,10 @@ export default async function PlaceDetailPage({
         isScraped={detailData.info.isScraped}
         visitorNum={detailData.info.visitorNum}
         optionalService={detailData.info.optionalService}
-        dish={detailData.info.dish}
         dishDesc={detailData.info.dishDesc}
       />
       <Divider className="h-[0.4rem] mt-[2rem] mb-[3.6rem] bg-line-gray-3" />
-      <PlaceDetailKeywordSummary
+      <PlaceKeywordSummary
         mainText="유저들이 기록한 키워드 요약"
         subText="이 공간을 가장 잘 설명하는 키워드에요"
         purpose={detailData.info.purpose}
@@ -49,9 +48,9 @@ export default async function PlaceDetailPage({
         interior={detailData.info.interior && detailData.info.interior}
         music={detailData.info.music}
       />
-      <PlaceDetailKeywordEvaluation
-        id={detailData.info.id}
+      <PlaceKeywordEvaluation
         mainText="키워드 평가"
+        id={detailData.info.id}
         positiveEval={
           detailData.info.positiveEval ? detailData.info.positiveEval[0] : null
         }

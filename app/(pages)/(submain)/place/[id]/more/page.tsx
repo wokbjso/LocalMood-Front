@@ -1,7 +1,7 @@
 import Divider from "@common/components/ui/divider/Divider";
 import GraphGage from "@common/components/ui/graph/GraphGage/GraphGage";
-import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
-import PlaceDetailMoreReviews from "@feature/place/components/PlaceDetail/PlaceDetailMoreReviews";
+import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
+import PlaceReviews from "@feature/place/components/PlaceDetail/PlaceReviews";
 import {
   PLACE_CAFE_PURPOSE,
   PLACE_RESTAURANT_PURPOSE,
@@ -18,7 +18,7 @@ export default async function PlaceDetailMorePage({
   const detailData = await GetPlaceDetail(id);
   return (
     <div className="w-[100%] h-[100%] pb-[14.2rem] overflow-auto">
-      <BasicTopBar color="#9E9E9E" className="" />
+      <ArrowBackTopBar color="#9E9E9E" className="" />
       <section className="px-[2rem] mt-[1.2rem]">
         <div className="headline1 text-black">
           {detailData.info.name}의 공간기록
@@ -50,10 +50,7 @@ export default async function PlaceDetailMorePage({
         </div>
       </section>
       <Divider className="bg-line-gray-3 h-[0.4rem]" />
-      <PlaceDetailMoreReviews
-        type={detailData.info.type}
-        reviews={reviewData.reviews}
-      />
+      <PlaceReviews type={detailData.info.type} reviews={reviewData.reviews} />
     </div>
   );
 }

@@ -17,26 +17,28 @@ interface RelatedCurationProps {
   isScraped: boolean;
 }
 
+export interface PlaceDetailInfoProps {
+  optionalService: string | undefined;
+  visitorNum: string | undefined;
+  id: number;
+  name: string;
+  imgUrlList: string[];
+  address: string;
+  type: string;
+  subType: string;
+  dish: string;
+  dishDesc: string;
+  purpose: string[];
+  interior?: string[];
+  mood: string;
+  music: string;
+  positiveEval: any[] | null;
+  negativeEval: any[] | null;
+  isScraped: boolean;
+}
+
 export interface PlaceDetailResponse {
   similarSpaceList: SimilarPlaceProps[];
   relatedCurationList: RelatedCurationProps[];
-  info: {
-    optionalService: string | undefined;
-    visitorNum: string | undefined;
-    id: number;
-    name: string;
-    imgUrlList: string[];
-    address: string;
-    type: string;
-    subType: string;
-    dish: string;
-    dishDesc: string;
-    purpose: string[];
-    interior?: string[];
-    mood: string;
-    music: string;
-    positiveEval: any[] | null;
-    negativeEval: any[] | null;
-    isScraped: boolean;
-  };
+  info: PlaceDetailInfoProps;
 }

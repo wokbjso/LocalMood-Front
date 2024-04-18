@@ -7,11 +7,11 @@ import SelectEvaluation from "@feature/record/components/Evaluation/SelectEvalua
 import UseKeyword from "@feature/record/components/Keyword/useKeyword";
 import SelectPhoto from "@feature/record/components/PhotoUpload/SelectPhoto";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import Button from "@common/components/ui/buttons/Button/Button";
 import { cloneElement } from "react";
 import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
 import revalidatePlaceReview from "@feature/record/actions/revalidatePlaceReview";
+import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
 
 interface RecordSelectProps {
   id: number;
@@ -28,6 +28,7 @@ export default function RecordSelect({ id, type, name }: RecordSelectProps) {
     restaurantKeywordData,
     hasSomeData,
     checkJump,
+    checkPurposeChosen,
     handlers,
   } = UseKeyword(type);
 
@@ -96,7 +97,7 @@ export default function RecordSelect({ id, type, name }: RecordSelectProps) {
   };
   return (
     <div className="w-[100%] h-[100%] overflow-auto relative">
-      <BasicTopBar color="#9E9E9E" className="fixed z-20" />
+      <ArrowBackTopBar color="#9E9E9E" className="fixed z-20" />
       <TransitionGroup
         component={null}
         childFactory={(child) => {
@@ -164,11 +165,20 @@ export default function RecordSelect({ id, type, name }: RecordSelectProps) {
             이전
           </Button>
         )}
-        {indicatorIndex < 2 && (
+        {indicatorIndex === 0 && (
+          <Button
+            onClick={handleBtnForwardClicked}
+            disabled={!checkPurposeChosen()}
+          >
+            다음
+          </Button>
+        )}
+        {indicatorIndex > 0 && indicatorIndex < 2 && (
           <Button onClick={handleBtnForwardClicked}>
             {checkJump() ? "건너뛰기" : "다음"}
           </Button>
         )}
+
         {indicatorIndex === 2 && (
           <Button onClick={handleBtnForwardClicked}>기록 올리기</Button>
         )}

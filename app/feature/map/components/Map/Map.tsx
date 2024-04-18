@@ -15,14 +15,14 @@ interface MapProps {
     imgUrl: string;
   }[];
   zoom?: number;
-  handleMapOpen: (state: boolean) => void;
+  closeMap: () => void;
   className?: string;
 }
 
 export default function Map({
   placeData,
   zoom = 17,
-  handleMapOpen,
+  closeMap,
   className,
 }: MapProps) {
   const [centerX, setCenterX] = useState<number>(0);
@@ -30,7 +30,7 @@ export default function Map({
   const mapRef = useRef<HTMLDivElement>(null);
   const { ref: outsideClickRef } = UseOutsideClick<HTMLDivElement>(
     true,
-    handleMapOpen
+    closeMap
   );
   const [mapPlacesData, setMapPlacesData] = useState<
     {
@@ -131,7 +131,7 @@ export default function Map({
 
   return (
     <>
-      <div className="w-[100%] h-[100%] bg-black opacity-[0.5] fixed top-0 right-0 z-10" />
+      <div className="w-[100%] h-[100%] bg-black opacity-[0.5] fixed top-0 right-0 z-20" />
       <div className={twMerge("w-[100%] h-[100%]", className)}>
         <div
           ref={(el) => assignMultipleRefs(el, [outsideClickRef, mapRef])}

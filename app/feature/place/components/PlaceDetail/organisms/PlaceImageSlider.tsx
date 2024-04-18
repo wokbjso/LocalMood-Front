@@ -2,18 +2,17 @@
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./slick-theme.css";
+import "../slick-theme.css";
 import Image from "next/image";
 import Slider from "react-slick";
 import { useEffect, useState } from "react";
+import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
+import PlaceImageSliderCount from "../molecules/PlaceImageSliderCount";
 
-interface PlaceDetailPhotoSliderProps {
-  placeImages: string[];
-}
-
-export default function PlaceDetailImageSlider({
-  placeImages,
-}: PlaceDetailPhotoSliderProps) {
+//Organism
+export default function PlaceImageSlider({
+  imgUrlList,
+}: Pick<PlaceDetailInfoProps, "imgUrlList">) {
   const [imgIndex, setImgIndex] = useState(0);
   const sliderSettings = {
     speed: 500,
@@ -27,11 +26,9 @@ export default function PlaceDetailImageSlider({
   }, []);
   return (
     <div className="relative w-[100%] overflow-hidden">
-      <div className="flex justify-center items-center absolute w-[3.9rem] h-[2rem] rounded-[1000px] z-10 bottom-[3.9rem] right-[2rem] bg-black opacity-[0.8] text-white body3-medium">
-        {imgIndex + 1}/2
-      </div>
+      <PlaceImageSliderCount imgIndex={imgIndex} />
       <Slider {...sliderSettings}>
-        {placeImages.map((image, i) => (
+        {imgUrlList.map((image, i) => (
           <div
             key={image + i}
             className="w-[100%] h-[30rem] mb-[1.5rem] relative"

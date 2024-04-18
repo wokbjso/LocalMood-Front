@@ -18,7 +18,7 @@ interface CurationMenuModalProps {
   triggeredAt: "card" | "topBar";
   curationId: number;
   hasCopyLink?: boolean;
-  handleModalFn: (state: boolean) => void;
+  closeModal: () => void;
 }
 
 export default function CurationMenuModal({
@@ -26,10 +26,10 @@ export default function CurationMenuModal({
   triggeredAt,
   curationId,
   hasCopyLink = false,
-  handleModalFn,
+  closeModal,
 }: CurationMenuModalProps) {
   const setToast = useSetRecoilState(toastInfo);
-  const { ref } = UseOutsideClick<HTMLDivElement>(open, handleModalFn);
+  const { ref } = UseOutsideClick<HTMLDivElement>(open, closeModal);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const pathname = usePathname();
   const handleCurationEditClick = () => {
@@ -47,7 +47,7 @@ export default function CurationMenuModal({
       open: true,
       text: "링크가 복사되었어요",
     });
-    handleModalFn(false);
+    closeModal();
   };
 
   const handleCancleClick = () => {
@@ -77,7 +77,7 @@ export default function CurationMenuModal({
       open: true,
       text: "큐레이션이 삭제되었습니다",
     });
-    handleModalFn(false);
+    closeModal();
     setDeleteModalOpen(false);
     if (triggeredAt === "topBar") {
       location.replace("/curation");
