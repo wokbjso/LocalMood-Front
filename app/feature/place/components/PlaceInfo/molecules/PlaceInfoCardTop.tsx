@@ -10,7 +10,6 @@ import {
 } from "@feature/place/type";
 import RecordNoImage from "@common/assets/images/RecordNoImage.png";
 import { sliceText } from "@common/utils/text/slice-text";
-import PlaceInfoCardTopScrapIcon from "../atoms/PlaceInfoCardTopScrapIcon";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
@@ -18,6 +17,7 @@ import Chip from "@common/components/ui/buttons/Chip/Chip";
 import CheckIconSmall from "@common/assets/icons/check/CheckIconSmall";
 import ImageWrapper from "@common/components/ui/imageWrapper/ImageWrapper";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
+import PlaceInfoCardTopScrapIcon from "../atoms/PlaceInfoCardTopScrapIcon";
 
 //Molecule
 export default function PlaceInfoCardTop({
@@ -88,7 +88,7 @@ export default function PlaceInfoCardTop({
       >
         <div
           className={twMerge(
-            "w-full h-[16rem]",
+            "w-full h-[16rem] relative",
             direction === "horizontal" && "w-[8rem] h-[8rem] mr-[1.6rem]"
           )}
         >

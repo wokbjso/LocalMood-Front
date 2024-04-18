@@ -103,24 +103,30 @@ export default function PlaceReview({
               </div>
             ))}
           </div>
-          {positiveEval?.split(",").map((li) => (
-            <GraphUpDownVote
-              key={li}
-              variant="unite"
-              evaluation={li}
-              like
-              className="mb-[0.6rem]"
-            />
-          ))}
-          {negativeEval?.split(",").map((li) => (
-            <GraphUpDownVote
-              key={li}
-              variant="unite"
-              evaluation={li}
-              like={false}
-              className="mb-[0.6rem]"
-            />
-          ))}
+          {positiveEval &&
+            positiveEval
+              ?.split(",")
+              .map((li) => (
+                <GraphUpDownVote
+                  key={li}
+                  variant="unite"
+                  evaluation={li}
+                  like
+                  className="mb-[0.6rem]"
+                />
+              ))}
+          {negativeEval &&
+            negativeEval
+              ?.split(",")
+              .map((li) => (
+                <GraphUpDownVote
+                  key={li}
+                  variant="unite"
+                  evaluation={li}
+                  like={false}
+                  className="mb-[0.6rem]"
+                />
+              ))}
         </div>
       </div>
     </div>
