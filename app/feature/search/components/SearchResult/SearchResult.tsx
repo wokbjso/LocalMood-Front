@@ -11,12 +11,12 @@ import {
 import Divider from "@common/components/ui/divider/Divider";
 import FilterIcon from "@common/assets/icons/filter/filter-keyword.svg";
 const PlaceInfoCard = lazy(
-  () => import("@feature/place/components/PlaceInfoCard/PlaceInfoCard")
+  () => import("@feature/place/components/PlaceInfo/molecules/PlaceInfoCard")
 );
-import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import HomeSearchSkeleton from "@feature/search/components/HomeSearchSkeleton/HomeSearchSkeleton";
 import CurationCardLight from "@feature/curation/components/CurationCardLight/CurationCardLight";
+import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
 
 interface SearchResultProps {
   search_query?: string;
@@ -39,12 +39,12 @@ export default function SearchResult({
     useSearchBar();
   return (
     <>
-      <BasicTopBar color="#9E9E9E" className="pt-[1.2rem]">
+      <ArrowBackTopBar color="#9E9E9E" className="pt-[1.2rem]">
         <SearchBar
           placeholder="공간, 큐레이션을 검색해보세요"
           className="rounded-[1000px]"
         />
-      </BasicTopBar>
+      </ArrowBackTopBar>
       <Suspense fallback={<HomeSearchSkeleton />}>
         {search_query &&
           textSearchPlaceData?.spaceCount === 0 &&

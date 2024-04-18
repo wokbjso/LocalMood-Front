@@ -86,6 +86,14 @@ export default function UseKeyword(placeType: string) {
     }
   };
 
+  const checkPurposeChosen = () => {
+    if (placeType === "CAFE") {
+      return cafeKeywordData["purpose"] !== "";
+    } else if (placeType === "RESTAURANT") {
+      return restaurantKeywordData["purpose"] !== "";
+    }
+  };
+
   const handleIndicatorIndex = (index: number) => {
     setIndicatorIndex(index);
   };
@@ -193,6 +201,7 @@ export default function UseKeyword(placeType: string) {
     restaurantKeywordData,
     hasSomeData,
     checkJump,
+    checkPurposeChosen,
     handlers: {
       handleKeyword,
       handleNextDirection,

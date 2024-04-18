@@ -1,19 +1,19 @@
 import { useState } from "react";
 
-export default function useCurationMenuModal() {
+export default function UseMap() {
   const [isOpened, setIsOpened] = useState(false);
 
-  const openModal = () => {
+  const openMap = () => {
     setIsOpened(true);
   };
 
-  const closeModal = () => {
+  const closeMap = () => {
     setIsOpened(false);
   };
 
   return {
     isOpened,
-    openModal,
-    closeModal,
+    openMap,
+    closeMap,
   };
 }

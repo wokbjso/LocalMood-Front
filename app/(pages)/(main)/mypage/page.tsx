@@ -10,7 +10,7 @@ import dynamic from "next/dynamic";
 import PageTopBar from "@common/components/ui/topBar/PageTopBar/PageTopBar";
 import UseDeferredComponent from "@common/hooks/useDeferredComponent";
 const PlaceInfoCard = dynamic(
-  () => import("@feature/place/components/PlaceInfoCard/PlaceInfoCard")
+  () => import("@feature/place/components/PlaceInfo/molecules/PlaceInfoCard")
 );
 
 export default async function MyPage() {

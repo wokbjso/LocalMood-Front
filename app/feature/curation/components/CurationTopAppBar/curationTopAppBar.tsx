@@ -3,7 +3,6 @@
 import { usePathname } from "next/navigation";
 import { copyLink } from "@common/utils/text/copy-link";
 import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-detail";
-import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import { sliceText } from "@common/utils/text/slice-text";
 import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
@@ -15,6 +14,7 @@ import useFetching from "@common/hooks/useFetching";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import ShareIcon from "@common/assets/icons/share/ShareIcon";
+import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
 
 interface CurationTopAppBarProps {
   inView: boolean;
@@ -39,12 +39,12 @@ export default function CurationTopAppBar({
     curationDetail.isScraped
   );
   const { isFetching, changeFetching } = useFetching();
-  const { isMenuModalOpen, openMenuModal, handlers } = useCurationMenuModal();
+  const { isOpened, openModal, closeModal } = useCurationMenuModal();
 
   const pathname = usePathname();
 
   const handleMenuIconClick = () => {
-    openMenuModal();
+    openModal();
   };
 
   const handleCopyLinkClick = async () => {
@@ -122,7 +122,7 @@ export default function CurationTopAppBar({
 
   return (
     <>
-      <BasicTopBar
+      <ArrowBackTopBar
         color="#9E9E9E"
         className={!inView ? "bg-white fixed top-0 z-10" : ""}
       >
@@ -153,9 +153,9 @@ export default function CurationTopAppBar({
                 <ShareIcon onClick={handleCopyLinkClick} />
                 <CurationMenuIcon
                   menuModalInfo={{
-                    open: isMenuModalOpen,
+                    isOpened,
                     curationId,
-                    handleModalFn: handlers.handleMenuModalOpen,
+                    closeModal,
                   }}
                   showAt="topBar"
                   onClick={handleMenuIconClick}
@@ -164,7 +164,7 @@ export default function CurationTopAppBar({
             )}
           </div>
         </div>
-      </BasicTopBar>
+      </ArrowBackTopBar>
     </>
   );
 }

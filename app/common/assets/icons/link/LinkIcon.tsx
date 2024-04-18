@@ -1,5 +1,6 @@
 import { IconProps } from "../icon-type";
 
+//Atom
 export default function LinkIcon({
   color = "white",
   className,

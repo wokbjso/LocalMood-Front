@@ -1,5 +1,6 @@
 import { IconProps } from "../icon-type";
 
+//Atom
 export default function ScrapFill({
   color = "#9E9E9E",
   className,

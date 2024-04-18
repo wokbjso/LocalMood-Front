@@ -1,12 +1,12 @@
 "use client";
 
-import BasicTopBar from "@common/components/ui/topBar/BasicTopBar/BasicTopBar";
 import Logo from "@common/assets/images/localmood_logo.svg";
 import FormInput from "@common/components/ui/input/FormInput/FormInput";
 import Button from "@common/components/ui/buttons/Button/Button";
 import Link from "next/link";
 import UseForm from "@feature/auth/useForm";
 import { LoginFormState } from "@feature/auth/type";
+import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
 
 export default function LoginEmailPage() {
   const handleSubmit = async (e: LoginFormState) => {
@@ -37,7 +37,7 @@ export default function LoginEmailPage() {
 
   return (
     <div className="w-[100%] h-[100%] px-[2rem]">
-      <BasicTopBar color="#9E9E9E" className="px-0" />
+      <ArrowBackTopBar color="#9E9E9E" className="px-0" />
       <div className="flex justify-center mb-[7.5rem]">
         <Logo />
       </div>

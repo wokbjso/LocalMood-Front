@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 
 export default function UseOutsideClick<U extends HTMLElement>(
   isModalOpen: boolean,
-  handleFn: (state: boolean) => void
+  closeModal: () => void
 ) {
   const ref = useRef<U>(null);
 
@@ -13,7 +13,7 @@ export default function UseOutsideClick<U extends HTMLElement>(
         ref.current &&
         !ref.current.contains(e.target as Node)
       ) {
-        handleFn(false);
+        closeModal();
       }
     };
 
@@ -22,7 +22,7 @@ export default function UseOutsideClick<U extends HTMLElement>(
     return () => {
       document.removeEventListener("click", handleClick);
     };
-  }, [handleFn, isModalOpen]);
+  }, [closeModal, isModalOpen]);
 
   return { ref };
 }
