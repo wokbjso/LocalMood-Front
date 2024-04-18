@@ -1,15 +1,7 @@
 import HeartIcon from "@common/assets/icons/heart/HeartIcon";
 import UserDouble from "@common/assets/icons/user/UserDouble";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
-
-interface PlaceDetailKeywordSummaryProps {
-  mainText: string;
-  subText: string;
-  purpose: string[];
-  mood: string;
-  interior?: string[];
-  music: string;
-}
+import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
 
 export default function PlaceDetailKeywordSummary({
   mainText,
@@ -18,7 +10,10 @@ export default function PlaceDetailKeywordSummary({
   mood,
   interior,
   music,
-}: PlaceDetailKeywordSummaryProps) {
+}: Pick<PlaceDetailInfoProps, "purpose" | "mood" | "interior" | "music"> & {
+  mainText: string;
+  subText: string;
+}) {
   return (
     <>
       <div className="px-[2rem]">

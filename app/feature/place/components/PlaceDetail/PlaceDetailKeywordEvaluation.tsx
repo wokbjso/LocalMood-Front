@@ -1,20 +1,16 @@
 import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import Button from "@common/components/ui/buttons/Button/Button";
 import GraphUpDownVote from "@common/components/ui/graph/GraphUpDownVote/GraphUpDownVote";
-
-interface PlaceDetailKeywordEvaluationProps {
-  id: number;
-  mainText: string;
-  positiveEval: string[] | null;
-  negativeEval: string[] | null;
-}
+import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
 
 export default function PlaceDetailKeywordEvaluation({
   id,
   mainText,
   positiveEval,
   negativeEval,
-}: PlaceDetailKeywordEvaluationProps) {
+}: Pick<PlaceDetailInfoProps, "id" | "positiveEval" | "negativeEval"> & {
+  mainText: string;
+}) {
   return (
     <div className="pt-[3.6rem] px-[2rem] pb-[3rem]">
       <div className="text-black headline2 mb-[1.2rem]">{mainText}</div>

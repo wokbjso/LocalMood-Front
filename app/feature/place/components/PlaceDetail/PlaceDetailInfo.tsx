@@ -1,17 +1,18 @@
 "use client";
 
-import Line from "@common/assets/icons/line/line.svg";
-import ArrowDown from "@common/assets/icons/arrow/arrow-down.svg";
-import ArrowUp from "@common/assets/icons/arrow/ArrowUp";
-import { useState } from "react";
 import { PLACE_SUB_TYPE } from "@feature/place/constants/place-tag-category";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
-import { getSession } from "@common/utils/session/getSession";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
+import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
+import PlaceDetailInfoMore from "./PlaceDetailInfoMore";
+import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
+import PlaceTypeAndAddress from "../PlaceInfo/PlaceTypeAndAddress";
+import PlaceName from "../PlaceInfo/PlaceName";
 
+//Organism
 export default function PlaceDetailInfo({
   id,
   name,
@@ -21,23 +22,27 @@ export default function PlaceDetailInfo({
   isScraped,
   visitorNum,
   optionalService,
-  dish,
   dishDesc,
-}: any) {
+}: Pick<
+  PlaceDetailInfoProps,
+  | "id"
+  | "name"
+  | "type"
+  | "subType"
+  | "address"
+  | "isScraped"
+  | "visitorNum"
+  | "optionalService"
+  | "dishDesc"
+>) {
   const setToast = useSetRecoilState(toastInfoSelector);
   const setMyCurationModal = useSetRecoilState(myCurationModalInfoSelector);
-  const [openMoreDetail, setOpenMoreDetail] = useState(false);
-  const moreButtonClicked = () => {
-    setOpenMoreDetail((prev) => !prev);
-  };
-  const formattedDishDesc = dishDesc?.split(",").join("・");
+
   const handleScrapClick = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
     e.preventDefault();
-    const auth_info = await getSession();
-    const token = auth_info?.data?.accessToken;
-    if (!token) {
+    if ((await validateLoggedIn()) === false) {
       location.replace("/login");
     } else {
       setMyCurationModal({
@@ -53,7 +58,7 @@ export default function PlaceDetailInfo({
   return (
     <>
       <div className="flex-col px-[2rem] relative">
-        <div className="headline0 mb-[0.8rem]">{name}</div>
+        <PlaceName name={name} />
         {isScraped ? (
           <ScrapFill
             color="#9E9E9E"
@@ -67,36 +72,16 @@ export default function PlaceDetailInfo({
             onClick={handleScrapClick}
           />
         )}
-        <div className="flex">
-          <span className="body2-semibold text-text-gray-6">
-            {type === "CAFE" ? "카페" : subType && PLACE_SUB_TYPE[subType]}
-          </span>
-          <Line className="mx-[0.8rem]" />
-          <span className="body2-medium text-text-gray-5">{address}</span>
-        </div>
-        <div className="w-full flex items-center body2-medium text-text-gray-8 pt-[2.4rem]">
-          <div className="w-full">
-            <div className="flex items-center  justify-between">
-              <div className="inline-flex items-center gap-[0.6rem]">
-                <span>{visitorNum}</span>
-                {optionalService && <Line className="mx-[0.8rem]" />}
-                <span>{optionalService}</span>
-              </div>
-              {formattedDishDesc !== "NULL" && (
-                <div onClick={moreButtonClicked}>
-                  {openMoreDetail ? <ArrowUp /> : <ArrowDown />}
-                </div>
-              )}
-            </div>
-            {openMoreDetail && formattedDishDesc !== null ? (
-              <div className="pt-[1.2rem]">
-                {type === "CAFE" ? "🍰" : "🍷"}
-                &nbsp; &nbsp;
-                <span>{formattedDishDesc}</span>
-              </div>
-            ) : null}
-          </div>
-        </div>
+        <PlaceTypeAndAddress
+          type={type === "CAFE" ? "카페" : subType && PLACE_SUB_TYPE[subType]}
+          address={address}
+        />
+        <PlaceDetailInfoMore
+          type={type}
+          visitorNum={visitorNum}
+          optionalService={optionalService}
+          dishDesc={dishDesc}
+        />
       </div>
     </>
   );

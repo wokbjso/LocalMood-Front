@@ -8,15 +8,7 @@ import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
 import UseMap from "@feature/map/components/Map/useMap";
-
-interface PlaceDetailTopBar {
-  type: string;
-  address: string;
-  name: string;
-  imgUrl: string;
-  purpose: string[];
-  className: string;
-}
+import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
 
 //Organism
 export default function PlaceDetailTopBar({
@@ -26,7 +18,10 @@ export default function PlaceDetailTopBar({
   imgUrl,
   purpose,
   className,
-}: PlaceDetailTopBar) {
+}: Pick<PlaceDetailInfoProps, "type" | "address" | "name" | "purpose"> & {
+  imgUrl: string;
+  className?: string;
+}) {
   const pathname = usePathname();
 
   const setToast = useSetRecoilState(toastInfoSelector);
@@ -46,22 +41,20 @@ export default function PlaceDetailTopBar({
   };
 
   return (
-    <>
-      <ArrowBackTopBar className={className}>
-        <div className="flex justify-end items-center">
-          <MapIcon
-            mapInfo={{
-              isOpened,
-              placeData: [{ address, name, type, purpose, imgUrl }],
-              closeMap,
-              className: "fixed top-[7rem] left-0 z-20",
-            }}
-            color="white"
-            onClick={handleMapIconClick}
-          />
-          <LinkIcon className="ml-[1.6rem]" onClick={handleLinkIconClick} />
-        </div>
-      </ArrowBackTopBar>
-    </>
+    <ArrowBackTopBar className={className}>
+      <div className="flex justify-end items-center">
+        <MapIcon
+          mapInfo={{
+            isOpened,
+            placeData: [{ address, name, type, purpose, imgUrl }],
+            closeMap,
+            className: "fixed top-[7rem] left-0 z-20",
+          }}
+          color="white"
+          onClick={handleMapIconClick}
+        />
+        <LinkIcon className="ml-[1.6rem]" onClick={handleLinkIconClick} />
+      </div>
+    </ArrowBackTopBar>
   );
 }

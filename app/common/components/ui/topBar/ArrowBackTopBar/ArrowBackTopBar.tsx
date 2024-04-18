@@ -27,7 +27,7 @@ export default function ArrowBackTopBar({
       )}
     >
       <ArrowBack color={color} onClick={arrowBackClicked} />
-      {children && children}
+      {children}
     </div>
   );
 }

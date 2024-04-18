@@ -27,7 +27,7 @@ export default async function PlaceDetailPage({
         imgUrl={detailData.info.imgUrlList[0]}
         className="absolute top-[1.2rem] z-10"
       />
-      <PlaceDetailImageSlider placeImages={detailData.info.imgUrlList} />
+      <PlaceDetailImageSlider imgUrlList={detailData.info.imgUrlList} />
       <PlaceDetailInfo
         id={detailData.info.id}
         name={detailData.info.name}
@@ -37,7 +37,6 @@ export default async function PlaceDetailPage({
         isScraped={detailData.info.isScraped}
         visitorNum={detailData.info.visitorNum}
         optionalService={detailData.info.optionalService}
-        dish={detailData.info.dish}
         dishDesc={detailData.info.dishDesc}
       />
       <Divider className="h-[0.4rem] mt-[2rem] mb-[3.6rem] bg-line-gray-3" />
@@ -50,8 +49,8 @@ export default async function PlaceDetailPage({
         music={detailData.info.music}
       />
       <PlaceDetailKeywordEvaluation
-        id={detailData.info.id}
         mainText="키워드 평가"
+        id={detailData.info.id}
         positiveEval={
           detailData.info.positiveEval ? detailData.info.positiveEval[0] : null
         }

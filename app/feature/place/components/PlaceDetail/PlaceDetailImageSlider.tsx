@@ -6,14 +6,11 @@ import "./slick-theme.css";
 import Image from "next/image";
 import Slider from "react-slick";
 import { useEffect, useState } from "react";
-
-interface PlaceDetailPhotoSliderProps {
-  placeImages: string[];
-}
+import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
 
 export default function PlaceDetailImageSlider({
-  placeImages,
-}: PlaceDetailPhotoSliderProps) {
+  imgUrlList,
+}: Pick<PlaceDetailInfoProps, "imgUrlList">) {
   const [imgIndex, setImgIndex] = useState(0);
   const sliderSettings = {
     speed: 500,
@@ -31,7 +28,7 @@ export default function PlaceDetailImageSlider({
         {imgIndex + 1}/2
       </div>
       <Slider {...sliderSettings}>
-        {placeImages.map((image, i) => (
+        {imgUrlList.map((image, i) => (
           <div
             key={image + i}
             className="w-[100%] h-[30rem] mb-[1.5rem] relative"
