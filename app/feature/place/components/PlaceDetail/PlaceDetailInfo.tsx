@@ -11,6 +11,7 @@ import { getSession } from "@common/utils/session/getSession";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
+import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
 
 export default function PlaceDetailInfo({
   id,
@@ -35,9 +36,7 @@ export default function PlaceDetailInfo({
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
     e.preventDefault();
-    const auth_info = await getSession();
-    const token = auth_info?.data?.accessToken;
-    if (!token) {
+    if (!validateLoggedIn()) {
       location.replace("/login");
     } else {
       setMyCurationModal({
