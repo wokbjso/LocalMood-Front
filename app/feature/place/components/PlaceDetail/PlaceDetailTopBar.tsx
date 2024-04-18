@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import MapIcon from "@common/assets/icons/map/map";
 import { useState } from "react";
 import Map from "@feature/map/components/Map/Map";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
 
@@ -27,7 +27,7 @@ export default function PlaceDetailTopBar({
   purpose,
   className,
 }: PlaceDetailTopBar) {
-  const setToast = useSetRecoilState(toastInfoSelector);
+  const [toast, setToast] = useRecoilState(toastInfoSelector);
 
   const [mapOpen, setMapOpen] = useState(false);
   const pathname = usePathname();

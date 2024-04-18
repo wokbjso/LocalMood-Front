@@ -36,7 +36,7 @@ export default function CurationCardLight({
 }) {
   const setToast = useSetRecoilState(toastInfoSelector);
 
-  const { isMenuModalOpen, openMenuModal, handlers } = useCurationMenuModal();
+  const { isOpened, openModal, closeModal } = useCurationMenuModal();
 
   const { scraped, toggleScrap } = useCurationScrapIcon(isScraped);
 
@@ -123,7 +123,7 @@ export default function CurationCardLight({
 
   const handleMenuClick = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     e.preventDefault();
-    openMenuModal();
+    openModal();
   };
 
   return (
@@ -183,10 +183,10 @@ export default function CurationCardLight({
         ) : (
           <CurationMenuIcon
             menuModalInfo={{
-              open: isMenuModalOpen,
+              isOpened,
               curationId: id,
               hasCopyLink: true,
-              handleModalFn: handlers.handleMenuModalOpen,
+              closeModal,
             }}
             showAt="card"
             className="absolute top-[1.6rem] right-[1.2rem]"

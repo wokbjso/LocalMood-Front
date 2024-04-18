@@ -2,6 +2,7 @@
 
 import MenuIcon from "@common/assets/icons/menu/MenuIcon";
 import LogoutModal from "@feature/auth/components/LogoutModal/LogoutModal";
+import UseLogoutModal from "@feature/auth/components/LogoutModal/useLogoutModal";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -18,9 +19,10 @@ export default function PageTopBar({
   className,
   textClassName,
 }: PageTopBarProps) {
-  const [logoutModalOpen, setLogoutModalOpen] = useState(false);
+  const { isOpened, openModal, closeModal } = UseLogoutModal();
+
   const handleMenuIconClick = () => {
-    setLogoutModalOpen(true);
+    openModal();
   };
 
   return (
@@ -34,7 +36,7 @@ export default function PageTopBar({
         {text}
       </span>
       {hasMenu && <MenuIcon onClick={handleMenuIconClick} />}
-      {logoutModalOpen && <LogoutModal handleFn={setLogoutModalOpen} />}
+      {isOpened && <LogoutModal closeModal={closeModal} />}
     </div>
   );
 }

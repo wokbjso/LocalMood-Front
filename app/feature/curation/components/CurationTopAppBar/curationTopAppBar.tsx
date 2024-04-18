@@ -39,12 +39,12 @@ export default function CurationTopAppBar({
     curationDetail.isScraped
   );
   const { isFetching, changeFetching } = useFetching();
-  const { isMenuModalOpen, openMenuModal, handlers } = useCurationMenuModal();
+  const { isOpened, openModal, closeModal } = useCurationMenuModal();
 
   const pathname = usePathname();
 
   const handleMenuIconClick = () => {
-    openMenuModal();
+    openModal();
   };
 
   const handleCopyLinkClick = async () => {
@@ -153,9 +153,9 @@ export default function CurationTopAppBar({
                 <ShareIcon onClick={handleCopyLinkClick} />
                 <CurationMenuIcon
                   menuModalInfo={{
-                    open: isMenuModalOpen,
+                    isOpened,
                     curationId,
-                    handleModalFn: handlers.handleMenuModalOpen,
+                    closeModal,
                   }}
                   showAt="topBar"
                   onClick={handleMenuIconClick}

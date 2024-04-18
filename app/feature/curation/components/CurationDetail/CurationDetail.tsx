@@ -81,7 +81,7 @@ export default function CurationDetail({
             )}
           </div>
         </div>
-        <div className="w-full border-2 border-line-gray-3"></div>
+        <div className="w-full border-2 border-line-gray-3" />
       </div>
       {/*저장된 장소(places)가 없을 때*/}
       {!curationDetail.spaceDetails && (

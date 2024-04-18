@@ -8,6 +8,7 @@ import { twMerge } from "tailwind-merge";
 import MapIcon from "@common/assets/icons/map/map";
 import { createRef, forwardRef, useEffect, useState } from "react";
 import Map from "@feature/map/components/Map/Map";
+import UseMap from "@feature/map/components/Map/useMap";
 
 interface CurationDetailCardListProps {
   inView: boolean;
@@ -23,8 +24,8 @@ const CurationDetailCardList = forwardRef<
     { length: props.curationDetail.spaceDetails.length },
     () => createRef<HTMLDivElement>()
   );
+  const { isOpened, openMap, closeMap } = UseMap();
   const [placeIndex, setPlaceIndex] = useState(0);
-  const [mapOpen, setMapOpen] = useState(false);
   const [mapPlaceData, setMapPlaceData] = useState<
     {
       address: string;
@@ -35,7 +36,7 @@ const CurationDetailCardList = forwardRef<
     }[]
   >([]);
   const handleMapClick = (state: boolean) => {
-    setMapOpen(state);
+    openMap();
   };
 
   const handlePlaceFilterClick = (index: number) => {
@@ -126,11 +127,11 @@ const CurationDetailCardList = forwardRef<
           />
         ))}
       </div>
-      {mapOpen && (
+      {isOpened && (
         <Map
           placeData={mapPlaceData}
           zoom={13}
-          handleMapOpen={handleMapClick}
+          closeMap={closeMap}
           className="fixed top-[7rem] z-10"
         />
       )}
