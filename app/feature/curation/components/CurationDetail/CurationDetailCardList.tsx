@@ -7,7 +7,6 @@ import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-d
 import { twMerge } from "tailwind-merge";
 import MapIcon from "@common/assets/icons/map/map";
 import { createRef, forwardRef, useEffect, useState } from "react";
-import Map from "@feature/map/components/Map/Map";
 import UseMap from "@feature/map/components/Map/useMap";
 
 interface CurationDetailCardListProps {
@@ -26,7 +25,7 @@ const CurationDetailCardList = forwardRef<
   );
   const { isOpened, openMap, closeMap } = UseMap();
   const [placeIndex, setPlaceIndex] = useState(0);
-  const [mapPlaceData, setMapPlaceData] = useState<
+  const [placeData, setPlaceData] = useState<
     {
       address: string;
       name: string;
@@ -35,7 +34,7 @@ const CurationDetailCardList = forwardRef<
       imgUrl: string;
     }[]
   >([]);
-  const handleMapClick = (state: boolean) => {
+  const handleMapClick = () => {
     openMap();
   };
 
@@ -45,7 +44,7 @@ const CurationDetailCardList = forwardRef<
   };
 
   useEffect(() => {
-    setMapPlaceData(
+    setPlaceData(
       props.curationDetail.spaceDetails.map((space) => {
         return {
           address: space.address,
@@ -90,9 +89,16 @@ const CurationDetailCardList = forwardRef<
             </div>
             <button
               className="flex items-center gap-[0.4rem]"
-              onClick={() => handleMapClick(true)}
+              onClick={handleMapClick}
             >
-              <MapIcon />
+              <MapIcon
+                mapInfo={{
+                  isOpened,
+                  placeData,
+                  closeMap,
+                  className: "fixed top-[7rem] left-0 z-20",
+                }}
+              />
               <span className="body2-medium text-text-gray-6">지도로 보기</span>
             </button>
           </div>
@@ -127,14 +133,6 @@ const CurationDetailCardList = forwardRef<
           />
         ))}
       </div>
-      {isOpened && (
-        <Map
-          placeData={mapPlaceData}
-          zoom={13}
-          closeMap={closeMap}
-          className="fixed top-[7rem] z-10"
-        />
-      )}
     </>
   );
 });

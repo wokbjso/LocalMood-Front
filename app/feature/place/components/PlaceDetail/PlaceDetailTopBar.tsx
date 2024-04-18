@@ -4,11 +4,10 @@ import LinkIcon from "@common/assets/icons/link/LinkIcon";
 import { copyLink } from "@common/utils/text/copy-link";
 import { usePathname } from "next/navigation";
 import MapIcon from "@common/assets/icons/map/map";
-import { useState } from "react";
-import Map from "@feature/map/components/Map/Map";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
+import UseMap from "@feature/map/components/Map/useMap";
 
 interface PlaceDetailTopBar {
   type: string;
@@ -27,13 +26,16 @@ export default function PlaceDetailTopBar({
   purpose,
   className,
 }: PlaceDetailTopBar) {
-  const [toast, setToast] = useRecoilState(toastInfoSelector);
+  const setToast = useSetRecoilState(toastInfoSelector);
 
-  const [mapOpen, setMapOpen] = useState(false);
+  const { isOpened, openMap, closeMap } = UseMap();
+
   const pathname = usePathname();
+
   const handleMapOpen = (state: boolean) => {
-    setMapOpen(state);
+    openMap();
   };
+
   const handleCopyLinkClick = () => {
     copyLink(pathname);
     setToast({
@@ -46,17 +48,19 @@ export default function PlaceDetailTopBar({
     <>
       <ArrowBackTopBar className={className}>
         <div className="w-full flex justify-end items-center relative">
-          <MapIcon color="white" onClick={() => handleMapOpen(true)} />
+          <MapIcon
+            mapInfo={{
+              isOpened,
+              placeData: [{ address, name, type, purpose, imgUrl }],
+              closeMap,
+              className: "fixed top-[7rem] left-0 z-20",
+            }}
+            color="white"
+            onClick={() => handleMapOpen(true)}
+          />
           <LinkIcon className="ml-[1.6rem]" onClick={handleCopyLinkClick} />
         </div>
       </ArrowBackTopBar>
-      {mapOpen && (
-        <Map
-          handleMapOpen={handleMapOpen}
-          placeData={[{ address: address, name, type, purpose, imgUrl }]}
-          className="fixed top-[7rem] z-10"
-        />
-      )}
     </>
   );
 }
