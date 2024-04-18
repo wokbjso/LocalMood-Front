@@ -36,7 +36,7 @@ export default function CurationCardDark({
   };
 
   const handleScrapAddClick = async () => {
-    if (!validateLoggedIn()) {
+    if ((await validateLoggedIn()) === false) {
       location.replace("/login");
     } else {
       if ((await addScrap()) === 200) {
@@ -63,7 +63,7 @@ export default function CurationCardDark({
   };
 
   const handleScrapDeleteClick = async () => {
-    if (!validateLoggedIn()) {
+    if ((await validateLoggedIn()) === false) {
       location.replace("/login");
     } else {
       if ((await deleteScrap()) === 200) {
