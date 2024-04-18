@@ -9,6 +9,7 @@ import SliderLayout from "@common/components/layout/SliderLayout/SliderLayout";
 import PlaceDetailImageSlider from "@feature/place/components/PlaceDetail/PlaceDetailImageSlider";
 import CurationCardDark from "@feature/curation/components/CurationCardDark/CurationCardDark";
 
+//Page
 export default async function PlaceDetailPage({
   params: { id },
 }: {
@@ -17,6 +18,7 @@ export default async function PlaceDetailPage({
   const detailData = await GetPlaceDetail(id);
   return (
     <div className="w-[100%] h-[100%] relative pb-[12rem] overflow-auto">
+      {/* Template */}
       <PlaceDetailTopBar
         type={detailData.info.type}
         address={detailData.info.address}
