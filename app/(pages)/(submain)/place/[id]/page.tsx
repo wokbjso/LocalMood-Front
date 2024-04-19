@@ -6,7 +6,7 @@ import PlaceInfoCard from "@feature/place/components/PlaceInfo/molecules/PlaceIn
 import SliderLayout from "@common/components/layout/SliderLayout/SliderLayout";
 import CurationCardDark from "@feature/curation/components/CurationCardDark/CurationCardDark";
 import PlaceImageSlider from "@feature/place/components/PlaceDetail/organisms/PlaceImageSlider";
-import PlaceKeywordEvaluation from "@feature/place/components/PlaceDetail/PlaceKeywordEvaluation";
+import PlaceKeywordEvaluation from "@feature/place/components/PlaceDetail/organisms/PlaceKeywordEvaluation";
 import PlaceKeywordSummary from "@feature/place/components/PlaceDetail/organisms/PlaceKeywordSummary";
 
 //Page
