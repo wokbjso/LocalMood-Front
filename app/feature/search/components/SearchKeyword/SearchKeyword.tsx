@@ -16,6 +16,8 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import useSearchKeyword from "./useSearchKeyword";
 import Modal from "@common/components/ui/modal/Modal";
+import { useRecoilValue } from "recoil";
+import { searchSortState } from "@feature/search/state/sortState";
 
 export default function SearchKeyword() {
   const searchParams = useSearchParams();
@@ -28,6 +30,8 @@ export default function SearchKeyword() {
     showResultAble,
     handlers,
   } = useSearchKeyword();
+  const sortState = useRecoilValue(searchSortState);
+
   const handleKeywordClick = (category: string, keyword: string) => {
     if (keyword === "한식") {
       if (openKoreanOption) {
@@ -151,6 +155,7 @@ export default function SearchKeyword() {
                       tabIndex === 0
                         ? JSON.stringify(restaurantKeyword)
                         : JSON.stringify(cafeKeyword),
+                    sort: sortState,
                   },
                 }}
                 replace
