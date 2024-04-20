@@ -42,7 +42,7 @@ export default function GraphUpDownVote({
           </span>
         )}
         {variant === "diff" && !like && (
-          <div className="flex justify-center items-center w-[3.2rem] h-[3.2rem] bg-primary-normal rounded-full">
+          <div className="flex justify-center items-center w-[3.2rem] h-[3.2rem] rounded-full">
             <DisLike />
           </div>
         )}
