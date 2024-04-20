@@ -3,11 +3,11 @@ import PlaceDetailInfo from "@feature/place/components/PlaceDetail/organisms/Pla
 import GetPlaceDetail from "@feature/place/queries/getPlaceDetail";
 import PlaceDetailTopBar from "@feature/place/components/PlaceDetail/organisms/PlaceDetailTopBar";
 import PlaceInfoCard from "@feature/place/components/PlaceInfo/molecules/PlaceInfoCard";
-import SliderLayout from "@common/components/layout/SliderLayout/SliderLayout";
 import CurationCardDark from "@feature/curation/components/CurationCardDark/CurationCardDark";
 import PlaceImageSlider from "@feature/place/components/PlaceDetail/organisms/PlaceImageSlider";
 import PlaceKeywordEvaluation from "@feature/place/components/PlaceDetail/organisms/PlaceKeywordEvaluation";
 import PlaceKeywordSummary from "@feature/place/components/PlaceDetail/organisms/PlaceKeywordSummary";
+import PlaceRelatedSlider from "@feature/place/components/PlaceDetail/molecules/PlaceRelatedSlider";
 
 //Page
 export default async function PlaceDetailPage({
@@ -60,10 +60,7 @@ export default async function PlaceDetailPage({
       />
       <Divider className="bg-line-gray-3 h-[0.4rem] mb-[4.8rem]" />
       <section className="pl-[2rem] w-[100%]">
-        <span className="text-black headline2">
-          {detailData.info.name}와(과) 비슷한 장소
-        </span>
-        <SliderLayout className="mt-[1.6rem] mb-[6rem]">
+        <PlaceRelatedSlider title={`${detailData.info.name}와(과) 비슷한 장소`}>
           {detailData.similarSpaceList.slice(0, 6).map((data) => (
             <PlaceInfoCard
               key={data.id}
@@ -72,13 +69,10 @@ export default async function PlaceDetailPage({
               className="w-[16.3rem] mr-[0.8rem]"
             />
           ))}
-        </SliderLayout>
-        {detailData.relatedCurationList.length > 0 && (
-          <span className="text-black headline2">
-            {detailData.info.name}이(가) 담긴 큐레이션
-          </span>
-        )}
-        <SliderLayout className="mt-[1.6rem] mb-[6rem]">
+        </PlaceRelatedSlider>
+        <PlaceRelatedSlider
+          title={`${detailData.info.name}이(가) 담긴 큐레이션`}
+        >
           {detailData.relatedCurationList.map((data) => (
             <CurationCardDark
               key={data.id}
@@ -86,7 +80,7 @@ export default async function PlaceDetailPage({
               className="w-[33.5rem] mr-[0.8rem]"
             />
           ))}
-        </SliderLayout>
+        </PlaceRelatedSlider>
       </section>
     </div>
   );

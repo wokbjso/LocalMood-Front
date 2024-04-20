@@ -1,9 +1,12 @@
+import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
+import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import SearchResult from "@feature/search/components/SearchResult/SearchResult";
 import { getTextSearchCurationData } from "@feature/search/queries/getTextSearchCurationData";
 import { getTextSearchPlaceData } from "@feature/search/queries/getTextSearchPlaceData";
 import { postKeywordSearchCurationData } from "@feature/search/queries/postKeywordSearchCurationData";
 import { postKeywordSearchPlaceData } from "@feature/search/queries/postKeywordSearchPlaceData";
 
+//Page
 export default async function SearchResultPage({
   searchParams,
 }: {
@@ -26,13 +29,16 @@ export default async function SearchResultPage({
 
   const textSearchPlaceData =
     searchParams.search_query &&
-    (await getTextSearchPlaceData(searchParams.search_query));
+    (await getTextSearchPlaceData(
+      searchParams.search_query,
+      searchParams.sort
+    ));
   const textSearchCurationData =
     searchParams.search_query &&
     (await getTextSearchCurationData(searchParams.search_query));
   const keywordSearchPlaceData =
     searchParams.keyword &&
-    (await postKeywordSearchPlaceData(searchParams.keyword));
+    (await postKeywordSearchPlaceData(searchParams.keyword, searchParams.sort));
   const keywordSearchCurationData =
     searchParams.keyword &&
     (await postKeywordSearchCurationData(
@@ -40,6 +46,13 @@ export default async function SearchResultPage({
     ));
   return (
     <main className="w-[100%] h-[100%]">
+      {/* Template */}
+      <ArrowBackTopBar color="#9E9E9E" className="pt-[1.2rem]">
+        <SearchBar
+          placeholder="공간, 큐레이션을 검색해보세요"
+          className="rounded-[1000px]"
+        />
+      </ArrowBackTopBar>
       <SearchResult
         search_query={searchParams.search_query}
         keyword={searchParams.keyword}

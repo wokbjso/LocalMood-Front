@@ -55,6 +55,7 @@ export default function SearchKeyword() {
               pathname: "/search",
               query: { keyword_search: false },
             }}
+            replace
           >
             <CloseIcon className="absolute right-[2.4rem] top-[4rem]" />
           </Link>
@@ -152,6 +153,7 @@ export default function SearchKeyword() {
                         : JSON.stringify(cafeKeyword),
                   },
                 }}
+                replace
               >
                 <Button disabled={!showResultAble} className="w-full">
                   결과보기

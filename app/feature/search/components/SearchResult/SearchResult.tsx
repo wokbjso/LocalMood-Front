@@ -9,14 +9,15 @@ import {
   SearchPlaceResponse,
 } from "@feature/search/queries/dto/search-type";
 import Divider from "@common/components/ui/divider/Divider";
-import FilterIcon from "@common/assets/icons/filter/filter-keyword.svg";
 const PlaceInfoCard = lazy(
   () => import("@feature/place/components/PlaceInfo/molecules/PlaceInfoCard")
 );
-import SearchBar from "@feature/search/components/SearchBar/SearchBar";
-import HomeSearchSkeleton from "@feature/search/components/HomeSearchSkeleton/HomeSearchSkeleton";
 import CurationCardLight from "@feature/curation/components/CurationCardLight/CurationCardLight";
-import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
+import SearchSkeleton from "../skeleton/HomeSearchSkeleton";
+import dynamic from "next/dynamic";
+const ChangeSearchConditon = dynamic(() => import("./ChangeSearchCondition"), {
+  ssr: false,
+});
 
 interface SearchResultProps {
   search_query?: string;
@@ -27,6 +28,7 @@ interface SearchResultProps {
   keywordSearchCurationData: SearchCurationResponse;
 }
 
+//Template
 export default function SearchResult({
   search_query,
   keyword,
@@ -39,13 +41,7 @@ export default function SearchResult({
     useSearchBar();
   return (
     <>
-      <ArrowBackTopBar color="#9E9E9E" className="pt-[1.2rem]">
-        <SearchBar
-          placeholder="공간, 큐레이션을 검색해보세요"
-          className="rounded-[1000px]"
-        />
-      </ArrowBackTopBar>
-      <Suspense fallback={<HomeSearchSkeleton />}>
+      <Suspense fallback={<SearchSkeleton />}>
         {search_query &&
           textSearchPlaceData?.spaceCount === 0 &&
           textSearchCurationData?.CurationCount === 0 && <SearchNoResult />}
@@ -91,24 +87,31 @@ export default function SearchResult({
                 onChange={searchBarHandlers.handleTabIndex}
               />
               {searchBarTabIndex === 0 && (
-                <div className="h-full px-[2rem] pt-[2rem] pb-[24.5rem] overflow-y-scroll">
-                  {textSearchPlaceData.spaceList.map((place) => (
-                    <div key={place.id + place.type} className="mb-[4rem]">
-                      <PlaceInfoCard
-                        {...place}
-                        interior={
-                          place.type === "CAFE" ? place.keyword : undefined
-                        }
-                        bestMenu={
-                          place.type === "RESTAURANT"
-                            ? place.keyword
-                            : undefined
-                        }
-                        keywordCategoryNum={2}
-                      />
-                    </div>
-                  ))}
-                </div>
+                <>
+                  <div className="h-full pb-[24.5rem] overflow-y-scroll">
+                    <ChangeSearchConditon />
+                    <Divider className="h-[1px] bg-line-gray-3 mb-[12px]" />
+                    {textSearchPlaceData.spaceList.map((place) => (
+                      <div
+                        key={place.id + place.type}
+                        className="px-[2rem] mb-[4rem]"
+                      >
+                        <PlaceInfoCard
+                          {...place}
+                          interior={
+                            place.type === "CAFE" ? place.keyword : undefined
+                          }
+                          bestMenu={
+                            place.type === "RESTAURANT"
+                              ? place.keyword
+                              : undefined
+                          }
+                          keywordCategoryNum={2}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </>
               )}
               {searchBarTabIndex === 1 && <SearchNoResult />}
             </div>
@@ -131,24 +134,14 @@ export default function SearchResult({
               />
               {searchBarTabIndex === 0 && (
                 <>
-                  <div className="flex justify-between px-[2rem] pt-[1.6rem] pb-[1.2rem]">
-                    <div className="flex items-center">
-                      <FilterIcon />
-                      <span className="ml-[0.8rem] body2-semibold text-text-gray-8">
-                        키워드 설정
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <FilterIcon />
-                      <span className="ml-[0.8rem] body2-semibold text-text-gray-8">
-                        리뷰 최신순
-                      </span>
-                    </div>
-                  </div>
-                  <Divider className="h-[0.1rem] bg-line-gray-3" />
-                  <div className="h-[100%] px-[2rem] pt-[1.2rem] pb-[24.5rem] overflow-auto">
+                  <div className="h-[100%] pb-[24.5rem] overflow-auto">
+                    <ChangeSearchConditon />
+                    <Divider className="h-[1px] bg-line-gray-3 mb-[12px]" />
                     {textSearchPlaceData.spaceList.map((place) => (
-                      <div key={place.id + place.type} className="mb-[4rem]">
+                      <div
+                        key={place.id + place.type}
+                        className="px-[2rem] mb-[4rem]"
+                      >
                         <PlaceInfoCard
                           {...place}
                           interior={
@@ -224,24 +217,31 @@ export default function SearchResult({
                 onChange={searchBarHandlers.handleTabIndex}
               />
               {searchBarTabIndex === 0 && (
-                <div className="h-full px-[2rem] pt-[2rem] pb-[24.5rem] overflow-y-scroll">
-                  {keywordSearchPlaceData.spaceList.map((place) => (
-                    <div key={place.id + place.type} className="mb-[4rem]">
-                      <PlaceInfoCard
-                        {...place}
-                        interior={
-                          place.type === "CAFE" ? place.keyword : undefined
-                        }
-                        bestMenu={
-                          place.type === "RESTAURANT"
-                            ? place.keyword
-                            : undefined
-                        }
-                        keywordCategoryNum={2}
-                      />
-                    </div>
-                  ))}
-                </div>
+                <>
+                  <div className="h-full pb-[24.5rem] overflow-y-scroll">
+                    <ChangeSearchConditon />
+                    <Divider className="h-[1px] bg-line-gray-3 mb-[12px]" />
+                    {keywordSearchPlaceData.spaceList.map((place) => (
+                      <div
+                        key={place.id + place.type}
+                        className="px-[2rem] mb-[4rem]"
+                      >
+                        <PlaceInfoCard
+                          {...place}
+                          interior={
+                            place.type === "CAFE" ? place.keyword : undefined
+                          }
+                          bestMenu={
+                            place.type === "RESTAURANT"
+                              ? place.keyword
+                              : undefined
+                          }
+                          keywordCategoryNum={2}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </>
               )}
               {searchBarTabIndex === 1 && <SearchNoResult />}
             </div>
@@ -264,24 +264,14 @@ export default function SearchResult({
               />
               {searchBarTabIndex === 0 && (
                 <>
-                  <div className="flex justify-between px-[2rem] pt-[1.6rem] pb-[1.2rem]">
-                    <div className="flex items-center">
-                      <FilterIcon />
-                      <span className="ml-[0.8rem] body2-semibold text-text-gray-8">
-                        키워드 설정
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <FilterIcon />
-                      <span className="ml-[0.8rem] body2-semibold text-text-gray-8">
-                        리뷰 최신순
-                      </span>
-                    </div>
-                  </div>
-                  <Divider className="h-[0.1rem] bg-line-gray-3" />
-                  <div className="h-full px-[2rem] pt-[1.2rem] pb-[24.5rem] overflow-y-scroll">
+                  <div className="h-full pb-[24.5rem] overflow-y-scroll">
+                    <ChangeSearchConditon />
+                    <Divider className="h-[1px] bg-line-gray-3 mb-[12px]" />
                     {keywordSearchPlaceData.spaceList.map((place) => (
-                      <div key={place.id + place.type} className="mb-[4rem]">
+                      <div
+                        key={place.id + place.type}
+                        className="px-[2rem] mb-[4rem]"
+                      >
                         <PlaceInfoCard
                           {...place}
                           interior={
