@@ -5,7 +5,7 @@ import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowB
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import SearchKeyword from "@feature/search/components/SearchKeyword/SearchKeyword";
 
-export default function SearchPage() {
+export default function SearchPage({ searchParams }: any) {
   return (
     <div className="w-[100%] h-[100%]">
       <ArrowBackTopBar color="#9E9E9E" className="fixed pt-[1.2rem]">
@@ -14,7 +14,7 @@ export default function SearchPage() {
           className="rounded-[1000px]"
         />
       </ArrowBackTopBar>
-      <SearchKeyword />
+      {searchParams.keyword_search === "true" && <SearchKeyword />}
       <div className="flex justify-center pt-[8.2rem] mb-[0.8rem]">
         <SearchImage />
       </div>

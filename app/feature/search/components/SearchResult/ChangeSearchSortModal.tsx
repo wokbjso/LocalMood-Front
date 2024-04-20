@@ -20,12 +20,12 @@ export default function ChangeSearchSortModal({
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
+  const params = new URLSearchParams(searchParams);
 
   const [sortState, setsortState] = useRecoilState(searchSortStateSelector);
   const setToast = useSetRecoilState(toastInfoSelector);
 
   const { ref } = UseOutsideClick<HTMLDivElement>(isOpen, closeModal);
-  const params = new URLSearchParams(searchParams);
 
   const handleSortByRecentClick = () => {
     params.set("sort", "RECENT");
