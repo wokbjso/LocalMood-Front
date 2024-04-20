@@ -2,7 +2,7 @@ import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
 import PageTopBar from "@common/components/ui/topBar/PageTopBar/PageTopBar";
 import UseDeferredComponent from "@common/hooks/useDeferredComponent";
 import PlaceScrapList from "@feature/place/components/PlaceScrapList/PlaceScrapList";
-import PlaceScrappedSkeleton from "@feature/place/components/PlaceScrappedSkeleton/PlaceScrappedSkeleton";
+import PlaceScrappedSkeleton from "@feature/place/components/skeleton/PlaceScrappedSkeleton";
 import SearchBar from "@feature/search/components/SearchBar/SearchBar";
 import { Suspense } from "react";
 

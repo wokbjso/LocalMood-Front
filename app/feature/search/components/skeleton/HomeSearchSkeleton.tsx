@@ -1,4 +1,4 @@
-export default function HomeSearchSkeleton() {
+export default function SearchSkeleton() {
   return (
     <div className="animate-pulse">
       <div className="w-[100%] flex justify-between">

@@ -2,12 +2,13 @@ import { getSession } from "@common/utils/session/getSession";
 import { SearchPlaceResponse } from "./dto/search-type";
 
 export async function postKeywordSearchPlaceData(
-  keyword: string
+  keyword: string,
+  sortState: string
 ): Promise<SearchPlaceResponse> {
   const auth_info = await getSession();
   const token = auth_info?.data?.accessToken;
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/spaces/filter?sort=recent`,
+    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/spaces/filter?sort=${sortState}`,
     {
       method: "POST",
       headers: {

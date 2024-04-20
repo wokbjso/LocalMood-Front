@@ -4,8 +4,9 @@ import { twMerge } from "tailwind-merge";
 import React, { ChangeEvent, useCallback, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import SearchIcon from "@common/assets/icons/search/SearchIcon";
-import CloseGrayIcon from "@common/assets/icons/close/CloseGrayIcon";
 import SearchTextDelete from "../SearchTextDelete/SearchTextDelete";
+import { useRecoilValue } from "recoil";
+import { searchSortState } from "@feature/search/state/sortState";
 
 interface SearchBarProps {
   variant?: "home" | "record";
@@ -19,10 +20,15 @@ export default function SearchBar({
   className,
 }: SearchBarProps) {
   const searchParams = useSearchParams();
+
+  const state = useRecoilValue(searchSortState);
+
   const [searchText, setSearchText] = useState<string>(
     (searchParams.get("search_query") as string) || ""
   );
-  const queries = `?search_query=${searchText}`;
+  const queries =
+    `?search_query=${searchText}` +
+    `${variant === "home" ? `&sort=${state}` : ""}`;
   const handleSearchTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newText = e.target.value;
     setSearchText(newText);
