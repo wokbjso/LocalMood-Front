@@ -8,7 +8,9 @@ export async function postKeywordSearchPlaceData(
   const auth_info = await getSession();
   const token = auth_info?.data?.accessToken;
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/spaces/filter?sort=${sortState}`,
+    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/spaces/filter?sort=${
+      sortState ? sortState : "RECENT"
+    }`,
     {
       method: "POST",
       headers: {
