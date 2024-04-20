@@ -11,7 +11,7 @@ export default function MainLayout({
       <Script
         type="text/javascript"
         src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}&submodules=geocoder`}
-      ></Script>
+      />
       {children}
       <Footer />
     </div>
