@@ -1,5 +1,5 @@
 import Footer from "@common/components/layout/Footer/Footer";
-import HomeBanner from "../feature/home/components/organisms/HomeBanner";
+import HomeBanner from "@feature/home/components/organisms/HomeBanner";
 import GetRandomCuration from "@feature/curation/queries/getRandomCuration";
 import HomePopularCuration from "@feature/home/components/organisms/HomePopularCuration";
 import HomePlaceSlider from "@feature/home/components/organisms/HomePlaceSlider";

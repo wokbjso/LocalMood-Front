@@ -13,14 +13,26 @@ import {
 import Filter from "@common/components/ui/buttons/Filter/Filter";
 import Button from "@common/components/ui/buttons/Button/Button";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import useSearchKeyword from "./useSearchKeyword";
 import Modal from "@common/components/ui/modal/Modal";
 import { useRecoilValue } from "recoil";
 import { searchSortState } from "@feature/search/state/sortState";
 
-export default function SearchKeyword() {
+interface SearchKeywordProps {
+  dependOnParams?: boolean;
+  closeModal?: () => void;
+}
+
+export default function SearchKeyword({
+  dependOnParams = true,
+  closeModal,
+}: SearchKeywordProps) {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+  const params = new URLSearchParams(searchParams);
+
   const {
     cafeKeyword,
     restaurantKeyword,
@@ -30,7 +42,17 @@ export default function SearchKeyword() {
     showResultAble,
     handlers,
   } = useSearchKeyword();
+
   const sortState = useRecoilValue(searchSortState);
+
+  const handleCloseIconClick = () => {
+    if (dependOnParams) {
+      params.set("keyword_search", "false");
+      replace(`${pathname}?${params.toString()}`);
+    } else {
+      closeModal && closeModal();
+    }
+  };
 
   const handleKeywordClick = (category: string, keyword: string) => {
     if (keyword === "한식") {
@@ -51,123 +73,115 @@ export default function SearchKeyword() {
   };
 
   return (
-    searchParams.get("keyword_search") === "true" && (
-      <>
-        <Modal className="h-[94%]">
+    <Modal className="h-[94%]">
+      <CloseIcon
+        className="absolute right-[2.4rem] top-[4rem]"
+        onClick={handleCloseIconClick}
+      />
+      <Tab
+        sections={[{ text: "음식점" }, { text: "카페" }]}
+        onChange={handlers.changeTabIndex}
+        className="pl-[2rem] w-[35%] mt-[4.3rem]"
+      />
+      <Divider className="h-[0.1rem] bg-line-gray-3" />
+      <div className="h-full w-full pt-[3.2rem] pb-[17rem] px-[2rem] overflow-y-scroll">
+        {tabIndex === 0 &&
+          Object.keys(RESTAURANT_CATEGORY).map((category, i) => (
+            <section
+              key={category}
+              className={
+                i !== Object.keys(RESTAURANT_CATEGORY).length - 1
+                  ? "mb-[4rem]"
+                  : "mb-[2.7rem]"
+              }
+            >
+              <div className="text-black headline3 mb-[1.2rem]">
+                {RESTAURANT_CATEGORY[category]}
+              </div>
+              <div className="flex flex-wrap gap-[0.6rem]">
+                {RESTARANT_KEYWORDS[RESTAURANT_CATEGORY[category]].map(
+                  (keyword) => (
+                    <Filter
+                      key={keyword}
+                      label={keyword}
+                      selected={
+                        keyword === "한식"
+                          ? openKoreanOption
+                          : restaurantKeyword[category] === keyword
+                      }
+                      variant={keyword === "한식" ? "showOptions" : undefined}
+                      onClick={() => handleKeywordClick(category, keyword)}
+                    />
+                  )
+                )}
+                {category === "subType" &&
+                  openKoreanOption &&
+                  KOREAN_OPTION.map((option, i) => (
+                    <Filter
+                      key={option}
+                      label={option}
+                      selected={
+                        (koreanOptionIndex == -1 && option === "한식 전체") ||
+                        koreanOptionIndex === i
+                      }
+                      onClick={() => handleKoreanOptionClick(i)}
+                    />
+                  ))}
+              </div>
+            </section>
+          ))}
+        {tabIndex === 1 &&
+          Object.keys(CAFE_CATEGORY).map((category, i) => (
+            <section
+              key={category}
+              className={
+                i !== Object.keys(CAFE_CATEGORY).length - 1
+                  ? "mb-[4rem]"
+                  : "mb-[2.7rem]"
+              }
+            >
+              <div className="text-black headline3 mb-[1.2rem]">
+                {CAFE_CATEGORY[category]}
+              </div>
+              <div className="flex flex-wrap gap-[0.6rem]">
+                {CAFE_KEYWORDS[CAFE_CATEGORY[category]].map((keyword) => (
+                  <Filter
+                    key={keyword}
+                    label={keyword}
+                    selected={cafeKeyword[category] === keyword}
+                    onClick={() =>
+                      handlers.changeKeywordData(category, keyword)
+                    }
+                  />
+                ))}
+              </div>
+            </section>
+          ))}
+
+        <div className="absolute left-8 right-8 bottom-0 h-[7.5rem] bg-white">
           <Link
             href={{
-              pathname: "/search",
-              query: { keyword_search: false },
+              pathname: "/search/results",
+              query: {
+                keyword:
+                  tabIndex === 0
+                    ? JSON.stringify(restaurantKeyword)
+                    : JSON.stringify(cafeKeyword),
+                sort: sortState,
+              },
             }}
             replace
           >
-            <CloseIcon className="absolute right-[2.4rem] top-[4rem]" />
+            <Button
+              disabled={!showResultAble}
+              className="w-full"
+              onClick={closeModal}
+            >
+              결과보기
+            </Button>
           </Link>
-          <Tab
-            sections={[{ text: "음식점" }, { text: "카페" }]}
-            onChange={handlers.changeTabIndex}
-            className="pl-[2rem] w-[35%] mt-[4.3rem]"
-          />
-          <Divider className="h-[0.1rem] bg-line-gray-3" />
-          <div className="h-full w-full pt-[3.2rem] pb-[17rem] px-[2rem] overflow-y-scroll">
-            {tabIndex === 0 &&
-              Object.keys(RESTAURANT_CATEGORY).map((category, i) => (
-                <section
-                  key={category}
-                  className={
-                    i !== Object.keys(RESTAURANT_CATEGORY).length - 1
-                      ? "mb-[4rem]"
-                      : "mb-[2.7rem]"
-                  }
-                >
-                  <div className="text-black headline3 mb-[1.2rem]">
-                    {RESTAURANT_CATEGORY[category]}
-                  </div>
-                  <div className="flex flex-wrap gap-[0.6rem]">
-                    {RESTARANT_KEYWORDS[RESTAURANT_CATEGORY[category]].map(
-                      (keyword) => (
-                        <Filter
-                          key={keyword}
-                          label={keyword}
-                          selected={
-                            keyword === "한식"
-                              ? openKoreanOption
-                              : restaurantKeyword[category] === keyword
-                          }
-                          variant={
-                            keyword === "한식" ? "showOptions" : undefined
-                          }
-                          onClick={() => handleKeywordClick(category, keyword)}
-                        />
-                      )
-                    )}
-                    {category === "subType" &&
-                      openKoreanOption &&
-                      KOREAN_OPTION.map((option, i) => (
-                        <Filter
-                          key={option}
-                          label={option}
-                          selected={
-                            (koreanOptionIndex == -1 &&
-                              option === "한식 전체") ||
-                            koreanOptionIndex === i
-                          }
-                          onClick={() => handleKoreanOptionClick(i)}
-                        />
-                      ))}
-                  </div>
-                </section>
-              ))}
-            {tabIndex === 1 &&
-              Object.keys(CAFE_CATEGORY).map((category, i) => (
-                <section
-                  key={category}
-                  className={
-                    i !== Object.keys(CAFE_CATEGORY).length - 1
-                      ? "mb-[4rem]"
-                      : "mb-[2.7rem]"
-                  }
-                >
-                  <div className="text-black headline3 mb-[1.2rem]">
-                    {CAFE_CATEGORY[category]}
-                  </div>
-                  <div className="flex flex-wrap gap-[0.6rem]">
-                    {CAFE_KEYWORDS[CAFE_CATEGORY[category]].map((keyword) => (
-                      <Filter
-                        key={keyword}
-                        label={keyword}
-                        selected={cafeKeyword[category] === keyword}
-                        onClick={() =>
-                          handlers.changeKeywordData(category, keyword)
-                        }
-                      />
-                    ))}
-                  </div>
-                </section>
-              ))}
-
-            <div className="absolute left-8 right-8 bottom-0 h-[7.5rem] bg-white">
-              <Link
-                href={{
-                  pathname: "/search/results",
-                  query: {
-                    keyword:
-                      tabIndex === 0
-                        ? JSON.stringify(restaurantKeyword)
-                        : JSON.stringify(cafeKeyword),
-                    sort: sortState,
-                  },
-                }}
-                replace
-              >
-                <Button disabled={!showResultAble} className="w-full">
-                  결과보기
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </Modal>
-      </>
-    )
+        </div>
+      </div>
+    </Modal>
   );
 }
