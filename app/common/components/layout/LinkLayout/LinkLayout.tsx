@@ -6,6 +6,7 @@ import { ReactNode } from "react";
 interface LinkLayoutProps {
   routeUrl: string;
   query?: Record<string, any>;
+  replace?: boolean;
   children: ReactNode;
   className?: string;
 }
@@ -14,6 +15,7 @@ interface LinkLayoutProps {
 export default function LinkLayout({
   routeUrl,
   query,
+  replace = false,
   children,
   className,
 }: LinkLayoutProps) {
@@ -23,6 +25,7 @@ export default function LinkLayout({
         pathname: routeUrl,
         query: query,
       }}
+      replace={replace}
       className={className}
     >
       {children}

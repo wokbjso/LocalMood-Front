@@ -1,5 +1,4 @@
 import { getSession } from "@common/utils/session/getSession";
-import { NextRequest, NextResponse } from "next/server";
 
 export async function getTextSearchCurationData(title: string) {
   const auth_info = await getSession();

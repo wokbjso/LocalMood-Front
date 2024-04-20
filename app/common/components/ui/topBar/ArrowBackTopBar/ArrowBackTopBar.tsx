@@ -1,7 +1,7 @@
 "use client";
 
 import ArrowBack from "@common/assets/icons/arrow/ArrowBack";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 import { TopBarProps } from "../type";
 
@@ -11,12 +11,10 @@ export default function ArrowBackTopBar({
   children,
   className,
 }: TopBarProps) {
-  const pathname = usePathname();
   const router = useRouter();
 
   const arrowBackClicked = () => {
-    if (pathname.slice(1) === "search") router.replace("/");
-    else router.back();
+    router.back();
   };
 
   return (

@@ -3,6 +3,7 @@ import Button from "@common/components/ui/buttons/Button/Button";
 import GraphUpDownVote from "@common/components/ui/graph/GraphUpDownVote/GraphUpDownVote";
 import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
 
+//Organism
 export default function PlaceKeywordEvaluation({
   id,
   mainText,
@@ -40,7 +41,7 @@ export default function PlaceKeywordEvaluation({
             ))}
         </div>
       </div>
-      <LinkLayout routeUrl={`/place//${id}/more`}>
+      <LinkLayout routeUrl={`/place/${id}/more`}>
         <Button variant="line" className="w-full h-[4rem]">
           기록 전체 보기
         </Button>
