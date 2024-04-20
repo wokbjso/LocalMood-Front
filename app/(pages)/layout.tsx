@@ -53,7 +53,7 @@ export default async function RootLayout({
     <html lang="en" className="width-[100%] height-[100%]">
       <meta
         name="viewport"
-        content="width=device-width, initial-scale=1, user-scalable=no"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
       />
       <body className={twMerge("w-[100%] h-[100%]", globalFont.variable)}>
         <main className="w-[100%] h-[100%] fixed overflow-hidden">
