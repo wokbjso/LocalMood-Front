@@ -1,36 +1,50 @@
 "use client";
 
 import { KOREAN_OPTION } from "@feature/search/constants/search-keywords";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function useSearchKeyword() {
-  const [cafeKeyword, setCafeKeyword] = useState<{ [key: string]: string }>({
-    type: "CAFE",
-    subType: "ALL",
-    purpose: "ALL",
-    mood: "ALL",
-    music: "ALL",
-    interior: "ALL",
-    visitor: "ALL",
-    optServ: "ALL",
-    dish: "ALL",
-    disDesc: "ALL",
-  });
+  const searchParams = useSearchParams();
+  const keywordData = searchParams.get("keyword");
+  const [cafeKeyword, setCafeKeyword] = useState<{ [key: string]: string }>(
+    keywordData && JSON.parse(keywordData as string)["type"] === "CAFE"
+      ? JSON.parse(keywordData as string)
+      : {
+          type: "CAFE",
+          subType: "ALL",
+          purpose: "ALL",
+          mood: "ALL",
+          music: "ALL",
+          interior: "ALL",
+          visitor: "ALL",
+          optServ: "ALL",
+          dish: "ALL",
+          disDesc: "ALL",
+        }
+  );
   const [restaurantKeyword, setRestaurantKeyword] = useState<{
     [key: string]: string;
-  }>({
-    type: "RESTAURANT",
-    subType: "ALL",
-    purpose: "ALL",
-    mood: "ALL",
-    music: "ALL",
-    interior: "ALL",
-    visitor: "ALL",
-    optServ: "ALL",
-    dish: "ALL",
-    disDesc: "ALL",
-  });
-  const [tabIndex, setTabIndex] = useState<number>(0);
+  }>(
+    keywordData && JSON.parse(keywordData as string)["type"] === "RESTAURANT"
+      ? JSON.parse(keywordData as string)
+      : {
+          type: "RESTAURANT",
+          subType: "ALL",
+          purpose: "ALL",
+          mood: "ALL",
+          music: "ALL",
+          interior: "ALL",
+          visitor: "ALL",
+          optServ: "ALL",
+          dish: "ALL",
+          disDesc: "ALL",
+        }
+  );
+  const [tabIndex, setTabIndex] = useState<number>(
+    keywordData && JSON.parse(keywordData as string)["type"] === "CAFE" ? 1 : 0
+  );
+
   const [showResultAble, setShowResultAble] = useState<boolean>(false);
   const [openKoreanOption, setOpenKoreanOption] = useState(false);
   const [koreanOptionIndex, setKoreanOptionIndex] = useState(0);
@@ -125,10 +139,10 @@ export default function useSearchKeyword() {
     koreanOptionIndex,
     showResultAble,
     handlers: {
-      changeTabIndex: handleTabIndex,
-      changeKeywordData: handleKeywordData,
-      changeOpenKoreanOption: handleOpenKoreanOption,
-      changeKoreanOptionIndex: handleKoreanOptionIndex,
+      handleTabIndex,
+      handleKeywordData,
+      handleOpenKoreanOption,
+      handleKoreanOptionIndex,
     },
   };
 }
