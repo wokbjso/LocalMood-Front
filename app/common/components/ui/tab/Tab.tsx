@@ -1,7 +1,8 @@
-import { ReactElement, ReactNode, useState } from "react";
+import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface TabProps {
+  startIndex?: number;
   sections: {
     icon?: React.FC<{ color?: string; className?: string }>;
     text: string;
@@ -11,8 +12,14 @@ interface TabProps {
   className?: string;
 }
 
-export default function Tab({ sections, onChange, className }: TabProps) {
-  const [tabIndex, setTabIndex] = useState(0);
+//Molecule
+export default function Tab({
+  startIndex = 0,
+  sections,
+  onChange,
+  className,
+}: TabProps) {
+  const [tabIndex, setTabIndex] = useState(startIndex);
   const handleTabSection = (i: number) => {
     onChange && onChange(i);
     setTabIndex(i);

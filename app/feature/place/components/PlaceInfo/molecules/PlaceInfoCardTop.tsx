@@ -110,10 +110,12 @@ export default function PlaceInfoCardTop({
             height={direction === "horizontal" ? 80 : 160}
             placeholder="blur"
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
-            className={twMerge(
-              "rounded-[8px] object-cover w-full h-full",
-              imgClassName
-            )}
+            className={twMerge("rounded-[8px] object-cover", imgClassName)}
+            style={{
+              width:
+                direction === "horizontal" ? 80 : size === "small" ? 163 : 335,
+              height: direction === "horizontal" ? 80 : 160,
+            }}
           />
         </div>
         <div
