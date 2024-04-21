@@ -8,6 +8,7 @@ import CurationCardDark from "../CurationCardDark/CurationCardDark";
 import CurationMakeButton from "../CurationMake/CurationMakeButton";
 import useOpenCurationMakeModal from "../CurationMake/useOpenCurationMakeModal";
 import useTab from "@common/components/ui/tab/useTab";
+import { CurationTabSections } from "@feature/curation/constants/curation-tab";
 
 interface CurationTabContentProps {
   myCuration: MyCurationResponse;
@@ -18,15 +19,6 @@ export default function CurationTabContent({
   myCuration,
   scrappedCuration,
 }: CurationTabContentProps) {
-  const CurationTabSections = [
-    {
-      text: "내 큐레이션",
-    },
-    {
-      text: "스크랩",
-    },
-  ];
-
   const { tabIndex, changeTabIndex } = useTab();
 
   const {

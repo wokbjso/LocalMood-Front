@@ -120,13 +120,15 @@ export default function PlaceInfoCardTop({
               size === "normal" ? "headline2" : "headline3"
             )}
           >
-            {direction === "vertical" && variant !== "record" && (
-              <PlaceInfoCardTopScrapIcon
-                isScraped={isScraped}
-                cardSize={size}
-                onClick={handleScrap}
-              />
-            )}
+            {direction === "vertical" &&
+              variant !== "record" &&
+              size !== "small" && (
+                <PlaceInfoCardTopScrapIcon
+                  isScraped={isScraped}
+                  cardSize={size}
+                  onClick={handleScrap}
+                />
+              )}
             <span>
               {direction === "vertical" && size === "small"
                 ? sliceText(name, 8)
