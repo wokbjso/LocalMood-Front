@@ -7,6 +7,7 @@ interface UserProfileProps {
   className?: string;
 }
 
+//Molecule
 export default function UserProfile({
   size = "big",
   userName,
