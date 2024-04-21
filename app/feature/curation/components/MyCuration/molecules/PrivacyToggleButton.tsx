@@ -3,19 +3,19 @@
 import LockIcon from "@common/assets/icons/lock/lock.svg";
 import UnlockIcon from "@common/assets/icons/lock/unlock.svg";
 import { toastInfoSelector } from "@common/state/toast";
-import Toast from "@common/components/ui/toast/Toast";
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
 import { useSetRecoilState } from "recoil";
 
-interface CurationPrivacyToggleButtonProps {
+interface PrivacyToggleButtonProps {
   id: number;
   privacy: boolean;
 }
 
-export default function CurationPrivacyToggleButton({
+//Molecule
+export default function PrivacyToggleButton({
   id,
   privacy,
-}: CurationPrivacyToggleButtonProps) {
+}: PrivacyToggleButtonProps) {
   const setToast = useSetRecoilState(toastInfoSelector);
 
   const togglePrivacy = async () => {

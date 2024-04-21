@@ -1,7 +1,7 @@
 import TextField from "@common/components/ui/textField/TextField";
 import ButtonLock from "@common/components/ui/buttons/Button/ButtonLock";
 import CurationMakeKeyword from "./CurationMakeKeyword";
-import UseCurationMake from "./useCurationMake";
+import UseCurationMake from "../hooks/useCurationMake";
 import Modal from "@common/components/ui/modal/Modal";
 import CloseIcon from "@common/assets/icons/close/CloseIcon";
 
@@ -10,6 +10,7 @@ interface CurationMakeProps {
   closeModal: () => void;
 }
 
+//Organism
 export default function CurationMakeModal({
   open,
   closeModal,

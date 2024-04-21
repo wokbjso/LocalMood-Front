@@ -3,7 +3,7 @@ import Modal from "@common/components/ui/modal/Modal";
 import UseDeferredComponent from "@common/hooks/useDeferredComponent";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import { Suspense, lazy } from "react";
-import CurationMakeButton from "../../CurationMake/CurationMakeButton";
+import CurationMakeButton from "../../CurationMake/molecules/CurationMakeButton";
 import PostSavePlaceAtCuration from "@feature/curation/queries/postSavePlaceAtCuration";
 import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
 import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
@@ -11,12 +11,12 @@ import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail"
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
 import revalidateTextSearchPlaceData from "@feature/search/actions/revalidateTextSearchPlaceData";
 import revalidateKeywordSearchPlaceData from "@feature/search/actions/revalidateKeywordSearchPlaceData";
-import useOpenCurationMakeModal from "../../CurationMake/useOpenCurationMakeModal";
+import useOpenCurationMakeModal from "../../CurationMake/hooks/useOpenCurationMakeModal";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
 import revalidateHomeRecommend from "@feature/place/actions/revalidateHomeRecommend";
-const MyCurationCard = lazy(() => import("./MyCurationCard"));
+const MyCurationCard = lazy(() => import("../molecules/MyCurationCard"));
 
 interface MyCurationModalProps {
   open: boolean;
@@ -26,6 +26,7 @@ interface MyCurationModalProps {
   handleModalFn?: (state: boolean) => void;
 }
 
+//Organism
 export default function MyCurationModal({
   open,
   title,

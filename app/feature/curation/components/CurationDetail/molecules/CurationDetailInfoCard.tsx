@@ -15,6 +15,7 @@ import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
 import { toastInfoSelector } from "@common/state/toast";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
 
+//Molecule
 const CurationDetailInfoCard = forwardRef<
   HTMLDivElement,
   CurationPlaceProps & {

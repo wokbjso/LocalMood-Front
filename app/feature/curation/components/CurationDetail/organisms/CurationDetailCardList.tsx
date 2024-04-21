@@ -2,7 +2,7 @@
 
 import LocationFillIcon from "@common/assets/icons/location/location-fill.svg";
 import Filter from "@common/components/ui/buttons/Filter/Filter";
-import CurationDetailInfoCard from "./CurationDetailInfoCard";
+import CurationDetailInfoCard from "../molecules/CurationDetailInfoCard";
 import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-detail";
 import { twMerge } from "tailwind-merge";
 import MapIcon from "@common/assets/icons/map/map";
@@ -15,6 +15,7 @@ interface CurationDetailCardListProps {
   curationDetail: CurationDetailResponse;
 }
 
+//Organism
 const CurationDetailCardList = forwardRef<
   HTMLDivElement,
   CurationDetailCardListProps

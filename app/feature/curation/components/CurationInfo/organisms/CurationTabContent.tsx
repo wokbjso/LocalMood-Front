@@ -3,8 +3,8 @@
 import Tab from "@common/components/ui/tab/Tab";
 import { CurationProps } from "@feature/curation/type";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
-import CurationMakeButton from "../../CurationMake/CurationMakeButton";
-import useOpenCurationMakeModal from "../../CurationMake/useOpenCurationMakeModal";
+import CurationMakeButton from "../../CurationMake/molecules/CurationMakeButton";
+import useOpenCurationMakeModal from "../../CurationMake/hooks/useOpenCurationMakeModal";
 import useTab from "@common/components/ui/tab/useTab";
 import { CurationTabSections } from "@feature/curation/constants/curation-tab";
 import MyCurationCount from "../molecules/MyCurationCount";

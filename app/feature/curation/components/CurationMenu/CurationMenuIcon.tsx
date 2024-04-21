@@ -1,5 +1,5 @@
 import MenuIcon from "@common/assets/icons/menu/MenuIcon";
-import CurationMenuModal from "../CurationModal/CurationMenuModal/CurationMenuModal";
+import CurationMenuModal from "./CurationMenuModal";
 import { twMerge } from "tailwind-merge";
 
 interface CurationMenuIconProps {

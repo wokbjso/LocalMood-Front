@@ -84,6 +84,7 @@ export default function CurationMakeKeyword({
     return;
   };
 
+  //Organism
   return (
     <div className="pb-[21.1rem]">
       <div className="w-full pb-[1.2rem] border-b border-text-gray-3">

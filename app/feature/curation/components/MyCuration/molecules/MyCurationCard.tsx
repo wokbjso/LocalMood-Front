@@ -15,6 +15,7 @@ interface MyCurationCardProps {
   onClick?: () => void;
 }
 
+//Molecule
 export default function MyCurationCard({
   spaceId,
   curationData,

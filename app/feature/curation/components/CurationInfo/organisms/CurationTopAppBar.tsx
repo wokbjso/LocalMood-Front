@@ -6,10 +6,10 @@ import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-d
 import { sliceText } from "@common/utils/text/slice-text";
 import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
-import useCurationMenuModal from "../CurationModal/CurationMenuModal/useCurationMenuModal";
-import CurationMenuIcon from "../CurationMenuIcon/CurationMenuIcon";
-import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
-import useCurationScrapIcon from "../CurationScrapIcon/useCurationScrapIcon";
+import useCurationMenuModal from "../../CurationMenu/useCurationMenuModal";
+import CurationMenuIcon from "../../CurationMenu/CurationMenuIcon";
+import CurationScrapIcon from "../../CurationScrap/CurationScrapIcon";
+import useCurationScrapIcon from "../../CurationScrap/useCurationScrapIcon";
 import useFetching from "@common/hooks/useFetching";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
@@ -25,6 +25,7 @@ interface CurationTopAppBarProps {
   className?: string;
 }
 
+//Organism
 export default function CurationTopAppBar({
   inView,
   curationId,
@@ -121,50 +122,48 @@ export default function CurationTopAppBar({
   };
 
   return (
-    <>
-      <ArrowBackTopBar
-        color="#9E9E9E"
-        className={!inView ? "bg-white fixed top-0 z-10" : ""}
-      >
-        <div className="w-[100%] flex items-center justify-between gap-[0.8rem]">
-          <h1 className="headline3-semibold">
-            {!inView && text && sliceText(text, 16)}
-          </h1>
-          <div className="flex items-center gap-[0.6rem]">
-            {variant === "others" ? (
-              <>
-                {scraped ? (
-                  <CurationScrapIcon
-                    isScraped={scraped}
-                    backgroundBrightness="light"
-                    onClick={handleScrapDeleteClick}
-                  />
-                ) : (
-                  <CurationScrapIcon
-                    isScraped={scraped}
-                    backgroundBrightness="light"
-                    onClick={handleScrapAddClick}
-                  />
-                )}
-                <ShareIcon onClick={handleCopyLinkClick} />
-              </>
-            ) : (
-              <>
-                <ShareIcon onClick={handleCopyLinkClick} />
-                <CurationMenuIcon
-                  menuModalInfo={{
-                    isOpened,
-                    curationId,
-                    closeModal,
-                  }}
-                  showAt="topBar"
-                  onClick={handleMenuIconClick}
+    <ArrowBackTopBar
+      color="#9E9E9E"
+      className={!inView ? "bg-white fixed top-0 z-10" : ""}
+    >
+      <div className="w-[100%] flex items-center justify-between gap-[0.8rem]">
+        <h1 className="headline3-semibold">
+          {!inView && text && sliceText(text, 16)}
+        </h1>
+        <div className="flex items-center gap-[0.6rem]">
+          {variant === "others" ? (
+            <>
+              {scraped ? (
+                <CurationScrapIcon
+                  isScraped={scraped}
+                  backgroundBrightness="light"
+                  onClick={handleScrapDeleteClick}
                 />
-              </>
-            )}
-          </div>
+              ) : (
+                <CurationScrapIcon
+                  isScraped={scraped}
+                  backgroundBrightness="light"
+                  onClick={handleScrapAddClick}
+                />
+              )}
+              <ShareIcon onClick={handleCopyLinkClick} />
+            </>
+          ) : (
+            <>
+              <ShareIcon onClick={handleCopyLinkClick} />
+              <CurationMenuIcon
+                menuModalInfo={{
+                  isOpened,
+                  curationId,
+                  closeModal,
+                }}
+                showAt="topBar"
+                onClick={handleMenuIconClick}
+              />
+            </>
+          )}
         </div>
-      </ArrowBackTopBar>
-    </>
+      </div>
+    </ArrowBackTopBar>
   );
 }

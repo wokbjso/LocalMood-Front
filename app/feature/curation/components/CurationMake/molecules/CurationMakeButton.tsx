@@ -1,5 +1,5 @@
 import AddIcon from "@common/assets/icons/add/AddIcon";
-import CurationMakeModal from "./CurationMakeModal";
+import CurationMakeModal from "../organisms/CurationMakeModal";
 import { twMerge } from "tailwind-merge";
 import AddLineIcon from "@common/assets/icons/add/AddLineIcon";
 
