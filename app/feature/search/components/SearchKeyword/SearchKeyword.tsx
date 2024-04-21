@@ -42,6 +42,7 @@ export default function SearchKeyword({
     showResultAble,
     handlers,
   } = useSearchKeyword();
+  console.log(tabIndex);
 
   const sortState = useRecoilValue(searchSortState);
 
@@ -57,19 +58,19 @@ export default function SearchKeyword({
   const handleKeywordClick = (category: string, keyword: string) => {
     if (keyword === "한식") {
       if (openKoreanOption) {
-        handlers.changeOpenKoreanOption(false);
+        handlers.handleOpenKoreanOption(false);
       } else {
-        handlers.changeOpenKoreanOption(true);
+        handlers.handleOpenKoreanOption(true);
       }
     }
     if (category === "food" && keyword !== "한식" && openKoreanOption) {
-      handlers.changeOpenKoreanOption(false);
+      handlers.handleOpenKoreanOption(false);
     }
-    handlers.changeKeywordData(category, keyword);
+    handlers.handleKeywordData(category, keyword);
   };
 
   const handleKoreanOptionClick = (index: number) => {
-    handlers.changeKoreanOptionIndex(index);
+    handlers.handleKoreanOptionIndex(index);
   };
 
   return (
@@ -79,8 +80,9 @@ export default function SearchKeyword({
         onClick={handleCloseIconClick}
       />
       <Tab
+        startIndex={tabIndex}
         sections={[{ text: "음식점" }, { text: "카페" }]}
-        onChange={handlers.changeTabIndex}
+        onChange={handlers.handleTabIndex}
         className="pl-[2rem] w-[35%] mt-[4.3rem]"
       />
       <Divider className="h-[0.1rem] bg-line-gray-3" />
@@ -150,7 +152,7 @@ export default function SearchKeyword({
                     label={keyword}
                     selected={cafeKeyword[category] === keyword}
                     onClick={() =>
-                      handlers.changeKeywordData(category, keyword)
+                      handlers.handleKeywordData(category, keyword)
                     }
                   />
                 ))}
