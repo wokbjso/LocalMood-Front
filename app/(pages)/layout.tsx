@@ -8,10 +8,9 @@ const MyCurationModalProvider = dynamic(
     )
 );
 import getMyCuration from "@feature/curation/queries/getMyCuration";
+import { Viewport } from "next";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
-import Head from "next/head";
-import Script from "next/script";
 import { twMerge } from "tailwind-merge";
 
 const globalFont = localFont({
@@ -45,6 +44,13 @@ export const metadata = {
   description: "키워드로 내가 원하는 공간을 찾아보세요!",
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export default async function RootLayout({
   children,
 }: {
@@ -53,12 +59,6 @@ export default async function RootLayout({
   const myCurationData = await getMyCuration();
   return (
     <html lang="en" className="width-[100%] height-[100%]">
-      <Head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-        />
-      </Head>
       <body className={twMerge("w-[100%] h-[100%]", globalFont.variable)}>
         <main className="w-[100%] h-[100%] fixed overflow-hidden">
           <RecoilRootLayout>
