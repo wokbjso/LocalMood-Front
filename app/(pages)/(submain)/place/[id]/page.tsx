@@ -3,11 +3,11 @@ import PlaceDetailInfo from "@feature/place/components/PlaceDetail/organisms/Pla
 import GetPlaceDetail from "@feature/place/queries/getPlaceDetail";
 import PlaceDetailTopBar from "@feature/place/components/PlaceDetail/organisms/PlaceDetailTopBar";
 import PlaceInfoCard from "@feature/place/components/PlaceInfo/molecules/PlaceInfoCard";
-import CurationCardDark from "@feature/curation/components/CurationCardDark/CurationCardDark";
 import PlaceImageSlider from "@feature/place/components/PlaceDetail/organisms/PlaceImageSlider";
 import PlaceKeywordEvaluation from "@feature/place/components/PlaceDetail/organisms/PlaceKeywordEvaluation";
 import PlaceKeywordSummary from "@feature/place/components/PlaceDetail/organisms/PlaceKeywordSummary";
 import PlaceRelatedSlider from "@feature/place/components/PlaceDetail/molecules/PlaceRelatedSlider";
+import CurationInfoCardDark from "@feature/curation/components/CurationInfo/molecules/CurationInfoCardDark";
 
 //Page
 export default async function PlaceDetailPage({
@@ -74,7 +74,7 @@ export default async function PlaceDetailPage({
           title={`${detailData.info.name}이(가) 담긴 큐레이션`}
         >
           {detailData.relatedCurationList.map((data) => (
-            <CurationCardDark
+            <CurationInfoCardDark
               key={data.id}
               {...data}
               className="w-[33.5rem] mr-[0.8rem]"

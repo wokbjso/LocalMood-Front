@@ -18,14 +18,14 @@ interface CurationMakeKeywordProps {
     keyword: { [key: string]: string };
   };
   resetCurationMakeData: () => void;
-  handleOpen: (state: boolean) => void;
+  closeModal: () => void;
   onClick?: (category: string, keyword: string) => void;
 }
 
 export default function CurationMakeKeyword({
   curationMakeData,
   resetCurationMakeData,
-  handleOpen,
+  closeModal,
   onClick,
 }: CurationMakeKeywordProps) {
   const setToast = useSetRecoilState(toastInfoSelector);
@@ -71,7 +71,7 @@ export default function CurationMakeKeyword({
       open: true,
       text: "큐레이션이 생성되었습니다",
     });
-    handleOpen(false);
+    closeModal();
     const dataCurationMake = getSendingCurationData();
     const res = await fetch("/api/curation/make", {
       method: "POST",

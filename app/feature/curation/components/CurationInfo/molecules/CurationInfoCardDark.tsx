@@ -9,12 +9,13 @@ import revalidateCurationScrap from "@feature/curation/actions/revalidateCuratio
 import LocationLine from "@common/assets/icons/location/LocationLine";
 import Image from "next/image";
 import revalidateCurationRandom from "@feature/curation/actions/revalidateCurationRandom";
-import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
+import CurationScrapIcon from "../../CurationScrapIcon/CurationScrapIcon";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
 
-export default function CurationCardDark({
+//Molecule
+export default function CurationInfoCardDark({
   id,
   title,
   author,

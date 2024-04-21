@@ -8,11 +8,12 @@ interface CurationMakeButtonProps {
   text: string;
   curationMakeModalInfo: {
     open: boolean;
-    handleModalFn: (state: boolean) => void;
+    closeModal: () => void;
   };
   onClick?: (state: boolean) => void;
 }
 
+//Molecule
 export default function CurationMakeButton({
   size,
   text,
@@ -48,7 +49,7 @@ export default function CurationMakeButton({
       </div>
       <CurationMakeModal
         open={curationMakeModalInfo.open}
-        handleModalFn={curationMakeModalInfo.handleModalFn}
+        closeModal={curationMakeModalInfo.closeModal}
       />
     </>
   );

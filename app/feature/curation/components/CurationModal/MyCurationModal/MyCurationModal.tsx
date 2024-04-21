@@ -36,7 +36,7 @@ export default function MyCurationModal({
 
   const setMyCurationModal = useSetRecoilState(myCurationModalInfoSelector);
 
-  const { isModalOpen, openModal, handlers } = useOpenCurationMakeModal();
+  const { isModalOpen, openModal, closeModal } = useOpenCurationMakeModal();
 
   const handleModalCloseClick = () => {
     setMyCurationModal({
@@ -92,7 +92,7 @@ export default function MyCurationModal({
             text="새 큐레이션 만들기"
             curationMakeModalInfo={{
               open: isModalOpen,
-              handleModalFn: handlers.handleModal,
+              closeModal: closeModal,
             }}
             onClick={handleMakeCurationClick}
           />

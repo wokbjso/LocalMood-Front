@@ -7,11 +7,13 @@ export default function useOpenCurationMakeModal() {
     setIsModalOpen(true);
   };
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return {
     isModalOpen,
     openModal,
-    handlers: {
-      handleModal: setIsModalOpen,
-    },
+    closeModal,
   };
 }

@@ -7,18 +7,18 @@ import CloseIcon from "@common/assets/icons/close/CloseIcon";
 
 interface CurationMakeProps {
   open: boolean;
-  handleModalFn: (state: boolean) => void;
+  closeModal: () => void;
 }
 
 export default function CurationMakeModal({
   open,
-  handleModalFn,
+  closeModal,
 }: CurationMakeProps) {
   const { curationMakeData, resetCurationMakeData, handlers } =
     UseCurationMake();
   const closeIconClicked = () => {
     resetCurationMakeData();
-    handleModalFn(false);
+    closeModal();
   };
   return (
     open && (
@@ -41,7 +41,7 @@ export default function CurationMakeModal({
               <CurationMakeKeyword
                 curationMakeData={curationMakeData}
                 resetCurationMakeData={resetCurationMakeData}
-                handleOpen={handleModalFn}
+                closeModal={closeModal}
                 onClick={handlers.changeKeyword}
               />
             </div>

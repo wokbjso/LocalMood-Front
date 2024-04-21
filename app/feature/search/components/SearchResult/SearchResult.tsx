@@ -12,9 +12,9 @@ import Divider from "@common/components/ui/divider/Divider";
 const PlaceInfoCard = lazy(
   () => import("@feature/place/components/PlaceInfo/molecules/PlaceInfoCard")
 );
-import CurationCardLight from "@feature/curation/components/CurationCardLight/CurationCardLight";
 import SearchSkeleton from "../skeleton/HomeSearchSkeleton";
 import dynamic from "next/dynamic";
+import CurationInfoCardLight from "@feature/curation/components/CurationInfo/molecules/CurationInfoCardLight";
 const ChangeSearchConditon = dynamic(() => import("./ChangeSearchCondition"), {
   ssr: false,
 });
@@ -64,7 +64,7 @@ export default function SearchResult({
               {searchBarTabIndex === 1 && (
                 <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
                   {textSearchCurationData?.CurationList.map((curation) => (
-                    <CurationCardLight
+                    <CurationInfoCardLight
                       key={curation.id}
                       {...curation}
                       className="mb-[4rem]"
@@ -162,7 +162,7 @@ export default function SearchResult({
               {searchBarTabIndex === 1 && (
                 <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
                   {textSearchCurationData.CurationList.map((curation) => (
-                    <CurationCardLight
+                    <CurationInfoCardLight
                       key={curation.id}
                       {...curation}
                       className="mb-[4rem]"
@@ -194,7 +194,7 @@ export default function SearchResult({
               {searchBarTabIndex === 1 && (
                 <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
                   {keywordSearchCurationData?.CurationList.map((curation) => (
-                    <CurationCardLight
+                    <CurationInfoCardLight
                       key={curation.id}
                       {...curation}
                       className="mb-[4rem]"
@@ -292,7 +292,7 @@ export default function SearchResult({
               {searchBarTabIndex === 1 && (
                 <div className="h-full px-[2rem] pt-[2rem] pb-[10.5rem] overflow-y-scroll">
                   {keywordSearchCurationData.CurationList.map((curation) => (
-                    <CurationCardLight
+                    <CurationInfoCardLight
                       key={curation.id}
                       {...curation}
                       className="mb-[4rem]"

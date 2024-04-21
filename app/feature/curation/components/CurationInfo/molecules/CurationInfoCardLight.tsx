@@ -10,18 +10,19 @@ import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import Image from "next/image";
 import revalidateCurationRandom from "@feature/curation/actions/revalidateCurationRandom";
 import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
-import useCurationMenuModal from "../CurationModal/CurationMenuModal/useCurationMenuModal";
-import CurationMenuIcon from "../CurationMenuIcon/CurationMenuIcon";
-import CurationScrapIcon from "../CurationScrapIcon/CurationScrapIcon";
+import useCurationMenuModal from "../../CurationModal/CurationMenuModal/useCurationMenuModal";
+import CurationMenuIcon from "../../CurationMenuIcon/CurationMenuIcon";
+import CurationScrapIcon from "../../CurationScrapIcon/CurationScrapIcon";
 import revalidateTextSearchCurationData from "@feature/search/actions/revalidateTextSearchCurationData";
 import revalidateKeywordSearchCurationData from "@feature/search/actions/revalidateKeywordSearchCurationData";
-import useCurationScrapIcon from "../CurationScrapIcon/useCurationScrapIcon";
+import useCurationScrapIcon from "../../CurationScrapIcon/useCurationScrapIcon";
 import useFetching from "@common/hooks/useFetching";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
 
-export default function CurationCardLight({
+//Molecule
+export default function CurationInfoCardLight({
   id,
   variant = "others",
   image,
