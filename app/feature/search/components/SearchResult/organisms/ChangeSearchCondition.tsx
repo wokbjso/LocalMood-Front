@@ -2,12 +2,13 @@ import FilterSortIcon from "@common/assets/icons/filter/FilterSortIcon";
 import FilterKeywordIcon from "@common/assets/icons/filter/FilterKeywordIcon";
 import { useRecoilValue } from "recoil";
 import { searchSortState } from "@feature/search/state/sortState";
-import UseChangeSearchSortModal from "./useChangeSearchSortModal";
+import UseChangeSearchSortModal from "../hooks/useChangeSearchSortModal";
 import ChangeSearchSortModal from "./ChangeSearchSortModal";
 import { useState } from "react";
-import SearchKeyword from "../SearchKeyword/SearchKeyword";
 import { useSearchParams } from "next/navigation";
+import SearchKeywordModal from "../../SearchKeyword/organisms/SearchKeywordModal";
 
+//Organism
 export default function ChangeSearchConditon() {
   const searchParams = useSearchParams();
   const state = useRecoilValue(searchSortState);
@@ -58,7 +59,7 @@ export default function ChangeSearchConditon() {
   return (
     <>
       {isSearchKeywordOpened && (
-        <SearchKeyword
+        <SearchKeywordModal
           dependOnParams={false}
           closeModal={handleKeywordChangeCloseClick}
         />
