@@ -1,8 +1,7 @@
 "use client";
 
-import useSearchBar from "@feature/search/components/SearchBar/useSearchBar";
 import Tab from "@common/components/ui/tab/Tab";
-import SearchNoResult from "@feature/search/components/SearchNoResult/SearchNoResult";
+import SearchNoResult from "@feature/search/components/SearchResult/molecules/SearchNoResult";
 import { Suspense, lazy } from "react";
 import {
   SearchCurationResponse,
@@ -12,12 +11,16 @@ import Divider from "@common/components/ui/divider/Divider";
 const PlaceInfoCard = lazy(
   () => import("@feature/place/components/PlaceInfo/molecules/PlaceInfoCard")
 );
-import SearchSkeleton from "../skeleton/HomeSearchSkeleton";
+import SearchSkeleton from "../../skeleton/HomeSearchSkeleton";
 import dynamic from "next/dynamic";
 import CurationInfoCardLight from "@feature/curation/components/CurationInfo/molecules/CurationInfoCardLight";
-const ChangeSearchConditon = dynamic(() => import("./ChangeSearchCondition"), {
-  ssr: false,
-});
+import useTextSearchBar from "../../SearchText/hooks/useTextSearchBar";
+const ChangeSearchConditon = dynamic(
+  () => import("../organisms/ChangeSearchCondition"),
+  {
+    ssr: false,
+  }
+);
 
 interface SearchResultProps {
   search_query?: string;
@@ -38,7 +41,7 @@ export default function SearchResult({
   keywordSearchCurationData,
 }: SearchResultProps) {
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
-    useSearchBar();
+    useTextSearchBar();
   return (
     <>
       <Suspense fallback={<SearchSkeleton />}>

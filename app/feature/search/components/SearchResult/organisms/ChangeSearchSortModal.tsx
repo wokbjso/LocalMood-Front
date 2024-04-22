@@ -13,6 +13,7 @@ interface ChangeSearchSortModalProps {
   closeModal: () => void;
 }
 
+//Organism
 export default function ChangeSearchSortModal({
   isOpen,
   closeModal,

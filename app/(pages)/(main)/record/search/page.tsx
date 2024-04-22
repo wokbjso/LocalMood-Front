@@ -1,6 +1,6 @@
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
 import PlaceInfoCard from "@feature/place/components/PlaceInfo/molecules/PlaceInfoCard";
-import SearchBar from "@feature/search/components/SearchBar/SearchBar";
+import TextSearchBar from "@feature/search/components/SearchText/molecules/TextSearchBar";
 import { getTextSearchPlaceData } from "@feature/search/queries/getTextSearchPlaceData";
 
 export default async function RecordSearchPage({
@@ -14,7 +14,10 @@ export default async function RecordSearchPage({
   return (
     <div className="w-[100%] h-[100%]">
       <ArrowBackTopBar color="#9E9E9E">
-        <SearchBar variant="record" placeholder="공간 이름을 검색해보세요" />
+        <TextSearchBar
+          variant="record"
+          placeholder="공간 이름을 검색해보세요"
+        />
       </ArrowBackTopBar>
       {textSearchPlaceData?.spaceCount === 0 && (
         <div className="flex justify-center items-center body1-medium text-text-gray-8 h-[31vh]">

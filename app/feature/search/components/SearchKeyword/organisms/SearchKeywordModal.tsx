@@ -5,33 +5,34 @@ import Divider from "@common/components/ui/divider/Divider";
 import Tab from "@common/components/ui/tab/Tab";
 import {
   CAFE_CATEGORY,
-  CAFE_KEYWORDS,
-  KOREAN_OPTION,
-  RESTARANT_KEYWORDS,
   RESTAURANT_CATEGORY,
 } from "@feature/search/constants/search-keywords";
-import Filter from "@common/components/ui/buttons/Filter/Filter";
 import Button from "@common/components/ui/buttons/Button/Button";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import useSearchKeyword from "./useSearchKeyword";
 import Modal from "@common/components/ui/modal/Modal";
 import { useRecoilValue } from "recoil";
 import { searchSortState } from "@feature/search/state/sortState";
+import useSearchKeywordModal from "../hooks/useSearchKeywordModal";
+import KeywordSection from "./KeywordSection";
+import KeywordFoodSection from "./KeywordRestaurantFoodSection";
 
-interface SearchKeywordProps {
+interface SearchKeywordModalProps {
   dependOnParams?: boolean;
   closeModal?: () => void;
 }
 
-export default function SearchKeyword({
+//Organism
+export default function SearchKeywordModal({
   dependOnParams = true,
   closeModal,
-}: SearchKeywordProps) {
+}: SearchKeywordModalProps) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
   const params = new URLSearchParams(searchParams);
+
+  const sortState = useRecoilValue(searchSortState);
 
   const {
     cafeKeyword,
@@ -41,10 +42,7 @@ export default function SearchKeyword({
     koreanOptionIndex,
     showResultAble,
     handlers,
-  } = useSearchKeyword();
-  console.log(tabIndex);
-
-  const sortState = useRecoilValue(searchSortState);
+  } = useSearchKeywordModal();
 
   const handleCloseIconClick = () => {
     if (dependOnParams) {
@@ -88,76 +86,45 @@ export default function SearchKeyword({
       <Divider className="h-[0.1rem] bg-line-gray-3" />
       <div className="h-full w-full pt-[3.2rem] pb-[17rem] px-[2rem] overflow-y-scroll">
         {tabIndex === 0 &&
-          Object.keys(RESTAURANT_CATEGORY).map((category, i) => (
-            <section
-              key={category}
-              className={
-                i !== Object.keys(RESTAURANT_CATEGORY).length - 1
-                  ? "mb-[4rem]"
-                  : "mb-[2.7rem]"
-              }
-            >
-              <div className="text-black headline3 mb-[1.2rem]">
-                {RESTAURANT_CATEGORY[category]}
-              </div>
-              <div className="flex flex-wrap gap-[0.6rem]">
-                {RESTARANT_KEYWORDS[RESTAURANT_CATEGORY[category]].map(
-                  (keyword) => (
-                    <Filter
-                      key={keyword}
-                      label={keyword}
-                      selected={
-                        keyword === "한식"
-                          ? openKoreanOption
-                          : restaurantKeyword[category] === keyword
-                      }
-                      variant={keyword === "한식" ? "showOptions" : undefined}
-                      onClick={() => handleKeywordClick(category, keyword)}
-                    />
-                  )
-                )}
-                {category === "subType" &&
-                  openKoreanOption &&
-                  KOREAN_OPTION.map((option, i) => (
-                    <Filter
-                      key={option}
-                      label={option}
-                      selected={
-                        (koreanOptionIndex == -1 && option === "한식 전체") ||
-                        koreanOptionIndex === i
-                      }
-                      onClick={() => handleKoreanOptionClick(i)}
-                    />
-                  ))}
-              </div>
-            </section>
-          ))}
+          Object.keys(RESTAURANT_CATEGORY).map((category, i) =>
+            category === "subType" ? (
+              <KeywordFoodSection
+                key="subType"
+                openKoreanOption={openKoreanOption}
+                restaurantKeyword={restaurantKeyword}
+                koreanOptionIndex={koreanOptionIndex}
+                handleKeywordClick={handleKeywordClick}
+                handleKoreanOptionIndex={handleKoreanOptionClick}
+              />
+            ) : (
+              <KeywordSection
+                key={category}
+                type="RESTAURANT"
+                category={category}
+                keywordData={restaurantKeyword}
+                changeKeywordData={handlers.handleKeywordData}
+                className={
+                  i !== Object.keys(CAFE_CATEGORY).length - 1
+                    ? "mb-[40px]"
+                    : "mb-[27px]"
+                }
+              />
+            )
+          )}
         {tabIndex === 1 &&
           Object.keys(CAFE_CATEGORY).map((category, i) => (
-            <section
+            <KeywordSection
               key={category}
+              type="CAFE"
+              category={category}
+              keywordData={cafeKeyword}
+              changeKeywordData={handlers.handleKeywordData}
               className={
                 i !== Object.keys(CAFE_CATEGORY).length - 1
-                  ? "mb-[4rem]"
-                  : "mb-[2.7rem]"
+                  ? "mb-[40px]"
+                  : "mb-[27px]"
               }
-            >
-              <div className="text-black headline3 mb-[1.2rem]">
-                {CAFE_CATEGORY[category]}
-              </div>
-              <div className="flex flex-wrap gap-[0.6rem]">
-                {CAFE_KEYWORDS[CAFE_CATEGORY[category]].map((keyword) => (
-                  <Filter
-                    key={keyword}
-                    label={keyword}
-                    selected={cafeKeyword[category] === keyword}
-                    onClick={() =>
-                      handlers.handleKeywordData(category, keyword)
-                    }
-                  />
-                ))}
-              </div>
-            </section>
+            />
           ))}
 
         <div className="absolute left-8 right-8 bottom-0 h-[7.5rem] bg-white">

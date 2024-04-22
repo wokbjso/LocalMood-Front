@@ -26,10 +26,12 @@ export default function Filter({
   className,
 }: FilterProps) {
   const [openOptions, setOpenOptions] = useState(false);
+
   const filterClicked = () => {
     onClick && onClick();
     if (variant === "showOptions") setOpenOptions((prev) => !prev);
   };
+
   return (
     <button
       className={twMerge(

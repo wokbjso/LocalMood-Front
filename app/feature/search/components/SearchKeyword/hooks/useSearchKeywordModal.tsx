@@ -4,7 +4,7 @@ import { KOREAN_OPTION } from "@feature/search/constants/search-keywords";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function useSearchKeyword() {
+export default function useSearchKeywordModal() {
   const searchParams = useSearchParams();
   const keywordData = searchParams.get("keyword");
   const [cafeKeyword, setCafeKeyword] = useState<{ [key: string]: string }>(
