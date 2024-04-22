@@ -16,7 +16,6 @@ import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
 import revalidateHomeRecommend from "@feature/place/actions/revalidateHomeRecommend";
-import NoCurationText from "../../CurationInfo/atoms/NoCurationText";
 import { twMerge } from "tailwind-merge";
 const MyCurationCard = lazy(() => import("../molecules/MyCurationCard"));
 
