@@ -9,7 +9,7 @@ interface KeywordRestaurantFoodSection {
   openKoreanOption: boolean;
   restaurantKeyword: { [key: string]: string };
   koreanOptionIndex: number;
-  handleKeywordClick: (category: string, keywoord: string) => void;
+  handleRestaurantSubType: (keyword: string) => void;
   handleKoreanOptionIndex: (index: number) => void;
 }
 
@@ -17,7 +17,7 @@ export default function KeywordFoodSection({
   openKoreanOption,
   restaurantKeyword,
   koreanOptionIndex,
-  handleKeywordClick,
+  handleRestaurantSubType,
   handleKoreanOptionIndex,
 }: KeywordRestaurantFoodSection) {
   return (
@@ -36,7 +36,7 @@ export default function KeywordFoodSection({
                 : restaurantKeyword["subType"] === keyword
             }
             variant={keyword === "한식" ? "showOptions" : undefined}
-            onClick={() => handleKeywordClick("subType", keyword)}
+            onClick={() => handleRestaurantSubType(keyword)}
           />
         ))}
         {openKoreanOption &&
@@ -44,10 +44,7 @@ export default function KeywordFoodSection({
             <Filter
               key={option}
               label={option}
-              selected={
-                (koreanOptionIndex == -1 && option === "한식 전체") ||
-                koreanOptionIndex === i
-              }
+              selected={koreanOptionIndex === i}
               onClick={() => handleKoreanOptionIndex(i)}
             />
           ))}

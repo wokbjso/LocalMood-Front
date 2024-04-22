@@ -10,7 +10,7 @@ interface KeywordSectionProps {
   type: "RESTAURANT" | "CAFE";
   category: string;
   keywordData: { [key: string]: string };
-  changeKeywordData: (category: string, keyword: string) => void;
+  handleKeywordData: (category: string, keyword: string) => void;
   className?: string;
 }
 
@@ -19,7 +19,7 @@ export default function KeywordSection({
   type,
   category,
   keywordData,
-  changeKeywordData,
+  handleKeywordData,
   className,
 }: KeywordSectionProps) {
   const TYPE_CATEGORY =
@@ -37,7 +37,7 @@ export default function KeywordSection({
             key={keyword}
             label={keyword}
             selected={keywordData[category] === keyword}
-            onClick={() => changeKeywordData(category, keyword)}
+            onClick={() => handleKeywordData(category, keyword)}
           />
         ))}
       </div>

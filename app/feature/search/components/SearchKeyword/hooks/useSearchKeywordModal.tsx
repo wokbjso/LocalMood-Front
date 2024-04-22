@@ -46,42 +46,20 @@ export default function useSearchKeywordModal() {
   );
 
   const [showResultAble, setShowResultAble] = useState<boolean>(false);
-  const [openKoreanOption, setOpenKoreanOption] = useState(false);
-  const [koreanOptionIndex, setKoreanOptionIndex] = useState(0);
+  const [openKoreanOption, setOpenKoreanOption] = useState(
+    keywordData && JSON.parse(keywordData as string)["subType"] === "한식"
+      ? true
+      : false
+  );
+  const [koreanOptionIndex, setKoreanOptionIndex] = useState(
+    keywordData && JSON.parse(keywordData as string)["subType"] === "한식"
+      ? KOREAN_OPTION.indexOf(restaurantKeyword["dish"])
+      : 0
+  );
 
   const handleKeywordData = (category: string, keyword: string) => {
     if (tabIndex === 0) {
-      if (category === "subType") {
-        if (keyword === "한식") {
-          if (restaurantKeyword[category] === keyword) {
-            setRestaurantKeyword({
-              ...restaurantKeyword,
-              [category]: "ALL",
-              dish: "ALL",
-            });
-          } else {
-            setRestaurantKeyword({
-              ...restaurantKeyword,
-              [category]: keyword,
-              dish: KOREAN_OPTION[koreanOptionIndex],
-            });
-          }
-        } else {
-          if (restaurantKeyword[category] === keyword) {
-            setRestaurantKeyword({
-              ...restaurantKeyword,
-              [category]: "ALL",
-            });
-          } else {
-            setOpenKoreanOption(false);
-            setRestaurantKeyword({
-              ...restaurantKeyword,
-              [category]: keyword,
-              dish: "ALL",
-            });
-          }
-        }
-      } else if (restaurantKeyword[category] === keyword) {
+      if (restaurantKeyword[category] === keyword) {
         setRestaurantKeyword({
           ...restaurantKeyword,
           [category]: "ALL",
@@ -97,6 +75,40 @@ export default function useSearchKeywordModal() {
         setCafeKeyword({ ...cafeKeyword, [category]: "ALL" });
       else setCafeKeyword({ ...cafeKeyword, [category]: keyword });
     } else return;
+  };
+
+  const handleRestaurantSubType = (keyword: string) => {
+    if (keyword === "한식") {
+      if (restaurantKeyword["subType"] === keyword) {
+        setOpenKoreanOption(false);
+        setRestaurantKeyword({
+          ...restaurantKeyword,
+          subType: "ALL",
+          dish: "ALL",
+        });
+      } else {
+        setOpenKoreanOption(true);
+        setRestaurantKeyword({
+          ...restaurantKeyword,
+          subType: keyword,
+          dish: KOREAN_OPTION[koreanOptionIndex],
+        });
+      }
+    } else {
+      if (restaurantKeyword["subType"] === keyword) {
+        setRestaurantKeyword({
+          ...restaurantKeyword,
+          subType: "ALL",
+        });
+      } else {
+        setOpenKoreanOption(false);
+        setRestaurantKeyword({
+          ...restaurantKeyword,
+          subType: keyword,
+          dish: "ALL",
+        });
+      }
+    }
   };
 
   const handleTabIndex = (index: number) => {
@@ -141,6 +153,7 @@ export default function useSearchKeywordModal() {
     handlers: {
       handleTabIndex,
       handleKeywordData,
+      handleRestaurantSubType,
       handleOpenKoreanOption,
       handleKoreanOptionIndex,
     },

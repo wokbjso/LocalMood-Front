@@ -53,24 +53,6 @@ export default function SearchKeywordModal({
     }
   };
 
-  const handleKeywordClick = (category: string, keyword: string) => {
-    if (keyword === "한식") {
-      if (openKoreanOption) {
-        handlers.handleOpenKoreanOption(false);
-      } else {
-        handlers.handleOpenKoreanOption(true);
-      }
-    }
-    if (category === "food" && keyword !== "한식" && openKoreanOption) {
-      handlers.handleOpenKoreanOption(false);
-    }
-    handlers.handleKeywordData(category, keyword);
-  };
-
-  const handleKoreanOptionClick = (index: number) => {
-    handlers.handleKoreanOptionIndex(index);
-  };
-
   return (
     <Modal className="h-[94%]">
       <CloseIcon
@@ -93,8 +75,8 @@ export default function SearchKeywordModal({
                 openKoreanOption={openKoreanOption}
                 restaurantKeyword={restaurantKeyword}
                 koreanOptionIndex={koreanOptionIndex}
-                handleKeywordClick={handleKeywordClick}
-                handleKoreanOptionIndex={handleKoreanOptionClick}
+                handleRestaurantSubType={handlers.handleRestaurantSubType}
+                handleKoreanOptionIndex={handlers.handleKoreanOptionIndex}
               />
             ) : (
               <KeywordSection
@@ -102,7 +84,7 @@ export default function SearchKeywordModal({
                 type="RESTAURANT"
                 category={category}
                 keywordData={restaurantKeyword}
-                changeKeywordData={handlers.handleKeywordData}
+                handleKeywordData={handlers.handleKeywordData}
                 className={
                   i !== Object.keys(CAFE_CATEGORY).length - 1
                     ? "mb-[40px]"
@@ -118,7 +100,7 @@ export default function SearchKeywordModal({
               type="CAFE"
               category={category}
               keywordData={cafeKeyword}
-              changeKeywordData={handlers.handleKeywordData}
+              handleKeywordData={handlers.handleKeywordData}
               className={
                 i !== Object.keys(CAFE_CATEGORY).length - 1
                   ? "mb-[40px]"
@@ -126,7 +108,6 @@ export default function SearchKeywordModal({
               }
             />
           ))}
-
         <div className="absolute left-8 right-8 bottom-0 h-[7.5rem] bg-white">
           <Link
             href={{
