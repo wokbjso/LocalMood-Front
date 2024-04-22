@@ -1,5 +1,5 @@
 import RightArrow from "@common/assets/icons/arrow/arrow-right.svg";
-import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
+import LinkLayout from "@common/components/layout/Link/LinkLayout";
 
 interface MoreButtonProps {
   routeTo: string;

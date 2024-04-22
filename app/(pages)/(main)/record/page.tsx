@@ -1,4 +1,4 @@
-import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
+import LinkLayout from "@common/components/layout/Link/LinkLayout";
 import PageTopBar from "@common/components/ui/topBar/PageTopBar/PageTopBar";
 import UseDeferredComponent from "@common/hooks/useDeferredComponent";
 import PlaceScrapList from "@feature/place/components/PlaceScrapList/PlaceScrapList";

@@ -1,10 +1,13 @@
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
-import TextSearchBar from "@feature/search/components/SearchText/molecules/TextSearchBar";
+import UseDeferredComponent from "@common/hooks/useDeferredComponent";
 import SearchResult from "@feature/search/components/SearchResult/template/SearchResult";
+import TextSearchBar from "@feature/search/components/SearchText/molecules/TextSearchBar";
+import SearchSkeleton from "@feature/search/components/skeleton/HomeSearchSkeleton";
 import { getTextSearchCurationData } from "@feature/search/queries/getTextSearchCurationData";
 import { getTextSearchPlaceData } from "@feature/search/queries/getTextSearchPlaceData";
 import { postKeywordSearchCurationData } from "@feature/search/queries/postKeywordSearchCurationData";
 import { postKeywordSearchPlaceData } from "@feature/search/queries/postKeywordSearchPlaceData";
+import { Suspense } from "react";
 
 //Page
 export default async function SearchResultPage({
@@ -53,14 +56,22 @@ export default async function SearchResultPage({
           className="rounded-[1000px]"
         />
       </ArrowBackTopBar>
-      <SearchResult
-        search_query={searchParams.search_query}
-        keyword={searchParams.keyword}
-        textSearchPlaceData={textSearchPlaceData}
-        textSearchCurationData={textSearchCurationData}
-        keywordSearchPlaceData={keywordSearchPlaceData}
-        keywordSearchCurationData={keywordSearchCurationData}
-      />
+      <Suspense
+        fallback={
+          <UseDeferredComponent>
+            <SearchSkeleton />
+          </UseDeferredComponent>
+        }
+      >
+        <SearchResult
+          search_query={searchParams.search_query}
+          keyword={searchParams.keyword}
+          textSearchPlaceData={textSearchPlaceData}
+          textSearchCurationData={textSearchCurationData}
+          keywordSearchPlaceData={keywordSearchPlaceData}
+          keywordSearchCurationData={keywordSearchCurationData}
+        />
+      </Suspense>
     </main>
   );
 }
