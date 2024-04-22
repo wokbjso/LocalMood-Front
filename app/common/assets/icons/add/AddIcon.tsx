@@ -1,5 +1,6 @@
 import { IconProps } from "../icon-type";
 
+//Atom
 export default function AddIcon({
   color = "#9E9E9E",
   className,

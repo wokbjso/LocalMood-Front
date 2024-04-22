@@ -1,7 +1,7 @@
 "use client";
 
 import { myCurationModalInfo } from "@common/state/myCurationModal";
-import MyCurationModal from "@feature/curation/components/CurationModal/MyCurationModal/MyCurationModal";
+import MyCurationModal from "@feature/curation/components/MyCuration/organisms/MyCurationModal";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import { useRecoilValue } from "recoil";
 

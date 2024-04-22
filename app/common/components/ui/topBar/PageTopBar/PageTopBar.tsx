@@ -3,7 +3,6 @@
 import MenuIcon from "@common/assets/icons/menu/MenuIcon";
 import LogoutModal from "@feature/auth/components/LogoutModal/LogoutModal";
 import UseLogoutModal from "@feature/auth/components/LogoutModal/useLogoutModal";
-import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface PageTopBarProps {
@@ -13,6 +12,7 @@ interface PageTopBarProps {
   textClassName?: string;
 }
 
+//Molecule
 export default function PageTopBar({
   text,
   hasMenu = false,

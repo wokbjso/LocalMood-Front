@@ -1,5 +1,5 @@
 import GetCurationDetail from "@feature/curation/queries/getCurationDetail";
-import CurationDetail from "@feature/curation/components/CurationDetail/CurationDetail";
+import CurationDetail from "@feature/curation/components/CurationDetail/template/CurationDetail";
 
 export default async function CurationDetailPage({
   params: { id },
