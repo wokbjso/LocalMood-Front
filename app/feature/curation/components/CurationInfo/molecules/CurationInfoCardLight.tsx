@@ -20,6 +20,7 @@ import useFetching from "@common/hooks/useFetching";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
+import { useEffect } from "react";
 
 //Molecule
 export default function CurationInfoCardLight({
@@ -72,53 +73,17 @@ export default function CurationInfoCardLight({
     revalidateKeywordSearchCurationData();
   };
 
-  const handleScrapAddClick = async () => {
+  const handleScrapClick = async () => {
     if ((await validateLoggedIn()) === false) {
       location.replace("/login");
     } else {
-      if (isFetching) {
-        alert("이전 요청을 처리중입니다");
-        return;
-      }
-      changeFetching(true);
       toggleScrap();
       setToast({
         open: true,
-        text: "큐레이션이 스크랩 되었습니다",
+        text: scraped
+          ? "큐레이션 스크랩이 해제되었습니다"
+          : "큐레이션이 스크랩 되었습니다",
       });
-      if ((await curationScrapAdd()) === 200) {
-        changeFetching(false);
-        revalidateRelatedData();
-      } else {
-        toggleScrap();
-        alert("에러가 발생했습니다!");
-        return;
-      }
-    }
-  };
-
-  const handleScrapDeleteClick = async () => {
-    if ((await validateLoggedIn()) === false) {
-      location.replace("/login");
-    } else {
-      if (isFetching) {
-        alert("이전 요청을 처리중입니다");
-        return;
-      }
-      changeFetching(true);
-      toggleScrap();
-      setToast({
-        open: true,
-        text: "큐레이션 스크랩이 해제되었습니다",
-      });
-      if ((await curationScrapDelete()) === 200) {
-        changeFetching(false);
-        revalidateRelatedData();
-      } else {
-        toggleScrap();
-        alert("에러가 발생했습니다!");
-        return;
-      }
     }
   };
 
@@ -126,6 +91,38 @@ export default function CurationInfoCardLight({
     e.preventDefault();
     openModal();
   };
+
+  useEffect(() => {
+    const timer = setTimeout(async () => {
+      if (scraped === isScraped || isFetching) return;
+      if (scraped) {
+        changeFetching(true);
+        if ((await curationScrapAdd()) === 200) {
+          changeFetching(false);
+          revalidateRelatedData();
+        } else {
+          toggleScrap();
+          alert("잠시 후 다시 시도해주세요");
+          return;
+        }
+      } else {
+        changeFetching(true);
+        if ((await curationScrapDelete()) === 200) {
+          changeFetching(false);
+          revalidateRelatedData();
+        } else {
+          toggleScrap();
+          alert("잠시 후 다시 시도해주세요");
+          return;
+        }
+      }
+    }, 380);
+
+    return () => {
+      clearTimeout(timer);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scraped]);
 
   return (
     <div
@@ -171,14 +168,14 @@ export default function CurationInfoCardLight({
               isScraped={scraped}
               backgroundBrightness="light"
               className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-              onClick={handleScrapDeleteClick}
+              onClick={handleScrapClick}
             />
           ) : (
             <CurationScrapIcon
               isScraped={scraped}
               backgroundBrightness="light"
               className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-              onClick={handleScrapAddClick}
+              onClick={handleScrapClick}
             />
           )
         ) : (
