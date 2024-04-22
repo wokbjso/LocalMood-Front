@@ -77,11 +77,6 @@ export default function CurationInfoCardLight({
     if ((await validateLoggedIn()) === false) {
       location.replace("/login");
     } else {
-      // if (isFetching) {
-      //   alert("이전 요청을 처리중입니다");
-      //   return;
-      // }
-      // changeFetching(true);
       toggleScrap();
       setToast({
         open: true,
@@ -89,41 +84,8 @@ export default function CurationInfoCardLight({
           ? "큐레이션 스크랩이 해제되었습니다"
           : "큐레이션이 스크랩 되었습니다",
       });
-      // if ((await curationScrapAdd()) === 200) {
-      //   changeFetching(false);
-      //   revalidateRelatedData();
-      // } else {
-      //   toggleScrap();
-      //   alert("에러가 발생했습니다!");
-      //   return;
-      // }
     }
   };
-
-  // const handleScrapDeleteClick = async () => {
-  //   if ((await validateLoggedIn()) === false) {
-  //     location.replace("/login");
-  //   } else {
-  //     if (isFetching) {
-  //       alert("이전 요청을 처리중입니다");
-  //       return;
-  //     }
-  //     changeFetching(true);
-  //     toggleScrap();
-  //     setToast({
-  //       open: true,
-  //       text: "큐레이션 스크랩이 해제되었습니다",
-  //     });
-  // if ((await curationScrapDelete()) === 200) {
-  //   changeFetching(false);
-  //   revalidateRelatedData();
-  // } else {
-  //   toggleScrap();
-  //   alert("에러가 발생했습니다!");
-  //   return;
-  // }
-  //   }
-  // };
 
   const handleMenuClick = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     e.preventDefault();
