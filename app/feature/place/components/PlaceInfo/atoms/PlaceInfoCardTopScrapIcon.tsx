@@ -20,7 +20,7 @@ export default function PlaceInfoCardTopScrapIcon({
         <ScrapFill
           className={twMerge(
             "absolute right-[0.6rem]",
-            cardSize === "small" && "top-[0.8rem]"
+            cardSize === "small" && "top-[8px]"
           )}
           color={cardSize === "small" ? "white" : undefined}
           onClick={onClick}
@@ -29,7 +29,7 @@ export default function PlaceInfoCardTopScrapIcon({
         <ScrapLine
           className={twMerge(
             "absolute right-[0.6rem]",
-            cardSize === "small" && "top-[0.8rem]"
+            cardSize === "small" && "top-[8px]"
           )}
           color={cardSize === "small" ? "white" : undefined}
           onClick={onClick}

@@ -4,8 +4,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../slick.css";
 import Slider from "react-slick";
-import CurationCardLight from "../../../curation/components/CurationCardLight/CurationCardLight";
 import MoreTopBar from "@common/components/ui/topBar/MoreTopBar/MoreTopBar";
+import CurationInfoCardLight from "@feature/curation/components/CurationInfo/molecules/CurationInfoCardLight";
 
 //Organism
 interface CurationHomePopularProps {
@@ -52,7 +52,7 @@ export default function HomePopularCuration({
         <MoreTopBar title={title} />
         <Slider {...sliderSettings} className="px-[2rem]">
           {curationList.map((curation, i) => (
-            <CurationCardLight
+            <CurationInfoCardLight
               key={curation.author + i}
               {...curation}
               className="mb-[2rem] w-[100%]"
