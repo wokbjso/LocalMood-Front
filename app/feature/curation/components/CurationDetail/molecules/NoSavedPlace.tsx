@@ -1,5 +1,5 @@
 import ArrowRight from "@common/assets/icons/arrow/arrow-right.svg";
-import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
+import LinkLayout from "@common/components/layout/Link/LinkLayout";
 
 //Molecule
 export default function NoSavedPlace() {

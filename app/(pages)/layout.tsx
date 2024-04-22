@@ -1,11 +1,8 @@
 import "../styles/global.css";
-import RecoilRootLayout from "@common/components/layout/RecoilRootLayout/RecoilRootLayout";
-import ToastProvider from "@common/components/layout/ToastProvider/ToastProvider";
+import RecoilRootLayout from "@common/components/layout/Recoil/RecoilRootLayout";
+import ToastProvider from "@common/components/layout/Provider/ToastProvider";
 const MyCurationModalProvider = dynamic(
-  () =>
-    import(
-      "@common/components/layout/MyCurationModalProvider/MyCurationModalProvider"
-    )
+  () => import("@common/components/layout/Provider/MyCurationModalProvider")
 );
 import getMyCuration from "@feature/curation/queries/getMyCuration";
 import { Viewport } from "next";

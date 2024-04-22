@@ -1,4 +1,4 @@
-import SliderLayout from "@common/components/layout/SliderLayout/SliderLayout";
+import SliderLayout from "@common/components/layout/Slider/SliderLayout";
 import { ReactNode } from "react";
 
 interface PlaceRelatedSliderProps {

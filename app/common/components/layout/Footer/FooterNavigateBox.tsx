@@ -1,5 +1,5 @@
 import { twMerge } from "tailwind-merge";
-import LinkLayout from "../LinkLayout/LinkLayout";
+import LinkLayout from "../Link/LinkLayout";
 
 interface FooterNavigateBoxProps {
   text: string;

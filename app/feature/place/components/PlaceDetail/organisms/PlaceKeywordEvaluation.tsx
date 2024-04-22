@@ -1,4 +1,4 @@
-import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
+import LinkLayout from "@common/components/layout/Link/LinkLayout";
 import Button from "@common/components/ui/buttons/Button/Button";
 import GraphUpDownVote from "@common/components/ui/graph/GraphUpDownVote/GraphUpDownVote";
 import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";

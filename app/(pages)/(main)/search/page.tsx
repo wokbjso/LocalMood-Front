@@ -1,5 +1,5 @@
 import SearchImage from "@common/assets/images/search_start.svg";
-import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
+import LinkLayout from "@common/components/layout/Link/LinkLayout";
 import Button from "@common/components/ui/buttons/Button/Button";
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
 import SearchKeywordModal from "@feature/search/components/SearchKeyword/organisms/SearchKeywordModal";
