@@ -2,10 +2,12 @@ import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowB
 import CurationInfoCardLight from "@feature/curation/components/CurationInfo/molecules/CurationInfoCardLight";
 import GetRandomCuration from "@feature/curation/queries/getRandomCuration";
 
+//Page
 export default async function CurationPopularPage() {
   const randomCuration = await GetRandomCuration();
   return (
     <div className="w-[100%] h-[100%] overflow-auto">
+      {/* Template */}
       <ArrowBackTopBar color="#9E9E9E" />
       <div className="text-black headline1 px-[2rem]">마포구 인기 큐레이션</div>
       <section className="mt-[2.4rem] px-[2rem] pb-[12rem]">

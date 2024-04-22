@@ -3,7 +3,7 @@ import PageTopBar from "@common/components/ui/topBar/PageTopBar/PageTopBar";
 import UseDeferredComponent from "@common/hooks/useDeferredComponent";
 import PlaceScrapList from "@feature/place/components/PlaceScrapList/PlaceScrapList";
 import PlaceScrappedSkeleton from "@feature/place/components/skeleton/PlaceScrappedSkeleton";
-import SearchBar from "@feature/search/components/SearchBar/SearchBar";
+import TextSearchBar from "@feature/search/components/SearchText/molecules/TextSearchBar";
 import { Suspense } from "react";
 
 export default async function RecordPage() {
@@ -16,7 +16,10 @@ export default async function RecordPage() {
       />
       <div className="w-full flex flex-col items-start pl-[2rem] pr-[1.9rem] pt-[6rem] gap-[1.6rem] text-black headline2-semibold">
         공간 검색하기
-        <SearchBar placeholder="공간 이름을 검색해보세요" variant="record" />
+        <TextSearchBar
+          placeholder="공간 이름을 검색해보세요"
+          variant="record"
+        />
       </div>
       <div className="w-full flex justify-between items-center pl-[2rem] pr-[1.5rem] pt-[4.4rem] mb-[1.6rem] text-black headline2-semibold">
         <span>스크랩한 공간</span>

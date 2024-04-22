@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function useSearchBar() {
+export default function useTextSearchBar() {
   const [searchText, setSearchText] = useState("");
   const [tabIndex, setTabIndex] = useState<number>(0);
 

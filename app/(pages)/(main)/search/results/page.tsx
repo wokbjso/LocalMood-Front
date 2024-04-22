@@ -1,6 +1,6 @@
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
-import SearchBar from "@feature/search/components/SearchBar/SearchBar";
-import SearchResult from "@feature/search/components/SearchResult/SearchResult";
+import TextSearchBar from "@feature/search/components/SearchText/molecules/TextSearchBar";
+import SearchResult from "@feature/search/components/SearchResult/template/SearchResult";
 import { getTextSearchCurationData } from "@feature/search/queries/getTextSearchCurationData";
 import { getTextSearchPlaceData } from "@feature/search/queries/getTextSearchPlaceData";
 import { postKeywordSearchCurationData } from "@feature/search/queries/postKeywordSearchCurationData";
@@ -48,7 +48,7 @@ export default async function SearchResultPage({
     <main className="w-[100%] h-[100%]">
       {/* Template */}
       <ArrowBackTopBar color="#9E9E9E" className="pt-[1.2rem]">
-        <SearchBar
+        <TextSearchBar
           placeholder="공간, 큐레이션을 검색해보세요"
           className="rounded-[1000px]"
         />

@@ -6,6 +6,7 @@ interface ModalProps {
   className?: string;
 }
 
+//Molecule
 const Modal = forwardRef(
   ({ children, className }: ModalProps, ref: ForwardedRef<HTMLDivElement>) => {
     return (

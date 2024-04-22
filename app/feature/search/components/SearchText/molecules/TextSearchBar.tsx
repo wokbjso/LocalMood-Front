@@ -4,21 +4,22 @@ import { twMerge } from "tailwind-merge";
 import React, { ChangeEvent, useCallback, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import SearchIcon from "@common/assets/icons/search/SearchIcon";
-import SearchTextDelete from "../SearchTextDelete/SearchTextDelete";
+import SearchTextDelete from "../atoms/SearchTextDelete";
 import { useRecoilValue } from "recoil";
 import { searchSortState } from "@feature/search/state/sortState";
 
-interface SearchBarProps {
+interface TextSearchBarProps {
   variant?: "home" | "record";
   placeholder: string;
   className?: string;
 }
 
-export default function SearchBar({
+//Molecule
+export default function TextSearchBar({
   variant = "home",
   placeholder,
   className,
-}: SearchBarProps) {
+}: TextSearchBarProps) {
   const searchParams = useSearchParams();
 
   const state = useRecoilValue(searchSortState);
