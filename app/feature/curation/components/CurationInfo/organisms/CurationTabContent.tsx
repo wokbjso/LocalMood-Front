@@ -55,7 +55,10 @@ export default function CurationTabContent({
                 </div>
               ))
             ) : (
-              <NoCurationText className=" h-[57vh]" />
+              <NoCurationText
+                text="아직 생성한 큐레이션이 없습니다."
+                className=" h-[57vh]"
+              />
             )}
           </>
         )}
@@ -68,7 +71,10 @@ export default function CurationTabContent({
                 </div>
               ))
             ) : (
-              <NoCurationText className=" h-[65vh]" />
+              <NoCurationText
+                text="아직 스크랩한 큐레이션이 없습니다."
+                className=" h-[65vh]"
+              />
             )
           ) : null}
         </div>

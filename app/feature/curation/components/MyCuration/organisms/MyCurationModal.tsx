@@ -16,6 +16,7 @@ import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
 import revalidateHomeRecommend from "@feature/place/actions/revalidateHomeRecommend";
+import NoCurationText from "../../CurationInfo/atoms/NoCurationText";
 const MyCurationCard = lazy(() => import("../molecules/MyCurationCard"));
 
 interface MyCurationModalProps {
@@ -80,7 +81,7 @@ export default function MyCurationModal({
   return (
     <>
       {open && (
-        <Modal className="px-[2rem]">
+        <Modal className="px-[2rem] h-[48%] min-h-[10%]">
           <div className="flex pt-[2.4rem] pr-[18rem] headline2-semibold">
             {title}
           </div>
@@ -104,15 +105,22 @@ export default function MyCurationModal({
               </UseDeferredComponent>
             }
           >
-            <div className="flex flex-col items-start gap-[0.8rem]">
-              {myCurationData?.curation.map((curationData) => (
-                <MyCurationCard
-                  key={curationData.id}
-                  spaceId={spaceId}
-                  curationData={curationData}
-                  onClick={() => handleMyCurationCardClick(curationData.id)}
+            <div className="flex flex-col items-start gap-[0.8rem] h-full overflow-y-scroll pb-[180px]">
+              {myCurationData && myCurationData?.curation.length > 0 ? (
+                myCurationData?.curation.map((curationData) => (
+                  <MyCurationCard
+                    key={curationData.id}
+                    spaceId={spaceId}
+                    curationData={curationData}
+                    onClick={() => handleMyCurationCardClick(curationData.id)}
+                  />
+                ))
+              ) : (
+                <NoCurationText
+                  text="아직 생성한 큐레이션이 없습니다"
+                  className="h-[40%] flex justify-center w-full"
                 />
-              ))}
+              )}
             </div>
           </Suspense>
         </Modal>

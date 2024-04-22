@@ -1,7 +1,15 @@
 import { twMerge } from "tailwind-merge";
 
+interface NoCurationTextProps {
+  text: string;
+  className?: string;
+}
+
 //Atom
-export default function NoCurationText({ className }: { className?: string }) {
+export default function NoCurationText({
+  text,
+  className,
+}: NoCurationTextProps) {
   return (
     <p
       className={twMerge(
@@ -9,7 +17,7 @@ export default function NoCurationText({ className }: { className?: string }) {
         className
       )}
     >
-      아직 스크랩한 큐레이션이 없습니다.
+      {text}
     </p>
   );
 }
