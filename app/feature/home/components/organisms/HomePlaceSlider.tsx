@@ -3,7 +3,7 @@ import {
   PlaceInfoCardBottomProps,
   PlaceInfoCardTopProps,
 } from "@feature/place/type";
-import SliderLayout from "@common/components/layout/SliderLayout/SliderLayout";
+import SliderLayout from "@common/components/layout/Slider/SliderLayout";
 import GetRandomPlaces from "@feature/place/queries/getRandomPlaces";
 import SliderHashTag from "@feature/home/components/molecules/SliderHashTag";
 import PlaceInfoCard from "../../../place/components/PlaceInfo/molecules/PlaceInfoCard";

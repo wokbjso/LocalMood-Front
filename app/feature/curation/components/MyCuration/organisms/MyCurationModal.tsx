@@ -16,6 +16,7 @@ import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
 import revalidateHomeRecommend from "@feature/place/actions/revalidateHomeRecommend";
+import { twMerge } from "tailwind-merge";
 const MyCurationCard = lazy(() => import("../molecules/MyCurationCard"));
 
 interface MyCurationModalProps {
@@ -80,7 +81,16 @@ export default function MyCurationModal({
   return (
     <>
       {open && (
-        <Modal className="px-[2rem]">
+        <Modal
+          className={twMerge(
+            "px-[2rem]",
+            myCurationData &&
+              myCurationData &&
+              myCurationData?.curation.length > 1
+              ? "h-[48%]"
+              : ""
+          )}
+        >
           <div className="flex pt-[2.4rem] pr-[18rem] headline2-semibold">
             {title}
           </div>
@@ -104,7 +114,14 @@ export default function MyCurationModal({
               </UseDeferredComponent>
             }
           >
-            <div className="flex flex-col items-start gap-[0.8rem]">
+            <div
+              className={twMerge(
+                "flex flex-col items-start gap-[0.8rem]",
+                myCurationData && myCurationData.curation.length > 1
+                  ? "h-full overflow-auto pb-[170px]"
+                  : ""
+              )}
+            >
               {myCurationData?.curation.map((curationData) => (
                 <MyCurationCard
                   key={curationData.id}

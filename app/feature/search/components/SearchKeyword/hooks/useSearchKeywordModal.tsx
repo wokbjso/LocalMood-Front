@@ -4,12 +4,15 @@ import { KOREAN_OPTION } from "@feature/search/constants/search-keywords";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
+//hook
 export default function useSearchKeywordModal() {
   const searchParams = useSearchParams();
-  const keywordData = searchParams.get("keyword");
+  const keywordParam = searchParams.get("keyword");
+  const parsedKeyword = JSON.parse(keywordParam as string);
+
   const [cafeKeyword, setCafeKeyword] = useState<{ [key: string]: string }>(
-    keywordData && JSON.parse(keywordData as string)["type"] === "CAFE"
-      ? JSON.parse(keywordData as string)
+    keywordParam && parsedKeyword["type"] === "CAFE"
+      ? parsedKeyword
       : {
           type: "CAFE",
           subType: "ALL",
@@ -26,8 +29,8 @@ export default function useSearchKeywordModal() {
   const [restaurantKeyword, setRestaurantKeyword] = useState<{
     [key: string]: string;
   }>(
-    keywordData && JSON.parse(keywordData as string)["type"] === "RESTAURANT"
-      ? JSON.parse(keywordData as string)
+    keywordParam && parsedKeyword["type"] === "RESTAURANT"
+      ? parsedKeyword
       : {
           type: "RESTAURANT",
           subType: "ALL",
@@ -41,18 +44,16 @@ export default function useSearchKeywordModal() {
           disDesc: "ALL",
         }
   );
-  const [tabIndex, setTabIndex] = useState<number>(
-    keywordData && JSON.parse(keywordData as string)["type"] === "CAFE" ? 1 : 0
-  );
 
+  const [tabIndex, setTabIndex] = useState<number>(
+    keywordParam && parsedKeyword["type"] === "CAFE" ? 1 : 0
+  );
   const [showResultAble, setShowResultAble] = useState<boolean>(false);
   const [openKoreanOption, setOpenKoreanOption] = useState(
-    keywordData && JSON.parse(keywordData as string)["subType"] === "한식"
-      ? true
-      : false
+    keywordParam && parsedKeyword["subType"] === "한식" ? true : false
   );
   const [koreanOptionIndex, setKoreanOptionIndex] = useState(
-    keywordData && JSON.parse(keywordData as string)["subType"] === "한식"
+    keywordParam && parsedKeyword["subType"] === "한식"
       ? KOREAN_OPTION.indexOf(restaurantKeyword["dish"])
       : 0
   );

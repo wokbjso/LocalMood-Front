@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Button from "@common/components/ui/buttons/Button/Button";
-import LinkLayout from "@common/components/layout/LinkLayout/LinkLayout";
+import LinkLayout from "@common/components/layout/Link/LinkLayout";
 import KakaoButton from "@common/components/ui/buttons/Kakao/KakaoButton";
 import KakaoScript from "@feature/auth/components/KakaoScript/KakaoScript";
 
