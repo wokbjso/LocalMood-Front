@@ -6,8 +6,9 @@ import PlaceInfoCard from "@feature/place/components/PlaceInfo/molecules/PlaceIn
 import PlaceImageSlider from "@feature/place/components/PlaceDetail/organisms/PlaceImageSlider";
 import PlaceKeywordEvaluation from "@feature/place/components/PlaceDetail/organisms/PlaceKeywordEvaluation";
 import PlaceKeywordSummary from "@feature/place/components/PlaceDetail/organisms/PlaceKeywordSummary";
-import PlaceRelatedSlider from "@feature/place/components/PlaceDetail/molecules/PlaceRelatedSlider";
 import CurationInfoCardDark from "@feature/curation/components/CurationInfo/molecules/CurationInfoCardDark";
+import RelatedPlaceSlider from "@feature/place/components/PlaceDetail/molecules/RelatedPlaceSlider";
+import RelatedCurationSlider from "@feature/place/components/PlaceDetail/molecules/RelatedCurationSlider";
 
 //Page
 export default async function PlaceDetailPage({
@@ -60,7 +61,7 @@ export default async function PlaceDetailPage({
       />
       <Divider className="bg-line-gray-3 h-[0.4rem] mb-[4.8rem]" />
       <section className="pl-[2rem] w-[100%]">
-        <PlaceRelatedSlider title={`${detailData.info.name}와(과) 비슷한 장소`}>
+        <RelatedPlaceSlider title={`${detailData.info.name}와(과) 비슷한 장소`}>
           {detailData.similarSpaceList.slice(0, 6).map((data) => (
             <PlaceInfoCard
               key={data.id}
@@ -69,9 +70,9 @@ export default async function PlaceDetailPage({
               className="w-[16.3rem] mr-[0.8rem]"
             />
           ))}
-        </PlaceRelatedSlider>
+        </RelatedPlaceSlider>
         {detailData.relatedCurationList.length > 0 && (
-          <PlaceRelatedSlider
+          <RelatedCurationSlider
             title={`${detailData.info.name}이(가) 담긴 큐레이션`}
           >
             {detailData.relatedCurationList.map((data) => (
@@ -81,7 +82,7 @@ export default async function PlaceDetailPage({
                 className="w-[33.5rem] mr-[0.8rem]"
               />
             ))}
-          </PlaceRelatedSlider>
+          </RelatedCurationSlider>
         )}
       </section>
     </div>

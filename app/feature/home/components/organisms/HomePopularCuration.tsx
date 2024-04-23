@@ -20,7 +20,7 @@ interface CurationHomePopularProps {
     title: string;
     spaceCount: number;
     keyword: string[];
-    isScrapped: boolean;
+    isScraped: boolean;
   }[];
 }
 
@@ -29,18 +29,28 @@ export default function HomePopularCuration({
   title,
   curationList,
 }: CurationHomePopularProps) {
-  const [scrapStateList, setScrapStateList] = useState<boolean[]>(
-    Array.from({ length: 5 }, () => false)
+  const prevState = curationList.map((list) => list.isScraped);
+
+  const [nextState, setNextState] = useState<boolean[]>(
+    curationList.map((list) => list.isScraped)
   );
 
-  const handleScrapStateList = (state: boolean[]) => {
-    setScrapStateList(state);
+  const getScrapStateChangedCuration = () => {
+    let modifyNeededCuration: { id: number; state: boolean }[] = [];
+    nextState.forEach((state, i) => {
+      if (state !== prevState[i]) {
+        modifyNeededCuration.push({
+          id: curationList[i].id,
+          state,
+        });
+      }
+    });
+    return modifyNeededCuration;
   };
 
   UseDetectPageLeave(
-    scrapStateList.some((state) => state === true)
-      ? revalidateCurationScrapRelatedData
-      : undefined
+    revalidateCurationScrapRelatedData,
+    getScrapStateChangedCuration()
   );
 
   const sliderSettings = {
@@ -73,8 +83,7 @@ export default function HomePopularCuration({
               key={curation.author + i}
               {...curation}
               index={i}
-              scrapStateList={scrapStateList}
-              handleScrapStateList={handleScrapStateList}
+              setNextState={setNextState}
               className="mb-[2rem] w-[100%]"
             />
           ))}
