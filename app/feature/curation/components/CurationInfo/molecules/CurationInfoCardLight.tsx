@@ -8,13 +8,9 @@ import Chip from "@common/components/ui/buttons/Chip/Chip";
 import LocationLine from "@common/assets/icons/location/LocationLine";
 import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import Image from "next/image";
-import revalidateCurationRandom from "@feature/curation/actions/revalidateCurationRandom";
-import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
 import useCurationMenuModal from "../../CurationMenu/useCurationMenuModal";
 import CurationMenuIcon from "../../CurationMenu/CurationMenuIcon";
 import CurationScrapIcon from "../../CurationScrap/CurationScrapIcon";
-import revalidateTextSearchCurationData from "@feature/search/actions/revalidateTextSearchCurationData";
-import revalidateKeywordSearchCurationData from "@feature/search/actions/revalidateKeywordSearchCurationData";
 import useCurationScrapIcon from "../../CurationScrap/useCurationScrapIcon";
 import useFetching from "@common/hooks/useFetching";
 import { useSetRecoilState } from "recoil";
@@ -33,8 +29,14 @@ export default function CurationInfoCardLight({
   spaceCount,
   isScraped = false,
   className,
+  index,
+  scrapStateList,
+  handleScrapStateList,
 }: CurationProps & {
   className?: string;
+  index?: number;
+  scrapStateList: boolean[];
+  handleScrapStateList?: (state: boolean[]) => void;
 }) {
   const setToast = useSetRecoilState(toastInfoSelector);
 
@@ -66,17 +68,25 @@ export default function CurationInfoCardLight({
     return res.status;
   };
 
-  const revalidateRelatedData = () => {
-    revalidateCurationRandom();
-    revalidateCurationScrap();
-    revalidateTextSearchCurationData();
-    revalidateKeywordSearchCurationData();
-  };
-
   const handleScrapClick = async () => {
     if ((await validateLoggedIn()) === false) {
       location.replace("/login");
     } else {
+      if (
+        handleScrapStateList !== undefined &&
+        scrapStateList !== undefined &&
+        index !== undefined
+      ) {
+        let newScrapStateList = [...scrapStateList];
+        newScrapStateList.map((state, i) => {
+          if (i === index) {
+            state
+              ? (newScrapStateList[i] = false)
+              : (newScrapStateList[i] = true);
+          }
+        });
+        handleScrapStateList(newScrapStateList);
+      }
       toggleScrap();
       setToast({
         open: true,
@@ -85,6 +95,12 @@ export default function CurationInfoCardLight({
           : "큐레이션이 스크랩 되었습니다",
       });
     }
+  };
+
+  const handleScrapError = () => {
+    toggleScrap();
+    alert("잠시 후 다시 시도해주세요");
+    return;
   };
 
   const handleMenuClick = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
@@ -99,21 +115,15 @@ export default function CurationInfoCardLight({
         changeFetching(true);
         if ((await curationScrapAdd()) === 200) {
           changeFetching(false);
-          revalidateRelatedData();
         } else {
-          toggleScrap();
-          alert("잠시 후 다시 시도해주세요");
-          return;
+          handleScrapError();
         }
       } else {
         changeFetching(true);
         if ((await curationScrapDelete()) === 200) {
           changeFetching(false);
-          revalidateRelatedData();
         } else {
-          toggleScrap();
-          alert("잠시 후 다시 시도해주세요");
-          return;
+          handleScrapError();
         }
       }
     }, 380);

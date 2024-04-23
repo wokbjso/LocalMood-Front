@@ -70,17 +70,19 @@ export default async function PlaceDetailPage({
             />
           ))}
         </PlaceRelatedSlider>
-        <PlaceRelatedSlider
-          title={`${detailData.info.name}이(가) 담긴 큐레이션`}
-        >
-          {detailData.relatedCurationList.map((data) => (
-            <CurationInfoCardDark
-              key={data.id}
-              {...data}
-              className="w-[33.5rem] mr-[0.8rem]"
-            />
-          ))}
-        </PlaceRelatedSlider>
+        {detailData.relatedCurationList.length > 0 && (
+          <PlaceRelatedSlider
+            title={`${detailData.info.name}이(가) 담긴 큐레이션`}
+          >
+            {detailData.relatedCurationList.map((data) => (
+              <CurationInfoCardDark
+                key={data.id}
+                {...data}
+                className="w-[33.5rem] mr-[0.8rem]"
+              />
+            ))}
+          </PlaceRelatedSlider>
+        )}
       </section>
     </div>
   );
