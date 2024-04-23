@@ -15,7 +15,8 @@ import useCurationScrapIcon from "../../CurationScrap/useCurationScrapIcon";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
+import useFetching from "@common/hooks/useFetching";
 
 //Molecule
 export default function CurationInfoCardLight({
@@ -40,6 +41,8 @@ export default function CurationInfoCardLight({
   const { isOpened, openModal, closeModal } = useCurationMenuModal();
 
   const { scraped, toggleScrap } = useCurationScrapIcon(isScraped);
+
+  const { isFetching, changeFetching } = useFetching();
 
   const curationScrapAdd = async () => {
     const res = await fetch(`/api/curation/scrap/add/${id}`, {
@@ -89,6 +92,37 @@ export default function CurationInfoCardLight({
     e.preventDefault();
     openModal();
   };
+
+  const handleScrapError = () => {
+    toggleScrap();
+    alert("다시 시도해주세요");
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(async () => {
+      if (scraped === isScraped || isFetching) return;
+      if (scraped) {
+        changeFetching(true);
+        if ((await curationScrapAdd()) === 200) {
+          changeFetching(false);
+        } else {
+          handleScrapError();
+        }
+      } else {
+        changeFetching(true);
+        if ((await curationScrapDelete()) === 200) {
+          changeFetching(false);
+        } else {
+          handleScrapError();
+        }
+      }
+    }, 300);
+
+    return () => {
+      clearTimeout(timer);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scraped]);
 
   return (
     <div

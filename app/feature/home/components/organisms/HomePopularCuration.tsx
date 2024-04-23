@@ -35,22 +35,9 @@ export default function HomePopularCuration({
     curationList.map((list) => list.isScraped)
   );
 
-  const getScrapStateChangedCuration = () => {
-    let modifyNeededCuration: { id: number; state: boolean }[] = [];
-    nextState.forEach((state, i) => {
-      if (state !== prevState[i]) {
-        modifyNeededCuration.push({
-          id: curationList[i].id,
-          state,
-        });
-      }
-    });
-    return modifyNeededCuration;
-  };
-
   UseDetectPageLeave(
     revalidateCurationScrapRelatedData,
-    getScrapStateChangedCuration()
+    JSON.stringify(prevState) !== JSON.stringify(nextState)
   );
 
   const sliderSettings = {
