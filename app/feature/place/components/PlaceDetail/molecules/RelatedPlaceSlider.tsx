@@ -7,7 +7,7 @@ interface PlaceRelatedSliderProps {
 }
 
 //Molecule
-export default function PlaceRelatedSlider({
+export default function RelatedPlaceSlider({
   title,
   children,
 }: PlaceRelatedSliderProps) {

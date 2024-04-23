@@ -8,19 +8,14 @@ import Chip from "@common/components/ui/buttons/Chip/Chip";
 import LocationLine from "@common/assets/icons/location/LocationLine";
 import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import Image from "next/image";
-import revalidateCurationRandom from "@feature/curation/actions/revalidateCurationRandom";
-import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
 import useCurationMenuModal from "../../CurationMenu/useCurationMenuModal";
 import CurationMenuIcon from "../../CurationMenu/CurationMenuIcon";
 import CurationScrapIcon from "../../CurationScrap/CurationScrapIcon";
-import revalidateTextSearchCurationData from "@feature/search/actions/revalidateTextSearchCurationData";
-import revalidateKeywordSearchCurationData from "@feature/search/actions/revalidateKeywordSearchCurationData";
 import useCurationScrapIcon from "../../CurationScrap/useCurationScrapIcon";
-import useFetching from "@common/hooks/useFetching";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
-import { useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 //Molecule
 export default function CurationInfoCardLight({
@@ -32,8 +27,12 @@ export default function CurationInfoCardLight({
   keyword,
   spaceCount,
   isScraped = false,
+  index,
+  setNextState,
   className,
 }: CurationProps & {
+  index?: number;
+  setNextState?: Dispatch<SetStateAction<boolean[]>>;
   className?: string;
 }) {
   const setToast = useSetRecoilState(toastInfoSelector);
@@ -41,8 +40,6 @@ export default function CurationInfoCardLight({
   const { isOpened, openModal, closeModal } = useCurationMenuModal();
 
   const { scraped, toggleScrap } = useCurationScrapIcon(isScraped);
-
-  const { isFetching, changeFetching } = useFetching();
 
   const curationScrapAdd = async () => {
     const res = await fetch(`/api/curation/scrap/add/${id}`, {
@@ -66,17 +63,18 @@ export default function CurationInfoCardLight({
     return res.status;
   };
 
-  const revalidateRelatedData = () => {
-    revalidateCurationRandom();
-    revalidateCurationScrap();
-    revalidateTextSearchCurationData();
-    revalidateKeywordSearchCurationData();
-  };
-
   const handleScrapClick = async () => {
     if ((await validateLoggedIn()) === false) {
       location.replace("/login");
     } else {
+      setNextState &&
+        setNextState((prev) => {
+          const newState = [...prev];
+          newState.map((state, i) => {
+            if (i === index) newState[i] = !newState[i];
+          });
+          return newState;
+        });
       toggleScrap();
       setToast({
         open: true,
@@ -91,38 +89,6 @@ export default function CurationInfoCardLight({
     e.preventDefault();
     openModal();
   };
-
-  useEffect(() => {
-    const timer = setTimeout(async () => {
-      if (scraped === isScraped || isFetching) return;
-      if (scraped) {
-        changeFetching(true);
-        if ((await curationScrapAdd()) === 200) {
-          changeFetching(false);
-          revalidateRelatedData();
-        } else {
-          toggleScrap();
-          alert("잠시 후 다시 시도해주세요");
-          return;
-        }
-      } else {
-        changeFetching(true);
-        if ((await curationScrapDelete()) === 200) {
-          changeFetching(false);
-          revalidateRelatedData();
-        } else {
-          toggleScrap();
-          alert("잠시 후 다시 시도해주세요");
-          return;
-        }
-      }
-    }, 380);
-
-    return () => {
-      clearTimeout(timer);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [scraped]);
 
   return (
     <div
