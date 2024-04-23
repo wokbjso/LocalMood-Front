@@ -29,10 +29,12 @@ export default function CurationInfoCardLight({
   spaceCount,
   isScraped = false,
   index,
+  nextState,
   setNextState,
   className,
 }: CurationProps & {
   index?: number;
+  nextState?: boolean[];
   setNextState?: Dispatch<SetStateAction<boolean[]>>;
   className?: string;
 }) {
@@ -70,14 +72,6 @@ export default function CurationInfoCardLight({
     if ((await validateLoggedIn()) === false) {
       location.replace("/login");
     } else {
-      setNextState &&
-        setNextState((prev) => {
-          const newState = [...prev];
-          newState.map((state, i) => {
-            if (i === index) newState[i] = !newState[i];
-          });
-          return newState;
-        });
       toggleScrap();
       setToast({
         open: true,
@@ -97,31 +91,49 @@ export default function CurationInfoCardLight({
     toggleScrap();
     alert("다시 시도해주세요");
   };
-
   useEffect(() => {
-    const timer = setTimeout(async () => {
-      if (scraped === isScraped || isFetching) return;
-      if (scraped) {
-        changeFetching(true);
-        if ((await curationScrapAdd()) === 200) {
-          changeFetching(false);
+    if (
+      index !== undefined &&
+      nextState !== undefined &&
+      setNextState !== undefined
+    ) {
+      const timer = setTimeout(async () => {
+        if (isFetching || scraped === nextState[index]) return;
+        if (scraped === true && nextState[index] === false) {
+          changeFetching(true);
+          if ((await curationScrapAdd()) === 200) {
+            setNextState((prev) => {
+              const newState = [...prev];
+              newState.map((state, i) => {
+                if (i === index) newState[i] = true;
+              });
+              return newState;
+            });
+            changeFetching(false);
+          } else {
+            handleScrapError();
+          }
         } else {
-          handleScrapError();
+          changeFetching(true);
+          if ((await curationScrapDelete()) === 200) {
+            setNextState((prev) => {
+              const newState = [...prev];
+              newState.map((state, i) => {
+                if (i === index) newState[i] = false;
+              });
+              return newState;
+            });
+            changeFetching(false);
+          } else {
+            handleScrapError();
+          }
         }
-      } else {
-        changeFetching(true);
-        if ((await curationScrapDelete()) === 200) {
-          changeFetching(false);
-        } else {
-          handleScrapError();
-        }
-      }
-    }, 300);
+      }, 300);
 
-    return () => {
-      clearTimeout(timer);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      return () => {
+        clearTimeout(timer);
+      };
+    }
   }, [scraped]);
 
   return (

@@ -70,6 +70,7 @@ export default function HomePopularCuration({
               key={curation.author + i}
               {...curation}
               index={i}
+              nextState={nextState}
               setNextState={setNextState}
               className="mb-[2rem] w-[100%]"
             />
