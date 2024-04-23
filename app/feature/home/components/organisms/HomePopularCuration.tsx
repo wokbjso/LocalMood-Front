@@ -6,6 +6,9 @@ import "../../slick.css";
 import Slider from "react-slick";
 import MoreTopBar from "@common/components/ui/topBar/MoreTopBar/MoreTopBar";
 import CurationInfoCardLight from "@feature/curation/components/CurationInfo/molecules/CurationInfoCardLight";
+import UseDetectPageLeave from "@common/hooks/useDetectPageLeave";
+import revalidateCurationScrapRelatedData from "@feature/curation/actions/revalidateCurationScrapRelatedData";
+import { useState } from "react";
 
 //Organism
 interface CurationHomePopularProps {
@@ -17,7 +20,7 @@ interface CurationHomePopularProps {
     title: string;
     spaceCount: number;
     keyword: string[];
-    isScrapped: boolean;
+    isScraped: boolean;
   }[];
 }
 
@@ -26,6 +29,30 @@ export default function HomePopularCuration({
   title,
   curationList,
 }: CurationHomePopularProps) {
+  const prevState = curationList.map((list) => list.isScraped);
+
+  const [nextState, setNextState] = useState<boolean[]>(
+    curationList.map((list) => list.isScraped)
+  );
+
+  const getScrapStateChangedCuration = () => {
+    let modifyNeededCuration: { id: number; state: boolean }[] = [];
+    nextState.forEach((state, i) => {
+      if (state !== prevState[i]) {
+        modifyNeededCuration.push({
+          id: curationList[i].id,
+          state,
+        });
+      }
+    });
+    return modifyNeededCuration;
+  };
+
+  UseDetectPageLeave(
+    revalidateCurationScrapRelatedData,
+    getScrapStateChangedCuration()
+  );
+
   const sliderSettings = {
     speed: 500,
     dots: true,
@@ -55,6 +82,8 @@ export default function HomePopularCuration({
             <CurationInfoCardLight
               key={curation.author + i}
               {...curation}
+              index={i}
+              setNextState={setNextState}
               className="mb-[2rem] w-[100%]"
             />
           ))}
