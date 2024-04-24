@@ -15,7 +15,7 @@ import useCurationScrapIcon from "../../CurationScrap/useCurationScrapIcon";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import useFetching from "@common/hooks/useFetching";
 import revalidateCurationScrapRelatedData from "@feature/curation/actions/revalidateCurationScrapRelatedData";
 
@@ -69,10 +69,13 @@ export default function CurationInfoCardLight({
     return res.status;
   };
 
+  const [scrapClickCount, setScrapClickCount] = useState(0);
+
   const handleScrapClick = async () => {
     if ((await validateLoggedIn()) === false) {
       location.replace("/login");
     } else {
+      setScrapClickCount((prev) => prev + 1);
       toggleScrap();
       setToast({
         open: true,
@@ -93,28 +96,34 @@ export default function CurationInfoCardLight({
     alert("오류가 발생했습니다");
   };
 
+  console.log(scrapClickCount);
+
   useEffect(() => {
     const timer = setTimeout(async () => {
-      if (isScraped === scraped) return;
       if (isFetching) {
+        setScrapClickCount(0);
+        toggleScrap();
         alert("이전 요청을 처리중입니다");
         return;
       }
+      if (scrapClickCount % 2 === 0) return;
       if (scraped) {
         changeFetching(true);
         if ((await curationScrapAdd()) === 200) {
-          await revalidateCurationScrapRelatedData().then(() =>
-            changeFetching(false)
-          );
+          await revalidateCurationScrapRelatedData().then(() => {
+            changeFetching(false);
+            setScrapClickCount(0);
+          });
         } else {
           handleScrapError();
         }
       } else {
         changeFetching(true);
         if ((await curationScrapDelete()) === 200) {
-          await revalidateCurationScrapRelatedData().then(() =>
-            changeFetching(false)
-          );
+          await revalidateCurationScrapRelatedData().then(() => {
+            changeFetching(false);
+            setScrapClickCount(0);
+          });
         } else {
           handleScrapError();
         }
