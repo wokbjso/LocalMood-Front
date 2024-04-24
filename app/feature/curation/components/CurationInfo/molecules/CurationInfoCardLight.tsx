@@ -103,16 +103,18 @@ export default function CurationInfoCardLight({
       if (scraped) {
         changeFetching(true);
         if ((await curationScrapAdd()) === 200) {
-          revalidateCurationScrapRelatedData();
-          changeFetching(false);
+          await revalidateCurationScrapRelatedData().then(() =>
+            changeFetching(false)
+          );
         } else {
           handleScrapError();
         }
       } else {
         changeFetching(true);
         if ((await curationScrapDelete()) === 200) {
-          revalidateCurationScrapRelatedData();
-          changeFetching(false);
+          await revalidateCurationScrapRelatedData().then(() =>
+            changeFetching(false)
+          );
         } else {
           handleScrapError();
         }
