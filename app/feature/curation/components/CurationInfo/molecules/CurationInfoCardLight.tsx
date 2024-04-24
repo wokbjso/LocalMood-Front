@@ -17,6 +17,7 @@ import { toastInfoSelector } from "@common/state/toast";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import useFetching from "@common/hooks/useFetching";
+import revalidateCurationScrapRelatedData from "@feature/curation/actions/revalidateCurationScrapRelatedData";
 
 //Molecule
 export default function CurationInfoCardLight({
@@ -89,51 +90,38 @@ export default function CurationInfoCardLight({
 
   const handleScrapError = () => {
     toggleScrap();
-    alert("다시 시도해주세요");
+    alert("오류가 발생했습니다");
   };
-  useEffect(() => {
-    if (
-      index !== undefined &&
-      nextState !== undefined &&
-      setNextState !== undefined
-    ) {
-      const timer = setTimeout(async () => {
-        if (isFetching || scraped === nextState[index]) return;
-        if (scraped === true && nextState[index] === false) {
-          changeFetching(true);
-          if ((await curationScrapAdd()) === 200) {
-            setNextState((prev) => {
-              const newState = [...prev];
-              newState.map((state, i) => {
-                if (i === index) newState[i] = true;
-              });
-              return newState;
-            });
-            changeFetching(false);
-          } else {
-            handleScrapError();
-          }
-        } else {
-          changeFetching(true);
-          if ((await curationScrapDelete()) === 200) {
-            setNextState((prev) => {
-              const newState = [...prev];
-              newState.map((state, i) => {
-                if (i === index) newState[i] = false;
-              });
-              return newState;
-            });
-            changeFetching(false);
-          } else {
-            handleScrapError();
-          }
-        }
-      }, 300);
 
-      return () => {
-        clearTimeout(timer);
-      };
-    }
+  useEffect(() => {
+    const timer = setTimeout(async () => {
+      if (isScraped === scraped) return;
+      if (isFetching) {
+        alert("이전 요청을 처리중입니다");
+        return;
+      }
+      if (scraped) {
+        changeFetching(true);
+        if ((await curationScrapAdd()) === 200) {
+          revalidateCurationScrapRelatedData();
+          changeFetching(false);
+        } else {
+          handleScrapError();
+        }
+      } else {
+        changeFetching(true);
+        if ((await curationScrapDelete()) === 200) {
+          revalidateCurationScrapRelatedData();
+          changeFetching(false);
+        } else {
+          handleScrapError();
+        }
+      }
+    }, 300);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [scraped]);
 
   return (
