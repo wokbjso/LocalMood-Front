@@ -21,7 +21,7 @@ export default function ChangeSearchConditon() {
       for (const [key, value] of Object.entries(
         JSON.parse(searchParams.get("keyword") as string)
       )) {
-        if (key === "type" || value === "ALL") continue;
+        if (key === "type" || value === "ALL" || key === "subType") continue;
         count++;
       }
     }
