@@ -13,6 +13,7 @@ import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
 import revalidatePlaceReview from "@feature/record/actions/revalidatePlaceReview";
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
 import useFetching from "@common/hooks/useFetching";
+import { BeatLoader } from "react-spinners";
 
 interface RecordSelectProps {
   id: number;
@@ -103,7 +104,6 @@ export default function RecordSelect({ id, type, name }: RecordSelectProps) {
   };
   return (
     <>
-      {" "}
       <div className="w-[100%] h-[100%] overflow-auto relative">
         <ArrowBackTopBar color="#9E9E9E" className="fixed z-20" />
         <TransitionGroup
@@ -196,8 +196,13 @@ export default function RecordSelect({ id, type, name }: RecordSelectProps) {
             </Button>
           )}
         </div>
-        {isFetching === false && (
-          <div className="absolute top-0 left-0 w-[100%] h-[100%] bg-black opacity-[0.6] z-20"></div>
+        {isFetching === true && (
+          <>
+            <div className="absolute top-0 left-0 w-[100%] h-[100%] bg-black opacity-[0.7] z-20"></div>
+            <div className="w-full h-full flex flex-col justify-center items-center absolute top-0 left-0 z-20 text-red-400">
+              <BeatLoader color="#36d7b7" />
+            </div>
+          </>
         )}
       </div>
     </>

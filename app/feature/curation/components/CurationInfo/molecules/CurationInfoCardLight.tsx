@@ -29,14 +29,8 @@ export default function CurationInfoCardLight({
   keyword,
   spaceCount,
   isScraped = false,
-  index,
-  nextState,
-  setNextState,
   className,
 }: CurationProps & {
-  index?: number;
-  nextState?: boolean[];
-  setNextState?: Dispatch<SetStateAction<boolean[]>>;
   className?: string;
 }) {
   const setToast = useSetRecoilState(toastInfoSelector);
@@ -96,8 +90,6 @@ export default function CurationInfoCardLight({
     alert("오류가 발생했습니다");
   };
 
-  console.log(scrapClickCount);
-
   useEffect(() => {
     const timer = setTimeout(async () => {
       if (isFetching) {
@@ -133,6 +125,7 @@ export default function CurationInfoCardLight({
     return () => {
       clearTimeout(timer);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scraped]);
 
   return (
