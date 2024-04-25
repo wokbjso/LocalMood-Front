@@ -124,6 +124,7 @@ export default function SearchKeywordModal({
                 sort: sortState,
               },
             }}
+            prefetch
           >
             <Button
               disabled={!showResultAble}
