@@ -16,8 +16,6 @@ import { searchSortState } from "@feature/search/state/sortState";
 import useSearchKeywordModal from "../hooks/useSearchKeywordModal";
 import KeywordSection from "./KeywordSection";
 import KeywordFoodSection from "./KeywordRestaurantFoodSection";
-import { useState } from "react";
-import LoadingUI from "@common/components/ui/loading/LoadingUI";
 
 interface SearchKeywordModalProps {
   dependOnParams?: boolean;
@@ -35,8 +33,6 @@ export default function SearchKeywordModal({
   const params = new URLSearchParams(searchParams);
 
   const sortState = useRecoilValue(searchSortState);
-
-  const [a, setA] = useState(true);
 
   const {
     cafeKeyword,

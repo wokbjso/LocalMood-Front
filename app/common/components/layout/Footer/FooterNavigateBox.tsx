@@ -18,7 +18,7 @@ export default function FooterNavigateBox({
   onClick,
 }: FooterNavigateBoxProps) {
   return (
-    <LinkLayout routeUrl={navigateTo}>
+    <LinkLayout routeUrl={navigateTo} prefetch={true}>
       <div
         className="px-[1.2rem] flex flex-col items-center cursor-pointer"
         onClick={onClick}

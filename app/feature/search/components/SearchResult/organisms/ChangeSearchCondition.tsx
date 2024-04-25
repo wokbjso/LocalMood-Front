@@ -1,3 +1,5 @@
+"use client";
+
 import FilterSortIcon from "@common/assets/icons/filter/FilterSortIcon";
 import FilterKeywordIcon from "@common/assets/icons/filter/FilterKeywordIcon";
 import { useRecoilValue } from "recoil";
@@ -21,7 +23,12 @@ export default function ChangeSearchConditon() {
       for (const [key, value] of Object.entries(
         JSON.parse(searchParams.get("keyword") as string)
       )) {
-        if (key === "type" || value === "ALL") continue;
+        if (
+          key === "type" ||
+          value === "ALL" ||
+          (key === "subType" && value === "한식")
+        )
+          continue;
         count++;
       }
     }

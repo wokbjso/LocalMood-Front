@@ -7,6 +7,7 @@ interface LinkLayoutProps {
   routeUrl: string;
   query?: Record<string, any>;
   replace?: boolean;
+  prefetch?: boolean;
   children: ReactNode;
   className?: string;
 }
@@ -16,6 +17,7 @@ export default function LinkLayout({
   routeUrl,
   query,
   replace = false,
+  prefetch = false,
   children,
   className,
 }: LinkLayoutProps) {
@@ -26,6 +28,7 @@ export default function LinkLayout({
         query: query,
       }}
       replace={replace}
+      prefetch={prefetch}
       className={className}
     >
       {children}
