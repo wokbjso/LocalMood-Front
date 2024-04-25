@@ -29,14 +29,8 @@ export default function CurationInfoCardLight({
   keyword,
   spaceCount,
   isScraped = false,
-  index,
-  nextState,
-  setNextState,
   className,
 }: CurationProps & {
-  index?: number;
-  nextState?: boolean[];
-  setNextState?: Dispatch<SetStateAction<boolean[]>>;
   className?: string;
 }) {
   const setToast = useSetRecoilState(toastInfoSelector);
@@ -133,6 +127,7 @@ export default function CurationInfoCardLight({
     return () => {
       clearTimeout(timer);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scraped]);
 
   return (

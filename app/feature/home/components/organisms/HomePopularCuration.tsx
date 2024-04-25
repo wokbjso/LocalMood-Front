@@ -55,7 +55,6 @@ export default function HomePopularCuration({
             <CurationInfoCardLight
               key={curation.author + i}
               {...curation}
-              index={i}
               className="mb-[2rem] w-[100%]"
             />
           ))}
