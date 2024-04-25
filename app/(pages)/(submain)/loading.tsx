@@ -1,12 +1,10 @@
+import LoadingUI from "@common/components/ui/loading/LoadingUI";
 import UseDeferredComponent from "@common/hooks/useDeferredComponent";
-import { BeatLoader } from "react-spinners";
 
 export default function Loading() {
   return (
     <UseDeferredComponent>
-      <div className="flex justify-center items-center w-[100%] h-[100%]">
-        <BeatLoader color="#36d7b7" />
-      </div>
+      <LoadingUI />
     </UseDeferredComponent>
   );
 }
