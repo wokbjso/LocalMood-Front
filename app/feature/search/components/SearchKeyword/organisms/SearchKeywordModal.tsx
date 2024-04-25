@@ -16,6 +16,8 @@ import { searchSortState } from "@feature/search/state/sortState";
 import useSearchKeywordModal from "../hooks/useSearchKeywordModal";
 import KeywordSection from "./KeywordSection";
 import KeywordFoodSection from "./KeywordRestaurantFoodSection";
+import { useState } from "react";
+import LoadingUI from "@common/components/ui/loading/LoadingUI";
 
 interface SearchKeywordModalProps {
   dependOnParams?: boolean;
@@ -34,6 +36,8 @@ export default function SearchKeywordModal({
 
   const sortState = useRecoilValue(searchSortState);
 
+  const [a, setA] = useState(true);
+
   const {
     cafeKeyword,
     restaurantKeyword,
@@ -51,6 +55,10 @@ export default function SearchKeywordModal({
     } else {
       closeModal && closeModal();
     }
+  };
+
+  const handleShowKeywordResultClick = () => {
+    closeModal && closeModal();
   };
 
   return (
@@ -120,12 +128,11 @@ export default function SearchKeywordModal({
                 sort: sortState,
               },
             }}
-            replace
           >
             <Button
               disabled={!showResultAble}
               className="w-full"
-              onClick={closeModal}
+              onClick={handleShowKeywordResultClick}
             >
               결과보기
             </Button>

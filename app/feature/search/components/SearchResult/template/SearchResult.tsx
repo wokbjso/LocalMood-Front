@@ -1,7 +1,7 @@
 "use client";
 
 import Tab from "@common/components/ui/tab/Tab";
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
 import {
   SearchCurationResponse,
   SearchPlaceResponse,
@@ -11,6 +11,8 @@ import dynamic from "next/dynamic";
 import CurationInfoCardLight from "@feature/curation/components/CurationInfo/molecules/CurationInfoCardLight";
 import useTextSearchBar from "../../SearchText/hooks/useTextSearchBar";
 import SearchNoResult from "../molecules/SearchNoResult";
+import LoadingUI from "@common/components/ui/loading/LoadingUI";
+import { useSearchParams } from "next/navigation";
 const PlaceInfoCard = lazy(
   () => import("@feature/place/components/PlaceInfo/molecules/PlaceInfoCard")
 );
@@ -41,6 +43,7 @@ export default function SearchResult({
 }: SearchResultProps) {
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
     useTextSearchBar();
+
   return (
     <>
       {search_query &&

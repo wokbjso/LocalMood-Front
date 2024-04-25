@@ -47,6 +47,7 @@ export default async function SearchResultPage({
     (await postKeywordSearchCurationData(
       manufactureCurationKeyword(searchParams.keyword)
     ));
+
   return (
     <main className="w-[100%] h-[100%]">
       {/* Template */}
