@@ -21,6 +21,7 @@ export default function HomeTopBar({ showBtn }: HomeHeaderProps) {
               pathname: "/search",
               query: { keyword_search: true },
             }}
+            prefetch
           >
             <Button className="w-[12.5rem] h-full py-[0.6rem] mr-[1.2rem] body2-semibold">
               키워드로 공간 찾기
@@ -32,6 +33,7 @@ export default function HomeTopBar({ showBtn }: HomeHeaderProps) {
             pathname: "/search",
             query: { keyword_search: false },
           }}
+          prefetch
         >
           <SearchIcon />
         </Link>
