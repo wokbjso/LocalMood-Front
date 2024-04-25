@@ -1,3 +1,5 @@
+"use client";
+
 import FilterSortIcon from "@common/assets/icons/filter/FilterSortIcon";
 import FilterKeywordIcon from "@common/assets/icons/filter/FilterKeywordIcon";
 import { useRecoilValue } from "recoil";
