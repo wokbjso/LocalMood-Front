@@ -41,6 +41,8 @@ export default function CurationInfoCardLight({
 
   const { isFetching, changeFetching } = useFetching();
 
+  const [scrapClickCount, setScrapClickCount] = useState(0);
+
   const curationScrapAdd = async () => {
     const res = await fetch(`/api/curation/scrap/add/${id}`, {
       method: "POST",
@@ -62,8 +64,6 @@ export default function CurationInfoCardLight({
 
     return res.status;
   };
-
-  const [scrapClickCount, setScrapClickCount] = useState(0);
 
   const handleScrapClick = async () => {
     if ((await validateLoggedIn()) === false) {

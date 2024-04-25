@@ -105,7 +105,7 @@ export default function PlaceInfoCardTop({
             src={imgUrl ? imgUrl : RecordNoImage}
             alt="공간 사진"
             fill
-            sizes="100vw"
+            sizes={size === "small" ? "50vw" : "100vw"}
             placeholder="blur"
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
             className={twMerge("rounded-[8px] object-cover", imgClassName)}

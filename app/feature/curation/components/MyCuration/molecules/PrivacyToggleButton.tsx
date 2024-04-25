@@ -4,6 +4,7 @@ import LockIcon from "@common/assets/icons/lock/lock.svg";
 import UnlockIcon from "@common/assets/icons/lock/unlock.svg";
 import { toastInfoSelector } from "@common/state/toast";
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
+import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail";
 import { useSetRecoilState } from "recoil";
 
 interface PrivacyToggleButtonProps {
@@ -26,6 +27,7 @@ export default function PrivacyToggleButton({
 
   const revalidateRelatedData = () => {
     revalidateCurationDetail();
+    revalidatePlaceDetail();
   };
 
   const handleClickTogglePrivacy = async () => {

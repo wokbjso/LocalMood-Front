@@ -67,7 +67,7 @@ export default function CurationTabContent({
             scrappedCuration?.length > 0 ? (
               scrappedCuration?.map((props: any) => (
                 <div key={props.author + props.id} className="mb-[1.6rem]">
-                  <CurationInfoCardDark {...props} />
+                  <CurationInfoCardDark {...props} disableScrapDelete />
                 </div>
               ))
             ) : (

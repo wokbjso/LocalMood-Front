@@ -3,6 +3,7 @@ import Divider from "@common/components/ui/divider/Divider";
 import Modal from "@common/components/ui/modal/Modal";
 import UseOutsideClick from "@common/hooks/useOutsideClick";
 import { toastInfoSelector } from "@common/state/toast";
+import revalidateKeywordSearchPlaceData from "@feature/search/actions/revalidateKeywordSearchPlaceData";
 import { searchSortStateSelector } from "@feature/search/state/sortState";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -28,7 +29,7 @@ export default function ChangeSearchSortModal({
 
   const { ref } = UseOutsideClick<HTMLDivElement>(isOpen, closeModal);
 
-  const handleSortByRecentClick = () => {
+  const handleSortByRecentClick = async () => {
     params.set("sort", "RECENT");
     replace(`${pathname}?${params.toString()}`);
     setsortState("RECENT");
