@@ -19,7 +19,7 @@ interface CurationMenuModalProps {
   triggeredAt: "card" | "topBar";
   curationInfo: {
     id: number;
-    privacy: boolean;
+    privacy?: boolean;
     keyword: string[];
     title: string;
   };
