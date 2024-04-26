@@ -140,6 +140,7 @@ export default function CurationInfoCardLight({
         href={{
           pathname: `/curation/detail/${id}`,
         }}
+        prefetch
       >
         <div className="w-full h-[16.5rem] bg-cover relative rounded-t-[8px] overflow-hidden">
           <Image
