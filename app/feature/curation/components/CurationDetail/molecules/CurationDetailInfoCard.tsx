@@ -107,7 +107,7 @@ const CurationDetailInfoCard = forwardRef<
                 <div className="flex items-center gap-[0.4rem] text-black headline2-semibold">
                   {props.name}
                   <div className="px-[0.6rem] py-[0.4rem]">
-                    <LinkLayout routeUrl={`/place/${props.id}`}>
+                    <LinkLayout routeUrl={`/place/${props.id}`} prefetch>
                       <ArrowIcon />
                     </LinkLayout>
                   </div>

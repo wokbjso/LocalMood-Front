@@ -41,7 +41,7 @@ export default function PlaceKeywordEvaluation({
             ))}
         </div>
       </div>
-      <LinkLayout routeUrl={`/place/${id}/more`}>
+      <LinkLayout routeUrl={`/place/${id}/more`} prefetch>
         <Button variant="line" className="w-full h-[4rem]">
           기록 전체 보기
         </Button>
