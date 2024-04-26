@@ -200,11 +200,6 @@ export default function SearchResult({
             )}
           </div>
         )}
-      {!keywordSearchPlaceData && (
-        <div className="bg-red-400 w-full h-full absolulte top-0 left-0">
-          Loading
-        </div>
-      )}
       {keyword &&
         keywordSearchPlaceData &&
         keywordSearchPlaceData?.spaceCount > 0 &&
