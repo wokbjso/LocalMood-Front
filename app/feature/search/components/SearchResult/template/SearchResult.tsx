@@ -8,7 +8,7 @@ import {
 } from "@feature/search/queries/dto/search-type";
 import Divider from "@common/components/ui/divider/Divider";
 import CurationInfoCardLight from "@feature/curation/components/CurationInfo/molecules/CurationInfoCardLight";
-import useTextSearchBar from "../../SearchText/hooks/useTextSearchBar";
+import useTextSearchBar from "../../../hooks/SearchText/useTextSearchBar";
 import SearchNoResult from "../molecules/SearchNoResult";
 import dynamic from "next/dynamic";
 const PlaceInfoCard = lazy(

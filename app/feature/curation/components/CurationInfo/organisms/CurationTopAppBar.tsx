@@ -6,9 +6,9 @@ import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-d
 import { sliceText } from "@common/utils/text/slice-text";
 import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
-import useCurationMenuModal from "../../CurationMenu/useCurationMenuModal";
+import useCurationMenuModal from "../../../hooks/CurationMenu/useCurationMenuModal";
 import CurationScrapIcon from "../../CurationScrap/CurationScrapIcon";
-import useCurationScrapIcon from "../../CurationScrap/useCurationScrapIcon";
+import useCurationScrapIcon from "../../../hooks/CurationScrap/useCurationScrapIcon";
 import useFetching from "@common/hooks/useFetching";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";

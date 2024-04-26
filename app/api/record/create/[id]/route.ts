@@ -10,7 +10,7 @@ export async function POST(
   const token = auth_info?.data?.accessToken;
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/review/${params.id}`,
+    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/review/${Number(params.id)}`,
     {
       method: "POST",
       headers: {

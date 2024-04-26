@@ -11,7 +11,7 @@ import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail"
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
 import revalidateTextSearchPlaceData from "@feature/search/actions/revalidateTextSearchPlaceData";
 import revalidateKeywordSearchPlaceData from "@feature/search/actions/revalidateKeywordSearchPlaceData";
-import useOpenCurationMakeModal from "../../CurationMake/hooks/useOpenCurationMakeModal";
+import useOpenCurationMakeModal from "../../../hooks/CurationMake/useOpenCurationMakeModal";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";

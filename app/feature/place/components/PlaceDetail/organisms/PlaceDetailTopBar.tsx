@@ -7,7 +7,7 @@ import MapIcon from "@common/assets/icons/map/map";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
-import UseMap from "@feature/map/components/Map/useMap";
+import UseMap from "@common/components/ui/map/Map/useMap";
 import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
 
 //Organism
