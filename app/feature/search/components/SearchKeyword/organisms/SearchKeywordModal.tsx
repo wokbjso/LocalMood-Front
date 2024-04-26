@@ -13,7 +13,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Modal from "@common/components/ui/modal/Modal";
 import { useRecoilValue } from "recoil";
 import { searchSortState } from "@feature/search/state/sortState";
-import useSearchKeywordModal from "../hooks/useSearchKeywordModal";
+import useSearchKeywordModal from "../../../hooks/SearchKeyword/useSearchKeywordModal";
 import KeywordSection from "./KeywordSection";
 import KeywordFoodSection from "./KeywordRestaurantFoodSection";
 

@@ -1,6 +1,6 @@
 "use client";
 
-import UserProfile from "@feature/user/components/UserProfile/UserProfile";
+import UserProfile from "@feature/user/components/UserProfile/molecules/UserProfile";
 import { CurationProps } from "@feature/curation/type";
 import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import { twMerge } from "tailwind-merge";
@@ -13,7 +13,7 @@ import { toastInfoSelector } from "@common/state/toast";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
 import useFetching from "@common/hooks/useFetching";
 import { useEffect, useState } from "react";
-import useCurationScrapIcon from "../../CurationScrap/useCurationScrapIcon";
+import useCurationScrapIcon from "../../../hooks/CurationScrap/useCurationScrapIcon";
 import revalidateCurationScrapRelatedData from "@feature/curation/actions/revalidateCurationScrapRelatedData";
 
 //Molecule

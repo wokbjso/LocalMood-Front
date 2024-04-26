@@ -7,7 +7,7 @@ import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-d
 import { twMerge } from "tailwind-merge";
 import MapIcon from "@common/assets/icons/map/map";
 import { createRef, forwardRef, useEffect, useState } from "react";
-import UseMap from "@feature/map/components/Map/useMap";
+import UseMap from "@common/components/ui/map/Map/useMap";
 
 interface CurationDetailCardListProps {
   inView: boolean;

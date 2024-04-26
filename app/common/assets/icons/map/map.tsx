@@ -1,4 +1,4 @@
-import Map from "@feature/map/components/Map/Map";
+import Map from "@common/components/ui/map/Map/Map";
 import { IconProps } from "../icon-type";
 
 interface MapInfoProps {

@@ -1,6 +1,6 @@
 "use client";
 
-import UserProfile from "@feature/user/components/UserProfile/UserProfile";
+import UserProfile from "@feature/user/components/UserProfile/molecules/UserProfile";
 import { CurationProps } from "@feature/curation/type";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
@@ -8,10 +8,10 @@ import Chip from "@common/components/ui/buttons/Chip/Chip";
 import LocationLine from "@common/assets/icons/location/LocationLine";
 import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import Image from "next/image";
-import useCurationMenuModal from "../../CurationMenu/useCurationMenuModal";
+import useCurationMenuModal from "../../../hooks/CurationMenu/useCurationMenuModal";
 import CurationMenuIcon from "../../CurationMenu/CurationMenuIcon";
 import CurationScrapIcon from "../../CurationScrap/CurationScrapIcon";
-import useCurationScrapIcon from "../../CurationScrap/useCurationScrapIcon";
+import useCurationScrapIcon from "../../../hooks/CurationScrap/useCurationScrapIcon";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";

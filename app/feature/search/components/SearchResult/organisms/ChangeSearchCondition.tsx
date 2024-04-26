@@ -4,7 +4,7 @@ import FilterSortIcon from "@common/assets/icons/filter/FilterSortIcon";
 import FilterKeywordIcon from "@common/assets/icons/filter/FilterKeywordIcon";
 import { useRecoilValue } from "recoil";
 import { searchSortState } from "@feature/search/state/sortState";
-import UseChangeSearchSortModal from "../hooks/useChangeSearchSortModal";
+import UseChangeSearchSortModal from "../../../hooks/SearchResult/useChangeSearchSortModal";
 import ChangeSearchSortModal from "./ChangeSearchSortModal";
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";

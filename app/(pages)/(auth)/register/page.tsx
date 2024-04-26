@@ -2,7 +2,7 @@
 
 import FormInput from "@common/components/ui/input/FormInput/FormInput";
 import Button from "@common/components/ui/buttons/Button/Button";
-import UseForm from "@feature/auth/useForm";
+import UseForm from "@feature/auth/hooks/useForm";
 import { LoginFormState, RegisterFormState } from "@feature/auth/type";
 import { useRouter } from "next/navigation";
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
