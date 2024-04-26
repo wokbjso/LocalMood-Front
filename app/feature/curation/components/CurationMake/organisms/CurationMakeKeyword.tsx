@@ -10,6 +10,7 @@ import Button from "@common/components/ui/buttons/Button/Button";
 import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
+import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
 
 interface CurationMakeKeywordProps {
   curationMakeData: {
@@ -132,12 +133,13 @@ export default function CurationMakeKeyword({
     closeModal();
     if (editMode) {
       if ((await editCuration()) === 200) {
-        revalidateMyCuration();
+        await revalidateMyCuration();
+        await revalidateCurationDetail();
       } else errorAlert();
     } else {
       if ((await makeCuration()) === 200) {
         resetCurationMakeData();
-        revalidateMyCuration();
+        await revalidateMyCuration();
       } else errorAlert();
     }
     return;
