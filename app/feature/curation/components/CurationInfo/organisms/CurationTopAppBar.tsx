@@ -156,6 +156,9 @@ export default function CurationTopAppBar({
                   isOpened,
                   curationInfo: {
                     id: curationId,
+                    title: curationDetail.title,
+                    privacy: curationDetail.privacy,
+                    keyword: curationDetail.keyword.split(","),
                   },
                   closeModal,
                 }}
