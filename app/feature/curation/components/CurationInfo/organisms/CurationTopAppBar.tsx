@@ -7,7 +7,6 @@ import { sliceText } from "@common/utils/text/slice-text";
 import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
 import useCurationMenuModal from "../../CurationMenu/useCurationMenuModal";
-import CurationMenuIcon from "../../CurationMenu/CurationMenuIcon";
 import CurationScrapIcon from "../../CurationScrap/CurationScrapIcon";
 import useCurationScrapIcon from "../../CurationScrap/useCurationScrapIcon";
 import useFetching from "@common/hooks/useFetching";
@@ -15,6 +14,7 @@ import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import ShareIcon from "@common/assets/icons/share/ShareIcon";
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
+import CurationMenuIcon from "../../CurationMenu/CurationMenuIcon";
 
 interface CurationTopAppBarProps {
   inView: boolean;
@@ -154,7 +154,9 @@ export default function CurationTopAppBar({
               <CurationMenuIcon
                 menuModalInfo={{
                   isOpened,
-                  curationId,
+                  curationInfo: {
+                    id: curationId,
+                  },
                   closeModal,
                 }}
                 showAt="topBar"

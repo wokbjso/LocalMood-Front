@@ -5,8 +5,13 @@ import { twMerge } from "tailwind-merge";
 interface CurationMenuIconProps {
   menuModalInfo: {
     isOpened: boolean;
-    curationId: number;
     hasCopyLink?: boolean;
+    curationInfo: {
+      id: number;
+      privacy: boolean;
+      keyword: string[];
+      title: string;
+    };
     closeModal: () => void;
   };
   showAt: "card" | "topBar";
@@ -29,7 +34,7 @@ export default function CurationMenuIcon({
       <CurationMenuModal
         open={menuModalInfo.isOpened}
         triggeredAt={showAt}
-        curationId={menuModalInfo.curationId}
+        curationInfo={menuModalInfo.curationInfo}
         hasCopyLink={menuModalInfo.hasCopyLink}
         closeModal={menuModalInfo.closeModal}
       />

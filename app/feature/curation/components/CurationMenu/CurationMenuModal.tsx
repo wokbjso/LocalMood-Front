@@ -12,11 +12,17 @@ import { usePathname } from "next/navigation";
 import ShareIcon from "@common/assets/icons/share/ShareIcon";
 import { useSetRecoilState } from "recoil";
 import { toastInfo } from "@common/state/toast";
+import CurationMakeModal from "../CurationMake/organisms/CurationMakeModal";
 
 interface CurationMenuModalProps {
   open: boolean;
   triggeredAt: "card" | "topBar";
-  curationId: number;
+  curationInfo: {
+    id: number;
+    privacy: boolean;
+    keyword: string[];
+    title: string;
+  };
   hasCopyLink?: boolean;
   closeModal: () => void;
 }
@@ -24,17 +30,17 @@ interface CurationMenuModalProps {
 export default function CurationMenuModal({
   open,
   triggeredAt,
-  curationId,
+  curationInfo,
   hasCopyLink = false,
   closeModal,
 }: CurationMenuModalProps) {
   const setToast = useSetRecoilState(toastInfo);
   const { ref } = UseOutsideClick<HTMLDivElement>(open, closeModal);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [editCurationOpen, setEditCurationOpen] = useState(false);
   const pathname = usePathname();
   const handleCurationEditClick = () => {
-    alert("서비스 준비중입니다");
-    //편집하기 로직
+    setEditCurationOpen(true);
   };
 
   const handleCurationDeleteClick = () => {
@@ -42,7 +48,7 @@ export default function CurationMenuModal({
   };
 
   const handleLinkCopyClick = async () => {
-    copyLink(pathname + `/${curationId}`);
+    copyLink(pathname + `/${curationInfo.id}`);
     setToast({
       open: true,
       text: "링크가 복사되었어요",
@@ -54,13 +60,17 @@ export default function CurationMenuModal({
     setDeleteModalOpen(false);
   };
 
+  const handleCloseEditCuration = () => {
+    setEditCurationOpen(false);
+  };
+
   const deleteCuration = async () => {
     const res = await fetch("/api/curation/delete", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(curationId),
+      body: JSON.stringify(curationInfo.id),
     });
 
     return res.status;
@@ -117,6 +127,12 @@ export default function CurationMenuModal({
           </div>
         </Modal>
       )}
+      <CurationMakeModal
+        open={editCurationOpen}
+        closeModal={handleCloseEditCuration}
+        curationInfo={curationInfo}
+        editMode
+      />
       {deleteModalOpen && (
         <ConfirmModal
           text="정말 삭제하시겠습니까?"

@@ -20,6 +20,13 @@ interface CurationMakeKeywordProps {
   resetCurationMakeData: () => void;
   closeModal: () => void;
   onClick?: (category: string, keyword: string) => void;
+  editMode?: boolean;
+  curationInfo?: {
+    id: number;
+    privacy: boolean;
+    keyword: string[];
+    title: string;
+  };
 }
 
 export default function CurationMakeKeyword({
@@ -27,6 +34,8 @@ export default function CurationMakeKeyword({
   resetCurationMakeData,
   closeModal,
   onClick,
+  editMode = false,
+  curationInfo,
 }: CurationMakeKeywordProps) {
   const setToast = useSetRecoilState(toastInfoSelector);
 
@@ -38,6 +47,24 @@ export default function CurationMakeKeyword({
 
   const handleKeywordFilterClick = (category: string, keyword: string) => {
     onClick && onClick(category, keyword);
+  };
+  const isSameWithInitial = () => {
+    if (
+      curationMakeData.curation_name === curationInfo?.title &&
+      curationMakeData.open === curationInfo.privacy &&
+      JSON.stringify(
+        Object.values(curationMakeData.keyword).filter(
+          (value) => value.length > 0
+        )
+      ) ===
+        JSON.stringify(
+          curationInfo.keyword.map((k) => {
+            return k.trim();
+          })
+        )
+    )
+      return true;
+    return false;
   };
 
   const isSubmitEnabled = (
@@ -66,21 +93,53 @@ export default function CurationMakeKeyword({
     };
   };
 
-  const handleButtonClick = async () => {
-    setToast({
-      open: true,
-      text: "큐레이션이 생성되었습니다",
-    });
-    closeModal();
+  const makeCuration = async () => {
     const dataCurationMake = getSendingCurationData();
     const res = await fetch("/api/curation/make", {
       method: "POST",
       body: JSON.stringify(dataCurationMake),
     });
-    if (res.status === 200) {
-      resetCurationMakeData();
-      revalidateMyCuration();
-    } else alert("큐레이션 생성 중 에러가 발생했습니다!");
+    return res.status;
+  };
+
+  const editCuration = async () => {
+    const dataCurationEdit = getSendingCurationData();
+    const res = await fetch("/api/curation/edit", {
+      method: "PATCH",
+      body: JSON.stringify({
+        dataCurationEdit,
+        id: curationInfo?.id,
+      }),
+    });
+    return res.status;
+  };
+
+  const errorAlert = () => {
+    if (editMode) {
+      alert("큐레이션 수정 중 에러가 발생했습니다!");
+    } else {
+      alert("큐레이션 생성 중 에러가 발생했습니다!");
+    }
+  };
+
+  const handleButtonClick = async () => {
+    setToast({
+      open: true,
+      text: editMode
+        ? "큐레이션이 수정되었습니다"
+        : "큐레이션이 생성되었습니다",
+    });
+    closeModal();
+    if (editMode) {
+      if ((await editCuration()) === 200) {
+        revalidateMyCuration();
+      } else errorAlert();
+    } else {
+      if ((await makeCuration()) === 200) {
+        resetCurationMakeData();
+        revalidateMyCuration();
+      } else errorAlert();
+    }
     return;
   };
 
@@ -141,10 +200,14 @@ export default function CurationMakeKeyword({
       <div className="absolute w-full px-[2rem] bottom-0 left-0 bg-white h-[7.4rem]">
         <Button
           onClick={handleButtonClick}
-          disabled={!isSubmitEnabled(curationMakeData)}
+          disabled={
+            editMode
+              ? isSameWithInitial() || !isSubmitEnabled(curationMakeData)
+              : !isSubmitEnabled(curationMakeData)
+          }
           className="w-full"
         >
-          완료
+          {editMode ? "수정" : "완료"}
         </Button>
       </div>
     </div>

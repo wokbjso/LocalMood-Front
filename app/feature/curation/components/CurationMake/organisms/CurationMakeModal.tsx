@@ -8,17 +8,30 @@ import CloseIcon from "@common/assets/icons/close/CloseIcon";
 interface CurationMakeProps {
   open: boolean;
   closeModal: () => void;
+  curationInfo?: {
+    id: number;
+    privacy: boolean;
+    keyword: string[];
+    title: string;
+  };
+  editMode?: boolean;
 }
 
 //Organism
 export default function CurationMakeModal({
   open,
   closeModal,
+  curationInfo,
+  editMode = false,
 }: CurationMakeProps) {
-  const { curationMakeData, resetCurationMakeData, handlers } =
-    UseCurationMake();
+  const { curationMakeData, resetCurationMakeData, handlers } = UseCurationMake(
+    editMode,
+    curationInfo
+  );
   const closeIconClicked = () => {
-    resetCurationMakeData();
+    if (!editMode) {
+      resetCurationMakeData();
+    }
     closeModal();
   };
   return (
@@ -33,10 +46,16 @@ export default function CurationMakeModal({
               <CloseIcon />
             </div>
             <div className="w-full">
-              <TextField onChange={handlers.changeCurationName} />
+              <TextField
+                onChange={handlers.changeCurationName}
+                initialValue={curationMakeData.curation_name}
+              />
             </div>
             <div className="w-full pt-[1.6rem] grid justify-items-end">
-              <ButtonLock onClick={handlers.changeCurationOpen} />
+              <ButtonLock
+                onClick={handlers.changeCurationOpen}
+                initialValue={curationMakeData.open}
+              />
             </div>
             <div className="w-full pt-[3.2rem] overflow-auto">
               <CurationMakeKeyword
@@ -44,6 +63,8 @@ export default function CurationMakeModal({
                 resetCurationMakeData={resetCurationMakeData}
                 closeModal={closeModal}
                 onClick={handlers.changeKeyword}
+                editMode={editMode}
+                curationInfo={curationInfo}
               />
             </div>
           </div>
