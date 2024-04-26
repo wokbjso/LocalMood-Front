@@ -2,7 +2,7 @@
 
 import MenuIcon from "@common/assets/icons/menu/MenuIcon";
 import LogoutModal from "@feature/auth/components/LogoutModal/LogoutModal";
-import UseLogoutModal from "@feature/auth/components/LogoutModal/useLogoutModal";
+import UseLogoutModal from "@feature/auth/hooks/useLogoutModal";
 import { twMerge } from "tailwind-merge";
 
 interface PageTopBarProps {

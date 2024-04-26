@@ -1,5 +1,6 @@
-import RecordSelect from "@feature/record/components/RecordSelect/RecordSelect";
+import RecordPageBookTemplate from "@feature/record/components/RecordPageBook/template/RecordPageBookTemplate";
 
+//Page
 export default async function RecordSelectPage({
   params,
   searchParams,
@@ -9,7 +10,7 @@ export default async function RecordSelectPage({
 }) {
   return (
     <div className="w-[100%] h-[100%]">
-      <RecordSelect
+      <RecordPageBookTemplate
         id={params.id}
         type={searchParams.type}
         name={searchParams.name}

@@ -6,7 +6,8 @@ import {
 } from "@feature/search/constants/search-keywords";
 import Filter from "@common/components/ui/buttons/Filter/Filter";
 
-export default function RecordKeywordContent({
+//Organism
+export default function PlaceIndicatingKeywordContent({
   placeType,
   cafeKeywordData,
   restaurantKeywordData,

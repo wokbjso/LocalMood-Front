@@ -7,7 +7,8 @@ interface RecordTopBarProps {
   handleIndicatorIndex?: (index: number) => void;
 }
 
-export default function PlaceRecordTopBar({
+//Organism
+export default function RecordPageBookTopBar({
   showIndicator,
   text,
   indicatorIndex,

@@ -2,7 +2,7 @@
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "../../slick.css";
+import "../slick.css";
 import Slider from "react-slick";
 import MoreTopBar from "@common/components/ui/topBar/MoreTopBar/MoreTopBar";
 import CurationInfoCardLight from "@feature/curation/components/CurationInfo/molecules/CurationInfoCardLight";
@@ -22,7 +22,7 @@ interface CurationHomePopularProps {
 }
 
 //Organism
-export default function HomePopularCuration({
+export default function HomePopularCurationSlider({
   title,
   curationList,
 }: CurationHomePopularProps) {

@@ -1,11 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import RecordComplete from "@feature/record/components/RecordComplete/RecordComplete";
-import SelectKeyword from "@feature/record/components/Keyword/SelectKeyword";
-import SelectEvaluation from "@feature/record/components/Evaluation/SelectEvaluation";
-import UseKeyword from "@feature/record/components/Keyword/useKeyword";
-import SelectPhoto from "@feature/record/components/PhotoUpload/SelectPhoto";
+import RecordComplete from "@feature/record/components/RecordComplete/organisms/RecordComplete";
+import SelectPhoto from "@feature/record/components/SelectPhoto/organisms/SelectPhoto";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Button from "@common/components/ui/buttons/Button/Button";
 import { cloneElement } from "react";
@@ -14,6 +11,9 @@ import revalidatePlaceReview from "@feature/record/actions/revalidatePlaceReview
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
 import useFetching from "@common/hooks/useFetching";
 import { BeatLoader } from "react-spinners";
+import UseTotalRecordKeyword from "../../../hooks/useTotalRecordKeyword";
+import SelectIndicatingPlaceKeyword from "@feature/record/components/SelectIndicatingPlaceKeyword/organisms/SelectIndicatingPlaceKeyword";
+import SelectEvaluationKeyword from "@feature/record/components/SelectEvaluationKeyword/organisms/SelectEvaluationKeyword";
 
 interface RecordSelectProps {
   id: number;
@@ -21,7 +21,12 @@ interface RecordSelectProps {
   name: string;
 }
 
-export default function RecordSelect({ id, type, name }: RecordSelectProps) {
+//Template
+export default function RecordPageBookTemplate({
+  id,
+  type,
+  name,
+}: RecordSelectProps) {
   const router = useRouter();
 
   const { isFetching, changeFetching } = useFetching();
@@ -35,7 +40,7 @@ export default function RecordSelect({ id, type, name }: RecordSelectProps) {
     checkJump,
     checkPurposeChosen,
     handlers,
-  } = UseKeyword(type);
+  } = UseTotalRecordKeyword(type);
 
   const modifyData = (data: any) => {
     return {
@@ -116,7 +121,7 @@ export default function RecordSelect({ id, type, name }: RecordSelectProps) {
         >
           {indicatorIndex === 0 && (
             <CSSTransition key={0} timeout={300}>
-              <SelectKeyword
+              <SelectIndicatingPlaceKeyword
                 placeType={type}
                 name={name}
                 indicatorIndex={indicatorIndex}
@@ -129,7 +134,7 @@ export default function RecordSelect({ id, type, name }: RecordSelectProps) {
           )}
           {indicatorIndex === 1 && (
             <CSSTransition key={1} timeout={300}>
-              <SelectEvaluation
+              <SelectEvaluationKeyword
                 placeType={type}
                 indicatorIndex={indicatorIndex}
                 handleIndicatorIndex={handlers.handleIndicatorIndex}
@@ -143,7 +148,6 @@ export default function RecordSelect({ id, type, name }: RecordSelectProps) {
             <CSSTransition key={2} timeout={300}>
               <SelectPhoto
                 placeType={type}
-                spaceId={id}
                 indicatorIndex={indicatorIndex}
                 handleIndicatorIndex={handlers.handleIndicatorIndex}
                 cafeKeywordData={cafeKeywordData}

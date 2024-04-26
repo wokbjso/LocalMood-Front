@@ -5,8 +5,8 @@ import {
 } from "@feature/place/type";
 import SliderLayout from "@common/components/layout/Slider/SliderLayout";
 import GetRandomPlaces from "@feature/place/queries/getRandomPlaces";
-import SliderHashTag from "@feature/home/components/molecules/SliderHashTag";
-import PlaceInfoCard from "../../../place/components/PlaceInfo/molecules/PlaceInfoCard";
+import SliderHashTag from "@feature/home/components/HomeSlider/molecules/SliderHashTag";
+import PlaceInfoCard from "../../../../place/components/PlaceInfo/molecules/PlaceInfoCard";
 
 export interface HomePlaceSliderProps {
   mainText: string;

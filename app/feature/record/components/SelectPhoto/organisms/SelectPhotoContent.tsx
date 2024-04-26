@@ -4,21 +4,19 @@ import Image from "next/image";
 import { ChangeEvent, useRef, useState } from "react";
 interface PhotoUploadProps {
   placeType: string;
-  spaceId: number;
   cafeKeywordData: { [key: string]: string | Array<string> };
   restaurantKeywordData: { [key: string]: string | Array<string> };
   handleAddImage: (url: File) => void;
   handleDeleteImage: (index: number) => void;
-  handleIndicatorIndex: (index: number) => void;
 }
-export default function PhotoUpload({
+
+//Organism
+export default function SelectPhotoContent({
   placeType,
-  spaceId,
   cafeKeywordData,
   restaurantKeywordData,
   handleAddImage,
   handleDeleteImage,
-  handleIndicatorIndex,
 }: PhotoUploadProps) {
   const fileInput = useRef<HTMLInputElement>(null);
   const [image, setImage] = useState<any[]>([]);

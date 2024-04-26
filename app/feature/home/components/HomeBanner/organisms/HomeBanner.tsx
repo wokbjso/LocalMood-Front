@@ -1,11 +1,11 @@
 "use client";
 
 import Button from "@common/components/ui/buttons/Button/Button";
-import HomeTopBar from "@feature/home/components/organisms/HomeTopBar";
+import HomeTopBar from "@feature/home/components/HomeTopBar/HomeTopBar";
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 import KeywordInfiniteScroller from "./KeywordInfiniteScroller";
-import HomeBannerTitle from "@feature/home/components/organisms/HomeBannerTitle";
+import HomeBannerTitle from "@feature/home/components/HomeBanner/molecules/HomeBannerTitle";
 
 export interface HomeBannerProps {
   textNormalFirst: string;

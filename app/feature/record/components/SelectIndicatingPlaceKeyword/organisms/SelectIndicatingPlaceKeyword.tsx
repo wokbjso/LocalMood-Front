@@ -1,5 +1,5 @@
-import RecordKeywordContent from "@feature/record/components/Keyword/RecordKeywordContent";
-import PlaceRecordTopBar from "@feature/record/components/PlaceRecordTopBar/PlaceRecordTopBar";
+import RecordPageBookTopBar from "@feature/record/components/RecordPageBook/organisms/RecordPageBookTopBar";
+import PlaceIndicatingKeywordContent from "./PlaceIndicatingKeywordContent";
 
 interface SelectKeyword {
   placeType: string;
@@ -15,7 +15,8 @@ interface SelectKeyword {
   handleIndicatorIndex: (index: number) => void;
 }
 
-export default function SelectKeyword({
+//Organism
+export default function SelectIndicatingPlaceKeyword({
   placeType,
   name,
   cafeKeywordData,
@@ -26,13 +27,13 @@ export default function SelectKeyword({
 }: SelectKeyword) {
   return (
     <div className="absolute w-full top-0">
-      <PlaceRecordTopBar
+      <RecordPageBookTopBar
         showIndicator={true}
         indicatorIndex={indicatorIndex}
         handleIndicatorIndex={handleIndicatorIndex}
         text={`${name}를 나타내는 키워드를 골라주세요`}
       />
-      <RecordKeywordContent
+      <PlaceIndicatingKeywordContent
         placeType={placeType}
         cafeKeywordData={cafeKeywordData}
         restaurantKeywordData={restaurantKeywordData}

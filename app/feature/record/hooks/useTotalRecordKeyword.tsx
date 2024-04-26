@@ -1,7 +1,7 @@
 import { PLACE_EVALUATIONS } from "@feature/record/constants/evaluate-keywords";
 import { useState } from "react";
 
-export default function UseKeyword(placeType: string) {
+export default function UseTotalRecordKeyword(placeType: string) {
   const [indicatorIndex, setIndicatorIndex] = useState(0);
   const [nextDirection, setNextDirection] = useState("");
   const [cafeKeywordData, setCafeKeywordData] = useState<{

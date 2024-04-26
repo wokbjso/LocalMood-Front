@@ -1,4 +1,3 @@
-import Button from "@common/components/ui/buttons/Button/Button";
 import Filter from "@common/components/ui/buttons/Filter/Filter";
 import {
   CAFE_EVALUATIONS,
@@ -6,24 +5,20 @@ import {
   RESTAURANT_EVALUATIONS,
 } from "@feature/record/constants/evaluate-keywords";
 
-export default function RecordEvaluationContent({
+//Organism
+export default function EvaluationKeywordContent({
   placeType,
   cafeKeywordData,
   restaurantKeywordData,
-  handleIndicatorIndex,
   handleKeyword,
 }: {
   placeType: string;
   cafeKeywordData: { [key: string]: string | Array<string> };
   restaurantKeywordData: { [key: string]: string | Array<string> };
-  handleIndicatorIndex: (index: number) => void;
   handleKeyword: (category: string, keyword: string) => void;
 }) {
   const handleFilterClick = (category: string, keyword: string) => {
     handleKeyword(category, keyword);
-  };
-  const handleNextClick = () => {
-    handleIndicatorIndex(2);
   };
 
   return (

@@ -10,6 +10,7 @@ interface RecordCompleteProps {
   hasSomeData: boolean;
 }
 
+//Organism
 export default function RecordComplete({
   spaceId,
   handleIndicatorIndex,

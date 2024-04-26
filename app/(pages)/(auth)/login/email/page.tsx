@@ -4,7 +4,7 @@ import Logo from "@common/assets/images/localmood_logo.svg";
 import FormInput from "@common/components/ui/input/FormInput/FormInput";
 import Button from "@common/components/ui/buttons/Button/Button";
 import Link from "next/link";
-import UseForm from "@feature/auth/useForm";
+import UseForm from "@feature/auth/hooks/useForm";
 import { LoginFormState } from "@feature/auth/type";
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
 

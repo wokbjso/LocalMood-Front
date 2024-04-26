@@ -1,6 +1,6 @@
 import PlaceInfoCard from "@feature/place/components/PlaceInfo/molecules/PlaceInfoCard";
 import GetPlaceScrapped from "@feature/place/queries/getPlaceScrapped";
-import PlaceRecordTopBar from "@feature/record/components/PlaceRecordTopBar/PlaceRecordTopBar";
+import PlaceRecordTopBar from "@feature/record/components/RecordPageBook/organisms/RecordPageBookTopBar";
 
 export default async function RecordScrappedMorePage() {
   const scrappedPlace = await GetPlaceScrapped();

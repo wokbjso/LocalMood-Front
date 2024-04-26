@@ -1,37 +1,40 @@
-import PlaceRecordTopBar from "@feature/record/components/PlaceRecordTopBar/PlaceRecordTopBar";
-import RecordEvaluationContent from "@feature/record/components/Evaluation/RecordEvaluationContent";
+import RecordPageBookTopBar from "../../RecordPageBook/organisms/RecordPageBookTopBar";
+import SelectPhotoContent from "./SelectPhotoContent";
 
-interface SelectEvaluation {
+interface SelectPhoto {
   placeType: string;
   indicatorIndex: number;
   handleIndicatorIndex: (index: number) => void;
   cafeKeywordData: { [key: string]: string | Array<string> };
   restaurantKeywordData: { [key: string]: string | Array<string> };
-  handleKeyword: (category: string, keyword: string) => void;
+  handleAddImage: (url: File) => void;
+  handleDeleteImage: (index: number) => void;
 }
 
-export default function SelectEvaluation({
+//Organism
+export default function SelectPhoto({
   placeType,
   indicatorIndex,
   handleIndicatorIndex,
   cafeKeywordData,
   restaurantKeywordData,
-  handleKeyword,
-}: SelectEvaluation) {
+  handleAddImage,
+  handleDeleteImage,
+}: SelectPhoto) {
   return (
-    <div className="absolute">
-      <PlaceRecordTopBar
+    <div className="absolute w-[100%] h-[100%] overflow-hidden">
+      <RecordPageBookTopBar
         showIndicator={true}
+        text="방문한 사진을 업로드해주세요!"
         indicatorIndex={indicatorIndex}
         handleIndicatorIndex={handleIndicatorIndex}
-        text="특별히 좋았던 점과 아쉬운 점이 있었나요?"
       />
-      <RecordEvaluationContent
+      <SelectPhotoContent
         placeType={placeType}
         cafeKeywordData={cafeKeywordData}
         restaurantKeywordData={restaurantKeywordData}
-        handleIndicatorIndex={handleIndicatorIndex}
-        handleKeyword={handleKeyword}
+        handleAddImage={handleAddImage}
+        handleDeleteImage={handleDeleteImage}
       />
     </div>
   );
