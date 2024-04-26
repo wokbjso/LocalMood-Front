@@ -8,7 +8,7 @@ export default function UseCurationMake(
   editMode: boolean,
   curationInfo?: {
     id: number;
-    privacy: boolean;
+    privacy?: boolean;
     keyword: string[];
     title: string;
   }

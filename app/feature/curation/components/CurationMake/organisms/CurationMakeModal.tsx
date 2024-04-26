@@ -10,7 +10,7 @@ interface CurationMakeProps {
   closeModal: () => void;
   curationInfo?: {
     id: number;
-    privacy: boolean;
+    privacy?: boolean;
     keyword: string[];
     title: string;
   };
