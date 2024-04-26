@@ -3,7 +3,7 @@ import { assignMultipleRefs } from "@common/utils/dom/assign-multiple-refs";
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import MapMarker from "../MapMarker/MapMarker";
-import MapInfoWindow from "@feature/map/components/MapInfoWindow/MapInfoWindow";
+import MapInfoWindow from "@common/components/ui/map/MapInfoWindow/MapInfoWindow";
 import { sliceText } from "@common/utils/text/slice-text";
 
 interface MapProps {
