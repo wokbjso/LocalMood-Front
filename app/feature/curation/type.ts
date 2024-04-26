@@ -5,6 +5,7 @@ export interface CurationProps {
   author: string;
   title: string;
   keyword: string[];
+  privacy: boolean;
   spaceCount?: number;
   isScraped?: boolean;
 }

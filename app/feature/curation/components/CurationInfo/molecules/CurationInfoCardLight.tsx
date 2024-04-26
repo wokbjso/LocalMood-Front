@@ -15,7 +15,7 @@ import useCurationScrapIcon from "../../CurationScrap/useCurationScrapIcon";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useFetching from "@common/hooks/useFetching";
 import revalidateCurationScrapRelatedData from "@feature/curation/actions/revalidateCurationScrapRelatedData";
 
@@ -27,6 +27,7 @@ export default function CurationInfoCardLight({
   author,
   title,
   keyword,
+  privacy,
   spaceCount,
   isScraped = false,
   className,
@@ -186,8 +187,13 @@ export default function CurationInfoCardLight({
           <CurationMenuIcon
             menuModalInfo={{
               isOpened,
-              curationId: id,
               hasCopyLink: true,
+              curationInfo: {
+                id,
+                privacy,
+                keyword,
+                title,
+              },
               closeModal,
             }}
             showAt="card"

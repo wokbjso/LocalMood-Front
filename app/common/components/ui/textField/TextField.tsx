@@ -4,10 +4,11 @@ import { twMerge } from "tailwind-merge";
 
 interface TextFieldProps {
   onChange?: (text: string) => void;
+  initialValue: string;
 }
 
-export default function TextField({ onChange }: TextFieldProps) {
-  const [inputValue, setInputValue] = useState("");
+export default function TextField({ onChange, initialValue }: TextFieldProps) {
+  const [inputValue, setInputValue] = useState(initialValue);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;

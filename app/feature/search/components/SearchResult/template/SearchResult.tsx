@@ -10,10 +10,14 @@ import Divider from "@common/components/ui/divider/Divider";
 import CurationInfoCardLight from "@feature/curation/components/CurationInfo/molecules/CurationInfoCardLight";
 import useTextSearchBar from "../../SearchText/hooks/useTextSearchBar";
 import SearchNoResult from "../molecules/SearchNoResult";
+import dynamic from "next/dynamic";
 const PlaceInfoCard = lazy(
   () => import("@feature/place/components/PlaceInfo/molecules/PlaceInfoCard")
 );
-import ChangeSearchConditon from "../organisms/ChangeSearchCondition";
+const ChangeSearchConditon = dynamic(
+  () => import("../organisms/ChangeSearchCondition"),
+  { ssr: false }
+);
 
 interface SearchResultProps {
   search_query?: string;
