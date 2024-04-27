@@ -8,10 +8,10 @@ export default function LoginPage() {
   return (
     <div className="w-[100%] h-[100%]">
       <KakaoScript />
-      <div className="relative h-[30rem] w-full mb-[6rem]">
+      <div className="relative h-[40vh] w-full mb-[6rem]">
         <Image src="/loginLogo.png" alt="로그인 이미지" fill sizes="100vw" />
       </div>
-      <div className="flex flex-col w-full items-center">
+      <div className="absolute top-[45vh] flex flex-col w-full items-center">
         <span className="headline2-semibold text-text-gray-8 mb-[0.6rem]">
           당신이 좋아할 그 공간,
         </span>
