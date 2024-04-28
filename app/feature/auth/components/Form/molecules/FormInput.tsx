@@ -9,6 +9,7 @@ interface FormInputProps {
   className?: string;
 }
 
+//Molecule
 export default function FormInput({
   type = "text",
   label,

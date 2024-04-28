@@ -1,7 +1,7 @@
 "use client";
 
+import LoadingUI from "@common/components/ui/loading/LoadingUI";
 import { useEffect } from "react";
-import { BeatLoader } from "react-spinners";
 
 export default function KakaoRedirectPage({
   searchParams,
@@ -21,9 +21,5 @@ export default function KakaoRedirectPage({
     };
     getAuthorization();
   }, [code]);
-  return (
-    <div className="w-[100%] h-[100%] flex justify-center items-center header-light">
-      <BeatLoader color="#36d7b7" className="z-50" />
-    </div>
-  );
+  return <LoadingUI />;
 }

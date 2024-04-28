@@ -1,12 +1,13 @@
 "use client";
 
 import Logo from "@common/assets/images/localmood_logo.svg";
-import FormInput from "@common/components/ui/input/FormInput/FormInput";
+import FormInput from "@feature/auth/components/Form/molecules/FormInput";
 import Button from "@common/components/ui/buttons/Button/Button";
 import Link from "next/link";
 import UseForm from "@feature/auth/hooks/useForm";
 import { LoginFormState } from "@feature/auth/type";
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
+import TextWithBorder from "@feature/auth/components/Login/molecules/TextWithBorder";
 
 export default function LoginEmailPage() {
   const handleSubmit = async (e: LoginFormState) => {
@@ -71,9 +72,7 @@ export default function LoginEmailPage() {
           href={{ pathname: "/" }}
           className="flex justify-center mt-[2rem]"
         >
-          <span className="text-text-gray-6 body2-semibold pb-[0.4rem] border-b-[1px] border-b-text-gray-6">
-            로그인없이 둘러보기
-          </span>
+          <TextWithBorder text="로그인없이 둘러보기" />
         </Link>
       </div>
     </div>
