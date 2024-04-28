@@ -9,7 +9,10 @@ import { Viewport } from "next";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 import { twMerge } from "tailwind-merge";
-import DetectDevice from "@common/components/layout/DetectDevice/DetectDevice";
+const DetectDevice = dynamic(
+  () => import("@common/components/layout/DetectDevice/DetectDevice"),
+  { ssr: false }
+);
 
 const globalFont = localFont({
   src: [
