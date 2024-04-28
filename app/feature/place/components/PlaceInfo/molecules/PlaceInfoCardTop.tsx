@@ -15,7 +15,7 @@ import { toastInfoSelector } from "@common/state/toast";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
 import CheckIconSmall from "@common/assets/icons/check/CheckIconSmall";
-import ImageWrapper from "@common/components/ui/imageWrapper/ImageWrapper";
+import ImageWrapper from "@common/components/ui/wrapper/ImageWrapper";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
 import PlaceInfoCardTopScrapIcon from "../atoms/PlaceInfoCardTopScrapIcon";
 

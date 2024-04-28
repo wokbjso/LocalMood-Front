@@ -4,6 +4,7 @@ import UseOutsideClick from "@common/hooks/useOutsideClick";
 import { useState } from "react";
 import ConfirmModal from "@common/components/ui/modal/ConfirmModal";
 
+//Organism
 export default function LogoutModal({
   closeModal,
 }: {
