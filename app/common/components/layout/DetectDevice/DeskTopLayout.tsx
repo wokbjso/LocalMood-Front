@@ -1,5 +1,9 @@
-import PhoneRingingImage from "@common/assets/images/phoneRinging.svg";
-import QRCode from "./QRCode";
+import dynamic from "next/dynamic";
+const PhoneRingingImage = dynamic(
+  () => import("@common/assets/images/phoneRinging.svg"),
+  { ssr: false }
+);
+const QRCode = dynamic(() => import("./QRCode"), { ssr: false });
 
 export default function DeskTopLayout() {
   return (
