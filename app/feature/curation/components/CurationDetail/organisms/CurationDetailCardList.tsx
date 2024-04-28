@@ -36,7 +36,8 @@ const CurationDetailCardList = forwardRef<
     }[]
   >([]);
   const handleMapClick = () => {
-    openMap();
+    if (placeData.length > 0) openMap();
+    else alert("저장된 공간이 없습니다");
   };
 
   const handlePlaceFilterClick = (index: number) => {

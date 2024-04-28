@@ -1,9 +1,8 @@
 import dynamic from "next/dynamic";
 const PhoneRingingImage = dynamic(
-  () => import("@common/assets/images/phoneRinging.svg"),
-  { ssr: false }
+  () => import("@common/assets/images/phoneRinging.svg")
 );
-const QRCode = dynamic(() => import("./QRCode"), { ssr: false });
+const QRCode = dynamic(() => import("./QRCode"));
 
 export default function DeskTopLayout() {
   return (

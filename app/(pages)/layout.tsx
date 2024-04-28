@@ -1,14 +1,14 @@
 import "../styles/global.css";
 import RecoilRootLayout from "@common/components/layout/Recoil/RecoilRootLayout";
+import dynamic from "next/dynamic";
+import localFont from "next/font/local";
 import ToastProvider from "@common/components/layout/Provider/ToastProvider";
+import { Viewport } from "next";
+import { twMerge } from "tailwind-merge";
+import getMyCuration from "@feature/curation/queries/getMyCuration";
 const MyCurationModalProvider = dynamic(
   () => import("@common/components/layout/Provider/MyCurationModalProvider")
 );
-import getMyCuration from "@feature/curation/queries/getMyCuration";
-import { Viewport } from "next";
-import dynamic from "next/dynamic";
-import localFont from "next/font/local";
-import { twMerge } from "tailwind-merge";
 const DetectDevice = dynamic(
   () => import("@common/components/layout/DetectDevice/DetectDevice"),
   { ssr: false }
