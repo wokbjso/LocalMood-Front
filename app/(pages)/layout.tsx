@@ -9,6 +9,7 @@ import { Viewport } from "next";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 import { twMerge } from "tailwind-merge";
+import DetectDevice from "@common/components/layout/DetectDevice/DetectDevice";
 
 const globalFont = localFont({
   src: [
@@ -59,7 +60,7 @@ export default async function RootLayout({
       <body className={twMerge("w-[100%] h-[100%]", globalFont.variable)}>
         <main className="w-[100%] h-[100%] fixed overflow-hidden">
           <RecoilRootLayout>
-            {children}
+            <DetectDevice>{children}</DetectDevice>
             <MyCurationModalProvider myCurationData={myCurationData} />
             <ToastProvider />
           </RecoilRootLayout>
