@@ -201,7 +201,7 @@ export default function RecordPageBookTemplate({
             </Button>
           )}
         </div>
-        {!isFetching && (
+        {isFetching && (
           <>
             <PageDarkWrapper />
             <LoadingUI className="absolute top-0 left-0 z-20" />
