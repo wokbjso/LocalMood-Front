@@ -107,6 +107,7 @@ export default function SearchResult({
                             : undefined
                         }
                         keywordCategoryNum={2}
+                        bottomClassName="flex-col"
                       />
                     </div>
                   ))}
@@ -153,6 +154,7 @@ export default function SearchResult({
                             : undefined
                         }
                         keywordCategoryNum={2}
+                        bottomClassName="flex-col"
                       />
                     </div>
                   ))}
@@ -237,6 +239,7 @@ export default function SearchResult({
                             : undefined
                         }
                         keywordCategoryNum={2}
+                        bottomClassName="flex-col"
                       />
                     </div>
                   ))}
@@ -283,6 +286,7 @@ export default function SearchResult({
                             : undefined
                         }
                         keywordCategoryNum={2}
+                        bottomClassName="flex-col"
                       />
                     </div>
                   ))}

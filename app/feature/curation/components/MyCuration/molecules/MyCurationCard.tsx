@@ -4,7 +4,7 @@ import { CurationProps } from "@feature/curation/type";
 import LocationLine from "@common/assets/icons/location/LocationLine";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
-import ImageWrapper from "@common/components/ui/imageWrapper/ImageWrapper";
+import ImageWrapper from "@common/components/ui/wrapper/ImageWrapper";
 
 interface MyCurationCardProps {
   spaceId: number;

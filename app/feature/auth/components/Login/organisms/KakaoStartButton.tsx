@@ -1,9 +1,14 @@
 "use client";
 
 import KakaoIcon from "@common/assets/icons/kakao/KakaoIcon";
-import Button from "../Button/Button";
+import Button from "../../../../../common/components/ui/buttons/Button/Button";
 
-export default function KakaoButton() {
+interface KakaoStartButtonProps {
+  text: string;
+}
+
+//Organism
+export default function KakaoStartButton({ text }: KakaoStartButtonProps) {
   const protocol = process?.env.NODE_ENV === "development" ? "http" : "https";
   const host =
     process?.env.NODE_ENV === "development"
@@ -19,7 +24,7 @@ export default function KakaoButton() {
       onClick={kakaoLogin}
     >
       <KakaoIcon className="absolute left-[1.2rem]" />
-      <span className="body2-semibold text-black">카카오로 시작하기</span>
+      <span className="body2-semibold text-black">{text}</span>
     </Button>
   );
 }

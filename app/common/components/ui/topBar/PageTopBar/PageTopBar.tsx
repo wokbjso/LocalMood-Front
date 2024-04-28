@@ -1,7 +1,7 @@
 "use client";
 
 import MenuIcon from "@common/assets/icons/menu/MenuIcon";
-import LogoutModal from "@feature/auth/components/LogoutModal/LogoutModal";
+import LogoutModal from "@feature/auth/components/Logout/organisms/LogoutModal";
 import UseLogoutModal from "@feature/auth/hooks/useLogoutModal";
 import { twMerge } from "tailwind-merge";
 

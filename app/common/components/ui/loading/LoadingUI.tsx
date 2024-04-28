@@ -1,8 +1,14 @@
 import { BeatLoader } from "react-spinners";
+import { twMerge } from "tailwind-merge";
 
-export default function LoadingUI() {
+export default function LoadingUI({ className }: { className?: string }) {
   return (
-    <div className="flex justify-center items-center w-[100%] h-[100%]">
+    <div
+      className={twMerge(
+        "flex justify-center items-center w-[100%] h-[100%]",
+        className
+      )}
+    >
       <BeatLoader color="#36d7b7" />
     </div>
   );

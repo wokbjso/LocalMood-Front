@@ -1,16 +1,24 @@
 "use client";
 
-import FormInput from "@common/components/ui/input/FormInput/FormInput";
+import FormInput from "@feature/auth/components/Form/molecules/FormInput";
 import Button from "@common/components/ui/buttons/Button/Button";
 import UseForm from "@feature/auth/hooks/useForm";
 import { LoginFormState, RegisterFormState } from "@feature/auth/type";
 import { useRouter } from "next/navigation";
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
+import useFetching from "@common/hooks/useFetching";
+import LoadingUI from "@common/components/ui/loading/LoadingUI";
+import PageDarkWrapper from "@common/components/ui/wrapper/PageDarkWrapper";
 
+//Page
 export default function RegisterPage() {
   const router = useRouter();
+
+  const { isFetching, changeFetching } = useFetching();
+
   const handleSubmit = async (e: LoginFormState | RegisterFormState) => {
     if ("nickname" in e) {
+      changeFetching(true);
       const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: {
@@ -19,6 +27,7 @@ export default function RegisterPage() {
         body: JSON.stringify(registerFormData),
       });
       if (res.status === 200) {
+        changeFetching(false);
         router.push("/register/success");
       } else {
         alert("회원가입 과정 중 오류가 발생했습니다");
@@ -38,6 +47,7 @@ export default function RegisterPage() {
     ).length >= 1;
 
   return (
+    // Template
     <div className="w-[100%] h-[100%] px-[2rem]">
       <ArrowBackTopBar color="#9E9E9E" className="px-0 mb-[4.8rem]">
         <div className="w-full flex justify-start items-center text-black headline3">
@@ -69,6 +79,12 @@ export default function RegisterPage() {
           </Button>
         </div>
       </form>
+      {isFetching && (
+        <>
+          <PageDarkWrapper />
+          <LoadingUI className="absolute top-0 left-0 z-20" />
+        </>
+      )}
     </div>
   );
 }
