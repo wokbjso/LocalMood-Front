@@ -19,6 +19,6 @@ export async function POST(
   );
 
   if (!res.ok) {
-    throw "Error";
+    throw new Error("Error");
   } else return NextResponse.json("Success", { status: 200 });
 }

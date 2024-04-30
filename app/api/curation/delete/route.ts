@@ -18,6 +18,6 @@ export async function DELETE(request: NextRequest) {
   );
 
   if (!res.ok) {
-    throw "Error";
+    throw new Error("Error");
   } else return NextResponse.json("Success", { status: 200 });
 }
