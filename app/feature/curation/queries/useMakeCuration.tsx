@@ -5,18 +5,12 @@ import { toastInfoSelector } from "@common/state/toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSetRecoilState } from "recoil";
 
-const protocol = process?.env.NODE_ENV === "development" ? "http" : "https";
-const host =
-  process?.env.NODE_ENV === "development"
-    ? "localhost:3000"
-    : "localmood.co.kr";
-
 async function makeCuration(data: {
   title: string;
   keyword: string;
   privacy: boolean;
 }) {
-  const res = await fetch(`${protocol}://${host}/api/curation/make`, {
+  const res = await fetch(`/api/curation/make`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
