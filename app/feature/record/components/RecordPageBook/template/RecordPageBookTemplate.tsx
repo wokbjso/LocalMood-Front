@@ -15,6 +15,7 @@ import SelectIndicatingPlaceKeyword from "@feature/record/components/SelectIndic
 import SelectEvaluationKeyword from "@feature/record/components/SelectEvaluationKeyword/organisms/SelectEvaluationKeyword";
 import LoadingUI from "@common/components/ui/loading/LoadingUI";
 import PageDarkWrapper from "@common/components/ui/wrapper/PageDarkWrapper";
+import UseDeferredComponent from "@common/hooks/useDeferredComponent";
 
 interface RecordSelectProps {
   id: number;
@@ -202,10 +203,10 @@ export default function RecordPageBookTemplate({
           )}
         </div>
         {isFetching && (
-          <>
+          <UseDeferredComponent>
             <PageDarkWrapper />
-            <LoadingUI className="absolute top-0 left-0 z-20" />
-          </>
+            <LoadingUI className="absolute top-0 left-0 z-50" />
+          </UseDeferredComponent>
         )}
       </div>
     </>

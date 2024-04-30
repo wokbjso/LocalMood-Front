@@ -7,6 +7,7 @@ import CloseIcon from "@common/assets/icons/close/CloseIcon";
 
 interface CurationMakeProps {
   open: boolean;
+  openedAt?: "page" | "modal";
   closeModal: () => void;
   curationInfo?: {
     id: number;
@@ -20,6 +21,7 @@ interface CurationMakeProps {
 //Organism
 export default function CurationMakeModal({
   open,
+  openedAt = "modal",
   closeModal,
   curationInfo,
   editMode = false,
@@ -59,6 +61,7 @@ export default function CurationMakeModal({
             </div>
             <div className="w-full pt-[3.2rem] overflow-auto">
               <CurationMakeKeyword
+                openedAt={openedAt}
                 curationMakeData={curationMakeData}
                 resetCurationMakeData={resetCurationMakeData}
                 closeModal={closeModal}

@@ -1,19 +1,18 @@
 import ArrowIcon from "@common/assets/icons/arrow/arrow-right.svg";
 import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import Image from "next/image";
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import { CurationPlaceProps } from "@feature/curation/type";
 import LinkLayout from "@common/components/layout/Link/LinkLayout";
 import PlaceInfoCardBottom from "@feature/place/components/PlaceInfo/molecules/PlaceInfoCardBottom";
 import SliderLayout from "@common/components/layout/Slider/SliderLayout";
 import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
-import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
-import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
-import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail";
 import { useSetRecoilState } from "recoil";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
 import { toastInfoSelector } from "@common/state/toast";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
+import useCurationSpaceDelete from "@feature/curation/queries/useCurationSpaceDelete";
+import { queryFetchingSelector } from "@common/state/queryFetching";
 
 //Molecule
 const CurationDetailInfoCard = forwardRef<
@@ -25,31 +24,16 @@ const CurationDetailInfoCard = forwardRef<
 >(({ ...props }, ref) => {
   const setMyCurationModal = useSetRecoilState(myCurationModalInfoSelector);
   const setToast = useSetRecoilState(toastInfoSelector);
+  const setIsQueryFetching = useSetRecoilState(queryFetchingSelector);
+
+  const [count, setCount] = useState(0);
+
+  const { mutate: deleteCurationSpace } = useCurationSpaceDelete(count);
 
   const purposeArray = props.purpose ? props.purpose.split(",") : [];
   const interiorArray = props.interior ? props.interior.split(",") : [];
   const moodArray = props.mood ? props.mood.split(",") : [];
   const bestMenuArray = props.bestMenu ? props.bestMenu.split(",") : [];
-
-  const deleteScrap = async () => {
-    const res = await fetch("/api/curation/delete/space", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        curationId: props.curationId,
-        spaceId: props.id,
-      }),
-    });
-    return res.status;
-  };
-
-  const revalidateRelatedData = () => {
-    revalidateMyCuration();
-    revalidateScrapSpace();
-    revalidatePlaceDetail();
-  };
 
   const handleScrapState = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
@@ -58,16 +42,14 @@ const CurationDetailInfoCard = forwardRef<
     if ((await validateLoggedIn()) === false) {
       location.replace("/login");
     } else {
+      if (count > 0) return;
+      setCount((prev) => prev + 1);
       if (props.variant === "my") {
-        setToast({
-          open: true,
-          text: "스크랩이 해제되었습니다",
+        setIsQueryFetching(true);
+        deleteCurationSpace({
+          curationId: props.curationId,
+          spaceId: props.id,
         });
-        if ((await deleteScrap()) === 200) {
-          revalidateRelatedData();
-        } else {
-          alert("스크랩 해제 중 오류가 발생했습니다");
-        }
       } else {
         setToast({
           open: true,

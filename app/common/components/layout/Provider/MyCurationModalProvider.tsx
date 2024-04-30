@@ -2,14 +2,12 @@
 
 import { myCurationModalInfo } from "@common/state/myCurationModal";
 import MyCurationModal from "@feature/curation/components/MyCuration/organisms/MyCurationModal";
-import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
+import useGetMyCuration from "@feature/curation/queries/useGetMyCuration";
 import { useRecoilValue } from "recoil";
 
-export default function MyCurationModalProvider({
-  myCurationData,
-}: {
-  myCurationData?: MyCurationResponse;
-}) {
+export default function MyCurationModalProvider() {
+  const { data: myCurationData, isFetching } = useGetMyCuration();
+
   const myCuration = useRecoilValue(myCurationModalInfo);
   return (
     <MyCurationModal
@@ -17,6 +15,7 @@ export default function MyCurationModalProvider({
       title="저장할 큐레이션"
       spaceId={myCuration.spaceId}
       myCurationData={myCurationData}
+      isFetching={isFetching}
     />
   );
 }

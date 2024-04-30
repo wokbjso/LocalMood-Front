@@ -2,27 +2,21 @@ import CloseIcon from "@common/assets/icons/close/CloseIcon";
 import Modal from "@common/components/ui/modal/Modal";
 import UseDeferredComponent from "@common/hooks/useDeferredComponent";
 import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
-import { Suspense, lazy } from "react";
+import { lazy } from "react";
 import CurationMakeButton from "../../CurationMake/molecules/CurationMakeButton";
-import PostSavePlaceAtCuration from "@feature/curation/queries/postSavePlaceAtCuration";
-import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
-import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
-import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail";
-import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
-import revalidateTextSearchPlaceData from "@feature/search/actions/revalidateTextSearchPlaceData";
-import revalidateKeywordSearchPlaceData from "@feature/search/actions/revalidateKeywordSearchPlaceData";
 import useOpenCurationMakeModal from "../../../hooks/CurationMake/useOpenCurationMakeModal";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
-import revalidateHomeRecommend from "@feature/place/actions/revalidateHomeRecommend";
 import { twMerge } from "tailwind-merge";
+import useSavePlaceAtCuration from "@feature/curation/queries/useSavePlaceAtCuration";
 const MyCurationCard = lazy(() => import("../molecules/MyCurationCard"));
 
 interface MyCurationModalProps {
   open: boolean;
   title: string;
   myCurationData?: MyCurationResponse;
+  isFetching: boolean;
   spaceId: number;
   handleModalFn?: (state: boolean) => void;
 }
@@ -32,8 +26,11 @@ export default function MyCurationModal({
   open,
   title,
   myCurationData,
+  isFetching,
   spaceId,
 }: MyCurationModalProps) {
+  const { mutate: savePlace } = useSavePlaceAtCuration();
+
   const setToast = useSetRecoilState(toastInfoSelector);
 
   const setMyCurationModal = useSetRecoilState(myCurationModalInfoSelector);
@@ -51,46 +48,19 @@ export default function MyCurationModal({
     openModal();
   };
 
-  const savePlaceAtCuration = async (curationId: number) => {
-    const res = await PostSavePlaceAtCuration(curationId, spaceId);
-    return res.status;
-  };
-
-  const revalidateRelatedData = () => {
-    revalidateHomeRecommend();
-    revalidateScrapSpace();
-    revalidateMyCuration();
-    revalidatePlaceDetail();
-    revalidateCurationDetail();
-    revalidateTextSearchPlaceData();
-    revalidateKeywordSearchPlaceData();
-  };
-
   const handleMyCurationCardClick = async (curationId: number) => {
     handleModalCloseClick();
     setToast({
       open: true,
       text: "큐레이션에 장소가 추가되었습니다.",
     });
-    if ((await savePlaceAtCuration(curationId)) === 200) {
-      revalidateRelatedData();
-    } else {
-      alert("큐레이션에 장소 추가 도중 오류가 발생했습니다");
-    }
+    savePlace({ curationId, spaceId });
   };
+
   return (
     <>
       {open && (
-        <Modal
-          className={twMerge(
-            "px-[2rem]",
-            myCurationData &&
-              myCurationData &&
-              myCurationData?.curation.length > 1
-              ? "h-[48%]"
-              : ""
-          )}
-        >
+        <Modal className={twMerge("px-[2rem] h-[48%]")}>
           <div className="flex pt-[2.4rem] pr-[18rem] headline2-semibold">
             {title}
           </div>
@@ -107,13 +77,13 @@ export default function MyCurationModal({
             }}
             onClick={handleMakeCurationClick}
           />
-          <Suspense
-            fallback={
-              <UseDeferredComponent>
-                <div className="w-full h-[6rem] bg-background-gray-2 animate-pulse" />
-              </UseDeferredComponent>
-            }
-          >
+          {isFetching ? (
+            <UseDeferredComponent>
+              <div className="w-full h-[6rem] bg-background-gray-2 mb-[8px] animate-pulse" />
+              <div className="w-full h-[6rem] bg-background-gray-2 mb-[8px] animate-pulse" />
+              <div className="w-full h-[6rem] bg-background-gray-2 mb-[8px] animate-pulse" />
+            </UseDeferredComponent>
+          ) : (
             <div
               className={twMerge(
                 "flex flex-col items-start gap-[0.8rem]",
@@ -131,7 +101,7 @@ export default function MyCurationModal({
                 />
               ))}
             </div>
-          </Suspense>
+          )}
         </Modal>
       )}
     </>

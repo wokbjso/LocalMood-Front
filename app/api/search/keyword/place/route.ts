@@ -1,28 +1,23 @@
 import { getSession } from "@common/utils/session/getSession";
-import { SearchPlaceResponse } from "./dto/search-type";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function postKeywordSearchPlaceData(
-  keyword: string,
-  sortState: string
-): Promise<SearchPlaceResponse> {
+export async function POST(req: NextRequest) {
+  const body = await req.json();
   const auth_info = await getSession();
   const token = auth_info?.data?.accessToken;
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/spaces/filter?sort=${
-      sortState ? sortState : "RECENT"
-    }`,
+    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/spaces/filter?sort=${body.sortState}`,
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      body: body.keyword,
       cache: "no-store",
-      next: { tags: ["postKeywordSearchPlaceData"] },
-      body: keyword,
     }
   );
   const data = await res.json();
 
-  return data;
+  return NextResponse.json(data);
 }
