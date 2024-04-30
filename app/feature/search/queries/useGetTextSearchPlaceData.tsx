@@ -11,7 +11,6 @@ async function getTextSearchPlaceData(data: {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Accept: "application/json",
     },
     body: JSON.stringify(data),
   });
@@ -29,5 +28,6 @@ export default function useGetTextSearchPlaceData(data: {
     onError: () => {
       alert("검색 중 오류가 발생했습니다");
     },
+    enabled: !!data.name,
   });
 }
