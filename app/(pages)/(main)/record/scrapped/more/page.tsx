@@ -5,7 +5,7 @@ import PlaceRecordTopBar from "@feature/record/components/RecordPageBook/organis
 export default async function RecordScrappedMorePage() {
   const scrappedPlace = await GetPlaceScrapped();
   return (
-    <div className="w-[100%] h-[100%]">
+    <div className="w-[100%] h-[100%] overflow-auto">
       <PlaceRecordTopBar
         showIndicator={false}
         indicatorIndex={0}

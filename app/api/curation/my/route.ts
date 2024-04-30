@@ -1,7 +1,7 @@
 import { getSession } from "@common/utils/session/getSession";
-import { MyCurationResponse } from "./dto/my-curation";
+import { NextResponse } from "next/server";
 
-export default async function getMyCuration(): Promise<MyCurationResponse> {
+export async function GET() {
   const auth_info = await getSession();
   const token = auth_info?.data?.accessToken;
   const res = await fetch(
@@ -11,11 +11,9 @@ export default async function getMyCuration(): Promise<MyCurationResponse> {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      cache: "force-cache",
-      next: { tags: ["getMyCuration"] },
     }
   );
   const data = await res.json();
 
-  return data;
+  return NextResponse.json(data);
 }

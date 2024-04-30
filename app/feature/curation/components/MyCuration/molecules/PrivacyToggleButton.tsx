@@ -5,8 +5,8 @@ import UnlockIcon from "@common/assets/icons/lock/unlock.svg";
 import useFetching from "@common/hooks/useFetching";
 import { toastInfoSelector } from "@common/state/toast";
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
-import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
 import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail";
+import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useSetRecoilState } from "recoil";
 
@@ -20,6 +20,8 @@ export default function PrivacyToggleButton({
   id,
   privacy,
 }: PrivacyToggleButtonProps) {
+  const queryClient = useQueryClient();
+
   const setToast = useSetRecoilState(toastInfoSelector);
 
   const { isFetching, changeFetching } = useFetching();
@@ -34,7 +36,7 @@ export default function PrivacyToggleButton({
   const revalidateRelatedData = () => {
     revalidateCurationDetail();
     revalidatePlaceDetail();
-    revalidateMyCuration();
+    queryClient.invalidateQueries(["getMyCuration"]);
   };
 
   const handleClickTogglePrivacy = async () => {
