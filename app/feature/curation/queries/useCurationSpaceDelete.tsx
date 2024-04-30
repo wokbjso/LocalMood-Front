@@ -15,7 +15,6 @@ async function curationSpaceDelete(data: {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      Accept: "application/json",
     },
     body: JSON.stringify(data),
   });

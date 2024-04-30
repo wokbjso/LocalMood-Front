@@ -13,7 +13,6 @@ async function getMyCuration() {
   const res = await fetch(`${protocol}://${host}/api/curation/my`, {
     headers: {
       "Content-Type": "application/json",
-      Accept: "application/json",
     },
   });
   return await res.json();
