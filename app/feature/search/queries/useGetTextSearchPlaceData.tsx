@@ -6,18 +6,15 @@ import { SearchPlaceResponse } from "./dto/search-type";
 async function getTextSearchPlaceData(data: {
   sortState: string;
   name?: string;
-}): Promise<SearchPlaceResponse | null> {
-  if (data.name) {
-    const res = await fetch(`/api/search/text/place`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    return await res.json();
-  }
-  return null;
+}): Promise<SearchPlaceResponse> {
+  const res = await fetch(`/api/search/text/place`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  return await res.json();
 }
 
 export default function useGetTextSearchPlaceData(data: {
