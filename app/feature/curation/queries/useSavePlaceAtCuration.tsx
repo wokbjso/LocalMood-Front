@@ -21,7 +21,7 @@ async function savePlaceAtCuration(data: {
     }
   );
 
-  return res.json();
+  return await res.json();
 }
 
 const revalidateRelatedData = () => {
