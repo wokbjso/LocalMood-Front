@@ -7,11 +7,17 @@ import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSetRecoilState } from "recoil";
 
+const protocol = process?.env.NODE_ENV === "development" ? "http" : "https";
+const host =
+  process?.env.NODE_ENV === "development"
+    ? "localhost:3000"
+    : "localmood.co.kr";
+
 async function curationSpaceDelete(data: {
   curationId: number;
   spaceId: number;
 }) {
-  const res = await fetch(`/api/curation/delete/space`, {
+  const res = await fetch(`${protocol}://${host}/api/curation/delete/space`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

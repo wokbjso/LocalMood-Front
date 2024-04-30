@@ -7,12 +7,18 @@ import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail"
 import revalidateCurationDetail from "../actions/revalidateCurationDetail";
 import { useSearchParams } from "next/navigation";
 
+const protocol = process?.env.NODE_ENV === "development" ? "http" : "https";
+const host =
+  process?.env.NODE_ENV === "development"
+    ? "localhost:3000"
+    : "localmood.co.kr";
+
 async function savePlaceAtCuration(data: {
   curationId: number;
   spaceId: number;
 }) {
   const res = await fetch(
-    `/api/curation/save/${data.curationId}/${data.spaceId}`,
+    `${protocol}://${host}/api/curation/save/${data.curationId}/${data.spaceId}`,
     {
       method: "POST",
       headers: {
