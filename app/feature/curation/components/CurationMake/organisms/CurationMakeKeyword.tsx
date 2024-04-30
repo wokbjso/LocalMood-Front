@@ -7,12 +7,13 @@ import {
   CURATION_MAKE_KEYWORD,
 } from "@feature/curation/constants/curation-make";
 import Button from "@common/components/ui/buttons/Button/Button";
-import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
+import useMakeCuration from "@feature/curation/queries/useMakeCuration";
 import { useSetRecoilState } from "recoil";
-import { toastInfoSelector } from "@common/state/toast";
-import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
+import { queryFetchingSelector } from "@common/state/queryFetching";
+import useEditCuration from "@feature/curation/queries/useEditCuration";
 
 interface CurationMakeKeywordProps {
+  openedAt?: "page" | "modal";
   curationMakeData: {
     curation_name: string;
     open: boolean;
@@ -31,6 +32,7 @@ interface CurationMakeKeywordProps {
 }
 
 export default function CurationMakeKeyword({
+  openedAt,
   curationMakeData,
   resetCurationMakeData,
   closeModal,
@@ -38,7 +40,10 @@ export default function CurationMakeKeyword({
   editMode = false,
   curationInfo,
 }: CurationMakeKeywordProps) {
-  const setToast = useSetRecoilState(toastInfoSelector);
+  const setIsQueryFetching = useSetRecoilState(queryFetchingSelector);
+
+  const { mutate: makeCuration } = useMakeCuration({ openedAt });
+  const { mutate: editCuration } = useEditCuration();
 
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -94,55 +99,18 @@ export default function CurationMakeKeyword({
     };
   };
 
-  const makeCuration = async () => {
-    const dataCurationMake = getSendingCurationData();
-    const res = await fetch("/api/curation/make", {
-      method: "POST",
-      body: JSON.stringify(dataCurationMake),
-    });
-    return res.status;
-  };
-
-  const editCuration = async () => {
-    const dataCurationEdit = getSendingCurationData();
-    const res = await fetch("/api/curation/edit", {
-      method: "PATCH",
-      body: JSON.stringify({
-        dataCurationEdit,
-        id: curationInfo?.id,
-      }),
-    });
-    return res.status;
-  };
-
-  const errorAlert = () => {
-    if (editMode) {
-      alert("큐레이션 수정 중 에러가 발생했습니다!");
-    } else {
-      alert("큐레이션 생성 중 에러가 발생했습니다!");
-    }
-  };
-
   const handleButtonClick = async () => {
-    setToast({
-      open: true,
-      text: editMode
-        ? "큐레이션이 수정되었습니다"
-        : "큐레이션이 생성되었습니다",
-    });
-    closeModal();
     if (editMode) {
-      if ((await editCuration()) === 200) {
-        await revalidateMyCuration();
-        await revalidateCurationDetail();
-      } else errorAlert();
+      setIsQueryFetching(true);
+      editCuration(getSendingCurationData());
     } else {
-      if ((await makeCuration()) === 200) {
-        resetCurationMakeData();
-        await revalidateMyCuration();
-      } else errorAlert();
+      if (openedAt === "page") {
+        setIsQueryFetching(true);
+      }
+      makeCuration(getSendingCurationData());
     }
-    return;
+    closeModal();
+    resetCurationMakeData();
   };
 
   //Organism

@@ -1,13 +1,8 @@
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
-import UseDeferredComponent from "@common/hooks/useDeferredComponent";
 import SearchResult from "@feature/search/components/SearchResult/template/SearchResult";
 import TextSearchBar from "@feature/search/components/SearchText/molecules/TextSearchBar";
-import SearchSkeleton from "@feature/search/components/skeleton/HomeSearchSkeleton";
 import { getTextSearchCurationData } from "@feature/search/queries/getTextSearchCurationData";
-import { getTextSearchPlaceData } from "@feature/search/queries/getTextSearchPlaceData";
 import { postKeywordSearchCurationData } from "@feature/search/queries/postKeywordSearchCurationData";
-import { postKeywordSearchPlaceData } from "@feature/search/queries/postKeywordSearchPlaceData";
-import { Suspense } from "react";
 
 //Page
 export default async function SearchResultPage({
@@ -30,18 +25,10 @@ export default async function SearchResultPage({
     }
   };
 
-  const textSearchPlaceData =
-    searchParams.search_query &&
-    (await getTextSearchPlaceData(
-      searchParams.search_query,
-      searchParams.sort
-    ));
   const textSearchCurationData =
     searchParams.search_query &&
     (await getTextSearchCurationData(searchParams.search_query));
-  const keywordSearchPlaceData =
-    searchParams.keyword &&
-    (await postKeywordSearchPlaceData(searchParams.keyword, searchParams.sort));
+
   const keywordSearchCurationData =
     searchParams.keyword &&
     (await postKeywordSearchCurationData(
@@ -57,22 +44,12 @@ export default async function SearchResultPage({
           className="rounded-[1000px]"
         />
       </ArrowBackTopBar>
-      <Suspense
-        fallback={
-          <UseDeferredComponent>
-            <SearchSkeleton />
-          </UseDeferredComponent>
-        }
-      >
-        <SearchResult
-          search_query={searchParams.search_query}
-          keyword={searchParams.keyword}
-          textSearchPlaceData={textSearchPlaceData}
-          textSearchCurationData={textSearchCurationData}
-          keywordSearchPlaceData={keywordSearchPlaceData}
-          keywordSearchCurationData={keywordSearchCurationData}
-        />
-      </Suspense>
+      <SearchResult
+        search_query={searchParams.search_query}
+        keyword={searchParams.keyword}
+        textSearchCurationData={textSearchCurationData}
+        keywordSearchCurationData={keywordSearchCurationData}
+      />
     </main>
   );
 }

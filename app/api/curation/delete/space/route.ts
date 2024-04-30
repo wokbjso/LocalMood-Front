@@ -18,13 +18,7 @@ export async function DELETE(request: NextRequest) {
     }
   );
 
-  if (res.ok) {
-    return new NextResponse("Success", {
-      status: 200,
-    });
-  } else {
-    return new NextResponse("Error", {
-      status: 400,
-    });
-  }
+  if (!res.ok) {
+    throw "Error";
+  } else return NextResponse.json("Success", { status: 200 });
 }

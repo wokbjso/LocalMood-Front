@@ -4,15 +4,14 @@ import { useState } from "react";
 import UseOutsideClick from "@common/hooks/useOutsideClick";
 import { copyLink } from "@common/utils/text/copy-link";
 import ConfirmModal from "@common/components/ui/modal/ConfirmModal";
-import revalidateMyCuration from "@feature/curation/actions/revalidateMyCuration";
 import DeleteIcon from "@common/assets/icons/delete/DeleteIcon";
-import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
-import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail";
 import { usePathname } from "next/navigation";
 import ShareIcon from "@common/assets/icons/share/ShareIcon";
 import { useSetRecoilState } from "recoil";
 import { toastInfo } from "@common/state/toast";
 import CurationMakeModal from "../CurationMake/organisms/CurationMakeModal";
+import useDeleteCuration from "@feature/curation/queries/useDeleteCuration";
+import { queryFetchingSelector } from "@common/state/queryFetching";
 
 interface CurationMenuModalProps {
   open: boolean;
@@ -34,7 +33,11 @@ export default function CurationMenuModal({
   hasCopyLink = false,
   closeModal,
 }: CurationMenuModalProps) {
+  const { mutate: deleteCuration } = useDeleteCuration({ triggeredAt });
+
   const setToast = useSetRecoilState(toastInfo);
+  const setIsQueryLoading = useSetRecoilState(queryFetchingSelector);
+
   const { ref } = UseOutsideClick<HTMLDivElement>(open, closeModal);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [editCurationOpen, setEditCurationOpen] = useState(false);
@@ -64,39 +67,10 @@ export default function CurationMenuModal({
     setEditCurationOpen(false);
   };
 
-  const deleteCuration = async () => {
-    const res = await fetch("/api/curation/delete", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(curationInfo.id),
-    });
-
-    return res.status;
-  };
-
-  const revalidateRelatedData = () => {
-    revalidateMyCuration();
-    revalidateScrapSpace();
-    revalidatePlaceDetail();
-  };
-
   const handleConfirmClick = async () => {
-    setToast({
-      open: true,
-      text: "큐레이션이 삭제되었습니다",
-    });
     closeModal();
-    setDeleteModalOpen(false);
-    if (triggeredAt === "topBar") {
-      location.replace("/curation");
-    }
-    if ((await deleteCuration()) === 200) {
-      revalidateRelatedData();
-    } else {
-      alert("큐레이션 삭제 중 에러가 발생했습니다");
-    }
+    setIsQueryLoading(true);
+    deleteCuration({ curationId: curationInfo.id });
   };
 
   return (

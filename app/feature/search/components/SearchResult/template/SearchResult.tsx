@@ -2,15 +2,18 @@
 
 import Tab from "@common/components/ui/tab/Tab";
 import { lazy } from "react";
-import {
-  SearchCurationResponse,
-  SearchPlaceResponse,
-} from "@feature/search/queries/dto/search-type";
+import { SearchCurationResponse } from "@feature/search/queries/dto/search-type";
 import Divider from "@common/components/ui/divider/Divider";
 import CurationInfoCardLight from "@feature/curation/components/CurationInfo/molecules/CurationInfoCardLight";
 import useTextSearchBar from "../../../hooks/SearchText/useTextSearchBar";
 import SearchNoResult from "../molecules/SearchNoResult";
 import dynamic from "next/dynamic";
+import useGetTextSearchPlaceData from "@feature/search/queries/useGetTextSearchPlaceData";
+import { useRecoilValue } from "recoil";
+import { searchSortState } from "@feature/search/state/sortState";
+import useGetKeywordSearchPlaceData from "@feature/search/queries/useGetKeywordSearchPlaceData";
+import UseDeferredComponent from "@common/hooks/useDeferredComponent";
+import SearchSkeleton from "../../skeleton/HomeSearchSkeleton";
 const PlaceInfoCard = lazy(
   () => import("@feature/place/components/PlaceInfo/molecules/PlaceInfoCard")
 );
@@ -22,9 +25,8 @@ const ChangeSearchConditon = dynamic(
 interface SearchResultProps {
   search_query?: string;
   keyword?: string;
-  textSearchPlaceData?: SearchPlaceResponse;
+  sortState?: "RECENT" | "HOT";
   textSearchCurationData?: SearchCurationResponse;
-  keywordSearchPlaceData?: SearchPlaceResponse;
   keywordSearchCurationData: SearchCurationResponse;
 }
 
@@ -32,16 +34,30 @@ interface SearchResultProps {
 export default function SearchResult({
   search_query,
   keyword,
-  textSearchPlaceData,
   textSearchCurationData,
-  keywordSearchPlaceData,
   keywordSearchCurationData,
 }: SearchResultProps) {
+  const sortState = useRecoilValue(searchSortState);
+
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
     useTextSearchBar();
 
+  const { data: textSearchPlaceData, isFetching: textResultFetching } =
+    useGetTextSearchPlaceData({
+      sortState,
+      name: search_query,
+    });
+  const { data: keywordSearchPlaceData, isFetching: keywordResultFetching } =
+    useGetKeywordSearchPlaceData({ sortState, keyword });
+
   return (
     <>
+      {textResultFetching ||
+        (keywordResultFetching && (
+          <UseDeferredComponent>
+            <SearchSkeleton />
+          </UseDeferredComponent>
+        ))}
       {search_query &&
         textSearchPlaceData?.spaceCount === 0 &&
         textSearchCurationData?.CurationCount === 0 && <SearchNoResult />}

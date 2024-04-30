@@ -5,7 +5,8 @@ import localFont from "next/font/local";
 import ToastProvider from "@common/components/layout/Provider/ToastProvider";
 import { Viewport } from "next";
 import { twMerge } from "tailwind-merge";
-import getMyCuration from "@feature/curation/queries/getMyCuration";
+import ReactQueryProviders from "@common/components/layout/QueryClientProvider/ReactQueryProvider";
+import QueryFetchingProvider from "@common/components/layout/Provider/QueryFetchingProvider";
 const MyCurationModalProvider = dynamic(
   () => import("@common/components/layout/Provider/MyCurationModalProvider")
 );
@@ -57,16 +58,18 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const myCurationData = await getMyCuration();
   return (
     <html lang="en" className="width-[100%] height-[100%]">
       <body className={twMerge("w-[100%] h-[100%]", globalFont.variable)}>
         <main className="w-[100%] h-[100%] fixed overflow-hidden">
-          <RecoilRootLayout>
-            <DetectDevice>{children}</DetectDevice>
-            <MyCurationModalProvider myCurationData={myCurationData} />
-            <ToastProvider />
-          </RecoilRootLayout>
+          <ReactQueryProviders>
+            <RecoilRootLayout>
+              <DetectDevice>{children}</DetectDevice>
+              <MyCurationModalProvider />
+              <ToastProvider />
+              <QueryFetchingProvider />
+            </RecoilRootLayout>
+          </ReactQueryProviders>
         </main>
       </body>
     </html>

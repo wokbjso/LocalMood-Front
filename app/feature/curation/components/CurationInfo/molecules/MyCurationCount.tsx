@@ -1,5 +1,5 @@
 interface MyCurationCountProps {
-  count: number;
+  count?: number;
 }
 
 //Molecule

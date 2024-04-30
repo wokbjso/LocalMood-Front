@@ -8,6 +8,7 @@ interface CurationMakeButtonProps {
   text: string;
   curationMakeModalInfo: {
     open: boolean;
+    openedAt?: "page" | "modal";
     closeModal: () => void;
   };
   onClick?: (state: boolean) => void;
@@ -49,6 +50,7 @@ export default function CurationMakeButton({
       </div>
       <CurationMakeModal
         open={curationMakeModalInfo.open}
+        openedAt={curationMakeModalInfo.openedAt}
         closeModal={curationMakeModalInfo.closeModal}
       />
     </>

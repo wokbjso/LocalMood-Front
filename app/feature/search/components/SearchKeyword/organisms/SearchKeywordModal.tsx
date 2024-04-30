@@ -29,7 +29,7 @@ export default function SearchKeywordModal({
 }: SearchKeywordModalProps) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
-  const { replace } = useRouter();
+  const { push } = useRouter();
   const params = new URLSearchParams(searchParams);
 
   const sortState = useRecoilValue(searchSortState);
@@ -47,7 +47,7 @@ export default function SearchKeywordModal({
   const handleCloseIconClick = () => {
     if (dependOnParams) {
       params.set("keyword_search", "false");
-      replace(`${pathname}?${params.toString()}`);
+      push(`${pathname}?${params.toString()}`);
     } else {
       closeModal && closeModal();
     }

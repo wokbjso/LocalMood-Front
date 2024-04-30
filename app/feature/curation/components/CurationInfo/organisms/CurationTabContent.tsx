@@ -2,7 +2,6 @@
 
 import Tab from "@common/components/ui/tab/Tab";
 import { CurationProps } from "@feature/curation/type";
-import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
 import CurationMakeButton from "../../CurationMake/molecules/CurationMakeButton";
 import useOpenCurationMakeModal from "../../../hooks/CurationMake/useOpenCurationMakeModal";
 import useTab from "@common/components/ui/tab/useTab";
@@ -11,17 +10,18 @@ import MyCurationCount from "../molecules/MyCurationCount";
 import NoCurationText from "../atoms/NoCurationText";
 import CurationInfoCardLight from "../molecules/CurationInfoCardLight";
 import CurationInfoCardDark from "../molecules/CurationInfoCardDark";
+import useGetMyCuration from "@feature/curation/queries/useGetMyCuration";
 
 interface CurationTabContentProps {
-  myCuration: MyCurationResponse;
   scrappedCuration: any;
 }
 
 //Organism
 export default function CurationTabContent({
-  myCuration,
   scrappedCuration,
 }: CurationTabContentProps) {
+  const { data: myCurationData } = useGetMyCuration();
+
   const { tabIndex, changeTabIndex } = useTab();
 
   const { isModalOpen, openModal, closeModal } = useOpenCurationMakeModal();
@@ -37,19 +37,22 @@ export default function CurationTabContent({
         {tabIndex === 0 && (
           <>
             <div className="flex items-center justify-between pb-[1.6rem] pt-[2rem]">
-              <MyCurationCount count={myCuration.curationCount} />
+              <MyCurationCount
+                count={myCurationData && myCurationData.curationCount}
+              />
               <CurationMakeButton
                 size="small"
                 text="만들기"
                 curationMakeModalInfo={{
                   open: isModalOpen,
+                  openedAt: "page",
                   closeModal,
                 }}
                 onClick={handleMakeCurationClick}
               />
             </div>
-            {myCuration && myCuration?.curation.length > 0 ? (
-              myCuration?.curation.map((props: CurationProps) => (
+            {myCurationData && myCurationData?.curation.length > 0 ? (
+              myCurationData?.curation.map((props: CurationProps) => (
                 <div key={props.author + props.id} className="mb-[1.2rem]">
                   <CurationInfoCardLight variant="my" {...props} />
                 </div>
