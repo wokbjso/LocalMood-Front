@@ -3,24 +3,18 @@
 import { useQuery } from "@tanstack/react-query";
 import { SearchPlaceResponse } from "./dto/search-type";
 
-const protocol = process?.env.NODE_ENV === "development" ? "http" : "https";
-const host =
-  process?.env.NODE_ENV === "development"
-    ? "localhost:3000"
-    : "localmood.co.kr";
-
 async function getKeywordSearchPlaceData(data: {
   sortState: string;
   keyword?: string;
 }): Promise<SearchPlaceResponse> {
-  const res = await fetch(`${protocol}://${host}/api/search/keyword/place`, {
+  const res = await fetch(`/api/search/keyword/place`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
   });
-  return res.json();
+  return await res.json();
 }
 
 export default function useGetKeywordSearchPlaceData(data: {
