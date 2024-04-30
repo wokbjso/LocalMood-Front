@@ -13,7 +13,11 @@ export async function PATCH(request: NextRequest) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(body.dataCurationEdit),
+      body: JSON.stringify({
+        title: body.title,
+        keyword: body.keyword,
+        privacy: body.privacy,
+      }),
     }
   );
   if (res.ok) {
