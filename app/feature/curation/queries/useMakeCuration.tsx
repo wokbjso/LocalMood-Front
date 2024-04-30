@@ -17,7 +17,10 @@ async function makeCuration(data: {
     },
     body: JSON.stringify(data),
   });
-  return await res.json();
+  if (res.status === 400) {
+    throw new Error("Error Occured");
+  }
+  return;
 }
 
 export default function useMakeCuration({
