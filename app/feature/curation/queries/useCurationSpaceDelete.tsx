@@ -18,7 +18,10 @@ async function curationSpaceDelete(data: {
     },
     body: JSON.stringify(data),
   });
-  return await res.json();
+  if (res.status === 400) {
+    throw new Error("Error Occured");
+  }
+  return;
 }
 
 const revalidateRelatedData = () => {

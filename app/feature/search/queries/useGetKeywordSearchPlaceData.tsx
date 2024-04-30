@@ -14,7 +14,7 @@ async function getKeywordSearchPlaceData(data: {
     },
     body: JSON.stringify(data),
   });
-  return await res.json();
+  return res.json();
 }
 
 export default function useGetKeywordSearchPlaceData(data: {
@@ -29,5 +29,6 @@ export default function useGetKeywordSearchPlaceData(data: {
       alert("검색 중 오류가 발생했습니다");
     },
     enabled: !!data.keyword,
+    suspense: true,
   });
 }

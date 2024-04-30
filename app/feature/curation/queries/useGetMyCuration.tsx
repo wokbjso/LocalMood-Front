@@ -15,7 +15,7 @@ async function getMyCuration() {
       "Content-Type": "application/json",
     },
   });
-  return await res.json();
+  return res.json();
 }
 
 export default function useGetMyCuration() {

@@ -14,7 +14,7 @@ async function getTextSearchPlaceData(data: {
     },
     body: JSON.stringify(data),
   });
-  return await res.json();
+  return res.json();
 }
 
 export default function useGetTextSearchPlaceData(data: {

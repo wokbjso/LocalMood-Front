@@ -7,18 +7,22 @@ import { useSetRecoilState } from "recoil";
 import revalidateCurationDetail from "../actions/revalidateCurationDetail";
 
 async function editCuration(data: {
+  id?: number;
   title: string;
   keyword: string;
   privacy: boolean;
 }) {
-  const res = await fetch(`/api/curation/make`, {
-    method: "POST",
+  const res = await fetch(`/api/curation/edit`, {
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
   });
-  return await res.json();
+  if (res.status === 400) {
+    throw new Error("Error Occured");
+  }
+  return;
 }
 
 export default function useEditCuration() {

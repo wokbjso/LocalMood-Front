@@ -102,7 +102,10 @@ export default function CurationMakeKeyword({
   const handleButtonClick = async () => {
     if (editMode) {
       setIsQueryFetching(true);
-      editCuration(getSendingCurationData());
+      editCuration({
+        id: curationInfo?.id,
+        ...getSendingCurationData(),
+      });
     } else {
       if (openedAt === "page") {
         setIsQueryFetching(true);
