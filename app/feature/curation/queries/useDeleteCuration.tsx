@@ -15,7 +15,7 @@ async function deleteCuration(data: { curationId: number }) {
     },
     body: JSON.stringify(data),
   });
-  return res.json();
+  return await res.json();
 }
 
 const revalidateRelatedData = () => {

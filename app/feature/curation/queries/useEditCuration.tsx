@@ -18,7 +18,7 @@ async function editCuration(data: {
     },
     body: JSON.stringify(data),
   });
-  return res.json();
+  return await res.json();
 }
 
 export default function useEditCuration() {

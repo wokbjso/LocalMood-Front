@@ -18,7 +18,7 @@ async function curationSpaceDelete(data: {
     },
     body: JSON.stringify(data),
   });
-  return res.json();
+  return await res.json();
 }
 
 const revalidateRelatedData = () => {
