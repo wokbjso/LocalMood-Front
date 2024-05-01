@@ -6,16 +6,17 @@ import useGetMyCuration from "@feature/curation/queries/useGetMyCuration";
 import { useRecoilValue } from "recoil";
 
 export default function MyCurationModalProvider() {
-  const { data: myCurationData, isFetching } = useGetMyCuration();
+  // const { data: myCurationData, isFetching } = useGetMyCuration();
 
   const myCuration = useRecoilValue(myCurationModalInfo);
   return (
-    <MyCurationModal
-      open={myCuration.open}
-      title="저장할 큐레이션"
-      spaceId={myCuration.spaceId}
-      myCurationData={myCurationData}
-      isFetching={isFetching}
-    />
+    <div></div>
+    // <MyCurationModal
+    //   open={myCuration.open}
+    //   title="저장할 큐레이션"
+    //   spaceId={myCuration.spaceId}
+    //   myCurationData={myCurationData}
+    //   isFetching={isFetching}
+    // />
   );
 }
