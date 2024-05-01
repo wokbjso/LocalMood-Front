@@ -7,7 +7,7 @@ const protocol = process?.env.NODE_ENV === "development" ? "http" : "https";
 const host =
   process?.env.NODE_ENV === "development"
     ? "localhost:3000"
-    : "localmood.co.kr";
+    : "www.localmood.co.kr";
 
 async function getMyCuration() {
   const res = await fetch(`${protocol}://${host}/api/curation/my`, {
