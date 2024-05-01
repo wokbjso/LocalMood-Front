@@ -44,12 +44,12 @@ export default async function SearchResultPage({
           className="rounded-[1000px]"
         />
       </ArrowBackTopBar>
-      {/* <SearchResult
+      <SearchResult
         search_query={searchParams.search_query}
         keyword={searchParams.keyword}
         textSearchCurationData={textSearchCurationData}
         keywordSearchCurationData={keywordSearchCurationData}
-      /> */}
+      />
     </main>
   );
 }

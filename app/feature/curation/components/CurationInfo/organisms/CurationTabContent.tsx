@@ -20,7 +20,7 @@ interface CurationTabContentProps {
 export default function CurationTabContent({
   scrappedCuration,
 }: CurationTabContentProps) {
-  const { data: myCurationData } = useGetMyCuration();
+  // const { data: myCurationData } = useGetMyCuration();
 
   const { tabIndex, changeTabIndex } = useTab();
 
@@ -32,7 +32,7 @@ export default function CurationTabContent({
 
   return (
     <>
-      <Tab sections={CurationTabSections} onChange={changeTabIndex} />
+      {/* <Tab sections={CurationTabSections} onChange={changeTabIndex} />
       <div className="h-full px-[2rem] pb-[18.2rem] bg-background-gray-2 items-center overflow-y-scroll">
         {tabIndex === 0 && (
           <>
@@ -81,7 +81,7 @@ export default function CurationTabContent({
             )
           ) : null}
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
