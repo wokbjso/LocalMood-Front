@@ -2,12 +2,12 @@ import { encryptData } from "@feature/auth/utils/encryptData";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { code: string } }
-) {
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/auth/kakao/login?code=${params.code}`,
+    `${
+      process.env.NEXT_PUBLIC_SERVER_API
+    }/api/v1/auth/kakao/login?code=${searchParams.get("code")}`,
     {
       headers: {
         "Content-Type": "application/json",
