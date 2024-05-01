@@ -1,8 +1,11 @@
 import { encryptData } from "@feature/auth/utils/encryptData";
 import { cookies } from "next/headers";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET({ params }: { params: { code: string } }) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { code: string } }
+) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/auth/kakao/login?code=${params.code}`,
     {
