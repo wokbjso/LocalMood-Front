@@ -21,7 +21,7 @@ async function getMyCuration() {
 export default function useGetMyCuration() {
   return useQuery<MyCurationResponse>({
     queryKey: ["getMyCuration"],
-    queryFn: () => getMyCuration(),
+    queryFn: getMyCuration,
     suspense: true,
   });
 }
