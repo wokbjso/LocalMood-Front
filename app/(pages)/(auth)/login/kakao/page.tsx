@@ -1,17 +1,16 @@
 "use client";
 
 import LoadingUI from "@common/components/ui/loading/LoadingUI";
+import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
-export default function KakaoRedirectPage({
-  searchParams,
-}: {
-  searchParams: { code: string };
-}) {
-  const { code } = searchParams;
+export default function KakaoRedirectPage() {
+  const searchParams = useSearchParams();
   useEffect(() => {
     const getAuthorization = async () => {
-      const res = await fetch(`/api/auth/login/kakao?code=${code}`);
+      const res = await fetch(
+        `/api/auth/login/kakao?code=${searchParams.get("code")}`
+      );
       if (res.status === 200) {
         location.replace("/");
       }
@@ -20,6 +19,6 @@ export default function KakaoRedirectPage({
       }
     };
     getAuthorization();
-  }, [code]);
+  }, [searchParams]);
   return <LoadingUI />;
 }
