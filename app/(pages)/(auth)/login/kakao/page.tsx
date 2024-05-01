@@ -11,7 +11,7 @@ export default function KakaoRedirectPage({
   const { code } = searchParams;
   useEffect(() => {
     const getAuthorization = async () => {
-      const res = await fetch(`/api/auth/login/kakao/${code}`);
+      const res = await fetch(`/api/auth/login/kakao?code=${code}`);
       if (res.status === 200) {
         location.replace("/");
       }
