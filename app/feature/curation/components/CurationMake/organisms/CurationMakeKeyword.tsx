@@ -110,10 +110,10 @@ export default function CurationMakeKeyword({
       if (openedAt === "page") {
         setIsQueryFetching(true);
       }
+      resetCurationMakeData();
       makeCuration(getSendingCurationData());
     }
     closeModal();
-    resetCurationMakeData();
   };
 
   //Organism

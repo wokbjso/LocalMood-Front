@@ -30,5 +30,7 @@ export default function useGetKeywordSearchPlaceData(data: {
     },
     enabled: !!data.keyword,
     suspense: true,
+    staleTime: 0,
+    cacheTime: 0,
   });
 }

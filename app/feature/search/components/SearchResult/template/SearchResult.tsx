@@ -50,14 +50,12 @@ export default function SearchResult({
   const { data: keywordSearchPlaceData, isFetching: keywordResultFetching } =
     useGetKeywordSearchPlaceData({ sortState, keyword });
 
-  return (
+  return textResultFetching || keywordResultFetching ? (
+    <UseDeferredComponent>
+      <SearchSkeleton />
+    </UseDeferredComponent>
+  ) : (
     <>
-      {textResultFetching ||
-        (keywordResultFetching && (
-          <UseDeferredComponent>
-            <SearchSkeleton />
-          </UseDeferredComponent>
-        ))}
       {search_query &&
         textSearchPlaceData?.spaceCount === 0 &&
         textSearchCurationData?.CurationCount === 0 && <SearchNoResult />}
@@ -222,7 +220,8 @@ export default function SearchResult({
             )}
           </div>
         )}
-      {keyword &&
+      {!(textResultFetching || keywordResultFetching) &&
+        keyword &&
         keywordSearchPlaceData &&
         keywordSearchPlaceData?.spaceCount > 0 &&
         keywordSearchCurationData?.CurationCount === 0 && (
