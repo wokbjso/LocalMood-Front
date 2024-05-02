@@ -1,8 +1,11 @@
+import dynamic from "next/dynamic";
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
-import SearchResult from "@feature/search/components/SearchResult/template/SearchResult";
 import TextSearchBar from "@feature/search/components/SearchText/molecules/TextSearchBar";
 import { getTextSearchCurationData } from "@feature/search/queries/getTextSearchCurationData";
 import { postKeywordSearchCurationData } from "@feature/search/queries/postKeywordSearchCurationData";
+const SearchResult = dynamic(
+  () => import("@feature/search/components/SearchResult/template/SearchResult")
+);
 
 //Page
 export default async function SearchResultPage({
