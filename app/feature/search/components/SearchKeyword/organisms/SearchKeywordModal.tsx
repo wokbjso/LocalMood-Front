@@ -125,6 +125,7 @@ export default function SearchKeywordModal({
               },
             }}
             prefetch
+            shallow
           >
             <Button
               disabled={!showResultAble}

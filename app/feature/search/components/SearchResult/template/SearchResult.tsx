@@ -52,12 +52,11 @@ export default function SearchResult({
 
   return (
     <>
-      {textResultFetching ||
-        (keywordResultFetching && (
-          <UseDeferredComponent>
-            <SearchSkeleton />
-          </UseDeferredComponent>
-        ))}
+      {(textResultFetching || keywordResultFetching) && (
+        <UseDeferredComponent>
+          <SearchSkeleton />
+        </UseDeferredComponent>
+      )}
       {search_query &&
         textSearchPlaceData?.spaceCount === 0 &&
         textSearchCurationData?.CurationCount === 0 && <SearchNoResult />}
