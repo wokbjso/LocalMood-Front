@@ -21,10 +21,11 @@ export default function MyCurationCard({
   curationData,
   onClick,
 }: MyCurationCardProps) {
+  console.log(spaceId, curationData);
   const setToast = useSetRecoilState(toastInfoSelector);
 
   const isSpaceAlreadyInCuration = () => {
-    if (curationData.spaceIds.includes(spaceId)) return true;
+    if (curationData.spaceIds.includes(Number(spaceId))) return true;
     else return false;
   };
 
