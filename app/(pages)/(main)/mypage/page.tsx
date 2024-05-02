@@ -13,6 +13,7 @@ export default async function MyPage() {
   const recordData = GetRecordMyPage();
   const memberData = GetMemberInfo();
   const [record, member] = await Promise.all([recordData, memberData]);
+
   return (
     <div className="w-[100%] h-[100%] px-[2rem]">
       {/* Template */}

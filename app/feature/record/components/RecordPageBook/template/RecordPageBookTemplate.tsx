@@ -56,6 +56,7 @@ export default function RecordPageBookTemplate({
         data.negativeEval.length > 0 ? data.negativeEval.join(",") : "",
     };
   };
+
   const handleBtnForwardClicked = async () => {
     if (indicatorIndex < 2) {
       handlers.handleIndicatorIndex(indicatorIndex + 1);
