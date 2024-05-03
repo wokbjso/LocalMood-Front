@@ -73,7 +73,6 @@ export default function PlaceInfoCardTop({
             : undefined,
         query: variant === "record" && !isReviewed ? { type, name } : null,
       }}
-      prefetch
     >
       <div
         className={twMerge(
