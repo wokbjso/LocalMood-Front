@@ -35,7 +35,6 @@ export default function CurationTopAppBar({
   className,
 }: CurationTopAppBarProps) {
   const setToast = useSetRecoilState(toastInfoSelector);
-  console.log(curationDetail);
 
   const { scraped, toggleScrap } = useCurationScrapIcon(
     curationDetail.isScraped
