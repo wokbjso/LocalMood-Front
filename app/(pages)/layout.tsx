@@ -1,11 +1,11 @@
 import "../styles/global.css";
-import RecoilRootLayout from "@common/components/layout/Recoil/RecoilRootLayout";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
-import ToastProvider from "@common/components/layout/Provider/ToastProvider";
 import { Viewport } from "next";
 import { twMerge } from "tailwind-merge";
+import RecoilRootLayout from "@common/components/layout/Recoil/RecoilRootLayout";
 import ReactQueryProviders from "@common/components/layout/QueryClientProvider/ReactQueryProvider";
+import ToastProvider from "@common/components/layout/Provider/ToastProvider";
 import QueryFetchingProvider from "@common/components/layout/Provider/QueryFetchingProvider";
 const MyCurationModalProvider = dynamic(
   () => import("@common/components/layout/Provider/MyCurationModalProvider")

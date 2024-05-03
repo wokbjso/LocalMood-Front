@@ -5,7 +5,13 @@ import "slick-carousel/slick/slick-theme.css";
 import "../slick.css";
 import Slider from "react-slick";
 import MoreTopBar from "@common/components/ui/topBar/MoreTopBar/MoreTopBar";
-import CurationInfoCardLight from "@feature/curation/components/CurationInfo/molecules/CurationInfoCardLight";
+import dynamic from "next/dynamic";
+const CurationInfoCardLight = dynamic(
+  () =>
+    import(
+      "@feature/curation/components/CurationInfo/molecules/CurationInfoCardLight"
+    )
+);
 
 //Organism
 interface CurationHomePopularProps {
