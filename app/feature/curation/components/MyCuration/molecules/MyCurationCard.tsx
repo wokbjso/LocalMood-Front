@@ -21,7 +21,6 @@ export default function MyCurationCard({
   curationData,
   onClick,
 }: MyCurationCardProps) {
-  console.log(spaceId, curationData);
   const setToast = useSetRecoilState(toastInfoSelector);
 
   const isSpaceAlreadyInCuration = () => {

@@ -118,7 +118,7 @@ export default function CurationMakeKeyword({
 
   //Organism
   return (
-    <div className="pb-[21.1rem]">
+    <>
       <div className="w-full pb-[1.2rem] border-b border-text-gray-3">
         <div className="flex items-center justify-between flex-start">
           <div className="flex gap-[0.6rem]">
@@ -144,7 +144,7 @@ export default function CurationMakeKeyword({
         </div>
       </div>
       {isExpanded && (
-        <div className="pt-[3.2rem] flex flex-col items-start">
+        <div className="h-full pt-[3.2rem] pb-[11.3rem] flex flex-col items-start overflow-auto">
           {Object.keys(CURATION_MAKE_CATEGORY).map((category) => (
             <div key={category}>
               <div className="headline3-semibold mb-[4rem]">
@@ -183,6 +183,6 @@ export default function CurationMakeKeyword({
           {editMode ? "수정" : "완료"}
         </Button>
       </div>
-    </div>
+    </>
   );
 }
