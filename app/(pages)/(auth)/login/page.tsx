@@ -21,7 +21,7 @@ export default function LoginPage() {
       />
       <div className="absolute bottom-[4rem] w-full px-[2rem]">
         <KakaoStartButton text="카카오로 시작하기" />
-        <LinkLayout routeUrl="/login/email" prefetch>
+        <LinkLayout routeUrl="/login/email">
           <Button variant="line" className="w-full">
             이메일로 시작하기
           </Button>
