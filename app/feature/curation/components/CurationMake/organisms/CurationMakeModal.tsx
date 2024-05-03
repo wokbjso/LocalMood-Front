@@ -39,8 +39,8 @@ export default function CurationMakeModal({
   return (
     open && (
       <Modal className="h-[94%]">
-        <div className="bg-white">
-          <div className="h-[81.2rem] p-[2rem] flex flex-col items-center">
+        <div className="bg-white h-full">
+          <div className="h-full p-[2rem] flex flex-col items-center">
             <div
               className="w-full grid justify-items-end"
               onClick={closeIconClicked}
