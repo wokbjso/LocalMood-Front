@@ -1,7 +1,9 @@
 import AddFillIcon from "@common/assets/icons/add/AddFillIcon";
 import CloseBlackIcon from "@common/assets/icons/close/CloseBlackIcon";
+import UseGetBrowserWidth from "@common/hooks/useGetBrowserWidth";
 import Image from "next/image";
 import { ChangeEvent, useRef, useState } from "react";
+import { twMerge } from "tailwind-merge";
 interface PhotoUploadProps {
   placeType: string;
   cafeKeywordData: { [key: string]: string | Array<string> };
@@ -19,7 +21,11 @@ export default function SelectPhotoContent({
   handleDeleteImage,
 }: PhotoUploadProps) {
   const fileInput = useRef<HTMLInputElement>(null);
+
   const [image, setImage] = useState<any[]>([]);
+
+  const width = UseGetBrowserWidth();
+
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       handleAddImage(e.target.files[0]);
@@ -51,7 +57,7 @@ export default function SelectPhotoContent({
   };
   return (
     <>
-      <div className=" flex-col items-start pt-[14.8rem] px-[2rem] gap-[1.2rem]">
+      <div className="flex-col items-start pt-[14.8rem] px-[2rem] gap-[1.2rem]">
         <div className="flex items-start gap-[0.6rem] headline3-semibold">
           <div className="text-black mb-[1.2rem]">사진올리기</div>
           <div className="text-text-gray-6">
@@ -59,7 +65,9 @@ export default function SelectPhotoContent({
             /2
           </div>
         </div>
-        <div className="flex w-full justify-between flex-wrap">
+        <div
+          className={twMerge("flex w-full justify-between flex-wrap gap-[8px]")}
+        >
           {image &&
             image.map((img: any, i: number) => (
               <div key={img + i} className="relative">
@@ -69,7 +77,7 @@ export default function SelectPhotoContent({
                 >
                   <CloseBlackIcon />
                 </div>
-                <div className="relative w-[43vw] h-[43vw] rounded-[10px]">
+                <div className="relative w-[42vw] h-[42vw] rounded-[10px]">
                   <Image
                     src={img}
                     alt="방문 사진"
@@ -81,7 +89,7 @@ export default function SelectPhotoContent({
               </div>
             ))}
           {placeType === "CAFE" && cafeKeywordData.files.length < 2 && (
-            <div className="w-[16.4rem] h-[16.4rem] p-[6.2rem] border border-solid border-1px border-line-gray-3 rounded-[10px]">
+            <div className="flex justify-center items-center w-[42vw] h-[42vw] p-[6.2rem] border border-solid border-1px border-line-gray-3 rounded-[10px]">
               <input
                 ref={fileInput}
                 type="file"
@@ -94,7 +102,7 @@ export default function SelectPhotoContent({
           )}
           {placeType === "RESTAURANT" &&
             restaurantKeywordData.files.length < 2 && (
-              <div className="w-[16.4rem] h-[16.4rem] p-[6.2rem] border border-solid border-1px border-line-gray-3 rounded-[10px]">
+              <div className="flex justify-center items-center w-[42vw] h-[42vw] p-[6.2rem] border border-solid border-1px border-line-gray-3 rounded-[10px]">
                 <input
                   ref={fileInput}
                   type="file"
@@ -102,7 +110,9 @@ export default function SelectPhotoContent({
                   className="hidden w-full h-full"
                   onChange={handleImageUpload}
                 />
-                <AddFillIcon onClick={handleAddImageClick} />
+                <div className="absolute flex items-center justify-center w-[40px] h-[40px] bg-background-gray-2 rounded-full">
+                  <AddFillIcon onClick={handleAddImageClick} />
+                </div>
               </div>
             )}
         </div>

@@ -1,34 +1,23 @@
 import { IconProps } from "../icon-type";
 
-interface AddFillIconProps extends IconProps {
-  color2?: string;
-}
-
-export default function AddFillIcon({
-  color = "#616161",
-  color2 = "#F5F5F5",
-  className,
-  onClick,
-}: AddFillIconProps) {
+export default function AddFillIcon({ onClick }: IconProps) {
   return (
     <svg
-      width="40"
-      height="40"
-      viewBox="0 0 40 40"
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
       onClick={onClick}
     >
-      <rect width="40" height="40" rx="20" fill={color2} />
       <path
-        d="M20.0002 14.1843L20.0002 25.8159"
-        stroke={color}
+        d="M7.00024 1.18433L7.00024 12.8159"
+        stroke="#616161"
         strokeWidth="1.34211"
         strokeLinecap="round"
       />
       <path
-        d="M25.8159 19.7766L14.1843 19.7766"
+        d="M12.8159 6.77661L1.18434 6.77661"
         stroke="#616161"
         strokeWidth="1.34211"
         strokeLinecap="round"
