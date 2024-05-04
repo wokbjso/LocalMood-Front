@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import ArrowDownIcon from "@common/assets/icons/arrow/arrow-down.svg";
-import ArrowUpIcon from "@common/assets/icons/arrow/ArrowUp";
 import Filter from "@common/components/ui/buttons/Filter/Filter";
 import {
   CURATION_MAKE_CATEGORY,
@@ -11,6 +9,8 @@ import useMakeCuration from "@feature/curation/queries/useMakeCuration";
 import { useSetRecoilState } from "recoil";
 import { queryFetchingSelector } from "@common/state/queryFetching";
 import useEditCuration from "@feature/curation/queries/useEditCuration";
+import ArrowDownIcon from "@common/assets/icons/arrow/ArrowDownIcon";
+import ArrowUpIcon from "@common/assets/icons/arrow/ArrowUpIcon";
 
 interface CurationMakeKeywordProps {
   openedAt?: "page" | "modal";
@@ -45,7 +45,7 @@ export default function CurationMakeKeyword({
   const { mutate: makeCuration } = useMakeCuration({ openedAt });
   const { mutate: editCuration } = useEditCuration();
 
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(editMode ? true : false);
 
   const toggleExpansion = () => {
     setIsExpanded((prevIsExpanded) => !prevIsExpanded);

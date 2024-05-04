@@ -1,10 +1,10 @@
 "use client";
 
-import Line from "@common/assets/icons/line/line.svg";
-import ArrowUp from "@common/assets/icons/arrow/ArrowUp";
-import ArrowDown from "@common/assets/icons/arrow/arrow-down.svg";
 import { useState } from "react";
 import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
+import ArrowDownIcon from "@common/assets/icons/arrow/ArrowDownIcon";
+import ArrowUpIcon from "@common/assets/icons/arrow/ArrowUpIcon";
+import LineIcon from "@common/assets/icons/line/LineIcon";
 
 //Organism
 export default function PlaceDetailInfoMore({
@@ -30,12 +30,12 @@ export default function PlaceDetailInfoMore({
         <div className="flex items-center  justify-between">
           <div className="inline-flex items-center gap-[0.6rem]">
             <span>{visitorNum}</span>
-            {optionalService && <Line className="mx-[0.8rem]" />}
+            {optionalService && <LineIcon className="mx-[0.8rem]" />}
             <span>{optionalService}</span>
           </div>
           {formattedDishDesc !== "NULL" && (
             <div onClick={moreButtonClicked}>
-              {openMoreDetail ? <ArrowUp /> : <ArrowDown />}
+              {openMoreDetail ? <ArrowUpIcon /> : <ArrowDownIcon />}
             </div>
           )}
         </div>

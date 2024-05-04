@@ -3,12 +3,12 @@
 import LinkIcon from "@common/assets/icons/link/LinkIcon";
 import { copyLink } from "@common/utils/text/copy-link";
 import { usePathname } from "next/navigation";
-import MapIcon from "@common/assets/icons/map/map";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
 import UseMap from "@common/components/ui/map/Map/useMap";
 import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
+import MapIcon from "@common/assets/icons/map/mapIcon";
 
 //Organism
 export default function PlaceDetailTopBar({

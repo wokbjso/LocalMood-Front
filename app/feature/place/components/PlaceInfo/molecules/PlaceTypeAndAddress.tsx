@@ -1,4 +1,4 @@
-import Line from "@common/assets/icons/line/line.svg";
+import LineIcon from "@common/assets/icons/line/LineIcon";
 
 interface PlaceTypeAndAddressProps {
   size?: "normal" | "small";
@@ -15,7 +15,7 @@ export default function PlaceTypeAndAddress({
   return (
     <div className="flex">
       <span className="body2-semibold text-text-gray-6">{type}</span>
-      <Line className="mx-[0.8rem]" />
+      <LineIcon className="mx-[0.8rem]" />
       <span className="body2-medium text-text-gray-5">{address}</span>
     </div>
   );

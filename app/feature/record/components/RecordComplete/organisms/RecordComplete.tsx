@@ -1,8 +1,8 @@
 import React from "react";
 import CompleteIcon from "@common/assets/images/record_complete.svg";
-import ArrowIcon from "@common/assets/icons/arrow/arrow-right.svg";
 import { useSetRecoilState } from "recoil";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
+import ArrowRightIcon from "@common/assets/icons/arrow/ArrowRightIcon";
 
 interface RecordCompleteProps {
   spaceId: number;
@@ -39,7 +39,7 @@ export default function RecordComplete({
               >
                 <div>큐레이션에 추가하기</div>
                 <div className="w-[1.6rem] flex justify-center items-center">
-                  <ArrowIcon />
+                  <ArrowRightIcon />
                 </div>
               </div>
             </div>
@@ -56,7 +56,7 @@ export default function RecordComplete({
               >
                 키워드 선택하러 가기
               </p>
-              <ArrowIcon />
+              <ArrowRightIcon />
             </div>
           </>
         )}

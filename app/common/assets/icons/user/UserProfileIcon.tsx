@@ -1,6 +1,6 @@
 import { IconProps } from "../icon-type";
 
-export default function UserProfile({
+export default function UserProfileIcon({
   color = "#9E9E9E",
   className,
 }: IconProps) {

@@ -1,6 +1,6 @@
 import { IconProps } from "../icon-type";
 
-export default function LocationLine({
+export default function LocationLineIcon({
   color = "white",
   className,
 }: IconProps) {

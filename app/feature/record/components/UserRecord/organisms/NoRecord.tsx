@@ -1,4 +1,4 @@
-import ArrowRight from "@common/assets/icons/arrow/arrow-right.svg";
+import ArrowRightIcon from "@common/assets/icons/arrow/ArrowRightIcon";
 import Link from "next/link";
 
 export default function NoRecord() {
@@ -16,7 +16,7 @@ export default function NoRecord() {
             pathname: "/record",
           }}
         >
-          <ArrowRight />
+          <ArrowRightIcon />
         </Link>
       </div>
     </div>

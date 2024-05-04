@@ -5,7 +5,6 @@ import { CurationProps } from "@feature/curation/type";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
-import LocationLine from "@common/assets/icons/location/LocationLine";
 import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import Image from "next/image";
 import useCurationMenuModal from "../../../hooks/CurationMenu/useCurationMenuModal";
@@ -18,6 +17,7 @@ import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
 import { useEffect, useState } from "react";
 import useFetching from "@common/hooks/useFetching";
 import revalidateCurationScrapRelatedData from "@feature/curation/actions/revalidateCurationScrapRelatedData";
+import LocationLineIcon from "@common/assets/icons/location/LocationLineIcon";
 
 //Molecule
 export default function CurationInfoCardLight({
@@ -160,7 +160,7 @@ export default function CurationInfoCardLight({
             />
           )}
           <Chip className="body3-semibold rounded-[4px] bg-[#212121CC] flex items-center pr-[0.4rem] pl-[0.2rem] h-[2rem] absolute right-[1.6rem] bottom-[1.6rem]">
-            <LocationLine />
+            <LocationLineIcon />
             <span className="body3-semibold text-white ml-[0.2rem]">
               {spaceCount}
             </span>

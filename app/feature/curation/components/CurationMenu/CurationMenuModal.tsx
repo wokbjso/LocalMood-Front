@@ -1,4 +1,3 @@
-import EditIcon from "@common/assets/icons/edit/edit.svg";
 import Modal from "@common/components/ui/modal/Modal";
 import { useState } from "react";
 import UseOutsideClick from "@common/hooks/useOutsideClick";
@@ -12,6 +11,7 @@ import { toastInfo } from "@common/state/toast";
 import CurationMakeModal from "../CurationMake/organisms/CurationMakeModal";
 import useDeleteCuration from "@feature/curation/queries/useDeleteCuration";
 import { queryFetchingSelector } from "@common/state/queryFetching";
+import EditIcon from "@common/assets/icons/edit/EditIcon";
 
 interface CurationMenuModalProps {
   open: boolean;

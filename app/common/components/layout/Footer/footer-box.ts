@@ -1,26 +1,26 @@
-import Home from "@common/assets/icons/home/Home";
-import Record from "@common/assets/icons/record/Record";
-import Curation from "@common/assets/icons/curation/Curation";
-import UserProfile from "@common/assets/icons/user/UserProfile";
+import CurationIcon from "@common/assets/icons/curation/CurationIcon";
+import HomeIcon from "@common/assets/icons/home/HomeIcon";
+import RecordIcon from "@common/assets/icons/record/RecordIcon";
+import UserProfileIcon from "@common/assets/icons/user/UserProfileIcon";
 
 export const FOOTER_BOX = [
   {
-    icon: Home,
+    icon: HomeIcon,
     text: "홈",
     navigateTo: "/",
   },
   {
-    icon: Record,
+    icon: RecordIcon,
     text: "공간기록",
     navigateTo: "/record",
   },
   {
-    icon: Curation,
+    icon: CurationIcon,
     text: "큐레이션",
     navigateTo: "/curation",
   },
   {
-    icon: UserProfile,
+    icon: UserProfileIcon,
     text: "마이페이지",
     navigateTo: "/mypage",
   },

@@ -1,7 +1,7 @@
+import LikeBadIcon from "@common/assets/icons/like/LikeBadIcon";
 import { GraphProps } from "../type";
-import Like from "@common/assets/icons/like/like-good.svg";
-import DisLike from "@common/assets/icons/like/like-bad.svg";
 import { twMerge } from "tailwind-merge";
+import LikeGoodIcon from "@common/assets/icons/like/LikeGoodIcon";
 
 export default function GraphUpDownVote({
   variant = "diff",
@@ -25,8 +25,8 @@ export default function GraphUpDownVote({
             {percentage && percentage}
           </span>
         )}
-        {like && <Like />}
-        {!like && variant === "unite" && <DisLike />}
+        {like && <LikeGoodIcon />}
+        {!like && variant === "unite" && <LikeBadIcon />}
         <span
           className={twMerge(
             "body2-medium text-black",
@@ -43,7 +43,7 @@ export default function GraphUpDownVote({
         )}
         {variant === "diff" && !like && (
           <div className="flex justify-center items-center w-[3.2rem] h-[3.2rem] rounded-full">
-            <DisLike />
+            <LikeBadIcon />
           </div>
         )}
       </div>

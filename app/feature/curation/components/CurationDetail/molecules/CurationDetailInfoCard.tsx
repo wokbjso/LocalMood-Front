@@ -1,18 +1,18 @@
-import ArrowIcon from "@common/assets/icons/arrow/arrow-right.svg";
-import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
 import Image from "next/image";
 import { forwardRef, useState } from "react";
 import { CurationPlaceProps } from "@feature/curation/type";
 import LinkLayout from "@common/components/layout/Link/LinkLayout";
 import PlaceInfoCardBottom from "@feature/place/components/PlaceInfo/molecules/PlaceInfoCardBottom";
 import SliderLayout from "@common/components/layout/Slider/SliderLayout";
-import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { useSetRecoilState } from "recoil";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
 import { toastInfoSelector } from "@common/state/toast";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
 import useCurationSpaceDelete from "@feature/curation/queries/useCurationSpaceDelete";
 import { queryFetchingSelector } from "@common/state/queryFetching";
+import ArrowRightIcon from "@common/assets/icons/arrow/ArrowRightIcon";
+import ScrapFillIcon from "@common/assets/icons/scrap/ScrapFillIcon";
+import ScrapLineIcon from "@common/assets/icons/scrap/ScrapLineIcon";
 
 //Molecule
 const CurationDetailInfoCard = forwardRef<
@@ -90,7 +90,7 @@ const CurationDetailInfoCard = forwardRef<
                   {props.name}
                   <div className="px-[0.6rem] py-[0.4rem]">
                     <LinkLayout routeUrl={`/place/${props.id}`}>
-                      <ArrowIcon />
+                      <ArrowRightIcon />
                     </LinkLayout>
                   </div>
                 </div>
@@ -105,9 +105,9 @@ const CurationDetailInfoCard = forwardRef<
                 </div>
               </div>
               {props.isScraped ? (
-                <ScrapFill onClick={handleScrapState} />
+                <ScrapFillIcon onClick={handleScrapState} />
               ) : (
-                <ScrapLine onClick={handleScrapState} />
+                <ScrapLineIcon onClick={handleScrapState} />
               )}
             </div>
             <PlaceInfoCardBottom

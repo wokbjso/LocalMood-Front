@@ -4,7 +4,7 @@ import LampIcon from "@common/assets/icons/lamp/LampIcon";
 import MusicIcon from "@common/assets/icons/music/MusicIcon";
 import PetIcon from "@common/assets/icons/pet/PetIcon";
 import WindowIcon from "@common/assets/icons/window/WindowIcon";
-import WineIcon from "@common/assets/icons/wine/Wine";
+import WineIcon from "@common/assets/icons/wine/WineIcon";
 
 export const HEADER_KEYWORD = [
   { icon: HeartIcon, label: "연인과의 데이트" },
