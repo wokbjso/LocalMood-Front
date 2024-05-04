@@ -1,15 +1,15 @@
-export default function CheckIconMedium() {
+export default function ArrowRightIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
+      width="6"
+      height="10"
+      viewBox="0 0 6 10"
       fill="none"
     >
       <path
-        d="M14.6668 2.66669L5.77794 13.3334L1.3335 10.1334"
-        stroke="#32D5BA"
+        d="M1 1L5 5L1 9"
+        stroke="#9E9E9E"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"

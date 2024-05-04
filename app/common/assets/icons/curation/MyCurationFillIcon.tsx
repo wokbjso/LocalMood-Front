@@ -1,6 +1,6 @@
 import { IconProps } from "../icon-type";
 
-export default function MyCurationFill({
+export default function MyCurationFillIcon({
   color = "#9E9E9E",
   className,
 }: IconProps) {

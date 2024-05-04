@@ -1,12 +1,20 @@
+import dynamic from "next/dynamic";
 import Divider from "@common/components/ui/divider/Divider";
 import PlaceDetailInfo from "@feature/place/components/PlaceDetail/organisms/PlaceDetailInfo";
 import GetPlaceDetail from "@feature/place/queries/getPlaceDetail";
 import PlaceDetailTopBar from "@feature/place/components/PlaceDetail/organisms/PlaceDetailTopBar";
-import PlaceInfoCard from "@feature/place/components/PlaceInfo/molecules/PlaceInfoCard";
 import PlaceImageSlider from "@feature/place/components/PlaceDetail/organisms/PlaceImageSlider";
 import PlaceKeywordEvaluation from "@feature/place/components/PlaceDetail/organisms/PlaceKeywordEvaluation";
 import PlaceKeywordSummary from "@feature/place/components/PlaceDetail/organisms/PlaceKeywordSummary";
-import CurationInfoCardDark from "@feature/curation/components/CurationInfo/molecules/CurationInfoCardDark";
+const PlaceInfoCard = dynamic(
+  () => import("@feature/place/components/PlaceInfo/molecules/PlaceInfoCard")
+);
+const CurationInfoCardDark = dynamic(
+  () =>
+    import(
+      "@feature/curation/components/CurationInfo/molecules/CurationInfoCardDark"
+    )
+);
 import RelatedPlaceSlider from "@feature/place/components/PlaceDetail/molecules/RelatedPlaceSlider";
 import RelatedCurationSlider from "@feature/place/components/PlaceDetail/molecules/RelatedCurationSlider";
 

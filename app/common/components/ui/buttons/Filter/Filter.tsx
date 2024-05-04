@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
-import ArrowDown from "@common/assets/icons/arrow/arrow-down.svg";
-import ArrowUp from "@common/assets/icons/arrow/ArrowUp";
 import Image from "next/image";
+import ArrowDownIcon from "@common/assets/icons/arrow/ArrowDownIcon";
+import ArrowUpIcon from "@common/assets/icons/arrow/ArrowUpIcon";
 
 interface FilterProps {
   variant?: "static" | "showOptions";
@@ -69,10 +69,10 @@ export default function Filter({
         {label}
       </span>
       {variant === "showOptions" && openOptions && (
-        <ArrowUp className="ml-[0.2rem]" color="#9E9E9E" />
+        <ArrowUpIcon className="ml-[0.2rem]" color="#9E9E9E" />
       )}
       {variant === "showOptions" && !openOptions && (
-        <ArrowDown className="ml-[0.2rem]" />
+        <ArrowDownIcon className="ml-[0.2rem]" />
       )}
     </button>
   );

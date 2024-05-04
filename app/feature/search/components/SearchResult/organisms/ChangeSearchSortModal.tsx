@@ -1,4 +1,4 @@
-import CheckIconMedium from "@common/assets/icons/check/CheckIconMedium";
+import CheckMediumIcon from "@common/assets/icons/check/CheckMediumIcon";
 import Divider from "@common/components/ui/divider/Divider";
 import Modal from "@common/components/ui/modal/Modal";
 import UseOutsideClick from "@common/hooks/useOutsideClick";
@@ -67,7 +67,7 @@ export default function ChangeSearchSortModal({
           >
             리뷰 최신순
           </span>
-          {sortState === "RECENT" && <CheckIconMedium />}
+          {sortState === "RECENT" && <CheckMediumIcon />}
         </div>
         <Divider className="h-[1px] bg-line-gray-3" />
         <div
@@ -82,7 +82,7 @@ export default function ChangeSearchSortModal({
           >
             인기순
           </span>
-          {sortState === "HOT" && <CheckIconMedium />}
+          {sortState === "HOT" && <CheckMediumIcon />}
         </div>
       </Modal>
     )

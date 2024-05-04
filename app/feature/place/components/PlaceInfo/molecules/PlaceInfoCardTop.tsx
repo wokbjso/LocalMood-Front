@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
-import Line from "@common/assets/icons/line/line.svg";
 import Link from "next/link";
 import {
   PlaceInfoCardAdditionalProps,
@@ -14,10 +13,11 @@ import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
 import Chip from "@common/components/ui/buttons/Chip/Chip";
-import CheckIconSmall from "@common/assets/icons/check/CheckIconSmall";
 import ImageWrapper from "@common/components/ui/wrapper/ImageWrapper";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
 import PlaceInfoCardTopScrapIcon from "../atoms/PlaceInfoCardTopScrapIcon";
+import CheckSmallIcon from "@common/assets/icons/check/CheckSmallIcon";
+import LineIcon from "@common/assets/icons/line/LineIcon";
 
 //Molecule
 export default function PlaceInfoCardTop({
@@ -94,7 +94,7 @@ export default function PlaceInfoCardTop({
         >
           {variant === "record" && isReviewed && direction === "vertical" && (
             <Chip className="flex items-center absolute bottom-[0.8rem] left-[0.8rem] px-[6px] h-[2rem] rounded-[4px] bg-primary-normal  z-10">
-              <CheckIconSmall className="mr-[4px]" />
+              <CheckSmallIcon className="mr-[4px]" />
               <span className="body3-semibold text-white">기록 완료</span>
             </Chip>
           )}
@@ -143,7 +143,7 @@ export default function PlaceInfoCardTop({
               >
                 {type === "RESTAURANT" ? "음식점" : "카페"}
               </span>
-              <Line className="mx-[0.8rem]" />
+              <LineIcon className="mx-[0.8rem]" />
               <span
                 className={twMerge(
                   "text-text-gray-5",

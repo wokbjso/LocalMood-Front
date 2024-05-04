@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Tab from "./Tab";
-import MyCurationFill from "@common/assets/icons/curation/MyCurationFill";
-import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
+import MyCurationFillIcon from "@common/assets/icons/curation/MyCurationFillIcon";
+import ScrapLineIcon from "@common/assets/icons/scrap/ScrapLineIcon";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -38,11 +38,11 @@ export const Icon: Story = {
   args: {
     sections: [
       {
-        icon: MyCurationFill,
+        icon: MyCurationFillIcon,
         text: "카페",
       },
       {
-        icon: ScrapLine,
+        icon: ScrapLineIcon,
         text: "음식점",
       },
     ],

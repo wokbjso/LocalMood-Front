@@ -1,6 +1,6 @@
 import { IconProps } from "../icon-type";
 
-export default function UserDouble({
+export default function UserDoubleIcon({
   color = "#E0E0E0",
   className,
 }: IconProps) {

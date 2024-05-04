@@ -1,9 +1,9 @@
 "use client";
 
-import ArrowBack from "@common/assets/icons/arrow/ArrowBack";
 import { useRouter } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 import { TopBarProps } from "../type";
+import ArrowBackIcon from "@common/assets/icons/arrow/ArrowBackIcon";
 
 //Molecule
 export default function ArrowBackTopBar({
@@ -24,7 +24,7 @@ export default function ArrowBackTopBar({
         className
       )}
     >
-      <ArrowBack color={color} onClick={arrowBackClicked} />
+      <ArrowBackIcon color={color} onClick={arrowBackClicked} />
       {children}
     </div>
   );

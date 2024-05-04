@@ -1,8 +1,6 @@
 "use client";
 
 import { PLACE_SUB_TYPE } from "@feature/place/constants/place-tag-category";
-import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
-import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
@@ -10,6 +8,8 @@ import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
 import PlaceDetailInfoMore from "./PlaceDetailInfoMore";
 import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
 import PlaceTypeAndAddress from "../../PlaceInfo/molecules/PlaceTypeAndAddress";
+import ScrapFillIcon from "@common/assets/icons/scrap/ScrapFillIcon";
+import ScrapLineIcon from "@common/assets/icons/scrap/ScrapLineIcon";
 
 //Organism
 export default function PlaceDetailInfo({
@@ -59,13 +59,13 @@ export default function PlaceDetailInfo({
       <div className="flex-col px-[2rem] relative">
         <div className="headline0 mb-[0.8rem]">{name}</div>{" "}
         {isScraped ? (
-          <ScrapFill
+          <ScrapFillIcon
             color="#9E9E9E"
             className="absolute top-0 right-[2rem]"
             onClick={handleScrapClick}
           />
         ) : (
-          <ScrapLine
+          <ScrapLineIcon
             color="#9E9E9E"
             className="absolute top-0 right-[2rem]"
             onClick={handleScrapClick}

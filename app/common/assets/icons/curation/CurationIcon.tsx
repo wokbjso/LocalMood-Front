@@ -1,6 +1,9 @@
 import { IconProps } from "../icon-type";
 
-export default function Curation({ color = "#9E9E9E", className }: IconProps) {
+export default function CurationIcon({
+  color = "#9E9E9E",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -1,8 +1,8 @@
 import Modal from "@common/components/ui/modal/Modal";
-import UserIcon from "@common/assets/icons/user/UserProfile";
 import UseOutsideClick from "@common/hooks/useOutsideClick";
 import { useState } from "react";
 import ConfirmModal from "@common/components/ui/modal/ConfirmModal";
+import UserProfileIcon from "@common/assets/icons/user/UserProfileIcon";
 
 //Organism
 export default function LogoutModal({
@@ -40,7 +40,7 @@ export default function LogoutModal({
           className="flex items-center pl-[2rem] mt-[1.8rem]"
           onClick={handleLogoutClick}
         >
-          <UserIcon />
+          <UserProfileIcon />
           <span className="body1 text-black ml-[1.2rem]">로그아웃</span>
         </div>
       </Modal>

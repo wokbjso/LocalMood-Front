@@ -1,7 +1,7 @@
 "use client";
 
-import LockIcon from "@common/assets/icons/lock/lock.svg";
-import UnlockIcon from "@common/assets/icons/lock/unlock.svg";
+import LockIcon from "@common/assets/icons/lock/LockIcon";
+import UnlockIcon from "@common/assets/icons/lock/UnlockIcon";
 import useFetching from "@common/hooks/useFetching";
 import { toastInfoSelector } from "@common/state/toast";
 import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";

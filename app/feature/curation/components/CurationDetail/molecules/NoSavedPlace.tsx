@@ -1,4 +1,4 @@
-import ArrowRight from "@common/assets/icons/arrow/arrow-right.svg";
+import ArrowRightIcon from "@common/assets/icons/arrow/ArrowRightIcon";
 import LinkLayout from "@common/components/layout/Link/LinkLayout";
 
 //Molecule
@@ -11,7 +11,7 @@ export default function NoSavedPlace() {
       <div className="flex items-center gap-[0.4rem] body2-semibold text-text-gray-6">
         공간 탐색하기
         <LinkLayout routeUrl="/">
-          <ArrowRight />
+          <ArrowRightIcon />
         </LinkLayout>
       </div>
     </div>

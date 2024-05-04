@@ -1,22 +1,23 @@
 import { IconProps } from "../icon-type";
 
-export default function CheckIconSmall({
-  color = "white",
+//Atom
+export default function ScrapLineIcon({
+  color = "#667085",
   onClick,
   className,
 }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="12"
-      height="12"
-      viewBox="0 0 12 12"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
       fill="none"
-      onClick={onClick}
       className={className}
+      onClick={onClick}
     >
       <path
-        d="M11 2L4.33333 10L1 7.6"
+        d="M19 21L12 16L5 21V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H17C17.5304 3 18.0391 3.21071 18.4142 3.58579C18.7893 3.96086 19 4.46957 19 5V21Z"
         stroke={color}
         strokeWidth="1.5"
         strokeLinecap="round"

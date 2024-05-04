@@ -1,23 +1,18 @@
 import { IconProps } from "../icon-type";
 
-export default function ArrowBack({
-  color = "#9E9E9E",
-  className,
-  onClick,
-}: IconProps) {
+export default function ArrowDownIcon({ className }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
+      width="10"
+      height="6"
+      viewBox="0 0 10 6"
       fill="none"
       className={className}
-      onClick={onClick}
     >
       <path
-        d="M9 20L1 12L9 4"
-        stroke={color}
+        d="M9 1L5 5L1 1"
+        stroke="#9E9E9E"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
