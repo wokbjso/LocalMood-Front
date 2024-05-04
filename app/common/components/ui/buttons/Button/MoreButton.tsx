@@ -1,4 +1,4 @@
-import RightArrow from "@common/assets/icons/arrow/arrow-right.svg";
+import ArrowRightIcon from "@common/assets/icons/arrow/ArrowRightIcon";
 import LinkLayout from "@common/components/layout/Link/LinkLayout";
 
 interface MoreButtonProps {
@@ -13,7 +13,7 @@ export default function MoreButton({
   return (
     <LinkLayout routeUrl={routeTo} className="flex items-center">
       <span className="mr-[10px] text-text-gray-6 body2-semibold">더보기</span>
-      {showArrow && <RightArrow />}
+      {showArrow && <ArrowRightIcon />}
     </LinkLayout>
   );
 }

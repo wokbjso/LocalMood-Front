@@ -1,13 +1,13 @@
 "use client";
 
-import LocationFillIcon from "@common/assets/icons/location/location-fill.svg";
 import Filter from "@common/components/ui/buttons/Filter/Filter";
 import CurationDetailInfoCard from "../molecules/CurationDetailInfoCard";
 import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-detail";
 import { twMerge } from "tailwind-merge";
-import MapIcon from "@common/assets/icons/map/map";
 import { createRef, forwardRef, useEffect, useState } from "react";
 import UseMap from "@common/components/ui/map/Map/useMap";
+import LocationFillIcon from "@common/assets/icons/location/LocationFillIcon";
+import MapIcon from "@common/assets/icons/map/mapIcon";
 
 interface CurationDetailCardListProps {
   inView: boolean;

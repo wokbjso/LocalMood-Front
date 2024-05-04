@@ -1,5 +1,5 @@
-import NonCuration from "@common/assets/icons/illustration/CurationNoSeat.png";
-import ProfileIcon from "@common/assets/icons/profile/greenProfile.png";
+import NonCuration from "@common/assets/images/curationNoSeat.png";
+import ProfileIcon from "@common/assets/images/greenProfile.png";
 import Image from "next/image";
 import PrivacyToggleButton from "../../MyCuration/molecules/PrivacyToggleButton";
 import Chip from "@common/components/ui/buttons/Chip/Chip";

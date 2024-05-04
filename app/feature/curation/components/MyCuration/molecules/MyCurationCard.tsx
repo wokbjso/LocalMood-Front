@@ -1,10 +1,10 @@
 import Image from "next/image";
 import CurationNoPhoto from "@common/assets/images/curationHomeNoImg.png";
 import { CurationProps } from "@feature/curation/type";
-import LocationLine from "@common/assets/icons/location/LocationLine";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@common/state/toast";
 import ImageWrapper from "@common/components/ui/wrapper/ImageWrapper";
+import LocationLineIcon from "@common/assets/icons/location/LocationLineIcon";
 
 interface MyCurationCardProps {
   spaceId: number;
@@ -68,7 +68,7 @@ export default function MyCurationCard({
             </span>
             <div className="w-[0.1rem] h-[1.2rem] bg-text-gray-4"></div>
             <div className="flex items-center gap-[0.2rem] body3-semibold text-text-gray-6">
-              <LocationLine color="#9E9E9E" />
+              <LocationLineIcon color="#9E9E9E" />
               <div>{curationData.spaceCount}</div>
             </div>
           </div>

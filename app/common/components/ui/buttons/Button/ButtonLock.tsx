@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import LockIcon from "@common/assets/icons/lock/lock.svg";
-import UnlockIcon from "@common/assets/icons/lock/unlock-color.svg";
+import LockIcon from "@common/assets/icons/lock/LockIcon";
+import UnlockColorIcon from "@common/assets/icons/lock/UnlockColorIcon";
 
 interface ButtonLockProps {
   onClick?: (state: boolean) => void;
@@ -28,7 +28,7 @@ export default function ButtonLock({
       }`}
       onClick={toggleLock}
     >
-      {!isUnLocked ? <LockIcon /> : <UnlockIcon />}
+      {!isUnLocked ? <LockIcon /> : <UnlockColorIcon />}
       {!isUnLocked ? "비공개" : "공개"}
     </div>
   );

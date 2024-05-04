@@ -1,5 +1,5 @@
-import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
-import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
+import ScrapFillIcon from "@common/assets/icons/scrap/ScrapFillIcon";
+import ScrapLineIcon from "@common/assets/icons/scrap/ScrapLineIcon";
 import { twMerge } from "tailwind-merge";
 
 interface PlaceInfoCardTopScrapIconProps {
@@ -17,7 +17,7 @@ export default function PlaceInfoCardTopScrapIcon({
   return (
     <>
       {isScraped ? (
-        <ScrapFill
+        <ScrapFillIcon
           className={twMerge(
             "absolute right-[0.6rem]",
             cardSize === "small" && "top-[8px]"
@@ -26,7 +26,7 @@ export default function PlaceInfoCardTopScrapIcon({
           onClick={onClick}
         />
       ) : (
-        <ScrapLine
+        <ScrapLineIcon
           className={twMerge(
             "absolute right-[0.6rem]",
             cardSize === "small" && "top-[8px]"

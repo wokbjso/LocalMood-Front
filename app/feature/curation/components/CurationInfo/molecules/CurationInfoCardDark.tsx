@@ -5,7 +5,6 @@ import { CurationProps } from "@feature/curation/type";
 import NoResult from "@common/assets/images/curationHomeNoImg.png";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
-import LocationLine from "@common/assets/icons/location/LocationLine";
 import Image from "next/image";
 import CurationScrapIcon from "../../CurationScrap/CurationScrapIcon";
 import { useSetRecoilState } from "recoil";
@@ -15,6 +14,7 @@ import useFetching from "@common/hooks/useFetching";
 import { useEffect, useState } from "react";
 import useCurationScrapIcon from "../../../hooks/CurationScrap/useCurationScrapIcon";
 import revalidateCurationScrapRelatedData from "@feature/curation/actions/revalidateCurationScrapRelatedData";
+import LocationLineIcon from "@common/assets/icons/location/LocationLineIcon";
 
 //Molecule
 export default function CurationInfoCardDark({
@@ -177,7 +177,7 @@ export default function CurationInfoCardDark({
             />
           )}
           <div className="flex items-center absolute bottom-[1.6rem] right-[1.6rem] z-10">
-            {<LocationLine />}
+            {<LocationLineIcon />}
             <span className="ml-[0.2rem] body3-semibold text-white">
               {spaceCount}
             </span>

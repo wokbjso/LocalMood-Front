@@ -1,6 +1,6 @@
-import ScrapFill from "@common/assets/icons/scrap/ScrapFill";
-import ScrapLine from "@common/assets/icons/scrap/ScrapLine";
-import ScrapShadow from "@common/assets/icons/scrap/ScrapShadow";
+import ScrapFillIcon from "@common/assets/icons/scrap/ScrapFillIcon";
+import ScrapLineIcon from "@common/assets/icons/scrap/ScrapLineIcon";
+import ScrapShadowIcon from "@common/assets/icons/scrap/ScrapShadowIcon";
 
 interface CurationScrapIconProps {
   isScraped: boolean;
@@ -21,15 +21,15 @@ export default function CurationScrapIcon({
         <>
           {backgroundBrightness === "dark" && (
             <div className="w-[3rem] h-[3rem] bg-red-400">
-              <ScrapShadow onClick={onClick} className={className} />
+              <ScrapShadowIcon onClick={onClick} className={className} />
             </div>
           )}
           {backgroundBrightness === "light" && (
-            <ScrapFill onClick={onClick} className={className} />
+            <ScrapFillIcon onClick={onClick} className={className} />
           )}
         </>
       ) : (
-        <ScrapLine
+        <ScrapLineIcon
           color={backgroundBrightness === "dark" ? "white" : "#9E9E9E"}
           onClick={onClick}
           className={className}
