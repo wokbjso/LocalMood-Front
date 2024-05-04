@@ -57,59 +57,81 @@ export default function RecordPageBookTemplate({
     };
   };
 
+  const getBlobData = () => {
+    const formData = new FormData();
+    type === "CAFE"
+      ? cafeKeywordData.files.forEach((file: any) => {
+          if (file instanceof File && file.size > 0) {
+            formData.append("image", file);
+          }
+        })
+      : restaurantKeywordData.files.forEach((file: any) => {
+          if (file instanceof File && file.size > 0) {
+            formData.append("image", file);
+          }
+        });
+    const blob = new Blob(
+      [
+        JSON.stringify(
+          modifyData(type === "CAFE" ? cafeKeywordData : restaurantKeywordData)
+        ),
+      ],
+      {
+        type: "application/json",
+      }
+    );
+    formData.append("request", blob);
+
+    return formData;
+  };
+
+  const sendRecordData = async () => {
+    changeFetching(true);
+    const res = await fetch(`/api/record/create/${id}`, {
+      method: "POST",
+      body: getBlobData(),
+    });
+
+    return res.status;
+  };
+
+  const revalidateRelatedData = () => {
+    revalidateScrapSpace();
+    revalidatePlaceReview();
+  };
+
+  const activateBtnForward = () => {
+    handlers.handleIndicatorIndex(indicatorIndex + 1);
+    handlers.handleNextDirection("forward");
+  };
+
+  const activateBtnBackward = () => {
+    handlers.handleIndicatorIndex(indicatorIndex - 1);
+    handlers.handleNextDirection("back");
+  };
+
   const handleBtnForwardClicked = async () => {
     if (indicatorIndex < 2) {
-      handlers.handleIndicatorIndex(indicatorIndex + 1);
-      handlers.handleNextDirection("forward");
+      activateBtnForward();
     } else {
-      changeFetching(true);
-      const formData = new FormData();
-      type === "CAFE"
-        ? cafeKeywordData.files.forEach((file: any) => {
-            if (file instanceof File && file.size > 0) {
-              formData.append("image", file);
-            }
-          })
-        : restaurantKeywordData.files.forEach((file: any) => {
-            if (file instanceof File && file.size > 0) {
-              formData.append("image", file);
-            }
-          });
-      const blob = new Blob(
-        [
-          JSON.stringify(
-            modifyData(
-              type === "CAFE" ? cafeKeywordData : restaurantKeywordData
-            )
-          ),
-        ],
-        {
-          type: "application/json",
-        }
-      );
-      formData.append("request", blob);
-      const res = await fetch(`/api/record/create/${id}`, {
-        method: "POST",
-        body: formData,
-      });
-      if (res.status === 200) {
+      if ((await sendRecordData()) === 200) {
         changeFetching(false);
-        handlers.handleIndicatorIndex(indicatorIndex + 1);
-        handlers.handleNextDirection("forward");
-        revalidateScrapSpace();
-        revalidatePlaceReview();
-      } else if (res.status === 400) {
+        activateBtnForward();
+        revalidateRelatedData();
+      } else if ((await sendRecordData()) === 400) {
         alert("오류가 발생했습니다");
       }
     }
   };
+
   const handleBtnBackClicked = () => {
-    handlers.handleIndicatorIndex(indicatorIndex - 1);
-    handlers.handleNextDirection("back");
+    activateBtnBackward();
   };
+
   const handleExitClicked = () => {
     router.replace("/record");
   };
+
   return (
     <>
       <div className="w-[100%] h-[100%] overflow-auto relative">
