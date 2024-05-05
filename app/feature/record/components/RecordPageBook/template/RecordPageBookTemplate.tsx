@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import RecordComplete from "@feature/record/components/RecordComplete/organisms/RecordComplete";
 import SelectPhoto from "@feature/record/components/SelectPhoto/organisms/SelectPhoto";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import Button from "@common/components/ui/buttons/Button/Button";
 import { cloneElement } from "react";
 import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
 import revalidatePlaceReview from "@feature/record/actions/revalidatePlaceReview";
@@ -16,6 +15,7 @@ import SelectEvaluationKeyword from "@feature/record/components/SelectEvaluation
 import LoadingUI from "@common/components/ui/loading/LoadingUI";
 import PageDarkWrapper from "@common/components/ui/wrapper/PageDarkWrapper";
 import UseDeferredComponent from "@common/hooks/useDeferredComponent";
+import RecordPageBookButton from "../organisms/RecordPageBookButton";
 
 interface RecordSelectProps {
   id: number;
@@ -39,8 +39,6 @@ export default function RecordPageBookTemplate({
     cafeKeywordData,
     restaurantKeywordData,
     hasSomeData,
-    checkJump,
-    checkPurposeChosen,
     handlers,
   } = UseTotalRecordKeyword(type);
 
@@ -192,39 +190,16 @@ export default function RecordPageBookTemplate({
             </CSSTransition>
           )}
         </TransitionGroup>
-        <div className="flex justify-center w-full fixed h-[13.2rem] px-[2rem] gap-[0.8rem] left-0 bottom-0 bg-white">
-          {indicatorIndex > 0 && indicatorIndex < 3 && (
-            <Button
-              variant="line"
-              className="h-[4.8rem]"
-              onClick={handleBtnBackClicked}
-            >
-              이전
-            </Button>
-          )}
-          {indicatorIndex === 0 && (
-            <Button
-              onClick={handleBtnForwardClicked}
-              disabled={!checkPurposeChosen()}
-            >
-              다음
-            </Button>
-          )}
-          {indicatorIndex > 0 && indicatorIndex < 2 && (
-            <Button onClick={handleBtnForwardClicked}>
-              {checkJump() ? "건너뛰기" : "다음"}
-            </Button>
-          )}
-
-          {indicatorIndex === 2 && (
-            <Button onClick={handleBtnForwardClicked}>기록 올리기</Button>
-          )}
-          {indicatorIndex === 3 && (
-            <Button onClick={handleExitClicked}>
-              {hasSomeData ? "완료" : "종료하기"}
-            </Button>
-          )}
-        </div>
+        <RecordPageBookButton
+          placeType={type}
+          indicatorIndex={indicatorIndex}
+          cafeKeywordData={cafeKeywordData}
+          restaurantKeywordData={restaurantKeywordData}
+          hasSomeData={hasSomeData}
+          handleBtnForwardClicked={handleBtnForwardClicked}
+          handleBtnBackClicked={handleBtnBackClicked}
+          handleExitClicked={handleExitClicked}
+        />
         {isFetching && (
           <UseDeferredComponent>
             <PageDarkWrapper />
