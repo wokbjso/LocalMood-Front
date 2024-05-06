@@ -8,14 +8,12 @@ import { cloneElement } from "react";
 import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
 import revalidatePlaceReview from "@feature/record/actions/revalidatePlaceReview";
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
-import useFetching from "@common/hooks/useFetching";
 import UseTotalRecordKeyword from "../../../hooks/useTotalRecordKeyword";
 import SelectIndicatingPlaceKeyword from "@feature/record/components/SelectIndicatingPlaceKeyword/organisms/SelectIndicatingPlaceKeyword";
 import SelectEvaluationKeyword from "@feature/record/components/SelectEvaluationKeyword/organisms/SelectEvaluationKeyword";
-import LoadingUI from "@common/components/ui/loading/LoadingUI";
-import PageDarkWrapper from "@common/components/ui/wrapper/PageDarkWrapper";
-import UseDeferredComponent from "@common/hooks/useDeferredComponent";
 import RecordPageBookButton from "../organisms/RecordPageBookButton";
+import { useSetRecoilState } from "recoil";
+import { queryFetchingSelector } from "@common/state/queryFetching";
 
 interface RecordSelectProps {
   id: number;
@@ -31,7 +29,7 @@ export default function RecordPageBookTemplate({
 }: RecordSelectProps) {
   const router = useRouter();
 
-  const { isFetching, changeFetching } = useFetching();
+  const setIsQueryFetching = useSetRecoilState(queryFetchingSelector);
 
   const {
     indicatorIndex,
@@ -84,7 +82,7 @@ export default function RecordPageBookTemplate({
   };
 
   const sendRecordData = async () => {
-    changeFetching(true);
+    setIsQueryFetching(true);
     const res = await fetch(`/api/record/create/${id}`, {
       method: "POST",
       body: getBlobData(),
@@ -113,7 +111,7 @@ export default function RecordPageBookTemplate({
       activateBtnForward();
     } else {
       if ((await sendRecordData()) === 200) {
-        changeFetching(false);
+        setIsQueryFetching(false);
         activateBtnForward();
         revalidateRelatedData();
       } else if ((await sendRecordData()) === 400) {
@@ -131,82 +129,74 @@ export default function RecordPageBookTemplate({
   };
 
   return (
-    <>
-      <div className="w-[100%] h-[100%] overflow-auto relative">
-        <ArrowBackTopBar color="#9E9E9E" className="fixed z-20" />
-        <TransitionGroup
-          component={null}
-          childFactory={(child) => {
-            return cloneElement(child, {
-              classNames: `record-jump-${nextDirection}`,
-            });
-          }}
-        >
-          {indicatorIndex === 0 && (
-            <CSSTransition key={0} timeout={300}>
-              <SelectIndicatingPlaceKeyword
-                placeType={type}
-                name={name}
-                indicatorIndex={indicatorIndex}
-                handleIndicatorIndex={handlers.handleIndicatorIndex}
-                cafeKeywordData={cafeKeywordData}
-                restaurantKeywordData={restaurantKeywordData}
-                handleKeyword={handlers.handleKeyword}
-              />
-            </CSSTransition>
-          )}
-          {indicatorIndex === 1 && (
-            <CSSTransition key={1} timeout={300}>
-              <SelectEvaluationKeyword
-                placeType={type}
-                indicatorIndex={indicatorIndex}
-                handleIndicatorIndex={handlers.handleIndicatorIndex}
-                cafeKeywordData={cafeKeywordData}
-                restaurantKeywordData={restaurantKeywordData}
-                handleKeyword={handlers.handleKeyword}
-              />
-            </CSSTransition>
-          )}
-          {indicatorIndex === 2 && (
-            <CSSTransition key={2} timeout={300}>
-              <SelectPhoto
-                placeType={type}
-                indicatorIndex={indicatorIndex}
-                handleIndicatorIndex={handlers.handleIndicatorIndex}
-                cafeKeywordData={cafeKeywordData}
-                restaurantKeywordData={restaurantKeywordData}
-                handleAddImage={handlers.handleAddImage}
-                handleDeleteImage={handlers.handleDeleteImage}
-              />
-            </CSSTransition>
-          )}
-          {indicatorIndex === 3 && (
-            <CSSTransition key={3} timeout={300}>
-              <RecordComplete
-                spaceId={id}
-                handleIndicatorIndex={handlers.handleIndicatorIndex}
-                hasSomeData={hasSomeData}
-              />
-            </CSSTransition>
-          )}
-        </TransitionGroup>
-        <RecordPageBookButton
-          placeType={type}
-          indicatorIndex={indicatorIndex}
-          cafeKeywordData={cafeKeywordData}
-          restaurantKeywordData={restaurantKeywordData}
-          hasSomeData={hasSomeData}
-          handleBtnForwardClicked={handleBtnForwardClicked}
-          handleBtnBackClicked={handleBtnBackClicked}
-          handleExitClicked={handleExitClicked}
-        />
-        {isFetching && (
-          <UseDeferredComponent>
-            <PageDarkWrapper />
-            <LoadingUI className="absolute top-0 left-0 z-50" />
-          </UseDeferredComponent>
+    <div className="w-[100%] h-[100%] overflow-auto relative">
+      <ArrowBackTopBar color="#9E9E9E" className="fixed z-20" />
+      <TransitionGroup
+        component={null}
+        childFactory={(child) => {
+          return cloneElement(child, {
+            classNames: `record-jump-${nextDirection}`,
+          });
+        }}
+      >
+        {indicatorIndex === 0 && (
+          <CSSTransition key={0} timeout={300}>
+            <SelectIndicatingPlaceKeyword
+              placeType={type}
+              name={name}
+              indicatorIndex={indicatorIndex}
+              handleIndicatorIndex={handlers.handleIndicatorIndex}
+              cafeKeywordData={cafeKeywordData}
+              restaurantKeywordData={restaurantKeywordData}
+              handleKeyword={handlers.handleKeyword}
+            />
+          </CSSTransition>
         )}
-      </div>
-    </>
+        {indicatorIndex === 1 && (
+          <CSSTransition key={1} timeout={300}>
+            <SelectEvaluationKeyword
+              placeType={type}
+              indicatorIndex={indicatorIndex}
+              handleIndicatorIndex={handlers.handleIndicatorIndex}
+              cafeKeywordData={cafeKeywordData}
+              restaurantKeywordData={restaurantKeywordData}
+              handleKeyword={handlers.handleKeyword}
+            />
+          </CSSTransition>
+        )}
+        {indicatorIndex === 2 && (
+          <CSSTransition key={2} timeout={300}>
+            <SelectPhoto
+              placeType={type}
+              indicatorIndex={indicatorIndex}
+              handleIndicatorIndex={handlers.handleIndicatorIndex}
+              cafeKeywordData={cafeKeywordData}
+              restaurantKeywordData={restaurantKeywordData}
+              handleAddImage={handlers.handleAddImage}
+              handleDeleteImage={handlers.handleDeleteImage}
+            />
+          </CSSTransition>
+        )}
+        {indicatorIndex === 3 && (
+          <CSSTransition key={3} timeout={300}>
+            <RecordComplete
+              spaceId={id}
+              handleIndicatorIndex={handlers.handleIndicatorIndex}
+              hasSomeData={hasSomeData}
+            />
+          </CSSTransition>
+        )}
+      </TransitionGroup>
+      <RecordPageBookButton
+        placeType={type}
+        indicatorIndex={indicatorIndex}
+        cafeKeywordData={cafeKeywordData}
+        restaurantKeywordData={restaurantKeywordData}
+        hasSomeData={hasSomeData}
+        handleBtnForwardClicked={handleBtnForwardClicked}
+        handleBtnBackClicked={handleBtnBackClicked}
+        handleExitClicked={handleExitClicked}
+      />
+    </div>
   );
 }
