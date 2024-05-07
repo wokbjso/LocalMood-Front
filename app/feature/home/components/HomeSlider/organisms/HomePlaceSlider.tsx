@@ -8,7 +8,7 @@ import GetRandomPlaces from "@feature/place/queries/getRandomPlaces";
 import SliderHashTag from "@feature/home/components/HomeSlider/molecules/SliderHashTag";
 import dynamic from "next/dynamic";
 const PlaceInfoCard = dynamic(
-  () => import("@feature/place/components/PlaceInfo/molecules/PlaceInfoCard")
+  () => import("@feature/place/components/PlaceInfo/organisms/PlaceInfoCard")
 );
 
 export interface HomePlaceSliderProps {

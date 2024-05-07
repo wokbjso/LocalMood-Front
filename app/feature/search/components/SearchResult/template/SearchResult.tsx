@@ -15,7 +15,7 @@ import useGetKeywordSearchPlaceData from "@feature/search/queries/useGetKeywordS
 import UseDeferredComponent from "@common/hooks/useDeferredComponent";
 import SearchSkeleton from "../../skeleton/HomeSearchSkeleton";
 const PlaceInfoCard = lazy(
-  () => import("@feature/place/components/PlaceInfo/molecules/PlaceInfoCard")
+  () => import("@feature/place/components/PlaceInfo/organisms/PlaceInfoCard")
 );
 const ChangeSearchConditon = dynamic(
   () => import("../organisms/ChangeSearchCondition"),

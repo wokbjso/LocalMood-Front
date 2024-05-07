@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 const PlaceInfoCard = dynamic(
-  () => import("@feature/place/components/PlaceInfo/molecules/PlaceInfoCard")
+  () => import("@feature/place/components/PlaceInfo/organisms/PlaceInfoCard")
 );
 import NoRecord from "./NoRecord";
 
