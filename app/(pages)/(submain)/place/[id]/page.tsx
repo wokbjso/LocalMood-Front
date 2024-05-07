@@ -7,7 +7,7 @@ import PlaceImageSlider from "@feature/place/components/PlaceDetail/organisms/Pl
 import PlaceKeywordEvaluation from "@feature/place/components/PlaceDetail/organisms/PlaceKeywordEvaluation";
 import PlaceKeywordSummary from "@feature/place/components/PlaceDetail/organisms/PlaceKeywordSummary";
 const PlaceInfoCard = dynamic(
-  () => import("@feature/place/components/PlaceInfo/molecules/PlaceInfoCard")
+  () => import("@feature/place/components/PlaceInfo/organisms/PlaceInfoCard")
 );
 const CurationInfoCardDark = dynamic(
   () =>
