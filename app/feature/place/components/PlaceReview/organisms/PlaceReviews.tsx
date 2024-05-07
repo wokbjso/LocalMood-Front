@@ -2,7 +2,7 @@
 
 import Filter from "@common/components/ui/buttons/Filter/Filter";
 import Divider from "@common/components/ui/divider/Divider";
-import PlaceReview from "../PlaceReview/PlaceReview";
+import PlaceReview from "./PlaceReview";
 import { useState } from "react";
 import {
   PLACE_CAFE_PURPOSE,
