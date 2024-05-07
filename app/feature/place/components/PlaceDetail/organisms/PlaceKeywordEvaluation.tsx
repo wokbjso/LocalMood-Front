@@ -14,7 +14,7 @@ export default function PlaceKeywordEvaluation({
 }) {
   return (
     <div className="pt-[3.6rem] px-[2rem] pb-[3rem]">
-      <div className="text-black headline2 mb-[1.2rem]">{mainText}</div>
+      <h1 className="text-black headline2 mb-[1.2rem]">{mainText}</h1>
       <div className="mb-[2rem]">
         <div className="flex flex-col items-start gap-[0.4rem] mb-[0.4rem]">
           {positiveEval &&
@@ -24,7 +24,6 @@ export default function PlaceKeywordEvaluation({
                 evaluation={li[0]}
                 percentage={li[1] + "%"}
                 like={true}
-                className={i === 0 ? "" : ""}
               />
             ))}
         </div>

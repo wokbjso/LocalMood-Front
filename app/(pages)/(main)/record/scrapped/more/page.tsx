@@ -1,4 +1,4 @@
-import PlaceInfoCard from "@feature/place/components/PlaceInfo/molecules/PlaceInfoCard";
+import PlaceInfoCard from "@feature/place/components/PlaceInfo/organisms/PlaceInfoCard";
 import GetPlaceScrapped from "@feature/place/queries/getPlaceScrapped";
 import PlaceRecordTopBar from "@feature/record/components/RecordPageBook/organisms/RecordPageBookTopBar";
 

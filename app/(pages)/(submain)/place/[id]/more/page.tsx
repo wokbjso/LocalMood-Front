@@ -1,7 +1,7 @@
 import Divider from "@common/components/ui/divider/Divider";
 import GraphGage from "@common/components/ui/graph/GraphGage/GraphGage";
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
-import PlaceReviews from "@feature/place/components/PlaceDetail/PlaceReviews";
+import PlaceReviews from "@feature/place/components/PlaceReview/organisms/PlaceReviews";
 import {
   PLACE_CAFE_PURPOSE,
   PLACE_RESTAURANT_PURPOSE,

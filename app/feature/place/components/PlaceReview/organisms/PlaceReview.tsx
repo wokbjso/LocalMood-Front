@@ -20,6 +20,7 @@ interface PlaceReviewProps {
   scrapped: boolean;
 }
 
+//Organism
 export default function PlaceReview({
   image,
   author,

@@ -12,6 +12,7 @@ import CurationMakeModal from "../CurationMake/organisms/CurationMakeModal";
 import useDeleteCuration from "@feature/curation/queries/useDeleteCuration";
 import { queryFetchingSelector } from "@common/state/queryFetching";
 import EditIcon from "@common/assets/icons/edit/EditIcon";
+import { ModalContent } from "@common/components/ui/modal/ModalContent";
 
 interface CurationMenuModalProps {
   open: boolean;
@@ -77,28 +78,27 @@ export default function CurationMenuModal({
     <>
       {open && (
         <Modal ref={ref}>
-          <div className="pl-[2rem] pt-[1.8rem]">
-            <div
-              className="flex items-center mb-[2rem]"
+          <ModalContent>
+            <ModalContent.IconBox
+              icon={<EditIcon />}
+              text="편집하기"
+              className="mb-[2rem]"
               onClick={handleCurationEditClick}
-            >
-              <EditIcon />
-              <span className="body1 text-black ml-[1.2rem]">편집하기</span>
-            </div>
-            <div
-              className="flex items-center mb-[2rem]"
+            />
+            <ModalContent.IconBox
+              icon={<DeleteIcon />}
+              text="삭제하기"
+              className={hasCopyLink ? "mb-[2rem]" : undefined}
               onClick={handleCurationDeleteClick}
-            >
-              <DeleteIcon />
-              <span className="body1 text-black ml-[1.2rem]">삭제하기</span>
-            </div>
+            />
             {hasCopyLink && (
-              <div className="flex items-center" onClick={handleLinkCopyClick}>
-                <ShareIcon />
-                <span className="body1 text-black ml-[1.2rem]">링크복사</span>
-              </div>
+              <ModalContent.IconBox
+                icon={<ShareIcon />}
+                text="링크복사"
+                onClick={handleLinkCopyClick}
+              />
             )}
-          </div>
+          </ModalContent>
         </Modal>
       )}
       <CurationMakeModal

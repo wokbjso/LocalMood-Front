@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import PlaceInfoCard from "../molecules/PlaceInfoCard";
+import PlaceInfoCard from "../organisms/PlaceInfoCard";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
