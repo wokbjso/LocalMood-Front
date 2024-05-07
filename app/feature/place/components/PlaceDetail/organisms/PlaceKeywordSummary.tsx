@@ -1,7 +1,7 @@
 import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
 import { PLACE_CATEGORY } from "@feature/place/constants/place-tag-category";
-import PlaceKeywordSummaryLine from "../molecules/PlaceKeywordSummaryLine";
-import PlaceKeywordSummaryPurpose from "../molecules/PlaceKeywordSummaryPurpose";
+import PlaceKeywordSummaryLine from "./PlaceKeywordSummaryLine";
+import PlaceKeywordSummaryPurpose from "./PlaceKeywordSummaryPurpose";
 
 //Organism
 export default function PlaceKeywordSummary({
