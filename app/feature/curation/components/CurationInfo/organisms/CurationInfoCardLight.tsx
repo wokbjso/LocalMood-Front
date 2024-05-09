@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import useFetching from "@common/hooks/useFetching";
 import revalidateCurationScrapRelatedData from "@feature/curation/actions/revalidateCurationScrapRelatedData";
 import LocationLineIcon from "@common/assets/icons/location/LocationLineIcon";
+import HashTag from "@common/components/ui/text/HashTag";
 
 //Molecule
 export default function CurationInfoCardLight({
@@ -212,12 +213,15 @@ export default function CurationInfoCardLight({
           <div className="max-w-[24.4rem] headline2 w-[70%] break-keep mb-[1.2rem] text-black">
             {title}
           </div>
-          <div className="flex flex-wrap gap-[0.8rem]">
+          <div className="flex flex-wrap">
             {keyword.map((tag) => (
-              <div key={tag}>
-                <span className="text-primary-normal body2-medium"># </span>
-                <span className="text-text-gray-6 body2-medium">{tag}</span>
-              </div>
+              <HashTag
+                key={tag}
+                mainText={" " + tag}
+                className="mr-[8px]"
+                tagClassName="text-primary-normal body2-medium"
+                mainTextClassName="text-text-gray-6 body2-medium"
+              />
             ))}
           </div>
         </Link>

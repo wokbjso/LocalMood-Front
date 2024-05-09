@@ -1,9 +1,10 @@
 import { IconProps } from "../icon-type";
 import Map from "@common/components/ui/map/Map/Map";
 
-interface MapInfoProps {
+export interface MapInfoProps {
   mapInfo: {
     isOpened: boolean;
+    zoom?: number;
     placeData: Array<any>;
     closeMap: () => void;
     className?: string;
@@ -58,6 +59,7 @@ export default function MapIcon({
       </svg>
       {mapInfo.isOpened && (
         <Map
+          zoom={mapInfo.zoom}
           placeData={mapInfo.placeData}
           closeMap={mapInfo.closeMap}
           className={mapInfo.className}

@@ -5,6 +5,7 @@ import PrivacyToggleButton from "../../MyCuration/molecules/PrivacyToggleButton"
 import Chip from "@common/components/ui/buttons/Chip/Chip";
 import { formatDate } from "@common/utils/date/formatDate";
 import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-detail";
+import HashTag from "@common/components/ui/text/HashTag";
 
 //Organism
 export default function CurationBanner({
@@ -26,10 +27,11 @@ export default function CurationBanner({
       <div className="w-full flex justify-center pb-[1.6rem] gap-[0.8rem]">
         {keyword?.split(",").map((tag: string, index: number) => (
           <Chip key={index} className="bg-white body2-medium">
-            <div className="flex items-center body2-medium">
-              <p className="text-primary-normal">#&nbsp;</p>
-              <p>{tag}</p>
-            </div>
+            <HashTag
+              mainText={" " + tag}
+              tagClassName="body2-medium"
+              mainTextClassName="body2-medium"
+            />
           </Chip>
         ))}
       </div>

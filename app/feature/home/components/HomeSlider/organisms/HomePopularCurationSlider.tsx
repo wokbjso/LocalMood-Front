@@ -9,7 +9,7 @@ import dynamic from "next/dynamic";
 const CurationInfoCardLight = dynamic(
   () =>
     import(
-      "@feature/curation/components/CurationInfo/molecules/CurationInfoCardLight"
+      "@feature/curation/components/CurationInfo/organisms/CurationInfoCardLight"
     )
 );
 
