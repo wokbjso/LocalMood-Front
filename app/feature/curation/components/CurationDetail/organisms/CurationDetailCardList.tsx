@@ -8,6 +8,7 @@ import { createRef, forwardRef, useEffect, useState } from "react";
 import UseMap from "@common/components/ui/map/Map/useMap";
 import LocationFillIcon from "@common/assets/icons/location/LocationFillIcon";
 import MapIcon from "@common/assets/icons/map/mapIcon";
+import MapIconButton from "../molecules/MapIconButton";
 
 interface CurationDetailCardListProps {
   inView: boolean;
@@ -89,20 +90,16 @@ const CurationDetailCardList = forwardRef<
                 {props.curationDetail.spaceDetails.length}개의 공간
               </h3>
             </div>
-            <button
-              className="flex items-center gap-[0.4rem]"
+            <MapIconButton
+              mapInfo={{
+                isOpened,
+                zoom: 13,
+                placeData,
+                closeMap,
+                className: "fixed top-[7rem] left-0 z-20",
+              }}
               onClick={handleMapClick}
-            >
-              <MapIcon
-                mapInfo={{
-                  isOpened,
-                  placeData,
-                  closeMap,
-                  className: "fixed top-[7rem] left-0 z-20",
-                }}
-              />
-              <span className="body2-medium text-text-gray-6">지도로 보기</span>
-            </button>
+            />
           </div>
           <div
             ref={ref}
