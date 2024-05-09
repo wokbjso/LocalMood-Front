@@ -1,5 +1,5 @@
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
-import CurationInfoCardLight from "@feature/curation/components/CurationInfo/molecules/CurationInfoCardLight";
+import CurationInfoCardLight from "@feature/curation/components/CurationInfo/organisms/CurationInfoCardLight";
 import GetRandomCuration from "@feature/curation/queries/getRandomCuration";
 
 //Page

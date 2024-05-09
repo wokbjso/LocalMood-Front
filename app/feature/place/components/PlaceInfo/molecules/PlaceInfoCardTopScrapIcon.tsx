@@ -8,7 +8,7 @@ interface PlaceInfoCardTopScrapIconProps {
   onClick?: (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
 }
 
-//Atom
+//Molecule
 export default function PlaceInfoCardTopScrapIcon({
   isScraped,
   cardSize,

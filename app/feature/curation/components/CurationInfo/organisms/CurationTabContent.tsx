@@ -7,9 +7,9 @@ import useOpenCurationMakeModal from "../../../hooks/CurationMake/useOpenCuratio
 import useTab from "@common/components/ui/tab/useTab";
 import { CurationTabSections } from "@feature/curation/constants/curation-tab";
 import MyCurationCount from "../molecules/MyCurationCount";
-import NoCurationText from "../atoms/NoCurationText";
-import CurationInfoCardLight from "../molecules/CurationInfoCardLight";
-import CurationInfoCardDark from "../molecules/CurationInfoCardDark";
+import NoCurationText from "../molecules/NoCurationText";
+import CurationInfoCardLight from "./CurationInfoCardLight";
+import CurationInfoCardDark from "./CurationInfoCardDark";
 import useGetMyCuration from "@feature/curation/queries/useGetMyCuration";
 
 interface CurationTabContentProps {

@@ -1,7 +1,7 @@
 "use client";
 
 import Filter from "@common/components/ui/buttons/Filter/Filter";
-import CurationDetailInfoCard from "../molecules/CurationDetailInfoCard";
+import CurationDetailInfoCard from "./CurationDetailInfoCard";
 import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-detail";
 import { twMerge } from "tailwind-merge";
 import { createRef, forwardRef, useEffect, useState } from "react";
