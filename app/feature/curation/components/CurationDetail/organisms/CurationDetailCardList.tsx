@@ -6,9 +6,8 @@ import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-d
 import { twMerge } from "tailwind-merge";
 import { createRef, forwardRef, useEffect, useState } from "react";
 import UseMap from "@common/components/ui/map/Map/useMap";
-import LocationFillIcon from "@common/assets/icons/location/LocationFillIcon";
-import MapIcon from "@common/assets/icons/map/mapIcon";
 import MapIconButton from "../molecules/MapIconButton";
+import LocationCount from "../molecules/LocationCount";
 
 interface CurationDetailCardListProps {
   inView: boolean;
@@ -84,12 +83,9 @@ const CurationDetailCardList = forwardRef<
       <div className="pb-[6.1rem] p-[2rem] pr-0 w-full">
         <div className="w-full items-start">
           <div className="flex items-center justify-between mb-[1.2rem] pr-[2rem]">
-            <div className="flex items-center gap-[0.4rem]">
-              <LocationFillIcon />
-              <h3 className="text-black body2-medium">
-                {props.curationDetail.spaceDetails.length}개의 공간
-              </h3>
-            </div>
+            <LocationCount
+              locationCount={props.curationDetail.spaceDetails.length}
+            />
             <MapIconButton
               mapInfo={{
                 isOpened,
