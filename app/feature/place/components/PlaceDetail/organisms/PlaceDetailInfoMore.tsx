@@ -4,7 +4,7 @@ import { useState } from "react";
 import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
 import ArrowDownIcon from "@common/assets/icons/arrow/ArrowDownIcon";
 import ArrowUpIcon from "@common/assets/icons/arrow/ArrowUpIcon";
-import TextWithDivider from "@common/components/ui/divider/TextWithDivider";
+import TextWithDivider from "@common/components/ui/text/TextWithDivider";
 
 //Organism
 export default function PlaceDetailInfoMore({

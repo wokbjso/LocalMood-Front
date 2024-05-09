@@ -17,7 +17,7 @@ import ImageWrapper from "@common/components/ui/wrapper/ImageWrapper";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
 import PlaceInfoCardTopScrapIcon from "../molecules/PlaceInfoCardTopScrapIcon";
 import CheckSmallIcon from "@common/assets/icons/check/CheckSmallIcon";
-import TextWithDivider from "@common/components/ui/divider/TextWithDivider";
+import TextWithDivider from "@common/components/ui/text/TextWithDivider";
 
 //Molecule
 export default function PlaceInfoCardTop({

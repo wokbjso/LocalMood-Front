@@ -9,7 +9,7 @@ import PlaceDetailInfoMore from "./PlaceDetailInfoMore";
 import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
 import ScrapFillIcon from "@common/assets/icons/scrap/ScrapFillIcon";
 import ScrapLineIcon from "@common/assets/icons/scrap/ScrapLineIcon";
-import TextWithDivider from "@common/components/ui/divider/TextWithDivider";
+import TextWithDivider from "@common/components/ui/text/TextWithDivider";
 
 //Organism
 export default function PlaceDetailInfo({
