@@ -17,7 +17,7 @@ import ImageWrapper from "@common/components/ui/wrapper/ImageWrapper";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
 import PlaceInfoCardTopScrapIcon from "../molecules/PlaceInfoCardTopScrapIcon";
 import CheckSmallIcon from "@common/assets/icons/check/CheckSmallIcon";
-import LineIcon from "@common/assets/icons/line/LineIcon";
+import TextWithDivider from "@common/components/ui/divider/TextWithDivider";
 
 //Molecule
 export default function PlaceInfoCardTop({
@@ -134,27 +134,17 @@ export default function PlaceInfoCardTop({
                 ? sliceText(name, 8)
                 : name}
             </span>
-            <div className="flex items-center mt-[0.8rem]">
-              <span
-                className={twMerge(
-                  "text-text-gray-6 whitespace-nowrap",
-                  size === "normal" ? "body2-semibold" : "body3-semibold"
-                )}
-              >
-                {type === "RESTAURANT" ? "음식점" : "카페"}
-              </span>
-              <LineIcon className="mx-[0.8rem]" />
-              <span
-                className={twMerge(
-                  "text-text-gray-5",
-                  size === "normal" ? "body2-medium" : "body3-medium"
-                )}
-              >
-                {direction === "vertical" && size === "small"
+            <TextWithDivider
+              leftText={type === "RESTAURANT" ? "음식점" : "카페"}
+              rightText={
+                direction === "vertical" && size === "small"
                   ? sliceText(address, 9)
-                  : address.split(" ").slice(0, 4).join(" ")}
-              </span>
-            </div>
+                  : address.split(" ").slice(0, 4).join(" ")
+              }
+              className="mt-[8px]"
+              leftTextClassName={size === "normal" ? "" : "body3-semibold"}
+              rightTextClassName={size === "normal" ? "" : "body3-medium"}
+            />
           </div>
         </div>
       </div>

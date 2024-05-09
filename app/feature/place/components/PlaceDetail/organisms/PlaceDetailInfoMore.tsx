@@ -4,7 +4,7 @@ import { useState } from "react";
 import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
 import ArrowDownIcon from "@common/assets/icons/arrow/ArrowDownIcon";
 import ArrowUpIcon from "@common/assets/icons/arrow/ArrowUpIcon";
-import LineIcon from "@common/assets/icons/line/LineIcon";
+import TextWithDivider from "@common/components/ui/divider/TextWithDivider";
 
 //Organism
 export default function PlaceDetailInfoMore({
@@ -25,13 +25,25 @@ export default function PlaceDetailInfoMore({
   const formattedDishDesc = dishDesc?.split(",").join("・");
 
   return (
-    <div className="w-full flex items-center body2-medium text-text-gray-8 pt-[2.4rem]">
+    <div className="w-full flex items-center pt-[2.4rem]">
       <div className="w-full">
         <div className="flex items-center  justify-between">
           <div className="inline-flex items-center gap-[0.6rem]">
-            <span>{visitorNum}</span>
-            {optionalService && <LineIcon className="mx-[0.8rem]" />}
-            <span>{optionalService}</span>
+            {visitorNum && optionalService && (
+              <>
+                <TextWithDivider
+                  leftText={visitorNum}
+                  rightText={optionalService}
+                  leftTextClassName="body2-medium text-text-gray-8"
+                  rightTextClassName="text-text-gray-8"
+                />
+              </>
+            )}
+            {visitorNum && !optionalService && (
+              <span className="body2-medium text-text-gray-8">
+                {visitorNum}
+              </span>
+            )}
           </div>
           {formattedDishDesc !== "NULL" && (
             <div onClick={moreButtonClicked}>
@@ -41,9 +53,13 @@ export default function PlaceDetailInfoMore({
         </div>
         {openMoreDetail && formattedDishDesc !== null ? (
           <div className="pt-[1.2rem]">
-            {type === "CAFE" ? "🍰" : "🍷"}
+            <span className="body2-medium">
+              {type === "CAFE" ? "🍰" : "🍷"}
+            </span>
             &nbsp; &nbsp;
-            <span>{formattedDishDesc}</span>
+            <span className="body2-medium text-text-gray-8">
+              {formattedDishDesc}
+            </span>
           </div>
         ) : null}
       </div>
