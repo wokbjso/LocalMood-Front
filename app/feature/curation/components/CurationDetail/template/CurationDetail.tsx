@@ -5,7 +5,7 @@ import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-d
 import { useInView } from "react-intersection-observer";
 import Divider from "@common/components/ui/divider/Divider";
 import CurationBanner from "../organisms/CurationBanner";
-import NoSavedPlace from "../molecules/NoSavedPlace";
+import NoSavedPlace from "../organisms/NoSavedPlace";
 import CurationTopAppBar from "../../CurationInfo/organisms/CurationTopAppBar";
 
 interface CurationDetailProps {

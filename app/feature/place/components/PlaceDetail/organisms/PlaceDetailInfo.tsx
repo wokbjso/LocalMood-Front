@@ -7,9 +7,9 @@ import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
 import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
 import PlaceDetailInfoMore from "./PlaceDetailInfoMore";
 import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
-import PlaceTypeAndAddress from "../../PlaceInfo/molecules/PlaceTypeAndAddress";
 import ScrapFillIcon from "@common/assets/icons/scrap/ScrapFillIcon";
 import ScrapLineIcon from "@common/assets/icons/scrap/ScrapLineIcon";
+import TextWithDivider from "@common/components/ui/text/TextWithDivider";
 
 //Organism
 export default function PlaceDetailInfo({
@@ -71,9 +71,11 @@ export default function PlaceDetailInfo({
             onClick={handleScrapClick}
           />
         )}
-        <PlaceTypeAndAddress
-          type={type === "CAFE" ? "카페" : subType && PLACE_SUB_TYPE[subType]}
-          address={address}
+        <TextWithDivider
+          leftText={
+            type === "CAFE" ? "카페" : subType && PLACE_SUB_TYPE[subType]
+          }
+          rightText={address}
         />
         <PlaceDetailInfoMore
           type={type}

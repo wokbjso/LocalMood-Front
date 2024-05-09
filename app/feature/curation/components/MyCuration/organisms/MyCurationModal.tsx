@@ -10,7 +10,7 @@ import { toastInfoSelector } from "@common/state/toast";
 import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
 import { twMerge } from "tailwind-merge";
 import useSavePlaceAtCuration from "@feature/curation/queries/useSavePlaceAtCuration";
-const MyCurationCard = lazy(() => import("../molecules/MyCurationCard"));
+const MyCurationCard = lazy(() => import("./MyCurationCard"));
 
 interface MyCurationModalProps {
   open: boolean;

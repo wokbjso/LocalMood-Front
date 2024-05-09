@@ -1,4 +1,5 @@
 import Chip from "@common/components/ui/buttons/Chip/Chip";
+import HashTag from "@common/components/ui/text/HashTag";
 import { PLACE_CATEGORY } from "@feature/place/constants/place-tag-category";
 import { twMerge } from "tailwind-merge";
 
@@ -21,8 +22,11 @@ export default function PlaceKeywordSummaryLine({
       </span>
       {typeof record === "string" ? (
         <Chip className="bg-white">
-          <span className="body2-medium text-primary-normal"># </span>
-          <span className="body2-medium">{record}</span>
+          <HashTag
+            mainText={" " + record}
+            tagClassName="body2-medium"
+            mainTextClassName="body2-medium"
+          />
         </Chip>
       ) : (
         record.slice(0, 2).map((li, i) =>
@@ -31,8 +35,11 @@ export default function PlaceKeywordSummaryLine({
               className={twMerge("bg-white", i === 0 && "mr-[8px]")}
               key={li + i}
             >
-              <span className="body2-medium text-primary-normal"># </span>
-              <span className="body2-medium">{li}</span>
+              <HashTag
+                mainText={" " + li}
+                tagClassName="body2-medium"
+                mainTextClassName="body2-medium"
+              />
             </Chip>
           ) : null
         )

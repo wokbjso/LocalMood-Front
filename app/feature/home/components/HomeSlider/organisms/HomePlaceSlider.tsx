@@ -5,8 +5,8 @@ import {
 } from "@feature/place/type";
 import SliderLayout from "@common/components/layout/Slider/SliderLayout";
 import GetRandomPlaces from "@feature/place/queries/getRandomPlaces";
-import SliderHashTag from "@feature/home/components/HomeSlider/molecules/SliderHashTag";
 import dynamic from "next/dynamic";
+import HashTag from "@common/components/ui/text/HashTag";
 const PlaceInfoCard = dynamic(
   () => import("@feature/place/components/PlaceInfo/organisms/PlaceInfoCard")
 );
@@ -28,7 +28,7 @@ export default async function HomePlaceSlider({
   } = await GetRandomPlaces();
   return (
     <section className={twMerge("mb-[4rem] pl-[2rem]", className)}>
-      <SliderHashTag mainText={mainText} subText={subText} />
+      <HashTag mainText={" " + mainText} subText={" " + subText} />
       <SliderLayout className="mt-[1.6rem]">
         {randomPlace[mainText].map(
           (data: PlaceInfoCardTopProps & PlaceInfoCardBottomProps, i) => (

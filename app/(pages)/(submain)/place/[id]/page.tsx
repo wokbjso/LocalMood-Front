@@ -12,11 +12,11 @@ const PlaceInfoCard = dynamic(
 const CurationInfoCardDark = dynamic(
   () =>
     import(
-      "@feature/curation/components/CurationInfo/molecules/CurationInfoCardDark"
+      "@feature/curation/components/CurationInfo/organisms/CurationInfoCardDark"
     )
 );
-import RelatedPlaceSlider from "@feature/place/components/PlaceDetail/molecules/RelatedPlaceSlider";
-import RelatedCurationSlider from "@feature/place/components/PlaceDetail/molecules/RelatedCurationSlider";
+import RelatedPlaceSlider from "@feature/place/components/PlaceDetail/organisms/RelatedPlaceSlider";
+import RelatedCurationSlider from "@feature/place/components/PlaceDetail/organisms/RelatedCurationSlider";
 
 //Page
 export default async function PlaceDetailPage({

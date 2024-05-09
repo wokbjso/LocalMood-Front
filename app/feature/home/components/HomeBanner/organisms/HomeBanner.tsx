@@ -5,7 +5,7 @@ import HomeTopBar from "@feature/home/components/HomeTopBar/HomeTopBar";
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 import KeywordInfiniteScroller from "./KeywordInfiniteScroller";
-import HomeBannerTitle from "@feature/home/components/HomeBanner/molecules/HomeBannerTitle";
+import HomeBannerTitle from "@feature/home/components/HomeBanner/organisms/HomeBannerTitle";
 
 export interface HomeBannerProps {
   textNormalFirst: string;

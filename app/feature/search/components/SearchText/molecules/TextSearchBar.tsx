@@ -4,9 +4,9 @@ import { twMerge } from "tailwind-merge";
 import React, { ChangeEvent, useCallback, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import SearchIcon from "@common/assets/icons/search/SearchIcon";
-import SearchTextDelete from "../atoms/SearchTextDelete";
 import { useRecoilValue } from "recoil";
 import { searchSortState } from "@feature/search/state/sortState";
+import CloseGrayIcon from "@common/assets/icons/close/CloseGrayIcon";
 
 interface TextSearchBarProps {
   variant?: "home" | "record";
@@ -75,7 +75,9 @@ export default function TextSearchBar({
           onKeyDown={handleKeyPress}
         />
       </div>
-      <SearchTextDelete onClick={handleTextDeleteClick} />
+      <div className="flex justify-center items-center bg-line-gray-3 rounded-full w-[2.4rem] h-[2.4rem]">
+        <CloseGrayIcon onClick={handleTextDeleteClick} />
+      </div>
     </div>
   );
 }
