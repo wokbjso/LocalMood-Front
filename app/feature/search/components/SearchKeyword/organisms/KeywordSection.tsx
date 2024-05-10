@@ -1,10 +1,10 @@
-import Filter from "@common/components/ui/buttons/Filter/Filter";
+import Filter from "@/common/components/ui/buttons/Filter/Filter";
 import {
   CAFE_CATEGORY,
   CAFE_KEYWORDS,
   RESTARANT_KEYWORDS,
   RESTAURANT_CATEGORY,
-} from "@feature/search/constants/search-keywords";
+} from "@/feature/search/constants/search-keywords";
 
 interface KeywordSectionProps {
   type: "RESTAURANT" | "CAFE";

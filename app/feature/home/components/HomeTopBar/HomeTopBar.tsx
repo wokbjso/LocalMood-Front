@@ -1,6 +1,6 @@
-import HeaderTextIcon from "@common/assets/icons/header/HeaderTextIcon";
-import SearchIcon from "@common/assets/icons/search/SearchIcon";
-import Button from "@common/components/ui/buttons/Button/Button";
+import HeaderTextIcon from "@/common/assets/icons/header/HeaderTextIcon";
+import SearchIcon from "@/common/assets/icons/search/SearchIcon";
+import Button from "@/common/components/ui/buttons/Button/Button";
 import Link from "next/link";
 
 interface HomeHeaderProps {

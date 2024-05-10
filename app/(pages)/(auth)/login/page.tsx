@@ -1,10 +1,10 @@
-import LinkLayout from "@common/components/layout/Link/LinkLayout";
-import KakaoScript from "@feature/auth/components/Login/script/KakaoScript";
-import LoginLogo from "@feature/auth/components/Login/atoms/LoginLogo";
-import LoginPageText from "@feature/auth/components/Login/organisms/LoginPageText";
-import KakaoStartButton from "@feature/auth/components/Login/organisms/KakaoStartButton";
-import TextWithBorder from "@feature/auth/components/Login/molecules/TextWithBorder";
-import Button from "@common/components/ui/buttons/Button/Button";
+import LinkLayout from "@/common/components/layout/Link/LinkLayout";
+import KakaoScript from "@/feature/auth/components/Login/script/KakaoScript";
+import LoginLogo from "@/feature/auth/components/Login/atoms/LoginLogo";
+import LoginPageText from "@/feature/auth/components/Login/organisms/LoginPageText";
+import KakaoStartButton from "@/feature/auth/components/Login/organisms/KakaoStartButton";
+import TextWithBorder from "@/feature/auth/components/Login/molecules/TextWithBorder";
+import Button from "@/common/components/ui/buttons/Button/Button";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

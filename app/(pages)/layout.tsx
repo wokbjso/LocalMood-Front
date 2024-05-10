@@ -3,15 +3,15 @@ import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 import { Metadata, Viewport } from "next";
 import { twMerge } from "tailwind-merge";
-import RecoilRootLayout from "@common/components/layout/Recoil/RecoilRootLayout";
-import ReactQueryProviders from "@common/components/layout/QueryClientProvider/ReactQueryProvider";
-import ToastProvider from "@common/components/layout/Provider/ToastProvider";
-import QueryFetchingProvider from "@common/components/layout/Provider/QueryFetchingProvider";
+import RecoilRootLayout from "@/common/components/layout/Recoil/RecoilRootLayout";
+import ReactQueryProviders from "@/common/components/layout/QueryClientProvider/ReactQueryProvider";
+import ToastProvider from "@/common/components/layout/Provider/ToastProvider";
+import QueryFetchingProvider from "@/common/components/layout/Provider/QueryFetchingProvider";
 const MyCurationModalProvider = dynamic(
-  () => import("@common/components/layout/Provider/MyCurationModalProvider")
+  () => import("@/common/components/layout/Provider/MyCurationModalProvider")
 );
 const DetectDevice = dynamic(
-  () => import("@common/components/layout/DetectDevice/DetectDevice"),
+  () => import("@/common/components/layout/DetectDevice/DetectDevice"),
   { ssr: false }
 );
 

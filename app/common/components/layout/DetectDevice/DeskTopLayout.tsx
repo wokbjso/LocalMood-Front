@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 const PhoneRingingImage = dynamic(
-  () => import("@common/assets/images/phoneRinging.svg")
+  () => import("@/common/assets/images/phoneRinging.svg")
 );
 const QRCode = dynamic(() => import("./QRCode"));
 

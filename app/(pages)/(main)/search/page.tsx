@@ -1,9 +1,9 @@
-import SearchImage from "@common/assets/images/search_start.svg";
-import LinkLayout from "@common/components/layout/Link/LinkLayout";
-import Button from "@common/components/ui/buttons/Button/Button";
-import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
-import SearchKeywordModal from "@feature/search/components/SearchKeyword/organisms/SearchKeywordModal";
-import TextSearchBar from "@feature/search/components/SearchText/molecules/TextSearchBar";
+import SearchImage from "@/common/assets/images/search_start.svg";
+import LinkLayout from "@/common/components/layout/Link/LinkLayout";
+import Button from "@/common/components/ui/buttons/Button/Button";
+import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
+import SearchKeywordModal from "@/feature/search/components/SearchKeyword/organisms/SearchKeywordModal";
+import TextSearchBar from "@/feature/search/components/SearchText/molecules/TextSearchBar";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

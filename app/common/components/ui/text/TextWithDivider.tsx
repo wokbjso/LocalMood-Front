@@ -1,4 +1,4 @@
-import LineIcon from "@common/assets/icons/line/LineIcon";
+import LineIcon from "@/common/assets/icons/line/LineIcon";
 import { twMerge } from "tailwind-merge";
 
 interface TextWithDividerProps {

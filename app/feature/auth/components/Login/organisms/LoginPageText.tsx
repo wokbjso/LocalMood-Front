@@ -1,6 +1,6 @@
 "use client";
 
-import UseGetBrowserHeight from "@common/hooks/useGetBrowserHeight";
+import UseGetBrowserHeight from "@/common/hooks/useGetBrowserHeight";
 import { twMerge } from "tailwind-merge";
 
 interface LoginPageTextProps {

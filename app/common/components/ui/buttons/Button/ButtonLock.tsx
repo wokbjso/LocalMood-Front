@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import LockIcon from "@common/assets/icons/lock/LockIcon";
-import UnlockColorIcon from "@common/assets/icons/lock/UnlockColorIcon";
+import LockIcon from "@/common/assets/icons/lock/LockIcon";
+import UnlockColorIcon from "@/common/assets/icons/lock/UnlockColorIcon";
 
 interface ButtonLockProps {
   onClick?: (state: boolean) => void;

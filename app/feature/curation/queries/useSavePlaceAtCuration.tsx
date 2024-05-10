@@ -1,9 +1,9 @@
 "use client";
 
-import revalidateHomeRecommend from "@feature/place/actions/revalidateHomeRecommend";
-import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
+import revalidateHomeRecommend from "@/feature/place/actions/revalidateHomeRecommend";
+import revalidateScrapSpace from "@/feature/place/actions/revalidateScrapSpace";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail";
+import revalidatePlaceDetail from "@/feature/place/actions/revalidatePlaceDetail";
 import revalidateCurationDetail from "../actions/revalidateCurationDetail";
 import { useSearchParams } from "next/navigation";
 

@@ -1,24 +1,24 @@
 "use client";
 
-import UserProfile from "@feature/user/components/UserProfile/molecules/UserProfile";
-import { CurationProps } from "@feature/curation/type";
+import UserProfile from "@/feature/user/components/UserProfile/molecules/UserProfile";
+import { CurationProps } from "@/feature/curation/type";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
-import Chip from "@common/components/ui/buttons/Chip/Chip";
-import NoResult from "@common/assets/images/curationHomeNoImg.png";
+import Chip from "@/common/components/ui/buttons/Chip/Chip";
+import NoResult from "@/common/assets/images/curationHomeNoImg.png";
 import Image from "next/image";
 import useCurationMenuModal from "../../../hooks/CurationMenu/useCurationMenuModal";
 import CurationMenuIcon from "../../CurationMenu/CurationMenuIcon";
 import CurationScrapIcon from "../../CurationScrap/CurationScrapIcon";
 import useCurationScrapIcon from "../../../hooks/CurationScrap/useCurationScrapIcon";
 import { useSetRecoilState } from "recoil";
-import { toastInfoSelector } from "@common/state/toast";
-import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
+import { toastInfoSelector } from "@/common/state/toast";
+import { validateLoggedIn } from "@/common/utils/validate/validateLoggedIn";
 import { useEffect, useState } from "react";
-import useFetching from "@common/hooks/useFetching";
-import revalidateCurationScrapRelatedData from "@feature/curation/actions/revalidateCurationScrapRelatedData";
-import LocationLineIcon from "@common/assets/icons/location/LocationLineIcon";
-import HashTag from "@common/components/ui/text/HashTag";
+import useFetching from "@/common/hooks/useFetching";
+import revalidateCurationScrapRelatedData from "@/feature/curation/actions/revalidateCurationScrapRelatedData";
+import LocationLineIcon from "@/common/assets/icons/location/LocationLineIcon";
+import HashTag from "@/common/components/ui/text/HashTag";
 
 //Molecule
 export default function CurationInfoCardLight({

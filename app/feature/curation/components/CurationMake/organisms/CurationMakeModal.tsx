@@ -1,9 +1,9 @@
-import TextField from "@common/components/ui/textField/TextField";
-import ButtonLock from "@common/components/ui/buttons/Button/ButtonLock";
+import TextField from "@/common/components/ui/textField/TextField";
+import ButtonLock from "@/common/components/ui/buttons/Button/ButtonLock";
 import CurationMakeKeyword from "./CurationMakeKeyword";
 import UseCurationMake from "../../../hooks/CurationMake/useCurationMake";
-import Modal from "@common/components/ui/modal/Modal";
-import CloseIcon from "@common/assets/icons/close/CloseIcon";
+import Modal from "@/common/components/ui/modal/Modal";
+import CloseIcon from "@/common/assets/icons/close/CloseIcon";
 
 interface CurationMakeProps {
   open: boolean;

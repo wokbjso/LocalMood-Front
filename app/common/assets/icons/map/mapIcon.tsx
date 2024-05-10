@@ -1,5 +1,5 @@
 import { IconProps } from "../icon-type";
-import Map from "@common/components/ui/map/Map/Map";
+import Map from "@/common/components/ui/map/Map/Map";
 
 export interface MapInfoProps {
   mapInfo: {

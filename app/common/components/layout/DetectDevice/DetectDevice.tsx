@@ -1,6 +1,6 @@
 "use client";
 
-import UseDetectMobile from "@common/hooks/useDetectMobile";
+import UseDetectMobile from "@/common/hooks/useDetectMobile";
 import { ReactNode } from "react";
 import DeskTopLayout from "./DeskTopLayout";
 

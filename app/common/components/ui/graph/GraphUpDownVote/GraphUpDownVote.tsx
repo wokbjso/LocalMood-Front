@@ -1,7 +1,7 @@
-import LikeBadIcon from "@common/assets/icons/like/LikeBadIcon";
+import LikeBadIcon from "@/common/assets/icons/like/LikeBadIcon";
 import { GraphProps } from "../type";
 import { twMerge } from "tailwind-merge";
-import LikeGoodIcon from "@common/assets/icons/like/LikeGoodIcon";
+import LikeGoodIcon from "@/common/assets/icons/like/LikeGoodIcon";
 
 export default function GraphUpDownVote({
   variant = "diff",

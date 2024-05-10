@@ -1,4 +1,4 @@
-import Footer from "@common/components/layout/Footer/Footer";
+import Footer from "@/common/components/layout/Footer/Footer";
 import Script from "next/script";
 
 export default function MainLayout({

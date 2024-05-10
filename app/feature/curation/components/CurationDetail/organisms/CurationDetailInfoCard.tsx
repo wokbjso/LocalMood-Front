@@ -1,18 +1,18 @@
 import Image from "next/image";
 import { forwardRef, useState } from "react";
-import { CurationPlaceProps } from "@feature/curation/type";
-import LinkLayout from "@common/components/layout/Link/LinkLayout";
-import PlaceInfoCardBottom from "@feature/place/components/PlaceInfo/organisms/PlaceInfoCardBottom";
-import SliderLayout from "@common/components/layout/Slider/SliderLayout";
+import { CurationPlaceProps } from "@/feature/curation/type";
+import LinkLayout from "@/common/components/layout/Link/LinkLayout";
+import PlaceInfoCardBottom from "@/feature/place/components/PlaceInfo/organisms/PlaceInfoCardBottom";
+import SliderLayout from "@/common/components/layout/Slider/SliderLayout";
 import { useSetRecoilState } from "recoil";
-import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
-import { toastInfoSelector } from "@common/state/toast";
-import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
-import useCurationSpaceDelete from "@feature/curation/queries/useCurationSpaceDelete";
-import { queryFetchingSelector } from "@common/state/queryFetching";
-import ArrowRightIcon from "@common/assets/icons/arrow/ArrowRightIcon";
-import ScrapFillIcon from "@common/assets/icons/scrap/ScrapFillIcon";
-import ScrapLineIcon from "@common/assets/icons/scrap/ScrapLineIcon";
+import { myCurationModalInfoSelector } from "@/common/state/myCurationModal";
+import { toastInfoSelector } from "@/common/state/toast";
+import { validateLoggedIn } from "@/common/utils/validate/validateLoggedIn";
+import useCurationSpaceDelete from "@/feature/curation/queries/useCurationSpaceDelete";
+import { queryFetchingSelector } from "@/common/state/queryFetching";
+import ArrowRightIcon from "@/common/assets/icons/arrow/ArrowRightIcon";
+import ScrapFillIcon from "@/common/assets/icons/scrap/ScrapFillIcon";
+import ScrapLineIcon from "@/common/assets/icons/scrap/ScrapLineIcon";
 
 //Molecule
 const CurationDetailInfoCard = forwardRef<

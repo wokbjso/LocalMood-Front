@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import Filter from "@common/components/ui/buttons/Filter/Filter";
+import Filter from "@/common/components/ui/buttons/Filter/Filter";
 import {
   CURATION_MAKE_CATEGORY,
   CURATION_MAKE_KEYWORD,
-} from "@feature/curation/constants/curation-make";
-import Button from "@common/components/ui/buttons/Button/Button";
-import useMakeCuration from "@feature/curation/queries/useMakeCuration";
+} from "@/feature/curation/constants/curation-make";
+import Button from "@/common/components/ui/buttons/Button/Button";
+import useMakeCuration from "@/feature/curation/queries/useMakeCuration";
 import { useSetRecoilState } from "recoil";
-import { queryFetchingSelector } from "@common/state/queryFetching";
-import useEditCuration from "@feature/curation/queries/useEditCuration";
-import ArrowDownIcon from "@common/assets/icons/arrow/ArrowDownIcon";
-import ArrowUpIcon from "@common/assets/icons/arrow/ArrowUpIcon";
+import { queryFetchingSelector } from "@/common/state/queryFetching";
+import useEditCuration from "@/feature/curation/queries/useEditCuration";
+import ArrowDownIcon from "@/common/assets/icons/arrow/ArrowDownIcon";
+import ArrowUpIcon from "@/common/assets/icons/arrow/ArrowUpIcon";
 
 interface CurationMakeKeywordProps {
   openedAt?: "page" | "modal";

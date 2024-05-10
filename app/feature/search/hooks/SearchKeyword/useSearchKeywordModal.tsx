@@ -1,6 +1,6 @@
 "use client";
 
-import { KOREAN_OPTION } from "@feature/search/constants/search-keywords";
+import { KOREAN_OPTION } from "@/feature/search/constants/search-keywords";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 

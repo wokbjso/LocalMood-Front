@@ -1,9 +1,9 @@
-import Filter from "@common/components/ui/buttons/Filter/Filter";
+import Filter from "@/common/components/ui/buttons/Filter/Filter";
 import {
   CAFE_EVALUATIONS,
   PLACE_EVALUATIONS,
   RESTAURANT_EVALUATIONS,
-} from "@feature/record/constants/evaluate-keywords";
+} from "@/feature/record/constants/evaluate-keywords";
 
 //Organism
 export default function EvaluationKeywordContent({

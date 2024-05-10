@@ -1,6 +1,6 @@
 "use client";
 
-import SliderLayout from "@common/components/layout/Slider/SliderLayout";
+import SliderLayout from "@/common/components/layout/Slider/SliderLayout";
 import { ReactNode } from "react";
 
 interface RelatedCurationSliderProps {

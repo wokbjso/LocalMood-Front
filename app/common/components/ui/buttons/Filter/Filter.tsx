@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import Image from "next/image";
-import ArrowDownIcon from "@common/assets/icons/arrow/ArrowDownIcon";
-import ArrowUpIcon from "@common/assets/icons/arrow/ArrowUpIcon";
+import ArrowDownIcon from "@/common/assets/icons/arrow/ArrowDownIcon";
+import ArrowUpIcon from "@/common/assets/icons/arrow/ArrowUpIcon";
 
 interface FilterProps {
   variant?: "static" | "showOptions";

@@ -1,18 +1,18 @@
 "use client";
 
-import CloseIcon from "@common/assets/icons/close/CloseIcon";
-import Divider from "@common/components/ui/divider/Divider";
-import Tab from "@common/components/ui/tab/Tab";
+import CloseIcon from "@/common/assets/icons/close/CloseIcon";
+import Divider from "@/common/components/ui/divider/Divider";
+import Tab from "@/common/components/ui/tab/Tab";
 import {
   CAFE_CATEGORY,
   RESTAURANT_CATEGORY,
-} from "@feature/search/constants/search-keywords";
-import Button from "@common/components/ui/buttons/Button/Button";
+} from "@/feature/search/constants/search-keywords";
+import Button from "@/common/components/ui/buttons/Button/Button";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import Modal from "@common/components/ui/modal/Modal";
+import Modal from "@/common/components/ui/modal/Modal";
 import { useRecoilValue } from "recoil";
-import { searchSortState } from "@feature/search/state/sortState";
+import { searchSortState } from "@/feature/search/state/sortState";
 import useSearchKeywordModal from "../../../hooks/SearchKeyword/useSearchKeywordModal";
 import KeywordSection from "./KeywordSection";
 import KeywordFoodSection from "./KeywordRestaurantFoodSection";

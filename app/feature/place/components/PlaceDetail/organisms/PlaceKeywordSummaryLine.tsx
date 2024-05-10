@@ -1,6 +1,6 @@
-import Chip from "@common/components/ui/buttons/Chip/Chip";
-import HashTag from "@common/components/ui/text/HashTag";
-import { PLACE_CATEGORY } from "@feature/place/constants/place-tag-category";
+import Chip from "@/common/components/ui/buttons/Chip/Chip";
+import HashTag from "@/common/components/ui/text/HashTag";
+import { PLACE_CATEGORY } from "@/feature/place/constants/place-tag-category";
 import { twMerge } from "tailwind-merge";
 
 interface PlaceKeywordSummaryLineProps {

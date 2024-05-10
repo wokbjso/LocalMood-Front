@@ -1,7 +1,7 @@
 "use client";
 
-import KakaoIcon from "@common/assets/icons/kakao/KakaoIcon";
-import Button from "../../../../../common/components/ui/buttons/Button/Button";
+import KakaoIcon from "@/common/assets/icons/kakao/KakaoIcon";
+import Button from "@/common/components/ui/buttons/Button/Button";
 
 interface KakaoStartButtonProps {
   text: string;

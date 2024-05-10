@@ -1,13 +1,13 @@
 "use client";
 
-import Filter from "@common/components/ui/buttons/Filter/Filter";
-import Divider from "@common/components/ui/divider/Divider";
+import Filter from "@/common/components/ui/buttons/Filter/Filter";
+import Divider from "@/common/components/ui/divider/Divider";
 import PlaceReview from "./PlaceReview";
 import { useState } from "react";
 import {
   PLACE_CAFE_PURPOSE,
   PLACE_RESTAURANT_PURPOSE,
-} from "@feature/place/constants/place-tag-category";
+} from "@/feature/place/constants/place-tag-category";
 
 interface PlaceReviewsProps {
   type: string;

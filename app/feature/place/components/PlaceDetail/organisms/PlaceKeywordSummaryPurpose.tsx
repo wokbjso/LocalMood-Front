@@ -1,4 +1,4 @@
-import { PLACE_CATEGORY } from "@feature/place/constants/place-tag-category";
+import { PLACE_CATEGORY } from "@/feature/place/constants/place-tag-category";
 import PlacePurposeBox from "./PlacePurposeBox";
 
 interface PlaceKeywordSummaryPurposeProps {

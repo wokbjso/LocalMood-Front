@@ -1,4 +1,4 @@
-import NoResult from "@common/assets/images/search_no_result.svg";
+import NoResult from "@/common/assets/images/search_no_result.svg";
 
 //Molecule
 export default function SearchNoResult() {

@@ -1,6 +1,6 @@
-import SuccessImage from "@common/assets/images/register_success.svg";
-import LinkLayout from "@common/components/layout/Link/LinkLayout";
-import Button from "@common/components/ui/buttons/Button/Button";
+import SuccessImage from "@/common/assets/images/register_success.svg";
+import LinkLayout from "@/common/components/layout/Link/LinkLayout";
+import Button from "@/common/components/ui/buttons/Button/Button";
 
 //Page
 export default function RegisterSuccessPage() {

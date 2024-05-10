@@ -1,7 +1,7 @@
-import CurationIcon from "@common/assets/icons/curation/CurationIcon";
-import HomeIcon from "@common/assets/icons/home/HomeIcon";
-import RecordIcon from "@common/assets/icons/record/RecordIcon";
-import UserProfileIcon from "@common/assets/icons/user/UserProfileIcon";
+import CurationIcon from "@/common/assets/icons/curation/CurationIcon";
+import HomeIcon from "@/common/assets/icons/home/HomeIcon";
+import RecordIcon from "@/common/assets/icons/record/RecordIcon";
+import UserProfileIcon from "@/common/assets/icons/user/UserProfileIcon";
 
 export const FOOTER_BOX = [
   {

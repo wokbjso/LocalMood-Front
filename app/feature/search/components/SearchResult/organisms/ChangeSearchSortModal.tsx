@@ -1,8 +1,8 @@
-import Modal from "@common/components/ui/modal/Modal";
-import { ModalContent } from "@common/components/ui/modal/ModalContent";
-import UseOutsideClick from "@common/hooks/useOutsideClick";
-import { toastInfoSelector } from "@common/state/toast";
-import { searchSortStateSelector } from "@feature/search/state/sortState";
+import Modal from "@/common/components/ui/modal/Modal";
+import { ModalContent } from "@/common/components/ui/modal/ModalContent";
+import UseOutsideClick from "@/common/hooks/useOutsideClick";
+import { toastInfoSelector } from "@/common/state/toast";
+import { searchSortStateSelector } from "@/feature/search/state/sortState";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useRecoilState, useSetRecoilState } from "recoil";
 

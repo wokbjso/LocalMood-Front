@@ -1,4 +1,4 @@
-import { CurationProps } from "@feature/curation/type";
+import { CurationProps } from "@/feature/curation/type";
 
 export interface MyCurationResponse {
   curationCount: number;

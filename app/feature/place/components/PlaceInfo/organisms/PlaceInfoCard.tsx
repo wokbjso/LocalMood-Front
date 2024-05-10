@@ -2,7 +2,7 @@ import {
   PlaceInfoCardAdditionalProps,
   PlaceInfoCardBottomProps,
   PlaceInfoCardTopProps,
-} from "@feature/place/type";
+} from "@/feature/place/type";
 import PlaceInfoCardTop from "./PlaceInfoCardTop";
 import PlaceInfoCardBottom from "./PlaceInfoCardBottom";
 

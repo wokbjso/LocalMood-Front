@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Tab from "./Tab";
-import MyCurationFillIcon from "@common/assets/icons/curation/MyCurationFillIcon";
-import ScrapLineIcon from "@common/assets/icons/scrap/ScrapLineIcon";
+import MyCurationFillIcon from "@/common/assets/icons/curation/MyCurationFillIcon";
+import ScrapLineIcon from "@/common/assets/icons/scrap/ScrapLineIcon";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {

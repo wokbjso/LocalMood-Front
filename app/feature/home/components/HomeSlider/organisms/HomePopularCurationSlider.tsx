@@ -4,12 +4,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../slick.css";
 import Slider from "react-slick";
-import MoreTopBar from "@common/components/ui/topBar/MoreTopBar/MoreTopBar";
+import MoreTopBar from "@/common/components/ui/topBar/MoreTopBar/MoreTopBar";
 import dynamic from "next/dynamic";
 const CurationInfoCardLight = dynamic(
   () =>
     import(
-      "@feature/curation/components/CurationInfo/organisms/CurationInfoCardLight"
+      "@/feature/curation/components/CurationInfo/organisms/CurationInfoCardLight"
     )
 );
 

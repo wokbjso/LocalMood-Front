@@ -3,10 +3,10 @@
 import { twMerge } from "tailwind-merge";
 import React, { ChangeEvent, useCallback, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import SearchIcon from "@common/assets/icons/search/SearchIcon";
+import SearchIcon from "@/common/assets/icons/search/SearchIcon";
 import { useRecoilValue } from "recoil";
-import { searchSortState } from "@feature/search/state/sortState";
-import CloseGrayIcon from "@common/assets/icons/close/CloseGrayIcon";
+import { searchSortState } from "@/feature/search/state/sortState";
+import CloseGrayIcon from "@/common/assets/icons/close/CloseGrayIcon";
 
 interface TextSearchBarProps {
   variant?: "home" | "record";

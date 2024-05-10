@@ -1,4 +1,4 @@
-import CheckIcon from "@common/assets/icons/check/CheckIcon";
+import CheckIcon from "@/common/assets/icons/check/CheckIcon";
 import { twMerge } from "tailwind-merge";
 
 interface ImageWrapperProps {

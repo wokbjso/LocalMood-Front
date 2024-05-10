@@ -1,8 +1,8 @@
-import Footer from "@common/components/layout/Footer/Footer";
-import HomeBanner from "@feature/home/components/HomeBanner/organisms/HomeBanner";
-import GetRandomCuration from "@feature/curation/queries/getRandomCuration";
-import HomePlaceSlider from "@feature/home/components/HomeSlider/organisms/HomePlaceSlider";
-import HomePopularCurationSlider from "@feature/home/components/HomeSlider/organisms/HomePopularCurationSlider";
+import Footer from "@/common/components/layout/Footer/Footer";
+import HomeBanner from "@/feature/home/components/HomeBanner/organisms/HomeBanner";
+import GetRandomCuration from "@/feature/curation/queries/getRandomCuration";
+import HomePlaceSlider from "@/feature/home/components/HomeSlider/organisms/HomePlaceSlider";
+import HomePopularCurationSlider from "@/feature/home/components/HomeSlider/organisms/HomePopularCurationSlider";
 
 //Page
 export default async function Home() {
