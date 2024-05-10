@@ -11,7 +11,7 @@ export async function generateMetadata({
   searchParams,
 }: Props): Promise<Metadata> {
   return {
-    title: `${searchParams.name}이(가) 마음에 드셨나요? 기록을 남겨보세요!`,
+    title: `${searchParams.name} 기록`,
     openGraph: {
       images: ["/record.png"],
     },

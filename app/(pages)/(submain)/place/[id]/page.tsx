@@ -17,26 +17,20 @@ const CurationInfoCardDark = dynamic(
 );
 import RelatedPlaceSlider from "@feature/place/components/PlaceDetail/organisms/RelatedPlaceSlider";
 import RelatedCurationSlider from "@feature/place/components/PlaceDetail/organisms/RelatedCurationSlider";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 import { PLACE_SUB_TYPE } from "@feature/place/constants/place-tag-category";
 
 type Props = {
   params: { id: number };
 };
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const detailData = await GetPlaceDetail(params.id);
-
-  // optionally access and extend (rather than replace) parent metadata
-  const previousImages = (await parent).openGraph?.images || [];
 
   return {
     title: detailData.info.name,
     openGraph: {
-      images: [detailData.info.imgUrlList[0], ...previousImages],
+      images: [detailData.info.imgUrlList[0], "/localmood.png"],
     },
     description: `${detailData.info.visitorNum}이 방문하기 좋은 ${
       detailData.info.name
@@ -44,7 +38,7 @@ export async function generateMetadata(
       detailData.info.type === "CAFE"
         ? "카페"
         : detailData.info.subType && PLACE_SUB_TYPE[detailData.info.subType]
-    })의 정보를 더 자세히 보고싶다면?`,
+    })의 정보를 자세히 보고싶다면?`,
     keywords: [
       "로컬무드",
       "localmood",

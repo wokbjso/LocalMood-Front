@@ -1,21 +1,17 @@
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
 import CurationInfoCardLight from "@feature/curation/components/CurationInfo/organisms/CurationInfoCardLight";
 import GetRandomCuration from "@feature/curation/queries/getRandomCuration";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
-export async function generateMetadata(
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const randomCuration = await GetRandomCuration();
-  // optionally access and extend (rather than replace) parent metadata
-  const previousImages = (await parent).openGraph?.images || [];
 
   return {
-    title: "현재 마포구 인기 큐레이션을 확인해보세요!",
+    title: "마포구 인기 큐레이션",
     openGraph: {
-      images: [...randomCuration[0].image.slice(0, 2), ...previousImages],
+      images: [...randomCuration[0].image.slice(0, 2)],
     },
-    description: "",
+    description: "현재 마포구 인기 큐레이션을 확인해보세요!",
     keywords: ["로컬무드", "localmood", "키워드", "마포구"],
   };
 }

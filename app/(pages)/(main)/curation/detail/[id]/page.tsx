@@ -1,25 +1,23 @@
 import GetCurationDetail from "@feature/curation/queries/getCurationDetail";
 import CurationDetail from "@feature/curation/components/CurationDetail/template/CurationDetail";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
 type Props = {
   params: { id: number };
 };
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const curationDetail = await GetCurationDetail(params.id);
-  // optionally access and extend (rather than replace) parent metadata
-  const previousImages = (await parent).openGraph?.images || [];
 
   return {
-    title: `큐레이션: ${curationDetail.title}`,
+    title: `${curationDetail.title} 큐레이션`,
     openGraph: {
-      images: [...curationDetail.spaceDetails[0].imageUrls, ...previousImages],
+      images:
+        curationDetail.spaceDetails.length === 0
+          ? ["/localmood.png"]
+          : [...curationDetail.spaceDetails[0].imageUrls],
     },
-    description: "",
+    description: `${curationDetail.title} 큐레이션을 둘러보세요!`,
     keywords: [
       "로컬무드",
       "localmood",

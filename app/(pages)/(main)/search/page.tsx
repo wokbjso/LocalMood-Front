@@ -7,7 +7,7 @@ import TextSearchBar from "@feature/search/components/SearchText/molecules/TextS
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "찾고 있는 마포구 장소를 텍스트 or 키워드로 검색해보세요!",
+  title: "검색",
   openGraph: {
     images: ["/search.png"],
   },
