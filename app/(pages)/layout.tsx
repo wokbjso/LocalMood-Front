@@ -1,7 +1,7 @@
 import "../styles/global.css";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
-import { Viewport } from "next";
+import { Metadata, Viewport } from "next";
 import { twMerge } from "tailwind-merge";
 import RecoilRootLayout from "@common/components/layout/Recoil/RecoilRootLayout";
 import ReactQueryProviders from "@common/components/layout/QueryClientProvider/ReactQueryProvider";
@@ -40,11 +40,6 @@ const globalFont = localFont({
   ],
   variable: "--pretandard-variable",
 });
-
-export const metadata = {
-  title: "로컬무드",
-  description: "키워드로 내가 원하는 공간을 찾아보세요!",
-};
 
 export const viewport: Viewport = {
   width: "device-width",

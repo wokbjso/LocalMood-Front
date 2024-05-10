@@ -92,8 +92,6 @@ export default function CurationInfoCardLight({
     alert("오류가 발생했습니다");
   };
 
-  console.log(scrapClickCount);
-
   useEffect(() => {
     const timer = setTimeout(async () => {
       if (isFetching) {
