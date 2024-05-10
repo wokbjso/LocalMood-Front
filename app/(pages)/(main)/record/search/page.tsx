@@ -11,27 +11,8 @@ type Props = {
 export async function generateMetadata({
   searchParams,
 }: Props): Promise<Metadata> {
-  const textSearchPlaceData =
-    searchParams.search_query &&
-    (await getTextSearchPlaceData(searchParams.search_query));
-  // optionally access and extend (rather than replace) parent metadata
-
   return {
     title: `${searchParams.search_query} 검색결과`,
-    openGraph: {
-      images: textSearchPlaceData
-        ? [textSearchPlaceData.spaceList[0].imgUrl]
-        : ["/search.png"],
-    },
-    description: `${searchParams.search_query}과 연관된 장소의 공간 기록을 남겨보세요!`,
-    keywords: [
-      "로컬무드",
-      "localmood",
-      "공간기록",
-      "공간검색",
-      `${searchParams.search_query}`,
-      "마포구",
-    ],
   };
 }
 
