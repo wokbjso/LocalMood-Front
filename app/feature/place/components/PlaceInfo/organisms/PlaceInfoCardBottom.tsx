@@ -1,10 +1,10 @@
 import { twMerge } from "tailwind-merge";
-import Chip from "@common/components/ui/buttons/Chip/Chip";
+import Chip from "@/common/components/ui/buttons/Chip/Chip";
 import {
   PlaceInfoCardAdditionalProps,
   PlaceInfoCardBottomProps,
   PlaceInfoCardTopProps,
-} from "@feature/place/type";
+} from "@/feature/place/type";
 
 //Molecule
 export default function PlaceInfoCardBottom({

@@ -1,16 +1,16 @@
 "use client";
 
-import Tab from "@common/components/ui/tab/Tab";
-import { CurationProps } from "@feature/curation/type";
+import Tab from "@/common/components/ui/tab/Tab";
+import { CurationProps } from "@/feature/curation/type";
 import CurationMakeButton from "../../CurationMake/molecules/CurationMakeButton";
 import useOpenCurationMakeModal from "../../../hooks/CurationMake/useOpenCurationMakeModal";
-import useTab from "@common/components/ui/tab/useTab";
-import { CurationTabSections } from "@feature/curation/constants/curation-tab";
+import useTab from "@/common/components/ui/tab/useTab";
+import { CurationTabSections } from "@/feature/curation/constants/curation-tab";
 import MyCurationCount from "../molecules/MyCurationCount";
 import NoCurationText from "../molecules/NoCurationText";
 import CurationInfoCardLight from "./CurationInfoCardLight";
 import CurationInfoCardDark from "./CurationInfoCardDark";
-import useGetMyCuration from "@feature/curation/queries/useGetMyCuration";
+import useGetMyCuration from "@/feature/curation/queries/useGetMyCuration";
 
 interface CurationTabContentProps {
   scrappedCuration: any;

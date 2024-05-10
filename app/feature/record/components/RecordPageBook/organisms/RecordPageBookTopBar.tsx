@@ -1,4 +1,4 @@
-import Indicator from "@common/components/ui/indicator/Indicator";
+import Indicator from "@/common/components/ui/indicator/Indicator";
 
 interface RecordTopBarProps {
   showIndicator: boolean;

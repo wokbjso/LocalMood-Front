@@ -1,21 +1,21 @@
 "use client";
 
-import Tab from "@common/components/ui/tab/Tab";
+import Tab from "@/common/components/ui/tab/Tab";
 import { lazy } from "react";
-import { SearchCurationResponse } from "@feature/search/queries/dto/search-type";
-import Divider from "@common/components/ui/divider/Divider";
-import CurationInfoCardLight from "@feature/curation/components/CurationInfo/organisms/CurationInfoCardLight";
+import { SearchCurationResponse } from "@/feature/search/queries/dto/search-type";
+import Divider from "@/common/components/ui/divider/Divider";
+import CurationInfoCardLight from "@/feature/curation/components/CurationInfo/organisms/CurationInfoCardLight";
 import useTextSearchBar from "../../../hooks/SearchText/useTextSearchBar";
 import SearchNoResult from "../organisms/SearchNoResult";
 import dynamic from "next/dynamic";
-import useGetTextSearchPlaceData from "@feature/search/queries/useGetTextSearchPlaceData";
+import useGetTextSearchPlaceData from "@/feature/search/queries/useGetTextSearchPlaceData";
 import { useRecoilValue } from "recoil";
-import { searchSortState } from "@feature/search/state/sortState";
-import useGetKeywordSearchPlaceData from "@feature/search/queries/useGetKeywordSearchPlaceData";
-import UseDeferredComponent from "@common/hooks/useDeferredComponent";
+import { searchSortState } from "@/feature/search/state/sortState";
+import useGetKeywordSearchPlaceData from "@/feature/search/queries/useGetKeywordSearchPlaceData";
+import UseDeferredComponent from "@/common/hooks/useDeferredComponent";
 import SearchSkeleton from "../../skeleton/HomeSearchSkeleton";
 const PlaceInfoCard = lazy(
-  () => import("@feature/place/components/PlaceInfo/organisms/PlaceInfoCard")
+  () => import("@/feature/place/components/PlaceInfo/organisms/PlaceInfoCard")
 );
 const ChangeSearchConditon = dynamic(
   () => import("../organisms/ChangeSearchCondition"),

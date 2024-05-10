@@ -1,10 +1,10 @@
 import Image from "next/image";
-import CurationNoPhoto from "@common/assets/images/curationHomeNoImg.png";
-import { CurationProps } from "@feature/curation/type";
+import CurationNoPhoto from "@/common/assets/images/curationHomeNoImg.png";
+import { CurationProps } from "@/feature/curation/type";
 import { useSetRecoilState } from "recoil";
-import { toastInfoSelector } from "@common/state/toast";
-import ImageWrapper from "@common/components/ui/wrapper/ImageWrapper";
-import LocationLineIcon from "@common/assets/icons/location/LocationLineIcon";
+import { toastInfoSelector } from "@/common/state/toast";
+import ImageWrapper from "@/common/components/ui/wrapper/ImageWrapper";
+import LocationLineIcon from "@/common/assets/icons/location/LocationLineIcon";
 
 interface MyCurationCardProps {
   spaceId: number;

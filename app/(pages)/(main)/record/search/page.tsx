@@ -1,7 +1,7 @@
-import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
-import PlaceInfoCard from "@feature/place/components/PlaceInfo/organisms/PlaceInfoCard";
-import TextSearchBar from "@feature/search/components/SearchText/molecules/TextSearchBar";
-import { getTextSearchPlaceData } from "@feature/search/queries/getTextSearchPlaceData";
+import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
+import PlaceInfoCard from "@/feature/place/components/PlaceInfo/organisms/PlaceInfoCard";
+import TextSearchBar from "@/feature/search/components/SearchText/molecules/TextSearchBar";
+import { getTextSearchPlaceData } from "@/feature/search/queries/getTextSearchPlaceData";
 import { Metadata } from "next";
 
 type Props = {

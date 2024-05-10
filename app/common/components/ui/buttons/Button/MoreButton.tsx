@@ -1,5 +1,5 @@
-import ArrowRightIcon from "@common/assets/icons/arrow/ArrowRightIcon";
-import LinkLayout from "@common/components/layout/Link/LinkLayout";
+import ArrowRightIcon from "@/common/assets/icons/arrow/ArrowRightIcon";
+import LinkLayout from "@/common/components/layout/Link/LinkLayout";
 
 interface MoreButtonProps {
   routeTo: string;

@@ -6,18 +6,18 @@ import Link from "next/link";
 import {
   PlaceInfoCardAdditionalProps,
   PlaceInfoCardTopProps,
-} from "@feature/place/type";
-import RecordNoImage from "@common/assets/images/RecordNoImage.png";
-import { sliceText } from "@common/utils/text/slice-text";
+} from "@/feature/place/type";
+import RecordNoImage from "@/common/assets/images/RecordNoImage.png";
+import { sliceText } from "@/common/utils/text/slice-text";
 import { useSetRecoilState } from "recoil";
-import { toastInfoSelector } from "@common/state/toast";
-import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
-import Chip from "@common/components/ui/buttons/Chip/Chip";
-import ImageWrapper from "@common/components/ui/wrapper/ImageWrapper";
-import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
+import { toastInfoSelector } from "@/common/state/toast";
+import { myCurationModalInfoSelector } from "@/common/state/myCurationModal";
+import Chip from "@/common/components/ui/buttons/Chip/Chip";
+import ImageWrapper from "@/common/components/ui/wrapper/ImageWrapper";
+import { validateLoggedIn } from "@/common/utils/validate/validateLoggedIn";
 import PlaceInfoCardTopScrapIcon from "../molecules/PlaceInfoCardTopScrapIcon";
-import CheckSmallIcon from "@common/assets/icons/check/CheckSmallIcon";
-import TextWithDivider from "@common/components/ui/text/TextWithDivider";
+import CheckSmallIcon from "@/common/assets/icons/check/CheckSmallIcon";
+import TextWithDivider from "@/common/components/ui/text/TextWithDivider";
 
 //Molecule
 export default function PlaceInfoCardTop({

@@ -1,5 +1,5 @@
-import ScrapFillIcon from "@common/assets/icons/scrap/ScrapFillIcon";
-import ScrapLineIcon from "@common/assets/icons/scrap/ScrapLineIcon";
+import ScrapFillIcon from "@/common/assets/icons/scrap/ScrapFillIcon";
+import ScrapLineIcon from "@/common/assets/icons/scrap/ScrapLineIcon";
 import { twMerge } from "tailwind-merge";
 
 interface PlaceInfoCardTopScrapIconProps {

@@ -1,12 +1,12 @@
 import { Suspense } from "react";
-import GetMemberInfo from "@feature/user/queries/getMemberInfo";
-import RecordMyPageSkeleton from "@feature/record/components/UserRecord/skeleton/RecordMyPageSkeleton";
-import GetRecordMyPage from "@feature/place/queries/getRecordMyPage";
-import PageTopBar from "@common/components/ui/topBar/PageTopBar/PageTopBar";
-import UseDeferredComponent from "@common/hooks/useDeferredComponent";
-import UserProfileMyPage from "@feature/user/components/UserProfile/organisms/UserProfileMyPage";
-import RecordList from "@feature/record/components/UserRecord/organisms/RecordList";
-import RecordCount from "@feature/record/components/UserRecord/molecules/RecordCount";
+import GetMemberInfo from "@/feature/user/queries/getMemberInfo";
+import RecordMyPageSkeleton from "@/feature/record/components/UserRecord/skeleton/RecordMyPageSkeleton";
+import GetRecordMyPage from "@/feature/place/queries/getRecordMyPage";
+import PageTopBar from "@/common/components/ui/topBar/PageTopBar/PageTopBar";
+import UseDeferredComponent from "@/common/hooks/useDeferredComponent";
+import UserProfileMyPage from "@/feature/user/components/UserProfile/organisms/UserProfileMyPage";
+import RecordList from "@/feature/record/components/UserRecord/organisms/RecordList";
+import RecordCount from "@/feature/record/components/UserRecord/molecules/RecordCount";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {

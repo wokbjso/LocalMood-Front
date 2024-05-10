@@ -1,14 +1,14 @@
-import Divider from "@common/components/ui/divider/Divider";
-import GraphGage from "@common/components/ui/graph/GraphGage/GraphGage";
-import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
-import PlaceReviews from "@feature/place/components/PlaceReview/organisms/PlaceReviews";
+import Divider from "@/common/components/ui/divider/Divider";
+import GraphGage from "@/common/components/ui/graph/GraphGage/GraphGage";
+import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
+import PlaceReviews from "@/feature/place/components/PlaceReview/organisms/PlaceReviews";
 import {
   PLACE_CAFE_PURPOSE,
   PLACE_RESTAURANT_PURPOSE,
   PLACE_SUB_TYPE,
-} from "@feature/place/constants/place-tag-category";
-import GetPlaceDetail from "@feature/place/queries/getPlaceDetail";
-import GetPlaceReview from "@feature/place/queries/getPlaceReview";
+} from "@/feature/place/constants/place-tag-category";
+import GetPlaceDetail from "@/feature/place/queries/getPlaceDetail";
+import GetPlaceReview from "@/feature/place/queries/getPlaceReview";
 import { Metadata } from "next";
 
 type Props = {

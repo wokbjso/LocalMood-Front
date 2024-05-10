@@ -1,9 +1,9 @@
 "use client";
 
-import { queryFetchingSelector } from "@common/state/queryFetching";
-import { toastInfo } from "@common/state/toast";
-import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail";
-import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
+import { queryFetchingSelector } from "@/common/state/queryFetching";
+import { toastInfo } from "@/common/state/toast";
+import revalidatePlaceDetail from "@/feature/place/actions/revalidatePlaceDetail";
+import revalidateScrapSpace from "@/feature/place/actions/revalidateScrapSpace";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSetRecoilState } from "recoil";
 

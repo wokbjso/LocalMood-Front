@@ -1,4 +1,4 @@
-import MenuIcon from "@common/assets/icons/menu/MenuIcon";
+import MenuIcon from "@/common/assets/icons/menu/MenuIcon";
 import CurationMenuModal from "./CurationMenuModal";
 import { twMerge } from "tailwind-merge";
 

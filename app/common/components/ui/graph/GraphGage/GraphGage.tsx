@@ -1,13 +1,13 @@
 import { GraphProps } from "../type";
 import { twMerge } from "tailwind-merge";
-import BookIcon from "@common/assets/icons/book/BookIcon";
-import BusinessIcon from "@common/assets/icons/business/BusinessIcon";
-import ChatIcon from "@common/assets/icons/chat/ChatIcon";
-import Heart from "@common/assets/icons/heart/HeartIcon";
+import BookIcon from "@/common/assets/icons/book/BookIcon";
+import BusinessIcon from "@/common/assets/icons/business/BusinessIcon";
+import ChatIcon from "@/common/assets/icons/chat/ChatIcon";
+import Heart from "@/common/assets/icons/heart/HeartIcon";
 import {
   PLACE_CAFE_PURPOSE,
   PLACE_RESTAURANT_PURPOSE,
-} from "@feature/place/constants/place-tag-category";
+} from "@/feature/place/constants/place-tag-category";
 
 export default function GraphGage({
   type,

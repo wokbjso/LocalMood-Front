@@ -1,5 +1,5 @@
-import Button from "@common/components/ui/buttons/Button/Button";
-import { PLACE_EVALUATIONS } from "@feature/record/constants/evaluate-keywords";
+import Button from "@/common/components/ui/buttons/Button/Button";
+import { PLACE_EVALUATIONS } from "@/feature/record/constants/evaluate-keywords";
 
 interface RecordPageBookButtonProps {
   placeType: string;

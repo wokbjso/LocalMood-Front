@@ -6,7 +6,7 @@ import "../slick-theme.css";
 import Image from "next/image";
 import Slider from "react-slick";
 import { useEffect, useState } from "react";
-import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
+import { PlaceDetailInfoProps } from "@/feature/place/queries/dto/place-detail";
 import PlaceImageSliderCount from "../molecules/PlaceImageSliderCount";
 
 //Organism

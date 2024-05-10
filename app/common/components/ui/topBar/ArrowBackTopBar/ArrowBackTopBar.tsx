@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 import { TopBarProps } from "../type";
-import ArrowBackIcon from "@common/assets/icons/arrow/ArrowBackIcon";
+import ArrowBackIcon from "@/common/assets/icons/arrow/ArrowBackIcon";
 
 //Molecule
 export default function ArrowBackTopBar({

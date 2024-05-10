@@ -1,4 +1,4 @@
-import { getSession } from "@common/utils/session/getSession";
+import { getSession } from "@/common/utils/session/getSession";
 
 export async function postKeywordSearchCurationData(keyword: any) {
   const auth_info = await getSession();

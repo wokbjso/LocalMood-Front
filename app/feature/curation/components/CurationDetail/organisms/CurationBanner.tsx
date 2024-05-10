@@ -1,11 +1,11 @@
-import NonCuration from "@common/assets/images/curationNoSeat.png";
-import ProfileIcon from "@common/assets/images/greenProfile.png";
+import NonCuration from "@/common/assets/images/curationNoSeat.png";
+import ProfileIcon from "@/common/assets/images/greenProfile.png";
 import Image from "next/image";
 import PrivacyToggleButton from "../../MyCuration/molecules/PrivacyToggleButton";
-import Chip from "@common/components/ui/buttons/Chip/Chip";
-import { formatDate } from "@common/utils/date/formatDate";
-import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-detail";
-import HashTag from "@common/components/ui/text/HashTag";
+import Chip from "@/common/components/ui/buttons/Chip/Chip";
+import { formatDate } from "@/common/utils/date/formatDate";
+import { CurationDetailResponse } from "@/feature/curation/queries/dto/curation-detail";
+import HashTag from "@/common/components/ui/text/HashTag";
 
 //Organism
 export default function CurationBanner({

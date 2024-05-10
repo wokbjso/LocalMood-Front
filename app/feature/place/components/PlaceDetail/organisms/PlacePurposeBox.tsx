@@ -1,8 +1,8 @@
-import BookIcon from "@common/assets/icons/book/BookIcon";
-import BusinessIcon from "@common/assets/icons/business/BusinessIcon";
-import ChatIcon from "@common/assets/icons/chat/ChatIcon";
-import HeartIcon from "@common/assets/icons/heart/HeartIcon";
-import UserDoubleIcon from "@common/assets/icons/user/UserDoubleIcon";
+import BookIcon from "@/common/assets/icons/book/BookIcon";
+import BusinessIcon from "@/common/assets/icons/business/BusinessIcon";
+import ChatIcon from "@/common/assets/icons/chat/ChatIcon";
+import HeartIcon from "@/common/assets/icons/heart/HeartIcon";
+import UserDoubleIcon from "@/common/assets/icons/user/UserDoubleIcon";
 
 interface PlacePurposeBoxProps {
   purpose: string;

@@ -1,4 +1,4 @@
-import RecordPageBookTemplate from "@feature/record/components/RecordPageBook/template/RecordPageBookTemplate";
+import RecordPageBookTemplate from "@/feature/record/components/RecordPageBook/template/RecordPageBookTemplate";
 import { Metadata } from "next";
 
 type Props = {

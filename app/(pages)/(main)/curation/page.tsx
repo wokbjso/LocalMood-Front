@@ -1,6 +1,6 @@
-import getScrappedCuration from "@feature/curation/queries/getScrappedCuration";
-import CurationTabContent from "@feature/curation/components/CurationInfo/organisms/CurationTabContent";
-import PageTopBar from "@common/components/ui/topBar/PageTopBar/PageTopBar";
+import getScrappedCuration from "@/feature/curation/queries/getScrappedCuration";
+import CurationTabContent from "@/feature/curation/components/CurationInfo/organisms/CurationTabContent";
+import PageTopBar from "@/common/components/ui/topBar/PageTopBar/PageTopBar";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

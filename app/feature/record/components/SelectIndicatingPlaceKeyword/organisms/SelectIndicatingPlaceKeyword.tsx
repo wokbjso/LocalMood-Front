@@ -1,4 +1,4 @@
-import RecordPageBookTopBar from "@feature/record/components/RecordPageBook/organisms/RecordPageBookTopBar";
+import RecordPageBookTopBar from "@/feature/record/components/RecordPageBook/organisms/RecordPageBookTopBar";
 import PlaceIndicatingKeywordContent from "./PlaceIndicatingKeywordContent";
 
 interface SelectKeyword {

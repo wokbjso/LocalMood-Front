@@ -1,4 +1,4 @@
-import LocationFillIcon from "@common/assets/icons/location/LocationFillIcon";
+import LocationFillIcon from "@/common/assets/icons/location/LocationFillIcon";
 import { twMerge } from "tailwind-merge";
 
 interface LocationCountProps {

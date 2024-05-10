@@ -1,8 +1,8 @@
-import Modal from "@common/components/ui/modal/Modal";
-import UseOutsideClick from "@common/hooks/useOutsideClick";
+import Modal from "@/common/components/ui/modal/Modal";
+import UseOutsideClick from "@/common/hooks/useOutsideClick";
 import { useState } from "react";
-import ConfirmModal from "@common/components/ui/modal/ConfirmModal";
-import UserProfileIcon from "@common/assets/icons/user/UserProfileIcon";
+import ConfirmModal from "@/common/components/ui/modal/ConfirmModal";
+import UserProfileIcon from "@/common/assets/icons/user/UserProfileIcon";
 
 //Organism
 export default function LogoutModal({

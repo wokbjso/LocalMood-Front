@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 import Divider from "../divider/Divider";
-import CheckMediumIcon from "@common/assets/icons/check/CheckMediumIcon";
+import CheckMediumIcon from "@/common/assets/icons/check/CheckMediumIcon";
 
 interface IconBoxProps {
   icon: ReactNode;

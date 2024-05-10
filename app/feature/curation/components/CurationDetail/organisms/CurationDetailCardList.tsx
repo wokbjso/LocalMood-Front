@@ -1,11 +1,11 @@
 "use client";
 
-import Filter from "@common/components/ui/buttons/Filter/Filter";
+import Filter from "@/common/components/ui/buttons/Filter/Filter";
 import CurationDetailInfoCard from "./CurationDetailInfoCard";
-import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-detail";
+import { CurationDetailResponse } from "@/feature/curation/queries/dto/curation-detail";
 import { twMerge } from "tailwind-merge";
 import { createRef, forwardRef, useEffect, useState } from "react";
-import UseMap from "@common/components/ui/map/Map/useMap";
+import UseMap from "@/common/components/ui/map/Map/useMap";
 import MapIconButton from "../molecules/MapIconButton";
 import LocationCount from "../molecules/LocationCount";
 

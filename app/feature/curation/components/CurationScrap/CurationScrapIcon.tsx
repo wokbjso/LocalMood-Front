@@ -1,6 +1,6 @@
-import ScrapFillIcon from "@common/assets/icons/scrap/ScrapFillIcon";
-import ScrapLineIcon from "@common/assets/icons/scrap/ScrapLineIcon";
-import ScrapShadowIcon from "@common/assets/icons/scrap/ScrapShadowIcon";
+import ScrapFillIcon from "@/common/assets/icons/scrap/ScrapFillIcon";
+import ScrapLineIcon from "@/common/assets/icons/scrap/ScrapLineIcon";
+import ScrapShadowIcon from "@/common/assets/icons/scrap/ScrapShadowIcon";
 
 interface CurationScrapIconProps {
   isScraped: boolean;
