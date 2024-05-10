@@ -1,6 +1,24 @@
 import PlaceInfoCard from "@feature/place/components/PlaceInfo/organisms/PlaceInfoCard";
 import GetPlaceScrapped from "@feature/place/queries/getPlaceScrapped";
 import PlaceRecordTopBar from "@feature/record/components/RecordPageBook/organisms/RecordPageBookTopBar";
+import { Metadata, ResolvingMetadata } from "next";
+
+export async function generateMetadata(
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const scrappedPlace = await GetPlaceScrapped();
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: `지금까지 스크랩한 공간들을 확인해보세요!`,
+    openGraph: {
+      images: scrappedPlace ? [scrappedPlace[0].imgUrl] : [...previousImages],
+    },
+    description: "지금까지 나는 어떤 공간들을 스크랩 했을까요?",
+    keywords: ["로컬무드", "localmood", "공간기록", `스크랩`, "마포구"],
+  };
+}
 
 export default async function RecordScrappedMorePage() {
   const scrappedPlace = await GetPlaceScrapped();

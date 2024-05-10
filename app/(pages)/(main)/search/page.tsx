@@ -4,6 +4,16 @@ import Button from "@common/components/ui/buttons/Button/Button";
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
 import SearchKeywordModal from "@feature/search/components/SearchKeyword/organisms/SearchKeywordModal";
 import TextSearchBar from "@feature/search/components/SearchText/molecules/TextSearchBar";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "찾고 있는 마포구 장소를 텍스트 or 키워드로 검색해보세요!",
+  openGraph: {
+    images: ["/search.png"],
+  },
+  description: "텍스트 및 키워드로 내가 원하는 마포구 장소를 쉽게 찾아보세요!",
+  keywords: ["로컬무드", "localmood", "검색", "마포구"],
+};
 
 //Page
 export default function SearchPage({ searchParams }: any) {

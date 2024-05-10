@@ -3,16 +3,73 @@ import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowB
 import TextSearchBar from "@feature/search/components/SearchText/molecules/TextSearchBar";
 import { getTextSearchCurationData } from "@feature/search/queries/getTextSearchCurationData";
 import { postKeywordSearchCurationData } from "@feature/search/queries/postKeywordSearchCurationData";
+import { Metadata, ResolvingMetadata } from "next";
 const SearchResult = dynamic(
   () => import("@feature/search/components/SearchResult/template/SearchResult")
 );
 
-//Page
-export default async function SearchResultPage({
-  searchParams,
-}: {
+type Props = {
   searchParams: any;
-}) {
+};
+
+export async function generateMetadata(
+  { searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || [];
+
+  const getKeywordMetaData = () => {
+    let keywords = [];
+    if (searchParams.keyword) {
+      for (const [key, value] of Object.entries(
+        JSON.parse(searchParams.keyword)
+      )) {
+        if (value === "ALL") continue;
+        if (key === "type") {
+          if (value === "RESTAURANT") keywords.push("음식점");
+          else if (value === "CAFE") keywords.push("카페");
+        } else {
+          keywords.push(value);
+        }
+      }
+
+      return keywords.join(",");
+    }
+  };
+
+  return {
+    title: searchParams.search_query
+      ? `텍스트 ${searchParams.search_query}에 알맞는 결과를 확인해보세요!`
+      : searchParams.keyword
+      ? `키워드 "${getKeywordMetaData()}"에 알맞는 결과를 확인해보세요!`
+      : null,
+    openGraph: {
+      images: ["/search.png", ...previousImages],
+    },
+    description: searchParams.search_query
+      ? `텍스트 ${searchParams.search_query}에 알맞는 결과를 확인해보세요!`
+      : searchParams.keyword
+      ? `키워드 "${getKeywordMetaData()}"에 알맞는 결과를 확인해보세요!`
+      : null,
+    keywords: [
+      "로컬무드",
+      "localmood",
+      "검색",
+      `${
+        searchParams.search_query
+          ? searchParams.search_query
+          : searchParams.keyword
+          ? getKeywordMetaData()
+          : null
+      }`,
+      "마포구",
+    ],
+  };
+}
+
+//Page
+export default async function SearchResultPage({ searchParams }: Props) {
   const manufactureCurationKeyword = (keyword: string) => {
     let curation_keyword = [];
     let count = 0;

@@ -41,6 +41,15 @@ const globalFont = localFont({
   variable: "--pretandard-variable",
 });
 
+export const metadata: Metadata = {
+  metadataBase: new URL("https://www.localmood.co.kr"),
+  title: "로컬무드: 키워드로 찾는 마포구 인기 장소",
+  openGraph: {
+    images: ["/localmood.png"],
+  },
+  description: "키워드로 내가 원하는 마포구 장소를 쉽게 찾아보세요!",
+};
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
