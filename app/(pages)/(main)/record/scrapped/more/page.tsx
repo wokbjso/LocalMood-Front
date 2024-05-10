@@ -3,18 +3,9 @@ import GetPlaceScrapped from "@feature/place/queries/getPlaceScrapped";
 import PlaceRecordTopBar from "@feature/record/components/RecordPageBook/organisms/RecordPageBookTopBar";
 import { Metadata } from "next";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const scrappedPlace = await GetPlaceScrapped();
-
-  return {
-    title: `스크랩한 공간들`,
-    openGraph: {
-      images: scrappedPlace ? [scrappedPlace[0].imgUrl] : ["/localmood.png"],
-    },
-    description: "지금까지 나는 어떤 공간들을 스크랩 했을까요?",
-    keywords: ["로컬무드", "localmood", "공간기록", `스크랩`, "마포구"],
-  };
-}
+export const metadata: Metadata = {
+  title: "스크랩한 공간들",
+};
 
 export default async function RecordScrappedMorePage() {
   const scrappedPlace = await GetPlaceScrapped();

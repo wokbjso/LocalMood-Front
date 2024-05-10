@@ -12,17 +12,6 @@ export async function generateMetadata({
 }: Props): Promise<Metadata> {
   return {
     title: `${searchParams.name} 기록`,
-    openGraph: {
-      images: ["/record.png"],
-    },
-    description: `${searchParams.name}에 대한 기록을 직접 남겨보세요!`,
-    keywords: [
-      "로컬무드",
-      "localmood",
-      `${searchParams.name}`,
-      "공간기록",
-      "마포구",
-    ],
   };
 }
 

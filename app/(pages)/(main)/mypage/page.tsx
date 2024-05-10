@@ -14,11 +14,6 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: `${memberData.nickname}님의 마이페이지`,
-    openGraph: {
-      images: [`${memberData.profileImgUrl}`, "/default_user"],
-    },
-    description: `${memberData.nickname}님의 마이페이지 입니다`,
-    keywords: ["로컬무드", "localmood", `마이페이지`, "마포구"],
   };
 }
 

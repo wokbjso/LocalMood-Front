@@ -30,7 +30,7 @@ export async function generateMetadata({
         }
       }
 
-      return keywords.join(",");
+      return keywords.join(", ");
     }
   };
 
