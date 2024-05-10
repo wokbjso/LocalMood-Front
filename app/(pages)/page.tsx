@@ -3,6 +3,12 @@ import HomeBanner from "@feature/home/components/HomeBanner/organisms/HomeBanner
 import GetRandomCuration from "@feature/curation/queries/getRandomCuration";
 import HomePlaceSlider from "@feature/home/components/HomeSlider/organisms/HomePlaceSlider";
 import HomePopularCurationSlider from "@feature/home/components/HomeSlider/organisms/HomePopularCurationSlider";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "로컬무드: 키워드로 찾는 마포구 인기 장소",
+  description: "키워드로 내가 원하는 마포구 장소를 쉽게 찾아보세요!",
+};
 
 //Page
 export default async function Home() {
