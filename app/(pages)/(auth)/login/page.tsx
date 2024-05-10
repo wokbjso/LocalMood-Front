@@ -8,7 +8,7 @@ import Button from "@common/components/ui/buttons/Button/Button";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "간편한 로그인으로 로컬무드를 시작해보세요!",
+  title: "로그인",
   openGraph: {
     images: ["/loginLogo.png"],
   },

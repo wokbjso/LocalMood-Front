@@ -2,34 +2,33 @@ import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowB
 import PlaceInfoCard from "@feature/place/components/PlaceInfo/organisms/PlaceInfoCard";
 import TextSearchBar from "@feature/search/components/SearchText/molecules/TextSearchBar";
 import { getTextSearchPlaceData } from "@feature/search/queries/getTextSearchPlaceData";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
 type Props = {
   searchParams: any;
 };
 
-export async function generateMetadata(
-  { searchParams }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({
+  searchParams,
+}: Props): Promise<Metadata> {
   const textSearchPlaceData =
     searchParams.search_query &&
     (await getTextSearchPlaceData(searchParams.search_query));
   // optionally access and extend (rather than replace) parent metadata
-  const previousImages = (await parent).openGraph?.images || [];
 
   return {
-    title: `${searchParams.search_query}과 연관된 장소의 공간 기록을 남겨보세요!`,
+    title: `${searchParams.search_query} 검색결과`,
     openGraph: {
       images: textSearchPlaceData
         ? [textSearchPlaceData.spaceList[0].imgUrl]
-        : [...previousImages],
+        : ["/search.png"],
     },
     description: `${searchParams.search_query}과 연관된 장소의 공간 기록을 남겨보세요!`,
     keywords: [
       "로컬무드",
       "localmood",
       "공간기록",
+      "공간검색",
       `${searchParams.search_query}`,
       "마포구",
     ],

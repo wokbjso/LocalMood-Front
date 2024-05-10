@@ -3,7 +3,7 @@ import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowB
 import TextSearchBar from "@feature/search/components/SearchText/molecules/TextSearchBar";
 import { getTextSearchCurationData } from "@feature/search/queries/getTextSearchCurationData";
 import { postKeywordSearchCurationData } from "@feature/search/queries/postKeywordSearchCurationData";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 const SearchResult = dynamic(
   () => import("@feature/search/components/SearchResult/template/SearchResult")
 );
@@ -12,13 +12,9 @@ type Props = {
   searchParams: any;
 };
 
-export async function generateMetadata(
-  { searchParams }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  // optionally access and extend (rather than replace) parent metadata
-  const previousImages = (await parent).openGraph?.images || [];
-
+export async function generateMetadata({
+  searchParams,
+}: Props): Promise<Metadata> {
   const getKeywordMetaData = () => {
     let keywords = [];
     if (searchParams.keyword) {
@@ -40,31 +36,19 @@ export async function generateMetadata(
 
   return {
     title: searchParams.search_query
-      ? `텍스트 ${searchParams.search_query}에 알맞는 결과를 확인해보세요!`
+      ? `${searchParams.search_query} 검색 결과`
       : searchParams.keyword
-      ? `키워드 "${getKeywordMetaData()}"에 알맞는 결과를 확인해보세요!`
+      ? `"${getKeywordMetaData()}" 검색 결과`
       : null,
     openGraph: {
-      images: ["/search.png", ...previousImages],
+      images: ["/search.png"],
     },
     description: searchParams.search_query
       ? `텍스트 ${searchParams.search_query}에 알맞는 결과를 확인해보세요!`
       : searchParams.keyword
       ? `키워드 "${getKeywordMetaData()}"에 알맞는 결과를 확인해보세요!`
       : null,
-    keywords: [
-      "로컬무드",
-      "localmood",
-      "검색",
-      `${
-        searchParams.search_query
-          ? searchParams.search_query
-          : searchParams.keyword
-          ? getKeywordMetaData()
-          : null
-      }`,
-      "마포구",
-    ],
+    keywords: ["로컬무드", "localmood", "검색", "마포구"],
   };
 }
 
