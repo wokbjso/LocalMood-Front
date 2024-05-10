@@ -1,10 +1,29 @@
 import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
 import CurationInfoCardLight from "@feature/curation/components/CurationInfo/organisms/CurationInfoCardLight";
 import GetRandomCuration from "@feature/curation/queries/getRandomCuration";
+import { Metadata, ResolvingMetadata } from "next";
+
+export async function generateMetadata(
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const randomCuration = await GetRandomCuration();
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: "현재 마포구 인기 큐레이션을 확인해보세요!",
+    openGraph: {
+      images: [...randomCuration[0].image.slice(0, 2), ...previousImages],
+    },
+    description: "",
+    keywords: ["로컬무드", "localmood", "키워드", "마포구"],
+  };
+}
 
 //Page
 export default async function CurationPopularPage() {
   const randomCuration = await GetRandomCuration();
+  console.log(randomCuration);
   return (
     <div className="w-[100%] h-[100%] overflow-auto">
       {/* Template */}

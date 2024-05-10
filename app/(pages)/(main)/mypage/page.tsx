@@ -7,6 +7,35 @@ import UseDeferredComponent from "@common/hooks/useDeferredComponent";
 import UserProfileMyPage from "@feature/user/components/UserProfile/organisms/UserProfileMyPage";
 import RecordList from "@feature/record/components/UserRecord/organisms/RecordList";
 import RecordCount from "@feature/record/components/UserRecord/molecules/RecordCount";
+import { Metadata, ResolvingMetadata } from "next";
+
+export async function generateMetadata(
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const memberData = await GetMemberInfo();
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: `${memberData.nickname}님의 마이페이지`,
+    openGraph: {
+      images: [
+        `${memberData.profileImgUrl}`,
+        "/default_user",
+        ...previousImages,
+      ],
+    },
+    description: `${memberData.nickname}님의 마이페이지 입니다`,
+    keywords: [
+      "로컬무드",
+      "localmood",
+      "큐레이션",
+      ` ${memberData.nickname}`,
+      `마이페이지`,
+      "마포구",
+    ],
+  };
+}
 
 //Page
 export default async function MyPage() {

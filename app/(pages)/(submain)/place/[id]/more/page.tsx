@@ -5,15 +5,53 @@ import PlaceReviews from "@feature/place/components/PlaceReview/organisms/PlaceR
 import {
   PLACE_CAFE_PURPOSE,
   PLACE_RESTAURANT_PURPOSE,
+  PLACE_SUB_TYPE,
 } from "@feature/place/constants/place-tag-category";
 import GetPlaceDetail from "@feature/place/queries/getPlaceDetail";
 import GetPlaceReview from "@feature/place/queries/getPlaceReview";
+import { Metadata, ResolvingMetadata } from "next";
 
-export default async function PlaceDetailMorePage({
-  params: { id },
-}: {
+type Props = {
   params: { id: number };
-}) {
+};
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const detailData = await GetPlaceDetail(params.id);
+
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: detailData.info.name,
+    openGraph: {
+      images: [detailData.info.imgUrlList[0], ...previousImages],
+    },
+    description: `${detailData.info.visitorNum}이 방문하기 좋은 ${
+      detailData.info.name
+    }(${
+      detailData.info.type === "CAFE"
+        ? "카페"
+        : detailData.info.subType && PLACE_SUB_TYPE[detailData.info.subType]
+    })의 정보를 더 자세히 보고싶다면?`,
+    keywords: [
+      "로컬무드",
+      "localmood",
+      `${detailData.info.name}`,
+      `${
+        detailData.info.type === "CAFE"
+          ? "카페"
+          : detailData.info.subType && PLACE_SUB_TYPE[detailData.info.subType]
+      }`,
+      "키워드",
+      "마포구",
+    ],
+  };
+}
+
+export default async function PlaceDetailMorePage({ params: { id } }: Props) {
   const reviewData = await GetPlaceReview(id);
   const detailData = await GetPlaceDetail(id);
   return (
