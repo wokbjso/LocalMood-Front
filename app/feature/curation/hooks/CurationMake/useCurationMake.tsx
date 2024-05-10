@@ -1,7 +1,7 @@
 import {
   CURATION_MAKE_CATEGORY,
   CURATION_MAKE_KEYWORD,
-} from "@feature/curation/constants/curation-make";
+} from "@/feature/curation/constants/curation-make";
 import { useState } from "react";
 
 export default function UseCurationMake(

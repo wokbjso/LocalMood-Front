@@ -1,7 +1,7 @@
 "use client";
 
-import Toast from "@common/components/ui/toast/Toast";
-import { toastInfoSelector } from "@common/state/toast";
+import Toast from "@/common/components/ui/toast/Toast";
+import { toastInfoSelector } from "@/common/state/toast";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 

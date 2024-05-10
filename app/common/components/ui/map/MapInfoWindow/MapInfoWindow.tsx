@@ -1,7 +1,7 @@
 import {
   PlaceInfoCardBottomProps,
   PlaceInfoCardTopProps,
-} from "@feature/place/type";
+} from "@/feature/place/type";
 
 export default function MapInfoWindow({
   name,

@@ -1,6 +1,6 @@
-import { getSession } from "@common/utils/session/getSession";
-import revalidateCurationRandom from "@feature/curation/actions/revalidateCurationRandom";
-import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
+import { getSession } from "@/common/utils/session/getSession";
+import revalidateCurationRandom from "@/feature/curation/actions/revalidateCurationRandom";
+import revalidateCurationScrap from "@/feature/curation/actions/revalidateCurationScrap";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE(

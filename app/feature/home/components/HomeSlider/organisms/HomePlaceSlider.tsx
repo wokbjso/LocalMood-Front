@@ -2,13 +2,13 @@ import { twMerge } from "tailwind-merge";
 import {
   PlaceInfoCardBottomProps,
   PlaceInfoCardTopProps,
-} from "@feature/place/type";
-import SliderLayout from "@common/components/layout/Slider/SliderLayout";
-import GetRandomPlaces from "@feature/place/queries/getRandomPlaces";
+} from "@/feature/place/type";
+import SliderLayout from "@/common/components/layout/Slider/SliderLayout";
+import GetRandomPlaces from "@/feature/place/queries/getRandomPlaces";
 import dynamic from "next/dynamic";
-import HashTag from "@common/components/ui/text/HashTag";
+import HashTag from "@/common/components/ui/text/HashTag";
 const PlaceInfoCard = dynamic(
-  () => import("@feature/place/components/PlaceInfo/organisms/PlaceInfoCard")
+  () => import("@/feature/place/components/PlaceInfo/organisms/PlaceInfoCard")
 );
 
 export interface HomePlaceSliderProps {

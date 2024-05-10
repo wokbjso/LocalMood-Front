@@ -1,15 +1,15 @@
 "use client";
 
-import { PLACE_SUB_TYPE } from "@feature/place/constants/place-tag-category";
+import { PLACE_SUB_TYPE } from "@/feature/place/constants/place-tag-category";
 import { useSetRecoilState } from "recoil";
-import { toastInfoSelector } from "@common/state/toast";
-import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
-import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
+import { toastInfoSelector } from "@/common/state/toast";
+import { myCurationModalInfoSelector } from "@/common/state/myCurationModal";
+import { validateLoggedIn } from "@/common/utils/validate/validateLoggedIn";
 import PlaceDetailInfoMore from "./PlaceDetailInfoMore";
-import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
-import ScrapFillIcon from "@common/assets/icons/scrap/ScrapFillIcon";
-import ScrapLineIcon from "@common/assets/icons/scrap/ScrapLineIcon";
-import TextWithDivider from "@common/components/ui/text/TextWithDivider";
+import { PlaceDetailInfoProps } from "@/feature/place/queries/dto/place-detail";
+import ScrapFillIcon from "@/common/assets/icons/scrap/ScrapFillIcon";
+import ScrapLineIcon from "@/common/assets/icons/scrap/ScrapLineIcon";
+import TextWithDivider from "@/common/components/ui/text/TextWithDivider";
 
 //Organism
 export default function PlaceDetailInfo({

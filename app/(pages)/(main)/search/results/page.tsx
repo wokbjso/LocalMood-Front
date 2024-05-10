@@ -1,11 +1,11 @@
 import dynamic from "next/dynamic";
-import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
-import TextSearchBar from "@feature/search/components/SearchText/molecules/TextSearchBar";
-import { getTextSearchCurationData } from "@feature/search/queries/getTextSearchCurationData";
-import { postKeywordSearchCurationData } from "@feature/search/queries/postKeywordSearchCurationData";
+import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
+import TextSearchBar from "@/feature/search/components/SearchText/molecules/TextSearchBar";
+import { getTextSearchCurationData } from "@/feature/search/queries/getTextSearchCurationData";
+import { postKeywordSearchCurationData } from "@/feature/search/queries/postKeywordSearchCurationData";
 import { Metadata } from "next";
 const SearchResult = dynamic(
-  () => import("@feature/search/components/SearchResult/template/SearchResult")
+  () => import("@/feature/search/components/SearchResult/template/SearchResult")
 );
 
 type Props = {

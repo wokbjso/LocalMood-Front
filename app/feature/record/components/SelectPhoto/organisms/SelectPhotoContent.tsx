@@ -1,6 +1,6 @@
-import AddFillIcon from "@common/assets/icons/add/AddFillIcon";
-import CloseBlackIcon from "@common/assets/icons/close/CloseBlackIcon";
-import UseGetBrowserWidth from "@common/hooks/useGetBrowserWidth";
+import AddFillIcon from "@/common/assets/icons/add/AddFillIcon";
+import CloseBlackIcon from "@/common/assets/icons/close/CloseBlackIcon";
+import UseGetBrowserWidth from "@/common/hooks/useGetBrowserWidth";
 import Image from "next/image";
 import { ChangeEvent, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";

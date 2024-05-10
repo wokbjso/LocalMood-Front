@@ -1,6 +1,6 @@
 "use server";
 
-import { decryptData } from "@feature/auth/utils/decryptData";
+import { decryptData } from "@/feature/auth/utils/decryptData";
 import { JWTPayload } from "jose";
 import { cookies } from "next/headers";
 

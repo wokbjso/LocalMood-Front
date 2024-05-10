@@ -1,11 +1,11 @@
 "use client";
 
-import LockIcon from "@common/assets/icons/lock/LockIcon";
-import UnlockIcon from "@common/assets/icons/lock/UnlockIcon";
-import useFetching from "@common/hooks/useFetching";
-import { toastInfoSelector } from "@common/state/toast";
-import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
-import revalidatePlaceDetail from "@feature/place/actions/revalidatePlaceDetail";
+import LockIcon from "@/common/assets/icons/lock/LockIcon";
+import UnlockIcon from "@/common/assets/icons/lock/UnlockIcon";
+import useFetching from "@/common/hooks/useFetching";
+import { toastInfoSelector } from "@/common/state/toast";
+import revalidateCurationDetail from "@/feature/curation/actions/revalidateCurationDetail";
+import revalidatePlaceDetail from "@/feature/place/actions/revalidatePlaceDetail";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useSetRecoilState } from "recoil";

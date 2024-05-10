@@ -1,6 +1,6 @@
 "use client";
 
-import LoadingUI from "@common/components/ui/loading/LoadingUI";
+import LoadingUI from "@/common/components/ui/loading/LoadingUI";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 

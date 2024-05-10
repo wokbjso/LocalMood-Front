@@ -1,4 +1,4 @@
-import { getSession } from "@common/utils/session/getSession";
+import { getSession } from "@/common/utils/session/getSession";
 import { PlaceDetailResponse } from "./dto/place-detail";
 
 export default async function GetPlaceDetail(

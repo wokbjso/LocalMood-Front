@@ -1,19 +1,19 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { copyLink } from "@common/utils/text/copy-link";
-import { CurationDetailResponse } from "@feature/curation/queries/dto/curation-detail";
-import { sliceText } from "@common/utils/text/slice-text";
-import revalidateCurationScrap from "@feature/curation/actions/revalidateCurationScrap";
-import revalidateCurationDetail from "@feature/curation/actions/revalidateCurationDetail";
+import { copyLink } from "@/common/utils/text/copy-link";
+import { CurationDetailResponse } from "@/feature/curation/queries/dto/curation-detail";
+import { sliceText } from "@/common/utils/text/slice-text";
+import revalidateCurationScrap from "@/feature/curation/actions/revalidateCurationScrap";
+import revalidateCurationDetail from "@/feature/curation/actions/revalidateCurationDetail";
 import useCurationMenuModal from "../../../hooks/CurationMenu/useCurationMenuModal";
 import CurationScrapIcon from "../../CurationScrap/CurationScrapIcon";
 import useCurationScrapIcon from "../../../hooks/CurationScrap/useCurationScrapIcon";
-import useFetching from "@common/hooks/useFetching";
+import useFetching from "@/common/hooks/useFetching";
 import { useSetRecoilState } from "recoil";
-import { toastInfoSelector } from "@common/state/toast";
-import ShareIcon from "@common/assets/icons/share/ShareIcon";
-import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
+import { toastInfoSelector } from "@/common/state/toast";
+import ShareIcon from "@/common/assets/icons/share/ShareIcon";
+import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
 import CurationMenuIcon from "../../CurationMenu/CurationMenuIcon";
 
 interface CurationTopAppBarProps {

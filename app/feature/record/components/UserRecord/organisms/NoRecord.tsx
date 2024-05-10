@@ -1,4 +1,4 @@
-import ArrowRightIcon from "@common/assets/icons/arrow/ArrowRightIcon";
+import ArrowRightIcon from "@/common/assets/icons/arrow/ArrowRightIcon";
 import Link from "next/link";
 
 export default function NoRecord() {

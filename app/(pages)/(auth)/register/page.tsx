@@ -1,14 +1,14 @@
 "use client";
 
-import FormInput from "@feature/auth/components/Form/molecules/FormInput";
-import Button from "@common/components/ui/buttons/Button/Button";
-import UseForm from "@feature/auth/hooks/useForm";
-import { LoginFormState, RegisterFormState } from "@feature/auth/type";
+import FormInput from "@/feature/auth/components/Form/molecules/FormInput";
+import Button from "@/common/components/ui/buttons/Button/Button";
+import UseForm from "@/feature/auth/hooks/useForm";
+import { LoginFormState, RegisterFormState } from "@/feature/auth/type";
 import { useRouter } from "next/navigation";
-import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
-import useFetching from "@common/hooks/useFetching";
-import LoadingUI from "@common/components/ui/loading/LoadingUI";
-import PageDarkWrapper from "@common/components/ui/wrapper/PageDarkWrapper";
+import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
+import useFetching from "@/common/hooks/useFetching";
+import LoadingUI from "@/common/components/ui/loading/LoadingUI";
+import PageDarkWrapper from "@/common/components/ui/wrapper/PageDarkWrapper";
 
 //Page
 export default function RegisterPage() {

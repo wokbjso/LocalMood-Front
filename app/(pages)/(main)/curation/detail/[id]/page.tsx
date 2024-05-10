@@ -1,5 +1,5 @@
-import GetCurationDetail from "@feature/curation/queries/getCurationDetail";
-import CurationDetail from "@feature/curation/components/CurationDetail/template/CurationDetail";
+import GetCurationDetail from "@/feature/curation/queries/getCurationDetail";
+import CurationDetail from "@/feature/curation/components/CurationDetail/template/CurationDetail";
 import { Metadata } from "next";
 
 type Props = {

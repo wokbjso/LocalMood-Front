@@ -1,5 +1,5 @@
-import { PlaceDetailInfoProps } from "@feature/place/queries/dto/place-detail";
-import { PLACE_CATEGORY } from "@feature/place/constants/place-tag-category";
+import { PlaceDetailInfoProps } from "@/feature/place/queries/dto/place-detail";
+import { PLACE_CATEGORY } from "@/feature/place/constants/place-tag-category";
 import PlaceKeywordSummaryLine from "./PlaceKeywordSummaryLine";
 import PlaceKeywordSummaryPurpose from "./PlaceKeywordSummaryPurpose";
 

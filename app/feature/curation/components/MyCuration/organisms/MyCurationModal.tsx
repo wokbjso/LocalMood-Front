@@ -1,15 +1,15 @@
-import CloseIcon from "@common/assets/icons/close/CloseIcon";
-import Modal from "@common/components/ui/modal/Modal";
-import UseDeferredComponent from "@common/hooks/useDeferredComponent";
-import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
+import CloseIcon from "@/common/assets/icons/close/CloseIcon";
+import Modal from "@/common/components/ui/modal/Modal";
+import UseDeferredComponent from "@/common/hooks/useDeferredComponent";
 import { lazy } from "react";
 import CurationMakeButton from "../../CurationMake/molecules/CurationMakeButton";
 import useOpenCurationMakeModal from "../../../hooks/CurationMake/useOpenCurationMakeModal";
 import { useSetRecoilState } from "recoil";
-import { toastInfoSelector } from "@common/state/toast";
-import { myCurationModalInfoSelector } from "@common/state/myCurationModal";
+import { toastInfoSelector } from "@/common/state/toast";
+import { myCurationModalInfoSelector } from "@/common/state/myCurationModal";
 import { twMerge } from "tailwind-merge";
-import useSavePlaceAtCuration from "@feature/curation/queries/useSavePlaceAtCuration";
+import useSavePlaceAtCuration from "@/feature/curation/queries/useSavePlaceAtCuration";
+import { MyCurationResponse } from "@/feature/curation/queries/dto/my-curation";
 const MyCurationCard = lazy(() => import("./MyCurationCard"));
 
 interface MyCurationModalProps {

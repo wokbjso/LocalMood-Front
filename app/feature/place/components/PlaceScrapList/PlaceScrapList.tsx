@@ -1,4 +1,4 @@
-import GetPlaceScrapped from "@feature/place/queries/getPlaceScrapped";
+import GetPlaceScrapped from "@/feature/place/queries/getPlaceScrapped";
 import dynamic from "next/dynamic";
 const PlaceInfoCard = dynamic(
   () => import("../PlaceInfo/organisms/PlaceInfoCard")

@@ -1,20 +1,20 @@
 "use client";
 
-import UserProfile from "@feature/user/components/UserProfile/molecules/UserProfile";
-import { CurationProps } from "@feature/curation/type";
-import NoResult from "@common/assets/images/curationHomeNoImg.png";
+import UserProfile from "@/feature/user/components/UserProfile/molecules/UserProfile";
+import { CurationProps } from "@/feature/curation/type";
+import NoResult from "@/common/assets/images/curationHomeNoImg.png";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
 import Image from "next/image";
 import CurationScrapIcon from "../../CurationScrap/CurationScrapIcon";
 import { useSetRecoilState } from "recoil";
-import { toastInfoSelector } from "@common/state/toast";
-import { validateLoggedIn } from "@common/utils/validate/validateLoggedIn";
-import useFetching from "@common/hooks/useFetching";
+import { toastInfoSelector } from "@/common/state/toast";
+import { validateLoggedIn } from "@/common/utils/validate/validateLoggedIn";
+import useFetching from "@/common/hooks/useFetching";
 import { useEffect, useState } from "react";
 import useCurationScrapIcon from "../../../hooks/CurationScrap/useCurationScrapIcon";
-import revalidateCurationScrapRelatedData from "@feature/curation/actions/revalidateCurationScrapRelatedData";
-import LocationLineIcon from "@common/assets/icons/location/LocationLineIcon";
+import revalidateCurationScrapRelatedData from "@/feature/curation/actions/revalidateCurationScrapRelatedData";
+import LocationLineIcon from "@/common/assets/icons/location/LocationLineIcon";
 
 //Molecule
 export default function CurationInfoCardDark({

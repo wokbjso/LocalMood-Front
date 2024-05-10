@@ -1,6 +1,6 @@
 "use client";
 
-import { MyCurationResponse } from "@feature/curation/queries/dto/my-curation";
+import { MyCurationResponse } from "@/feature/curation/queries/dto/my-curation";
 import { useQuery } from "@tanstack/react-query";
 
 const protocol = process?.env.NODE_ENV === "development" ? "http" : "https";

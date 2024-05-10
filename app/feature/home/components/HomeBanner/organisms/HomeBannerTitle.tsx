@@ -1,4 +1,4 @@
-import { HomeBannerProps } from "@feature/home/components/HomeBanner/organisms/HomeBanner";
+import { HomeBannerProps } from "@/feature/home/components/HomeBanner/organisms/HomeBanner";
 
 //Molecule
 export default function HomeBannerTitle({

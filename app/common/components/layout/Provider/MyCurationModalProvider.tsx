@@ -1,8 +1,8 @@
 "use client";
 
-import { myCurationModalInfo } from "@common/state/myCurationModal";
-import MyCurationModal from "@feature/curation/components/MyCuration/organisms/MyCurationModal";
-import useGetMyCuration from "@feature/curation/queries/useGetMyCuration";
+import { myCurationModalInfo } from "@/common/state/myCurationModal";
+import MyCurationModal from "@/feature/curation/components/MyCuration/organisms/MyCurationModal";
+import useGetMyCuration from "@/feature/curation/queries/useGetMyCuration";
 import { useRecoilValue } from "recoil";
 
 export default function MyCurationModalProvider() {

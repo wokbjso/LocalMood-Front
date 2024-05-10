@@ -1,4 +1,4 @@
-import MapIcon, { MapInfoProps } from "@common/assets/icons/map/mapIcon";
+import MapIcon, { MapInfoProps } from "@/common/assets/icons/map/mapIcon";
 import { twMerge } from "tailwind-merge";
 
 interface MapIconButtonProps extends MapInfoProps {

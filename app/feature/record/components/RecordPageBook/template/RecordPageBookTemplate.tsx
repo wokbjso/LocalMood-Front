@@ -1,19 +1,19 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import RecordComplete from "@feature/record/components/RecordComplete/organisms/RecordComplete";
-import SelectPhoto from "@feature/record/components/SelectPhoto/organisms/SelectPhoto";
+import RecordComplete from "@/feature/record/components/RecordComplete/organisms/RecordComplete";
+import SelectPhoto from "@/feature/record/components/SelectPhoto/organisms/SelectPhoto";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { cloneElement } from "react";
-import revalidateScrapSpace from "@feature/place/actions/revalidateScrapSpace";
-import revalidatePlaceReview from "@feature/record/actions/revalidatePlaceReview";
-import ArrowBackTopBar from "@common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
+import revalidateScrapSpace from "@/feature/place/actions/revalidateScrapSpace";
+import revalidatePlaceReview from "@/feature/record/actions/revalidatePlaceReview";
+import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
 import UseTotalRecordKeyword from "../../../hooks/useTotalRecordKeyword";
-import SelectIndicatingPlaceKeyword from "@feature/record/components/SelectIndicatingPlaceKeyword/organisms/SelectIndicatingPlaceKeyword";
-import SelectEvaluationKeyword from "@feature/record/components/SelectEvaluationKeyword/organisms/SelectEvaluationKeyword";
+import SelectIndicatingPlaceKeyword from "@/feature/record/components/SelectIndicatingPlaceKeyword/organisms/SelectIndicatingPlaceKeyword";
+import SelectEvaluationKeyword from "@/feature/record/components/SelectEvaluationKeyword/organisms/SelectEvaluationKeyword";
 import RecordPageBookButton from "../organisms/RecordPageBookButton";
 import { useSetRecoilState } from "recoil";
-import { queryFetchingSelector } from "@common/state/queryFetching";
+import { queryFetchingSelector } from "@/common/state/queryFetching";
 
 interface RecordSelectProps {
   id: number;

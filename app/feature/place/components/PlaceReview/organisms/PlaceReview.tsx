@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Chip from "@common/components/ui/buttons/Chip/Chip";
-import GraphUpDownVote from "@common/components/ui/graph/GraphUpDownVote/GraphUpDownVote";
+import Chip from "@/common/components/ui/buttons/Chip/Chip";
+import GraphUpDownVote from "@/common/components/ui/graph/GraphUpDownVote/GraphUpDownVote";
 import { twMerge } from "tailwind-merge";
-import { PLACE_CATEGORY } from "@feature/place/constants/place-tag-category";
+import { PLACE_CATEGORY } from "@/feature/place/constants/place-tag-category";
 
 interface PlaceReviewProps {
   image: string[];

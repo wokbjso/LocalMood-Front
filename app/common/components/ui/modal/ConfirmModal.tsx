@@ -1,4 +1,4 @@
-import CloseIcon from "@common/assets/icons/close/CloseIcon";
+import CloseIcon from "@/common/assets/icons/close/CloseIcon";
 import Modal from "./Modal";
 import Button from "../buttons/Button/Button";
 
