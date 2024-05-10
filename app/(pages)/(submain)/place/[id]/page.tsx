@@ -17,13 +17,51 @@ const CurationInfoCardDark = dynamic(
 );
 import RelatedPlaceSlider from "@feature/place/components/PlaceDetail/organisms/RelatedPlaceSlider";
 import RelatedCurationSlider from "@feature/place/components/PlaceDetail/organisms/RelatedCurationSlider";
+import { Metadata, ResolvingMetadata } from "next";
+import { PLACE_SUB_TYPE } from "@feature/place/constants/place-tag-category";
+
+type Props = {
+  params: { id: number };
+};
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const detailData = await GetPlaceDetail(params.id);
+
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: detailData.info.name,
+    openGraph: {
+      images: [detailData.info.imgUrlList[0], ...previousImages],
+    },
+    description: `${detailData.info.visitorNum}이 방문하기 좋은 ${
+      detailData.info.name
+    }(${
+      detailData.info.type === "CAFE"
+        ? "카페"
+        : detailData.info.subType && PLACE_SUB_TYPE[detailData.info.subType]
+    })의 정보를 더 자세히 보고싶다면?`,
+    keywords: [
+      "로컬무드",
+      "localmood",
+      `${detailData.info.name}`,
+      `${
+        detailData.info.type === "CAFE"
+          ? "카페"
+          : detailData.info.subType && PLACE_SUB_TYPE[detailData.info.subType]
+      }`,
+      "키워드",
+      "마포구",
+    ],
+  };
+}
 
 //Page
-export default async function PlaceDetailPage({
-  params: { id },
-}: {
-  params: { id: number };
-}) {
+export default async function PlaceDetailPage({ params: { id } }: Props) {
   const detailData = await GetPlaceDetail(id);
   return (
     <div className="w-[100%] h-[100%] relative pb-[12rem] overflow-auto">
