@@ -7,7 +7,6 @@ const shouldNotLoginPath = ["/login"];
 
 export async function middleware(request: NextRequest) {
   const auth_info = await getSession();
-  if (request.url.includes("/curation/detail")) return;
   if (
     !auth_info?.data?.accessToken &&
     shouldLoginPath.some((path) => request.url.includes(path.split("/")[1]))
