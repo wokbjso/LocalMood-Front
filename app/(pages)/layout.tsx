@@ -48,6 +48,15 @@ export const metadata: Metadata = {
     images: ["/localmood.png"],
   },
   description: "키워드로 내가 원하는 마포구 장소를 쉽게 찾아보세요!",
+  keywords: [
+    "로컬무드",
+    "localmood",
+    "검색",
+    "키워드",
+    "큐레이션",
+    "스크랩",
+    "마포구",
+  ],
 };
 
 export const viewport: Viewport = {
