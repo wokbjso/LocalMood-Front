@@ -28,7 +28,7 @@ export default function TextSearchBar({
     (searchParams.get("search_query") as string) || ""
   );
   const queries =
-    `?search_query=${searchText}` +
+    `?search_query=${searchText.trim()}` +
     `${variant === "home" ? `&sort=${state}` : ""}`;
   const handleSearchTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newText = e.target.value;
@@ -39,7 +39,7 @@ export default function TextSearchBar({
   }, []);
 
   const searchIconClicked = () => {
-    if (searchText.length < 2) {
+    if (searchText.trim().length < 2) {
       alert("2글자 이상 입력해주세요");
     } else if (searchText.length >= 2) {
       variant === "home"
