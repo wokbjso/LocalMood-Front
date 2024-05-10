@@ -14,7 +14,11 @@ export default function ArrowBackTopBar({
   const router = useRouter();
 
   const arrowBackClicked = () => {
-    router.back();
+    if (history.length === 2) {
+      router.push("/");
+    } else {
+      router.back();
+    }
   };
 
   return (
