@@ -42,7 +42,7 @@ const CurationDetailInfoCard = forwardRef<
     if ((await validateLoggedIn()) === false) {
       location.replace("/login");
     } else {
-      if (count > 0) return;
+      if (props.variant === "my" && count > 0) return;
       setCount((prev) => prev + 1);
       if (props.variant === "my") {
         setIsQueryFetching(true);
