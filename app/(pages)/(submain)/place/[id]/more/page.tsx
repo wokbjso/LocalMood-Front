@@ -9,25 +9,19 @@ import {
 } from "@feature/place/constants/place-tag-category";
 import GetPlaceDetail from "@feature/place/queries/getPlaceDetail";
 import GetPlaceReview from "@feature/place/queries/getPlaceReview";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
 type Props = {
   params: { id: number };
 };
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const detailData = await GetPlaceDetail(params.id);
 
-  // optionally access and extend (rather than replace) parent metadata
-  const previousImages = (await parent).openGraph?.images || [];
-
   return {
-    title: detailData.info.name,
+    title: `${detailData.info.name} 전체`,
     openGraph: {
-      images: [detailData.info.imgUrlList[0], ...previousImages],
+      images: [detailData.info.imgUrlList[0], "/localmood.png"],
     },
     description: `${detailData.info.visitorNum}이 방문하기 좋은 ${
       detailData.info.name
@@ -45,7 +39,7 @@ export async function generateMetadata(
           ? "카페"
           : detailData.info.subType && PLACE_SUB_TYPE[detailData.info.subType]
       }`,
-      "키워드",
+      "리뷰",
       "마포구",
     ],
   };

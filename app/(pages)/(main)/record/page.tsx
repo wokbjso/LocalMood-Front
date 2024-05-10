@@ -8,11 +8,11 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "로컬무드: 스크랩한 공간의 기록을 직접 남겨보세요!",
+  title: "공간기록",
   openGraph: {
-    images: ["/localmood.png"],
+    images: ["/record.png"],
   },
-  description: "맘에드는 장소에 대한 기록을 남겨보세요",
+  description: "맘에드는 장소에 대한 기록을 남겨보세요!",
   keywords: ["로컬무드", "localmood", "공간기록", "마포구"],
 };
 
