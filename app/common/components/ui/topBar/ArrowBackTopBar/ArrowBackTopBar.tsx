@@ -13,10 +13,8 @@ export default function ArrowBackTopBar({
 }: TopBarProps) {
   const router = useRouter();
 
-  console.log(history.length);
-
   const arrowBackClicked = () => {
-    if (history.length === 2) {
+    if (history.length === 1) {
       router.push("/");
     } else {
       router.back();
