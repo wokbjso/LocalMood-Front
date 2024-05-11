@@ -23,6 +23,7 @@ const CurationDetailInfoCard = forwardRef<
     curationId: number;
     index: number;
     handlePlaceScroll: (index: number) => void;
+    clickScrolling: boolean;
   }
 >(({ ...props }, ref) => {
   const [inViewRef, inView] = useInView({
@@ -71,8 +72,11 @@ const CurationDetailInfoCard = forwardRef<
   };
 
   useEffect(() => {
-    if (inView) props.handlePlaceScroll(props.index);
+    if (inView && !props.clickScrolling) {
+      props.handlePlaceScroll(props.index);
+    }
   }, [inView, props]);
+
   return (
     <>
       <div className="w-full pt-[13rem]" ref={ref}>
