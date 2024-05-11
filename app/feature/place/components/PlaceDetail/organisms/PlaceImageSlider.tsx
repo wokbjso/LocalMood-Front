@@ -28,7 +28,7 @@ export default function PlaceImageSlider({
     <div className="relative w-[100%] overflow-hidden">
       <PlaceImageSliderCount imgIndex={imgIndex} />
       <Slider {...sliderSettings}>
-        {imgUrlList.map((image, i) => (
+        {imgUrlList.slice(0, 2).map((image, i) => (
           <div
             key={image + i}
             className="w-[100%] h-[30rem] mb-[1.5rem] relative"
