@@ -4,8 +4,9 @@
  */
 
 import type { Config } from "jest";
+import { TextEncoder, TextDecoder } from "util";
 
-import nextJest from "next/jest";
+const nextJest = require("next/jest");
 
 const createJestConfig = nextJest({
   dir: "./", // jest가 동작되는 기본 경로 설정
@@ -14,14 +15,14 @@ const createJestConfig = nextJest({
 const config: Config = {
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/app/$1",
+    "^jose": "jose",
   },
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   clearMocks: true,
   collectCoverage: true,
   coverageProvider: "v8",
   testEnvironment: "jsdom",
-
   coverageDirectory: "coverage",
 };
 
-export default createJestConfig(config);
+module.exports = createJestConfig(config);
