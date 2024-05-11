@@ -15,6 +15,7 @@ import { toastInfoSelector } from "@/common/state/toast";
 import ShareIcon from "@/common/assets/icons/share/ShareIcon";
 import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
 import CurationMenuIcon from "../../CurationMenu/CurationMenuIcon";
+import { twMerge } from "tailwind-merge";
 
 interface CurationTopAppBarProps {
   inView: boolean;
@@ -124,7 +125,7 @@ export default function CurationTopAppBar({
   return (
     <ArrowBackTopBar
       color="#9E9E9E"
-      className={!inView ? "bg-white fixed top-0 z-10" : ""}
+      className={twMerge(!inView ? "bg-white fixed top-0 z-10" : "", className)}
     >
       <div className="w-[100%] flex items-center justify-between gap-[0.8rem]">
         <h1 className="headline3-semibold">
