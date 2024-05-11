@@ -66,7 +66,7 @@ export default async function PlaceDetailPage({ params: { id } }: Props) {
         name={detailData.info.name}
         purpose={detailData.info.purpose}
         imgUrl={detailData.info.imgUrlList[0]}
-        className="absolute top-[1.2rem] z-10"
+        className="absolute top-[1.2rem] z-20"
       />
       <PlaceImageSlider imgUrlList={detailData.info.imgUrlList} />
       <PlaceDetailInfo
