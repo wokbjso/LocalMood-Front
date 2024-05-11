@@ -53,10 +53,7 @@ const CurationDetailCardList = forwardRef<
 
   const handlePlaceScroll = (index: number) => {
     setPlaceIndex(index);
-    placeFilterRefs[index].current?.scrollIntoView({
-      behavior: "auto",
-      inline: "center",
-    });
+    placeFilterRefs[index].current?.scrollIntoView();
   };
 
   useEffect(() => {
