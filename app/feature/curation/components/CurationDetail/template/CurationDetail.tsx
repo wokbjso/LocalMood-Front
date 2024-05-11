@@ -7,6 +7,7 @@ import Divider from "@/common/components/ui/divider/Divider";
 import CurationBanner from "../organisms/CurationBanner";
 import NoSavedPlace from "../organisms/NoSavedPlace";
 import CurationTopAppBar from "../../CurationInfo/organisms/CurationTopAppBar";
+import { useEffect } from "react";
 
 interface CurationDetailProps {
   id: number;
@@ -21,6 +22,7 @@ export default function CurationDetail({
   const [inViewRef, inView] = useInView({
     threshold: 1,
   });
+
   return (
     <>
       <header className="w-[100%] h-[18.8rem] bg-background-secondary-normal">
