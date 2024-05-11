@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { forwardRef, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { CurationPlaceProps } from "@/feature/curation/type";
 import LinkLayout from "@/common/components/layout/Link/LinkLayout";
 import PlaceInfoCardBottom from "@/feature/place/components/PlaceInfo/organisms/PlaceInfoCardBottom";
@@ -13,6 +13,7 @@ import { queryFetchingSelector } from "@/common/state/queryFetching";
 import ArrowRightIcon from "@/common/assets/icons/arrow/ArrowRightIcon";
 import ScrapFillIcon from "@/common/assets/icons/scrap/ScrapFillIcon";
 import ScrapLineIcon from "@/common/assets/icons/scrap/ScrapLineIcon";
+import { useInView } from "react-intersection-observer";
 
 //Molecule
 const CurationDetailInfoCard = forwardRef<
@@ -20,8 +21,14 @@ const CurationDetailInfoCard = forwardRef<
   CurationPlaceProps & {
     variant: string;
     curationId: number;
+    index: number;
+    handlePlaceScroll: (index: number) => void;
   }
 >(({ ...props }, ref) => {
+  const [inViewRef, inView] = useInView({
+    threshold: 1,
+  });
+
   const setMyCurationModal = useSetRecoilState(myCurationModalInfoSelector);
   const setToast = useSetRecoilState(toastInfoSelector);
   const setIsQueryFetching = useSetRecoilState(queryFetchingSelector);
@@ -62,6 +69,10 @@ const CurationDetailInfoCard = forwardRef<
       }
     }
   };
+
+  useEffect(() => {
+    if (inView) props.handlePlaceScroll(props.index);
+  }, [inView, props]);
   return (
     <>
       <div className="w-full pt-[13rem]" ref={ref}>
@@ -82,7 +93,7 @@ const CurationDetailInfoCard = forwardRef<
             ))}
           </div>
         </SliderLayout>
-        <div className="mb-[-9rem]">
+        <div className="mb-[-9rem]" ref={inViewRef}>
           <div className="w-full pr-[1.9rem]">
             <div className="pt-[2rem] flex justify-between ">
               <div>

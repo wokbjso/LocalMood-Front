@@ -45,6 +45,10 @@ const CurationDetailCardList = forwardRef<
     cardRefs[index].current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const handlePlaceScroll = (index: number) => {
+    setPlaceIndex(index);
+  };
+
   useEffect(() => {
     setPlaceData(
       props.curationDetail.spaceDetails.map((space) => {
@@ -63,20 +67,22 @@ const CurationDetailCardList = forwardRef<
       {!props.inView && (
         <div className="w-[100%] absolute top-[4.8rem] z-10">
           <div className="flex bg-white z-10 gap-[0.8rem] pb-[0.8rem] pt-[0.6rem] pl-[2rem] overflow-x-scroll">
-            {props.curationDetail.spaceDetails.map((item, i) => (
-              <Filter
-                key={i}
-                photo={item.imageUrls && item.imageUrls[0]}
-                label={item.name}
-                selected={placeIndex === i}
-                className={twMerge(
-                  "whitespace-nowrap",
-                  props.curationDetail.spaceDetails.length - 1 === i &&
-                    "mr-[1.2rem]"
-                )}
-                onClick={() => handlePlaceFilterClick(i)}
-              />
-            ))}
+            {props.curationDetail.spaceDetails.map((item, i) => {
+              return (
+                <Filter
+                  key={i}
+                  photo={item.imageUrls && item.imageUrls[0]}
+                  label={item.name}
+                  selected={placeIndex === i}
+                  className={twMerge(
+                    "whitespace-nowrap",
+                    props.curationDetail.spaceDetails.length - 1 === i &&
+                      "mr-[1.2rem]"
+                  )}
+                  onClick={() => handlePlaceFilterClick(i)}
+                />
+              );
+            })}
           </div>
         </div>
       )}
@@ -124,6 +130,8 @@ const CurationDetailCardList = forwardRef<
             variant={props.curationDetail.variant}
             curationId={props.curationId}
             {...space}
+            index={i}
+            handlePlaceScroll={handlePlaceScroll}
             ref={cardRefs[i]}
           />
         ))}
