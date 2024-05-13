@@ -15,6 +15,7 @@ import ScrapFillIcon from "@/common/assets/icons/scrap/ScrapFillIcon";
 import ScrapLineIcon from "@/common/assets/icons/scrap/ScrapLineIcon";
 import { useInView } from "react-intersection-observer";
 import { assignMultipleRefs } from "@/common/utils/dom/assign-multiple-refs";
+import UseCurationDetailPlaceScrapCount from "@/feature/curation/hooks/CurationDetail/useCurationDetailPlaceScrapCount";
 
 //Molecule
 const CurationDetailPlaceCard = forwardRef<
@@ -35,7 +36,7 @@ const CurationDetailPlaceCard = forwardRef<
   const setToast = useSetRecoilState(toastInfoSelector);
   const setIsQueryFetching = useSetRecoilState(queryFetchingSelector);
 
-  const [count, setCount] = useState(0);
+  const { count, plusCount } = UseCurationDetailPlaceScrapCount();
 
   const { mutate: deleteCurationSpace } = useCurationSpaceDelete(count);
 
@@ -47,7 +48,7 @@ const CurationDetailPlaceCard = forwardRef<
       location.replace("/login");
     } else {
       if (props.variant === "my" && count > 0) return;
-      setCount((prev) => prev + 1);
+      plusCount();
       if (props.variant === "my") {
         setIsQueryFetching(true);
         deleteCurationSpace({
