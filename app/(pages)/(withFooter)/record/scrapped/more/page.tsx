@@ -15,6 +15,7 @@ export default async function RecordScrappedMorePage() {
         showIndicator={false}
         indicatorIndex={0}
         text="스크랩한 공간"
+        className="z-20"
       />
       <div className="flex flex-col items-start w-full pt-[9.6rem] px-[2rem] gap-[0.8rem] pb-[15rem]">
         {scrappedPlace && scrappedPlace.length === 0 && (
