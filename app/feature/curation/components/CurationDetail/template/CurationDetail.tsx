@@ -1,12 +1,12 @@
 "use client";
 
-import CurationDetailCardList from "@/feature/curation/components/CurationDetail/organisms/CurationDetailCardList";
 import { CurationDetailResponse } from "@/feature/curation/queries/dto/curation-detail";
 import { useInView } from "react-intersection-observer";
 import Divider from "@/common/components/ui/divider/Divider";
 import CurationBanner from "../organisms/CurationBanner";
 import NoSavedPlace from "../organisms/NoSavedPlace";
 import CurationTopAppBar from "../../CurationInfo/organisms/CurationTopAppBar";
+import CurationDetailPlaceCardList from "../organisms/CurationDetailPlaceCardList";
 
 interface CurationDetailProps {
   id: number;
@@ -44,7 +44,7 @@ export default function CurationDetail({
       />
       <Divider className="w-full h-[4px] bg-line-gray-3" />
       {curationDetail.spaceDetails && (
-        <CurationDetailCardList
+        <CurationDetailPlaceCardList
           ref={inViewRef}
           inView={inView}
           curationId={id}
