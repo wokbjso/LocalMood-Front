@@ -2,7 +2,7 @@ import {
   CURATION_MAKE_CATEGORY,
   CURATION_MAKE_KEYWORD,
 } from "@/feature/curation/constants/curation-make";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function UseCurationMake(
   editMode: boolean,
@@ -70,6 +70,13 @@ export default function UseCurationMake(
           keyword: parseInitialKeyword(),
         }
   );
+
+  useEffect(() => {
+    if (curationInfo?.privacy)
+      setCurationMakeData({ ...curationMakeData, open: true });
+    else setCurationMakeData({ ...curationMakeData, open: false });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [curationInfo?.privacy]);
 
   const handleCurationName = (text: string) => {
     setCurationMakeData({ ...curationMakeData, curation_name: text });

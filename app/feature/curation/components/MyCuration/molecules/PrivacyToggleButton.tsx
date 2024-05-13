@@ -73,6 +73,11 @@ export default function PrivacyToggleButton({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [show]);
 
+  useEffect(() => {
+    if (privacy) setShow(true);
+    else setShow(false);
+  }, [privacy]);
+
   return (
     <>
       <div
