@@ -2,7 +2,7 @@
 
 import { twMerge } from "tailwind-merge";
 import Image from "next/image";
-import { forwardRef } from "react";
+import { MutableRefObject, RefObject, forwardRef } from "react";
 
 interface PlaceFilterProps {
   photo?: string;

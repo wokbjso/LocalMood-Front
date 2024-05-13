@@ -7,7 +7,6 @@ import Divider from "@/common/components/ui/divider/Divider";
 import CurationBanner from "../organisms/CurationBanner";
 import NoSavedPlace from "../organisms/NoSavedPlace";
 import CurationTopAppBar from "../../CurationInfo/organisms/CurationTopAppBar";
-import { useEffect } from "react";
 
 interface CurationDetailProps {
   id: number;

@@ -3,11 +3,12 @@
 import CurationDetailInfoCard from "./CurationDetailInfoCard";
 import { CurationDetailResponse } from "@/feature/curation/queries/dto/curation-detail";
 import { twMerge } from "tailwind-merge";
-import { createRef, forwardRef, useEffect, useState } from "react";
+import { createRef, forwardRef, useEffect, useRef, useState } from "react";
 import UseMap from "@/common/components/ui/map/Map/useMap";
 import MapIconButton from "../molecules/MapIconButton";
 import LocationCount from "../molecules/LocationCount";
 import PlaceFilter from "../molecules/PlaceFilter";
+import { assignMultipleRefs } from "@/common/utils/dom/assign-multiple-refs";
 
 interface CurationDetailCardListProps {
   inView: boolean;
@@ -28,6 +29,8 @@ const CurationDetailCardList = forwardRef<
     { length: props.curationDetail.spaceDetails.length },
     () => createRef<HTMLButtonElement>()
   );
+  const firstPlaceFilterRef = useRef<HTMLDivElement>(null);
+
   const { isOpened, openMap, closeMap } = UseMap();
   const [placeIndex, setPlaceIndex] = useState(0);
   const [placeData, setPlaceData] = useState<
@@ -46,8 +49,15 @@ const CurationDetailCardList = forwardRef<
   };
 
   const handlePlaceFilterClick = (index: number) => {
+    if (
+      firstPlaceFilterRef.current &&
+      firstPlaceFilterRef.current.scrollLeft !== 0
+    ) {
+      firstPlaceFilterRef.current.scrollLeft = 0;
+    }
     setClickScrolling(true);
     setPlaceIndex(index);
+    placeFilterRefs[index].current?.scrollIntoView();
     cardRefs[index].current?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -98,8 +108,8 @@ const CurationDetailCardList = forwardRef<
                     props.curationDetail.spaceDetails.length - 1 === i &&
                       "mr-[1.2rem]"
                   )}
-                  onClick={() => handlePlaceFilterClick(i)}
                   ref={placeFilterRefs[i]}
+                  onClick={() => handlePlaceFilterClick(i)}
                 />
               );
             })}
@@ -124,7 +134,7 @@ const CurationDetailCardList = forwardRef<
             />
           </div>
           <div
-            ref={ref}
+            ref={(el) => assignMultipleRefs(el, [ref, firstPlaceFilterRef])}
             className="flex gap-[0.8rem] mb-[-10.6rem] overflow-x-scroll"
           >
             {props.curationDetail.spaceDetails.map((item, i) => (
