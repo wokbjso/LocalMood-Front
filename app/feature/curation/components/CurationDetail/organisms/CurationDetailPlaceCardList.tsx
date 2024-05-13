@@ -1,6 +1,5 @@
 "use client";
 
-import CurationDetailInfoCard from "./CurationDetailInfoCard";
 import { CurationDetailResponse } from "@/feature/curation/queries/dto/curation-detail";
 import { twMerge } from "tailwind-merge";
 import { createRef, forwardRef, useEffect, useRef, useState } from "react";
@@ -9,17 +8,18 @@ import MapIconButton from "../molecules/MapIconButton";
 import LocationCount from "../molecules/LocationCount";
 import PlaceFilter from "../molecules/PlaceFilter";
 import { assignMultipleRefs } from "@/common/utils/dom/assign-multiple-refs";
+import CurationDetailPlaceCard from "./CurationDetailPlaceCard";
 
-interface CurationDetailCardListProps {
+interface CurationDetailPlaceCardListProps {
   inView: boolean;
   curationId: number;
   curationDetail: CurationDetailResponse;
 }
 
 //Organism
-const CurationDetailCardList = forwardRef<
+const CurationDetailPlaceCardList = forwardRef<
   HTMLDivElement,
-  CurationDetailCardListProps
+  CurationDetailPlaceCardListProps
 >(({ ...props }, ref) => {
   const cardRefs = Array.from(
     { length: props.curationDetail.spaceDetails.length },
@@ -154,7 +154,7 @@ const CurationDetailCardList = forwardRef<
           </div>
         </div>
         {props.curationDetail.spaceDetails.map((space, i) => (
-          <CurationDetailInfoCard
+          <CurationDetailPlaceCard
             key={space.name}
             variant={props.curationDetail.variant}
             curationId={props.curationId}
@@ -170,6 +170,6 @@ const CurationDetailCardList = forwardRef<
   );
 });
 
-CurationDetailCardList.displayName = "CurationDetailCardList";
+CurationDetailPlaceCardList.displayName = "CurationDetailCardList";
 
-export default CurationDetailCardList;
+export default CurationDetailPlaceCardList;

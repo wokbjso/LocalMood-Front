@@ -80,7 +80,7 @@ export default async function PlaceDetailPage({ params: { id } }: Props) {
         optionalService={detailData.info.optionalService}
         dishDesc={detailData.info.dishDesc}
       />
-      <Divider className="h-[0.4rem] mt-[2rem] mb-[3.6rem] bg-line-gray-3" />
+      <Divider className="h-[0.4rem] mb-[3.6rem] bg-line-gray-3" />
       <PlaceKeywordSummary
         mainText="유저들이 기록한 키워드 요약"
         subText="이 공간을 가장 잘 설명하는 키워드에요"

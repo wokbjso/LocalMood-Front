@@ -56,8 +56,8 @@ export default function PlaceDetailInfo({
   };
   return (
     <>
-      <div className="flex-col px-[2rem] relative">
-        <div className="headline0 mb-[0.8rem]">{name}</div>{" "}
+      <div className="flex-col relative">
+        <div className="headline0 mb-[0.8rem] px-[2rem]">{name}</div>{" "}
         {isScraped ? (
           <ScrapFillIcon
             color="#9E9E9E"
@@ -76,6 +76,7 @@ export default function PlaceDetailInfo({
             type === "CAFE" ? "카페" : subType && PLACE_SUB_TYPE[subType]
           }
           rightText={address}
+          className="px-[2rem]"
         />
         <PlaceDetailInfoMore
           type={type}
