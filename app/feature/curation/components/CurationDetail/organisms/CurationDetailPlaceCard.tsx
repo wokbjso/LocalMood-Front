@@ -99,32 +99,32 @@ const CurationDetailPlaceCard = forwardRef<
         </SliderLayout>
         <div className="mb-[-9rem]">
           <div className="w-full pr-[1.9rem]">
-            <div className="pt-[2rem] flex justify-between ">
-              <div>
-                <div className="flex items-center gap-[0.4rem] text-black headline2-semibold">
-                  {props.name}
-                  <div className="px-[0.6rem] py-[0.4rem]">
-                    <LinkLayout routeUrl={`/place/${props.id}`}>
+            <LinkLayout routeUrl={`/place/${props.id}`}>
+              <div className="pt-[2rem] flex justify-between ">
+                <div>
+                  <div className="flex items-center gap-[0.4rem] text-black headline2-semibold">
+                    {props.name}
+                    <div className="px-[0.6rem] py-[0.4rem]">
                       <ArrowRightIcon />
-                    </LinkLayout>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-[0.8rem] pt-[0.8rem]">
+                    <div className="body3-semibold text-text-gray-6">
+                      {props.type === "RESTAURANT" ? "음식점" : "카페"}
+                    </div>
+                    <div className="w-[0.1rem] h-[1.2rem] bg-text-gray-4"></div>
+                    <div className="body3-medium text-text-gray-5">
+                      {props.address}
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-center gap-[0.8rem] pt-[0.8rem]">
-                  <div className="body3-semibold text-text-gray-6">
-                    {props.type === "RESTAURANT" ? "음식점" : "카페"}
-                  </div>
-                  <div className="w-[0.1rem] h-[1.2rem] bg-text-gray-4"></div>
-                  <div className="body3-medium text-text-gray-5">
-                    {props.address}
-                  </div>
-                </div>
+                {props.isScraped ? (
+                  <ScrapFillIcon onClick={handleScrapState} />
+                ) : (
+                  <ScrapLineIcon onClick={handleScrapState} />
+                )}
               </div>
-              {props.isScraped ? (
-                <ScrapFillIcon onClick={handleScrapState} />
-              ) : (
-                <ScrapLineIcon onClick={handleScrapState} />
-              )}
-            </div>
+            </LinkLayout>
             <PlaceInfoCardBottom
               type={props.type}
               purpose={props.purpose ? props.purpose.split(",") : []}
