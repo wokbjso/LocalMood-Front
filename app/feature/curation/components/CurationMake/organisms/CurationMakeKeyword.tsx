@@ -54,6 +54,7 @@ export default function CurationMakeKeyword({
   const handleKeywordFilterClick = (category: string, keyword: string) => {
     onClick && onClick(category, keyword);
   };
+
   const isSameWithInitial = () => {
     if (
       curationMakeData.curation_name === curationInfo?.title &&

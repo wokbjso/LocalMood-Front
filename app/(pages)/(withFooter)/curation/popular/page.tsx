@@ -19,7 +19,6 @@ export async function generateMetadata(): Promise<Metadata> {
 //Page
 export default async function CurationPopularPage() {
   const randomCuration = await GetRandomCuration();
-  console.log(randomCuration);
   return (
     <div className="w-[100%] h-[100%] overflow-auto">
       {/* Template */}
