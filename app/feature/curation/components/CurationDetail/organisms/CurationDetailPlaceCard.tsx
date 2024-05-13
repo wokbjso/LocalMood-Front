@@ -17,7 +17,7 @@ import { useInView } from "react-intersection-observer";
 import { assignMultipleRefs } from "@/common/utils/dom/assign-multiple-refs";
 
 //Molecule
-const CurationDetailInfoCard = forwardRef<
+const CurationDetailPlaceCard = forwardRef<
   HTMLDivElement,
   CurationPlaceProps & {
     variant: string;
@@ -38,11 +38,6 @@ const CurationDetailInfoCard = forwardRef<
   const [count, setCount] = useState(0);
 
   const { mutate: deleteCurationSpace } = useCurationSpaceDelete(count);
-
-  const purposeArray = props.purpose ? props.purpose.split(",") : [];
-  const interiorArray = props.interior ? props.interior.split(",") : [];
-  const moodArray = props.mood ? props.mood.split(",") : [];
-  const bestMenuArray = props.bestMenu ? props.bestMenu.split(",") : [];
 
   const handleScrapState = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
@@ -131,10 +126,10 @@ const CurationDetailInfoCard = forwardRef<
             </div>
             <PlaceInfoCardBottom
               type={props.type}
-              purpose={purposeArray}
-              interior={interiorArray}
-              mood={moodArray}
-              bestMenu={bestMenuArray}
+              purpose={props.purpose ? props.purpose.split(",") : []}
+              interior={props.interior ? props.interior.split(",") : []}
+              mood={props.mood ? props.mood.split(",") : []}
+              bestMenu={props.bestMenu ? props.bestMenu.split(",") : []}
               keywordCategoryNum={3}
               bottomClassName="border-[0.1rem] border-line-gray-3 rounded-[8px] p-[1.6rem] flex-col"
             />
@@ -145,6 +140,6 @@ const CurationDetailInfoCard = forwardRef<
   );
 });
 
-CurationDetailInfoCard.displayName = "CurationDetailInfoCard";
+CurationDetailPlaceCard.displayName = "CurationDetailInfoCard";
 
-export default CurationDetailInfoCard;
+export default CurationDetailPlaceCard;
