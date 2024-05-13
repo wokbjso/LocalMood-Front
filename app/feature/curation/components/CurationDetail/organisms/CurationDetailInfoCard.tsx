@@ -14,6 +14,7 @@ import ArrowRightIcon from "@/common/assets/icons/arrow/ArrowRightIcon";
 import ScrapFillIcon from "@/common/assets/icons/scrap/ScrapFillIcon";
 import ScrapLineIcon from "@/common/assets/icons/scrap/ScrapLineIcon";
 import { useInView } from "react-intersection-observer";
+import { assignMultipleRefs } from "@/common/utils/dom/assign-multiple-refs";
 
 //Molecule
 const CurationDetailInfoCard = forwardRef<
@@ -79,7 +80,10 @@ const CurationDetailInfoCard = forwardRef<
 
   return (
     <>
-      <div className="w-full pt-[13rem]" ref={ref}>
+      <div
+        className="w-full pt-[13rem]"
+        ref={(el) => assignMultipleRefs(el, [ref, inViewRef])}
+      >
         <SliderLayout>
           <div className="flex gap-[0.8rem] mr-[0.8rem]">
             {props.imageUrls?.map((url, i) => (
@@ -97,7 +101,7 @@ const CurationDetailInfoCard = forwardRef<
             ))}
           </div>
         </SliderLayout>
-        <div className="mb-[-9rem]" ref={inViewRef}>
+        <div className="mb-[-9rem]">
           <div className="w-full pr-[1.9rem]">
             <div className="pt-[2rem] flex justify-between ">
               <div>
