@@ -29,16 +29,18 @@ export default function PlaceDetailInfoMore({
     <div className="w-full flex items-center">
       <div className="w-full">
         <div className="flex items-center justify-between">
-          <div className="inline-flex items-center gap-[0.6rem]">
+          <div className="inline-flex items-center">
             {visitorNum && optionalService && (
-              <>
-                <TextWithDivider
-                  leftText={visitorNum}
-                  rightText={optionalService}
-                  leftTextClassName="body2-medium text-text-gray-8"
-                  rightTextClassName="text-text-gray-8"
-                />
-              </>
+              <TextWithDivider
+                leftText={visitorNum}
+                rightText={optionalService}
+                leftTextClassName="body2-medium text-text-gray-8"
+                rightTextClassName="text-text-gray-8"
+                className={twMerge(
+                  "pl-[20px]",
+                  openMoreDetail ? "pt-[18px]" : ""
+                )}
+              />
             )}
             {visitorNum && !optionalService && (
               <span

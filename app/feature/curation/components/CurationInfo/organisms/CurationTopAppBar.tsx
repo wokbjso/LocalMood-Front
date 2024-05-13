@@ -125,7 +125,7 @@ export default function CurationTopAppBar({
   return (
     <ArrowBackTopBar
       color="#9E9E9E"
-      className={twMerge(!inView ? "bg-white fixed top-0 z-10" : "", className)}
+      className={twMerge(!inView ? "bg-white fixed top-0 z-20" : "", className)}
     >
       <div className="w-[100%] flex items-center justify-between gap-[0.8rem]">
         <h1 className="headline3-semibold">

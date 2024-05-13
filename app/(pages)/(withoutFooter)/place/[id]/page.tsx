@@ -57,6 +57,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 //Page
 export default async function PlaceDetailPage({ params: { id } }: Props) {
   const detailData = await GetPlaceDetail(id);
+
   return (
     <div className="w-[100%] h-[100%] relative pb-[12rem] overflow-auto">
       {/* Template */}

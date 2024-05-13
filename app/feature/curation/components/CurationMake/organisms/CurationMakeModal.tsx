@@ -36,6 +36,7 @@ export default function CurationMakeModal({
     }
     closeModal();
   };
+
   return (
     open && (
       <Modal className="h-[94%]">
@@ -55,7 +56,11 @@ export default function CurationMakeModal({
             </div>
             <div className="w-full pt-[1.6rem] grid justify-items-end">
               <ButtonLock
-                onClick={handlers.changeCurationOpen}
+                onClick={() =>
+                  handlers.changeCurationOpen(
+                    curationMakeData.open ? false : open
+                  )
+                }
                 initialValue={curationMakeData.open}
               />
             </div>
