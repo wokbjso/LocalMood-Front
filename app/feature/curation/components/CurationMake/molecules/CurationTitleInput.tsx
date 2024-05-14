@@ -2,12 +2,17 @@
 import React, { useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-interface TextFieldProps {
+interface CurationTitleInputProps {
+  placeholder: string;
   onChange?: (text: string) => void;
   initialValue: string;
 }
 
-export default function TextField({ onChange, initialValue }: TextFieldProps) {
+export default function CurationTitleInput({
+  placeholder,
+  onChange,
+  initialValue,
+}: CurationTitleInputProps) {
   const [inputValue, setInputValue] = useState(initialValue);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +30,7 @@ export default function TextField({ onChange, initialValue }: TextFieldProps) {
       >
         <input
           className="w-full h-[2rem] headline1-semibold placeholder:headline1-semibold placeholder:text-text-gray-4 outline-none"
-          placeholder="새 큐레이션"
+          placeholder={placeholder}
           value={inputValue}
           onChange={handleInputChange}
           maxLength={25}
