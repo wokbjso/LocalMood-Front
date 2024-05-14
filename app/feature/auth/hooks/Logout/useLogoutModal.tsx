@@ -1,18 +1,18 @@
 import { useState } from "react";
 
 export default function UseLogoutModal() {
-  const [isOpened, setIsOpened] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
-    setIsOpened(true);
+    setIsOpen(true);
   };
 
   const closeModal = () => {
-    setIsOpened(false);
+    setIsOpen(false);
   };
 
   return {
-    isOpened,
+    isOpen,
     openModal,
     closeModal,
   };
