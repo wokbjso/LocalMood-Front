@@ -16,7 +16,7 @@ export default function ButtonLock({
 
   const toggleLock = () => {
     setIsUnLocked((prevIsLocked) => !prevIsLocked);
-    onClick && onClick(isUnLocked);
+    onClick && onClick(!isUnLocked);
   };
 
   return (
