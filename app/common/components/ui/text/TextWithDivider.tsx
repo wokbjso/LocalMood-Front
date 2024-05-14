@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 
 interface TextWithDividerProps {
   leftText: string;
-  rightText: string;
+  rightText?: string;
   className?: string;
   leftTextClassName?: string;
   rightTextClassName?: string;

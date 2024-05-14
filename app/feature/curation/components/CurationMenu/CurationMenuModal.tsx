@@ -34,15 +34,18 @@ export default function CurationMenuModal({
   hasCopyLink = false,
   closeModal,
 }: CurationMenuModalProps) {
+  const pathname = usePathname();
+
   const { mutate: deleteCuration } = useDeleteCuration({ triggeredAt });
 
   const setToast = useSetRecoilState(toastInfo);
   const setIsQueryLoading = useSetRecoilState(queryFetchingSelector);
 
   const { ref } = UseOutsideClick<HTMLDivElement>(open, closeModal);
+
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [editCurationOpen, setEditCurationOpen] = useState(false);
-  const pathname = usePathname();
+
   const handleCurationEditClick = () => {
     setEditCurationOpen(true);
   };

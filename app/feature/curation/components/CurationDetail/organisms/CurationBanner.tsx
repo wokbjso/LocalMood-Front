@@ -5,8 +5,8 @@ import PrivacyToggleButton from "../../MyCuration/molecules/PrivacyToggleButton"
 import { formatDate } from "@/common/utils/date/formatDate";
 import { CurationDetailResponse } from "@/feature/curation/queries/dto/curation-detail";
 import TextWithDivider from "@/common/components/ui/text/TextWithDivider";
-import CurationTitle from "../molecules/CurationTitle";
 import CurationBannerChipList from "./CurationBannerChipList";
+import Title from "@/common/components/ui/text/Title";
 
 //Organism
 export default function CurationBanner({
@@ -31,7 +31,10 @@ export default function CurationBanner({
           <div className="w-[5.6rem] h-[5.6rem]">
             <Image src={NonCuration} alt="NonCuration" />
           </div>
-          <CurationTitle title={title} className="max-w-[23.2rem] break-keep" />
+          <Title
+            title={title}
+            className="max-w-[23.2rem] break-keep text-center pt-[1.2rem] pb-[0.8rem]"
+          />
           {variant === "my" ? (
             <PrivacyToggleButton id={id} privacy={privacy} />
           ) : (
