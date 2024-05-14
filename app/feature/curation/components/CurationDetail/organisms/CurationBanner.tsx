@@ -31,7 +31,7 @@ export default function CurationBanner({
           <div className="w-[5.6rem] h-[5.6rem]">
             <Image src={NonCuration} alt="NonCuration" />
           </div>
-          <CurationTitle title={title} className="max-w-[23.2rem]" />
+          <CurationTitle title={title} className="max-w-[23.2rem] break-keep" />
           {variant === "my" ? (
             <PrivacyToggleButton id={id} privacy={privacy} />
           ) : (

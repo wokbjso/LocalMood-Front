@@ -11,10 +11,14 @@ import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@/common/state/toast";
 import { validateLoggedIn } from "@/common/utils/validate/validateLoggedIn";
 import useFetching from "@/common/hooks/useFetching";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useCurationScrapIcon from "../../../hooks/CurationScrap/useCurationScrapIcon";
 import revalidateCurationScrapRelatedData from "@/feature/curation/actions/revalidateCurationScrapRelatedData";
-import LocationLineIcon from "@/common/assets/icons/location/LocationLineIcon";
+import SpaceCount from "@/common/components/ui/spaceCount/SpaceCount";
+import UseCurationScrapClickCount from "@/feature/curation/hooks/CurationInfo/useCurationScrapClickCount";
+import CurationInfoCardTagList from "./CurationInfoCardTagList";
+import CurationInfoCardTitle from "../molecules/CurationInfoCardTitle";
+import CurationInfoCardShadow from "../molecules/CurationInfoCardShadow";
 
 //Molecule
 export default function CurationInfoCardDark({
@@ -25,19 +29,18 @@ export default function CurationInfoCardDark({
   spaceCount,
   image,
   isScraped = true,
-  disableScrapDelete = false,
+  disableScrap = false,
   className,
 }: Omit<CurationProps, "places"> & {
-  disableScrapDelete?: boolean;
+  disableScrap?: boolean;
   className?: string;
 }) {
   const setToast = useSetRecoilState(toastInfoSelector);
 
   const { scraped, toggleScrap } = useCurationScrapIcon(isScraped);
-
   const { isFetching, changeFetching } = useFetching();
-
-  const [scrapClickCount, setScrapClickCount] = useState(0);
+  const { clickCount, plusClickCount, resetClickCount } =
+    UseCurationScrapClickCount();
 
   const curationScrapAdd = async () => {
     const res = await fetch(`/api/curation/scrap/add/${id}`, {
@@ -65,10 +68,10 @@ export default function CurationInfoCardDark({
     if ((await validateLoggedIn()) === false) {
       location.replace("/login");
     } else {
-      if (disableScrapDelete) {
-        if (scrapClickCount > 0) return;
+      if (disableScrap) {
+        if (clickCount > 0) return;
         else {
-          setScrapClickCount((prev) => prev + 1);
+          plusClickCount();
           toggleScrap();
           setToast({
             open: true,
@@ -76,7 +79,7 @@ export default function CurationInfoCardDark({
           });
         }
       } else {
-        setScrapClickCount((prev) => prev + 1);
+        plusClickCount();
         toggleScrap();
         setToast({
           open: true,
@@ -93,32 +96,37 @@ export default function CurationInfoCardDark({
     alert("오류가 발생했습니다");
   };
 
+  const handleIsFetching = () => {
+    resetClickCount();
+    toggleScrap();
+    alert("이전 요청을 처리중입니다");
+  };
+
+  const handleQuerySuccess = async () => {
+    await revalidateCurationScrapRelatedData().then(() => {
+      changeFetching(false);
+      resetClickCount();
+    });
+  };
+
   useEffect(() => {
     const timer = setTimeout(async () => {
       if (isFetching) {
-        setScrapClickCount(0);
-        toggleScrap();
-        alert("이전 요청을 처리중입니다");
+        handleIsFetching();
         return;
       }
-      if (scrapClickCount % 2 === 0) return;
+      if (clickCount % 2 === 0) return;
       if (scraped) {
         changeFetching(true);
         if ((await curationScrapAdd()) === 200) {
-          await revalidateCurationScrapRelatedData().then(() => {
-            changeFetching(false);
-            setScrapClickCount(0);
-          });
+          await handleQuerySuccess();
         } else {
           handleScrapError();
         }
       } else {
         changeFetching(true);
         if ((await curationScrapDelete()) === 200) {
-          await revalidateCurationScrapRelatedData().then(() => {
-            changeFetching(false);
-            setScrapClickCount(0);
-          });
+          await handleQuerySuccess();
         } else {
           handleScrapError();
         }
@@ -141,12 +149,7 @@ export default function CurationInfoCardDark({
               "linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55))",
           }}
         >
-          <div
-            className="absolute top-0 w-[100%] h-[100%] z-10"
-            style={{
-              background: "linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55))",
-            }}
-          />
+          <CurationInfoCardShadow />
           <Image
             alt="큐레이션 스크랩 사진"
             src={image ? (image as string) : NoResult}
@@ -176,29 +179,22 @@ export default function CurationInfoCardDark({
               onClick={handleScrapClick}
             />
           )}
-          <div className="flex items-center absolute bottom-[1.6rem] right-[1.6rem] z-10">
-            {<LocationLineIcon />}
-            <span className="ml-[0.2rem] body3-semibold text-white">
-              {spaceCount}
-            </span>
-          </div>
+          <SpaceCount
+            spaceCount={spaceCount}
+            className="absolute bottom-[1.6rem] right-[1.6rem] z-10"
+          />
           <Link
             href={{
               pathname: `/curation/detail/${id}`,
             }}
           >
-            <div className="absolute top-0 headline2 w-[80%] pt-[1.6rem] pl-[1.6rem] break-keep text-white z-10">
-              <span>{title}</span>
-              <div className="flex flex-wrap gap-x-[0.8rem]">
-                {keyword.map((tag) => (
-                  <div key={tag}>
-                    <span className="text-primary-normal body2-medium"># </span>
-                    <span className="text-text-gray-4 body2-medium whitespace-nowrap">
-                      {tag}
-                    </span>
-                  </div>
-                ))}
-              </div>
+            <div className="w-full absolute top-0 pt-[1.6rem] pl-[1.6rem] z-10">
+              <CurationInfoCardTitle title={title} className="text-white" />
+              <CurationInfoCardTagList
+                keyword={keyword}
+                className="mt-[12px]"
+                textClassName="text-text-gray-4"
+              />
             </div>
           </Link>
         </div>
