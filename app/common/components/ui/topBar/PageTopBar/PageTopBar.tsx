@@ -19,7 +19,7 @@ export default function PageTopBar({
   className,
   textClassName,
 }: PageTopBarProps) {
-  const { isOpened, openModal, closeModal } = UseLogoutModal();
+  const { isOpen, openModal, closeModal } = UseLogoutModal();
 
   const handleMenuIconClick = () => {
     openModal();
@@ -36,7 +36,7 @@ export default function PageTopBar({
         {text}
       </span>
       {hasMenu && <MenuIcon onClick={handleMenuIconClick} />}
-      {isOpened && <LogoutModal closeModal={closeModal} />}
+      <LogoutModal isOpen={isOpen} closeModal={closeModal} />
     </div>
   );
 }

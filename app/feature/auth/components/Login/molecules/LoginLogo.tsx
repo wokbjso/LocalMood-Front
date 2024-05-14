@@ -4,6 +4,7 @@ import UseGetBrowserHeight from "@/common/hooks/useGetBrowserHeight";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 
+//Molecule
 export default function LoginLogo({ className }: { className?: string }) {
   const browserHeight = UseGetBrowserHeight();
   return (

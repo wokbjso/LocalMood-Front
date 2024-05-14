@@ -107,15 +107,14 @@ export default function CurationMenuModal({
         curationInfo={curationInfo}
         editMode
       />
-      {deleteModalOpen && (
-        <ConfirmModal
-          text="정말 삭제하시겠습니까?"
-          cancleText="취소하기"
-          confirmText="삭제하기"
-          cancelFn={handleCancleClick}
-          confirmFn={handleConfirmClick}
-        />
-      )}
+      <ConfirmModal
+        isOpen={deleteModalOpen}
+        text="정말 삭제하시겠습니까?"
+        cancleText="취소하기"
+        confirmText="삭제하기"
+        cancelFn={handleCancleClick}
+        confirmFn={handleConfirmClick}
+      />
     </>
   );
 }

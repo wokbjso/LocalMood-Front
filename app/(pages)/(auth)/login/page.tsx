@@ -1,6 +1,6 @@
 import LinkLayout from "@/common/components/layout/Link/LinkLayout";
 import KakaoScript from "@/feature/auth/components/Login/script/KakaoScript";
-import LoginLogo from "@/feature/auth/components/Login/atoms/LoginLogo";
+import LoginLogo from "@/feature/auth/components/Login/molecules/LoginLogo";
 import LoginPageText from "@/feature/auth/components/Login/organisms/LoginPageText";
 import KakaoStartButton from "@/feature/auth/components/Login/organisms/KakaoStartButton";
 import TextWithBorder from "@/feature/auth/components/Login/molecules/TextWithBorder";
