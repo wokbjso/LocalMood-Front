@@ -2,13 +2,16 @@
 
 import { CurationDetailResponse } from "@/feature/curation/queries/dto/curation-detail";
 import { twMerge } from "tailwind-merge";
-import { createRef, forwardRef, useEffect, useRef, useState } from "react";
+import { createRef, forwardRef, useEffect, useRef } from "react";
 import UseMap from "@/common/components/ui/map/Map/useMap";
 import MapIconButton from "../molecules/MapIconButton";
 import LocationCount from "../molecules/LocationCount";
 import PlaceFilter from "../molecules/PlaceFilter";
 import { assignMultipleRefs } from "@/common/utils/dom/assign-multiple-refs";
 import CurationDetailPlaceCard from "./CurationDetailPlaceCard";
+import UseCurationDetailPlaceIndex from "@/feature/curation/hooks/CurationDetail/useCurationDetailPlaceIndex";
+import UseSetPlaceMapData from "@/feature/curation/hooks/CurationDetail/useSetPlaceMapData";
+import UseScrollingAfterFilterClick from "@/feature/curation/hooks/CurationDetail/useScrollingAfterFilterClick";
 
 interface CurationDetailPlaceCardListProps {
   inView: boolean;
@@ -32,54 +35,64 @@ const CurationDetailPlaceCardList = forwardRef<
   const firstPlaceFilterRef = useRef<HTMLDivElement>(null);
 
   const { isOpened, openMap, closeMap } = UseMap();
-  const [placeIndex, setPlaceIndex] = useState(0);
-  const [placeData, setPlaceData] = useState<
-    {
-      address: string;
-      name: string;
-      type: string;
-      purpose: string[];
-      imgUrl: string;
-    }[]
-  >([]);
-  const [clickScrolling, setClickScrolling] = useState(false);
-  const handleMapClick = () => {
-    if (placeData.length > 0) openMap();
-    else alert("저장된 공간이 없습니다");
+  const { placeIndex, changePlaceIndex } = UseCurationDetailPlaceIndex();
+  const { placeData, changePlaceData } = UseSetPlaceMapData();
+  const { isScrolling, changeIsScrolling } = UseScrollingAfterFilterClick();
+
+  const alertMapNoPlace = () => {
+    alert("저장된 공간이 없습니다");
   };
 
-  const handlePlaceFilterClick = (index: number) => {
+  const handleMapClick = () => {
+    if (placeData.length > 0) openMap();
+    else alertMapNoPlace();
+  };
+
+  const scrollFirstPlaceFilterToLeft = () => {
     if (
       firstPlaceFilterRef.current &&
       firstPlaceFilterRef.current.scrollLeft !== 0
     ) {
       firstPlaceFilterRef.current.scrollLeft = 0;
     }
-    setClickScrolling(true);
-    setPlaceIndex(index);
+  };
+
+  const handlePlaceRefs = (index: number) => {
     placeFilterRefs[index].current?.scrollIntoView();
+  };
+
+  const handleCardRefs = (index: number) => {
     cardRefs[index].current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const handlePlaceFilterClick = (index: number) => {
+    scrollFirstPlaceFilterToLeft();
+    changeIsScrolling(true);
+    changePlaceIndex(index);
+    handlePlaceRefs(index);
+    handleCardRefs(index);
+  };
+
   const handlePlaceScroll = (index: number) => {
-    setPlaceIndex(index);
-    placeFilterRefs[index].current?.scrollIntoView();
+    changePlaceIndex(index);
+    handlePlaceRefs(index);
   };
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
-    if (clickScrolling) {
+    if (isScrolling) {
       timeoutId = setTimeout(() => {
-        setClickScrolling(false);
+        changeIsScrolling(false);
       }, 800);
     }
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [clickScrolling]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isScrolling]);
 
   useEffect(() => {
-    setPlaceData(
+    changePlaceData(
       props.curationDetail.spaceDetails.map((space) => {
         return {
           address: space.address,
@@ -90,30 +103,29 @@ const CurationDetailPlaceCardList = forwardRef<
         };
       })
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.curationDetail]);
   return (
     <>
       {!props.inView && (
-        <div className="w-[100%] absolute top-[4.8rem] z-10">
-          <div className="flex bg-white z-10 gap-[0.8rem] pb-[0.8rem] pt-[0.6rem] pl-[2rem] overflow-x-scroll">
-            {props.curationDetail.spaceDetails.map((item, i) => {
-              return (
-                <PlaceFilter
-                  key={item.id}
-                  photo={item.imageUrls && item.imageUrls[0]}
-                  label={item.name}
-                  selected={placeIndex === i}
-                  className={twMerge(
-                    "whitespace-nowrap",
-                    props.curationDetail.spaceDetails.length - 1 === i &&
-                      "mr-[1.2rem]"
-                  )}
-                  ref={placeFilterRefs[i]}
-                  onClick={() => handlePlaceFilterClick(i)}
-                />
-              );
-            })}
-          </div>
+        <div className="w-[100%] absolute top-[4.8rem] flex bg-white z-10 gap-[0.8rem] pb-[0.8rem] pt-[0.6rem] pl-[2rem] overflow-x-scroll">
+          {props.curationDetail.spaceDetails.map((item, i) => {
+            return (
+              <PlaceFilter
+                key={item.id}
+                photo={item.imageUrls && item.imageUrls[0]}
+                label={item.name}
+                selected={placeIndex === i}
+                className={twMerge(
+                  "whitespace-nowrap",
+                  props.curationDetail.spaceDetails.length - 1 === i &&
+                    "mr-[1.2rem]"
+                )}
+                ref={placeFilterRefs[i]}
+                onClick={() => handlePlaceFilterClick(i)}
+              />
+            );
+          })}
         </div>
       )}
       <div className="pb-[6.1rem] p-[2rem] pr-0 w-full">
@@ -161,7 +173,7 @@ const CurationDetailPlaceCardList = forwardRef<
             {...space}
             index={i}
             handlePlaceScroll={handlePlaceScroll}
-            clickScrolling={clickScrolling}
+            isScrolling={isScrolling}
             ref={cardRefs[i]}
           />
         ))}

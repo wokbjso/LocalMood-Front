@@ -1,7 +1,7 @@
+import { lazy } from "react";
 import CloseIcon from "@/common/assets/icons/close/CloseIcon";
 import Modal from "@/common/components/ui/modal/Modal";
 import UseDeferredComponent from "@/common/hooks/useDeferredComponent";
-import { lazy } from "react";
 import CurationMakeButton from "../../CurationMake/molecules/CurationMakeButton";
 import useOpenCurationMakeModal from "../../../hooks/CurationMake/useOpenCurationMakeModal";
 import { useSetRecoilState } from "recoil";
@@ -10,6 +10,8 @@ import { myCurationModalInfoSelector } from "@/common/state/myCurationModal";
 import { twMerge } from "tailwind-merge";
 import useSavePlaceAtCuration from "@/feature/curation/queries/useSavePlaceAtCuration";
 import { MyCurationResponse } from "@/feature/curation/queries/dto/my-curation";
+import Title from "@/common/components/ui/text/Title";
+import MyCurationCardSkeleton from "../skeleton/MyCurationCardSkeleton";
 const MyCurationCard = lazy(() => import("./MyCurationCard"));
 
 interface MyCurationModalProps {
@@ -61,9 +63,7 @@ export default function MyCurationModal({
     <>
       {open && (
         <Modal className={twMerge("px-[2rem] h-[48%]")}>
-          <div className="flex pt-[2.4rem] pr-[18rem] headline2-semibold">
-            {title}
-          </div>
+          <Title title={title} className="pt-[2.4rem] headline2-semibold" />
           <CloseIcon
             className="absolute right-[2.4rem] top-[4rem]"
             onClick={handleModalCloseClick}
@@ -79,9 +79,7 @@ export default function MyCurationModal({
           />
           {isFetching ? (
             <UseDeferredComponent>
-              <div className="w-full h-[6rem] bg-background-gray-2 mb-[8px] animate-pulse" />
-              <div className="w-full h-[6rem] bg-background-gray-2 mb-[8px] animate-pulse" />
-              <div className="w-full h-[6rem] bg-background-gray-2 mb-[8px] animate-pulse" />
+              <MyCurationCardSkeleton />
             </UseDeferredComponent>
           ) : (
             <div

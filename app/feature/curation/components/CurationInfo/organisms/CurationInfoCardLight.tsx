@@ -14,11 +14,13 @@ import useCurationScrapIcon from "../../../hooks/CurationScrap/useCurationScrapI
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@/common/state/toast";
 import { validateLoggedIn } from "@/common/utils/validate/validateLoggedIn";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useFetching from "@/common/hooks/useFetching";
 import revalidateCurationScrapRelatedData from "@/feature/curation/actions/revalidateCurationScrapRelatedData";
-import LocationLineIcon from "@/common/assets/icons/location/LocationLineIcon";
-import HashTag from "@/common/components/ui/text/HashTag";
+import UseCurationScrapClickCount from "@/feature/curation/hooks/CurationInfo/useCurationScrapClickCount";
+import SpaceCount from "@/common/components/ui/spaceCount/SpaceCount";
+import CurationInfoCardTitle from "../molecules/CurationInfoCardTitle";
+import CurationInfoCardTagList from "./CurationInfoCardTagList";
 
 //Molecule
 export default function CurationInfoCardLight({
@@ -38,12 +40,10 @@ export default function CurationInfoCardLight({
   const setToast = useSetRecoilState(toastInfoSelector);
 
   const { isOpened, openModal, closeModal } = useCurationMenuModal();
-
   const { scraped, toggleScrap } = useCurationScrapIcon(isScraped);
-
   const { isFetching, changeFetching } = useFetching();
-
-  const [scrapClickCount, setScrapClickCount] = useState(0);
+  const { clickCount, plusClickCount, resetClickCount } =
+    UseCurationScrapClickCount();
 
   const curationScrapAdd = async () => {
     const res = await fetch(`/api/curation/scrap/add/${id}`, {
@@ -71,7 +71,7 @@ export default function CurationInfoCardLight({
     if ((await validateLoggedIn()) === false) {
       location.replace("/login");
     } else {
-      setScrapClickCount((prev) => prev + 1);
+      plusClickCount();
       toggleScrap();
       setToast({
         open: true,
@@ -92,32 +92,33 @@ export default function CurationInfoCardLight({
     alert("오류가 발생했습니다");
   };
 
+  const handleQuerySuccess = async () => {
+    await revalidateCurationScrapRelatedData().then(() => {
+      changeFetching(false);
+      resetClickCount();
+    });
+  };
+
   useEffect(() => {
     const timer = setTimeout(async () => {
       if (isFetching) {
-        setScrapClickCount(0);
+        resetClickCount();
         toggleScrap();
         alert("이전 요청을 처리중입니다");
         return;
       }
-      if (scrapClickCount % 2 === 0) return;
+      if (clickCount % 2 === 0) return;
       if (scraped) {
         changeFetching(true);
         if ((await curationScrapAdd()) === 200) {
-          await revalidateCurationScrapRelatedData().then(() => {
-            changeFetching(false);
-            setScrapClickCount(0);
-          });
+          await handleQuerySuccess();
         } else {
           handleScrapError();
         }
       } else {
         changeFetching(true);
         if ((await curationScrapDelete()) === 200) {
-          await revalidateCurationScrapRelatedData().then(() => {
-            changeFetching(false);
-            setScrapClickCount(0);
-          });
+          await handleQuerySuccess();
         } else {
           handleScrapError();
         }
@@ -161,10 +162,7 @@ export default function CurationInfoCardLight({
             />
           )}
           <Chip className="body3-semibold rounded-[4px] bg-[#212121CC] flex items-center pr-[0.4rem] pl-[0.2rem] h-[2rem] absolute right-[1.6rem] bottom-[1.6rem]">
-            <LocationLineIcon />
-            <span className="body3-semibold text-white ml-[0.2rem]">
-              {spaceCount}
-            </span>
+            <SpaceCount spaceCount={spaceCount} />
           </Chip>
         </div>
       </Link>
@@ -208,20 +206,14 @@ export default function CurationInfoCardLight({
             pathname: `/curation/detail/${id}`,
           }}
         >
-          <div className="max-w-[24.4rem] headline2 w-[70%] break-keep mb-[1.2rem] text-black">
-            {title}
-          </div>
-          <div className="flex flex-wrap">
-            {keyword.map((tag) => (
-              <HashTag
-                key={tag}
-                mainText={" " + tag}
-                className="mr-[8px]"
-                tagClassName="text-primary-normal body2-medium"
-                mainTextClassName="text-text-gray-6 body2-medium"
-              />
-            ))}
-          </div>
+          <CurationInfoCardTitle
+            title={title}
+            className="max-w-[24.4rem] mb-[12px]"
+          />
+          <CurationInfoCardTagList
+            keyword={keyword}
+            textClassName="text-text-gray-6"
+          />
         </Link>
       </div>
     </div>

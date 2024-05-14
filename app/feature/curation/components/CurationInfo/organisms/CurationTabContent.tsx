@@ -23,7 +23,6 @@ export default function CurationTabContent({
   const { data: myCurationData } = useGetMyCuration();
 
   const { tabIndex, changeTabIndex } = useTab();
-
   const { isModalOpen, openModal, closeModal } = useOpenCurationMakeModal();
 
   const handleMakeCurationClick = () => {
@@ -70,7 +69,7 @@ export default function CurationTabContent({
             scrappedCuration?.length > 0 ? (
               scrappedCuration?.map((props: any) => (
                 <div key={props.author + props.id} className="mb-[1.6rem]">
-                  <CurationInfoCardDark {...props} disableScrapDelete />
+                  <CurationInfoCardDark {...props} disableScrap />
                 </div>
               ))
             ) : (

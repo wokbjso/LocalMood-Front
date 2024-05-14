@@ -3,10 +3,11 @@ import { twMerge } from "tailwind-merge";
 
 interface TextWithDividerProps {
   leftText: string;
-  rightText: string;
+  rightText?: string;
   className?: string;
   leftTextClassName?: string;
   rightTextClassName?: string;
+  borderColor?: string;
   borderClassName?: string;
 }
 
@@ -17,6 +18,7 @@ export default function TextWithDivider({
   className,
   leftTextClassName,
   rightTextClassName,
+  borderColor,
   borderClassName,
 }: TextWithDividerProps) {
   return (
@@ -29,7 +31,10 @@ export default function TextWithDivider({
       >
         {leftText}
       </span>
-      <LineIcon className={twMerge("mx-[0.8rem]", borderClassName)} />
+      <LineIcon
+        color={borderColor}
+        className={twMerge("mx-[8px]", borderClassName)}
+      />
       <span
         className={twMerge(
           "body2-medium text-text-gray-5 whitespace-nowrap",

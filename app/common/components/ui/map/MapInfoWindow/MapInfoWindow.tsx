@@ -14,7 +14,7 @@ export default function MapInfoWindow({
   const infoWindowArray = [
     `<div style="display:flex; width:33.5rem; height:10.4rem; padding:1.2rem 2rem; border-radius:12px; box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.10); background-color:white;">`,
     `<div style="width:8rem; height:8rem; margin-right:1.3rem; border-radius:4px; background-image:url(${imgUrl}); background-size: cover; background-repeat: no-repeat;"></div>`, // 이미지 div
-    `<div style="display:flex; flex-direction: column; justify-content:space-between;">`,
+    `<div style="display:flex; flex-direction: column; justify-content:space-between; align-items:start">`,
     `<span style="color:black; font-size:1.6rem; font-weight:600; letter-spacing: -0.32px; font-family: Pretendard, sans-serif;">${name}</span>`,
     `<div style="display:flex; align-items:center;">`,
     `<span style="color:#9E9E9E; font-family: Pretendard; font-size: 1.2rem; font-style: normal; font-weight: 600; letter-spacing: -0.24px;">${

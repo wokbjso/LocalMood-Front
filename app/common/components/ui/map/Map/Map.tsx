@@ -109,7 +109,7 @@ export default function Map({
           content: MapInfoWindow({
             name: place.name,
             type: place.type,
-            address: sliceText(place.address, 15),
+            address: sliceText(place.address, 14),
             purpose: place.purpose,
             imgUrl: place.imgUrl,
           }),

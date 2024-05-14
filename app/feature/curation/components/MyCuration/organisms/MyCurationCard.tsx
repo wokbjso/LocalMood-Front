@@ -4,7 +4,9 @@ import { CurationProps } from "@/feature/curation/type";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@/common/state/toast";
 import ImageWrapper from "@/common/components/ui/wrapper/ImageWrapper";
-import LocationLineIcon from "@/common/assets/icons/location/LocationLineIcon";
+import TextWithDivider from "@/common/components/ui/text/TextWithDivider";
+import SpaceCount from "@/common/components/ui/spaceCount/SpaceCount";
+import Title from "@/common/components/ui/text/Title";
 
 interface MyCurationCardProps {
   spaceId: number;
@@ -59,18 +61,22 @@ export default function MyCurationCard({
           />
         </div>
         <div className="flex flex-col justify-center ml-[1.2rem]">
-          <h1 className="headline2-semibold mb-[0.8rem]">
-            {curationData.title}
-          </h1>
-          <div className="flex items-center gap-[1rem]">
-            <span className="body2-medium text-text-gray-6">
-              {curationData.privacy ? "공개" : "비공개"}
-            </span>
-            <div className="w-[0.1rem] h-[1.2rem] bg-text-gray-4"></div>
-            <div className="flex items-center gap-[0.2rem] body3-semibold text-text-gray-6">
-              <LocationLineIcon color="#9E9E9E" />
-              <div>{curationData.spaceCount}</div>
-            </div>
+          <Title
+            title={curationData.title}
+            className="headline2-semibold mb-[0.8rem]"
+          />
+          <div className="flex items-center">
+            <TextWithDivider
+              leftText={curationData.privacy ? "공개" : "비공개"}
+              leftTextClassName="body2-medium"
+              borderClassName="mx-[10px]"
+              borderColor="#E0E0E0"
+            />
+            <SpaceCount
+              spaceCount={curationData.spaceCount}
+              iconColor="#9E9E9E"
+              countTextClassName="text-text-gray-6"
+            />
           </div>
         </div>
       </div>

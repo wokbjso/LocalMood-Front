@@ -35,6 +35,8 @@ export default function CurationTopAppBar({
   variant,
   className,
 }: CurationTopAppBarProps) {
+  const pathname = usePathname();
+
   const setToast = useSetRecoilState(toastInfoSelector);
 
   const { scraped, toggleScrap } = useCurationScrapIcon(
@@ -42,8 +44,6 @@ export default function CurationTopAppBar({
   );
   const { isFetching, changeFetching } = useFetching();
   const { isOpened, openModal, closeModal } = useCurationMenuModal();
-
-  const pathname = usePathname();
 
   const handleMenuIconClick = () => {
     openModal();
@@ -82,23 +82,39 @@ export default function CurationTopAppBar({
     revalidateCurationDetail();
   };
 
-  const handleScrapDeleteClick = async () => {
-    if (isFetching) {
-      alert("이전 요청을 처리중입니다");
-      return;
-    }
+  const alertIsFetching = () => {
+    alert("이전 요청을 처리중입니다");
+  };
+
+  const handleScrapClicked = (toastText: string) => {
     changeFetching(true);
     toggleScrap();
     setToast({
       open: true,
-      text: "큐레이션 스크랩이 해제되었습니다",
+      text: toastText,
     });
+  };
+
+  const handleQuerySuccess = () => {
+    changeFetching(false);
+    revalidateRelatedData();
+  };
+
+  const handleQueryFail = () => {
+    toggleScrap();
+    alert("에러가 발생했습니다.");
+  };
+
+  const handleScrapDeleteClick = async () => {
+    if (isFetching) {
+      alertIsFetching();
+      return;
+    }
+    handleScrapClicked("큐레이션 스크랩이 해제되었습니다");
     if ((await deleteScrap()) === 200) {
-      changeFetching(false);
-      revalidateRelatedData();
+      handleQuerySuccess();
     } else {
-      toggleScrap();
-      alert("에러가 발생했습니다.");
+      handleQueryFail();
     }
   };
 
@@ -107,18 +123,11 @@ export default function CurationTopAppBar({
       alert("이전 요청을 처리중입니다");
       return;
     }
-    changeFetching(true);
-    toggleScrap();
-    setToast({
-      open: true,
-      text: "큐레이션이 스크랩 되었습니다",
-    });
+    handleScrapClicked("큐레이션이 스크랩 되었습니다");
     if ((await addScrap()) === 200) {
-      changeFetching(false);
-      revalidateRelatedData();
+      handleQuerySuccess();
     } else {
-      toggleScrap();
-      alert("에러가 발생했습니다.");
+      handleQueryFail();
     }
   };
 
