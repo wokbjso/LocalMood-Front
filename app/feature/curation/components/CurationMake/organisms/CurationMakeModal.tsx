@@ -30,6 +30,7 @@ export default function CurationMakeModal({
     editMode,
     curationInfo
   );
+
   const closeIconClicked = () => {
     if (!editMode) {
       resetCurationMakeData();
@@ -56,11 +57,7 @@ export default function CurationMakeModal({
             </div>
             <div className="w-full pt-[1.6rem] grid justify-items-end">
               <ButtonLock
-                onClick={() =>
-                  handlers.changeCurationOpen(
-                    curationMakeData.open ? false : open
-                  )
-                }
+                onClick={handlers.changeCurationOpen}
                 initialValue={curationMakeData.open}
               />
             </div>
