@@ -1,9 +1,9 @@
 import Modal from "@/common/components/ui/modal/Modal";
 import UseOutsideClick from "@/common/hooks/useOutsideClick";
-import { useState } from "react";
 import ConfirmModal from "@/common/components/ui/modal/ConfirmModal";
 import UserProfileIcon from "@/common/assets/icons/user/UserProfileIcon";
 import { ModalContent } from "@/common/components/ui/modal/ModalContent";
+import UseLogoutModal from "@/feature/auth/hooks/Logout/useLogoutModal";
 
 //Organism
 export default function LogoutModal({
@@ -14,24 +14,33 @@ export default function LogoutModal({
   closeModal: () => void;
 }) {
   const { ref } = UseOutsideClick<HTMLDivElement>(true, closeModal);
-  const [logoutConfirmModalOpen, setLogoutConfirmModalOpen] = useState(false);
+  const {
+    isOpen: isConfirmModalOpen,
+    openModal: openConfirmModal,
+    closeModal: closeConfirmModal,
+  } = UseLogoutModal();
 
   const handleLogoutClick = () => {
-    setLogoutConfirmModalOpen(true);
+    openConfirmModal();
   };
 
   const handleCancleClick = () => {
-    setLogoutConfirmModalOpen(false);
+    closeConfirmModal();
   };
 
-  const handleConfirmClick = async () => {
+  const logout = async () => {
     const res = await fetch("/api/auth/logout", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
     });
-    if (res.status === 200) {
+
+    return res.status;
+  };
+
+  const handleConfirmClick = async () => {
+    if ((await logout()) === 200) {
       alert("로그아웃 되었습니다");
       location.replace("/");
     }
@@ -50,7 +59,7 @@ export default function LogoutModal({
         </Modal>
       )}
       <ConfirmModal
-        isOpen={logoutConfirmModalOpen}
+        isOpen={isConfirmModalOpen}
         text="로그아웃 하시겠습니까?"
         cancleText="취소하기"
         confirmText="로그아웃"
