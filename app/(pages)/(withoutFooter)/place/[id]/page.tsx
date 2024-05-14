@@ -59,7 +59,7 @@ export default async function PlaceDetailPage({ params: { id } }: Props) {
   const detailData = await GetPlaceDetail(id);
 
   return (
-    <div className="w-[100%] h-[100%] relative pb-[12rem] overflow-auto">
+    <div className="w-[100%] h-[100%] relative pb-[60px] overflow-auto">
       {/* Template */}
       <PlaceDetailTopBar
         type={detailData.info.type}
