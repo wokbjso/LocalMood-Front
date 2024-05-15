@@ -2,6 +2,7 @@ import { PlaceDetailInfoProps } from "@/feature/place/queries/dto/place-detail";
 import { PLACE_CATEGORY } from "@/feature/place/constants/place-tag-category";
 import PlaceKeywordSummaryLine from "./PlaceKeywordSummaryLine";
 import PlaceKeywordSummaryPurpose from "./PlaceKeywordSummaryPurpose";
+import Title from "@/common/components/ui/text/Title";
 
 //Organism
 export default function PlaceKeywordSummary({
@@ -18,7 +19,7 @@ export default function PlaceKeywordSummary({
   return (
     <>
       <div className="px-[2rem]">
-        <p className="headline2 mb-[0.8rem] text-black">{mainText}</p>
+        <Title title={mainText} className="headline2 mb-[8px]" />
         <p className="body3-medium text-text-gray-6">{subText}</p>
       </div>
       <div className="bg-background-secondary-light mt-[1.6rem] p-[2rem]">

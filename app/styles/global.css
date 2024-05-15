@@ -55,6 +55,19 @@
   transition: transform 300ms ease-in-out;
 }
 
+@keyframes fillWidth {
+  from {
+    width: 0%;
+  }
+  to {
+    width: calc(var(--percentage) * 1%);
+  }
+}
+
+.fill-graph {
+  animation: fillWidth 0.8s ease forwards; /* fillWidth 애니메이션을 0.3초 동안 재생하고 종료 시 마지막 스타일을 유지 */
+}
+
 @keyframes slide-modal {
   from {
     transform: translateY(100%);

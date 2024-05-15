@@ -2,7 +2,7 @@ import { twMerge } from "tailwind-merge";
 import {
   PlaceInfoCardBottomProps,
   PlaceInfoCardTopProps,
-} from "@/feature/place/type";
+} from "@/feature/place/components/PlaceInfo/type";
 import SliderLayout from "@/common/components/layout/Slider/SliderLayout";
 import GetRandomPlaces from "@/feature/place/queries/getRandomPlaces";
 import dynamic from "next/dynamic";

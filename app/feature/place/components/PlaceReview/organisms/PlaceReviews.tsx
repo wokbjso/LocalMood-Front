@@ -8,24 +8,12 @@ import {
   PLACE_CAFE_PURPOSE,
   PLACE_RESTAURANT_PURPOSE,
 } from "@/feature/place/constants/place-tag-category";
+import { PlaceRecordProps } from "@/feature/place/queries/dto/place-record";
 
 interface PlaceReviewsProps {
   type: string;
   reviews: {
-    [key: string]: {
-      image: string[];
-      name: string;
-      type: string;
-      address: string;
-      author: string;
-      createdAt: string;
-      interior: string;
-      mood: string;
-      music: string;
-      positiveEval: string;
-      negativeEval: string;
-      scrapped: boolean;
-    }[];
+    [key: string]: PlaceRecordProps[];
   };
 }
 

@@ -4,7 +4,7 @@ import {
   PlaceInfoCardAdditionalProps,
   PlaceInfoCardBottomProps,
   PlaceInfoCardTopProps,
-} from "@/feature/place/type";
+} from "@/feature/place/components/PlaceInfo/type";
 
 //Molecule
 export default function PlaceInfoCardBottom({

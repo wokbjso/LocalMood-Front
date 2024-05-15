@@ -3,6 +3,7 @@ import BusinessIcon from "@/common/assets/icons/business/BusinessIcon";
 import ChatIcon from "@/common/assets/icons/chat/ChatIcon";
 import HeartIcon from "@/common/assets/icons/heart/HeartIcon";
 import UserDoubleIcon from "@/common/assets/icons/user/UserDoubleIcon";
+import HashTag from "@/common/components/ui/text/HashTag";
 
 interface PlacePurposeBoxProps {
   purpose: string;
@@ -24,8 +25,11 @@ export default function PlacePurposeBox({ purpose }: PlacePurposeBoxProps) {
     <div className="w-[48%] flex flex-col items-center p-[1.2rem] bg-white rounded-[8px]">
       {returnPurposeIcon(purpose)}
       <div className="mt-[0.8rem]">
-        <span className="body1 text-primary-normal"># </span>
-        <span className="body1 text-black">{purpose}</span>
+        <HashTag
+          mainText={" " + purpose}
+          mainTextClassName="body1"
+          tagClassName="body1"
+        />
       </div>
     </div>
   );
