@@ -1,4 +1,8 @@
-export default async function GetPlaceReview(id: number) {
+import { PlaceRecordResponse } from "./dto/place-record";
+
+export default async function GetPlaceReview(
+  id: number
+): Promise<PlaceRecordResponse> {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/review/space/${id}`,
     {

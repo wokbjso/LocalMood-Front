@@ -6,18 +6,18 @@ import Link from "next/link";
 import {
   PlaceInfoCardAdditionalProps,
   PlaceInfoCardTopProps,
-} from "@/feature/place/type";
+} from "@/feature/place/components/PlaceInfo/type";
 import RecordNoImage from "@/common/assets/images/RecordNoImage.png";
 import { sliceText } from "@/common/utils/text/slice-text";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@/common/state/toast";
 import { myCurationModalInfoSelector } from "@/common/state/myCurationModal";
-import Chip from "@/common/components/ui/buttons/Chip/Chip";
 import ImageWrapper from "@/common/components/ui/wrapper/ImageWrapper";
 import { validateLoggedIn } from "@/common/utils/validate/validateLoggedIn";
-import PlaceInfoCardTopScrapIcon from "../molecules/PlaceInfoCardTopScrapIcon";
-import CheckSmallIcon from "@/common/assets/icons/check/CheckSmallIcon";
 import TextWithDivider from "@/common/components/ui/text/TextWithDivider";
+import PlaceInfoCardScrapIcon from "../molecules/PlaceInfoCardScrapIcon";
+import PlaceInfoCardRecordedBadge from "../molecules/PlaceInfoCardRecordedBadge";
+import PlaceInfoCardName from "../molecules/PlaceInfoCardName";
 
 //Molecule
 export default function PlaceInfoCardTop({
@@ -36,6 +36,16 @@ export default function PlaceInfoCardTop({
 }: PlaceInfoCardTopProps & Partial<PlaceInfoCardAdditionalProps>) {
   const setToast = useSetRecoilState(toastInfoSelector);
   const setMyCurationModal = useSetRecoilState(myCurationModalInfoSelector);
+
+  const getPathName =
+    variant === "main"
+      ? `/place/${id}`
+      : variant === "record" && !isReviewed
+      ? `/record/select/${id}`
+      : undefined;
+  const getQuery = variant === "record" && !isReviewed ? { type, name } : null;
+  const getImageSize =
+    size === "small" ? "50vw" : direction === "horizontal" ? "20vw" : "100vw";
 
   const handleplaceInfoCardClick = () => {
     setToast({
@@ -65,13 +75,8 @@ export default function PlaceInfoCardTop({
   return (
     <Link
       href={{
-        pathname:
-          variant === "main"
-            ? `/place/${id}`
-            : variant === "record" && !isReviewed
-            ? `/record/select/${id}`
-            : undefined,
-        query: variant === "record" && !isReviewed ? { type, name } : null,
+        pathname: getPathName,
+        query: getQuery,
       }}
     >
       <div
@@ -93,10 +98,7 @@ export default function PlaceInfoCardTop({
           )}
         >
           {variant === "record" && isReviewed && direction === "vertical" && (
-            <Chip className="flex items-center absolute bottom-[0.8rem] left-[0.8rem] px-[6px] h-[2rem] rounded-[4px] bg-primary-normal  z-10">
-              <CheckSmallIcon className="mr-[4px]" />
-              <span className="body3-semibold text-white">기록 완료</span>
-            </Chip>
+            <PlaceInfoCardRecordedBadge text="기록 완료" />
           )}
           {variant === "record" && isReviewed && direction === "horizontal" && (
             <ImageWrapper text="기록 완료" className="w-[8rem] h-[8rem]" />
@@ -105,13 +107,7 @@ export default function PlaceInfoCardTop({
             src={imgUrl ? imgUrl : RecordNoImage}
             alt="공간 사진"
             fill
-            sizes={
-              size === "small"
-                ? "50vw"
-                : direction === "horizontal"
-                ? "20vw"
-                : "100vw"
-            }
+            sizes={getImageSize}
             placeholder="blur"
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
             className={twMerge("rounded-[8px] object-cover", imgClassName)}
@@ -129,17 +125,13 @@ export default function PlaceInfoCardTop({
             {direction === "vertical" &&
               variant !== "record" &&
               size !== "small" && (
-                <PlaceInfoCardTopScrapIcon
+                <PlaceInfoCardScrapIcon
                   isScraped={isScraped}
                   cardSize={size}
                   onClick={handleScrap}
                 />
               )}
-            <span>
-              {direction === "vertical" && size === "small"
-                ? sliceText(name, 8)
-                : name}
-            </span>
+            <PlaceInfoCardName name={name} direction={direction} size={size} />
             <TextWithDivider
               leftText={type === "RESTAURANT" ? "음식점" : "카페"}
               rightText={

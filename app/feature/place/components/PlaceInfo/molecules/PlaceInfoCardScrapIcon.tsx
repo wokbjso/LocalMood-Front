@@ -2,18 +2,18 @@ import ScrapFillIcon from "@/common/assets/icons/scrap/ScrapFillIcon";
 import ScrapLineIcon from "@/common/assets/icons/scrap/ScrapLineIcon";
 import { twMerge } from "tailwind-merge";
 
-interface PlaceInfoCardTopScrapIconProps {
+interface PlaceInfoCardScrapIconProps {
   isScraped: boolean;
   cardSize?: string;
   onClick?: (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
 }
 
 //Molecule
-export default function PlaceInfoCardTopScrapIcon({
+export default function PlaceInfoCardScrapIcon({
   isScraped,
   cardSize,
   onClick,
-}: PlaceInfoCardTopScrapIconProps) {
+}: PlaceInfoCardScrapIconProps) {
   return (
     <>
       {isScraped ? (

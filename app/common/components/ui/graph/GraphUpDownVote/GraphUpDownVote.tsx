@@ -1,7 +1,14 @@
 import LikeBadIcon from "@/common/assets/icons/like/LikeBadIcon";
-import { GraphProps } from "../type";
 import { twMerge } from "tailwind-merge";
 import LikeGoodIcon from "@/common/assets/icons/like/LikeGoodIcon";
+
+interface GraphUpDownVoteProps {
+  variant?: "diff" | "unite";
+  evaluation: string;
+  percentage?: number;
+  like: boolean;
+  className?: string;
+}
 
 export default function GraphUpDownVote({
   variant = "diff",
@@ -9,7 +16,7 @@ export default function GraphUpDownVote({
   percentage,
   like,
   className,
-}: GraphProps & { className?: string }) {
+}: GraphUpDownVoteProps) {
   return (
     <div
       className={twMerge(

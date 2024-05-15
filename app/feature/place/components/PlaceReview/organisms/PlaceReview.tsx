@@ -3,22 +3,7 @@ import Chip from "@/common/components/ui/buttons/Chip/Chip";
 import GraphUpDownVote from "@/common/components/ui/graph/GraphUpDownVote/GraphUpDownVote";
 import { twMerge } from "tailwind-merge";
 import { PLACE_CATEGORY } from "@/feature/place/constants/place-tag-category";
-
-interface PlaceReviewProps {
-  image: string[];
-  name: string;
-  type: string;
-  address: string;
-  author: string;
-  createdAt: string;
-  interior: string;
-  purpose: string;
-  mood: string;
-  music: string;
-  positiveEval: string;
-  negativeEval: string;
-  scrapped: boolean;
-}
+import { PlaceRecordProps } from "@/feature/place/queries/dto/place-record";
 
 //Organism
 export default function PlaceReview({
@@ -31,7 +16,7 @@ export default function PlaceReview({
   music,
   positiveEval,
   negativeEval,
-}: PlaceReviewProps) {
+}: PlaceRecordProps & { purpose: string }) {
   const keyword: { [key: string]: string } = {
     purpose,
     interior,
