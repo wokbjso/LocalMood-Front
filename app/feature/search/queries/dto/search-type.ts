@@ -2,7 +2,7 @@ import { CurationProps } from "@/feature/curation/type";
 import {
   PlaceInfoCardBottomProps,
   PlaceInfoCardTopProps,
-} from "@/feature/place/type";
+} from "@/feature/place/components/PlaceInfo/type";
 
 export type SearchCurationResponse = {
   CurationCount: number;

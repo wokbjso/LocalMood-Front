@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import GraphGage from "./GraphGage";
+import GraphGage from "../molecules/RecordPurposeGraphBar";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -23,6 +23,6 @@ export const Default: Story = {
   args: {
     type: "CAFE",
     evaluation: "시그니처 음료가 맛있어요",
-    percentage: "67",
+    percentage: 67,
   },
 };

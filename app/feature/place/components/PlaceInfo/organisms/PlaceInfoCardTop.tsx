@@ -6,7 +6,7 @@ import Link from "next/link";
 import {
   PlaceInfoCardAdditionalProps,
   PlaceInfoCardTopProps,
-} from "@/feature/place/type";
+} from "@/feature/place/components/PlaceInfo/type";
 import RecordNoImage from "@/common/assets/images/RecordNoImage.png";
 import { sliceText } from "@/common/utils/text/slice-text";
 import { useSetRecoilState } from "recoil";

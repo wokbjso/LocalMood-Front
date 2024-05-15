@@ -1,5 +1,5 @@
 import { sliceText } from "@/common/utils/text/slice-text";
-import { PlaceInfoCardTopProps } from "@/feature/place/type";
+import { PlaceInfoCardTopProps } from "@/feature/place/components/PlaceInfo/type";
 
 export default function PlaceInfoCardName({
   name,
