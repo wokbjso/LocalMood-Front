@@ -5,11 +5,11 @@ import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@/common/state/toast";
 import { myCurationModalInfoSelector } from "@/common/state/myCurationModal";
 import { validateLoggedIn } from "@/common/utils/validate/validateLoggedIn";
-import PlaceDetailInfoMore from "./PlaceDetailInfoMore";
 import { PlaceDetailInfoProps } from "@/feature/place/queries/dto/place-detail";
 import ScrapFillIcon from "@/common/assets/icons/scrap/ScrapFillIcon";
 import ScrapLineIcon from "@/common/assets/icons/scrap/ScrapLineIcon";
 import TextWithDivider from "@/common/components/ui/text/TextWithDivider";
+import PlaceDetailSubInfo from "./PlaceDetailSubInfo";
 
 //Organism
 export default function PlaceDetailInfo({
@@ -78,7 +78,7 @@ export default function PlaceDetailInfo({
           rightText={address}
           className="px-[2rem]"
         />
-        <PlaceDetailInfoMore
+        <PlaceDetailSubInfo
           type={type}
           visitorNum={visitorNum}
           optionalService={optionalService}
