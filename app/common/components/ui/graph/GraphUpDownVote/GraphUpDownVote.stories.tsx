@@ -22,7 +22,7 @@ type Story = StoryObj<typeof meta>;
 export const Like: Story = {
   args: {
     evaluation: "시그니처 음료가 맛있어요",
-    percentage: "67%",
+    percentage: 65,
     like: true,
   },
 };
@@ -30,7 +30,7 @@ export const Like: Story = {
 export const Dislike: Story = {
   args: {
     evaluation: "화장실이 밖에 있어요",
-    percentage: "32%",
+    percentage: 32,
     like: false,
   },
 };
