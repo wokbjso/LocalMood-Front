@@ -29,7 +29,7 @@ export default function GraphUpDownVote({
       <div className="flex items-center">
         {!like && (
           <span className="body2-semibold text-text-gray-5">
-            {percentage && percentage}
+            {percentage && percentage + "%"}
           </span>
         )}
         {like && <LikeGoodIcon />}
@@ -45,7 +45,7 @@ export default function GraphUpDownVote({
         </span>
         {like && (
           <span className="body2-semibold text-text-gray-5">
-            {percentage && percentage}
+            {percentage && percentage + "%"}
           </span>
         )}
         {variant === "diff" && !like && (
