@@ -22,7 +22,7 @@ export default function PlaceKeywordEvaluation({
               <GraphUpDownVote
                 key={li[i] + i}
                 evaluation={li[0]}
-                percentage={li[1] + "%"}
+                percentage={li[1]}
                 like={true}
               />
             ))}
@@ -33,7 +33,7 @@ export default function PlaceKeywordEvaluation({
               <GraphUpDownVote
                 key={li[i] + i}
                 evaluation={li[0]}
-                percentage={li[1] + "%"}
+                percentage={li[1]}
                 like={false}
                 className={i === 0 ? "mb-[0.4rem]" : ""}
               />
