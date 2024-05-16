@@ -1,6 +1,6 @@
 import { PlaceDetailInfoProps } from "@/feature/place/queries/dto/place-detail";
 
-export default function PlaceDetailInfoMore({
+export default function PlaceDetailSubInfoMore({
   type,
   dishDesc,
 }: Pick<PlaceDetailInfoProps, "type" | "dishDesc">) {

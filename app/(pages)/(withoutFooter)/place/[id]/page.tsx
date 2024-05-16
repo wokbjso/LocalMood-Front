@@ -15,10 +15,9 @@ const CurationInfoCardDark = dynamic(
       "@/feature/curation/components/CurationInfo/organisms/CurationInfoCardDark"
     )
 );
-import RelatedPlaceSlider from "@/feature/place/components/PlaceDetail/organisms/RelatedPlaceSlider";
-import RelatedCurationSlider from "@/feature/place/components/PlaceDetail/organisms/RelatedCurationSlider";
 import { Metadata } from "next";
 import { PLACE_SUB_TYPE } from "@/feature/place/constants/place-tag-category";
+import RelatedSlider from "@/feature/place/components/PlaceDetail/organisms/RelatedSlider";
 
 type Props = {
   params: { id: number };
@@ -84,7 +83,7 @@ export default async function PlaceDetailPage({ params: { id } }: Props) {
       <Divider className="h-[0.4rem] mb-[3.6rem] bg-line-gray-3" />
       <PlaceKeywordSummary
         mainText="유저들이 기록한 키워드 요약"
-        subText="이 공간을 가장 잘 설명하는 키워드에요"
+        description="이 공간을 가장 잘 설명하는 키워드에요"
         purpose={detailData.info.purpose}
         mood={detailData.info.mood}
         interior={detailData.info.interior && detailData.info.interior}
@@ -102,7 +101,7 @@ export default async function PlaceDetailPage({ params: { id } }: Props) {
       />
       <Divider className="bg-line-gray-3 h-[0.4rem] mb-[4.8rem]" />
       <section className="pl-[2rem] w-[100%]">
-        <RelatedPlaceSlider title={`${detailData.info.name}와(과) 비슷한 장소`}>
+        <RelatedSlider title={`${detailData.info.name}와(과) 비슷한 장소`}>
           {detailData.similarSpaceList.slice(0, 6).map((data) => (
             <PlaceInfoCard
               key={data.id}
@@ -111,11 +110,9 @@ export default async function PlaceDetailPage({ params: { id } }: Props) {
               className="w-[16.3rem] mr-[0.8rem]"
             />
           ))}
-        </RelatedPlaceSlider>
+        </RelatedSlider>
         {detailData.relatedCurationList.length > 0 && (
-          <RelatedCurationSlider
-            title={`${detailData.info.name}이(가) 담긴 큐레이션`}
-          >
+          <RelatedSlider title={`${detailData.info.name}이(가) 담긴 큐레이션`}>
             {detailData.relatedCurationList.map((data) => (
               <CurationInfoCardDark
                 key={data.id}
@@ -123,7 +120,7 @@ export default async function PlaceDetailPage({ params: { id } }: Props) {
                 className="w-[33.5rem] mr-[0.8rem]"
               />
             ))}
-          </RelatedCurationSlider>
+          </RelatedSlider>
         )}
       </section>
     </div>

@@ -1,7 +1,9 @@
 import LinkLayout from "@/common/components/layout/Link/LinkLayout";
 import Button from "@/common/components/ui/buttons/Button/Button";
-import GraphUpDownVote from "@/common/components/ui/graph/GraphUpDownVote/GraphUpDownVote";
+import Title from "@/common/components/ui/text/Title";
 import { PlaceDetailInfoProps } from "@/feature/place/queries/dto/place-detail";
+import PositiveEvaluation from "./PositiveEvaluation";
+import NegativeEvaluation from "./NegativeEvaluation";
 
 //Organism
 export default function PlaceKeywordEvaluation({
@@ -13,32 +15,14 @@ export default function PlaceKeywordEvaluation({
   mainText: string;
 }) {
   return (
-    <div className="pt-[3.6rem] px-[2rem] pb-[3rem]">
-      <h1 className="text-black headline2 mb-[1.2rem]">{mainText}</h1>
-      <div className="mb-[2rem]">
-        <div className="flex flex-col items-start gap-[0.4rem] mb-[0.4rem]">
-          {positiveEval &&
-            positiveEval.map((li, i) => (
-              <GraphUpDownVote
-                key={li[i] + i}
-                evaluation={li[0]}
-                percentage={li[1]}
-                like={true}
-              />
-            ))}
-        </div>
-        <div className="flex flex-col items-end">
-          {negativeEval &&
-            negativeEval.map((li, i) => (
-              <GraphUpDownVote
-                key={li[i] + i}
-                evaluation={li[0]}
-                percentage={li[1]}
-                like={false}
-                className={i === 0 ? "mb-[0.4rem]" : ""}
-              />
-            ))}
-        </div>
+    <div className="pt-[36px] px-[20px] pb-[30px]">
+      <Title title={mainText} className="headline2 mb-[12px]" />
+      <div className="mb-[20px]">
+        <PositiveEvaluation
+          positiveEval={positiveEval}
+          className="gap-[4px] mb-[4px]"
+        />
+        <NegativeEvaluation negativeEval={negativeEval} />
       </div>
       <LinkLayout routeUrl={`/place/${id}/more`} prefetch>
         <Button variant="line" className="w-full h-[4rem]">

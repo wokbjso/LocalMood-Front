@@ -7,20 +7,20 @@ import Title from "@/common/components/ui/text/Title";
 //Organism
 export default function PlaceKeywordSummary({
   mainText,
-  subText,
+  description,
   purpose,
   mood,
   interior,
   music,
 }: Pick<PlaceDetailInfoProps, "purpose" | "mood" | "interior" | "music"> & {
   mainText: string;
-  subText: string;
+  description: string;
 }) {
   return (
     <>
       <div className="px-[2rem]">
         <Title title={mainText} className="headline2 mb-[8px]" />
-        <p className="body3-medium text-text-gray-6">{subText}</p>
+        <p className="body3-medium text-text-gray-6">{description}</p>
       </div>
       <div className="bg-background-secondary-light mt-[1.6rem] p-[2rem]">
         <PlaceKeywordSummaryPurpose purpose={purpose} />

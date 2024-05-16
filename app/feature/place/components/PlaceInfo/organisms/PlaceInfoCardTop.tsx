@@ -17,7 +17,7 @@ import { validateLoggedIn } from "@/common/utils/validate/validateLoggedIn";
 import TextWithDivider from "@/common/components/ui/text/TextWithDivider";
 import PlaceInfoCardScrapIcon from "../molecules/PlaceInfoCardScrapIcon";
 import PlaceInfoCardRecordedBadge from "../molecules/PlaceInfoCardRecordedBadge";
-import PlaceInfoCardName from "../molecules/PlaceInfoCardName";
+import Title from "@/common/components/ui/text/Title";
 
 //Molecule
 export default function PlaceInfoCardTop({
@@ -117,10 +117,7 @@ export default function PlaceInfoCardTop({
           className={twMerge("flex-col", size === "normal" ? "relative" : null)}
         >
           <div
-            className={twMerge(
-              direction === "vertical" && "w-[85%] pt-[1.6rem]",
-              size === "normal" ? "headline2" : "headline3"
-            )}
+            className={direction === "vertical" ? "w-[85%] pt-[1.6rem]" : ""}
           >
             {direction === "vertical" &&
               variant !== "record" &&
@@ -131,7 +128,14 @@ export default function PlaceInfoCardTop({
                   onClick={handleScrap}
                 />
               )}
-            <PlaceInfoCardName name={name} direction={direction} size={size} />
+            <Title
+              title={
+                direction === "vertical" && size === "small"
+                  ? sliceText(name, 8)
+                  : name
+              }
+              className={size === "normal" ? "headline2" : "headline3"}
+            />
             <TextWithDivider
               leftText={type === "RESTAURANT" ? "음식점" : "카페"}
               rightText={
