@@ -14,7 +14,7 @@ export default function PopularCurationMoreTopBar({
     <div className="flex justify-between items-center mb-[1.6rem] px-[2rem]">
       <Title title={title} className="headline2" />
       <LinkLayout routeUrl="/curation/popular">
-        <TextWithRightArrow text="더보기" />
+        <TextWithRightArrow text="더보기" textClassName="mr-[10px]" />
       </LinkLayout>
     </div>
   );

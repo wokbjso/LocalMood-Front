@@ -1,8 +1,8 @@
 import Indicator from "@/common/components/ui/indicator/Indicator";
+import Title from "@/common/components/ui/text/Title";
 import { twMerge } from "tailwind-merge";
 
-interface RecordTopBarProps {
-  showIndicator: boolean;
+interface RecordPageBookTopBarProps {
   text: string;
   indicatorIndex: number;
   handleIndicatorIndex?: (index: number) => void;
@@ -11,12 +11,11 @@ interface RecordTopBarProps {
 
 //Organism
 export default function RecordPageBookTopBar({
-  showIndicator,
   text,
   indicatorIndex,
   handleIndicatorIndex,
   className,
-}: RecordTopBarProps) {
+}: RecordPageBookTopBarProps) {
   return (
     <div
       className={twMerge(
@@ -25,16 +24,13 @@ export default function RecordPageBookTopBar({
       )}
     >
       <div className="w-full flex justify-between items-start">
-        <div className="headline1-semibold text-black">{text}</div>
-        {showIndicator && (
-          <div className="flex h-[2.8rem] pl-[1.1rem] justify-end items-center">
-            <Indicator
-              clickAble={false}
-              indicatorIndex={indicatorIndex}
-              handleIndicatorIndex={handleIndicatorIndex}
-            />
-          </div>
-        )}
+        <Title title={text} className="headline1-semibold" />
+        <Indicator
+          clickAble={false}
+          indicatorIndex={indicatorIndex}
+          handleIndicatorIndex={handleIndicatorIndex}
+          className="pt-[1.1rem] pl-[1.1rem]"
+        />
       </div>
     </div>
   );

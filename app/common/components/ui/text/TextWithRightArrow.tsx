@@ -1,13 +1,26 @@
 import ArrowRightIcon from "@/common/assets/icons/arrow/ArrowRightIcon";
+import { twMerge } from "tailwind-merge";
 
 interface TextWithRightArrowProps {
   text: string;
+  onClick?: () => void;
+  className?: string;
+  textClassName?: string;
 }
 
-export default function TextWithRightArrow({ text }: TextWithRightArrowProps) {
+export default function TextWithRightArrow({
+  text,
+  onClick,
+  className,
+  textClassName,
+}: TextWithRightArrowProps) {
   return (
-    <div className="flex items-center">
-      <span className="mr-[10px] text-text-gray-6 body2-semibold">{text}</span>
+    <div className={twMerge("flex items-center", className)} onClick={onClick}>
+      <span
+        className={twMerge("text-text-gray-6 body2-semibold", textClassName)}
+      >
+        {text}
+      </span>
       <ArrowRightIcon />
     </div>
   );

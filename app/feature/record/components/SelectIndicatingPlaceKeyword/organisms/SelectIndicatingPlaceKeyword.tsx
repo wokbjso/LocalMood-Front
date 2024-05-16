@@ -28,7 +28,6 @@ export default function SelectIndicatingPlaceKeyword({
   return (
     <div className="absolute w-full top-0">
       <RecordPageBookTopBar
-        showIndicator={true}
         indicatorIndex={indicatorIndex}
         handleIndicatorIndex={handleIndicatorIndex}
         text={`${name}를 나타내는 키워드를 골라주세요`}

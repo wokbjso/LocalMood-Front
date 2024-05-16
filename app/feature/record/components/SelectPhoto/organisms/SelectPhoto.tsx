@@ -24,7 +24,6 @@ export default function SelectPhoto({
   return (
     <div className="absolute w-[100%] h-[100%] overflow-hidden">
       <RecordPageBookTopBar
-        showIndicator={true}
         text="방문한 사진을 업로드해주세요!"
         indicatorIndex={indicatorIndex}
         handleIndicatorIndex={handleIndicatorIndex}

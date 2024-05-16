@@ -1,5 +1,7 @@
 import AddFillIcon from "@/common/assets/icons/add/AddFillIcon";
 import CloseBlackIcon from "@/common/assets/icons/close/CloseBlackIcon";
+import Label from "@/common/components/ui/text/Label";
+import NumberCountWithSlash from "@/common/components/ui/text/NumberCountWithSlash";
 import UseGetBrowserWidth from "@/common/hooks/useGetBrowserWidth";
 import Image from "next/image";
 import { ChangeEvent, useRef, useState } from "react";
@@ -57,13 +59,10 @@ export default function SelectPhotoContent({
   };
   return (
     <>
-      <div className="flex-col items-start pt-[14.8rem] px-[2rem] gap-[1.2rem]">
-        <div className="flex items-start gap-[0.6rem] headline3-semibold">
-          <div className="text-black mb-[1.2rem]">사진올리기</div>
-          <div className="text-text-gray-6">
-            {image.length}
-            /2
-          </div>
+      <div className="flex-col items-start pt-[148px] px-[20px] gap-[12px]">
+        <div className="flex items-start">
+          <Label label="사진올리기" className="mb-[12px] mr-[6px]" />
+          <NumberCountWithSlash currentNum={image.length} totalNum={2} />
         </div>
         <div
           className={twMerge("flex w-full justify-between flex-wrap gap-[8px]")}
@@ -72,7 +71,7 @@ export default function SelectPhotoContent({
             image.map((img: any, i: number) => (
               <div key={img + i} className="relative">
                 <div
-                  className="absolute z-10 top-[1.2rem] right-[1.2rem]"
+                  className="absolute z-10 top-[12px] right-[12px]"
                   onClick={() => handleImageDeleteClicked(i)}
                 >
                   <CloseBlackIcon />

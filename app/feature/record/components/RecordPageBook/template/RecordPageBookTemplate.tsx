@@ -36,7 +36,6 @@ export default function RecordPageBookTemplate({
     nextDirection,
     cafeKeywordData,
     restaurantKeywordData,
-    hasSomeData,
     handlers,
   } = UseTotalRecordKeyword(type);
 
@@ -179,11 +178,7 @@ export default function RecordPageBookTemplate({
         )}
         {indicatorIndex === 3 && (
           <CSSTransition key={3} timeout={300}>
-            <RecordComplete
-              spaceId={id}
-              handleIndicatorIndex={handlers.handleIndicatorIndex}
-              hasSomeData={hasSomeData}
-            />
+            <RecordComplete spaceId={id} />
           </CSSTransition>
         )}
       </TransitionGroup>
@@ -192,7 +187,6 @@ export default function RecordPageBookTemplate({
         indicatorIndex={indicatorIndex}
         cafeKeywordData={cafeKeywordData}
         restaurantKeywordData={restaurantKeywordData}
-        hasSomeData={hasSomeData}
         handleBtnForwardClicked={handleBtnForwardClicked}
         handleBtnBackClicked={handleBtnBackClicked}
         handleExitClicked={handleExitClicked}
