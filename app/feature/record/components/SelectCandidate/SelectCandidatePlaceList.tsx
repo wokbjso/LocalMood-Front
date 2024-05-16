@@ -1,10 +1,10 @@
 import GetPlaceScrapped from "@/feature/place/queries/getPlaceScrapped";
 import dynamic from "next/dynamic";
 const PlaceInfoCard = dynamic(
-  () => import("../PlaceInfo/organisms/PlaceInfoCard")
+  () => import("@/feature/place/components/PlaceInfo/organisms/PlaceInfoCard")
 );
 
-export default async function PlaceScrapList() {
+export default async function SelectCandidatePlaceList() {
   const scrappedPlace = await GetPlaceScrapped();
   return (
     <div className="w-full h-full flex px-[2rem] gap-[8px] overflow-auto pb-[5rem]">
