@@ -19,8 +19,8 @@ import useFetching from "@/common/hooks/useFetching";
 import revalidateCurationScrapRelatedData from "@/feature/curation/actions/revalidateCurationScrapRelatedData";
 import UseCurationScrapClickCount from "@/feature/curation/hooks/CurationInfo/useCurationScrapClickCount";
 import SpaceCount from "@/common/components/ui/spaceCount/SpaceCount";
-import CurationInfoCardTitle from "../molecules/CurationInfoCardTitle";
 import CurationInfoCardTagList from "./CurationInfoCardTagList";
+import Title from "@/common/components/ui/text/Title";
 
 //Molecule
 export default function CurationInfoCardLight({
@@ -44,6 +44,9 @@ export default function CurationInfoCardLight({
   const { isFetching, changeFetching } = useFetching();
   const { clickCount, plusClickCount, resetClickCount } =
     UseCurationScrapClickCount();
+
+  const checkTitleHasSpace =
+    title.split("").filter((word) => word === "").length > 0;
 
   const curationScrapAdd = async () => {
     const res = await fetch(`/api/curation/scrap/add/${id}`, {
@@ -168,21 +171,12 @@ export default function CurationInfoCardLight({
       </Link>
       <div className="w-[100%] pt-[1.6rem] pl-[1.6rem] pr-[0.8rem] pb-[2rem] relative rounded-b-[8px]">
         {variant === "others" ? (
-          scraped ? (
-            <CurationScrapIcon
-              isScraped={scraped}
-              backgroundBrightness="light"
-              className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-              onClick={handleScrapClick}
-            />
-          ) : (
-            <CurationScrapIcon
-              isScraped={scraped}
-              backgroundBrightness="light"
-              className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
-              onClick={handleScrapClick}
-            />
-          )
+          <CurationScrapIcon
+            isScraped={scraped}
+            backgroundBrightness="light"
+            className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer"
+            onClick={handleScrapClick}
+          />
         ) : (
           <CurationMenuIcon
             menuModalInfo={{
@@ -206,9 +200,12 @@ export default function CurationInfoCardLight({
             pathname: `/curation/detail/${id}`,
           }}
         >
-          <CurationInfoCardTitle
+          <Title
             title={title}
-            className="max-w-[24.4rem] mb-[12px]"
+            className={twMerge(
+              "headline2 w-[70%] break-keep mb-[12px]",
+              checkTitleHasSpace ? "" : "break-all"
+            )}
           />
           <CurationInfoCardTagList
             keyword={keyword}

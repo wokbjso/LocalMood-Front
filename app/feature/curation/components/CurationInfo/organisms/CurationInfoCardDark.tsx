@@ -17,8 +17,8 @@ import revalidateCurationScrapRelatedData from "@/feature/curation/actions/reval
 import SpaceCount from "@/common/components/ui/spaceCount/SpaceCount";
 import UseCurationScrapClickCount from "@/feature/curation/hooks/CurationInfo/useCurationScrapClickCount";
 import CurationInfoCardTagList from "./CurationInfoCardTagList";
-import CurationInfoCardTitle from "../molecules/CurationInfoCardTitle";
 import CurationInfoCardShadow from "../molecules/CurationInfoCardShadow";
+import Title from "@/common/components/ui/text/Title";
 
 //Molecule
 export default function CurationInfoCardDark({
@@ -164,32 +164,26 @@ export default function CurationInfoCardDark({
             userName={author}
             className="absolute bottom-[1.6rem] left-[1.6rem] z-10"
           />
-          {scraped ? (
-            <CurationScrapIcon
-              isScraped={scraped}
-              backgroundBrightness="dark"
-              className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer z-10"
-              onClick={handleScrapClick}
-            />
-          ) : (
-            <CurationScrapIcon
-              isScraped={scraped}
-              backgroundBrightness="dark"
-              className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer z-10"
-              onClick={handleScrapClick}
-            />
-          )}
+          <CurationScrapIcon
+            isScraped={scraped}
+            backgroundBrightness="dark"
+            className="absolute top-[1.6rem] right-[1.2rem] cursor-pointer z-20"
+            onClick={handleScrapClick}
+          />
           <SpaceCount
             spaceCount={spaceCount}
             className="absolute bottom-[1.6rem] right-[1.6rem] z-10"
-          />
+          />{" "}
           <Link
             href={{
               pathname: `/curation/detail/${id}`,
             }}
           >
             <div className="w-full absolute top-0 pt-[1.6rem] pl-[1.6rem] z-10">
-              <CurationInfoCardTitle title={title} className="text-white" />
+              <Title
+                title={title}
+                className="headline2 w-[70%] break-keep text-white"
+              />
               <CurationInfoCardTagList
                 keyword={keyword}
                 className="mt-[12px]"

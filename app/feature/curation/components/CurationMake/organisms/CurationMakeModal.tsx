@@ -1,4 +1,4 @@
-import ButtonLock from "@/common/components/ui/buttons/Button/ButtonLock";
+import ButtonLock from "@/feature/curation/components/CurationMake/molecules/ButtonLock";
 import UseCurationMake from "../../../hooks/CurationMake/useCurationMake";
 import Modal from "@/common/components/ui/modal/Modal";
 import CloseIcon from "@/common/assets/icons/close/CloseIcon";

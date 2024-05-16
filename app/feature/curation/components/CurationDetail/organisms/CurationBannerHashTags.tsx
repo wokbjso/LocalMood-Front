@@ -2,15 +2,15 @@ import Chip from "@/common/components/ui/buttons/Chip/Chip";
 import HashTag from "@/common/components/ui/text/HashTag";
 import { twMerge } from "tailwind-merge";
 
-interface CurationBannerChipListProps {
+interface CurationBannerHashTagsProps {
   keyword: string;
   className?: string;
 }
 
-export default function CurationBannerChipList({
+export default function CurationBannerHashTags({
   keyword,
   className,
-}: CurationBannerChipListProps) {
+}: CurationBannerHashTagsProps) {
   return (
     <div
       className={twMerge(
