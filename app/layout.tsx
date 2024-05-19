@@ -1,4 +1,4 @@
-import "../styles/global.css";
+import "./styles/global.css";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 import { Metadata, Viewport } from "next";
@@ -18,22 +18,22 @@ const DetectDevice = dynamic(
 const globalFont = localFont({
   src: [
     {
-      path: "../common/assets/fonts/pretendard/Pretendard-Bold.woff2",
+      path: "./common/assets/fonts/pretendard/Pretendard-Bold.woff2",
       weight: "700",
       style: "normal",
     },
     {
-      path: "../common/assets/fonts/pretendard/Pretendard-SemiBold.woff2",
+      path: "./common/assets/fonts/pretendard/Pretendard-SemiBold.woff2",
       weight: "600",
       style: "normal",
     },
     {
-      path: "../common/assets/fonts/pretendard/Pretendard-Medium.woff2",
+      path: "./common/assets/fonts/pretendard/Pretendard-Medium.woff2",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../common/assets/fonts/pretendard/Pretendard-Regular.woff2",
+      path: "./common/assets/fonts/pretendard/Pretendard-Regular.woff2",
       weight: "400",
       style: "normal",
     },
