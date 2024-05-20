@@ -1,4 +1,5 @@
 import Filter from "@/common/components/ui/buttons/Filter/Filter";
+import Label from "@/common/components/ui/text/Label";
 import {
   CAFE_CATEGORY,
   CAFE_KEYWORDS,
@@ -28,9 +29,7 @@ export default function KeywordSection({
     type === "RESTAURANT" ? RESTARANT_KEYWORDS : CAFE_KEYWORDS;
   return (
     <section className={className}>
-      <div className="text-black headline3 mb-[1.2rem]">
-        {TYPE_CATEGORY[category]}
-      </div>
+      <Label label={TYPE_CATEGORY[category]} className="headline3 mb-[12px]" />
       <div className="flex flex-wrap gap-[0.6rem]">
         {TYPE_KEYWORD[TYPE_CATEGORY[category]].map((keyword) => (
           <Filter

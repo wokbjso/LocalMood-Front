@@ -6,7 +6,6 @@ import { CurationDetailResponse } from "@/feature/curation/queries/dto/curation-
 import { sliceText } from "@/common/utils/text/slice-text";
 import revalidateCurationScrap from "@/feature/curation/actions/revalidateCurationScrap";
 import revalidateCurationDetail from "@/feature/curation/actions/revalidateCurationDetail";
-import useCurationMenuModal from "../../../hooks/CurationMenu/useCurationMenuModal";
 import CurationScrapIcon from "../../CurationScrap/CurationScrapIcon";
 import useCurationScrapIcon from "../../../hooks/CurationScrap/useCurationScrapIcon";
 import useFetching from "@/common/hooks/useFetching";
@@ -16,6 +15,7 @@ import ShareIcon from "@/common/assets/icons/share/ShareIcon";
 import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
 import CurationMenuIcon from "../../CurationMenu/CurationMenuIcon";
 import { twMerge } from "tailwind-merge";
+import UseHandleModal from "@/common/hooks/useHandleModal";
 
 interface CurationTopAppBarProps {
   inView: boolean;
@@ -43,10 +43,14 @@ export default function CurationTopAppBar({
     curationDetail.isScraped
   );
   const { isFetching, changeFetching } = useFetching();
-  const { isOpened, openModal, closeModal } = useCurationMenuModal();
+  const {
+    isOpened: isCurationMenuModalOpened,
+    openModal: openCurationMenuModal,
+    closeModal: closeCurationMenuModal,
+  } = UseHandleModal();
 
   const handleMenuIconClick = () => {
-    openModal();
+    openCurationMenuModal();
   };
 
   const handleCopyLinkClick = async () => {
@@ -163,14 +167,14 @@ export default function CurationTopAppBar({
               <ShareIcon onClick={handleCopyLinkClick} />
               <CurationMenuIcon
                 menuModalInfo={{
-                  isOpened,
+                  isOpened: isCurationMenuModalOpened,
                   curationInfo: {
                     id: curationId,
                     title: curationDetail.title,
                     privacy: curationDetail.privacy,
                     keyword: curationDetail.keyword.split(","),
                   },
-                  closeModal,
+                  closeModal: closeCurationMenuModal,
                 }}
                 showAt="topBar"
                 onClick={handleMenuIconClick}

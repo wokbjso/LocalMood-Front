@@ -7,7 +7,6 @@ import Link from "next/link";
 import Chip from "@/common/components/ui/buttons/Chip/Chip";
 import NoResult from "@/common/assets/images/curationHomeNoImg.png";
 import Image from "next/image";
-import useCurationMenuModal from "../../../hooks/CurationMenu/useCurationMenuModal";
 import CurationMenuIcon from "../../CurationMenu/CurationMenuIcon";
 import CurationScrapIcon from "../../CurationScrap/CurationScrapIcon";
 import useCurationScrapIcon from "../../../hooks/CurationScrap/useCurationScrapIcon";
@@ -21,6 +20,7 @@ import UseCurationScrapClickCount from "@/feature/curation/hooks/CurationInfo/us
 import SpaceCount from "@/common/components/ui/spaceCount/SpaceCount";
 import CurationInfoCardTagList from "./CurationInfoCardTagList";
 import Title from "@/common/components/ui/text/Title";
+import UseHandleModal from "@/common/hooks/useHandleModal";
 
 //Molecule
 export default function CurationInfoCardLight({
@@ -39,7 +39,11 @@ export default function CurationInfoCardLight({
 }) {
   const setToast = useSetRecoilState(toastInfoSelector);
 
-  const { isOpened, openModal, closeModal } = useCurationMenuModal();
+  const {
+    isOpened: isCurationMenuModalOpened,
+    openModal: openCurationMenuModal,
+    closeModal: closeCurationMenuModal,
+  } = UseHandleModal();
   const { scraped, toggleScrap } = useCurationScrapIcon(isScraped);
   const { isFetching, changeFetching } = useFetching();
   const { clickCount, plusClickCount, resetClickCount } =
@@ -87,7 +91,7 @@ export default function CurationInfoCardLight({
 
   const handleMenuClick = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     e.preventDefault();
-    openModal();
+    openCurationMenuModal();
   };
 
   const handleScrapError = () => {
@@ -180,7 +184,7 @@ export default function CurationInfoCardLight({
         ) : (
           <CurationMenuIcon
             menuModalInfo={{
-              isOpened,
+              isOpened: isCurationMenuModalOpened,
               hasCopyLink: true,
               curationInfo: {
                 id,
@@ -188,7 +192,7 @@ export default function CurationInfoCardLight({
                 keyword,
                 title,
               },
-              closeModal,
+              closeModal: closeCurationMenuModal,
             }}
             showAt="card"
             className="absolute top-[1.6rem] right-[1.2rem]"
