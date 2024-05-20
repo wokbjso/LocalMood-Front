@@ -38,10 +38,7 @@ export default async function MyPage() {
         <UserProfileMyPage nickName={member.nickname} />
         <Label
           label={"공간 기록" + " " + record.reviewCount}
-          className={twMerge(
-            "text-text-gray-8 headline3",
-            record.reviewCount > 0 && "mb-[1.6rem]"
-          )}
+          className={twMerge("text-text-gray-8 headline3")}
         />
         <RecordList record={record} />
       </Suspense>

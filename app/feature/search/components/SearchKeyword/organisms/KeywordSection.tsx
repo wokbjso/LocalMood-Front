@@ -29,8 +29,8 @@ export default function KeywordSection({
     type === "RESTAURANT" ? RESTARANT_KEYWORDS : CAFE_KEYWORDS;
   return (
     <section className={className}>
-      <Label label={TYPE_CATEGORY[category]} className="headline3 mb-[12px]" />
-      <div className="flex flex-wrap gap-[0.6rem]">
+      <Label label={TYPE_CATEGORY[category]} className="headline3" />
+      <div className="flex flex-wrap gap-[0.6rem] mt-[12px]">
         {TYPE_KEYWORD[TYPE_CATEGORY[category]].map((keyword) => (
           <Filter
             key={keyword}

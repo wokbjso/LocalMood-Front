@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function NoRecord() {
   return (
-    <div className="h-[60%] flex flex-col items-center justify-center">
+    <div className="h-[55%] flex flex-col items-center justify-center">
       <Text
         text="아직 기록을 남긴 공간이 없습니다"
         className="text-black headline1 mb-[12px]"

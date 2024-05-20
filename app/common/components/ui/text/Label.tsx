@@ -7,8 +7,8 @@ interface LabelProps {
 
 export default function Label({ label, className }: LabelProps) {
   return (
-    <h3 className={twMerge("headline3-semibold text-black", className)}>
+    <span className={twMerge("headline3-semibold text-black", className)}>
       {label}
-    </h3>
+    </span>
   );
 }
