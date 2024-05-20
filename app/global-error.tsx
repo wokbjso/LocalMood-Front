@@ -15,10 +15,12 @@ export default function GlobalError({
   }, [error]);
 
   return (
-    <html>
-      <body>
+    <html className="w-[100%] h-[100%]">
+      <body className="w-[100%] h-[100%]">
         <div className="w-full h-full flex flex-col justify-center items-center">
-          <p className="headline1 mb-[14px]">오류가 발생했습니다</p>
+          <p className="headline1 mb-[14px]">
+            페이지를 불러오는데 실패했습니다
+          </p>
           <button onClick={() => reset()}>
             <span className="headline2 text-primary-normal">다시 시도</span>
           </button>

@@ -3,7 +3,7 @@
 import { FallbackProps } from "react-error-boundary";
 import { twMerge } from "tailwind-merge";
 
-const ErrorFallback = ({
+const ApiErrorFallback = ({
   error,
   resetErrorBoundary,
   className,
@@ -23,4 +23,4 @@ const ErrorFallback = ({
   );
 };
 
-export default ErrorFallback;
+export default ApiErrorFallback;

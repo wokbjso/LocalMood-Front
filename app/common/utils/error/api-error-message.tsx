@@ -1,4 +1,4 @@
-export default function ErrorMessage(status: number) {
+export default function ApiErrorMessage(status: number) {
   let message = "";
   switch (status) {
     case 400:

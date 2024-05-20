@@ -1,5 +1,5 @@
 import Footer from "@/common/components/layout/Footer/Footer";
-import ErrorFallback from "@/common/components/ui/error/ErrorFallback";
+import ApiErrorFallback from "@/common/components/ui/error/ApiErrorFallback";
 import HomeBanner from "@/feature/home/components/HomeBanner/organisms/HomeBanner";
 import HomePlaceSlider from "@/feature/home/components/HomeSlider/organisms/HomePlaceSlider";
 import HomePopularCurationSlider from "@/feature/home/components/HomeSlider/organisms/HomePopularCurationSlider";
@@ -22,7 +22,7 @@ export default function Home() {
         className="mt-[4rem]"
       />
       <HomePlaceSlider mainText="친구와의 만남" subText="을 위한 공간" />
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <ErrorBoundary FallbackComponent={ApiErrorFallback}>
         <HomePopularCurationSlider title="마포구 인기 큐레이션" />
       </ErrorBoundary>
       <HomePlaceSlider mainText="왁자지껄 떠들 수 있는" subText="공간" />

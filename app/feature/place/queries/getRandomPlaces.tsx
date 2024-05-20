@@ -1,6 +1,6 @@
 "use server";
 
-import ErrorMessage from "@/common/utils/error/error-message";
+import ApiErrorMessage from "@/common/utils/error/api-error-message";
 
 export default async function GetRandomPlaces() {
   const res = await fetch(
@@ -13,7 +13,7 @@ export default async function GetRandomPlaces() {
       next: { tags: ["getHomeRecommend"] },
     }
   );
-  if (!res.ok) throw new Error(ErrorMessage(res.status));
+  if (!res.ok) throw new Error(ApiErrorMessage(res.status));
 
   const data = await res.json();
   return data;
