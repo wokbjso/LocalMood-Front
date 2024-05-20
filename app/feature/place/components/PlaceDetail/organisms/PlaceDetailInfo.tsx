@@ -10,6 +10,7 @@ import ScrapFillIcon from "@/common/assets/icons/scrap/ScrapFillIcon";
 import ScrapLineIcon from "@/common/assets/icons/scrap/ScrapLineIcon";
 import TextWithDivider from "@/common/components/ui/text/TextWithDivider";
 import PlaceDetailSubInfo from "./PlaceDetailSubInfo";
+import Title from "@/common/components/ui/text/Title";
 
 //Organism
 export default function PlaceDetailInfo({
@@ -57,7 +58,7 @@ export default function PlaceDetailInfo({
   return (
     <>
       <div className="flex-col relative">
-        <div className="headline0 mb-[0.8rem] px-[2rem]">{name}</div>
+        <Title title={name} className="mb-[0.8rem] px-[2rem]" />
         {isScraped ? (
           <ScrapFillIcon
             color="#9E9E9E"

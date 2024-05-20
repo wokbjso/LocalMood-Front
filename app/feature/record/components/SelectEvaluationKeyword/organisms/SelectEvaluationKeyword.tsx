@@ -22,7 +22,6 @@ export default function SelectEvaluationKeyword({
   return (
     <div className="absolute">
       <RecordPageBookTopBar
-        showIndicator={true}
         indicatorIndex={indicatorIndex}
         handleIndicatorIndex={handleIndicatorIndex}
         text="특별히 좋았던 점과 아쉬운 점이 있었나요?"

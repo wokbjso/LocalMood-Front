@@ -4,18 +4,25 @@ import FilterSortIcon from "@/common/assets/icons/filter/FilterSortIcon";
 import FilterKeywordIcon from "@/common/assets/icons/filter/FilterKeywordIcon";
 import { useRecoilValue } from "recoil";
 import { searchSortState } from "@/feature/search/state/sortState";
-import UseChangeSearchSortModal from "../../../hooks/SearchResult/useChangeSearchSortModal";
 import ChangeSearchSortModal from "./ChangeSearchSortModal";
-import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import SearchKeywordModal from "../../SearchKeyword/organisms/SearchKeywordModal";
+import UseHandleModal from "@/common/hooks/useHandleModal";
 
 //Organism
 export default function ChangeSearchConditon() {
   const searchParams = useSearchParams();
   const state = useRecoilValue(searchSortState);
-  const [isSearchKeywordOpened, setIsSearchKeywordOpened] = useState(false);
-  const { isOpened, openModal, closeModal } = UseChangeSearchSortModal();
+  const {
+    isOpened: isSearchKeywordModalOpened,
+    openModal: openSearchKeywordModal,
+    closeModal: closeSearchKeywordModal,
+  } = UseHandleModal();
+  const {
+    isOpened: isSearchSortModalOpened,
+    openModal: openSearchSortModal,
+    closeModal: closeSearchSortModal,
+  } = UseHandleModal();
 
   const countKeywordSelected = () => {
     let count = 0;
@@ -52,20 +59,20 @@ export default function ChangeSearchConditon() {
   };
 
   const handleKeywordChangeClick = () => {
-    setIsSearchKeywordOpened(true);
+    openSearchKeywordModal();
   };
 
   const handleKeywordChangeCloseClick = () => {
-    setIsSearchKeywordOpened(false);
+    closeSearchKeywordModal();
   };
 
   const handleSortChangeClick = () => {
-    openModal();
+    openSearchSortModal();
   };
 
   return (
     <>
-      {isSearchKeywordOpened && (
+      {isSearchKeywordModalOpened && (
         <SearchKeywordModal
           dependOnParams={false}
           closeModal={handleKeywordChangeCloseClick}
@@ -116,7 +123,10 @@ export default function ChangeSearchConditon() {
           </span>
         </section>
       </div>
-      <ChangeSearchSortModal isOpen={isOpened} closeModal={closeModal} />
+      <ChangeSearchSortModal
+        isOpen={isSearchSortModalOpened}
+        closeModal={closeSearchSortModal}
+      />
     </>
   );
 }

@@ -25,13 +25,12 @@ export default function MyCurationCard({
 }: MyCurationCardProps) {
   const setToast = useSetRecoilState(toastInfoSelector);
 
-  const isSpaceAlreadyInCuration = () => {
-    if (curationData.spaceIds.includes(Number(spaceId))) return true;
-    else return false;
-  };
+  const isSpaceAlreadyInCuration = curationData.spaceIds.includes(
+    Number(spaceId)
+  );
 
   const handleMyCurationCardClick = () => {
-    if (isSpaceAlreadyInCuration()) {
+    if (isSpaceAlreadyInCuration) {
       setToast({
         open: true,
         text: "장소가 이미 저장되어 있습니다",
@@ -45,7 +44,7 @@ export default function MyCurationCard({
     <>
       <div className="flex w-full" onClick={handleMyCurationCardClick}>
         <div className="relative w-[6rem] h-[6rem]">
-          {isSpaceAlreadyInCuration() && <ImageWrapper text="저장됨" />}
+          {isSpaceAlreadyInCuration && <ImageWrapper text="저장됨" />}
           <Image
             src={
               curationData.image && curationData.image.length > 0

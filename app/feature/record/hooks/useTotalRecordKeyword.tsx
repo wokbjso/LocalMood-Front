@@ -34,23 +34,6 @@ export default function UseTotalRecordKeyword(placeType: string) {
     setNextDirection(direction);
   };
 
-  const hasSomeData =
-    placeType === "CAFE"
-      ? Object.keys(cafeKeywordData).some((k) => {
-          if (typeof cafeKeywordData[k] === "string")
-            return cafeKeywordData[k] !== "";
-          else if (Array.isArray(cafeKeywordData[k]))
-            return cafeKeywordData[k].length > 0;
-          return false;
-        })
-      : Object.keys(restaurantKeywordData).some((k) => {
-          if (typeof restaurantKeywordData[k] === "string")
-            return restaurantKeywordData[k] !== "";
-          else if (Array.isArray(restaurantKeywordData[k]))
-            return restaurantKeywordData[k].length > 0;
-          return false;
-        });
-
   const handleKeyword = (category: string, keyword: string) => {
     if (placeType === "CAFE") {
       if (Array.isArray(cafeKeywordData[category])) {
@@ -148,7 +131,6 @@ export default function UseTotalRecordKeyword(placeType: string) {
     nextDirection,
     cafeKeywordData,
     restaurantKeywordData,
-    hasSomeData,
     handlers: {
       handleKeyword,
       handleNextDirection,

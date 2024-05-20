@@ -1,9 +1,9 @@
 import { CSSProperties } from "react";
-import { RecordPurposeGraphBarProps } from "./RecordPurposeGraphBar";
+import { PlaceRecordPurposeGraphBarProps } from "./PlaceRecordPurposeGraphBar";
 
 export default function GraphBar({
   percentage,
-}: Pick<RecordPurposeGraphBarProps, "percentage">) {
+}: Pick<PlaceRecordPurposeGraphBarProps, "percentage">) {
   return (
     <div className="w-full h-[1.2rem] rounded-[10px] bg-background-gray-2">
       <div

@@ -4,6 +4,7 @@ import MenuIcon from "@/common/assets/icons/menu/MenuIcon";
 import LogoutModal from "@/feature/auth/components/Logout/organisms/LogoutModal";
 import UseLogoutModal from "@/feature/auth/hooks/Logout/useLogoutModal";
 import { twMerge } from "tailwind-merge";
+import Title from "../../text/Title";
 
 interface PageTopBarProps {
   text: string;
@@ -32,9 +33,7 @@ export default function PageTopBar({
         className
       )}
     >
-      <span className={twMerge("text-black headline1", textClassName)}>
-        {text}
-      </span>
+      <Title title={text} className={twMerge("headline1", textClassName)} />
       {hasMenu && <MenuIcon onClick={handleMenuIconClick} />}
       <LogoutModal isOpen={isOpen} closeModal={closeModal} />
     </div>

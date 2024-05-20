@@ -1,8 +1,8 @@
 import LinkLayout from "@/common/components/layout/Link/LinkLayout";
 import PageTopBar from "@/common/components/ui/topBar/PageTopBar/PageTopBar";
 import UseDeferredComponent from "@/common/hooks/useDeferredComponent";
-import PlaceScrapList from "@/feature/place/components/PlaceScrapList/PlaceScrapList";
 import PlaceScrappedSkeleton from "@/feature/place/components/skeleton/PlaceScrappedSkeleton";
+import SelectCandidatePlaceList from "@/feature/record/components/SelectCandidate/SelectCandidatePlaceList";
 import TextSearchBar from "@/feature/search/components/SearchText/molecules/TextSearchBar";
 import { Metadata } from "next";
 import { Suspense } from "react";
@@ -44,7 +44,7 @@ export default async function RecordPage() {
           </UseDeferredComponent>
         }
       >
-        <PlaceScrapList />
+        <SelectCandidatePlaceList />
       </Suspense>
     </div>
   );

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function useCurationMenuModal() {
+export default function UseHandleModal() {
   const [isOpened, setIsOpened] = useState(false);
 
   const openModal = () => {
@@ -11,9 +11,5 @@ export default function useCurationMenuModal() {
     setIsOpened(false);
   };
 
-  return {
-    isOpened,
-    openModal,
-    closeModal,
-  };
+  return { isOpened, openModal, closeModal };
 }

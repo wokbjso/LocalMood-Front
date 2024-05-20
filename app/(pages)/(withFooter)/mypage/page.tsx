@@ -6,8 +6,9 @@ import PageTopBar from "@/common/components/ui/topBar/PageTopBar/PageTopBar";
 import UseDeferredComponent from "@/common/hooks/useDeferredComponent";
 import UserProfileMyPage from "@/feature/user/components/UserProfile/organisms/UserProfileMyPage";
 import RecordList from "@/feature/record/components/UserRecord/organisms/RecordList";
-import RecordCount from "@/feature/record/components/UserRecord/molecules/RecordCount";
 import { Metadata } from "next";
+import Label from "@/common/components/ui/text/Label";
+import { twMerge } from "tailwind-merge";
 
 export async function generateMetadata(): Promise<Metadata> {
   const memberData = await GetMemberInfo();
@@ -35,7 +36,13 @@ export default async function MyPage() {
         }
       >
         <UserProfileMyPage nickName={member.nickname} />
-        <RecordCount count={record.reviewCount} />
+        <Label
+          label={"공간 기록" + " " + record.reviewCount}
+          className={twMerge(
+            "text-text-gray-8 headline3",
+            record.reviewCount > 0 && "mb-[1.6rem]"
+          )}
+        />
         <RecordList record={record} />
       </Suspense>
     </div>
