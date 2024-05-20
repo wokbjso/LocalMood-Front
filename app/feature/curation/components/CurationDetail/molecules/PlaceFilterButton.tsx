@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 import Image from "next/image";
 import { forwardRef } from "react";
 
-interface PlaceFilterProps {
+interface PlaceFilterButtonProps {
   photo?: string;
   label: string;
   selected?: boolean;
@@ -12,7 +12,7 @@ interface PlaceFilterProps {
   className?: string;
 }
 
-const PlaceFilter = forwardRef<HTMLButtonElement, PlaceFilterProps>(
+const PlaceFilterButton = forwardRef<HTMLButtonElement, PlaceFilterButtonProps>(
   ({ ...props }, ref) => {
     const filterClicked = () => {
       props.onClick && props.onClick();
@@ -59,6 +59,6 @@ const PlaceFilter = forwardRef<HTMLButtonElement, PlaceFilterProps>(
   }
 );
 
-PlaceFilter.displayName = "PlaceFilter";
+PlaceFilterButton.displayName = "PlaceFilter";
 
-export default PlaceFilter;
+export default PlaceFilterButton;

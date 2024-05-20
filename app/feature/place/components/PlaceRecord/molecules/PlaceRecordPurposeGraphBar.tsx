@@ -9,19 +9,19 @@ import {
 } from "@/feature/place/constants/place-tag-category";
 import GraphBar from "./GraphBar";
 
-export interface RecordPurposeGraphBarProps {
+export interface PlaceRecordPurposeGraphBarProps {
   type: string;
   evaluation: string;
   percentage?: number;
   className?: string;
 }
 
-export default function RecordPurposeGraphBar({
+export default function PlaceRecordPurposeGraphBar({
   type,
   evaluation,
   percentage,
   className,
-}: RecordPurposeGraphBarProps) {
+}: PlaceRecordPurposeGraphBarProps) {
   const purposeIcon = () => {
     if (
       evaluation ===

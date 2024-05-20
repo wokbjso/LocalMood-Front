@@ -1,17 +1,16 @@
+"use client";
+
 import SliderLayout from "@/common/components/layout/Slider/SliderLayout";
 import Title from "@/common/components/ui/text/Title";
 import { ReactNode } from "react";
 
-interface PlaceRelatedSliderProps {
+interface RelatedSliderProps {
   title: string;
   children: ReactNode;
 }
 
 //Molecule
-export default function RelatedPlaceSlider({
-  title,
-  children,
-}: PlaceRelatedSliderProps) {
+export default function RelatedSlider({ title, children }: RelatedSliderProps) {
   return (
     <div>
       <Title title={title} className="headline2" />

@@ -6,12 +6,12 @@ import { createRef, forwardRef, useEffect, useRef } from "react";
 import UseMap from "@/common/components/ui/map/Map/useMap";
 import MapIconButton from "../molecules/MapIconButton";
 import LocationCount from "../molecules/LocationCount";
-import PlaceFilter from "../molecules/PlaceFilter";
 import { assignMultipleRefs } from "@/common/utils/dom/assign-multiple-refs";
 import CurationDetailPlaceCard from "./CurationDetailPlaceCard";
 import UseCurationDetailPlaceIndex from "@/feature/curation/hooks/CurationDetail/useCurationDetailPlaceIndex";
 import UseSetPlaceMapData from "@/feature/curation/hooks/CurationDetail/useSetPlaceMapData";
 import UseScrollingAfterFilterClick from "@/feature/curation/hooks/CurationDetail/useScrollingAfterFilterClick";
+import PlaceFilterButton from "../molecules/PlaceFilterButton";
 
 interface CurationDetailPlaceCardListProps {
   inView: boolean;
@@ -111,7 +111,7 @@ const CurationDetailPlaceCardList = forwardRef<
         <div className="w-[100%] absolute top-[4.8rem] flex bg-white z-10 gap-[0.8rem] pb-[0.8rem] pt-[0.6rem] pl-[2rem] overflow-x-scroll">
           {props.curationDetail.spaceDetails.map((item, i) => {
             return (
-              <PlaceFilter
+              <PlaceFilterButton
                 key={item.id}
                 photo={item.imageUrls && item.imageUrls[0]}
                 label={item.name}
@@ -150,7 +150,7 @@ const CurationDetailPlaceCardList = forwardRef<
             className="flex gap-[0.8rem] mb-[-10.6rem] overflow-x-scroll"
           >
             {props.curationDetail.spaceDetails.map((item, i) => (
-              <PlaceFilter
+              <PlaceFilterButton
                 key={item.id}
                 photo={item.imageUrls && item.imageUrls[0]}
                 label={item.name}

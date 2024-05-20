@@ -1,4 +1,6 @@
 import Filter from "@/common/components/ui/buttons/Filter/Filter";
+import Label from "@/common/components/ui/text/Label";
+import NumberCountWithSlash from "@/common/components/ui/text/NumberCountWithSlash";
 import {
   CAFE_EVALUATIONS,
   PLACE_EVALUATIONS,
@@ -22,24 +24,26 @@ export default function EvaluationKeywordContent({
   };
 
   return (
-    <div className="flex flex-col items-start pt-[14.8rem] pb-[18rem] px-[2rem] overflow-y-scroll">
+    <div className="flex flex-col items-start pt-[148px] pb-[180px] px-[20px] overflow-y-scroll">
       {placeType === "CAFE" &&
         Object.keys(PLACE_EVALUATIONS).map((category, i) => (
           <section
             key={category}
             className={
               i !== Object.keys(PLACE_EVALUATIONS).length - 1
-                ? "mb-[4rem]"
-                : "mb-[1.2rem]"
+                ? "mb-[40px]"
+                : "mb-[12px]"
             }
           >
-            <div className="flex items-start gap-[0.6rem]">
-              <div className="text-black headline3-semibold mb-[1.2rem]">
-                {PLACE_EVALUATIONS[category]}
-              </div>
-              <div className="headline3-semibold text-text-gray-6">
-                {cafeKeywordData[category].length}/3
-              </div>
+            <div className="flex items-start gap-[6px]">
+              <Label
+                label={PLACE_EVALUATIONS[category]}
+                className="headline3-semibold mb-[12px]"
+              />
+              <NumberCountWithSlash
+                currentNum={cafeKeywordData[category].length}
+                totalNum={3}
+              />
             </div>
             <div className="flex flex-wrap gap-[0.6rem]">
               {CAFE_EVALUATIONS[PLACE_EVALUATIONS[category]].map((keyword) => {
@@ -65,13 +69,15 @@ export default function EvaluationKeywordContent({
                 : "mb-[1.2rem]"
             }
           >
-            <div className="flex items-start gap-[0.6rem]">
-              <div className="text-black headline3-semibold mb-[1.2rem]">
-                {PLACE_EVALUATIONS[category]}
-              </div>
-              <div className="headline3-semibold text-text-gray-6">
-                {restaurantKeywordData[category].length}/3
-              </div>
+            <div className="flex items-start gap-[6px]">
+              <Label
+                label={PLACE_EVALUATIONS[category]}
+                className="headline3-semibold mb-[12px]"
+              />
+              <NumberCountWithSlash
+                currentNum={restaurantKeywordData[category].length}
+                totalNum={3}
+              />
             </div>
             <div className="flex flex-wrap gap-[0.6rem]">
               {RESTAURANT_EVALUATIONS[PLACE_EVALUATIONS[category]].map(

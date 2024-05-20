@@ -5,7 +5,7 @@ import { useInView } from "react-intersection-observer";
 import Divider from "@/common/components/ui/divider/Divider";
 import CurationBanner from "../organisms/CurationBanner";
 import NoSavedPlace from "../organisms/NoSavedPlace";
-import CurationTopAppBar from "../../CurationInfo/organisms/CurationTopAppBar";
+import CurationTopAppBar from "../organisms/CurationTopAppBar";
 import CurationDetailPlaceCardList from "../organisms/CurationDetailPlaceCardList";
 
 interface CurationDetailProps {

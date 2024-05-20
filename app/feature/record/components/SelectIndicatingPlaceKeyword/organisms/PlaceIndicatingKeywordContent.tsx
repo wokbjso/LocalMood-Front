@@ -5,6 +5,7 @@ import {
   RESTAURANT_CATEGORY,
 } from "@/feature/search/constants/search-keywords";
 import Filter from "@/common/components/ui/buttons/Filter/Filter";
+import Label from "@/common/components/ui/text/Label";
 
 //Organism
 export default function PlaceIndicatingKeywordContent({
@@ -36,9 +37,10 @@ export default function PlaceIndicatingKeywordContent({
                   : "mb-[2.7rem]"
               }
             >
-              <div className="text-black headline3 mb-[1.2rem]">
-                {CAFE_CATEGORY[category]}
-              </div>
+              <Label
+                label={CAFE_CATEGORY[category] + `${i === 0 ? " *" : ""}`}
+                className="headline3 mb-[12px]"
+              />
               <div className="flex flex-wrap gap-[0.6rem]">
                 {CAFE_KEYWORDS[CAFE_CATEGORY[category]].map((keyword) => (
                   <Filter
@@ -63,9 +65,10 @@ export default function PlaceIndicatingKeywordContent({
                   : "mb-[2.7rem]"
               }
             >
-              <div className="text-black headline3 mb-[1.2rem]">
-                {RESTAURANT_CATEGORY[category]}
-              </div>
+              <Label
+                label={RESTAURANT_CATEGORY[category] + `${i === 0 ? " *" : ""}`}
+                className="headline3 mb-[12px]"
+              />
               <div className="flex flex-wrap gap-[0.6rem]">
                 {RESTARANT_KEYWORDS[RESTAURANT_CATEGORY[category]].map(
                   (keyword) => (

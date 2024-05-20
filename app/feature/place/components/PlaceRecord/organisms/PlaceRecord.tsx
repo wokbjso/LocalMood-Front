@@ -6,7 +6,7 @@ import { PLACE_CATEGORY } from "@/feature/place/constants/place-tag-category";
 import { PlaceRecordProps } from "@/feature/place/queries/dto/place-record";
 
 //Organism
-export default function PlaceReview({
+export default function PlaceRecord({
   image,
   author,
   createdAt,

@@ -4,8 +4,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../slick.css";
 import Slider from "react-slick";
-import MoreTopBar from "@/common/components/ui/topBar/MoreTopBar/MoreTopBar";
 import dynamic from "next/dynamic";
+import PopularCurationMoreTopBar from "./PopularCurationMoreTopBar";
 const CurationInfoCardLight = dynamic(
   () =>
     import(
@@ -55,7 +55,7 @@ export default function HomePopularCurationSlider({
   return (
     <>
       <section className="mb-[5.6rem] pt-[2.8rem] pb-[2rem] bg-background-gray-2">
-        <MoreTopBar title={title} />
+        <PopularCurationMoreTopBar title={title} />
         <Slider {...sliderSettings} className="px-[2rem]">
           {curationList.map((curation, i) => (
             <CurationInfoCardLight

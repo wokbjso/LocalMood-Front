@@ -6,7 +6,6 @@ interface RecordPageBookButtonProps {
   indicatorIndex: number;
   cafeKeywordData: { [key: string]: any };
   restaurantKeywordData: { [key: string]: any };
-  hasSomeData: boolean;
   handleBtnForwardClicked: () => void;
   handleBtnBackClicked: () => void;
   handleExitClicked: () => void;
@@ -17,7 +16,6 @@ export default function RecordPageBookButton({
   indicatorIndex,
   cafeKeywordData,
   restaurantKeywordData,
-  hasSomeData,
   handleBtnForwardClicked,
   handleBtnBackClicked,
   handleExitClicked,
@@ -101,9 +99,7 @@ export default function RecordPageBookButton({
         <Button onClick={handleBtnForwardClicked}>기록 올리기</Button>
       )}
       {indicatorIndex === 3 && (
-        <Button onClick={handleExitClicked}>
-          {hasSomeData ? "완료" : "종료하기"}
-        </Button>
+        <Button onClick={handleExitClicked}>완료</Button>
       )}
     </div>
   );
