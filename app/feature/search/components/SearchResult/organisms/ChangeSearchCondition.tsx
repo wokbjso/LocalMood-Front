@@ -8,6 +8,7 @@ import ChangeSearchSortModal from "./ChangeSearchSortModal";
 import { useSearchParams } from "next/navigation";
 import SearchKeywordModal from "../../SearchKeyword/organisms/SearchKeywordModal";
 import UseHandleModal from "@/common/hooks/useHandleModal";
+import Label from "@/common/components/ui/text/Label";
 
 //Organism
 export default function ChangeSearchConditon() {
@@ -98,19 +99,25 @@ export default function ChangeSearchConditon() {
             <FilterKeywordIcon />
           </div>
           {!searchParams.get("keyword") && (
-            <span className="body2-semibold text-text-gray-8 ml-[8px]">
-              키워드 설정
-            </span>
+            <Label
+              label="키워드 설정"
+              className="body2-semibold text-text-gray-8 ml-[8px]"
+            />
           )}
           {searchParams.get("keyword") && (
-            <span className="body2-semibold text-black ml-[8px]">
-              {showedKeyword()}
-              <span className="body2-semibold text-text-gray-8">
-                {" "}
-                {countKeywordSelected() > 1 &&
-                  `외 ${countKeywordSelected() - 1}개`}
-              </span>
-            </span>
+            <>
+              <Label
+                label={showedKeyword()}
+                className="body2-semibold ml-[8px]"
+              />
+              <Label
+                label={`${" "}${
+                  countKeywordSelected() > 1 &&
+                  `외 ${countKeywordSelected() - 1}개`
+                }`}
+                className="body2-semibold text-text-gray-8"
+              />
+            </>
           )}
         </section>
         <section
@@ -118,9 +125,10 @@ export default function ChangeSearchConditon() {
           onClick={handleSortChangeClick}
         >
           <FilterSortIcon />
-          <span className="body2-medium text-text-gray-6">
-            {state === "RECENT" ? "리뷰 최신순" : "인기순"}
-          </span>
+          <Label
+            label={state === "RECENT" ? "리뷰 최신순" : "인기순"}
+            className="body2-medium text-text-gray-6"
+          />
         </section>
       </div>
       <ChangeSearchSortModal
