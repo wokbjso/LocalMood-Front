@@ -1,3 +1,4 @@
+import Label from "@/common/components/ui/text/Label";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 
@@ -24,14 +25,13 @@ export default function UserProfile({
           className="cursor-pointer"
         />
       </div>
-      <span
+      <Label
+        label={userName}
         className={twMerge(
           "text-white",
           size === "big" ? "body2-medium" : "body3-medium"
         )}
-      >
-        {userName}
-      </span>
+      />
     </div>
   );
 }

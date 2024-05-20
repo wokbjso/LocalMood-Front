@@ -38,14 +38,14 @@ export default function EvaluationKeywordContent({
             <div className="flex items-start gap-[6px]">
               <Label
                 label={PLACE_EVALUATIONS[category]}
-                className="headline3-semibold mb-[12px]"
+                className="headline3-semibold"
               />
               <NumberCountWithSlash
                 currentNum={cafeKeywordData[category].length}
                 totalNum={3}
               />
             </div>
-            <div className="flex flex-wrap gap-[0.6rem]">
+            <div className="flex flex-wrap gap-[0.6rem] mt-[12px]">
               {CAFE_EVALUATIONS[PLACE_EVALUATIONS[category]].map((keyword) => {
                 return (
                   <Filter
@@ -72,14 +72,14 @@ export default function EvaluationKeywordContent({
             <div className="flex items-start gap-[6px]">
               <Label
                 label={PLACE_EVALUATIONS[category]}
-                className="headline3-semibold mb-[12px]"
+                className="headline3-semibold"
               />
               <NumberCountWithSlash
                 currentNum={restaurantKeywordData[category].length}
                 totalNum={3}
               />
             </div>
-            <div className="flex flex-wrap gap-[0.6rem]">
+            <div className="flex flex-wrap gap-[0.6rem] mt-[12px]">
               {RESTAURANT_EVALUATIONS[PLACE_EVALUATIONS[category]].map(
                 (keyword) => {
                   return (

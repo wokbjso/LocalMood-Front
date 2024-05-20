@@ -1,3 +1,5 @@
+import Label from "@/common/components/ui/text/Label";
+import Text from "@/common/components/ui/text/Text";
 import Image from "next/image";
 
 interface UserProfileMyPageProps {
@@ -20,10 +22,8 @@ export default function UserProfileMyPage({
         className="rounded-full mr-[1.6rem]"
       />
       <div className="flex flex-col justify-center">
-        <p className="text-text-gray-8 body2-medium mb-[0.8rem]">{title}</p>
-        <div className="flex items-center">
-          <span className="text-black headline1">{nickName}</span>
-        </div>
+        <Text text={title} className="body2-medium mb-[8px]" />
+        <Label label={nickName} className="headline1" />
       </div>
     </section>
   );

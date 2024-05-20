@@ -39,9 +39,9 @@ export default function PlaceIndicatingKeywordContent({
             >
               <Label
                 label={CAFE_CATEGORY[category] + `${i === 0 ? " *" : ""}`}
-                className="headline3 mb-[12px]"
+                className="headline3"
               />
-              <div className="flex flex-wrap gap-[0.6rem]">
+              <div className="flex flex-wrap gap-[0.6rem] mt-[12px]">
                 {CAFE_KEYWORDS[CAFE_CATEGORY[category]].map((keyword) => (
                   <Filter
                     key={keyword}
@@ -67,9 +67,9 @@ export default function PlaceIndicatingKeywordContent({
             >
               <Label
                 label={RESTAURANT_CATEGORY[category] + `${i === 0 ? " *" : ""}`}
-                className="headline3 mb-[12px]"
+                className="headline3"
               />
-              <div className="flex flex-wrap gap-[0.6rem]">
+              <div className="flex flex-wrap gap-[0.6rem] mt-[12px]">
                 {RESTARANT_KEYWORDS[RESTAURANT_CATEGORY[category]].map(
                   (keyword) => (
                     <Filter

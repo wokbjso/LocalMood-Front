@@ -1,4 +1,5 @@
 import Filter from "@/common/components/ui/buttons/Filter/Filter";
+import Label from "@/common/components/ui/text/Label";
 import {
   KOREAN_OPTION,
   RESTARANT_KEYWORDS,
@@ -22,10 +23,8 @@ export default function KeywordFoodSection({
 }: KeywordRestaurantFoodSection) {
   return (
     <section className="mb-[40px]">
-      <div className="text-black headline3 mb-[1.2rem]">
-        {RESTAURANT_CATEGORY["subType"]}
-      </div>
-      <div className="flex flex-wrap gap-[0.6rem]">
+      <Label label={RESTAURANT_CATEGORY["subType"]} className="headline3" />
+      <div className="flex flex-wrap gap-[0.6rem] mt-[12px]">
         {RESTARANT_KEYWORDS[RESTAURANT_CATEGORY["subType"]].map((keyword) => (
           <Filter
             key={keyword}
