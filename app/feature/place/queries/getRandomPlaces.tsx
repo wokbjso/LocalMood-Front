@@ -1,5 +1,7 @@
 "use server";
 
+import ErrorMessage from "@/common/utils/error/error-message";
+
 export default async function GetRandomPlaces() {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/spaces/recommend`,
@@ -11,7 +13,8 @@ export default async function GetRandomPlaces() {
       next: { tags: ["getHomeRecommend"] },
     }
   );
-  const data = await res.json();
+  if (!res.ok) throw new Error(ErrorMessage(res.status));
 
+  const data = await res.json();
   return data;
 }

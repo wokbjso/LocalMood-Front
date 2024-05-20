@@ -1,3 +1,4 @@
+import ErrorMessage from "@/common/utils/error/error-message";
 import { getSession } from "@/common/utils/session/getSession";
 
 export default async function GetRandomCuration() {
@@ -14,7 +15,9 @@ export default async function GetRandomCuration() {
       next: { tags: ["getRandomCuration"] },
     }
   );
-  const data = await res.json();
 
+  if (!res.ok) throw new Error(ErrorMessage(res.status));
+
+  const data = await res.json();
   return data;
 }

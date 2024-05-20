@@ -1,12 +1,12 @@
 import Footer from "@/common/components/layout/Footer/Footer";
+import ErrorFallback from "@/common/components/ui/error/ErrorFallback";
 import HomeBanner from "@/feature/home/components/HomeBanner/organisms/HomeBanner";
-import GetRandomCuration from "@/feature/curation/queries/getRandomCuration";
 import HomePlaceSlider from "@/feature/home/components/HomeSlider/organisms/HomePlaceSlider";
 import HomePopularCurationSlider from "@/feature/home/components/HomeSlider/organisms/HomePopularCurationSlider";
+import { ErrorBoundary } from "react-error-boundary";
 
 //Page
-export default async function Home() {
-  const randomCuration = await GetRandomCuration();
+export default function Home() {
   return (
     <div className="w-[100%] h-[100%] overflow-y-auto overflow-x-hidden">
       {/* Template */}
@@ -22,10 +22,9 @@ export default async function Home() {
         className="mt-[4rem]"
       />
       <HomePlaceSlider mainText="친구와의 만남" subText="을 위한 공간" />
-      <HomePopularCurationSlider
-        title="마포구 인기 큐레이션"
-        curationList={randomCuration}
-      />
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <HomePopularCurationSlider title="마포구 인기 큐레이션" />
+      </ErrorBoundary>
       <HomePlaceSlider mainText="왁자지껄 떠들 수 있는" subText="공간" />
       <HomePlaceSlider
         mainText="대화에 집중할 수 있는"

@@ -1,12 +1,13 @@
 "use client";
 
+import Footer from "@/common/components/layout/Footer/Footer";
 import { useEffect } from "react";
 
 export default function Error({
   error,
   reset,
 }: {
-  error: Error & { digest?: string };
+  error: Error;
   reset: () => void;
 }) {
   useEffect(() => {
@@ -15,11 +16,14 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center">
-      <p className="headline1 mb-[14px]">오류가 발생했습니다</p>
-      <button onClick={() => reset()}>
-        <span className="headline2 text-primary-normal">다시 시도</span>
-      </button>
-    </div>
+    <>
+      <div className="w-full h-full flex flex-col justify-center items-center">
+        <p className="headline1 mb-[14px]">{error.message}</p>
+        <button onClick={() => reset()}>
+          <span className="headline2 text-primary-normal">다시 시도</span>
+        </button>
+      </div>
+      <Footer />
+    </>
   );
 }
