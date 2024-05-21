@@ -9,6 +9,9 @@ export default function ApiErrorMessage(status: number) {
     case 404:
       message = "데이터를 불러오는데 실패하였습니다.";
       break;
+    default:
+      message = "오류가 발생했습니다";
+      break;
   }
   return message;
 }

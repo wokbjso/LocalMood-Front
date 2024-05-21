@@ -1,3 +1,4 @@
+import ApiErrorMessage from "@/common/utils/error/api-error-message";
 import { getSession } from "@/common/utils/session/getSession";
 
 export default async function GetRecordMyPage(): Promise<{
@@ -15,6 +16,8 @@ export default async function GetRecordMyPage(): Promise<{
       },
     }
   );
+  if (!res.ok) throw new Error(ApiErrorMessage(res.status));
+
   const data = await res.json();
   return data;
 }
