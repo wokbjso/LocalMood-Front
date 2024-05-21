@@ -1,3 +1,4 @@
+import ApiErrorMessage from "@/common/utils/error/api-error-message";
 import { getSession } from "@/common/utils/session/getSession";
 
 export default async function GetMemberInfo(): Promise<{
@@ -15,7 +16,8 @@ export default async function GetMemberInfo(): Promise<{
       },
     }
   );
-  const data = await res.json();
+  if (!res.ok) throw new Error(ApiErrorMessage(res.status));
 
+  const data = await res.json();
   return data;
 }

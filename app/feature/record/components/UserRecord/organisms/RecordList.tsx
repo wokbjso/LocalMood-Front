@@ -3,22 +3,24 @@ const PlaceInfoCard = dynamic(
   () => import("@/feature/place/components/PlaceInfo/organisms/PlaceInfoCard")
 );
 import NoRecord from "./NoRecord";
-
-interface RecordListProps {
-  record: {
-    reviewCount: number;
-    reviews: any[];
-  };
-}
+import Label from "@/common/components/ui/text/Label";
+import { twMerge } from "tailwind-merge";
+import GetRecordMyPage from "@/feature/place/queries/getRecordMyPage";
 
 //Organism
-export default function RecordList({ record }: RecordListProps) {
+export default async function RecordList() {
+  const recordData = await GetRecordMyPage();
+
   return (
-    <section className="h-full mt-[16px]">
-      {record.reviewCount === 0 && <NoRecord />}
-      {record.reviewCount > 0 && (
-        <div className="grid grid-cols-2 gap-x-[1rem] gap-y-[1.6rem] pb-[40.1rem] h-full overflow-y-scroll">
-          {record.reviews.map((record) => (
+    <section className="h-full">
+      <Label
+        label={"공간 기록" + " " + recordData.reviewCount}
+        className={twMerge("text-text-gray-8 headline3")}
+      />
+      {recordData.reviewCount === 0 && <NoRecord />}
+      {recordData.reviewCount > 0 && (
+        <div className="grid grid-cols-2 gap-x-[1rem] gap-y-[1.6rem] pb-[40.1rem] h-full overflow-y-scroll mt-[16px]">
+          {recordData.reviews.map((record) => (
             <PlaceInfoCard
               key={record.id}
               variant="mypage"
