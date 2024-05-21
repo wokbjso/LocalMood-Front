@@ -11,7 +11,10 @@ export default async function SelectCandidatePlaceList() {
     <div className="w-full h-full flex px-[2rem] gap-[8px] overflow-auto pb-[5rem]">
       {scrappedPlace?.length === 0 && (
         <div className="flex items-center justify-center w-full h-[18rem]">
-          <Text text="아직 스크랩한 공간이 없습니다." />
+          <Text
+            text="아직 스크랩한 공간이 없습니다."
+            className="body1-medium"
+          />
         </div>
       )}
       {scrappedPlace &&

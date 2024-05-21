@@ -7,6 +7,6 @@ interface TitleProps {
 
 export default function Title({ title, className }: TitleProps) {
   return (
-    <h1 className={twMerge("headline0 text-black", className)}>{title}</h1>
+    <h1 className={twMerge("header-light text-black", className)}>{title}</h1>
   );
 }

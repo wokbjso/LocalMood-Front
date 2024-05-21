@@ -15,7 +15,7 @@ interface RecordListProps {
 export default function RecordList({ record }: RecordListProps) {
   return (
     <section className="h-full mt-[16px]">
-      {record.reviewCount > 0 && <NoRecord />}
+      {record.reviewCount === 0 && <NoRecord />}
       {record.reviewCount > 0 && (
         <div className="grid grid-cols-2 gap-x-[1rem] gap-y-[1.6rem] pb-[40.1rem] h-full overflow-y-scroll">
           {record.reviews.map((record) => (

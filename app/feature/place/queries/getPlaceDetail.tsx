@@ -1,5 +1,6 @@
 import { getSession } from "@/common/utils/session/getSession";
 import { PlaceDetailResponse } from "./dto/place-detail";
+import ApiErrorMessage from "@/common/utils/error/api-error-message";
 
 export default async function GetPlaceDetail(
   id: number
@@ -18,7 +19,8 @@ export default async function GetPlaceDetail(
       next: { tags: ["getPlaceDetail"] },
     }
   );
-  const data = await res.json();
+  if (!res.ok) throw new Error(ApiErrorMessage(res.status));
 
+  const data = await res.json();
   return data;
 }
