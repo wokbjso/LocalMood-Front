@@ -1,70 +1,20 @@
-"use client";
-
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "../slick.css";
-import Slider from "react-slick";
-import dynamic from "next/dynamic";
+import GetRandomCuration from "@/feature/curation/queries/getRandomCuration";
 import PopularCurationMoreTopBar from "./PopularCurationMoreTopBar";
-const CurationInfoCardLight = dynamic(
-  () =>
-    import(
-      "@/feature/curation/components/CurationInfo/organisms/CurationInfoCardLight"
-    )
-);
+import PopularCurationSlickSlider from "./PopularCurationSlickSlider";
 
 //Organism
-interface CurationHomePopularProps {
-  title: string;
-  curationList: {
-    id: number;
-    author: string;
-    image: string[];
-    title: string;
-    spaceCount: number;
-    keyword: string[];
-    isScraped: boolean;
-  }[];
-}
-
-//Organism
-export default function HomePopularCurationSlider({
+export default async function HomePopularCurationSlider({
   title,
-  curationList,
-}: CurationHomePopularProps) {
-  const sliderSettings = {
-    speed: 500,
-    dots: true,
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    appendDots: (dots: any) => (
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <ul> {dots} </ul>
-      </div>
-    ),
-    dotsClass: "dots_custom",
-  };
+}: {
+  title: string;
+}) {
+  const randomCuration = await GetRandomCuration();
+
   return (
     <>
       <section className="mb-[5.6rem] pt-[2.8rem] pb-[2rem] bg-background-gray-2">
         <PopularCurationMoreTopBar title={title} />
-        <Slider {...sliderSettings} className="px-[2rem]">
-          {curationList.map((curation, i) => (
-            <CurationInfoCardLight
-              key={curation.author + i}
-              {...curation}
-              className="mb-[2rem] w-[100%]"
-            />
-          ))}
-        </Slider>
+        <PopularCurationSlickSlider curationList={randomCuration} />
       </section>
     </>
   );
