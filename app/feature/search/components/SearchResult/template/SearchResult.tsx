@@ -9,11 +9,14 @@ import useTextSearchBar from "../../../hooks/SearchText/useTextSearchBar";
 import SearchNoResult from "../organisms/SearchNoResult";
 import dynamic from "next/dynamic";
 import useGetTextSearchPlaceData from "@/feature/search/queries/useGetTextSearchPlaceData";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { searchSortState } from "@/feature/search/state/sortState";
 import useGetKeywordSearchPlaceData from "@/feature/search/queries/useGetKeywordSearchPlaceData";
 import UseDeferredComponent from "@/common/hooks/useDeferredComponent";
 import SearchSkeleton from "../../skeleton/HomeSearchSkeleton";
+import SearchKeywordModal from "../../SearchKeyword/organisms/SearchKeywordModal";
+import { isModalOpen } from "@/common/state/handleModal";
+import ChangeSearchSortModal from "../organisms/ChangeSearchSortModal";
 const PlaceInfoCard = lazy(
   () => import("@/feature/place/components/PlaceInfo/organisms/PlaceInfoCard")
 );
@@ -38,6 +41,11 @@ export default function SearchResult({
   keywordSearchCurationData,
 }: SearchResultProps) {
   const sortState = useRecoilValue(searchSortState);
+  const [isSearchKeywordModalOpened, setIsSearchKeywordModalOpened] =
+    useRecoilState(isModalOpen("searchKeyword"));
+  const [isSearchSortModalOpened, setIsSearchSortModalOpened] = useRecoilState(
+    isModalOpen("changeSort")
+  );
 
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
     useTextSearchBar();
@@ -49,6 +57,14 @@ export default function SearchResult({
     });
   const { data: keywordSearchPlaceData, isFetching: keywordResultFetching } =
     useGetKeywordSearchPlaceData({ sortState, keyword });
+
+  const keywordChangeClose = () => {
+    setIsSearchKeywordModalOpened(false);
+  };
+
+  const searchSortModalClose = () => {
+    setIsSearchSortModalOpened(false);
+  };
 
   return textResultFetching || keywordResultFetching ? (
     <UseDeferredComponent>
@@ -321,6 +337,16 @@ export default function SearchResult({
             )}
           </div>
         )}
+      {isSearchKeywordModalOpened && (
+        <SearchKeywordModal
+          dependOnParams={false}
+          closeModal={keywordChangeClose}
+        />
+      )}
+      <ChangeSearchSortModal
+        isOpen={isSearchSortModalOpened}
+        closeModal={searchSortModalClose}
+      />
     </>
   );
 }

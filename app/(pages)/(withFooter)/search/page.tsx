@@ -25,7 +25,6 @@ export default function SearchPage({ searchParams }: any) {
           className="rounded-[1000px]"
         />
       </ArrowBackTopBar>
-      {searchParams.keyword_search === "true" && <SearchKeywordModal />}
       <div className="flex justify-center pt-[8.2rem] mb-[0.8rem]">
         <SearchImage />
       </div>
@@ -44,6 +43,7 @@ export default function SearchPage({ searchParams }: any) {
           </Button>
         </LinkLayout>
       </div>
+      {searchParams.keyword_search === "true" && <SearchKeywordModal />}
     </div>
   );
 }
