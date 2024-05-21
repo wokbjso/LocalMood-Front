@@ -112,8 +112,9 @@ export default function ChangeSearchConditon() {
               />
               <Label
                 label={`${" "}${
-                  countKeywordSelected() > 1 &&
-                  `외 ${countKeywordSelected() - 1}개`
+                  countKeywordSelected() > 1
+                    ? `외 ${countKeywordSelected() - 1}개`
+                    : ""
                 }`}
                 className="body2-semibold text-text-gray-8"
               />
