@@ -17,11 +17,11 @@ export default function GlobalError({
   return (
     <html className="w-[100%] h-[100%]">
       <body className="w-[100%] h-[100%]">
-        <div className="w-full h-full flex flex-col justify-center items-center">
+        <div className="w-full h-full flex flex-col justify-center items-center px-[20px]">
           <p className="headline1 mb-[14px]">
             페이지를 불러오는데 실패했습니다
           </p>
-          <button onClick={() => reset()}>
+          <button onClick={reset}>
             <span className="headline2 text-primary-normal">다시 시도</span>
           </button>
         </div>

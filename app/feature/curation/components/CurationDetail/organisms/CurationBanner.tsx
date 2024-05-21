@@ -32,7 +32,7 @@ export default function CurationBanner({
         </div>
         <Title
           title={title}
-          className="max-w-[23.2rem] break-keep text-center pt-[1.2rem] pb-[0.8rem]"
+          className="max-w-[23.2rem] break-keep text-center pt-[1.2rem] pb-[0.8rem] headline0"
         />
         {variant === "my" ? (
           <PrivacyToggleButton id={id} privacy={privacy} />

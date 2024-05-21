@@ -7,6 +7,8 @@ interface LabelProps {
 
 export default function Label({ label, className }: LabelProps) {
   return (
-    <span className={twMerge("headline0 text-black", className)}>{label}</span>
+    <span className={twMerge("header-light text-black", className)}>
+      {label}
+    </span>
   );
 }

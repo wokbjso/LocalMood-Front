@@ -15,9 +15,9 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center">
+    <div className="w-full h-full flex flex-col justify-center items-center px-[20px]">
       <p className="headline1 mb-[14px]">{error.message}</p>
-      <button onClick={() => reset()}>
+      <button onClick={reset}>
         <span className="headline2 text-primary-normal">다시 시도</span>
       </button>
     </div>
