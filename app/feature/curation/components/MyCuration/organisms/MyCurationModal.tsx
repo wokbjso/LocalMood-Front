@@ -5,15 +5,19 @@ import useOpenCurationMakeModal from "../../../hooks/CurationMake/useOpenCuratio
 import { useSetRecoilState } from "recoil";
 import { myCurationModalInfoSelector } from "@/common/state/myCurationModal";
 import { twMerge } from "tailwind-merge";
-import { MyCurationResponse } from "@/feature/curation/queries/dto/my-curation";
 import Title from "@/common/components/ui/text/Title";
 import MyCurationCardList from "./MyCurationCardList";
+import ApiErrorFallback from "@/common/components/ui/error/ApiErrorFallback";
+import { ErrorBoundary } from "react-error-boundary";
+import {
+  QueryClient,
+  QueryErrorResetBoundary,
+  useQueryErrorResetBoundary,
+} from "@tanstack/react-query";
 
-export interface MyCurationModalProps {
+interface MyCurationModalProps {
   open: boolean;
   title: string;
-  myCurationData?: MyCurationResponse;
-  isFetching: boolean;
   spaceId: number;
   handleModalFn?: (state: boolean) => void;
 }
@@ -22,8 +26,6 @@ export interface MyCurationModalProps {
 export default function MyCurationModal({
   open,
   title,
-  myCurationData,
-  isFetching,
   spaceId,
 }: MyCurationModalProps) {
   const setMyCurationModal = useSetRecoilState(myCurationModalInfoSelector);
@@ -40,7 +42,6 @@ export default function MyCurationModal({
   const handleMakeCurationClick = () => {
     openModal();
   };
-
   return (
     <>
       {open && (
@@ -59,12 +60,19 @@ export default function MyCurationModal({
             }}
             onClick={handleMakeCurationClick}
           />
-          <MyCurationCardList
-            myCurationData={myCurationData}
-            spaceId={spaceId}
-            isFetching={isFetching}
-            handleModalClose={handleModalClose}
-          />
+          <QueryErrorResetBoundary>
+            {({ reset }) => (
+              <ErrorBoundary
+                onReset={reset}
+                FallbackComponent={ApiErrorFallback}
+              >
+                <MyCurationCardList
+                  spaceId={spaceId}
+                  handleModalClose={handleModalClose}
+                />
+              </ErrorBoundary>
+            )}
+          </QueryErrorResetBoundary>
         </Modal>
       )}
     </>

@@ -2,23 +2,22 @@ import { lazy } from "react";
 import UseDeferredComponent from "@/common/hooks/useDeferredComponent";
 import MyCurationCardSkeleton from "../skeleton/MyCurationCardSkeleton";
 import { twMerge } from "tailwind-merge";
-import { MyCurationModalProps } from "./MyCurationModal";
 import useSavePlaceAtCuration from "@/feature/curation/queries/useSavePlaceAtCuration";
 const MyCurationCard = lazy(() => import("./MyCurationCard"));
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@/common/state/toast";
+import useGetMyCuration from "@/feature/curation/queries/useGetMyCuration";
 
 interface MyCurationCardListProps {
-  isFetching: boolean;
+  spaceId: number;
+  handleModalClose: () => void;
 }
 
 export default function MyCurationCardList({
-  myCurationData,
   spaceId,
-  isFetching,
   handleModalClose,
-}: Pick<MyCurationModalProps, "myCurationData" | "spaceId"> &
-  MyCurationCardListProps & { handleModalClose: () => void }) {
+}: MyCurationCardListProps) {
+  const { data: myCurationData, isFetching, refetch } = useGetMyCuration();
   const { mutate: savePlace } = useSavePlaceAtCuration();
 
   const setToast = useSetRecoilState(toastInfoSelector);

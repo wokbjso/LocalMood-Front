@@ -16,7 +16,7 @@ const ApiErrorFallback = ({
       )}
     >
       <p className="headline1 mb-[14px]">{error.message}</p>
-      <button onClick={() => resetErrorBoundary()}>
+      <button onClick={resetErrorBoundary}>
         <span className="headline2 text-primary-normal">다시 시도</span>
       </button>
     </div>
