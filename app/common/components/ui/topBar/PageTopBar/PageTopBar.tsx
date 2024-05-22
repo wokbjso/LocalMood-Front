@@ -1,10 +1,10 @@
 "use client";
 
 import MenuIcon from "@/common/assets/icons/menu/MenuIcon";
-import LogoutModal from "@/feature/auth/components/Logout/organisms/LogoutModal";
-import UseLogoutModal from "@/feature/auth/hooks/Logout/useLogoutModal";
 import { twMerge } from "tailwind-merge";
 import Title from "../../text/Title";
+import { useSetRecoilState } from "recoil";
+import { isModalOpenSelector } from "@/common/state/handleModalOpen";
 
 interface PageTopBarProps {
   text: string;
@@ -20,10 +20,12 @@ export default function PageTopBar({
   className,
   textClassName,
 }: PageTopBarProps) {
-  const { isOpen, openModal, closeModal } = UseLogoutModal();
+  const setIsLogoutModalOpened = useSetRecoilState(
+    isModalOpenSelector("logout")
+  );
 
   const handleMenuIconClick = () => {
-    openModal();
+    setIsLogoutModalOpened(true);
   };
 
   return (
@@ -35,7 +37,6 @@ export default function PageTopBar({
     >
       <Title title={text} className={twMerge("headline1", textClassName)} />
       {hasMenu && <MenuIcon onClick={handleMenuIconClick} />}
-      <LogoutModal isOpen={isOpen} closeModal={closeModal} />
     </div>
   );
 }

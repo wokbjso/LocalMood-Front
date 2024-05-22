@@ -8,6 +8,7 @@ import RecordList from "@/feature/record/components/UserRecord/organisms/RecordL
 import { Metadata } from "next";
 import { ErrorBoundary } from "react-error-boundary";
 import ApiErrorFallback from "@/common/components/ui/error/ApiErrorFallback";
+import LogoutModalProvider from "@/common/components/layout/Provider/LogoutModalProvider";
 
 export async function generateMetadata(): Promise<Metadata> {
   const memberData = await GetMemberInfo();
@@ -35,6 +36,7 @@ export default function MyPage() {
           <RecordList />
         </ErrorBoundary>
       </Suspense>
+      <LogoutModalProvider />
     </div>
   );
 }

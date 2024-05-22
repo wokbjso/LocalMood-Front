@@ -4,6 +4,8 @@ import TextSearchBar from "@/feature/search/components/SearchText/molecules/Text
 import { getTextSearchCurationData } from "@/feature/search/queries/getTextSearchCurationData";
 import { postKeywordSearchCurationData } from "@/feature/search/queries/postKeywordSearchCurationData";
 import { Metadata } from "next";
+import SearchKeywordModalProvider from "@/common/components/layout/Provider/SearchKeywordModalProvider";
+import SearchResultChangeSortProvider from "@/common/components/layout/Provider/SearchResultChangeSortProvider";
 const SearchResult = dynamic(
   () => import("@/feature/search/components/SearchResult/template/SearchResult")
 );
@@ -94,6 +96,8 @@ export default async function SearchResultPage({ searchParams }: Props) {
         textSearchCurationData={textSearchCurationData}
         keywordSearchCurationData={keywordSearchCurationData}
       />
+      <SearchKeywordModalProvider dependOnParams={false} />
+      <SearchResultChangeSortProvider />
     </main>
   );
 }

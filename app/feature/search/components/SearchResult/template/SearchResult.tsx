@@ -9,11 +9,12 @@ import useTextSearchBar from "../../../hooks/SearchText/useTextSearchBar";
 import SearchNoResult from "../organisms/SearchNoResult";
 import dynamic from "next/dynamic";
 import useGetTextSearchPlaceData from "@/feature/search/queries/useGetTextSearchPlaceData";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { searchSortState } from "@/feature/search/state/sortState";
 import useGetKeywordSearchPlaceData from "@/feature/search/queries/useGetKeywordSearchPlaceData";
 import UseDeferredComponent from "@/common/hooks/useDeferredComponent";
 import SearchSkeleton from "../../skeleton/HomeSearchSkeleton";
+import { isModalOpen } from "@/common/state/handleModalOpen";
 const PlaceInfoCard = lazy(
   () => import("@/feature/place/components/PlaceInfo/organisms/PlaceInfoCard")
 );
@@ -38,6 +39,9 @@ export default function SearchResult({
   keywordSearchCurationData,
 }: SearchResultProps) {
   const sortState = useRecoilValue(searchSortState);
+  const [isSearchSortModalOpened, setIsSearchSortModalOpened] = useRecoilState(
+    isModalOpen("changeSort")
+  );
 
   const { tabIndex: searchBarTabIndex, handlers: searchBarHandlers } =
     useTextSearchBar();

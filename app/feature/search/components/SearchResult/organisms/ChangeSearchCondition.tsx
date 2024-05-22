@@ -2,28 +2,23 @@
 
 import FilterSortIcon from "@/common/assets/icons/filter/FilterSortIcon";
 import FilterKeywordIcon from "@/common/assets/icons/filter/FilterKeywordIcon";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { searchSortState } from "@/feature/search/state/sortState";
-import ChangeSearchSortModal from "./ChangeSearchSortModal";
 import { useSearchParams } from "next/navigation";
-import SearchKeywordModal from "../../SearchKeyword/organisms/SearchKeywordModal";
-import UseHandleModal from "@/common/hooks/useHandleModal";
 import Label from "@/common/components/ui/text/Label";
+import { isModalOpenSelector } from "@/common/state/handleModalOpen";
 
 //Organism
 export default function ChangeSearchConditon() {
   const searchParams = useSearchParams();
+
   const state = useRecoilValue(searchSortState);
-  const {
-    isOpened: isSearchKeywordModalOpened,
-    openModal: openSearchKeywordModal,
-    closeModal: closeSearchKeywordModal,
-  } = UseHandleModal();
-  const {
-    isOpened: isSearchSortModalOpened,
-    openModal: openSearchSortModal,
-    closeModal: closeSearchSortModal,
-  } = UseHandleModal();
+  const setIsSearchKeywordModalOpened = useSetRecoilState(
+    isModalOpenSelector("searchKeyword")
+  );
+  const setIsSearchSortModalOpened = useSetRecoilState(
+    isModalOpenSelector("changeSort")
+  );
 
   const countKeywordSelected = () => {
     let count = 0;
@@ -60,25 +55,15 @@ export default function ChangeSearchConditon() {
   };
 
   const handleKeywordChangeClick = () => {
-    openSearchKeywordModal();
-  };
-
-  const handleKeywordChangeCloseClick = () => {
-    closeSearchKeywordModal();
+    setIsSearchKeywordModalOpened(true);
   };
 
   const handleSortChangeClick = () => {
-    openSearchSortModal();
+    setIsSearchSortModalOpened(true);
   };
 
   return (
     <>
-      {isSearchKeywordModalOpened && (
-        <SearchKeywordModal
-          dependOnParams={false}
-          closeModal={handleKeywordChangeCloseClick}
-        />
-      )}
       <div className="flex justify-between pt-[16px] pb-[12px] px-[20px]">
         <section
           className="flex items-center gap-[4px]"
@@ -132,10 +117,6 @@ export default function ChangeSearchConditon() {
           />
         </section>
       </div>
-      <ChangeSearchSortModal
-        isOpen={isSearchSortModalOpened}
-        closeModal={closeSearchSortModal}
-      />
     </>
   );
 }
