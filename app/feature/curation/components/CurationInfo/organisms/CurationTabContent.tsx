@@ -8,7 +8,7 @@ import CurationInfoCardDark from "./CurationInfoCardDark";
 import MyCurationTabContent from "./MyCurationTabContent";
 import { ErrorBoundary } from "react-error-boundary";
 import ApiErrorFallback from "@/common/components/ui/error/ApiErrorFallback";
-import { QueryErrorResetBoundary, useQueryClient } from "@tanstack/react-query";
+import { QueryErrorResetBoundary } from "@tanstack/react-query";
 
 interface CurationTabContentProps {
   scrappedCuration: any;
@@ -19,8 +19,6 @@ export default function CurationTabContent({
   scrappedCuration,
 }: CurationTabContentProps) {
   const { tabIndex, changeTabIndex } = useTab();
-
-  const queryClient = useQueryClient();
 
   return (
     <>
