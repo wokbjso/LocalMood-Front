@@ -18,12 +18,14 @@ import KeywordSection from "./KeywordSection";
 import KeywordFoodSection from "./KeywordRestaurantFoodSection";
 
 interface SearchKeywordModalProps {
+  isOpen?: boolean;
   dependOnParams?: boolean;
   closeModal?: () => void;
 }
 
 //Organism
 export default function SearchKeywordModal({
+  isOpen = false,
   dependOnParams = true,
   closeModal,
 }: SearchKeywordModalProps) {
@@ -58,36 +60,53 @@ export default function SearchKeywordModal({
   };
 
   return (
-    <Modal className="h-[94%]">
-      <CloseIcon
-        className="absolute right-[2.4rem] top-[4rem]"
-        onClick={handleCloseIconClick}
-      />
-      <Tab
-        startIndex={tabIndex}
-        sections={[{ text: "음식점" }, { text: "카페" }]}
-        onChange={handlers.handleTabIndex}
-        className="pl-[2rem] w-[35%] mt-[4.3rem]"
-      />
-      <Divider className="h-[0.1rem] bg-line-gray-3" />
-      <div className="h-full w-full pt-[3.2rem] pb-[17rem] px-[2rem] overflow-y-scroll">
-        {tabIndex === 0 &&
-          Object.keys(RESTAURANT_CATEGORY).map((category, i) =>
-            category === "subType" ? (
-              <KeywordFoodSection
-                key="subType"
-                openKoreanOption={openKoreanOption}
-                restaurantKeyword={restaurantKeyword}
-                koreanOptionIndex={koreanOptionIndex}
-                handleRestaurantSubType={handlers.handleRestaurantSubType}
-                handleKoreanOptionIndex={handlers.handleKoreanOptionIndex}
-              />
-            ) : (
+    isOpen && (
+      <Modal className="h-[94%]">
+        <CloseIcon
+          className="absolute right-[2.4rem] top-[4rem]"
+          onClick={handleCloseIconClick}
+        />
+        <Tab
+          startIndex={tabIndex}
+          sections={[{ text: "음식점" }, { text: "카페" }]}
+          onChange={handlers.handleTabIndex}
+          className="pl-[2rem] w-[35%] mt-[4.3rem]"
+        />
+        <Divider className="h-[0.1rem] bg-line-gray-3" />
+        <div className="h-full w-full pt-[3.2rem] pb-[17rem] px-[2rem] overflow-y-scroll">
+          {tabIndex === 0 &&
+            Object.keys(RESTAURANT_CATEGORY).map((category, i) =>
+              category === "subType" ? (
+                <KeywordFoodSection
+                  key="subType"
+                  openKoreanOption={openKoreanOption}
+                  restaurantKeyword={restaurantKeyword}
+                  koreanOptionIndex={koreanOptionIndex}
+                  handleRestaurantSubType={handlers.handleRestaurantSubType}
+                  handleKoreanOptionIndex={handlers.handleKoreanOptionIndex}
+                />
+              ) : (
+                <KeywordSection
+                  key={category}
+                  type="RESTAURANT"
+                  category={category}
+                  keywordData={restaurantKeyword}
+                  handleKeywordData={handlers.handleKeywordData}
+                  className={
+                    i !== Object.keys(CAFE_CATEGORY).length - 1
+                      ? "mb-[40px]"
+                      : "mb-[27px]"
+                  }
+                />
+              )
+            )}
+          {tabIndex === 1 &&
+            Object.keys(CAFE_CATEGORY).map((category, i) => (
               <KeywordSection
                 key={category}
-                type="RESTAURANT"
+                type="CAFE"
                 category={category}
-                keywordData={restaurantKeyword}
+                keywordData={cafeKeyword}
                 handleKeywordData={handlers.handleKeywordData}
                 className={
                   i !== Object.keys(CAFE_CATEGORY).length - 1
@@ -95,48 +114,33 @@ export default function SearchKeywordModal({
                     : "mb-[27px]"
                 }
               />
-            )
-          )}
-        {tabIndex === 1 &&
-          Object.keys(CAFE_CATEGORY).map((category, i) => (
-            <KeywordSection
-              key={category}
-              type="CAFE"
-              category={category}
-              keywordData={cafeKeyword}
-              handleKeywordData={handlers.handleKeywordData}
-              className={
-                i !== Object.keys(CAFE_CATEGORY).length - 1
-                  ? "mb-[40px]"
-                  : "mb-[27px]"
-              }
-            />
-          ))}
-        <div className="absolute left-8 right-8 bottom-0 h-[7.5rem] bg-white">
-          <Link
-            href={{
-              pathname: "/search/results",
-              query: {
-                keyword:
-                  tabIndex === 0
-                    ? JSON.stringify(restaurantKeyword)
-                    : JSON.stringify(cafeKeyword),
-                sort: sortState,
-              },
-            }}
-            prefetch
-            shallow
-          >
-            <Button
-              disabled={!showResultAble}
-              className="w-full"
-              onClick={handleShowKeywordResultClick}
+            ))}
+          <div className="absolute left-8 right-8 bottom-0 h-[7.5rem] bg-white">
+            <Link
+              href={{
+                pathname: "/search/results",
+                query: {
+                  keyword:
+                    tabIndex === 0
+                      ? JSON.stringify(restaurantKeyword)
+                      : JSON.stringify(cafeKeyword),
+                  sort: sortState,
+                },
+              }}
+              prefetch
+              shallow
             >
-              결과보기
-            </Button>
-          </Link>
+              <Button
+                disabled={!showResultAble}
+                className="w-full"
+                onClick={handleShowKeywordResultClick}
+              >
+                결과보기
+              </Button>
+            </Link>
+          </div>
         </div>
-      </div>
-    </Modal>
+      </Modal>
+    )
   );
 }

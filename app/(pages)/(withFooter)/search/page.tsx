@@ -43,7 +43,7 @@ export default function SearchPage({ searchParams }: any) {
           </Button>
         </LinkLayout>
       </div>
-      {searchParams.keyword_search === "true" && <SearchKeywordModal />}
+      <SearchKeywordModal isOpen={searchParams.keyword_search === "true"} />
     </div>
   );
 }

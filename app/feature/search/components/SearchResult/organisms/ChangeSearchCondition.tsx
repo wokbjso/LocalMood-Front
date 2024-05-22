@@ -6,7 +6,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { searchSortState } from "@/feature/search/state/sortState";
 import { useSearchParams } from "next/navigation";
 import Label from "@/common/components/ui/text/Label";
-import { isModalOpen } from "@/common/state/handleModal";
+import { isModalOpenSelector } from "@/common/state/handleModalOpen";
 
 //Organism
 export default function ChangeSearchConditon() {
@@ -14,10 +14,10 @@ export default function ChangeSearchConditon() {
 
   const state = useRecoilValue(searchSortState);
   const setIsSearchKeywordModalOpened = useSetRecoilState(
-    isModalOpen("searchKeyword")
+    isModalOpenSelector("searchKeyword")
   );
   const setIsSearchSortModalOpened = useSetRecoilState(
-    isModalOpen("changeSort")
+    isModalOpenSelector("changeSort")
   );
 
   const countKeywordSelected = () => {
