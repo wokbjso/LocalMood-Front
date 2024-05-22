@@ -1,6 +1,11 @@
 import { atomFamily, selectorFamily } from "recoil";
 
-type modalType = "searchKeyword" | "changeSort" | "logout" | "confirm";
+type modalType =
+  | "searchKeyword"
+  | "changeSort"
+  | "logout"
+  | "makeCuration"
+  | "confirm";
 
 export const isModalOpen = atomFamily<boolean, modalType>({
   key: "isModalOpen",

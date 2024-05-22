@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  isModalOpen,
-  isModalOpenSelector,
-} from "@/common/state/handleModalOpen";
+import { isModalOpenSelector } from "@/common/state/handleModalOpen";
 import LogoutModal from "@/feature/auth/components/Logout/organisms/LogoutModal";
 import { useRecoilState } from "recoil";
 import ConfirmModal from "../../ui/modal/ConfirmModal";
@@ -14,7 +11,7 @@ export default function LogoutModalProvider() {
   );
 
   const [isLogoutConfirmModalOpened, setIsLogoutConfirmModalOpened] =
-    useRecoilState(isModalOpen("confirm"));
+    useRecoilState(isModalOpenSelector("confirm"));
 
   const handleLogoutModalClose = () => {
     setIsLogoutModalOpened(false);
