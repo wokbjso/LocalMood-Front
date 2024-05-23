@@ -105,7 +105,7 @@ export default function CurationMenuModal({
         </Modal>
       )}
       <CurationMakeModal
-        open={editCurationOpen}
+        isOpen={editCurationOpen}
         closeModal={handleCloseEditCuration}
         curationInfo={curationInfo}
         editMode

@@ -11,8 +11,7 @@ import { queryFetchingSelector } from "@/common/state/queryFetching";
 import CurationMakeKeyword from "./CurationMakeKeyword";
 
 interface CurationMakeProps {
-  open: boolean;
-  openedAt?: "page" | "modal";
+  isOpen: boolean;
   closeModal: () => void;
   curationInfo?: {
     id: number;
@@ -25,8 +24,7 @@ interface CurationMakeProps {
 
 //Organism
 export default function CurationMakeModal({
-  open,
-  openedAt = "modal",
+  isOpen,
   closeModal,
   curationInfo,
   editMode = false,
@@ -38,7 +36,7 @@ export default function CurationMakeModal({
 
   const setIsQueryFetching = useSetRecoilState(queryFetchingSelector);
 
-  const { mutate: makeCuration } = useMakeCuration({ openedAt });
+  const { mutate: makeCuration } = useMakeCuration();
   const { mutate: editCuration } = useEditCuration();
 
   const closeIconClicked = () => {
@@ -72,9 +70,7 @@ export default function CurationMakeModal({
   };
 
   const executeMakeCuration = () => {
-    if (openedAt === "page") {
-      setIsQueryFetching(true);
-    }
+    setIsQueryFetching(true);
     resetCurationMakeData();
     makeCuration(getSendingCurationData());
   };
@@ -121,7 +117,7 @@ export default function CurationMakeModal({
   };
 
   return (
-    open && (
+    isOpen && (
       <Modal className="h-[94%]">
         <div className="bg-white h-full">
           <div className="h-full p-[2rem] flex flex-col items-center">

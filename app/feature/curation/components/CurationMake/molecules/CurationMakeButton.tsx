@@ -1,16 +1,10 @@
 import AddIcon from "@/common/assets/icons/add/AddIcon";
-import CurationMakeModal from "../organisms/CurationMakeModal";
 import { twMerge } from "tailwind-merge";
 import AddLineIcon from "@/common/assets/icons/add/AddLineIcon";
 
 interface CurationMakeButtonProps {
   size: "small" | "large";
   text: string;
-  curationMakeModalInfo: {
-    open: boolean;
-    openedAt?: "page" | "modal";
-    closeModal: () => void;
-  };
   onClick?: (state: boolean) => void;
 }
 
@@ -18,7 +12,6 @@ interface CurationMakeButtonProps {
 export default function CurationMakeButton({
   size,
   text,
-  curationMakeModalInfo,
   onClick,
 }: CurationMakeButtonProps) {
   return (
@@ -48,11 +41,6 @@ export default function CurationMakeButton({
           {text}
         </span>
       </div>
-      <CurationMakeModal
-        open={curationMakeModalInfo.open}
-        openedAt={curationMakeModalInfo.openedAt}
-        closeModal={curationMakeModalInfo.closeModal}
-      />
     </>
   );
 }
