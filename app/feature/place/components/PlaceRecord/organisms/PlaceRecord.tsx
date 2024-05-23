@@ -4,6 +4,7 @@ import GraphUpDownVote from "@/common/components/ui/graph/GraphUpDownVote/GraphU
 import { twMerge } from "tailwind-merge";
 import { PLACE_CATEGORY } from "@/feature/place/constants/place-tag-category";
 import { PlaceRecordProps } from "@/feature/place/queries/dto/place-record";
+import Label from "@/common/components/ui/text/Label";
 
 //Organism
 export default function PlaceRecord({
@@ -37,9 +38,12 @@ export default function PlaceRecord({
         </div>
         <div>
           <div className="mb-[1.2rem]">
-            <div className="text-black headline3">{author}</div>
-            <div className="body3-medium text-text-gray-6 mt-[0.8rem]">
-              {createdAt}
+            <Label label={author} className="headline3" />
+            <div className="mt-[0.8rem]">
+              <Label
+                label={createdAt}
+                className="body3-medium text-text-gray-6"
+              />
             </div>
           </div>
           <div>
@@ -51,9 +55,10 @@ export default function PlaceRecord({
                   keyword[category] && "mb-[0.6rem]"
                 )}
               >
-                <span className="mr-[2rem] text-text-gray-7 body2-medium">
-                  {keyword[category] && PLACE_CATEGORY[category]}
-                </span>
+                <Label
+                  label={keyword[category] && PLACE_CATEGORY[category]}
+                  className="mr-[2rem] text-text-gray-7 body2-medium"
+                />
                 {category === "purpose" ? (
                   <Chip>{purpose}</Chip>
                 ) : (
