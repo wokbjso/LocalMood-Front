@@ -7,6 +7,7 @@ import RecoilRootLayout from "@/common/components/layout/Recoil/RecoilRootLayout
 import ReactQueryProviders from "@/common/components/layout/QueryClientProvider/ReactQueryProvider";
 import ToastProvider from "@/common/components/layout/Provider/ToastProvider";
 import QueryFetchingProvider from "@/common/components/layout/Provider/QueryFetchingProvider";
+import CurationMakeModalProvider from "./common/components/layout/Provider/CurationMakeModalProvider";
 const MyCurationModalProvider = dynamic(
   () => import("@/common/components/layout/Provider/MyCurationModalProvider")
 );
@@ -80,6 +81,7 @@ export default async function RootLayout({
               <DetectDevice>{children}</DetectDevice>
               <MyCurationModalProvider />
               <ToastProvider />
+              <CurationMakeModalProvider />
               <QueryFetchingProvider />
             </RecoilRootLayout>
           </ReactQueryProviders>

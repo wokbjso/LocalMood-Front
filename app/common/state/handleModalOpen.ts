@@ -3,8 +3,9 @@ import { atomFamily, selectorFamily } from "recoil";
 type modalType =
   | "searchKeyword"
   | "changeSort"
-  | "logout"
   | "makeCuration"
+  | "editCuration"
+  | "logout"
   | "confirm";
 
 export const isModalOpen = atomFamily<boolean, modalType>({

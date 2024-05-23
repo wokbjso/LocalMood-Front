@@ -1,7 +1,6 @@
 import CloseIcon from "@/common/assets/icons/close/CloseIcon";
 import Modal from "@/common/components/ui/modal/Modal";
 import CurationMakeButton from "../../CurationMake/molecules/CurationMakeButton";
-import useOpenCurationMakeModal from "../../../hooks/CurationMake/useOpenCurationMakeModal";
 import { useSetRecoilState } from "recoil";
 import { myCurationModalInfoSelector } from "@/common/state/myCurationModal";
 import { twMerge } from "tailwind-merge";
@@ -9,11 +8,9 @@ import Title from "@/common/components/ui/text/Title";
 import MyCurationCardList from "./MyCurationCardList";
 import ApiErrorFallback from "@/common/components/ui/error/ApiErrorFallback";
 import { ErrorBoundary } from "react-error-boundary";
-import {
-  QueryClient,
-  QueryErrorResetBoundary,
-  useQueryErrorResetBoundary,
-} from "@tanstack/react-query";
+import { QueryErrorResetBoundary } from "@tanstack/react-query";
+import { isModalOpenSelector } from "@/common/state/handleModalOpen";
+import UseOutsideClick from "@/common/hooks/useOutsideClick";
 
 interface MyCurationModalProps {
   open: boolean;
@@ -29,8 +26,9 @@ export default function MyCurationModal({
   spaceId,
 }: MyCurationModalProps) {
   const setMyCurationModal = useSetRecoilState(myCurationModalInfoSelector);
-
-  const { isModalOpen, openModal, closeModal } = useOpenCurationMakeModal();
+  const setIsCurationMakeModalOpened = useSetRecoilState(
+    isModalOpenSelector("makeCuration")
+  );
 
   const handleModalClose = () => {
     setMyCurationModal({
@@ -40,7 +38,7 @@ export default function MyCurationModal({
   };
 
   const handleMakeCurationClick = () => {
-    openModal();
+    setIsCurationMakeModalOpened(true);
   };
   return (
     <>
@@ -54,10 +52,6 @@ export default function MyCurationModal({
           <CurationMakeButton
             size="large"
             text="새 큐레이션 만들기"
-            curationMakeModalInfo={{
-              open: isModalOpen,
-              closeModal: closeModal,
-            }}
             onClick={handleMakeCurationClick}
           />
           <QueryErrorResetBoundary>
