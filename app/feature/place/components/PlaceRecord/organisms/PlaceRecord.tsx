@@ -73,7 +73,12 @@ export default function PlaceRecord({
               </div>
             ))}
           </div>
-          <div className="flex my-[1.6rem]">
+          <div
+            className={twMerge(
+              "flex",
+              image.length > 0 ? "my-[16px]" : "my-[8px]"
+            )}
+          >
             {image?.map((img, i) => (
               <div
                 key={img + i}
