@@ -42,7 +42,9 @@ export default function PlaceInfoCardTop({
       ? `/place/${id}`
       : variant === "record" && !isReviewed
       ? `/record/select/${id}`
-      : undefined;
+      : variant === "mypage"
+      ? `/place/${id}/more`
+      : "";
   const getQuery = variant === "record" && !isReviewed ? { type, name } : null;
   const getImageSize =
     size === "small" ? "50vw" : direction === "horizontal" ? "20vw" : "100vw";

@@ -23,11 +23,7 @@ async function makeCuration(data: {
   return;
 }
 
-export default function useMakeCuration({
-  openedAt = "modal",
-}: {
-  openedAt?: "page" | "modal";
-}) {
+export default function useMakeCuration() {
   const setIsQueryFetching = useSetRecoilState(queryFetchingSelector);
 
   const setToast = useSetRecoilState(toastInfoSelector);
@@ -37,9 +33,7 @@ export default function useMakeCuration({
     mutationKey: ["makeCuration"],
     mutationFn: makeCuration,
     onSuccess: () => {
-      if (openedAt === "page") {
-        setIsQueryFetching(false);
-      }
+      setIsQueryFetching(false);
       setToast({
         open: true,
         text: "큐레이션이 생성되었습니다",
