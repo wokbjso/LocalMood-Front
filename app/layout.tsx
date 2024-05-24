@@ -7,18 +7,12 @@ import RecoilRootLayout from "@/common/components/layout/Recoil/RecoilRootLayout
 import ReactQueryProviders from "@/common/components/layout/Provider/ReactQueryProvider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import MyCurationModalProvider from "./common/components/layout/Provider/MyCurationModalProvider";
-const ToastProvider = dynamic(
-  () => import("@/common/components/layout/Provider/ToastProvider")
-);
-const CurationMakeModalProvider = dynamic(
-  () => import("./common/components/layout/Provider/CurationMakeModalProvider")
-);
+import ToastProvider from "./common/components/layout/Provider/ToastProvider";
+import CurationMakeModalProvider from "./common/components/layout/Provider/CurationMakeModalProvider";
+import QueryFetchingProvider from "./common/components/layout/Provider/QueryFetchingProvider";
 const DetectDevice = dynamic(
   () => import("@/common/components/layout/DetectDevice/DetectDevice"),
   { ssr: false }
-);
-const QueryFetchingProvider = dynamic(
-  () => import("@/common/components/layout/Provider/QueryFetchingProvider")
 );
 
 const globalFont = localFont({
