@@ -38,7 +38,6 @@ export default function CurationInfoCardLight({
   className?: string;
 }) {
   const setToast = useSetRecoilState(toastInfoSelector);
-
   const {
     isOpened: isCurationMenuModalOpened,
     openModal: openCurationMenuModal,
