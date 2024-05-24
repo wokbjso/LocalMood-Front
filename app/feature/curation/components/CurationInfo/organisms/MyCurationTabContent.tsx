@@ -16,7 +16,7 @@ export default function MyCurationTabContent() {
   const handleMakeCurationClick = () => {
     setIsCurationMakeModalOpened(true);
   };
-  console.log(myCurationData);
+
   return (
     <>
       <div className="flex items-center justify-between pb-[1.6rem] pt-[2rem]">
