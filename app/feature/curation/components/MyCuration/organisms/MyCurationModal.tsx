@@ -9,8 +9,6 @@ import MyCurationCardList from "./MyCurationCardList";
 import ApiErrorFallback from "@/common/components/ui/error/ApiErrorFallback";
 import { ErrorBoundary } from "react-error-boundary";
 import { QueryErrorResetBoundary } from "@tanstack/react-query";
-import { isModalOpenSelector } from "@/common/state/handleModalOpen";
-import UseOutsideClick from "@/common/hooks/useOutsideClick";
 
 interface MyCurationModalProps {
   open: boolean;
@@ -26,10 +24,6 @@ export default function MyCurationModal({
   spaceId,
 }: MyCurationModalProps) {
   const setMyCurationModal = useSetRecoilState(myCurationModalInfoSelector);
-  const setIsCurationMakeModalOpened = useSetRecoilState(
-    isModalOpenSelector("makeCuration")
-  );
-
   const handleModalClose = () => {
     setMyCurationModal({
       open: false,
@@ -38,7 +32,10 @@ export default function MyCurationModal({
   };
 
   const handleMakeCurationClick = () => {
-    setIsCurationMakeModalOpened(true);
+    setMyCurationModal({
+      open: true,
+      spaceId,
+    });
   };
   return (
     <>

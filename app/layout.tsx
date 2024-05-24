@@ -22,7 +22,8 @@ const QueryFetchingProvider = dynamic(
   { ssr: false }
 );
 const MyCurationModalProvider = dynamic(
-  () => import("@/common/components/layout/Provider/MyCurationModalProvider")
+  () => import("@/common/components/layout/Provider/MyCurationModalProvider"),
+  { ssr: false }
 );
 
 const globalFont = localFont({
