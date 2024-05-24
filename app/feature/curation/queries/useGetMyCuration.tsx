@@ -26,6 +26,8 @@ export default function useGetMyCuration() {
     queryKey: ["getMyCuration"],
     queryFn: getMyCuration,
     retry: 0,
+    staleTime: Infinity,
+    cacheTime: Infinity,
     suspense: true,
   });
 }
