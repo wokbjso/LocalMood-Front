@@ -4558,6 +4558,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-devtools@npm:5.37.1":
+  version: 5.37.1
+  resolution: "@tanstack/query-devtools@npm:5.37.1"
+  checksum: 73ef22b9a8a747fe8187c79e6673ff55f7feba85d57f95fd5bdb1c93f57ba57a19cc4f3f81cfe81adb18b73753e4e9046d3684fbc5bdd757d869ac274cf6f950
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query-devtools@npm:^5.37.1":
+  version: 5.37.1
+  resolution: "@tanstack/react-query-devtools@npm:5.37.1"
+  dependencies:
+    "@tanstack/query-devtools": 5.37.1
+  peerDependencies:
+    "@tanstack/react-query": ^5.37.1
+    react: ^18.0.0
+  checksum: b73191d6e582f219522a7b9bd855ef21d9af37bab5ece7592fc98f0768f65fcf0e4116ce18f8baab2fd7c779ddf9277d09d221c1fa5d9aebad11e5300aa917c0
+  languageName: node
+  linkType: hard
+
 "@tanstack/react-query@npm:4":
   version: 4.36.1
   resolution: "@tanstack/react-query@npm:4.36.1"
@@ -11684,6 +11703,7 @@ __metadata:
     "@storybook/test": 7.6.6
     "@svgr/webpack": ^8.1.0
     "@tanstack/react-query": 4
+    "@tanstack/react-query-devtools": ^5.37.1
     "@testing-library/jest-dom": ^6.4.5
     "@testing-library/react": ^15.0.7
     "@types/jest": ^29.5.12
