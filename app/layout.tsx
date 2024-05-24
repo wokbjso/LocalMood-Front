@@ -4,8 +4,9 @@ import localFont from "next/font/local";
 import { Metadata, Viewport } from "next";
 import { twMerge } from "tailwind-merge";
 import RecoilRootLayout from "@/common/components/layout/Recoil/RecoilRootLayout";
-import ReactQueryProviders from "@/common/components/layout/QueryClientProvider/ReactQueryProvider";
+import ReactQueryProviders from "@/common/components/layout/Provider/ReactQueryProvider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import MyCurationModalProvider from "./common/components/layout/Provider/MyCurationModalProvider";
 const ToastProvider = dynamic(
   () => import("@/common/components/layout/Provider/ToastProvider")
 );
@@ -18,9 +19,6 @@ const DetectDevice = dynamic(
 );
 const QueryFetchingProvider = dynamic(
   () => import("@/common/components/layout/Provider/QueryFetchingProvider")
-);
-const MyCurationModalProvider = dynamic(
-  () => import("@/common/components/layout/Provider/MyCurationModalProvider")
 );
 
 const globalFont = localFont({
