@@ -5,6 +5,7 @@ import { Metadata, Viewport } from "next";
 import { twMerge } from "tailwind-merge";
 import RecoilRootLayout from "@/common/components/layout/Recoil/RecoilRootLayout";
 import ReactQueryProviders from "@/common/components/layout/QueryClientProvider/ReactQueryProvider";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 const ToastProvider = dynamic(
   () => import("@/common/components/layout/Provider/ToastProvider")
 );
@@ -83,6 +84,7 @@ export default async function RootLayout({
       <body className={twMerge("w-[100%] h-[100%]", globalFont.variable)}>
         <main className="w-[100%] h-[100%] fixed overflow-hidden">
           <ReactQueryProviders>
+            <ReactQueryDevtools initialIsOpen={true} />
             <RecoilRootLayout>
               <DetectDevice>{children}</DetectDevice>
               <MyCurationModalProvider />
