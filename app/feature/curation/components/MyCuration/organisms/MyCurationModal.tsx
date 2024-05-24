@@ -10,7 +10,6 @@ import ApiErrorFallback from "@/common/components/ui/error/ApiErrorFallback";
 import { ErrorBoundary } from "react-error-boundary";
 import { QueryErrorResetBoundary } from "@tanstack/react-query";
 import { isModalOpenSelector } from "@/common/state/handleModalOpen";
-import UseOutsideClick from "@/common/hooks/useOutsideClick";
 
 interface MyCurationModalProps {
   open: boolean;

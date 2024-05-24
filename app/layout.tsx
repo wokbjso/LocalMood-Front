@@ -6,20 +6,17 @@ import { twMerge } from "tailwind-merge";
 import RecoilRootLayout from "@/common/components/layout/Recoil/RecoilRootLayout";
 import ReactQueryProviders from "@/common/components/layout/QueryClientProvider/ReactQueryProvider";
 const ToastProvider = dynamic(
-  () => import("@/common/components/layout/Provider/ToastProvider"),
-  { ssr: false }
+  () => import("@/common/components/layout/Provider/ToastProvider")
 );
 const CurationMakeModalProvider = dynamic(
-  () => import("./common/components/layout/Provider/CurationMakeModalProvider"),
-  { ssr: false }
+  () => import("./common/components/layout/Provider/CurationMakeModalProvider")
 );
 const DetectDevice = dynamic(
   () => import("@/common/components/layout/DetectDevice/DetectDevice"),
   { ssr: false }
 );
 const QueryFetchingProvider = dynamic(
-  () => import("@/common/components/layout/Provider/QueryFetchingProvider"),
-  { ssr: false }
+  () => import("@/common/components/layout/Provider/QueryFetchingProvider")
 );
 const MyCurationModalProvider = dynamic(
   () => import("@/common/components/layout/Provider/MyCurationModalProvider")
