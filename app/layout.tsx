@@ -13,10 +13,6 @@ const CurationMakeModalProvider = dynamic(
   () => import("./common/components/layout/Provider/CurationMakeModalProvider"),
   { ssr: false }
 );
-const MyCurationModalProvider = dynamic(
-  () => import("@/common/components/layout/Provider/MyCurationModalProvider"),
-  { ssr: false }
-);
 const DetectDevice = dynamic(
   () => import("@/common/components/layout/DetectDevice/DetectDevice"),
   { ssr: false }
@@ -24,6 +20,9 @@ const DetectDevice = dynamic(
 const QueryFetchingProvider = dynamic(
   () => import("@/common/components/layout/Provider/QueryFetchingProvider"),
   { ssr: false }
+);
+const MyCurationModalProvider = dynamic(
+  () => import("@/common/components/layout/Provider/MyCurationModalProvider")
 );
 
 const globalFont = localFont({
