@@ -22,7 +22,11 @@ export default function CurationTabContent({
 
   return (
     <>
-      <Tab sections={CurationTabSections} onChange={changeTabIndex} />
+      <Tab
+        startIndex={tabIndex}
+        sections={CurationTabSections}
+        onChange={changeTabIndex}
+      />
       <div className="h-full px-[2rem] pb-[18.2rem] bg-background-gray-2 items-center overflow-y-scroll">
         {tabIndex === 0 && (
           <QueryErrorResetBoundary>
