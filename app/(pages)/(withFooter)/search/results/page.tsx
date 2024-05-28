@@ -66,21 +66,19 @@ export default async function SearchResultPage({ searchParams }: Props) {
         count++;
       }
       if (count === 2) break;
-
-      return curation_keyword;
     }
+
+    return curation_keyword;
   };
 
   const textSearchCurationData =
     searchParams.search_query &&
     (await getTextSearchCurationData(searchParams.search_query));
-
   const keywordSearchCurationData =
     searchParams.keyword &&
     (await postKeywordSearchCurationData(
       manufactureCurationKeyword(searchParams.keyword)
     ));
-
   return (
     <main className="w-[100%] h-[100%]">
       {/* Template */}
