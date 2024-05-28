@@ -31,7 +31,7 @@ export default function CurationInfoCardDark({
   isScraped = true,
   disableScrap = false,
   className,
-}: Omit<CurationProps, "places"> & {
+}: Omit<CurationProps, "privacy"> & {
   disableScrap?: boolean;
   className?: string;
 }) {

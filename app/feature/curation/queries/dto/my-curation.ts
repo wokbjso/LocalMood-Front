@@ -2,7 +2,7 @@ import { CurationProps } from "@/feature/curation/type";
 
 export interface MyCurationResponse {
   curationCount: number;
-  curation: (Omit<CurationProps, "variant"> & {
+  curation: (CurationProps & {
     privacy: boolean;
     spaceIds: number[];
   })[];

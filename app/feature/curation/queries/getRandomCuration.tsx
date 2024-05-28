@@ -3,7 +3,7 @@ import { getSession } from "@/common/utils/session/getSession";
 import { CurationProps } from "../type";
 
 export default async function GetRandomCuration(): Promise<
-  Omit<CurationProps, "variant" | "privacy">[]
+  Omit<CurationProps, "privacy">[]
 > {
   const auth_info = await getSession();
   const token = auth_info?.data?.accessToken;
