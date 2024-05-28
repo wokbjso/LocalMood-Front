@@ -6,7 +6,7 @@ import {
 
 export type SearchCurationResponse = {
   CurationCount: number;
-  CurationList: Omit<CurationProps, "variant">[];
+  CurationList: CurationProps[];
 };
 
 export type SearchPlaceResponse = {

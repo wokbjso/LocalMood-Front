@@ -14,7 +14,7 @@ const CurationInfoCardLight = dynamic(
 );
 
 interface PopularCurationSlickSliderProps {
-  curationList: Omit<CurationProps, "variant" | "privacy">[];
+  curationList: Omit<CurationProps, "privacy">[];
 }
 
 export default function PopularCurationSlickSlider({

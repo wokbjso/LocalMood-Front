@@ -35,6 +35,7 @@ export default function CurationInfoCardLight({
   isScraped = false,
   className,
 }: CurationProps & {
+  variant?: "others" | "my";
   className?: string;
 }) {
   const setToast = useSetRecoilState(toastInfoSelector);

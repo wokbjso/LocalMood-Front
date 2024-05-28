@@ -1,5 +1,4 @@
 export interface CurationProps {
-  variant?: "others" | "my";
   id: number;
   title: string;
   author: string;

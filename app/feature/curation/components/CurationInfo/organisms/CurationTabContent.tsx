@@ -12,7 +12,7 @@ import { QueryErrorResetBoundary } from "@tanstack/react-query";
 import { CurationProps } from "@/feature/curation/type";
 
 interface CurationTabContentProps {
-  scrappedCuration: Omit<CurationProps, "variant" | "privacy">[];
+  scrappedCuration: Omit<CurationProps, "privacy">[];
 }
 
 //Organism
