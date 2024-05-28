@@ -5,7 +5,7 @@
 
 ## 2. 서비스 소개
 
-마포구의 인기 장소를 간편한 키워드로 찾고 싶으신가요?
+마포구의 인기 장소를 간편한 <span style={{color:red}}>키워드</span>로 찾고 싶으신가요?
 <img width="725" alt="로컬무드 1" src="https://github.com/wokbjso/LocalMood-Front/assets/90752841/f602f5b8-91cb-4025-a134-13bcb82e06b9">
 
 <img width="725" alt="로컬무드 2" src="https://github.com/wokbjso/LocalMood-Front/assets/90752841/7d736395-8bc7-4f33-8906-9a5ce7e1bbf6">
