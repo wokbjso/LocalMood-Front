@@ -24,7 +24,6 @@ export default function useGetKeywordSearchPlaceData(data: {
   return useQuery({
     queryKey: ["getKeywordSearchPlaceData", data],
     queryFn: () => getKeywordSearchPlaceData(data),
-    onSuccess: () => {},
     onError: () => {
       alert("검색 중 오류가 발생했습니다");
     },
