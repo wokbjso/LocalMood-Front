@@ -9,9 +9,10 @@ import MyCurationTabContent from "./MyCurationTabContent";
 import { ErrorBoundary } from "react-error-boundary";
 import ApiErrorFallback from "@/common/components/ui/error/ApiErrorFallback";
 import { QueryErrorResetBoundary } from "@tanstack/react-query";
+import { CurationProps } from "@/feature/curation/type";
 
 interface CurationTabContentProps {
-  scrappedCuration: any;
+  scrappedCuration: Omit<CurationProps, "variant" | "privacy">[];
 }
 
 //Organism
@@ -19,7 +20,6 @@ export default function CurationTabContent({
   scrappedCuration,
 }: CurationTabContentProps) {
   const { tabIndex, changeTabIndex } = useTab();
-
   return (
     <>
       <Tab

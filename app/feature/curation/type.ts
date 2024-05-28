@@ -1,13 +1,13 @@
 export interface CurationProps {
   id: number;
-  variant?: "others" | "my";
-  image?: string[] | string;
-  author: string;
   title: string;
+  author: string;
   keyword: string[];
-  privacy?: boolean;
   spaceCount?: number;
+  image?: string[] | string;
   isScraped?: boolean;
+  variant?: "others" | "my";
+  privacy?: boolean;
 }
 
 export interface CurationPlaceProps {
