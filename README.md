@@ -5,7 +5,7 @@
 
 ## 2. 서비스 소개
 
-마포구의 인기 장소를 간편한 ✅<p>$\it{\large{\color{#32D5BA}키워드}}$</p>로 찾고 싶으신가요?
+마포구의 인기 장소를 간편한 ✅<p>$\huge{\rm{\color{#32D58A}키워드}}$</p>로 찾고 싶으신가요?
 
 <img width="725" alt="로컬무드 1" src="https://github.com/wokbjso/LocalMood-Front/assets/90752841/f602f5b8-91cb-4025-a134-13bcb82e06b9">
 
@@ -13,7 +13,7 @@
 
 <img width="725" alt="로컬무드 2" src="https://github.com/wokbjso/LocalMood-Front/assets/90752841/7d736395-8bc7-4f33-8906-9a5ce7e1bbf6">
 
-이에 로컬무드는 <p>$\it{\large{\color{#32D5BA}키워드}}$</p>라는 해결책을 제시합니다!
+이에 로컬무드는 <p>$\huge{\rm{\color{#32D58A}키워드}}$</p>라는 해결책을 제시합니다!
 
 <img width="725" alt="image" src="https://github.com/wokbjso/LocalMood-Front/assets/90752841/5640d9a2-d5d4-460d-a74f-e2e11b42feb1">
 
