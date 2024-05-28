@@ -2,7 +2,7 @@ import { CurationProps } from "@/feature/curation/type";
 import { PlaceProps } from "../../type";
 
 interface RelatedCurationProps
-  extends Omit<CurationProps, "variant" | "image" | "privacy"> {
+  extends Omit<CurationProps, "image" | "privacy"> {
   imgUrl: string[];
 }
 

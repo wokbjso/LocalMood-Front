@@ -10,7 +10,7 @@ import Title from "@/common/components/ui/text/Title";
 
 interface MyCurationCardProps {
   spaceId: number;
-  curationData: Omit<CurationProps, "variant"> & {
+  curationData: CurationProps & {
     privacy: boolean;
     spaceIds: number[];
   };
