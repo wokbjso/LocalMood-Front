@@ -1,40 +1,40 @@
-import { PlaceDetailResponse } from "@/feature/place/queries/dto/place-detail";
 import PlaceRecordPurposeGraphBar from "../molecules/PlaceRecordPurposeGraphBar";
 import {
   PLACE_CAFE_PURPOSE,
   PLACE_RESTAURANT_PURPOSE,
 } from "@/feature/place/constants/place-tag-category";
-import { PlaceRecordResponse } from "@/feature/place/queries/dto/place-record";
 
 interface PlaceRecordPurposeDistributionProps {
-  detailData: PlaceDetailResponse;
-  reviewData: PlaceRecordResponse;
+  type: string;
+  reviewDataPercentage: {
+    [key: string]: number;
+  };
   className?: string;
 }
 
 export default function PlaceRecordPurposeDistribution({
-  detailData,
-  reviewData,
+  type,
+  reviewDataPercentage,
   className,
 }: PlaceRecordPurposeDistributionProps) {
   return (
     <div className={className}>
-      {detailData.info.type === "CAFE"
+      {type === "CAFE"
         ? PLACE_CAFE_PURPOSE.map((li: string, i: number) => (
             <PlaceRecordPurposeGraphBar
               key={li + i}
-              type={detailData.info.type}
+              type={type}
               evaluation={li}
-              percentage={reviewData.purposeEval[li]}
+              percentage={reviewDataPercentage[li]}
               className={i === 0 ? "mt-[3.2rem] mb-[2.4rem]" : "mb-[2.4rem]"}
             />
           ))
         : PLACE_RESTAURANT_PURPOSE.map((li: string, i: number) => (
             <PlaceRecordPurposeGraphBar
               key={li + i}
-              type={detailData.info.type}
+              type={type}
               evaluation={li}
-              percentage={reviewData.purposeEval[li]}
+              percentage={reviewDataPercentage[li]}
               className={i === 0 ? "mt-[3.2rem] mb-[2.4rem]" : "mb-[2.4rem]"}
             />
           ))}

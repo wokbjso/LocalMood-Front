@@ -20,15 +20,13 @@ export default async function HomePlaceSlider({
   subText,
   className,
 }: HomePlaceSliderProps) {
-  const randomPlace: {
-    [key: string]: (PlaceInfoCardTopProps & PlaceInfoCardBottomProps)[];
-  } = await GetRandomPlaces();
+  const randomPlace = await GetRandomPlaces();
   return (
     <section className={twMerge("mb-[4rem] pl-[2rem]", className)}>
       <HashTag mainText={" " + mainText} subText={" " + subText} />
       <SliderLayout className="mt-[1.6rem]">
         {randomPlace[mainText].map(
-          (data: PlaceInfoCardTopProps & PlaceInfoCardBottomProps, i) => (
+          (data: PlaceInfoCardTopProps & PlaceInfoCardBottomProps) => (
             <PlaceInfoCard
               key={data.id}
               {...data}

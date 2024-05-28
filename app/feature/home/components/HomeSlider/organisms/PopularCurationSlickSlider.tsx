@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "../slick.css";
 import dynamic from "next/dynamic";
 import Slider from "react-slick";
+import { CurationProps } from "@/feature/curation/type";
 const CurationInfoCardLight = dynamic(
   () =>
     import(
@@ -13,15 +14,7 @@ const CurationInfoCardLight = dynamic(
 );
 
 interface PopularCurationSlickSliderProps {
-  curationList: {
-    id: number;
-    author: string;
-    image: string[];
-    title: string;
-    spaceCount: number;
-    keyword: string[];
-    isScraped: boolean;
-  }[];
+  curationList: Omit<CurationProps, "variant" | "privacy">[];
 }
 
 export default function PopularCurationSlickSlider({

@@ -9,11 +9,11 @@ export default function PositiveEvaluation({
   return (
     <div className={twMerge("flex flex-col items-start", className)}>
       {positiveEval &&
-        positiveEval.map((li, i) => (
+        positiveEval[0].map((li, i) => (
           <GraphUpDownVote
             key={li[i] + i}
             evaluation={li[0]}
-            percentage={li[1]}
+            percentage={Number(li[1])}
             like={true}
           />
         ))}
