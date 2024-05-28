@@ -1,9 +1,10 @@
 import ApiErrorMessage from "@/common/utils/error/api-error-message";
 import { getSession } from "@/common/utils/session/getSession";
+import { ReviewProps } from "@/feature/record/type";
 
 export default async function GetRecordMyPage(): Promise<{
   reviewCount: number;
-  reviews: any[];
+  reviews: ReviewProps[];
 }> {
   const auth_info = await getSession();
   const token = auth_info?.data?.accessToken;

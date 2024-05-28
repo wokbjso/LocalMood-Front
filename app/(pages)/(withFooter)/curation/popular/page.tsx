@@ -9,7 +9,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "마포구 인기 큐레이션",
     openGraph: {
-      images: [...randomCuration[0].image.slice(0, 2)],
+      images: randomCuration[0].image && [
+        ...randomCuration[0].image.slice(0, 2),
+      ],
     },
     description: "현재 마포구 인기 큐레이션을 확인해보세요!",
     keywords: ["로컬무드", "localmood", "키워드", "마포구"],
@@ -25,7 +27,7 @@ export default async function CurationPopularPage() {
       <ArrowBackTopBar color="#9E9E9E" />
       <div className="text-black headline1 px-[2rem]">마포구 인기 큐레이션</div>
       <section className="mt-[2.4rem] px-[2rem] pb-[12rem]">
-        {randomCuration.map((curation: any, i: number) => (
+        {randomCuration.map((curation) => (
           <CurationInfoCardLight
             key={curation.author + curation.id}
             {...curation}

@@ -7,9 +7,8 @@ type Props = {
 };
 
 export async function generateMetadata({
-  params,
   searchParams,
-}: Props): Promise<Metadata> {
+}: Pick<Props, "searchParams">): Promise<Metadata> {
   return {
     title: `${searchParams.name} 기록`,
   };

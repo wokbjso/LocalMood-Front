@@ -54,8 +54,8 @@ export default async function PlaceDetailMorePage({ params: { id } }: Props) {
         className="headline1 px-[2rem] mt-[1.2rem]"
       />
       <PlaceRecordPurposeDistribution
-        detailData={detailData}
-        reviewData={reviewData}
+        type={detailData.info.type}
+        reviewDataPercentage={reviewData.purposeEval}
         className="pt-[1.2rem] pb-[4rem] px-[2rem] "
       />
       <Divider className="bg-line-gray-3 h-[0.4rem]" />

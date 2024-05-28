@@ -1,14 +1,10 @@
-export interface PlaceInfoCardTopProps {
-  id: number;
+import { PlaceProps } from "../../type";
+
+export interface PlaceInfoCardTopProps extends Omit<PlaceProps, "keyword"> {
+  isReviewed?: boolean;
   variant?: "main" | "record" | "mypage";
   direction?: "vertical" | "horizontal";
   size?: "normal" | "small";
-  name: string;
-  imgUrl: string;
-  type: string;
-  address: string;
-  isScraped: boolean;
-  isReviewed?: boolean;
 }
 
 export interface PlaceInfoCardBottomProps {

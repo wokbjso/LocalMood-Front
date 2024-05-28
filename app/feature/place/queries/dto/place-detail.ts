@@ -1,20 +1,9 @@
-interface SimilarPlaceProps {
-  id: number;
-  name: string;
-  type: string;
-  address: string;
-  imgUrl: string;
-  isScraped: boolean;
-}
+import { CurationProps } from "@/feature/curation/type";
+import { PlaceProps } from "../../type";
 
-interface RelatedCurationProps {
-  id: number;
-  title: string;
-  author: string;
-  keyword: string[];
-  spaceCount: number;
+interface RelatedCurationProps
+  extends Omit<CurationProps, "variant" | "image" | "privacy"> {
   imgUrl: string[];
-  isScraped: boolean;
 }
 
 export interface PlaceDetailInfoProps {
@@ -32,13 +21,13 @@ export interface PlaceDetailInfoProps {
   interior?: string[];
   mood: string;
   music: string;
-  positiveEval: any[] | null;
-  negativeEval: any[] | null;
+  positiveEval: Array<Array<string[]>> | null;
+  negativeEval: Array<Array<string[]>> | null;
   isScraped: boolean;
 }
 
 export interface PlaceDetailResponse {
-  similarSpaceList: SimilarPlaceProps[];
+  similarSpaceList: Omit<PlaceProps, "keyword">[];
   relatedCurationList: RelatedCurationProps[];
   info: PlaceDetailInfoProps;
 }

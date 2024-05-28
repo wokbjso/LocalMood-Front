@@ -106,7 +106,7 @@ export default function PlaceInfoCardTop({
             <ImageWrapper text="기록 완료" className="w-[8rem] h-[8rem]" />
           )}
           <Image
-            src={imgUrl ? imgUrl : RecordNoImage}
+            src={imgUrl !== "" ? imgUrl : RecordNoImage}
             alt="공간 사진"
             fill
             sizes={getImageSize}
