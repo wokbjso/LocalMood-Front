@@ -3,11 +3,11 @@
 [배포 링크](https://localmood.co.kr)  
 
 ## 2. 서비스 소개
-
+<br />    
 ### 마포구의 인기 장소를 간편한 $\huge{\rm{\color{#32D58A}키워드}}$로 찾고 싶으신가요?    
 <br />
 <img width="725" alt="로컬무드 1" src="https://github.com/wokbjso/LocalMood-Front/assets/90752841/f602f5b8-91cb-4025-a134-13bcb82e06b9">    
-
+<br />
 ### ❗로컬무드는 다음과 같은 문제점을 발견하였습니다.     
 <br />
 <img width="725" alt="로컬무드 2" src="https://github.com/wokbjso/LocalMood-Front/assets/90752841/d796615f-8613-4647-9ae6-93c4843acdec">     
