@@ -45,7 +45,7 @@
 <img width="385" alt="로컬무드 3" src="https://github.com/wokbjso/LocalMood-Front/assets/90752841/b96d375f-467e-4c23-b0c4-d5351e436d59">     
 <br /><br />
 
-### 🔥지금 당장 로컬무드를 사용해보세요!!     
+### 🔥지금 바로 로컬무드를 사용해보세요!!     
 
 <img width="360" alt="로컬무드 3" src="https://github.com/wokbjso/LocalMood-Front/assets/90752841/17d09818-98e4-4c8a-b5ca-2ce36de340bd">      
 <br /><br />
