@@ -51,4 +51,15 @@
 <br /><br />
 
 ## 3. 사용 스택
-Next, Typescript, Vercel, Recoil, React-query, Storybook
+
+* Next
+* Typescript
+* Recoil
+* React-query
+* Vercel
+
+
+## 4. 디자인 시스템
+
+* Storybook
+* Atomic Design
