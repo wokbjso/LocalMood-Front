@@ -27,6 +27,7 @@ export const ScrappedFalse: Story = {
     ],
     author: "김현민",
     title: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
+    spaceCount: 1,
     keyword: ["연인과의 데이트", "크리스마스"],
   },
 };
@@ -39,6 +40,7 @@ export const ScrappedTrue: Story = {
     ],
     author: "김현민",
     title: "크리스마스에 즐기기 좋은 마포구 데이트 코스",
+    spaceCount: 10,
     keyword: ["연인과의 데이트", "크리스마스"],
   },
 };
