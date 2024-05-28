@@ -1,9 +1,10 @@
 import { twMerge } from "tailwind-merge";
 import LinkLayout from "../Link/LinkLayout";
+import { ReactNode } from "react";
 
 interface FooterNavigateBoxProps {
   text: string;
-  icon: any;
+  icon: ReactNode;
   navigateTo: string;
   clicked: boolean;
   onClick: () => void;

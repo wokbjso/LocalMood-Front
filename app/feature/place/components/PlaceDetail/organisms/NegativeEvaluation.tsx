@@ -7,11 +7,11 @@ export default function NegativeEvaluation({
   return (
     <div className="flex flex-col items-end">
       {negativeEval &&
-        negativeEval.map((li, i) => (
+        negativeEval[0].map((li, i) => (
           <GraphUpDownVote
             key={li[i] + i}
             evaluation={li[0]}
-            percentage={li[1]}
+            percentage={Number(li[1])}
             like={false}
             className={i === 0 ? "mb-[0.4rem]" : ""}
           />

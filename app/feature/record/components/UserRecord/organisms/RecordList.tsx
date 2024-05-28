@@ -26,7 +26,8 @@ export default async function RecordList() {
               variant="mypage"
               size="small"
               {...record}
-              imgUrl={record.image}
+              isScraped={false}
+              imgUrl={record.image ? record.image : ""}
               className="w-full"
             />
           ))}

@@ -1,7 +1,10 @@
 import ApiErrorMessage from "@/common/utils/error/api-error-message";
 import { getSession } from "@/common/utils/session/getSession";
+import { CurationProps } from "../type";
 
-export default async function GetRandomCuration() {
+export default async function GetRandomCuration(): Promise<
+  Omit<CurationProps, "variant" | "privacy">[]
+> {
   const auth_info = await getSession();
   const token = auth_info?.data?.accessToken;
   const res = await fetch(

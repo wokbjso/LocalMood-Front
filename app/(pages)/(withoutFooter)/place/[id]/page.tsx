@@ -56,7 +56,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 //Page
 export default async function PlaceDetailPage({ params: { id } }: Props) {
   const detailData = await GetPlaceDetail(id);
-
   return (
     <div className="w-[100%] h-[100%] relative pb-[60px] overflow-auto">
       {/* Template */}
@@ -93,10 +92,10 @@ export default async function PlaceDetailPage({ params: { id } }: Props) {
         mainText="키워드 평가"
         id={detailData.info.id}
         positiveEval={
-          detailData.info.positiveEval ? detailData.info.positiveEval[0] : null
+          detailData.info.positiveEval ? detailData.info.positiveEval : null
         }
         negativeEval={
-          detailData.info.negativeEval ? detailData.info.negativeEval[0] : null
+          detailData.info.negativeEval ? detailData.info.negativeEval : null
         }
       />
       <Divider className="bg-line-gray-3 h-[0.4rem] mb-[4.8rem]" />
