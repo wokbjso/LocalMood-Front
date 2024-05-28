@@ -22,31 +22,31 @@
 <img width="638" alt="로컬무드 3" src="https://github.com/wokbjso/LocalMood-Front/assets/90752841/65fdd827-2006-460d-93a6-f6957defd576">
 
 
-### 키워드로 원하는 공간을 편하게 탐색하고,
+* ### 키워드로 원하는 공간을 편하게 탐색하고,
 
 
 <img width="564" alt="로컬무드 3" src="https://github.com/wokbjso/LocalMood-Front/assets/90752841/ed98dade-0f71-406c-b47b-61e1d220f163">
 
 
-### 공간의 세부정보를 키워드로 간편하게 파악할 수 있어요!
+* ### 공간의 세부정보를 키워드로 간편하게 파악할 수 있어요!
 
 
 <img width="635" alt="로컬무드 3" src="https://github.com/wokbjso/LocalMood-Front/assets/90752841/78c8daac-5676-4be5-a94e-19889cea3e0f">
 
 
-### 또한 키워드로 공간 기록을 간편하게 남길 수 있고,
+* ### 또한 키워드로 공간 기록을 간편하게 남길 수 있고,
 
 
 <img width="524" alt="로컬무드 3" src="https://github.com/wokbjso/LocalMood-Front/assets/90752841/ced0c36a-9fbd-4403-9366-36f329ffcf78">
 
 
-### 큐레이션에 담긴 다양한 장소들을 키워드로 한눈에 파악할 수 있어요!
+* ### 큐레이션에 담긴 다양한 장소들을 키워드로 한눈에 파악할 수 있어요!
 
 
 <img width="508" alt="image" src="https://github.com/wokbjso/LocalMood-Front/assets/90752841/abcba53c-ae4b-47a7-864f-0c6b53f59bb1">
 
 
-### 대표 키워드로 나만의 큐레이션을 만들 수도 있답니다~!!
+* ### 대표 키워드로 나만의 큐레이션을 만들 수도 있답니다~!!
 
 
 <img width="385" alt="로컬무드 3" src="https://github.com/wokbjso/LocalMood-Front/assets/90752841/b96d375f-467e-4c23-b0c4-d5351e436d59">
