@@ -7668,6 +7668,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dayjs@npm:^1.11.11":
+  version: 1.11.11
+  resolution: "dayjs@npm:1.11.11"
+  checksum: 84788275aad8a87fee4f1ce4be08861df29687aae6b7b43dd65350118a37dda56772a3902f802cb2dc651dfed447a5a8df62d88f0fb900dba8333e411190a5d5
+  languageName: node
+  linkType: hard
+
 "debounce@npm:^1.2.1":
   version: 1.2.1
   resolution: "debounce@npm:1.2.1"
@@ -11718,6 +11725,7 @@ __metadata:
     babel-jest: ^29.7.0
     chromatic: ^10.2.0
     cross-env: ^7.0.3
+    dayjs: ^1.11.11
     eslint: ^8
     eslint-config-next: 14.0.4
     eslint-plugin-jest-dom: ^5.4.0
