@@ -5,8 +5,6 @@ import { CurationProps } from "@/feature/curation/type";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
 import Chip from "@/common/components/ui/buttons/Chip/Chip";
-import NoResult from "@/common/assets/images/curationHomeNoImg.png";
-import Image from "next/image";
 import CurationMenuIcon from "../../CurationMenu/CurationMenuIcon";
 import CurationScrapIcon from "../../CurationScrap/CurationScrapIcon";
 import useCurationScrapIcon from "../../../hooks/CurationScrap/useCurationScrapIcon";
@@ -21,6 +19,7 @@ import SpaceCount from "@/common/components/ui/spaceCount/SpaceCount";
 import CurationInfoCardTagList from "./CurationInfoCardTagList";
 import Title from "@/common/components/ui/text/Title";
 import UseHandleModal from "@/common/hooks/useHandleModal";
+import CurationImages from "../molecules/CurationImages";
 
 //Molecule
 export default function CurationInfoCardLight({
@@ -151,16 +150,13 @@ export default function CurationInfoCardLight({
         }}
         prefetch
       >
-        <div className="w-full h-[16.5rem] bg-cover relative rounded-t-[8px] overflow-hidden">
-          <Image
-            alt="큐레이션 사진"
-            src={image && image.length > 0 ? image[0] : NoResult}
-            fill
-            placeholder="blur"
-            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
-            sizes="100vw"
-            className="object-cover"
-          />
+        <div
+          className={twMerge(
+            "w-full h-[16.5rem] bg-cover relative rounded-t-[8px] overflow-hidden",
+            image && image.length >= 3 ? "flex" : ""
+          )}
+        >
+          <CurationImages image={image} />
           {variant === "others" && (
             <UserProfile
               size="small"
