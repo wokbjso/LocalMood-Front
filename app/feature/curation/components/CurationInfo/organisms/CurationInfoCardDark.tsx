@@ -36,7 +36,6 @@ export default function CurationInfoCardDark({
   className?: string;
 }) {
   const setToast = useSetRecoilState(toastInfoSelector);
-
   const { scraped, toggleScrap } = useCurationScrapIcon(isScraped);
   const { isFetching, changeFetching } = useFetching();
   const { clickCount, plusClickCount, resetClickCount } =
