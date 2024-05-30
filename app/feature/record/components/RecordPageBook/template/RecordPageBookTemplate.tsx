@@ -14,6 +14,7 @@ import SelectEvaluationKeyword from "@/feature/record/components/SelectEvaluatio
 import RecordPageBookButton from "../organisms/RecordPageBookButton";
 import { useSetRecoilState } from "recoil";
 import { queryFetchingSelector } from "@/common/state/queryFetching";
+import revalidatePlaceDetail from "@/feature/place/actions/revalidatePlaceDetail";
 
 interface RecordSelectProps {
   id: number;
@@ -93,6 +94,7 @@ export default function RecordPageBookTemplate({
   const revalidateRelatedData = () => {
     revalidateScrapSpace();
     revalidatePlaceReview();
+    revalidatePlaceDetail();
   };
 
   const activateBtnForward = () => {
