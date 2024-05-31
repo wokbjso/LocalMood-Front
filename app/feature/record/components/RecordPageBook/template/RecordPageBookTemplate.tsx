@@ -81,6 +81,8 @@ export default function RecordPageBookTemplate({
     return formData;
   };
 
+  console.log(restaurantKeywordData.files);
+
   const sendRecordData = async () => {
     setIsQueryFetching(true);
     const res = await fetch(`/api/record/create/${id}`, {
