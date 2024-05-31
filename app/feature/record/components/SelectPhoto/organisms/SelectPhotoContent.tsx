@@ -2,10 +2,11 @@ import AddFillIcon from "@/common/assets/icons/add/AddFillIcon";
 import CloseBlackIcon from "@/common/assets/icons/close/CloseBlackIcon";
 import Label from "@/common/components/ui/text/Label";
 import NumberCountWithSlash from "@/common/components/ui/text/NumberCountWithSlash";
-import UseGetBrowserWidth from "@/common/hooks/useGetBrowserWidth";
 import Image from "next/image";
 import { ChangeEvent, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
+import Resizer from "react-image-file-resizer";
+
 interface PhotoUploadProps {
   placeType: string;
   cafeKeywordData: { [key: string]: string | Array<string> };
@@ -26,11 +27,26 @@ export default function SelectPhotoContent({
 
   const [image, setImage] = useState<any[]>([]);
 
-  const width = UseGetBrowserWidth();
+  const resizeFile = (file: any) =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        280,
+        280,
+        "WEBP",
+        92,
+        0,
+        (uri) => {
+          resolve(uri);
+        },
+        "file"
+      );
+    });
 
-  const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      handleAddImage(e.target.files[0]);
+      const resizedImage = await resizeFile(e.target.files[0]);
+      handleAddImage(resizedImage as File);
       const reader = new FileReader();
       reader.onload = () => {
         if (reader.readyState === 2) {
@@ -43,7 +59,7 @@ export default function SelectPhotoContent({
           }
         }
       };
-      reader.readAsDataURL(e.target.files[0]);
+      reader.readAsDataURL(resizedImage as File);
     }
   };
 
