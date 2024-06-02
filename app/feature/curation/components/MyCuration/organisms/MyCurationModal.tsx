@@ -1,3 +1,4 @@
+import { Suspense, lazy } from "react";
 import CloseIcon from "@/common/assets/icons/close/CloseIcon";
 import Modal from "@/common/components/ui/modal/Modal";
 import CurationMakeButton from "../../CurationMake/molecules/CurationMakeButton";
@@ -5,11 +6,13 @@ import { useSetRecoilState } from "recoil";
 import { myCurationModalInfoSelector } from "@/common/state/myCurationModal";
 import { twMerge } from "tailwind-merge";
 import Title from "@/common/components/ui/text/Title";
-import MyCurationCardList from "./MyCurationCardList";
+const MyCurationCardList = lazy(() => import("./MyCurationCardList"));
 import ApiErrorFallback from "@/common/components/ui/error/ApiErrorFallback";
 import { ErrorBoundary } from "react-error-boundary";
 import { QueryErrorResetBoundary } from "@tanstack/react-query";
 import { isModalOpenSelector } from "@/common/state/handleModalOpen";
+import UseDeferredComponent from "@/common/hooks/useDeferredComponent";
+import MyCurationCardSkeleton from "../skeleton/MyCurationCardSkeleton";
 
 interface MyCurationModalProps {
   open: boolean;
@@ -59,10 +62,18 @@ export default function MyCurationModal({
                 onReset={reset}
                 FallbackComponent={ApiErrorFallback}
               >
-                <MyCurationCardList
-                  spaceId={spaceId}
-                  handleModalClose={handleModalClose}
-                />
+                <Suspense
+                  fallback={
+                    <UseDeferredComponent>
+                      <MyCurationCardSkeleton />
+                    </UseDeferredComponent>
+                  }
+                >
+                  <MyCurationCardList
+                    spaceId={spaceId}
+                    handleModalClose={handleModalClose}
+                  />
+                </Suspense>
               </ErrorBoundary>
             )}
           </QueryErrorResetBoundary>
