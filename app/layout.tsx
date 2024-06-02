@@ -6,10 +6,30 @@ import { twMerge } from "tailwind-merge";
 import RecoilRootLayout from "@/common/components/layout/Recoil/RecoilRootLayout";
 import ReactQueryProviders from "@/common/components/layout/Provider/ReactQueryProvider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import MyCurationModalProvider from "./common/components/layout/Provider/MyCurationModalProvider";
-import ToastProvider from "./common/components/layout/Provider/ToastProvider";
-import CurationMakeModalProvider from "./common/components/layout/Provider/CurationMakeModalProvider";
-import QueryFetchingProvider from "./common/components/layout/Provider/QueryFetchingProvider";
+const MyCurationModalProvider = dynamic(
+  () => import("./common/components/layout/Provider/MyCurationModalProvider"),
+  {
+    ssr: false,
+  }
+);
+const ToastProvider = dynamic(
+  () => import("./common/components/layout/Provider/ToastProvider"),
+  {
+    ssr: false,
+  }
+);
+const CurationMakeModalProvider = dynamic(
+  () => import("./common/components/layout/Provider/CurationMakeModalProvider"),
+  {
+    ssr: false,
+  }
+);
+const QueryFetchingProvider = dynamic(
+  () => import("./common/components/layout/Provider/QueryFetchingProvider"),
+  {
+    ssr: false,
+  }
+);
 const DetectDevice = dynamic(
   () => import("@/common/components/layout/DetectDevice/DetectDevice"),
   { ssr: false }
