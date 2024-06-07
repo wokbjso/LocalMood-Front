@@ -20,6 +20,7 @@ export default async function HomePlaceSlider({
   subText,
   className,
 }: HomePlaceSliderProps) {
+  //generate 함수로 미리 불러와야하나 데이터를..?
   const randomPlace = await GetRandomPlaces();
   return (
     <section className={twMerge("mb-[4rem] pl-[2rem]", className)}>
