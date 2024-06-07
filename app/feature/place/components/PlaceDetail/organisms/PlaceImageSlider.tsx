@@ -41,6 +41,7 @@ export default function PlaceImageSlider({
               priority={i === 0}
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+              className="object-cover"
             />
           </div>
         ))}

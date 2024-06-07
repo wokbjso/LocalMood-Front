@@ -53,6 +53,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+export async function generateStaticParams() {
+  return [];
+}
+
+export const revalidate = 10;
+
 //Page
 export default async function PlaceDetailPage({ params: { id } }: Props) {
   const detailData = await GetPlaceDetail(id);

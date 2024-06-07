@@ -20,7 +20,7 @@ export default function CurationScrapIcon({
       {isScraped ? (
         <>
           {backgroundBrightness === "dark" && (
-            <div className="w-[3rem] h-[3rem] bg-red-400">
+            <div className="w-[3rem] h-[3rem]">
               <ScrapShadowIcon onClick={onClick} className={className} />
             </div>
           )}
