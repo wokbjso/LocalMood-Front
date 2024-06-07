@@ -30,5 +30,7 @@ export default function useGetTextSearchPlaceData(data: {
     },
     enabled: !!data.name,
     suspense: true,
+    staleTime: 0,
+    cacheTime: 0,
   });
 }
