@@ -25,47 +25,37 @@ export default function PlaceDetailSubInfo({
   };
 
   return (
-    <div className="w-full">
-      <div className="flex items-center justify-between">
-        <div className="inline-flex items-center">
-          {visitorNum && optionalService && (
-            <TextWithDivider
-              leftText={visitorNum}
-              rightText={optionalService}
-              leftTextClassName="body2-medium text-text-gray-8"
-              rightTextClassName="text-text-gray-8"
-              className={twMerge(
-                "pl-[20px]",
-                openMoreDetail ? "pt-[18px]" : ""
-              )}
-            />
-          )}
-          {visitorNum && !optionalService && (
-            <span
-              className={twMerge(
-                "body2-medium text-text-gray-8 px-[2rem] pt-[24px]",
-                !openMoreDetail ? "pb-[20px]" : ""
-              )}
-            >
-              {visitorNum}
-            </span>
+    <>
+      <div className="w-full mb-[20px]">
+        <div className="flex items-center justify-between">
+          <div className="inline-flex items-center">
+            {visitorNum && optionalService && (
+              <TextWithDivider
+                leftText={visitorNum}
+                rightText={optionalService}
+                leftTextClassName="body2-medium text-text-gray-8"
+                rightTextClassName="text-text-gray-8"
+                className={twMerge("pl-[20px]")}
+              />
+            )}
+            {visitorNum && !optionalService && (
+              <span
+                className={twMerge("body2-medium text-text-gray-8 px-[2rem]")}
+              >
+                {visitorNum}
+              </span>
+            )}
+          </div>
+          {dishDesc !== "NULL" && (
+            <div onClick={moreButtonClicked} className={twMerge("px-[2rem]")}>
+              {openMoreDetail ? <ArrowUpIcon /> : <ArrowDownIcon />}
+            </div>
           )}
         </div>
-        {dishDesc !== "NULL" && (
-          <div
-            onClick={moreButtonClicked}
-            className={twMerge(
-              "px-[2rem] pt-[24px]",
-              !openMoreDetail ? "pb-[20px]" : ""
-            )}
-          >
-            {openMoreDetail ? <ArrowUpIcon /> : <ArrowDownIcon />}
-          </div>
-        )}
       </div>
       {openMoreDetail && dishDesc !== "NULL" && (
         <PlaceDetailSubInfoMore type={type} dishDesc={dishDesc} />
       )}
-    </div>
+    </>
   );
 }

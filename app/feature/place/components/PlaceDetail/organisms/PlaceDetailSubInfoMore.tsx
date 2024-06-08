@@ -7,7 +7,7 @@ export default function PlaceDetailSubInfoMore({
   const formattedDishDesc = dishDesc?.split(",").join("・");
 
   return (
-    <div className="pt-[1.2rem] px-[20px] pb-[20px]">
+    <div className="px-[20px] pb-[20px]">
       <span className="body2-medium">{type === "CAFE" ? "🍰" : "🍷"}</span>
       &nbsp; &nbsp;
       <span className="body2-medium text-text-gray-8">{formattedDishDesc}</span>
