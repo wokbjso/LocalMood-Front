@@ -77,7 +77,7 @@ export default function PlaceDetailInfo({
             type === "CAFE" ? "카페" : subType && PLACE_SUB_TYPE[subType]
           }
           rightText={address}
-          className="px-[2rem]"
+          className="px-[2rem] mb-[24px]"
         />
         <PlaceDetailSubInfo
           type={type}
