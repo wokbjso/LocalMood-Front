@@ -1,3 +1,4 @@
+import Label from "@/common/components/ui/text/Label";
 import { twMerge } from "tailwind-merge";
 
 interface TextWithBorderProps {
@@ -11,13 +12,13 @@ export default function TextWithBorder({
   className,
 }: TextWithBorderProps) {
   return (
-    <span
+    <Label
       className={twMerge(
         "text-text-gray-6 body2-semibold pb-[0.4rem] border-b-[1px] border-b-text-gray-6",
         className
       )}
     >
       {text}
-    </span>
+    </Label>
   );
 }

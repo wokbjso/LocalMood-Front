@@ -2,6 +2,7 @@
 
 import KakaoIcon from "@/common/assets/icons/kakao/KakaoIcon";
 import Button from "@/common/components/ui/buttons/Button/Button";
+import Label from "@/common/components/ui/text/Label";
 
 interface KakaoStartButtonProps {
   text: string;
@@ -24,7 +25,7 @@ export default function KakaoStartButton({ text }: KakaoStartButtonProps) {
       onClick={kakaoLogin}
     >
       <KakaoIcon className="absolute left-[1.2rem]" />
-      <span className="body2-semibold text-black">{text}</span>
+      <Label className="body2-semibold">{text}</Label>
     </Button>
   );
 }

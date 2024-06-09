@@ -1,5 +1,6 @@
 import ArrowRightIcon from "@/common/assets/icons/arrow/ArrowRightIcon";
 import { twMerge } from "tailwind-merge";
+import Label from "./Label";
 
 interface TextWithRightArrowProps {
   text: string;
@@ -16,11 +17,11 @@ export default function TextWithRightArrow({
 }: TextWithRightArrowProps) {
   return (
     <div className={twMerge("flex items-center", className)} onClick={onClick}>
-      <span
+      <Label
         className={twMerge("text-text-gray-6 body2-semibold", textClassName)}
       >
         {text}
-      </span>
+      </Label>
       <ArrowRightIcon />
     </div>
   );

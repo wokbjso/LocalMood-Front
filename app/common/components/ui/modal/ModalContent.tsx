@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 import Divider from "../divider/Divider";
 import CheckMediumIcon from "@/common/assets/icons/check/CheckMediumIcon";
+import Label from "../text/Label";
 
 interface IconBoxProps {
   icon: ReactNode;
@@ -21,9 +22,9 @@ function IconBox({
   return (
     <div className={twMerge("flex items-center", className)} onClick={onClick}>
       {icon}
-      <span className={twMerge("body1 text-black ml-[1.2rem]", textClassName)}>
+      <Label className={twMerge("body1 ml-[1.2rem]", textClassName)}>
         {text}
-      </span>
+      </Label>
     </div>
   );
 }
@@ -38,14 +39,14 @@ interface CheckBoxProps {
 function CheckBox({ text, isClicked, className, onClick }: CheckBoxProps) {
   return (
     <div className={twMerge("flex items-center", className)} onClick={onClick}>
-      <span
+      <Label
         className={twMerge(
           "body1-medium",
-          isClicked ? "text-black mr-[8px]" : "text-text-gray-6"
+          isClicked ? "mr-[8px]" : "text-text-gray-6"
         )}
       >
         {text}
-      </span>
+      </Label>
       {isClicked && <CheckMediumIcon />}
     </div>
   );

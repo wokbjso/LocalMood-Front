@@ -1,4 +1,5 @@
 import { twMerge } from "tailwind-merge";
+import Label from "./Label";
 
 interface HashTagProps {
   mainText: string;
@@ -20,16 +21,16 @@ export default function HashTag({
 }: HashTagProps) {
   return (
     <div className={className}>
-      <span className={twMerge("text-primary-normal headline2", tagClassName)}>
+      <Label className={twMerge("text-primary-normal headline2", tagClassName)}>
         #
-      </span>
-      <span className={twMerge("text-black headline2", mainTextClassName)}>
+      </Label>
+      <Label className={twMerge("headline2", mainTextClassName)}>
         {mainText}
-      </span>
+      </Label>
       {subText && (
-        <span className={twMerge("text-text-gray-6 body1", subTextClassName)}>
+        <Label className={twMerge("text-text-gray-6 body1", subTextClassName)}>
           {subText}
-        </span>
+        </Label>
       )}
     </div>
   );

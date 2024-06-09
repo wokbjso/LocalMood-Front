@@ -84,25 +84,20 @@ export default function ChangeSearchConditon() {
             <FilterKeywordIcon />
           </div>
           {!searchParams.get("keyword") && (
-            <Label
-              label="키워드 설정"
-              className="body2-semibold text-text-gray-8 ml-[8px]"
-            />
+            <Label className="body2-semibold text-text-gray-8 ml-[8px]">
+              키워드 설정
+            </Label>
           )}
           {searchParams.get("keyword") && (
             <>
-              <Label
-                label={showedKeyword()}
-                className="body2-semibold ml-[8px]"
-              />
-              <Label
-                label={`${" "}${
-                  countKeywordSelected() > 1
-                    ? `외 ${countKeywordSelected() - 1}개`
-                    : ""
-                }`}
-                className="body2-semibold text-text-gray-8"
-              />
+              <Label className="body2-semibold ml-[8px]">
+                {showedKeyword()}
+              </Label>
+              <Label className="body2-semibold text-text-gray-8">{`${" "}${
+                countKeywordSelected() > 1
+                  ? `외 ${countKeywordSelected() - 1}개`
+                  : ""
+              }`}</Label>
             </>
           )}
         </section>
@@ -111,10 +106,9 @@ export default function ChangeSearchConditon() {
           onClick={handleSortChangeClick}
         >
           <FilterSortIcon />
-          <Label
-            label={state === "RECENT" ? "리뷰 최신순" : "인기순"}
-            className="body2-medium text-text-gray-6"
-          />
+          <Label className="body2-medium text-text-gray-6">
+            {state === "RECENT" ? "리뷰 최신순" : "인기순"}
+          </Label>
         </section>
       </div>
     </>

@@ -15,8 +15,8 @@ export default function Footer() {
     >
       {FOOTER_BOX.map((box, i) => (
         <FooterNavigateBox
-          key={box.text}
-          text={box.text}
+          key={box.label}
+          label={box.label}
           icon={<box.icon color={i === footerIndex ? "#32D5BA" : "#BDBDBD"} />}
           navigateTo={box.navigateTo}
           clicked={i === footerIndex}

@@ -5,6 +5,7 @@ import { twMerge } from "tailwind-merge";
 import Image from "next/image";
 import ArrowDownIcon from "@/common/assets/icons/arrow/ArrowDownIcon";
 import ArrowUpIcon from "@/common/assets/icons/arrow/ArrowUpIcon";
+import Label from "../../text/Label";
 
 interface FilterProps {
   variant?: "static" | "showOptions";
@@ -41,7 +42,7 @@ export default function Filter({
         selected &&
           photo &&
           "bg-primary-selected border-[1.5px] border-primary-normal",
-        selected && !photo && "bg-text-gray-8 ",
+        selected && !photo && "bg-text-gray-8",
         className
       )}
       onClick={filterClicked}
@@ -60,14 +61,14 @@ export default function Filter({
           />
         </div>
       )}
-      <span
+      <Label
         className={twMerge(
           !photo ? "body2-medium" : "body3-medium",
           selected && !photo && "text-white"
         )}
       >
         {label}
-      </span>
+      </Label>
       {variant === "showOptions" && openOptions && (
         <ArrowUpIcon className="ml-[0.2rem]" color="#9E9E9E" />
       )}

@@ -26,12 +26,13 @@ export default function UserProfile({
         />
       </div>
       <Label
-        label={userName}
         className={twMerge(
           "text-white",
           size === "big" ? "body2-medium" : "body3-medium"
         )}
-      />
+      >
+        {userName}
+      </Label>
     </div>
   );
 }

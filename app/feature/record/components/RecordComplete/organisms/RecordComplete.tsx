@@ -24,10 +24,9 @@ export default function RecordComplete({ spaceId }: RecordCompleteProps) {
         <div className="pb-[10rem]">
           <CompleteIcon />
           <div className="w-full justify-center flex flex-col items-center mt-[22px]">
-            <Title
-              title="공간 기록을 남겼어요!"
-              className="headline1-semibold mb-[12px]"
-            />
+            <Title className="headline1-semibold mb-[12px]">
+              공간 기록을 남겼어요!
+            </Title>
             <TextWithRightArrow
               text="큐레이션에 추가하기"
               onClick={handleAddCurationButtonClick}

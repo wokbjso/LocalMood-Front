@@ -16,7 +16,7 @@ export default function PlaceKeywordEvaluation({
 }) {
   return (
     <div className="pt-[36px] px-[20px] pb-[30px]">
-      <Title title={mainText} className="headline2 mb-[12px]" />
+      <Title className="headline2 mb-[12px]">{mainText}</Title>
       <div className="mb-[20px]">
         <PositiveEvaluation
           positiveEval={positiveEval}

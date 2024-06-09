@@ -11,7 +11,7 @@ export default async function RecordScrappedMorePage() {
   const scrappedPlace = await GetPlaceScrapped();
   return (
     <div className="w-[100%] h-[100%] px-[2rem] pb-[1.2rem] pt-[4.8rem] fixed bg-white z-10">
-      <Title title="스크랩한 공간" className="headline1-semibold pb-[20px]" />
+      <Title className="headline1-semibold pb-[20px]">스크랩한 공간</Title>
       <div className="flex flex-col items-start w-full h-full gap-[0.8rem] pb-[15rem] overflow-auto">
         {scrappedPlace && scrappedPlace.length === 0 && (
           <p className="flex w-full justify-center items-center h-[50vh] body1-medium text-text-gray-8">

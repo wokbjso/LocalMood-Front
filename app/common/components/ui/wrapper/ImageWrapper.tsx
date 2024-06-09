@@ -1,5 +1,6 @@
 import CheckIcon from "@/common/assets/icons/check/CheckIcon";
 import { twMerge } from "tailwind-merge";
+import Label from "../text/Label";
 
 interface ImageWrapperProps {
   text: string;
@@ -17,9 +18,9 @@ export default function ImageWrapper({ text, className }: ImageWrapperProps) {
       />
       <div className="flex flex-col absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 justify-center items-center z-10">
         <CheckIcon className="mb-[0.4rem]" />
-        <span className="text-white body3-semibold whitespace-nowrap">
+        <Label className="text-white body3-semibold whitespace-nowrap">
           {text}
-        </span>
+        </Label>
       </div>
     </>
   );

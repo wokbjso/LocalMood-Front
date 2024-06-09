@@ -60,10 +60,9 @@ export default function MyCurationCard({
           />
         </div>
         <div className="flex flex-col justify-center ml-[1.2rem]">
-          <Title
-            title={curationData.title}
-            className="headline2-semibold mb-[0.8rem]"
-          />
+          <Title className="headline2-semibold mb-[0.8rem]">
+            {curationData.title}
+          </Title>
           <div className="flex items-center">
             <TextWithDivider
               leftText={curationData.privacy ? "공개" : "비공개"}

@@ -35,7 +35,7 @@ export default function PageTopBar({
         className
       )}
     >
-      <Title title={text} className={twMerge("headline1", textClassName)} />
+      <Title className={twMerge("headline1", textClassName)}>{text}</Title>
       {hasMenu && <MenuIcon onClick={handleMenuIconClick} />}
     </div>
   );

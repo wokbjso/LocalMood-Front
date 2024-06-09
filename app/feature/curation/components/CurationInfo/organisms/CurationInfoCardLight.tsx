@@ -201,12 +201,13 @@ export default function CurationInfoCardLight({
           }}
         >
           <Title
-            title={title}
             className={twMerge(
               "headline2 w-[70%] break-keep mb-[12px]",
               checkTitleHasSpace ? "" : "break-all"
             )}
-          />
+          >
+            {title}
+          </Title>
           <CurationInfoCardTagList
             keyword={keyword}
             textClassName="text-text-gray-6"
