@@ -1,5 +1,6 @@
 import { PLACE_CATEGORY } from "@/feature/place/constants/place-tag-category";
 import PlacePurposeBox from "./PlacePurposeBox";
+import Label from "@/common/components/ui/text/Label";
 
 interface PlaceKeywordSummaryPurposeProps {
   purpose: string[];
@@ -11,9 +12,9 @@ export default function PlaceKeywordSummaryPurpose({
 }: PlaceKeywordSummaryPurposeProps) {
   return (
     <>
-      <span className="body2-medium text-text-gray-6">
+      <Label className="body2-medium text-text-gray-6">
         {PLACE_CATEGORY["purpose"]}
-      </span>
+      </Label>
       <div className="flex justify-between mt-[0.8rem] mb-[1.6rem]">
         {purpose.map((text, i) => (
           <PlacePurposeBox key={text + i} purpose={text} />

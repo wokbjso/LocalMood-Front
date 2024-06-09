@@ -46,7 +46,7 @@ export default function MyCurationModal({
     <>
       {open && (
         <Modal className={twMerge("px-[2rem] h-[48%]")}>
-          <Title title={title} className="pt-[2.4rem] headline2-semibold" />
+          <Title className="pt-[2.4rem] headline2-semibold">{title}</Title>
           <CloseIcon
             className="absolute right-[2.4rem] top-[4rem]"
             onClick={handleModalClose}

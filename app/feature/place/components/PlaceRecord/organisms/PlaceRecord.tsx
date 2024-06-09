@@ -38,12 +38,11 @@ export default function PlaceRecord({
         </div>
         <div>
           <div className="mb-[1.2rem]">
-            <Label label={author} className="headline3" />
+            <Label className="headline3">{author}</Label>
             <div className="mt-[0.8rem]">
-              <Label
-                label={createdAt}
-                className="body3-medium text-text-gray-6"
-              />
+              <Label className="body3-medium text-text-gray-6">
+                {createdAt}
+              </Label>
             </div>
           </div>
           <div>
@@ -55,10 +54,9 @@ export default function PlaceRecord({
                   keyword[category] && "mb-[0.6rem]"
                 )}
               >
-                <Label
-                  label={keyword[category] && PLACE_CATEGORY[category]}
-                  className="mr-[2rem] text-text-gray-7 body2-medium"
-                />
+                <Label className="mr-[2rem] text-text-gray-7 body2-medium">
+                  {keyword[category] && PLACE_CATEGORY[category]}
+                </Label>
                 {category === "purpose" ? (
                   <Chip>{purpose}</Chip>
                 ) : (

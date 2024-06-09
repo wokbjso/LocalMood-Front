@@ -1,5 +1,6 @@
 import LocationLineIcon from "@/common/assets/icons/location/LocationLineIcon";
 import { twMerge } from "tailwind-merge";
+import Label from "../text/Label";
 
 interface SpaceCountProps {
   spaceCount?: number;
@@ -17,14 +18,14 @@ export default function SpaceCount({
   return (
     <div className={twMerge("flex items-center", className)}>
       {<LocationLineIcon color={iconColor} />}
-      <span
+      <Label
         className={twMerge(
           "ml-[2px] body3-semibold text-white",
           countTextClassName
         )}
       >
         {spaceCount}
-      </span>
+      </Label>
     </div>
   );
 }

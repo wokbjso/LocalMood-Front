@@ -1,5 +1,6 @@
 import Chip from "@/common/components/ui/buttons/Chip/Chip";
 import HashTag from "@/common/components/ui/text/HashTag";
+import Label from "@/common/components/ui/text/Label";
 import { PLACE_CATEGORY } from "@/feature/place/constants/place-tag-category";
 import { twMerge } from "tailwind-merge";
 
@@ -17,9 +18,9 @@ export default function PlaceKeywordSummaryLine({
 }: PlaceKeywordSummaryLineProps) {
   return (
     <div className={className}>
-      <span className="body2-medium text-text-gray-6 mr-[1.8rem]">
+      <Label className="body2-medium text-text-gray-6 mr-[1.8rem]">
         {category}
-      </span>
+      </Label>
       {typeof record === "string" ? (
         <Chip className="bg-white">
           <HashTag

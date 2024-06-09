@@ -1,12 +1,14 @@
 import { twMerge } from "tailwind-merge";
 
 interface TitleProps {
-  title: string;
+  children: string;
   className?: string;
 }
 
-export default function Title({ title, className }: TitleProps) {
+export default function Title({ children, className }: TitleProps) {
   return (
-    <h1 className={twMerge("header-light text-black", className)}>{title}</h1>
+    <h1 className={twMerge("header-light text-black", className)}>
+      {children}
+    </h1>
   );
 }

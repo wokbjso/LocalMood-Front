@@ -1,9 +1,10 @@
 import { twMerge } from "tailwind-merge";
 import LinkLayout from "../Link/LinkLayout";
 import { ReactNode } from "react";
+import Label from "../../ui/text/Label";
 
 interface FooterNavigateBoxProps {
-  text: string;
+  label: string;
   icon: ReactNode;
   navigateTo: string;
   clicked: boolean;
@@ -12,7 +13,7 @@ interface FooterNavigateBoxProps {
 
 //Molecule
 export default function FooterNavigateBox({
-  text,
+  label,
   icon,
   navigateTo,
   clicked,
@@ -25,14 +26,14 @@ export default function FooterNavigateBox({
         onClick={onClick}
       >
         {icon}
-        <span
+        <Label
           className={twMerge(
-            "mt-[0.6rem]",
+            "mt-[0.6rem] footer-label",
             clicked ? "text-primary-normal" : "text-text-gray-5"
           )}
         >
-          {text}
-        </span>
+          {label}
+        </Label>
       </div>
     </LinkLayout>
   );

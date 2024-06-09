@@ -1,3 +1,5 @@
+import Text from "@/common/components/ui/text/Text";
+
 interface FormErrorMsgProps {
   errorMsg?: string;
 }
@@ -6,7 +8,7 @@ interface FormErrorMsgProps {
 export default function FormErrorMsg({ errorMsg }: FormErrorMsgProps) {
   return (
     errorMsg && (
-      <span className="body3-semibold text-error mt-[0.8rem]">{errorMsg}</span>
+      <Text className="body3-semibold text-error mt-[0.8rem]">{errorMsg}</Text>
     )
   );
 }

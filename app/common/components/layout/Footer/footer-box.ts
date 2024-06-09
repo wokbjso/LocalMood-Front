@@ -6,22 +6,22 @@ import UserProfileIcon from "@/common/assets/icons/user/UserProfileIcon";
 export const FOOTER_BOX = [
   {
     icon: HomeIcon,
-    text: "홈",
+    label: "홈",
     navigateTo: "/",
   },
   {
     icon: RecordIcon,
-    text: "공간기록",
+    label: "공간기록",
     navigateTo: "/record",
   },
   {
     icon: CurationIcon,
-    text: "큐레이션",
+    label: "큐레이션",
     navigateTo: "/curation",
   },
   {
     icon: UserProfileIcon,
-    text: "마이페이지",
+    label: "마이페이지",
     navigateTo: "/mypage",
   },
 ];

@@ -1,4 +1,5 @@
 import { twMerge } from "tailwind-merge";
+import Label from "./Label";
 
 interface NumberCountWithSlashProps {
   currentNum: number;
@@ -12,8 +13,10 @@ export default function NumberCountWithSlash({
   className,
 }: NumberCountWithSlashProps) {
   return (
-    <span className={twMerge("headline3-semibold text-text-gray-6", className)}>
+    <Label
+      className={twMerge("headline3-semibold text-text-gray-6", className)}
+    >
       {currentNum}/{totalNum}
-    </span>
+    </Label>
   );
 }

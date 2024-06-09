@@ -1,3 +1,4 @@
+import Label from "@/common/components/ui/text/Label";
 import { HomeBannerProps } from "@/feature/home/components/HomeBanner/organisms/HomeBanner";
 
 //Molecule
@@ -10,7 +11,7 @@ export default function HomeBannerTitle({
     <p className="header-light pb-[2.4rem] px-[2rem] pt-[5.4rem] bg-background-secondary-light">
       {textNormalFirst}
       <br />
-      <span className="header-main"> {textBold}</span>
+      <Label className="header-main"> {textBold}</Label>
       {textNormalLast}
     </p>
   );

@@ -13,7 +13,7 @@ interface RelatedSliderProps {
 export default function RelatedSlider({ title, children }: RelatedSliderProps) {
   return (
     <div>
-      <Title title={title} className="headline2" />
+      <Title className="headline2">{title}</Title>
       <SliderLayout className="mt-[1.6rem] mb-[6rem]">{children}</SliderLayout>
     </div>
   );

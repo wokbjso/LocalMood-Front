@@ -1,4 +1,5 @@
 import MapIcon, { MapInfoProps } from "@/common/assets/icons/map/mapIcon";
+import Label from "@/common/components/ui/text/Label";
 import { twMerge } from "tailwind-merge";
 
 interface MapIconButtonProps extends MapInfoProps {
@@ -19,9 +20,11 @@ export default function MapIconButton({
       onClick={onClick}
     >
       <MapIcon mapInfo={mapInfo} />
-      <span className={twMerge("body2-medium text-text-gray-6", textClassName)}>
+      <Label
+        className={twMerge("body2-medium text-text-gray-6", textClassName)}
+      >
         지도로 보기
-      </span>
+      </Label>
     </button>
   );
 }

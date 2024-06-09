@@ -7,6 +7,7 @@ import ArrowUpIcon from "@/common/assets/icons/arrow/ArrowUpIcon";
 import TextWithDivider from "@/common/components/ui/text/TextWithDivider";
 import { twMerge } from "tailwind-merge";
 import PlaceDetailSubInfoMore from "./PlaceDetailSubInfoMore";
+import Label from "@/common/components/ui/text/Label";
 
 //Organism
 export default function PlaceDetailSubInfo({
@@ -39,11 +40,11 @@ export default function PlaceDetailSubInfo({
               />
             )}
             {visitorNum && !optionalService && (
-              <span
+              <Label
                 className={twMerge("body2-medium text-text-gray-8 px-[2rem]")}
               >
                 {visitorNum}
-              </span>
+              </Label>
             )}
           </div>
           {dishDesc !== "NULL" && (

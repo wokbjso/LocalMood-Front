@@ -3,6 +3,7 @@
 import { twMerge } from "tailwind-merge";
 import Image from "next/image";
 import { forwardRef } from "react";
+import Label from "@/common/components/ui/text/Label";
 
 interface PlaceFilterButtonProps {
   photo?: string;
@@ -46,14 +47,14 @@ const PlaceFilterButton = forwardRef<HTMLButtonElement, PlaceFilterButtonProps>(
             />
           </div>
         )}
-        <span
+        <Label
           className={twMerge(
             !props.photo ? "body2-medium" : "body3-medium",
             props.selected && !props.photo && "text-white"
           )}
         >
           {props.label}
-        </span>
+        </Label>
       </button>
     );
   }
