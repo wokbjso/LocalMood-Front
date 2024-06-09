@@ -13,10 +13,9 @@ export default async function RecordList() {
 
   return (
     <section className="h-full">
-      <Label
-        label={"공간 기록" + " " + recordData.reviewCount}
-        className={twMerge("text-text-gray-8 headline3")}
-      />
+      <Label className={twMerge("text-text-gray-8 headline3")}>
+        {"공간 기록" + " " + recordData.reviewCount}
+      </Label>
       {recordData.reviewCount === 0 && <NoRecord />}
       {recordData.reviewCount > 0 && (
         <div className="grid grid-cols-2 gap-x-[1rem] gap-y-[1.6rem] pb-[40.1rem] h-full overflow-y-scroll mt-[16px]">

@@ -36,10 +36,9 @@ export default function EvaluationKeywordContent({
             }
           >
             <div className="flex items-start gap-[6px]">
-              <Label
-                label={PLACE_EVALUATIONS[category]}
-                className="headline3-semibold"
-              />
+              <Label className="headline3-semibold">
+                {PLACE_EVALUATIONS[category]}
+              </Label>
               <NumberCountWithSlash
                 currentNum={cafeKeywordData[category].length}
                 totalNum={3}
@@ -70,10 +69,9 @@ export default function EvaluationKeywordContent({
             }
           >
             <div className="flex items-start gap-[6px]">
-              <Label
-                label={PLACE_EVALUATIONS[category]}
-                className="headline3-semibold"
-              />
+              <Label className="headline3-semibold">
+                {PLACE_EVALUATIONS[category]}
+              </Label>
               <NumberCountWithSlash
                 currentNum={restaurantKeywordData[category].length}
                 totalNum={3}

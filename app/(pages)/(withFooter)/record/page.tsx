@@ -1,4 +1,5 @@
 import LinkLayout from "@/common/components/layout/Link/LinkLayout";
+import Label from "@/common/components/ui/text/Label";
 import PageTopBar from "@/common/components/ui/topBar/PageTopBar/PageTopBar";
 import UseDeferredComponent from "@/common/hooks/useDeferredComponent";
 import PlaceScrappedSkeleton from "@/feature/place/components/skeleton/PlaceScrappedSkeleton";
@@ -31,10 +32,10 @@ export default async function RecordPage() {
           variant="record"
         />
       </div>
-      <div className="w-full flex justify-between items-center pl-[2rem] pr-[1.5rem] pt-[4.4rem] mb-[1.6rem] text-black headline2-semibold">
-        <span>스크랩한 공간</span>
+      <div className="w-full flex justify-between items-center pl-[2rem] pr-[1.5rem] pt-[4.4rem] mb-[1.6rem]">
+        <Label className="headline2-semibold">스크랩한 공간</Label>
         <LinkLayout routeUrl="/record/scrapped/more">
-          <span className="text-text-gray-6 body2-semibold">더보기</span>
+          <Label className="text-text-gray-6 body2-semibold">더보기</Label>
         </LinkLayout>
       </div>
       <Suspense

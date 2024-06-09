@@ -77,10 +77,9 @@ export default function SelectPhotoContent({
     <>
       <div className="flex-col items-start pt-[148px] px-[20px] gap-[12px]">
         <div className="flex items-start">
-          <Label
-            label="사진올리기"
-            className="mb-[12px] mr-[6px] headline3-semibold"
-          />
+          <Label className="mb-[12px] mr-[6px] headline3-semibold">
+            사진올리기
+          </Label>
           <NumberCountWithSlash currentNum={image.length} totalNum={2} />
         </div>
         <div

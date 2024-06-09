@@ -24,7 +24,7 @@ export default function RecordPageBookTopBar({
       )}
     >
       <div className="w-full flex justify-between items-start">
-        <Title title={text} className="headline1-semibold" />
+        <Title className="headline1-semibold">{text}</Title>
         <Indicator
           clickAble={false}
           indicatorIndex={indicatorIndex}

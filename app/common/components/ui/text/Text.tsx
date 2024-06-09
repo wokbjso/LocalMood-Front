@@ -1,14 +1,15 @@
+import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface TextProps {
-  text: string;
+  children: ReactNode;
   className?: string;
 }
 
-export default function Text({ text, className }: TextProps) {
+export default function Text({ children, className }: TextProps) {
   return (
     <p className={twMerge("header-light text-text-gray-8", className)}>
-      {text}
+      {children}
     </p>
   );
 }

@@ -58,7 +58,7 @@ export default function PlaceDetailInfo({
   return (
     <>
       <div className="flex-col relative">
-        <Title title={name} className="mb-[0.8rem] px-[2rem] headline0" />
+        <Title className="mb-[0.8rem] px-[2rem] headline0">{name}</Title>
         {isScraped ? (
           <ScrapFillIcon
             color="#9E9E9E"

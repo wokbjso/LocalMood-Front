@@ -8,6 +8,7 @@ import {
   PLACE_RESTAURANT_PURPOSE,
 } from "@/feature/place/constants/place-tag-category";
 import GraphBar from "./GraphBar";
+import Label from "@/common/components/ui/text/Label";
 
 export interface PlaceRecordPurposeGraphBarProps {
   type: string;
@@ -53,12 +54,12 @@ export default function PlaceRecordPurposeGraphBar({
     >
       <div className="flex items-center">
         {purposeIcon()}
-        <span className="body1-medium text-text-gray-9 ml-[0.6rem] mr-[0.4rem]">
+        <Label className="body1-medium text-text-gray-9 ml-[0.6rem] mr-[0.4rem]">
           {evaluation}
-        </span>
-        <span className="body1-medium text-text-gray-6">
+        </Label>
+        <Label className="body1-medium text-text-gray-6">
           {percentage + "%"}
-        </span>
+        </Label>
       </div>
       <GraphBar percentage={percentage} />
     </div>

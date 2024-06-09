@@ -1,14 +1,15 @@
+import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface LabelProps {
-  label: string;
+  children: ReactNode;
   className?: string;
 }
 
-export default function Label({ label, className }: LabelProps) {
+export default function Label({ children, className }: LabelProps) {
   return (
     <span className={twMerge("header-light text-black", className)}>
-      {label}
+      {children}
     </span>
   );
 }

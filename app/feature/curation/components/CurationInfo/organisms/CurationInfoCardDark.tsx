@@ -179,10 +179,9 @@ export default function CurationInfoCardDark({
             }}
           >
             <div className="w-full absolute top-0 pt-[1.6rem] pl-[1.6rem] z-10">
-              <Title
-                title={title}
-                className="headline2 w-[70%] break-keep text-white"
-              />
+              <Title className="headline2 w-[70%] break-keep text-white">
+                {title}
+              </Title>
               <CurationInfoCardTagList
                 keyword={keyword}
                 className="mt-[12px]"

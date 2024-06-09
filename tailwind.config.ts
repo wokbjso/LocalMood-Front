@@ -139,6 +139,13 @@ module.exports = {
           lineHeight: "100%",
           letterSpacing: "-2%",
         },
+        ".footer-label": {
+          fontFamily: "var(--pretandard-variable)",
+          fontWeight: "600",
+          fontSize: "1rem",
+          lineHeight: "100%",
+          letterSpacing: "-2%",
+        },
       });
     }),
   ],

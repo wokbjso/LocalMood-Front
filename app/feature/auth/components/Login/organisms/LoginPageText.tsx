@@ -1,5 +1,6 @@
 "use client";
 
+import Label from "@/common/components/ui/text/Label";
 import UseGetBrowserHeight from "@/common/hooks/useGetBrowserHeight";
 import { twMerge } from "tailwind-merge";
 
@@ -26,11 +27,11 @@ export default function LoginPageText({
         className
       )}
     >
-      <span className="headline2-semibold text-text-gray-8 mb-[0.6rem]">
+      <Label className="headline2-semibold text-text-gray-8 mb-[0.6rem]">
         {subText}
-      </span>
+      </Label>
       <p className="headline0 text-center">
-        <span className="text-primary-normal"># </span>
+        <Label className="text-primary-normal headline0"># </Label>
         {mainText1}
         <br /> {mainText2}
       </p>

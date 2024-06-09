@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
+import Label from "../text/Label";
 
 interface TabProps {
   startIndex?: number;
@@ -43,14 +44,14 @@ export default function Tab({
               />
             </div>
           )}
-          <span
+          <Label
             className={twMerge(
               "headline2 text-text-gray-4",
               tabIndex === i && "text-text-gray-8"
             )}
           >
             {section.text} {section.length && section.length}
-          </span>
+          </Label>
         </section>
       ))}
     </div>

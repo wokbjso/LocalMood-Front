@@ -130,14 +130,11 @@ export default function PlaceInfoCardTop({
                   onClick={handleScrap}
                 />
               )}
-            <Title
-              title={
-                direction === "vertical" && size === "small"
-                  ? sliceText(name, 8)
-                  : name
-              }
-              className={size === "normal" ? "headline2" : "headline3"}
-            />
+            <Title className={size === "normal" ? "headline2" : "headline3"}>
+              {direction === "vertical" && size === "small"
+                ? sliceText(name, 8)
+                : name}
+            </Title>
             <TextWithDivider
               leftText={type === "RESTAURANT" ? "음식점" : "카페"}
               rightText={

@@ -1,6 +1,7 @@
 import AddIcon from "@/common/assets/icons/add/AddIcon";
 import { twMerge } from "tailwind-merge";
 import AddLineIcon from "@/common/assets/icons/add/AddLineIcon";
+import Label from "@/common/components/ui/text/Label";
 
 interface CurationMakeButtonProps {
   size: "small" | "large";
@@ -32,14 +33,14 @@ export default function CurationMakeButton({
         >
           {size === "large" ? <AddIcon /> : <AddLineIcon />}
         </div>
-        <span
+        <Label
           className={twMerge(
             "text-text-gray-8",
             size === "large" ? "body1-medium" : "body2-semibold ml-[0.4rem]"
           )}
         >
           {text}
-        </span>
+        </Label>
       </div>
     </>
   );

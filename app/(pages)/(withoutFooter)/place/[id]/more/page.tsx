@@ -49,10 +49,7 @@ export default async function PlaceDetailMorePage({ params: { id } }: Props) {
   return (
     <div className="w-[100%] h-[100%] pb-[14.2rem] overflow-auto">
       <ArrowBackTopBar color="#9E9E9E" className="" />
-      <Title
-        title={`${detailData.info.name}의 공간기록`}
-        className="headline1 px-[2rem] mt-[1.2rem]"
-      />
+      <Title className="headline1 px-[2rem] mt-[1.2rem]">{`${detailData.info.name}의 공간기록`}</Title>
       <PlaceRecordPurposeDistribution
         type={detailData.info.type}
         reviewDataPercentage={reviewData.purposeEval}

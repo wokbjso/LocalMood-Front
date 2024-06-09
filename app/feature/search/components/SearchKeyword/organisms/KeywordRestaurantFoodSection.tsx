@@ -23,7 +23,7 @@ export default function KeywordFoodSection({
 }: KeywordRestaurantFoodSection) {
   return (
     <section className="mb-[40px]">
-      <Label label={RESTAURANT_CATEGORY["subType"]} className="headline3" />
+      <Label className="headline3">{RESTAURANT_CATEGORY["subType"]}</Label>
       <div className="flex flex-wrap gap-[0.6rem] mt-[12px]">
         {RESTARANT_KEYWORDS[RESTAURANT_CATEGORY["subType"]].map((keyword) => (
           <Filter

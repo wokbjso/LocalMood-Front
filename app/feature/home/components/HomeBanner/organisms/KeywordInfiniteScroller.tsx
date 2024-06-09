@@ -6,6 +6,7 @@ import WineIcon from "@/common/assets/icons/wine/WineIcon";
 import ElectricCordIcon from "@/common/assets/icons/electric-cord/ElectricCordIcon";
 import PetIcon from "@/common/assets/icons/pet/PetIcon";
 import WindowIcon from "@/common/assets/icons/window/WindowIcon";
+import Label from "@/common/components/ui/text/Label";
 
 const HEADER_KEYWORD = [
   { icon: HeartIcon, label: "연인과의 데이트" },
@@ -34,7 +35,9 @@ export default function KeywordInfiniteScroller() {
             <li key={keyword.label + i}>
               <Chip className="whitespace-nowrap px-[1.12rem] flex items-center h-[3.2rem] mr-[1rem]">
                 {<keyword.icon />}
-                <span className="pl-[0.4rem]">{keyword.label}</span>
+                <Label className="body3-medium pl-[0.4rem]">
+                  {keyword.label}
+                </Label>
               </Chip>
             </li>
           ))}
@@ -44,7 +47,9 @@ export default function KeywordInfiniteScroller() {
             <li key={keyword.label + i}>
               <Chip className="whitespace-nowrap px-[1.12rem] flex items-center h-[3.2rem] mr-[1rem]">
                 {<keyword.icon />}
-                <span className="pl-[0.4rem]">{keyword.label}</span>
+                <Label className="pl-[0.4rem] body3-medium">
+                  {keyword.label}
+                </Label>
               </Chip>
             </li>
           ))}

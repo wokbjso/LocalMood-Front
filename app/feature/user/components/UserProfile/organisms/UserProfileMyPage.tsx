@@ -23,8 +23,8 @@ export default async function UserProfileMyPage({
         className="rounded-full mr-[1.6rem]"
       />
       <div className="flex flex-col justify-center">
-        <Text text={title} className="body2-medium mb-[8px]" />
-        <Label label={memberData.nickname} className="headline1" />
+        <Text className="body2-medium mb-[8px]">{title}</Text>
+        <Label className="headline1">{memberData.nickname}</Label>
       </div>
     </section>
   );

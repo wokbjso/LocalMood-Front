@@ -5,6 +5,7 @@ import {
   PlaceInfoCardBottomProps,
   PlaceInfoCardTopProps,
 } from "@/feature/place/components/PlaceInfo/type";
+import Label from "@/common/components/ui/text/Label";
 
 //Molecule
 export default function PlaceInfoCardBottom({
@@ -29,15 +30,15 @@ export default function PlaceInfoCardBottom({
       {keywordCategoryNum === 1 &&
         keyword?.slice(0, 2).map((tag, i) => (
           <Chip key={tag + i}>
-            <span className="body2-medium text-black">{tag}</span>
+            <Label className="body2-medium">{tag}</Label>
           </Chip>
         ))}
       {keywordCategoryNum && keywordCategoryNum >= 2 && (
         <div className="flex items-center">
           <div className="mr-[2rem]">
-            <span className="body2-medium text-text-gray-6 whitespace-nowrap">
+            <Label className="body2-medium text-text-gray-6 whitespace-nowrap">
               방문목적
-            </span>
+            </Label>
           </div>
           <div className="flex flex-wrap gap-[0.8rem]">
             {purpose?.map((tag, i) => (
@@ -53,9 +54,9 @@ export default function PlaceInfoCardBottom({
           className={twMerge("flex items-center", keywordCategoryNum > 2 && "")}
         >
           <div className="mr-[2rem]">
-            <span className="body2-medium text-text-gray-6 whitespace-nowrap">
+            <Label className="body2-medium text-text-gray-6 whitespace-nowrap">
               {type === "CAFE" ? "인테리어" : "대표메뉴"}
-            </span>
+            </Label>
           </div>
           <div className="flex flex-wrap gap-[0.8rem]">
             {type === "CAFE"
@@ -85,9 +86,9 @@ export default function PlaceInfoCardBottom({
           )}
         >
           <div className="mr-[2rem]">
-            <span className="body2-medium text-text-gray-6 whitespace-nowrap">
+            <Label className="body2-medium text-text-gray-6 whitespace-nowrap">
               공간무드
-            </span>
+            </Label>
           </div>
           <div className="flex flex-wrap gap-[0.8rem]">
             {mood?.map((tag, i) => (
