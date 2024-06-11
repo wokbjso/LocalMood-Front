@@ -18,7 +18,7 @@ export default function MyCurationCardList({
   handleModalClose,
 }: MyCurationCardListProps) {
   const { data: myCurationData, isFetching } = useGetMyCuration();
-  const { mutate: savePlace } = useSavePlaceAtCuration();
+  const { mutate: savePlace } = useSavePlaceAtCuration(spaceId);
 
   const setToast = useSetRecoilState(toastInfoSelector);
 
