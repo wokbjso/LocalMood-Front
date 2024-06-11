@@ -34,7 +34,7 @@ const revalidateRelatedData = () => {
   revalidateCurationDetail();
 };
 
-export default function useSavePlaceAtCuration() {
+export default function useSavePlaceAtCuration(spaceId: number) {
   const queryClient = useQueryClient();
 
   const searchParams = useSearchParams();
@@ -56,6 +56,9 @@ export default function useSavePlaceAtCuration() {
       revalidateRelatedData();
       queryClient.invalidateQueries({
         queryKey: ["getMyCuration"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["getPlaceScrapState", spaceId],
       });
       if (searchParams.get("search_query")) {
         queryClient.invalidateQueries({
