@@ -1,12 +1,16 @@
+"use client";
+
 import { PLACE_SUB_TYPE } from "@/feature/place/constants/place-tag-category";
+import { useSetRecoilState } from "recoil";
+import { toastInfoSelector } from "@/common/state/toast";
+import { myCurationModalInfoSelector } from "@/common/state/myCurationModal";
+import { validateLoggedIn } from "@/common/utils/validate/validateLoggedIn";
 import { PlaceDetailInfoProps } from "@/feature/place/queries/dto/place-detail";
+import ScrapFillIcon from "@/common/assets/icons/scrap/ScrapFillIcon";
+import ScrapLineIcon from "@/common/assets/icons/scrap/ScrapLineIcon";
 import TextWithDivider from "@/common/components/ui/text/TextWithDivider";
 import PlaceDetailSubInfo from "./PlaceDetailSubInfo";
 import Title from "@/common/components/ui/text/Title";
-import dynamic from "next/dynamic";
-const PlaceScrapIcon = dynamic(() => import("../molecules/PlaceScrapIcon"), {
-  ssr: false,
-});
 
 //Organism
 export default function PlaceDetailInfo({
@@ -15,6 +19,7 @@ export default function PlaceDetailInfo({
   type,
   subType,
   address,
+  isScraped,
   visitorNum,
   optionalService,
   dishDesc,
@@ -25,15 +30,48 @@ export default function PlaceDetailInfo({
   | "type"
   | "subType"
   | "address"
+  | "isScraped"
   | "visitorNum"
   | "optionalService"
   | "dishDesc"
 >) {
+  const setToast = useSetRecoilState(toastInfoSelector);
+  const setMyCurationModal = useSetRecoilState(myCurationModalInfoSelector);
+
+  const handleScrapClick = async (
+    e: React.MouseEvent<SVGSVGElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    if ((await validateLoggedIn()) === false) {
+      location.replace("/login");
+    } else {
+      setMyCurationModal({
+        open: true,
+        spaceId: id,
+      });
+      setToast({
+        open: true,
+        text: "저장할 큐레이션을 선택해주세요",
+      });
+    }
+  };
   return (
     <>
       <div className="flex-col relative">
         <Title className="mb-[0.8rem] px-[2rem] headline0">{name}</Title>
-        <PlaceScrapIcon id={id} />
+        {isScraped ? (
+          <ScrapFillIcon
+            color="#9E9E9E"
+            className="absolute top-0 right-[2rem]"
+            onClick={handleScrapClick}
+          />
+        ) : (
+          <ScrapLineIcon
+            color="#9E9E9E"
+            className="absolute top-0 right-[2rem]"
+            onClick={handleScrapClick}
+          />
+        )}
         <TextWithDivider
           leftText={
             type === "CAFE" ? "카페" : subType && PLACE_SUB_TYPE[subType]
