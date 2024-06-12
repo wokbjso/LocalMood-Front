@@ -57,6 +57,8 @@ export async function generateStaticParams() {
   return [];
 }
 
+export const revalidate = 60;
+
 //Page
 export default async function PlaceDetailPage({ params: { id } }: Props) {
   const detailData = await GetPlaceDetail(id);
