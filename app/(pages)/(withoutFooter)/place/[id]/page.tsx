@@ -53,9 +53,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// export async function generateStaticParams() {
-//   return [];
-// }
+export async function generateStaticParams() {
+  return [];
+}
 
 //Page
 export default async function PlaceDetailPage({ params: { id } }: Props) {
@@ -78,7 +78,6 @@ export default async function PlaceDetailPage({ params: { id } }: Props) {
         type={detailData.info.type}
         subType={detailData.info.subType}
         address={detailData.info.address}
-        isScraped={detailData.info.isScraped}
         visitorNum={detailData.info.visitorNum}
         optionalService={detailData.info.optionalService}
         dishDesc={detailData.info.dishDesc}
