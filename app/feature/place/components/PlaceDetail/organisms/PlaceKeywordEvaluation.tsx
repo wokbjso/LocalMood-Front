@@ -24,7 +24,7 @@ export default function PlaceKeywordEvaluation({
         />
         <NegativeEvaluation negativeEval={negativeEval} />
       </div>
-      <LinkLayout routeUrl={`/place/${id}/more`} prefetch>
+      <LinkLayout routeUrl={`/place/${id}/more`}>
         <Button variant="line" className="w-full h-[4rem]">
           기록 전체 보기
         </Button>
