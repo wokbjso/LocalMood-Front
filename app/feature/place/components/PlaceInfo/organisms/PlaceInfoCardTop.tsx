@@ -80,7 +80,7 @@ export default function PlaceInfoCardTop({
         pathname: getPathName,
         query: getQuery,
       }}
-      prefetch
+      prefetch={true}
     >
       <div
         className={twMerge(
