@@ -18,6 +18,7 @@ const CurationInfoCardDark = dynamic(
 import { Metadata } from "next";
 import { PLACE_SUB_TYPE } from "@/feature/place/constants/place-tag-category";
 import RelatedSlider from "@/feature/place/components/PlaceDetail/organisms/RelatedSlider";
+import dayjs from "dayjs";
 
 type Props = {
   params: { id: number };
@@ -56,8 +57,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export async function generateStaticParams() {
   return [];
 }
-
-export const revalidate = 60;
 
 //Page
 export default async function PlaceDetailPage({ params: { id } }: Props) {
