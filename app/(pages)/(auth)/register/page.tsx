@@ -57,12 +57,14 @@ export default function RegisterPage() {
       <form onSubmit={handlers.submit}>
         <FormInput
           label="아이디 (이메일)"
+          field="email"
           errorMsg={getErrorMessage("email")}
           onChange={handlers.changeEmail}
           className="mb-[3.2rem]"
         />
         <FormInput
           type="password"
+          field="password"
           label="비밀번호 (8~16자)"
           errorMsg={getErrorMessage("password")}
           onChange={handlers.changePassword}
@@ -70,6 +72,7 @@ export default function RegisterPage() {
         />
         <FormInput
           label="닉네임"
+          field="nickname"
           errorMsg={getErrorMessage("nickname")}
           onChange={handlers.changeNickname}
         />
