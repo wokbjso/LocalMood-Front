@@ -2,7 +2,6 @@ import RegisterPage from "@/(pages)/(auth)/register/page";
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { pushMock } from "../jest.setup";
-import PageDarkWrapper from "@/common/components/ui/wrapper/PageDarkWrapper";
 
 describe("회원가입 테스트", () => {
   beforeEach(() => {
