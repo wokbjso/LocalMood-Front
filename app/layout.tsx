@@ -6,6 +6,7 @@ import { twMerge } from "tailwind-merge";
 import RecoilRootLayout from "@/common/components/layout/Recoil/RecoilRootLayout";
 import ReactQueryProviders from "@/common/components/layout/Provider/ReactQueryProvider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { MSWProvider } from "./common/components/layout/Provider/MSWProvider";
 const MyCurationModalProvider = dynamic(
   () => import("./common/components/layout/Provider/MyCurationModalProvider"),
   {
@@ -95,16 +96,18 @@ export default async function RootLayout({
     <html lang="en" className="w-[100%] h-[100%]">
       <body className={twMerge("w-[100%] h-[100%]", globalFont.variable)}>
         <main className="w-[100%] h-[100%] fixed overflow-hidden">
-          <ReactQueryProviders>
-            <ReactQueryDevtools initialIsOpen={true} />
-            <RecoilRootLayout>
-              <DetectDevice>{children}</DetectDevice>
-              <MyCurationModalProvider />
-              <ToastProvider />
-              <CurationMakeModalProvider />
-              <QueryFetchingProvider />
-            </RecoilRootLayout>
-          </ReactQueryProviders>
+          <MSWProvider>
+            <ReactQueryProviders>
+              <ReactQueryDevtools initialIsOpen={true} />
+              <RecoilRootLayout>
+                <DetectDevice>{children}</DetectDevice>
+                <MyCurationModalProvider />
+                <ToastProvider />
+                <CurationMakeModalProvider />
+                <QueryFetchingProvider />
+              </RecoilRootLayout>
+            </ReactQueryProviders>
+          </MSWProvider>
         </main>
       </body>
     </html>
