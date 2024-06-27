@@ -19,7 +19,7 @@ export default function RegisterPage() {
   const handleSubmit = async (e: LoginFormState | RegisterFormState) => {
     if ("nickname" in e) {
       changeFetching(true);
-      const res = await fetch("/api/auth/register", {
+      const res = await fetch("/api/v1/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,6 +1,8 @@
-import RegisterPage from "../app/(pages)/(auth)/register/page";
+import RegisterPage from "@/(pages)/(auth)/register/page";
 import "@testing-library/jest-dom";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { pushMock } from "../jest.setup";
+import PageDarkWrapper from "@/common/components/ui/wrapper/PageDarkWrapper";
 
 describe("회원가입 테스트", () => {
   beforeEach(() => {
@@ -95,5 +97,28 @@ describe("회원가입 테스트", () => {
     //then: 비밀번호 관련 에러메시지가 사라짐
     expect(inputErrorMessage).not.toBeInTheDocument();
   });
-  test("모든 조건을 만족하는 input을 입력한 후 가입하기 버튼을 누르면 가입이 성공한다.", () => {});
+  test("형식에 맞는 input들을 입력한 후, 가입하기 버튼을 누르면 가입성공 페이지로 이동한다.", async () => {
+    const registerButton = screen.getByRole("button", { name: "가입하기" });
+    expect(registerButton).toBeDisabled();
+
+    //when: 비밀번호 형식(영어, 숫자, 특수기호 중 하나라도 포함되지 않는 비밀번호)에 맞지 않는 비밀번호가 입력됨
+    const idInput = screen.getByLabelText("아이디 (이메일)");
+    const passwordInput = screen.getByLabelText("비밀번호 (8~16자)");
+    const nicknameInput = screen.getByLabelText("닉네임");
+
+    fireEvent.change(idInput, { target: { value: "brian990614@naver.com" } });
+    fireEvent.change(passwordInput, { target: { value: "Gusals990!" } });
+    fireEvent.change(nicknameInput, { target: { value: "brian" } });
+
+    expect(registerButton).toBeEnabled();
+
+    fireEvent.click(registerButton);
+
+    const loadingComponent = screen.getByTestId("loading-ui");
+    expect(loadingComponent).toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(pushMock).toHaveBeenCalledWith("/register/success");
+    });
+  });
 });
