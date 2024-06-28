@@ -56,6 +56,8 @@
 * Typescript
 * Recoil
 * React-query
+* Jest
+* MSW
 * Vercel
 
 ## 4. 디자인 시스템
