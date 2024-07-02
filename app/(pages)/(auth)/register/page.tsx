@@ -56,6 +56,7 @@ export default function RegisterPage() {
       </ArrowBackTopBar>
       <form onSubmit={handlers.submit}>
         <FormInput
+          dataCy="email-input"
           label="아이디 (이메일)"
           field="email"
           errorMsg={getErrorMessage("email")}
@@ -63,6 +64,7 @@ export default function RegisterPage() {
           className="mb-[3.2rem]"
         />
         <FormInput
+          dataCy="password-input"
           type="password"
           field="password"
           label="비밀번호 (8~16자)"
@@ -71,13 +73,18 @@ export default function RegisterPage() {
           className="mb-[3.2rem]"
         />
         <FormInput
+          dataCy="nickname-input"
           label="닉네임"
           field="nickname"
           errorMsg={getErrorMessage("nickname")}
           onChange={handlers.changeNickname}
         />
         <div className="absolute flex w-full px-[2rem] bottom-[4rem] left-0">
-          <Button disabled={ableRegister} className="w-full">
+          <Button
+            disabled={ableRegister}
+            className="w-full"
+            dataCy="register-button"
+          >
             가입하기
           </Button>
         </div>

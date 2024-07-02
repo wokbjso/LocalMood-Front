@@ -9,6 +9,7 @@ interface FormInputProps {
   errorMsg?: string;
   onChange?: (text: string) => void;
   className?: string;
+  dataCy?: string;
 }
 
 //Molecule
@@ -19,6 +20,7 @@ export default function FormInput({
   errorMsg,
   onChange,
   className,
+  dataCy,
 }: FormInputProps) {
   const [text, setText] = useState("");
 
@@ -34,6 +36,7 @@ export default function FormInput({
         {label}
       </label>
       <input
+        data-cy={dataCy}
         id={field}
         type={type}
         value={text}

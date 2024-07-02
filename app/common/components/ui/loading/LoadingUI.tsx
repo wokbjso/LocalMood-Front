@@ -5,6 +5,7 @@ export default function LoadingUI({ className }: { className?: string }) {
   return (
     <div
       data-testid="loading-ui"
+      data-cy="loading-ui"
       className={twMerge(
         "flex justify-center items-center w-[100%] h-[100%]",
         className
