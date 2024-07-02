@@ -9,6 +9,7 @@ export interface ButtonProps {
   children: ReactNode;
   onClick?: () => void;
   className?: string;
+  dataCy?: string;
 }
 
 //Atom
@@ -18,9 +19,11 @@ export default function Button({
   children,
   onClick,
   className,
+  dataCy,
 }: ButtonProps) {
   return (
     <button
+      data-cy={dataCy}
       className={twMerge(
         `w-[33.5rem] h-[4.8rem] headline3 rounded-[10px] text-white bg-primary-normal disabled:bg-text-gray-4`,
         variant === "line" &&
