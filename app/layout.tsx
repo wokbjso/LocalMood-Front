@@ -96,18 +96,18 @@ export default async function RootLayout({
     <html lang="en" className="w-[100%] h-[100%]">
       <body className={twMerge("w-[100%] h-[100%]", globalFont.variable)}>
         <main className="w-[100%] h-[100%] fixed overflow-hidden">
-          <MSWProvider>
-            <ReactQueryProviders>
-              <ReactQueryDevtools initialIsOpen={true} />
-              <RecoilRootLayout>
-                <DetectDevice>{children}</DetectDevice>
-                <MyCurationModalProvider />
-                <ToastProvider />
-                <CurationMakeModalProvider />
-                <QueryFetchingProvider />
-              </RecoilRootLayout>
-            </ReactQueryProviders>
-          </MSWProvider>
+          {/* <MSWProvider> */}
+          <ReactQueryProviders>
+            <ReactQueryDevtools initialIsOpen={false} />
+            <RecoilRootLayout>
+              <DetectDevice>{children}</DetectDevice>
+              <MyCurationModalProvider />
+              <ToastProvider />
+              <CurationMakeModalProvider />
+              <QueryFetchingProvider />
+            </RecoilRootLayout>
+          </ReactQueryProviders>
+          {/* </MSWProvider> */}
         </main>
       </body>
     </html>
