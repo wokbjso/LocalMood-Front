@@ -13,7 +13,7 @@ export default function MainLayout({
         src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}&submodules=geocoder`}
       />
       {children}
-      <Footer />
+      <Footer className="px-[32px] pt-[8px] pb-[12px] fixed bottom-0 z-10" />
     </div>
   );
 }
