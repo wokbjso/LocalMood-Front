@@ -31,7 +31,7 @@ export default function Home() {
         subText="공간"
         className="pb-[12rem]"
       />
-      <Footer />
+      <Footer className="px-[32px] pt-[8px] pb-[12px] fixed bottom-0 z-10" />
     </div>
   );
 }
