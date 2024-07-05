@@ -3,14 +3,18 @@
 import useFooter from "./useFooter";
 import FooterNavigateBox from "./FooterNavigateBox";
 import { FOOTER_BOX } from "./footer-box";
+import { twMerge } from "tailwind-merge";
 
 //Organism
-export default function Footer() {
+export default function Footer({ className }: { className?: string }) {
   const { footerIndex, changeFooterIndex } = useFooter();
 
   return (
     <footer
-      className="flex justify-between w-full bg-background-gray-1 px-[3.2rem] pt-[0.8rem] pb-[1.2rem] fixed bottom-0 z-10"
+      className={twMerge(
+        "flex justify-between w-full bg-background-gray-1",
+        className
+      )}
       data-testid="footer"
     >
       {FOOTER_BOX.map((box, i) => (
