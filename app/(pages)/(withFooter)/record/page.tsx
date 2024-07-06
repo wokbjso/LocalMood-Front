@@ -1,6 +1,6 @@
 import LinkLayout from "@/common/components/layout/Link/LinkLayout";
 import Label from "@/common/components/ui/text/Label";
-import PageTopBar from "@/common/components/ui/topBar/PageTopBar/PageTopBar";
+import PageTopBar from "@/common/components/ui/topBar/PageTopBar";
 import UseDeferredComponent from "@/common/hooks/useDeferredComponent";
 import PlaceScrappedSkeleton from "@/feature/place/components/skeleton/PlaceScrappedSkeleton";
 import SelectCandidatePlaceList from "@/feature/record/components/SelectCandidate/SelectCandidatePlaceList";

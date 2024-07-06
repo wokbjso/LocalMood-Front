@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import GetMemberInfo from "@/feature/user/queries/getMemberInfo";
 import RecordMyPageSkeleton from "@/feature/record/components/UserRecord/skeleton/RecordMyPageSkeleton";
-import PageTopBar from "@/common/components/ui/topBar/PageTopBar/PageTopBar";
+import PageTopBar from "@/common/components/ui/topBar/PageTopBar";
 import UseDeferredComponent from "@/common/hooks/useDeferredComponent";
 import UserProfileMyPage from "@/feature/user/components/UserProfile/organisms/UserProfileMyPage";
 import RecordList from "@/feature/record/components/UserRecord/organisms/RecordList";

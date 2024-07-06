@@ -12,7 +12,7 @@ import useFetching from "@/common/hooks/useFetching";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@/common/state/toast";
 import ShareIcon from "@/common/assets/icons/share/ShareIcon";
-import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
+import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar";
 import CurationMenuIcon from "../../CurationMenu/CurationMenuIcon";
 import { twMerge } from "tailwind-merge";
 import UseHandleModal from "@/common/hooks/useHandleModal";
