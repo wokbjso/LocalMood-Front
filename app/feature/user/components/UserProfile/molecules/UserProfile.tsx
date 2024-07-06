@@ -18,7 +18,7 @@ export default function UserProfile({
     <div className={twMerge("flex items-center", className)}>
       <div className="w-[1.6rem] h-[1.6rem] relative mr-[0.4rem]">
         <Image
-          src={"/default_user.png"}
+          src={"/default-user.png"}
           alt="프로필 사진"
           fill
           sizes="10vw"
