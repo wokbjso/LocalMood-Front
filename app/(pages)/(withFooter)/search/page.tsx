@@ -1,4 +1,4 @@
-import SearchImage from "@/common/assets/images/search_start.svg";
+import SearchImage from "@/common/assets/images/search-img.svg";
 import LinkLayout from "@/common/components/layout/Link/LinkLayout";
 import Button from "@/common/components/ui/buttons/Button/Button";
 import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";

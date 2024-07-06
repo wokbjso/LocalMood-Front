@@ -1,6 +1,6 @@
 "use client";
 
-import Logo from "@/common/assets/images/localmood_logo.svg";
+import Logo from "@/common/assets/images/localmood-logo.svg";
 import FormInput from "@/feature/auth/components/Form/molecules/FormInput";
 import Button from "@/common/components/ui/buttons/Button/Button";
 import Link from "next/link";

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import CurationNoPhoto from "@/common/assets/images/curationHomeNoImg.png";
+import CurationNoPhoto from "@/common/assets/images/curation-no-img.png";
 import { CurationProps } from "@/feature/curation/type";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@/common/state/toast";
