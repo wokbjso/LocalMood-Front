@@ -1,5 +1,5 @@
-import NonCuration from "@/common/assets/images/curationNoSeat.png";
-import ProfileIcon from "@/common/assets/images/greenProfile.png";
+import NonCuration from "@/common/assets/images/curation-no-seat.png";
+import ProfileIcon from "@/common/assets/images/default-profile.png";
 import Image from "next/image";
 import PrivacyToggleButton from "../../MyCuration/molecules/PrivacyToggleButton";
 import { formatDate } from "@/common/utils/date/format-date";

@@ -1,7 +1,7 @@
 import { CurationProps } from "@/feature/curation/type";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
-import NoResult from "@/common/assets/images/curationHomeNoImg.png";
+import NoResult from "@/common/assets/images/curation-no-img.png";
 
 export default function CurationImages({
   image,
