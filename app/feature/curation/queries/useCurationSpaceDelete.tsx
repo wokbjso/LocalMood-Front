@@ -1,6 +1,6 @@
 "use client";
 
-import { queryFetchingSelector } from "@/common/state/queryFetching";
+import { queryFetchingSelector } from "@/common/state/query-fetching";
 import { toastInfoSelector } from "@/common/state/toast";
 import revalidatePlaceDetail from "@/feature/place/actions/revalidatePlaceDetail";
 import revalidateScrapSpace from "@/feature/place/actions/revalidateScrapSpace";

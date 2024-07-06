@@ -6,7 +6,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { searchSortState } from "@/feature/search/state/sortState";
 import { useSearchParams } from "next/navigation";
 import Label from "@/common/components/ui/text/Label";
-import { isModalOpenSelector } from "@/common/state/handleModalOpen";
+import { isModalOpenSelector } from "@/common/state/modal-open";
 
 //Organism
 export default function ChangeSearchConditon() {

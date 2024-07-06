@@ -5,7 +5,7 @@ import NoCurationText from "../molecules/NoCurationText";
 import CurationInfoCardLight from "./CurationInfoCardLight";
 import { CurationProps } from "@/feature/curation/type";
 import { useSetRecoilState } from "recoil";
-import { isModalOpenSelector } from "@/common/state/handleModalOpen";
+import { isModalOpenSelector } from "@/common/state/modal-open";
 
 export default function MyCurationTabContent() {
   const { data: myCurationData } = useGetMyCuration();

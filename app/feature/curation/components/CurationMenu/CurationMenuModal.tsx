@@ -10,7 +10,7 @@ import { useSetRecoilState } from "recoil";
 import { toastInfo } from "@/common/state/toast";
 import CurationMakeModal from "../CurationMake/organisms/CurationMakeModal";
 import useDeleteCuration from "@/feature/curation/queries/useDeleteCuration";
-import { queryFetchingSelector } from "@/common/state/queryFetching";
+import { queryFetchingSelector } from "@/common/state/query-fetching";
 import EditIcon from "@/common/assets/icons/edit/EditIcon";
 import { ModalContent } from "@/common/components/ui/modal/ModalContent";
 

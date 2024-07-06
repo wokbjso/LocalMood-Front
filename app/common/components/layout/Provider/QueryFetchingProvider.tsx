@@ -3,7 +3,7 @@
 import LoadingUI from "@/common/components/ui/loading/LoadingUI";
 import PageDarkWrapper from "@/common/components/ui/wrapper/PageDarkWrapper";
 import UseDeferredComponent from "@/common/hooks/useDeferredComponent";
-import { queryFetching } from "@/common/state/queryFetching";
+import { queryFetching } from "@/common/state/query-fetching";
 import { useRecoilValue } from "recoil";
 
 export default function QueryFetchingProvider() {
