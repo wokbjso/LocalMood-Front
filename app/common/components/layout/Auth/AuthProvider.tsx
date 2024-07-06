@@ -1,6 +1,6 @@
 "use client";
 
-import { getSession } from "@/common/utils/session/getSession";
+import { getSession } from "@/common/utils/session/get-session";
 import { ReactNode, useEffect } from "react";
 
 interface AuthProviderProps {

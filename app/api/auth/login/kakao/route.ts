@@ -1,4 +1,4 @@
-import { encryptData } from "@/feature/auth/utils/encryptData";
+import { encryptData } from "@/feature/auth/utils/encrypt-data";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 

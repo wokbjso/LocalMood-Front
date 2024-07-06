@@ -1,4 +1,4 @@
-import { getSession } from "@/common/utils/session/getSession";
+import { getSession } from "@/common/utils/session/get-session";
 import revalidateCurationRandom from "@/feature/curation/actions/revalidateCurationRandom";
 import revalidateCurationScrap from "@/feature/curation/actions/revalidateCurationScrap";
 import { NextRequest, NextResponse } from "next/server";
