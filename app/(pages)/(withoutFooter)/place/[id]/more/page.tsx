@@ -1,6 +1,6 @@
 import Divider from "@/common/components/ui/divider/Divider";
 import Title from "@/common/components/ui/text/Title";
-import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
+import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar";
 import PlaceRecordData from "@/feature/place/components/PlaceRecord/organisms/PlaceRecordData";
 import PlaceRecordPurposeDistribution from "@/feature/place/components/PlaceRecord/organisms/PlaceRecordPurposeDistribution";
 import { PLACE_SUB_TYPE } from "@/feature/place/constants/place-tag-category";

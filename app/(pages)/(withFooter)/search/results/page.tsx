@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
+import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar";
 import TextSearchBar from "@/feature/search/components/SearchText/molecules/TextSearchBar";
 import { getTextSearchCurationData } from "@/feature/search/queries/getTextSearchCurationData";
 import { postKeywordSearchCurationData } from "@/feature/search/queries/postKeywordSearchCurationData";

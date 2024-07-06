@@ -7,7 +7,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { cloneElement } from "react";
 import revalidateScrapSpace from "@/feature/place/actions/revalidateScrapSpace";
 import revalidatePlaceReview from "@/feature/record/actions/revalidatePlaceReview";
-import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
+import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar";
 import UseTotalRecordKeyword from "../../../hooks/useTotalRecordKeyword";
 import SelectIndicatingPlaceKeyword from "@/feature/record/components/SelectIndicatingPlaceKeyword/organisms/SelectIndicatingPlaceKeyword";
 import SelectEvaluationKeyword from "@/feature/record/components/SelectEvaluationKeyword/organisms/SelectEvaluationKeyword";
