@@ -2,7 +2,7 @@ import NonCuration from "@/common/assets/images/curationNoSeat.png";
 import ProfileIcon from "@/common/assets/images/greenProfile.png";
 import Image from "next/image";
 import PrivacyToggleButton from "../../MyCuration/molecules/PrivacyToggleButton";
-import { formatDate } from "@/common/utils/date/formatDate";
+import { formatDate } from "@/common/utils/date/format-date";
 import { CurationDetailResponse } from "@/feature/curation/queries/dto/curation-detail";
 import TextWithDivider from "@/common/components/ui/text/TextWithDivider";
 import Title from "@/common/components/ui/text/Title";

@@ -13,7 +13,7 @@ import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@/common/state/toast";
 import { myCurationModalInfoSelector } from "@/common/state/myCurationModal";
 import ImageWrapper from "@/common/components/ui/wrapper/ImageWrapper";
-import { validateLoggedIn } from "@/common/utils/validate/validateLoggedIn";
+import { validateLoggedIn } from "@/common/utils/validate/validate-logged-in";
 import TextWithDivider from "@/common/components/ui/text/TextWithDivider";
 import PlaceInfoCardScrapIcon from "../molecules/PlaceInfoCardScrapIcon";
 import PlaceInfoCardRecordedBadge from "../molecules/PlaceInfoCardRecordedBadge";

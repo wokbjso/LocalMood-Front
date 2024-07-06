@@ -1,4 +1,4 @@
-import { getSession } from "@/common/utils/session/getSession";
+import { getSession } from "@/common/utils/session/get-session";
 import { PlaceScrappedResponse } from "./dto/place-scrapped";
 
 export default async function GetPlaceScrapped(): Promise<PlaceScrappedResponse | null> {
