@@ -1,4 +1,4 @@
-import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar/ArrowBackTopBar";
+import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar";
 import CurationInfoCardLight from "@/feature/curation/components/CurationInfo/organisms/CurationInfoCardLight";
 import GetRandomCuration from "@/feature/curation/queries/getRandomCuration";
 import { Metadata } from "next";
