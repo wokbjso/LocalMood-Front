@@ -9,7 +9,7 @@ import Image from "next/image";
 import CurationScrapIcon from "../../CurationScrap/CurationScrapIcon";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@/common/state/toast";
-import { validateLoggedIn } from "@/common/utils/validate/validateLoggedIn";
+import { validateLoggedIn } from "@/common/utils/validate/validate-logged-in";
 import useFetching from "@/common/hooks/useFetching";
 import { useEffect } from "react";
 import useCurationScrapIcon from "../../../hooks/CurationScrap/useCurationScrapIcon";

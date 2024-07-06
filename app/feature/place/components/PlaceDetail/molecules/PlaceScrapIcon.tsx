@@ -4,7 +4,7 @@ import ScrapFillIcon from "@/common/assets/icons/scrap/ScrapFillIcon";
 import ScrapLineIcon from "@/common/assets/icons/scrap/ScrapLineIcon";
 import { myCurationModalInfoSelector } from "@/common/state/myCurationModal";
 import { toastInfoSelector } from "@/common/state/toast";
-import { validateLoggedIn } from "@/common/utils/validate/validateLoggedIn";
+import { validateLoggedIn } from "@/common/utils/validate/validate-logged-in";
 import useGetPlaceScrapState from "@/feature/place/queries/useGetPlaceScrapState";
 import { useSetRecoilState } from "recoil";
 

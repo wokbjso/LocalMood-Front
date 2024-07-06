@@ -1,5 +1,5 @@
 import ApiErrorMessage from "@/common/utils/error/api-error-message";
-import { getSession } from "@/common/utils/session/getSession";
+import { getSession } from "@/common/utils/session/get-session";
 import { ReviewProps } from "@/feature/record/type";
 
 export default async function GetRecordMyPage(): Promise<{

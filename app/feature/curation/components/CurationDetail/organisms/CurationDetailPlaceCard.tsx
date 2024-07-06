@@ -5,7 +5,7 @@ import PlaceInfoCardBottom from "@/feature/place/components/PlaceInfo/organisms/
 import { useSetRecoilState } from "recoil";
 import { myCurationModalInfoSelector } from "@/common/state/myCurationModal";
 import { toastInfoSelector } from "@/common/state/toast";
-import { validateLoggedIn } from "@/common/utils/validate/validateLoggedIn";
+import { validateLoggedIn } from "@/common/utils/validate/validate-logged-in";
 import useCurationSpaceDelete from "@/feature/curation/queries/useCurationSpaceDelete";
 import { queryFetchingSelector } from "@/common/state/queryFetching";
 import ScrapFillIcon from "@/common/assets/icons/scrap/ScrapFillIcon";

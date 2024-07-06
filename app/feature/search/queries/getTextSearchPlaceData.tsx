@@ -1,4 +1,4 @@
-import { getSession } from "@/common/utils/session/getSession";
+import { getSession } from "@/common/utils/session/get-session";
 import { SearchPlaceResponse } from "./dto/search-type";
 
 export async function getTextSearchPlaceData(

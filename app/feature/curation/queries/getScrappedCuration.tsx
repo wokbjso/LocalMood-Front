@@ -1,4 +1,4 @@
-import { getSession } from "@/common/utils/session/getSession";
+import { getSession } from "@/common/utils/session/get-session";
 
 export default async function getScrappedCuration() {
   const auth_info = await getSession();
