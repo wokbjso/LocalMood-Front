@@ -13,7 +13,7 @@ import SelectIndicatingPlaceKeyword from "@/feature/record/components/SelectIndi
 import SelectEvaluationKeyword from "@/feature/record/components/SelectEvaluationKeyword/organisms/SelectEvaluationKeyword";
 import RecordPageBookButton from "../organisms/RecordPageBookButton";
 import { useSetRecoilState } from "recoil";
-import { queryFetchingSelector } from "@/common/state/queryFetching";
+import { queryFetchingSelector } from "@/common/state/query-fetching";
 import revalidatePlaceDetail from "@/feature/place/actions/revalidatePlaceDetail";
 
 interface RecordSelectProps {
