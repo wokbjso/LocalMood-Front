@@ -7,7 +7,7 @@ import {
   PlaceInfoCardAdditionalProps,
   PlaceInfoCardTopProps,
 } from "@/feature/place/components/PlaceInfo/type";
-import RecordNoImage from "@/common/assets/images/RecordNoImage.png";
+import RecordNoImage from "@/common/assets/images/record-no-img.png";
 import { sliceText } from "@/common/utils/text/slice-text";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@/common/state/toast";

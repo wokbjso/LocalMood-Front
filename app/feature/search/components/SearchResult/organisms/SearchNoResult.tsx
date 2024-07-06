@@ -1,4 +1,4 @@
-import NoResult from "@/common/assets/images/search_no_result.svg";
+import NoResult from "@/common/assets/images/search-no-result.svg";
 import Text from "@/common/components/ui/text/Text";
 
 //Molecule
