@@ -10,7 +10,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "로그인",
   openGraph: {
-    images: ["/loginLogo.png"],
+    images: ["/login-logo.png"],
   },
   description: "이메일 로그인, 혹은 카카오 로그인으로 서비스를 시작해보세요!",
   keywords: ["로컬무드", "localmood", "로그인", "마포구"],
