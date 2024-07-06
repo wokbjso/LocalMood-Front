@@ -16,7 +16,7 @@ export default async function UserProfileMyPage({
   return (
     <section className="flex pt-[1.2rem] mb-[3.6rem]">
       <Image
-        src={"/default_user.png"}
+        src={"/default-user.png"}
         alt="프로필 사진"
         width={72}
         height={72}
