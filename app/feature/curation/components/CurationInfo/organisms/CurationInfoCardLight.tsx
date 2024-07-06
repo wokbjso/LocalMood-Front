@@ -10,7 +10,7 @@ import CurationScrapIcon from "../../CurationScrap/CurationScrapIcon";
 import useCurationScrapIcon from "../../../hooks/CurationScrap/useCurationScrapIcon";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@/common/state/toast";
-import { validateLoggedIn } from "@/common/utils/validate/validateLoggedIn";
+import { validateLoggedIn } from "@/common/utils/validate/validate-logged-in";
 import { useEffect } from "react";
 import useFetching from "@/common/hooks/useFetching";
 import revalidateCurationScrapRelatedData from "@/feature/curation/actions/revalidateCurationScrapRelatedData";
