@@ -1,4 +1,4 @@
-import SuccessImage from "@/common/assets/images/register_success.svg";
+import SuccessImage from "@/common/assets/images/register-success.svg";
 import LinkLayout from "@/common/components/layout/Link/LinkLayout";
 import Button from "@/common/components/ui/buttons/Button/Button";
 

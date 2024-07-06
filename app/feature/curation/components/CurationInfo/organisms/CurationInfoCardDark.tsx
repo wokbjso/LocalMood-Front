@@ -2,7 +2,7 @@
 
 import UserProfile from "@/feature/user/components/UserProfile/molecules/UserProfile";
 import { CurationProps } from "@/feature/curation/type";
-import NoResult from "@/common/assets/images/curationHomeNoImg.png";
+import NoResult from "@/common/assets/images/curation-no-img.png";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
 import Image from "next/image";
