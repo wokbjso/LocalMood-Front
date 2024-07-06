@@ -2,7 +2,7 @@
 
 import LockIcon from "@/common/assets/icons/lock/LockIcon";
 import UnlockIcon from "@/common/assets/icons/lock/UnlockIcon";
-import { queryFetchingSelector } from "@/common/state/queryFetching";
+import { queryFetchingSelector } from "@/common/state/query-fetching";
 import { toastInfoSelector } from "@/common/state/toast";
 import revalidateCurationDetail from "@/feature/curation/actions/revalidateCurationDetail";
 import revalidatePlaceDetail from "@/feature/place/actions/revalidatePlaceDetail";

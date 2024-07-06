@@ -1,6 +1,6 @@
 "use client";
 
-import { queryFetchingSelector } from "@/common/state/queryFetching";
+import { queryFetchingSelector } from "@/common/state/query-fetching";
 import { toastInfoSelector } from "@/common/state/toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSetRecoilState } from "recoil";

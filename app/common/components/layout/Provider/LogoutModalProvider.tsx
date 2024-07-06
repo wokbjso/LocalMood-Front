@@ -1,6 +1,6 @@
 "use client";
 
-import { isModalOpenSelector } from "@/common/state/handleModalOpen";
+import { isModalOpenSelector } from "@/common/state/modal-open";
 import LogoutModal from "@/feature/auth/components/Logout/organisms/LogoutModal";
 import { useRecoilState } from "recoil";
 import ConfirmModal from "../../ui/modal/ConfirmModal";

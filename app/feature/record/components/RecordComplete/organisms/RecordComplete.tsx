@@ -1,7 +1,7 @@
 import React from "react";
 import CompleteIcon from "@/common/assets/images/record-complete.svg";
 import { useSetRecoilState } from "recoil";
-import { myCurationModalInfoSelector } from "@/common/state/myCurationModal";
+import { myCurationModalInfoSelector } from "@/common/state/my-curation-modal";
 import TextWithRightArrow from "@/common/components/ui/text/TextWithRightArrow";
 import Title from "@/common/components/ui/text/Title";
 

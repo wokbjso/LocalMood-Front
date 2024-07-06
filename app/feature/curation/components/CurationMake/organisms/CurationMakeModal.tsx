@@ -7,7 +7,7 @@ import Button from "@/common/components/ui/buttons/Button/Button";
 import { useSetRecoilState } from "recoil";
 import useMakeCuration from "@/feature/curation/queries/useMakeCuration";
 import useEditCuration from "@/feature/curation/queries/useEditCuration";
-import { queryFetchingSelector } from "@/common/state/queryFetching";
+import { queryFetchingSelector } from "@/common/state/query-fetching";
 import CurationMakeKeyword from "./CurationMakeKeyword";
 
 interface CurationMakeProps {
