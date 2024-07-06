@@ -16,7 +16,7 @@ export default function LoginLogo({ className }: { className?: string }) {
       )}
     >
       <Image
-        src="/loginLogo.png"
+        src="/login-logo.png"
         alt="로그인 이미지"
         fill
         sizes="100vw"

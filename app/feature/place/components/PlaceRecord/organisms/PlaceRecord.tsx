@@ -29,7 +29,7 @@ export default function PlaceRecord({
       <div className="flex items-start">
         <div className="w-[1.6rem] h-[1.6rem] relative mr-[0.8rem]">
           <Image
-            src={"/default_user.png"}
+            src={"/default-user.png"}
             alt="프로필 사진"
             fill
             sizes="10vw"
