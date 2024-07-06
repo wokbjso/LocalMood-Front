@@ -1,6 +1,6 @@
 "use client";
 
-import { isModalOpenSelector } from "@/common/state/handleModalOpen";
+import { isModalOpenSelector } from "@/common/state/modal-open";
 import CurationMakeModal from "@/feature/curation/components/CurationMake/organisms/CurationMakeModal";
 import { useRecoilState } from "recoil";
 

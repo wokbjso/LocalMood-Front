@@ -3,7 +3,7 @@ import UseOutsideClick from "@/common/hooks/useOutsideClick";
 import UserProfileIcon from "@/common/assets/icons/user/UserProfileIcon";
 import { ModalContent } from "@/common/components/ui/modal/ModalContent";
 import { useSetRecoilState } from "recoil";
-import { isModalOpenSelector } from "@/common/state/handleModalOpen";
+import { isModalOpenSelector } from "@/common/state/modal-open";
 
 //Organism
 export default function LogoutModal({

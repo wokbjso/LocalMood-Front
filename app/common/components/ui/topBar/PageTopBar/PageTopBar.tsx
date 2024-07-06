@@ -4,7 +4,7 @@ import MenuIcon from "@/common/assets/icons/menu/MenuIcon";
 import { twMerge } from "tailwind-merge";
 import Title from "../../text/Title";
 import { useSetRecoilState } from "recoil";
-import { isModalOpenSelector } from "@/common/state/handleModalOpen";
+import { isModalOpenSelector } from "@/common/state/modal-open";
 
 interface PageTopBarProps {
   text: string;

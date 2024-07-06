@@ -3,14 +3,14 @@ import CloseIcon from "@/common/assets/icons/close/CloseIcon";
 import Modal from "@/common/components/ui/modal/Modal";
 import CurationMakeButton from "../../CurationMake/molecules/CurationMakeButton";
 import { useSetRecoilState } from "recoil";
-import { myCurationModalInfoSelector } from "@/common/state/myCurationModal";
+import { myCurationModalInfoSelector } from "@/common/state/my-curation-modal";
 import { twMerge } from "tailwind-merge";
 import Title from "@/common/components/ui/text/Title";
 const MyCurationCardList = lazy(() => import("./MyCurationCardList"));
 import ApiErrorFallback from "@/common/components/ui/error/ApiErrorFallback";
 import { ErrorBoundary } from "react-error-boundary";
 import { QueryErrorResetBoundary } from "@tanstack/react-query";
-import { isModalOpenSelector } from "@/common/state/handleModalOpen";
+import { isModalOpenSelector } from "@/common/state/modal-open";
 import UseDeferredComponent from "@/common/hooks/useDeferredComponent";
 import MyCurationCardSkeleton from "../skeleton/MyCurationCardSkeleton";
 

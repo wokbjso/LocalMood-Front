@@ -11,7 +11,7 @@ import RecordNoImage from "@/common/assets/images/record-no-img.png";
 import { sliceText } from "@/common/utils/text/slice-text";
 import { useSetRecoilState } from "recoil";
 import { toastInfoSelector } from "@/common/state/toast";
-import { myCurationModalInfoSelector } from "@/common/state/myCurationModal";
+import { myCurationModalInfoSelector } from "@/common/state/my-curation-modal";
 import ImageWrapper from "@/common/components/ui/wrapper/ImageWrapper";
 import { validateLoggedIn } from "@/common/utils/validate/validate-logged-in";
 import TextWithDivider from "@/common/components/ui/text/TextWithDivider";

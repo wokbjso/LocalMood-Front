@@ -1,6 +1,6 @@
 "use client";
 
-import { isModalOpenSelector } from "@/common/state/handleModalOpen";
+import { isModalOpenSelector } from "@/common/state/modal-open";
 import ChangeSearchSortModal from "@/feature/search/components/SearchResult/organisms/ChangeSearchSortModal";
 import { useRecoilState } from "recoil";
 
