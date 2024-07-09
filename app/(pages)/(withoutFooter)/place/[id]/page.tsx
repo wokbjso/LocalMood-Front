@@ -66,13 +66,7 @@ export default async function PlaceDetailPage({ params: { id } }: Props) {
   return (
     <div className="w-[100%] h-[100%] relative pb-[60px] overflow-auto">
       {/* Template */}
-      <Suspense
-        fallback={
-          <UseDeferredComponent>
-            <LoadingUI />
-          </UseDeferredComponent>
-        }
-      >
+      <Suspense fallback={null}>
         <PlaceDetailTopBar
           type={detailData.info.type}
           address={detailData.info.address}
@@ -92,7 +86,9 @@ export default async function PlaceDetailPage({ params: { id } }: Props) {
           optionalService={detailData.info.optionalService}
           dishDesc={detailData.info.dishDesc}
         />
-        <Divider className="h-[0.4rem] mb-[3.6rem] bg-line-gray-3" />
+      </Suspense>
+      <Divider className="h-[0.4rem] mb-[3.6rem] bg-line-gray-3" />
+      <Suspense fallback={null}>
         <PlaceKeywordSummary
           mainText="유저들이 기록한 키워드 요약"
           description="이 공간을 가장 잘 설명하는 키워드에요"
@@ -111,7 +107,9 @@ export default async function PlaceDetailPage({ params: { id } }: Props) {
             detailData.info.negativeEval ? detailData.info.negativeEval : null
           }
         />
-        <Divider className="bg-line-gray-3 h-[0.4rem] mb-[4.8rem]" />
+      </Suspense>
+      <Divider className="bg-line-gray-3 h-[0.4rem] mb-[4.8rem]" />
+      <Suspense fallback={null}>
         <section className="pl-[2rem] w-[100%]">
           <RelatedSlider title={`${detailData.info.name}와(과) 비슷한 장소`}>
             {detailData.similarSpaceList.slice(0, 6).map((data) => (
