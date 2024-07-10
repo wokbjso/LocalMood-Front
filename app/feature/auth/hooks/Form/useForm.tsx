@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { LoginFormState, RegisterFormState } from "../../type";
+import { LoginFormState, RegisterFormState } from "../../components/Form/type";
 import { validateForm } from "@/common/utils/validate/validate-form";
 
 const FIELD = ["email", "password", "nickname"];
