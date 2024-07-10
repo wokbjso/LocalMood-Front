@@ -19,8 +19,6 @@ import { Metadata } from "next";
 import { PLACE_SUB_TYPE } from "@/feature/place/constants/place-tag-category";
 import RelatedSlider from "@/feature/place/components/PlaceDetail/organisms/RelatedSlider";
 import { Suspense } from "react";
-import UseDeferredComponent from "@/common/hooks/useDeferredComponent";
-import LoadingUI from "@/common/components/ui/loading/LoadingUI";
 
 type Props = {
   params: { id: number };

@@ -2,7 +2,6 @@
 
 import { queryFetchingSelector } from "@/common/state/query-fetching";
 import { toastInfoSelector } from "@/common/state/toast";
-import revalidatePlaceDetail from "@/feature/place/actions/revalidatePlaceDetail";
 import revalidateScrapSpace from "@/feature/place/actions/revalidateScrapSpace";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSetRecoilState } from "recoil";
@@ -26,7 +25,6 @@ async function curationSpaceDelete(data: {
 
 const revalidateRelatedData = () => {
   revalidateScrapSpace();
-  revalidatePlaceDetail();
 };
 
 export default function useCurationSpaceDelete(count: number) {

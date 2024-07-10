@@ -11,7 +11,7 @@ export default async function GetPlaceDetail(
       headers: {
         "Content-Type": "application/json",
       },
-      next: { tags: ["getPlaceDetail"] },
+      next: { revalidate: 60 },
     }
   );
   if (!res.ok) throw new Error(ApiErrorMessage(res.status));
