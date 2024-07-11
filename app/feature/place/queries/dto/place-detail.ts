@@ -27,7 +27,10 @@ export interface PlaceDetailInfoProps {
 }
 
 export interface PlaceDetailResponse {
+  info: PlaceDetailInfoProps;
+}
+
+export interface PlaceRelatedInfoResponse {
   similarSpaceList: Omit<PlaceProps, "keyword">[];
   relatedCurationList: RelatedCurationProps[];
-  info: PlaceDetailInfoProps;
 }

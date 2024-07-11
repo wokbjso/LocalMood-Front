@@ -19,6 +19,7 @@ import { Metadata } from "next";
 import { PLACE_SUB_TYPE } from "@/feature/place/constants/place-tag-category";
 import RelatedSlider from "@/feature/place/components/PlaceDetail/organisms/RelatedSlider";
 import { Suspense } from "react";
+import GetPlaceRelatedInfo from "@/feature/place/queries/getPlaceRelatedInfo";
 
 type Props = {
   params: { id: number };
@@ -60,7 +61,11 @@ export async function generateStaticParams() {
 
 //Page
 export default async function PlaceDetailPage({ params: { id } }: Props) {
-  const detailData = await GetPlaceDetail(id);
+  const details = GetPlaceDetail(id);
+  const related = GetPlaceRelatedInfo(id);
+
+  const [detailData, relatedData] = await Promise.all([details, related]);
+
   return (
     <div className="w-[100%] h-[100%] relative pb-[60px] overflow-auto">
       {/* Template */}
@@ -84,9 +89,7 @@ export default async function PlaceDetailPage({ params: { id } }: Props) {
           optionalService={detailData.info.optionalService}
           dishDesc={detailData.info.dishDesc}
         />
-      </Suspense>
-      <Divider className="h-[0.4rem] mb-[3.6rem] bg-line-gray-3" />
-      <Suspense fallback={null}>
+        <Divider className="h-[0.4rem] mb-[3.6rem] bg-line-gray-3" />
         <PlaceKeywordSummary
           mainText="유저들이 기록한 키워드 요약"
           description="이 공간을 가장 잘 설명하는 키워드에요"
@@ -110,7 +113,7 @@ export default async function PlaceDetailPage({ params: { id } }: Props) {
       <Suspense fallback={null}>
         <section className="pl-[2rem] w-[100%]">
           <RelatedSlider title={`${detailData.info.name}와(과) 비슷한 장소`}>
-            {detailData.similarSpaceList.slice(0, 6).map((data) => (
+            {relatedData.similarSpaceList.slice(0, 6).map((data) => (
               <PlaceInfoCard
                 key={data.id}
                 size="small"
@@ -119,11 +122,11 @@ export default async function PlaceDetailPage({ params: { id } }: Props) {
               />
             ))}
           </RelatedSlider>
-          {detailData.relatedCurationList.length > 0 && (
+          {relatedData.relatedCurationList.length > 0 && (
             <RelatedSlider
               title={`${detailData.info.name}이(가) 담긴 큐레이션`}
             >
-              {detailData.relatedCurationList.map((data) => (
+              {relatedData.relatedCurationList.map((data) => (
                 <CurationInfoCardDark
                   key={data.id}
                   {...data}
