@@ -8,11 +8,11 @@ interface RelatedSliderListsProps {
   name: string;
 }
 
-export default function RelatedSliderLists({
+export default async function RelatedSliderLists({
   id,
   name,
 }: RelatedSliderListsProps) {
-  const { data: relatedData } = useGetPlaceRelatedInfo(id);
+  const relatedData = await GetPlaceRelatedInfo(id);
 
   return (
     <section className="pl-[2rem] w-[100%]">
