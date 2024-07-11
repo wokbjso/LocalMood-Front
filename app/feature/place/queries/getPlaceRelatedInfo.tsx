@@ -17,5 +17,9 @@ export default async function GetPlaceRelatedInfo(
   if (!res.ok) throw new Error(ApiErrorMessage(res.status));
 
   const data = await res.json();
+
+  // Introduce a 5-second delay before returning the data
+  await new Promise((resolve) => setTimeout(resolve, 5000));
+
   return data;
 }
