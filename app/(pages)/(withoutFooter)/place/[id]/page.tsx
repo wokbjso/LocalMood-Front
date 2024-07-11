@@ -7,19 +7,10 @@ import PlaceKeywordSummary from "@/feature/place/components/PlaceDetail/organism
 import { Metadata } from "next";
 import { PLACE_SUB_TYPE } from "@/feature/place/constants/place-tag-category";
 import { Suspense } from "react";
-const RelatedSliderLists = dynamic(
-  () =>
-    import(
-      "@/feature/place/components/PlaceDetail/organisms/RelatedSliderLists"
-    ),
-  {
-    ssr: false,
-  }
-);
 import PlaceDetailTopBar from "@/feature/place/components/PlaceDetail/organisms/PlaceDetailTopBar";
 import UseDeferredComponent from "@/common/hooks/useDeferredComponent";
 import LoadingUI from "@/common/components/ui/loading/LoadingUI";
-import dynamic from "next/dynamic";
+import RelatedSliderLists from "@/feature/place/components/PlaceDetail/organisms/RelatedSliderLists";
 
 type Props = {
   params: { id: number };
@@ -55,14 +46,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export async function generateStaticParams() {
-  return [];
-}
-
 //Page
-export default async function PlaceDetailPage({ params: { id } }: Props) {
-  const detailData = await GetPlaceDetail(id);
-
+export default async function PlaceDetailPage({
+  params,
+}: {
+  params: { id: number };
+}) {
+  const detailData = await GetPlaceDetail(params.id);
   return (
     <div className="w-[100%] h-[100%] relative pb-[60px] overflow-auto">
       {/* Template */}
@@ -77,7 +67,7 @@ export default async function PlaceDetailPage({ params: { id } }: Props) {
         />
         <PlaceImageSlider imgUrlList={detailData.info.imgUrlList} />
         <PlaceDetailInfo
-          id={id}
+          id={params.id}
           name={detailData.info.name}
           type={detailData.info.type}
           subType={detailData.info.subType}
@@ -114,7 +104,7 @@ export default async function PlaceDetailPage({ params: { id } }: Props) {
           </UseDeferredComponent>
         }
       >
-        <RelatedSliderLists id={id} name={detailData.info.name} />
+        <RelatedSliderLists id={params.id} name={detailData.info.name} />
       </Suspense>
     </div>
   );
