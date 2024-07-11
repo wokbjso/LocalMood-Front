@@ -4,12 +4,13 @@ import TextWithDivider from "@/common/components/ui/text/TextWithDivider";
 import PlaceDetailSubInfo from "./PlaceDetailSubInfo";
 import Title from "@/common/components/ui/text/Title";
 import dynamic from "next/dynamic";
+import GetPlaceDetail from "@/feature/place/queries/getPlaceDetail";
 const PlaceScrapIcon = dynamic(() => import("../molecules/PlaceScrapIcon"), {
   ssr: false,
 });
 
 //Organism
-export default function PlaceDetailInfo({
+export default async function PlaceDetailInfo({
   id,
   name,
   type,

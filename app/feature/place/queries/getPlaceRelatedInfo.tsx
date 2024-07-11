@@ -1,7 +1,4 @@
-import {
-  PlaceDetailResponse,
-  PlaceRelatedInfoResponse,
-} from "./dto/place-detail";
+import { PlaceRelatedInfoResponse } from "./dto/place-detail";
 import ApiErrorMessage from "@/common/utils/error/api-error-message";
 
 export default async function GetPlaceRelatedInfo(
@@ -20,5 +17,9 @@ export default async function GetPlaceRelatedInfo(
   if (!res.ok) throw new Error(ApiErrorMessage(res.status));
 
   const data = await res.json();
+
+  // Introduce a 5-second delay before returning the data
+  await new Promise((resolve) => setTimeout(resolve, 10000));
+
   return data;
 }
