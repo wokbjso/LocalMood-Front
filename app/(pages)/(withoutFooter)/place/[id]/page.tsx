@@ -7,10 +7,19 @@ import PlaceKeywordSummary from "@/feature/place/components/PlaceDetail/organism
 import { Metadata } from "next";
 import { PLACE_SUB_TYPE } from "@/feature/place/constants/place-tag-category";
 import { Suspense } from "react";
-import RelatedSliderLists from "@/feature/place/components/PlaceDetail/organisms/RelatedSliderLists";
+const RelatedSliderLists = dynamic(
+  () =>
+    import(
+      "@/feature/place/components/PlaceDetail/organisms/RelatedSliderLists"
+    ),
+  {
+    ssr: false,
+  }
+);
 import PlaceDetailTopBar from "@/feature/place/components/PlaceDetail/organisms/PlaceDetailTopBar";
 import UseDeferredComponent from "@/common/hooks/useDeferredComponent";
 import LoadingUI from "@/common/components/ui/loading/LoadingUI";
+import dynamic from "next/dynamic";
 
 type Props = {
   params: { id: number };
