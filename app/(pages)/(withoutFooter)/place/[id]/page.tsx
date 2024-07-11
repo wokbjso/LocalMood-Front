@@ -6,7 +6,7 @@ import PlaceKeywordEvaluation from "@/feature/place/components/PlaceDetail/organ
 import PlaceKeywordSummary from "@/feature/place/components/PlaceDetail/organisms/PlaceKeywordSummary";
 import { Metadata } from "next";
 import { PLACE_SUB_TYPE } from "@/feature/place/constants/place-tag-category";
-import { Suspense, lazy } from "react";
+import { Suspense } from "react";
 import RelatedSliderLists from "@/feature/place/components/PlaceDetail/organisms/RelatedSliderLists";
 import PlaceDetailTopBar from "@/feature/place/components/PlaceDetail/organisms/PlaceDetailTopBar";
 import UseDeferredComponent from "@/common/hooks/useDeferredComponent";
