@@ -1,25 +1,16 @@
-import dynamic from "next/dynamic";
 import Divider from "@/common/components/ui/divider/Divider";
 import PlaceDetailInfo from "@/feature/place/components/PlaceDetail/organisms/PlaceDetailInfo";
 import GetPlaceDetail from "@/feature/place/queries/getPlaceDetail";
-import PlaceDetailTopBar from "@/feature/place/components/PlaceDetail/organisms/PlaceDetailTopBar";
 import PlaceImageSlider from "@/feature/place/components/PlaceDetail/organisms/PlaceImageSlider";
 import PlaceKeywordEvaluation from "@/feature/place/components/PlaceDetail/organisms/PlaceKeywordEvaluation";
 import PlaceKeywordSummary from "@/feature/place/components/PlaceDetail/organisms/PlaceKeywordSummary";
-const PlaceInfoCard = dynamic(
-  () => import("@/feature/place/components/PlaceInfo/organisms/PlaceInfoCard")
-);
-const CurationInfoCardDark = dynamic(
-  () =>
-    import(
-      "@/feature/curation/components/CurationInfo/organisms/CurationInfoCardDark"
-    )
-);
 import { Metadata } from "next";
 import { PLACE_SUB_TYPE } from "@/feature/place/constants/place-tag-category";
-import RelatedSlider from "@/feature/place/components/PlaceDetail/organisms/RelatedSlider";
 import { Suspense } from "react";
-import GetPlaceRelatedInfo from "@/feature/place/queries/getPlaceRelatedInfo";
+import RelatedSliderLists from "@/feature/place/components/PlaceDetail/organisms/RelatedSliderLists";
+import PlaceDetailTopBar from "@/feature/place/components/PlaceDetail/organisms/PlaceDetailTopBar";
+import UseDeferredComponent from "@/common/hooks/useDeferredComponent";
+import LoadingUI from "@/common/components/ui/loading/LoadingUI";
 
 type Props = {
   params: { id: number };
@@ -61,10 +52,7 @@ export async function generateStaticParams() {
 
 //Page
 export default async function PlaceDetailPage({ params: { id } }: Props) {
-  const details = GetPlaceDetail(id);
-  const related = GetPlaceRelatedInfo(id);
-
-  const [detailData, relatedData] = await Promise.all([details, related]);
+  const detailData = await GetPlaceDetail(id);
 
   return (
     <div className="w-[100%] h-[100%] relative pb-[60px] overflow-auto">
@@ -80,7 +68,7 @@ export default async function PlaceDetailPage({ params: { id } }: Props) {
         />
         <PlaceImageSlider imgUrlList={detailData.info.imgUrlList} />
         <PlaceDetailInfo
-          id={detailData.info.id}
+          id={id}
           name={detailData.info.name}
           type={detailData.info.type}
           subType={detailData.info.subType}
@@ -110,32 +98,14 @@ export default async function PlaceDetailPage({ params: { id } }: Props) {
         />
       </Suspense>
       <Divider className="bg-line-gray-3 h-[0.4rem] mb-[4.8rem]" />
-      <Suspense fallback={null}>
-        <section className="pl-[2rem] w-[100%]">
-          <RelatedSlider title={`${detailData.info.name}와(과) 비슷한 장소`}>
-            {relatedData.similarSpaceList.slice(0, 6).map((data) => (
-              <PlaceInfoCard
-                key={data.id}
-                size="small"
-                {...data}
-                className="w-[16.3rem] mr-[0.8rem]"
-              />
-            ))}
-          </RelatedSlider>
-          {relatedData.relatedCurationList.length > 0 && (
-            <RelatedSlider
-              title={`${detailData.info.name}이(가) 담긴 큐레이션`}
-            >
-              {relatedData.relatedCurationList.map((data) => (
-                <CurationInfoCardDark
-                  key={data.id}
-                  {...data}
-                  className="w-[33.5rem] mr-[0.8rem]"
-                />
-              ))}
-            </RelatedSlider>
-          )}
-        </section>
+      <Suspense
+        fallback={
+          <UseDeferredComponent>
+            <LoadingUI className="h-0" />
+          </UseDeferredComponent>
+        }
+      >
+        <RelatedSliderLists id={id} name={detailData.info.name} />
       </Suspense>
     </div>
   );

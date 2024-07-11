@@ -3,7 +3,6 @@ import { PLACE_CATEGORY } from "@/feature/place/constants/place-tag-category";
 import PlaceKeywordSummaryLine from "./PlaceKeywordSummaryLine";
 import PlaceKeywordSummaryPurpose from "./PlaceKeywordSummaryPurpose";
 import Title from "@/common/components/ui/text/Title";
-import dayjs from "dayjs";
 
 //Organism
 export default function PlaceKeywordSummary({
