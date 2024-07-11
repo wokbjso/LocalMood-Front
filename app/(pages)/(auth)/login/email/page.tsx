@@ -5,7 +5,7 @@ import FormInput from "@/feature/auth/components/Form/molecules/FormInput";
 import Button from "@/common/components/ui/buttons/Button/Button";
 import Link from "next/link";
 import UseForm from "@/feature/auth/hooks/Form/useForm";
-import { LoginFormState } from "@/feature/auth/type";
+import { LoginFormState } from "@/feature/auth/components/Form/type";
 import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar";
 import TextWithBorder from "@/feature/auth/components/Login/molecules/TextWithBorder";
 
