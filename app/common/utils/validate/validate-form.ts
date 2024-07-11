@@ -1,4 +1,7 @@
-import { LoginFormState, RegisterFormState } from "@/feature/auth/type";
+import {
+  LoginFormState,
+  RegisterFormState,
+} from "@/feature/auth/components/Form/type";
 
 export function validateForm(
   formData: LoginFormState | RegisterFormState

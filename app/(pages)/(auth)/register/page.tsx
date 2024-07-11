@@ -3,7 +3,10 @@
 import FormInput from "@/feature/auth/components/Form/molecules/FormInput";
 import Button from "@/common/components/ui/buttons/Button/Button";
 import UseForm from "@/feature/auth/hooks/Form/useForm";
-import { LoginFormState, RegisterFormState } from "@/feature/auth/type";
+import {
+  LoginFormState,
+  RegisterFormState,
+} from "@/feature/auth/components/Form/type";
 import { useRouter } from "next/navigation";
 import ArrowBackTopBar from "@/common/components/ui/topBar/ArrowBackTopBar";
 import useFetching from "@/common/hooks/useFetching";

@@ -3385,6 +3385,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@storybook/addon-a11y@npm:7.6.16":
+  version: 7.6.16
+  resolution: "@storybook/addon-a11y@npm:7.6.16"
+  dependencies:
+    "@storybook/addon-highlight": 7.6.16
+    axe-core: ^4.2.0
+  checksum: 407b827a579116d4e17856be1faa84a2cf4ebc59fb8b33341fc12f48d7142b636d67727deb705c7e0ad729ead8ffb3a1f2892b6634582515e3f57790f260df39
+  languageName: node
+  linkType: hard
+
 "@storybook/addon-actions@npm:7.6.6":
   version: 7.6.6
   resolution: "@storybook/addon-actions@npm:7.6.6"
@@ -3473,6 +3483,15 @@ __metadata:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
   checksum: b068d926b34a3a4b3797212cbef5bf3f1e6298b2e346d0f5bdc3747cd322e34177a4d8e488d9f2e1bc09e94533cc3f85c030ea6bf3e36a536bd9546fa45204d1
+  languageName: node
+  linkType: hard
+
+"@storybook/addon-highlight@npm:7.6.16":
+  version: 7.6.16
+  resolution: "@storybook/addon-highlight@npm:7.6.16"
+  dependencies:
+    "@storybook/global": ^5.0.0
+  checksum: d5493f260b0b90e8d75c6327adc2fb77905f7938b37fb051d6046511a4145b5291b102369d3a687da4543603e4aed2353951d25c7c77e272c5faa1c901e17b7d
   languageName: node
   linkType: hard
 
@@ -6528,6 +6547,13 @@ __metadata:
   version: 4.7.0
   resolution: "axe-core@npm:4.7.0"
   checksum: f086bcab42be1761ba2b0b127dec350087f4c3a853bba8dd58f69d898cefaac31a1561da23146f6f3c07954c76171d1f2ce460e555e052d2b02cd79af628fa4a
+  languageName: node
+  linkType: hard
+
+"axe-core@npm:^4.2.0":
+  version: 4.9.1
+  resolution: "axe-core@npm:4.9.1"
+  checksum: 41d9227871781f96c2952e2a777fca73624959dd0e98864f6d82806a77602f82b4fc490852082a7e524d8cd864e50d8b4d9931819b4a150112981d8c932110c5
   languageName: node
   linkType: hard
 
@@ -12468,6 +12494,7 @@ __metadata:
     "@babel/core": ^7.24.5
     "@next/bundle-analyzer": ^14.2.1
     "@opentelemetry/api": ^1.8.0
+    "@storybook/addon-a11y": 7.6.16
     "@storybook/addon-essentials": 7.6.6
     "@storybook/addon-interactions": 7.6.6
     "@storybook/addon-links": 7.6.6

@@ -1,11 +1,14 @@
-import { PlaceDetailResponse } from "./dto/place-detail";
+import {
+  PlaceDetailResponse,
+  PlaceRelatedInfoResponse,
+} from "./dto/place-detail";
 import ApiErrorMessage from "@/common/utils/error/api-error-message";
 
-export default async function GetPlaceDetail(
+export default async function GetPlaceRelatedInfo(
   id: number
-): Promise<PlaceDetailResponse> {
+): Promise<PlaceRelatedInfoResponse> {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/spaces/${id}`,
+    `${process.env.NEXT_PUBLIC_SERVER_API}/api/v1/spaces/${id}/related-info`,
     {
       method: "GET",
       headers: {
