@@ -1,20 +1,18 @@
-"use client";
-
 import PlaceInfoCard from "../../PlaceInfo/organisms/PlaceInfoCard";
 import CurationInfoCardDark from "@/feature/curation/components/CurationInfo/organisms/CurationInfoCardDark";
-import useGetPlaceRelatedInfo from "@/feature/place/queries/useGetPlaceRelatedInfo";
 import RelatedSlider from "./RelatedSlider";
+import GetPlaceRelatedInfo from "@/feature/place/queries/getPlaceRelatedInfo";
 
 interface RelatedSliderListsProps {
   id: number;
   name: string;
 }
 
-export default function RelatedSliderLists({
+export default async function RelatedSliderLists({
   id,
   name,
 }: RelatedSliderListsProps) {
-  const { data: relatedData } = useGetPlaceRelatedInfo(id);
+  const relatedData = await GetPlaceRelatedInfo(id);
 
   return (
     <section className="pl-[2rem] w-[100%]">
