@@ -14,7 +14,7 @@ export default function RelatedSlider({ title, children }: RelatedSliderProps) {
   return (
     <div>
       <Title className="headline2">{title}</Title>
-      <SliderLayout className="mt-[1.6rem] mb-[6rem]">{children}</SliderLayout>
+      <SliderLayout className="mt-[16px] mb-[60px]">{children}</SliderLayout>
     </div>
   );
 }
