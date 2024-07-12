@@ -15,7 +15,7 @@ export default function PlaceKeywordSummaryPurpose({
       <Label className="body2-medium text-text-gray-6">
         {PLACE_CATEGORY["purpose"]}
       </Label>
-      <div className="flex justify-between mt-[0.8rem] mb-[1.6rem]">
+      <div className="flex justify-between mt-[8px] mb-[16px]">
         {purpose.map((text, i) => (
           <PlacePurposeBox key={text + i} purpose={text} />
         ))}

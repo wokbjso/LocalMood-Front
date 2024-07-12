@@ -33,14 +33,14 @@ export default async function PlaceDetailInfo({
   return (
     <>
       <div className="flex-col relative">
-        <Title className="mb-[0.8rem] px-[2rem] headline0">{name}</Title>
+        <Title className="mb-[8px] px-[20px] headline0">{name}</Title>
         <PlaceScrapIcon id={id} />
         <TextWithDivider
           leftText={
             type === "CAFE" ? "카페" : subType && PLACE_SUB_TYPE[subType]
           }
           rightText={address}
-          className="px-[2rem] mb-[24px]"
+          className="px-[20px] mb-[24px]"
         />
         <PlaceDetailSubInfo
           type={type}

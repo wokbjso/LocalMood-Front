@@ -15,7 +15,7 @@ export default async function RelatedSliderLists({
   const relatedData = await GetPlaceRelatedInfo(id);
 
   return (
-    <section className="pl-[2rem] w-[100%]">
+    <section className="pl-[20px] w-[100%]">
       <RelatedSlider title={`${name}와(과) 비슷한 장소`}>
         {relatedData?.similarSpaceList.slice(0, 6).map((data) => (
           <PlaceInfoCard
