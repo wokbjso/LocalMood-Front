@@ -22,7 +22,7 @@ export default function LoginPage() {
     // Template
     <div className="w-[100%] h-[100%]">
       <KakaoScript />
-      <LoginLogo className="w-full h-[40vh]" />
+      <LoginLogo className="w-full h-[40dvh]" />
       <LoginPageText
         mainText1="키워드로 쉽고 빠르게"
         mainText2="찾아보세요!"

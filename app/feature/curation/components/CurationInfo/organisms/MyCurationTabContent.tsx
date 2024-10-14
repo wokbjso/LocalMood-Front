@@ -38,7 +38,7 @@ export default function MyCurationTabContent() {
       ) : (
         <NoCurationText
           text="아직 생성한 큐레이션이 없습니다."
-          className=" h-[57vh]"
+          className=" h-[57dvh]"
         />
       )}
     </>

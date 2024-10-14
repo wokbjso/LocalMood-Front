@@ -23,7 +23,7 @@ export default function LoginPageText({
     <div
       className={twMerge(
         "flex flex-col items-center",
-        browserHeight < 500 ? "top-[36vh]" : "top-[45vh]",
+        browserHeight < 500 ? "top-[36dvh]" : "top-[45dvh]",
         className
       )}
     >

@@ -14,7 +14,7 @@ export default async function RecordScrappedMorePage() {
       <Title className="headline1-semibold pb-[20px]">스크랩한 공간</Title>
       <div className="flex flex-col items-start w-full h-full gap-[0.8rem] pb-[15rem] overflow-auto">
         {scrappedPlace && scrappedPlace.length === 0 && (
-          <p className="flex w-full justify-center items-center h-[50vh] body1-medium text-text-gray-8">
+          <p className="flex w-full justify-center items-center h-[50dvh] body1-medium text-text-gray-8">
             아직 스크랩한 공간이 없습니다.
           </p>
         )}
