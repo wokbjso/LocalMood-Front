@@ -14,7 +14,11 @@ const nextConfig = {
   images: {
     deviceSizes: [640, 750, 828],
     imageSizes: [96, 198, 384],
-    domains: ["github.com", "localmood-bucket.s3.amazonaws.com"],
+    domains: [
+      "github.com",
+      "localmood-bucket.s3.amazonaws.com",
+      "drive.google.com",
+    ],
   },
 };
 

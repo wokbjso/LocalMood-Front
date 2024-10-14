@@ -11,7 +11,7 @@ export default function PlaceRecordDataList({
   reviewPurposeIndex,
 }: PlaceRecordDataProps & { reviewPurposeIndex: number }) {
   return (
-    <section className="px-[2rem] pt-[2.4rem] min-h-[30vh]">
+    <section className="px-[2rem] pt-[2.4rem] min-h-[30dvh]">
       {type === "CAFE"
         ? reviews[PLACE_CAFE_PURPOSE[reviewPurposeIndex]] &&
           reviews[PLACE_CAFE_PURPOSE[reviewPurposeIndex]].map((review, i) => {

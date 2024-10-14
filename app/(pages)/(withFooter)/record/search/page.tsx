@@ -29,7 +29,7 @@ export default async function RecordSearchPage({ searchParams }: Props) {
         />
       </ArrowBackTopBar>
       {textSearchPlaceData?.spaceCount === 0 && (
-        <div className="flex justify-center items-center body1-medium text-text-gray-8 h-[31vh]">
+        <div className="flex justify-center items-center body1-medium text-text-gray-8 h-[31dvh]">
           검색된 결과가 없습니다.
         </div>
       )}
