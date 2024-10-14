@@ -34,7 +34,7 @@ export default function PlaceImageSlider({
             className="w-[100%] h-[30rem] mb-[1.5rem] relative"
           >
             <Image
-              src={image}
+              src={image.replace("open?", "uc?export=download&")}
               alt="공간 상세 사진"
               fill
               sizes="100vw"
